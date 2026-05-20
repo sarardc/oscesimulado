@@ -43,7 +43,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
   }
-  .header h1 { font-size: 30px; font-weight: 500; color: var(--text); }
+  .header h1 { font-size: 50px; font-weight: 500; color: var(--text); }
   .header h3 { font-size: 20px; font-weight: 500; color: var(--text); }
   .header p { font-size: 15px; color: var(--text2); margin-top: 2px; }
 
