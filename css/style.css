@@ -44,7 +44,7 @@
     text-transform: uppercase;
   }
   .header h1 { font-size: 30px; font-weight: 500; color: var(--text); }
-  .header h3 { font-size: 20px; font-weight: 500; color: var(--text); align-items: left; }
+  .header h3 { font-size: 20px; font-weight: 500; color: var(--text); }
   .header p { font-size: 15px; color: var(--text2); margin-top: 2px; }
 
   .home-body { padding: 32px; max-width: 1100px; margin: 0 auto; }
