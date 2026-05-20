@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "PowerShell(node --version)",
+      "PowerShell(python --version)",
+      "PowerShell(python3 --version)",
+      "PowerShell(npm --version)",
+      "Bash(cmd.exe /c \"node --version\")",
+      "Bash(cmd.exe /c \"node --version && echo OK\")",
+      "Bash(cmd.exe /c \"where node\")",
+      "Bash(cmd.exe /c \"dir \\\\\"C:\\\\Program Files\\\\nodejs\\\\\" 2>&1 & dir \\\\\"C:\\\\Program Files \\(x86\\)\\\\nodejs\\\\\" 2>&1\")",
+      "Bash(cmd.exe /c \"dir \\\\\"C:\\\\Users\\\\Sara Costa\\\\Downloads\\\\SIMULADOR CHAT\\\\data\\\\Markdown files\\\\Pediatria1\\\\\"\")",
+      "Bash(cmd.exe /c \"node -e \\\\\"const fs=require\\('fs'\\); try { eval\\(fs.readFileSync\\('c:/Users/Sara Costa/Downloads/SIMULADOR CHAT/data/pediatria_parsed.js','utf8'\\)\\); console.log\\('OK'\\); } catch\\(e\\){ console.log\\('ERRO: '+e.message\\); }\\\\\"\")"
+    ]
+  }
+}
