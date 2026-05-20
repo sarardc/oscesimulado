@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador OSCE</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- HOME -->
+<div id="home">
+  <div class="header">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+        <span class="header-badge">OSCE</span>
+        <h1>Simulador de Habilidades Clínicas</h1>
+      </div>
+    </div>
+  </div>
+  <div class="home-body">
+    <div class="home-intro">
+      <h2>Como usar</h2>
+      <p>Selecione uma estação, leia as instruções na <strong>Aba A</strong> e inicie o timer. Solicite o exame físico e exames pela <strong>Aba B</strong>. Ao finalizar, confira o gabarito na <strong>Aba C</strong>. Estude o tema na <strong>Aba D</strong>. A partir da estação 30 as novas instruções para as estações foram atualizadas.</p>
+    </div>
+    <div class="home-layout">
+      <aside class="filter-sidebar">
+        <p class="filter-label">Filtrar por tema</p>
+        <button class="filter-btn active" data-tema="all" onclick="setFilter('all')">Todas</button>
+        <button class="filter-btn tema-nefrologia" data-tema="nefrologia" onclick="setFilter('nefrologia')">Nefrologia</button>
+        <button class="filter-btn tema-urologia" data-tema="urologia" onclick="setFilter('urologia')">Urologia</button>
+        <button class="filter-btn tema-endocrinologia" data-tema="endocrinologia" onclick="setFilter('endocrinologia')">Endocrinologia</button>
+        <button class="filter-btn tema-pediatria" data-tema="pediatria" onclick="setFilter('pediatria')">Pediatria</button>
+        <button class="filter-btn tema-psiquiatria" data-tema="psiquiatria" onclick="setFilter('psiquiatria')">Psiquiatria</button>
+      </aside>
+      <div class="home-main">
+        <p class="section-label">Estações disponíveis <span id="filter-count"></span></p>
+        <div class="grid" id="cards-grid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATION VIEW -->
+<div id="station-view">
+  <div class="sv-header">
+    <button class="back-btn" onclick="goHome()">← Voltar</button>
+    <div style="flex:1">
+      <div class="sv-title" id="sv-title"></div>
+      <div class="sv-sub" id="sv-sub"></div>
+    </div>
+    <div class="timer-wrap">
+      <span class="timer-label">TEMPO</span>
+      <div id="timer-display">10:00</div>
+      <button class="timer-btn" id="timer-toggle-btn" onclick="toggleTimer()" title="Iniciar/Pausar">▶</button>
+      <button class="timer-btn" onclick="resetTimer()" title="Reiniciar">↺</button>
+    </div>
+  </div>
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="showTab(0)">A — Instruções ao Candidato</button>
+    <button class="tab-btn" onclick="showTab(1)">B — Impressos</button>
+    <button class="tab-btn" onclick="showTab(2)">C — Gabarito do Avaliador</button>
+    <button class="tab-btn" onclick="showTab(3)">D — Material de Estudo</button>
+  </div>
+  <div class="sv-main">
+    <div id="tab0" class="tab-content active"></div>
+    <div id="tab1" class="tab-content"></div>
+    <div id="tab2" class="tab-content"></div>
+    <div id="tab3" class="tab-content"></div>
+    <div id="tab4" class="tab-content"></div>
+  </div>
+</div>
+
+<!-- DADOS — cada arquivo declara uma variável global usada por api.js -->
+<script src="data/casos.js"></script>
+<script src="data/endocrino_parsed.js"></script>
+<script src="data/pediatria_parsed.js"></script>
+
+<!-- APP -->
+<script src="js/api.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
