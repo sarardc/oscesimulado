@@ -1,0 +1,49 @@
+casos.js
+    itu
+    litíase
+    tireoide
+    endocrinologia feminina
+    endocrinologia
+    hipertireoidismo
+    endocrinologia cirúrgica
+    hipófise
+    metabolismo ósseo
+    andrologia
+    climatério
+    obesidade
+    diabetes
+    hiperandrogenismo
+    pituitario
+    metabolica
+    reprodutivo
+    adrenal
+    psicose
+    bipolar
+    depressao
+    ansiedade
+    tept
+endocrino_parsed.js
+    hipotireoidismo
+    diabetes-mellitus
+pediatria_parsed.js
+    vacinação
+    diarreia
+    pneumonia
+    asma
+    bronquiolite
+    puericultura-dnpm
+    reanimacao-neonatal
+    membrana-hialina
+    ictericia-neonatal
+    convulsao-febril
+pediatria2.js
+    Triagem Neonatal / Hipotireoidismo Congênito
+    Infecções Congênitas / Síndrome da Rubéola Congênita
+    Tuberculose Pulmonar Primária / Escore MS 2019
+    Coqueluche Grave em Lactente / Antibioticoterapia e Notificação
+    Febre Reumática / Critérios de Jones / Profilaxia Secundária
+    Anorexia Nervosa / Saúde do Adolescente / HEEADSSS
+    Criptorquidia / Fimose Fisiológica / Urologia Pediátrica
+    Hérnia Inguinal / Hidrocele Comunicante / Urgência Cirúrgica Pediátrica
+    Apendicite Aguda Pediátrica / Pediatric Appendicitis Score
+    Torção Testicular / Escroto Agudo / Emergência Urológica
