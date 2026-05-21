@@ -10,6 +10,7 @@ const allSpecialties = [
   ...pediatriaStations,
   ...pediatria2,
   ...uro1stations,
+  ...psiq1stations,
 ];
 
 const stations = allSpecialties.map((st, idx) => ({
