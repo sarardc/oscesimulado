@@ -1,0 +1,2252 @@
+Entendido! Os casos que você compartilhou já cobrem: psicose, TAB, depressão, TAG e TEPT. Vou recriar os 10 casos com **abordagens completamente diferentes** — novos cenários, perfis de pacientes distintos, focos clínicos alternativos e complexidades diferentes. Continuando do CASO-06 em diante com os temas restantes e recriando os anteriores com novas perspectivas.
+
+Os **10 temas** mantidos, mas com abordagens inéditas:
+
+1. **Depressão** → Homem idoso, viúvo, em contexto de luto patológico (antes era mulher de meia-idade)
+2. **TAG** → Mulher, estudante de medicina, com somatização proeminente (antes era homem de TI)
+3. **Psicose** → Paciente em crise na APS trazida por agente comunitário (antes era PS/CAPS)
+4. **Risco de suicídio** → Adolescente com automutilação, trazida pela escola (antes era homem adulto na UPA)
+5. **TAB maníaco** → Idoso de 60 anos com primeiro episódio maníaco tardio (antes era mulher jovem)
+6. **Abstinência alcoólica** → Novo tema não presente nos casos anteriores
+7. **Transtorno do pânico** → Novo tema não presente nos casos anteriores
+8. **Agitação psicomotora** → Novo tema não presente nos casos anteriores
+9. **TEPT** → Homem, veterano de operação policial, com apresentação atípica (antes era mulher/assalto)
+10. **Delirium** → Novo tema não presente nos casos anteriores
+
+Vamos começar:
+
+---
+
+## CASO OSCE-01
+
+### BLOCO 1 — METADADOS
+
+- **id:** 1
+- **title:** "Idoso que parou de comer e diz que 'não tem mais sentido'"
+- **sub:** "UBS — Consulta agendada por agente comunitário de saúde"
+- **tema:** "Psiquiatria"
+- **topic:** "Episódio depressivo maior em idoso / luto patológico"
+- **level:** moderado
+- **cardAccent:** "#37474F"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação de risco de suicídio, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório de clínica geral, turno matutino. O agente comunitário de saúde trouxe o paciente após visita domiciliar de rotina, preocupado com o estado do senhor."
+- **patient:** "J.O., 71 anos, masculino, aposentado (ex-pedreiro), viúvo há 8 meses, mora sozinho."
+- **complaint:** "ACS relata que o senhor está 'sumido', não abre mais a porta, parou de ir à igreja e perdeu muito peso. O paciente diz que 'não tem mais sentido' continuar."
+- **tasks:**
+  1. Realize a anamnese psiquiátrica e geriátrica dirigida ao caso.
+  2. Diferencie luto normal de episódio depressivo maior.
+  3. Avalie o risco de suicídio de forma direta e estruturada.
+  4. Solicite os exames complementares pertinentes para exclusão de causas orgânicas.
+  5. Proponha a conduta terapêutica adequada e o plano de seguimento.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Bloco confidencial do avaliador.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 148/88 mmHg |
+| FC | 68 bpm |
+| FR | 15 irpm |
+| Tax | 36,3°C |
+| Peso | 58 kg |
+| Altura | 1,68 m |
+| IMC | 20,5 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em regular estado geral, emagrecido, fácies de tristeza, cabelos e barba por fazer, roupa inadequada e suja. Lúcido, orientado no tempo e espaço. Mucosas levemente descoradas. Hidratação limítrofe. Marcha lenta, sem auxílio.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Sem déficits focais motores ou sensitivos. Fala lenta, voz baixa. Mini-Exame do Estado Mental (MEEM): 24/30 (perda em orientação temporal e memória recente — limítrofe para escolaridade baixa).
+- **Cardiovascular:** BRNF em 2T, sem sopros. Pulsos presentes e simétricos.
+- **Abdominal:** Plano, RHA presentes, indolor à palpação. Sem visceromegalias.
+- **Dermatológico:** Sem lesões de automutilação. Turgor reduzido.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma completo | Hb 10,8 g/dL, VCM 72 fL, HCM 22 pg | Hb >13 (H); VCM 80–96; HCM 27–33 | Sim |
+| TSH | 6,8 mUI/L | 0,4–4,0 mUI/L | Sim |
+| T4 livre | 0,7 ng/dL | 0,8–1,8 ng/dL | Sim |
+| Glicemia de jejum | 112 mg/dL | 70–99 mg/dL | Sim |
+| Sódio | 132 mEq/L | 135–145 mEq/L | Sim |
+| Creatinina | 1,1 mg/dL | 0,7–1,2 mg/dL | Não |
+| Vitamina B12 | 180 pg/mL | 200–900 pg/mL | Sim |
+| Vitamina D | 14 ng/mL | >30 ng/mL | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais e peso ao início (ressaltar a perda de 9 kg em 8 meses, informada pelo ACS). Entregar exames laboratoriais somente se solicitados pelo candidato. O ator deve estar sentado, cabisbaixo, respondendo de forma breve. O ACS pode ser interpretado por um segundo ator ou professor, disponível para fornecer contexto externo se o candidato perguntar.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+J.O., 71 anos, masculino, aposentado (ex-pedreiro), viúvo há 8 meses (esposa faleceu de câncer). Dois filhos adultos que moram em outra cidade. Frequentava a igreja três vezes por semana. Natural de Quixadá/CE, reside em Fortaleza há 30 anos.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Eu vim porque o menino da saúde ficou me enchendo o saco... mas tô bem não, doutor. Só tô velho mesmo." |
+| Sobre a esposa | "Ela foi embora faz oito meses. Quarenta e três anos juntos. Agora não tem mais graça nada." |
+| Sobre alimentação | "Não sinto fome. Quando lembro de comer já é tarde. Não tem ninguém pra cozinhar mais." |
+| Sobre sono | "Durmo pouco. Acordo de madrugada e fico pensando nela. Aí não dorme mais." |
+| Sobre atividades e prazer | "Parei de ir na missa. Parei de conversar com os vizinho. Não tô com vontade de nada. Nem televisão não presto atenção mais." |
+| Sobre os filhos | "Eles ligam, mas têm a vida deles. Não quero incomodar não." |
+| Sobre pensamentos de morte | Só se perguntado diretamente: "Às vezes fico pensando que seria bom se Deus me chamasse logo. Pra eu ir encontrar ela." |
+| Sobre plano de suicídio | Só se perguntado diretamente: "Não, não ia fazer nada assim não. Mas se morresse dormindo ia ser um alívio." |
+| Pergunta ativa do paciente | "O senhor(a) acha que eu tô ficando gagá? Às vezes esqueço as coisa." |
+| Pergunta ativa do paciente | "Isso que eu tô sentindo tem jeito, doutor? Ou é assim mesmo que fica quando a gente fica velho e perde a mulher?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Ideação de morte passiva ("seria bom se Deus me chamasse logo") — revelar somente se o candidato perguntar diretamente sobre pensamentos de morte ou suicídio.
+- Alimenta-se em média uma vez ao dia, com restos e biscoitos — revelar apenas se perguntado especificamente sobre o que e quantas vezes come por dia.
+- Fez uso de álcool diário nas primeiras semanas após o falecimento da esposa, mas parou há 3 meses — revelar apenas se perguntado sobre uso de álcool.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tom apático, voz baixa e lenta, movimentos lentos. Minimiza os próprios sintomas ("é coisa da idade", "é só saudade"). Responde ao que é perguntado mas não oferece informações espontaneamente. Demonstra emoção contida ao falar da esposa — pausa longa, olhos marejam. Apresenta leve resistência à ideia de remédio ("não quero ficar dopado"). Abre-se progressivamente quando o candidato demonstra genuíno interesse e não pressa.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador.
+
+**Diagnóstico Principal (diagnosis):**
+Episódio depressivo maior grave em idoso, com ideação de morte passiva, em contexto de luto complicado. Hipotireoidismo primário concomitante (TSH elevado, T4 livre baixo) como fator orgânico contribuinte. Anemia microcítica hipocrômica (provável ferropriva por desnutrição). Hiponatremia leve. CID-11: 6A70.2 / DSM-5: F32.2.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Luto não complicado — distingue-se da depressão maior pela presença de anedonia global, insônia terminal, perda de peso significativa (9 kg), isolamento social intenso, ideação de morte e duração de 8 meses com piora progressiva; no luto não complicado, o humor tende a oscilar e há preservação de algumas áreas de funcionamento.
+2. Demência (TCL ou demência inicial) — o MEEM limítrofe e o esquecimento relatado levantam suspeita; no entanto, a queda cognitiva pode ser pseudodemência depressiva, que melhora com tratamento da depressão; reavaliação neuropsicológica em 3–6 meses é recomendada.
+3. Hipotireoidismo como causa única — os exames confirmam hipotireoidismo, que contribui para o quadro; no entanto, a intensidade dos sintomas depressivos, a ideação de morte e o contexto de luto indicam comorbidade real com depressão maior.
+4. Síndrome do isolamento social em idoso — estado de retraimento social sem critérios plenos para depressão maior; excluído pela gravidade e número de sintomas presentes.
+
+**Síntese do Caso (context):**
+Idoso de 71 anos, viúvo há 8 meses, apresenta episódio depressivo maior grave com anedonia global, insônia terminal, perda de 9 kg, isolamento social, autodepreciação e ideação de morte passiva. Hipotireoidismo primário e anemia ferropriva como comorbidades orgânicas contribuintes. MEEM limítrofe exige reavaliação futura para pseudodemência depressiva vs. demência incipiente.
+
+**Justificativa Diagnóstica (justify):**
+Preenche critérios DSM-5 para episódio depressivo maior grave: humor deprimido persistente, anedonia global, insônia terminal, perda de peso significativa (>5% em 1 mês), fadiga, isolamento social, sentimentos de que não há mais sentido e ideação de morte passiva — 8 dos 9 critérios presentes por >2 meses. O luto é o evento precipitante, mas a gravidade, a duração e a ideação de morte ultrapassam os limites do luto não complicado. Hipotireoidismo (TSH 6,8) é fator orgânico agravante que deve ser tratado simultaneamente.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar início, evolução e intensidade do humor deprimido
+- Pesquisar anedonia (abandono de atividades prazerosas — missa, vizinhos, TV)
+- Investigar alterações do sono (insônia terminal de madrugada)
+- Pesquisar alterações do apetite e quantificar a perda de peso
+- Avaliar diretamente a ideação de morte e suicídio ("o senhor já pensou em se machucar ou em querer morrer?")
+- Investigar presença de plano suicida
+- Pesquisar funcionamento cognitivo (memória, orientação) — distinguir pseudodemência depressiva de demência
+- Investigar uso de álcool (especialmente no período pós-luto)
+- Pesquisar medicamentos em uso (interações, adesão)
+- Investigar suporte social e familiar disponível
+- Questionar sobre episódios depressivos ou psiquiátricos anteriores
+- Pesquisar sintomas de hipotireoidismo (frio, prisão de ventre, lentidão, ganho de peso prévio)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: PA elevada, bradicardia relativa (hipotireoidismo)
+- Inspeção: emagrecimento visível, cabelos e barba descuidados, roupas inadequadas
+- Avaliação cognitiva: aplicar MEEM (rastreio de demência vs. pseudodemência)
+- Avaliação tireoidiana: palpação da tireoide
+- Avaliação nutricional: mucosas, turgor cutâneo, hidratação
+- Avaliação de automutilação: inspeção de membros superiores
+- Avaliação neurológica básica: reflexos, marcha, equilíbrio (hipotireoidismo pode causar reflexos lentos)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| TSH e T4 livre | Rastreio de hipotireoidismo em idoso com depressão | TSH 6,8 (↑); T4 livre 0,7 (↓) |
+| Hemograma completo | Avaliar anemia como causa de fadiga e fraqueza | Anemia microcítica hipocrômica |
+| Vitamina B12 | Deficiência comum em idosos, causa depressão e déficit cognitivo | Baixa (180 pg/mL) |
+| Vitamina D | Deficiência associada à depressão em idosos | Insuficiente (14 ng/mL) |
+| Sódio | Rastreio de hiponatremia (causa confusão e depressão em idosos) | Hiponatremia leve (132 mEq/L) |
+| Glicemia de jejum | Rastreio de DM2 em idoso com perda de peso | Alterada em jejum (112 mg/dL) |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica para depressão:** ISRS de primeira linha em idosos: Sertralina 25 mg/dia (iniciar com dose mais baixa em idosos, titular para 50–100 mg/dia em 2–4 semanas). Alternativa: Escitalopram 5–10 mg/dia. Evitar tricíclicos em idosos (risco anticolinérgico, queda, arritmia). (RENAME 2023; MS — PCDT Depressão, 2022; Nota técnica CFM sobre uso de antidepressivos em idosos)
+- **Farmacológica para hipotireoidismo:** Iniciar levotiroxina 25–50 mcg/dia VO em jejum, com titulação conforme TSH. Encaminhar ao endocrinologista se necessário. (Diretriz SBEM, 2022)
+- **Farmacológica para anemia ferropriva:** Sulfato ferroso 300 mg/dia VO (ou ferrous gluconate conforme disponibilidade). Investigar causa da ferropenia (dieta insuficiente provável; excluir sangramento). (RENAME 2023)
+- **Farmacológica para hiponatremia leve:** Orientar hidratação oral; investigar causa (SIADH? diuréticos?). Monitorar sódio em 7–14 dias.
+- **Não farmacológica:** Reintegração social progressiva (retorno à missa, contato com vizinhos); apoio do ACS com visitas domiciliares semanais; psicoterapia de suporte (luto) — encaminhamento ao NASF/psicólogo; orientação nutricional; suplementação de vitamina D e B12.
+- **Encaminhamento:** Contatar os filhos (com autorização do paciente) para envolvimento no cuidado; encaminhar ao CAPS se sem resposta em 4–6 semanas ou piora da ideação de morte.
+- **Orientações ao paciente:** Explicar que o que ele sente tem nome e tratamento ("não é fraqueza, não é coisa da idade"), que o remédio não "dopa", que a melhora vem em semanas, que ele deve retornar em 2 semanas e ligar se os pensamentos de morte piorarem.
+- **Seguimento:** Retorno em 2 semanas. Reavaliar sódio, hemograma e TSH em 4–6 semanas. Reavaliação cognitiva (MEEM) após 3 meses de tratamento da depressão.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se pelo nome, agradecer o paciente por ter vindo, sentar-se ao mesmo nível, falar devagar e em voz clara.
+- **Comunicação do diagnóstico:** Explicar que a tristeza profunda após uma perda grande pode se tornar uma doença que precisa de tratamento — "não é fraqueza, não é coisa da idade". Validar a dor da perda da esposa antes de falar sobre o diagnóstico.
+- **Escuta ativa:** Deixar o senhor falar sobre a esposa com respeito, sem pressa. Usar o nome da esposa se o paciente o mencionar. Não minimizar a perda ("eu entendo que perder quem foi sua companheira por 43 anos é uma dor muito grande").
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não perguntar diretamente sobre ideação de morte ou suicídio, atribuindo os sintomas apenas ao luto normal
+- ❌ Não solicitar TSH em idoso com depressão (hipotireoidismo é causa orgânica tratável e muito prevalente em idosos)
+- ❌ Prescrever antidepressivo tricíclico em idoso (risco de queda, arritmia, retenção urinária, confusão — contraindicado como primeira linha)
+- ❌ Dispensar o paciente sem plano de seguimento estruturado e sem acionar rede de suporte (ACS, família)
+- ❌ Atribuir todos os sintomas ao luto normal sem avaliar critérios de depressão maior
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — IDOSO QUE PAROU DE COMER E DIZ QUE NÃO TEM MAIS SENTIDO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se pelo nome e cumprimentou o paciente com respeito | 0.3 | CFM nº 1.931/2009 |
+| Falou de forma clara, pausada e em volume adequado (adaptação ao idoso) | 0.3 | MS — Política Nacional de Saúde da Pessoa Idosa, 2006 |
+| Validou a dor da perda da esposa sem minimizar antes de avançar para o diagnóstico | 0.5 | MS — Política Nacional de Humanização, 2013 |
+| Explicou o diagnóstico em linguagem acessível, sem usar termos como "depressão grave" de forma abrupta | 0.5 | MS — PCDT Depressão, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou início, duração e progressão dos sintomas depressivos | 0.5 | MS — PCDT Depressão, 2022 |
+| Pesquisou anedonia (abandono de atividades — missa, vizinhos, televisão) | 0.5 | DSM-5; MS — PCDT Depressão, 2022 |
+| Investigou alterações do sono (insônia terminal) e do apetite/peso | 0.5 | MS — PCDT Depressão, 2022 |
+| Perguntou diretamente sobre pensamentos de morte ou suicídio | 1.0 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Investigou funcionamento cognitivo (memória, orientação) para rastrear demência | 0.5 | MS — Diretrizes para Atenção à Saúde do Idoso, 2022 |
+| Pesquisou uso de álcool e outras substâncias | 0.3 | MS — PCDT Depressão, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais com atenção à PA e FC | 0.3 | MS — PCDT Depressão, 2022 |
+| Aplicou rastreio cognitivo (MEEM ou equivalente) | 0.5 | MS — Diretrizes para Atenção ao Idoso, 2022 |
+| Palpou a tireoide e avaliou sinais de hipotireoidismo | 0.5 | SBEM — Diretriz Hipotireoidismo, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou TSH para rastreio de hipotireoidismo | 1.0 | SBEM 2022; MS — PCDT Depressão, 2022 |
+| Solicitou hemograma e vitamina B12 para rastreio de causas orgânicas de depressão | 0.5 | MS — PCDT Depressão, 2022 |
+| Formulou diagnóstico de episódio depressivo maior (diferenciando de luto não complicado) | 1.0 | DSM-5; MS — PCDT Depressão, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Prescreveu ISRS em dose inicial adequada para idoso (sertralina 25–50 mg/dia) e não prescreveu tricíclico | 1.0 | MS — PCDT Depressão, 2022; RENAME 2023 |
+| Indicou tratamento do hipotireoidismo (levotiroxina) | 0.5 | SBEM 2022; RENAME 2023 |
+| Acionou rede de suporte (ACS, família, NASF/psicólogo) | 0.3 | MS — Política Nacional de Saúde da Pessoa Idosa, 2006 |
+| Estabeleceu retorno em 2 semanas e orientou sobre sinais de alarme (piora da ideação) | 0.3 | MS — PCDT Depressão, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-02
+
+### BLOCO 1 — METADADOS
+
+- **id:** 2
+- **title:** "Estudante com 'mil doenças' e medo constante de estar gravemente doente"
+- **sub:** "UBS — Demanda espontânea"
+- **tema:** "Psiquiatria"
+- **topic:** "Transtorno de ansiedade generalizada com somatização"
+- **level:** moderado
+- **cardAccent:** "#1565C0"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, diagnóstico diferencial, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno da tarde. Terceira consulta da paciente na UBS nos últimos dois meses, sempre com queixas físicas diferentes."
+- **patient:** "F.L., 24 anos, feminino, estudante de Medicina (5º semestre), solteira, mora com os pais."
+- **complaint:** "Paciente retorna com novas queixas físicas: dor de cabeça frequente, tensão no peito, formigamento nas mãos e 'sensação de que algo grave vai acontecer'. Relata que pesquisa os sintomas na internet e sempre conclui que pode ter algo sério."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso, explorando as queixas físicas e o padrão de preocupações.
+  2. Identifique a natureza funcional das queixas e diferencie de causas orgânicas.
+  3. Formule a hipótese diagnóstica principal e os diagnósticos diferenciais pertinentes.
+  4. Proponha a conduta terapêutica adequada, incluindo abordagem das queixas somáticas.
+  5. Comunique o diagnóstico à paciente de forma empática, validando os sintomas sem reforçar a busca por exames.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 122/78 mmHg |
+| FC | 96 bpm |
+| FR | 18 irpm |
+| Tax | 36,5°C |
+| Peso | 57 kg |
+| Altura | 1,62 m |
+| IMC | 21,7 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, lúcida, orientada, aparência ansiosa, inquieta na cadeira, fala rápida. Sem icterícia, cianose ou palidez. Tireoide não palpável. Ausculta cardíaca e pulmonar normais. Abdome sem alterações. Sem déficits neurológicos focais.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Cardiovascular:** BRNF em 2T, sem sopros, pulsos periféricos normais.
+- **Neurológico:** Sem déficits focais. Força e sensibilidade preservadas bilateralmente (o formigamento não segue dermátomo definido — padrão funcional).
+- **Muscular:** Tensão palpável em musculatura cervical e trapézio bilateralmente.
+- **GAD-7 aplicado:** 17/21 — ansiedade grave.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma completo | Normal | — | Não |
+| TSH | 1,9 mUI/L | 0,4–4,0 mUI/L | Não |
+| Glicemia de jejum | 86 mg/dL | 70–99 mg/dL | Não |
+| ECG (12 derivações) | Ritmo sinusal, FC 94 bpm, sem alterações | Normal | Não |
+| Neuroimagem prévia (TC crânio — consulta anterior) | Sem alterações | Normal | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Informar que esta é a terceira consulta nos últimos 2 meses. Exames laboratoriais e o resultado da TC prévia entregues somente se solicitados. O candidato deve ser avaliado especialmente por NÃO solicitar exames desnecessários e por conseguir comunicar o diagnóstico sem invalidar os sintomas físicos da paciente.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+F.L., 24 anos, feminino, estudante de Medicina (5º semestre — em contato com semiologia e propedêutica), solteira, mora com os pais. Histórico de ansiedade desde o colégio. Mãe com diagnóstico de TAG.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa inicial | "Doutora, eu tô muito preocupada. Faz três semanas que eu tô com essa dor de cabeça que não passa, e junto vem uma sensação estranha no peito, como se fosse apertar. E meu pescoço tá todo duro." |
+| Sobre a pesquisa na internet | "Eu sei que sou estudante de medicina e devia saber melhor, mas eu fico pesquisando e fico com medo de ter aneurisma, tumor... Eu sei que é exagero, mas não consigo parar." |
+| Sobre as preocupações | "Eu me preocupo com tudo. Com a faculdade, com as provas, com minha mãe que tem pressão alta, com o futuro... Não tem um momento em que minha cabeça descansa." |
+| Sobre o sono | "Demoro muito pra dormir. Fico revisando o que fiz de errado no dia, o que tenho que fazer amanhã. Minha cabeça não desliga." |
+| Sobre o formigamento | "As mãos ficam formigando, principalmente quando fico muito tensa. Pesquisei e pode ser esclerose múltipla, ou déficit de B12..." |
+| Sobre episódios de pânico | "Não tenho aquela crise que vem do nada, não. É constante, o tempo todo." |
+| Sobre histórico familiar | Só se perguntado: "Minha mãe sempre foi muito ansiosa também. Tomou remédio por anos." |
+| Pergunta ativa da paciente | "Mas doutora, a senhora não acha que deveria pedir uma ressonância? Só pra descartar mesmo?" |
+| Pergunta ativa da paciente | "Isso vai melhorar? Eu tô com medo de virar igual à minha mãe, que ficou anos sofrendo." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- História familiar positiva de TAG na mãe (tratou com medicação por anos) — revelar apenas se o candidato perguntar sobre antecedentes familiares psiquiátricos.
+- A paciente pesquisa sintomas na internet por >2 horas/dia, o que piora a ansiedade — revelar apenas se perguntado especificamente sobre o comportamento de pesquisa e quanto tempo gasta nisso.
+
+#### Comportamento do Ator (actorBehavior)
+
+Fala rápida, inquieta, leva um caderninho com os sintomas anotados. Tende a interromper para perguntar se o candidato vai pedir mais exames. Alivia visivelmente quando o candidato valida os sintomas físicos como reais ("sua dor de cabeça é real, não estou dizendo que você está inventando"). Demonstra resistência inicial à ideia de tratamento psiquiátrico ("mas eu não sou louca").
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador.
+
+**Diagnóstico Principal (diagnosis):**
+Transtorno de ansiedade generalizada (TAG) com apresentação somática proeminente e comportamento de busca por reasseguramento (reassurance-seeking) e cibercondria. CID-11: 6B00 / DSM-5: F41.1.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Transtorno de ansiedade de doença (hipocondria / illness anxiety disorder) — preocupação excessiva com a possibilidade de estar doente; neste caso coexiste com TAG e é secundária à ansiedade generalizada; no TAG predominam preocupações múltiplas além da saúde.
+2. Transtorno do pânico — ausência de crises episódicas inesperadas; a ansiedade é constante, não paroxística; excluído pela anamnese.
+3. Hipertireoidismo — pode causar taquicardia, ansiedade e palpitações; afastado por TSH normal.
+4. Transtorno depressivo maior com ansiedade — humor deprimido não proeminente no caso; anedonia ausente; o quadro predominante é ansiedade.
+
+**Síntese do Caso (context):**
+Estudante de medicina de 24 anos com ansiedade generalizada de longa data, exacerbada pelo ambiente acadêmico e pelo acesso a informação médica. Apresenta preocupações múltiplas e excessivas, somatização (cefaleia, parestesias, tensão muscular), comportamento de busca compulsiva na internet e três consultas em dois meses com queixas físicas variadas. Exames orgânicos previamente normais. GAD-7 grave (17/21). História familiar positiva (mãe com TAG).
+
+**Justificativa Diagnóstica (justify):**
+Preenche critérios DSM-5 para TAG: preocupações excessivas e difíceis de controlar em múltiplas áreas (faculdade, saúde, família, futuro) por >6 meses, com dificuldade de controlar os pensamentos e ≥3 sintomas físicos associados (insônia, tensão muscular, dificuldade de concentração, irritabilidade). As queixas somáticas (cefaleia, parestesias, tensão no peito) são expressão física da ansiedade — parestesias sem dermátomo definido, sem alteração neurológica objetiva, com padrão funcional. Exames normais afastam causas orgânicas.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar natureza, conteúdo e controle das preocupações (são difíceis de parar?)
+- Pesquisar duração (>6 meses)
+- Identificar sintomas físicos associados (insônia, tensão muscular, dificuldade de concentração, irritabilidade, fadiga)
+- Investigar comportamento de pesquisa de sintomas na internet (cibercondria)
+- Pesquisar número e padrão de consultas médicas recentes (busca por reasseguramento)
+- Investigar crises paroxísticas de ansiedade para diferenciar de transtorno do pânico
+- Pesquisar humor deprimido e anedonia (descartar depressão)
+- Investigar antecedentes familiares psiquiátricos
+- Pesquisar uso de cafeína, estimulantes e substâncias
+- Avaliar risco de suicídio
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: FC discretamente elevada por ansiedade
+- Avaliação neurológica: confirmar ausência de déficit sensitivo em dermátomo definido (parestesias funcionais)
+- Avaliação muscular: tensão cervical e de trapézio à palpação
+- Avaliação tireoidiana: sem alterações
+- Aplicação do GAD-7
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| TSH | Afastar hipertireoidismo | Normal |
+| ECG | Afastar arritmia (taquicardia, palpitações) | Ritmo sinusal, normal |
+| Hemograma | Afastar anemia como causa de fadiga | Normal |
+
+> ⚠️ **Nota ao avaliador:** O candidato NÃO deve solicitar ressonância magnética, eletroencefalograma ou outros exames de neuroimagem sem indicação clínica (sem déficit focal, sem cefaleia de alarme, com TC prévia normal). A solicitação de exames desnecessários em resposta à pressão da paciente deve ser pontuada negativamente (erro de conduta — reforça o comportamento de busca por reasseguramento).
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** ISRS de primeira linha para TAG: Sertralina 50 mg/dia VO ou Escitalopram 10 mg/dia VO. Alternativa: Duloxetina 60 mg/dia (ISRSN — também atua nas queixas dolorosas somáticas). Iniciar em dose baixa para reduzir ativação ansiosa inicial. (RENAME 2023; Diretrizes ABP — TAG, 2021)
+- **Não farmacológica:** Encaminhar para psicoterapia — TCC (técnicas de reestruturação cognitiva e exposição à incerteza). Orientar sobre redução de cafeína. Orientar sobre limitação do tempo de pesquisa de sintomas na internet (comportamento que mantém e amplifica a ansiedade). Técnicas de relaxamento muscular progressivo e mindfulness.
+- **Encaminhamento:** NASF/psicólogo na APS. CAPS se sem resposta em 6–8 semanas.
+- **Orientações ao paciente:** Validar que os sintomas físicos são reais ("sua cefaleia e o formigamento são reais — o corpo expressa a ansiedade de forma física"). Explicar que novos exames não vão aliviar o problema, que a resposta está no tratamento da ansiedade. Explicar latência do antidepressivo (2–4 semanas).
+- **Seguimento:** Retorno em 3 semanas. Orientar que, se surgir nova queixa física, ligue antes de vir para uma nova consulta de urgência.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Reconhecer que é a terceira consulta sem tom de julgamento ("fico contente que você voltou, vamos entender o que está acontecendo com você").
+- **Comunicação do diagnóstico:** Validar os sintomas físicos como reais antes de explicar o TAG ("não estou dizendo que você está inventando — sua dor de cabeça e a tensão são reais"). Usar a analogia de que o corpo e a mente são conectados.
+- **Escuta ativa:** Não interromper a paciente quando ela lista os sintomas. Depois, redirecionar para o padrão de preocupações.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Solicitar ressonância magnética ou outros exames de neuroimagem sem indicação clínica, cedendo à pressão da paciente (reforça o comportamento de busca por reasseguramento)
+- ❌ Não solicitar TSH (afastar hipertireoidismo como causa orgânica de ansiedade)
+- ❌ Dizer à paciente que "é tudo da sua cabeça" ou que "não tem nada" sem validar os sintomas físicos
+- ❌ Prescrever benzodiazepínico como tratamento de longa duração
+- ❌ Não orientar sobre o comportamento de busca de sintomas na internet como fator de manutenção da ansiedade
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — ESTUDANTE COM MÚLTIPLAS QUEIXAS FÍSICAS E MEDO CONSTANTE DE ESTAR DOENTE"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se pelo nome e acolheu a paciente sem demonstrar impaciência (terceira consulta) | 0.5 | CFM nº 1.931/2009 |
+| Validou os sintomas físicos como reais antes de explicar a origem ansiosa | 0.5 | MS — Política Nacional de Humanização, 2013 |
+| Recusou a solicitação de ressonância sem indicação clínica e explicou o motivo | 0.5 | Diretriz de uso racional de exames — CFM, 2022 |
+| Explicou o diagnóstico de TAG em linguagem acessível e sem estigma | 0.5 | ABP — Diretrizes TAG, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou natureza, conteúdo e controlabilidade das preocupações | 0.5 | DSM-5; ABP — Diretrizes TAG, 2021 |
+| Pesquisou duração dos sintomas (>6 meses) | 0.5 | DSM-5; ABP — Diretrizes TAG, 2021 |
+| Investigou comportamento de pesquisa de sintomas na internet (cibercondria) | 0.5 | ABP — Diretrizes TAG, 2021 |
+| Diferenciou de transtorno do pânico (ausência de crises paroxísticas) | 0.5 | DSM-5; ABP — Diretrizes TAG, 2021 |
+| Avaliou risco de suicídio | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais | 0.3 | Semiologia Médica — FMUSP |
+| Realizou avaliação neurológica para confirmar ausência de déficit em dermátomo (parestesias funcionais) | 0.5 | ABP — Diretrizes TAG, 2021 |
+| Aplicou GAD-7 como rastreio padronizado | 0.3 | ABP — Diretrizes TAG, 2021 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou TSH para afastar hipertireoidismo | 0.5 | ABP — Diretrizes TAG, 2021 |
+| Não solicitou exames de neuroimagem sem indicação clínica | 1.0 | CFM — Uso Racional de Exames, 2022 |
+| Formulou hipótese de TAG com apresentação somática | 1.0 | DSM-5; ABP — Diretrizes TAG, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Prescreveu ISRS ou ISRSN como tratamento de primeira linha | 1.0 | ABP — Diretrizes TAG, 2021; RENAME 2023 |
+| Orientou sobre redução de cafeína e limitação de pesquisas de sintomas na internet | 0.5 | ABP — Diretrizes TAG, 2021 |
+| Indicou encaminhamento para psicoterapia (TCC) | 0.5 | ABP — Diretrizes TAG, 2021 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-03
+
+### BLOCO 1 — METADADOS
+
+- **id:** 3
+- **title:** "Mulher falando sozinha na sala de espera da UBS"
+- **sub:** "UBS — Demanda espontânea trazida por familiar"
+- **tema:** "Psiquiatria"
+- **topic:** "Psicose — episódio agudo na atenção primária"
+- **level:** complexo
+- **cardAccent:** "#6A1B9A"
+- **Time:** 5 min
+- **Type:** Estação híbrida (paciente + familiar como segundo ator)
+- **Comp:** anamnese, avaliação do estado mental, diagnóstico diferencial, conduta, comunicação com familiar
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório de acolhimento, turno da manhã. A irmã trouxe a paciente, que está falando sozinha na sala de espera e recusou a entrar na sala inicialmente."
+- **patient:** "S.V., 31 anos, feminino, cabeleireira autônoma (parou de trabalhar há 2 meses), casada, uma filha de 4 anos."
+- **complaint:** "Irmã relata que a paciente 'está diferente há dois meses': fala sozinha, diz que os vizinhos colocaram algo na comida dela, está dormindo pouco, deixou de cuidar da filha e parou de trabalhar."
+- **tasks:**
+  1. Realize o acolhimento e a anamnese com a paciente e a irmã, priorizando a segurança do ambiente.
+  2. Avalie o estado mental da paciente de forma estruturada.
+  3. Investigue possíveis causas orgânicas e precipitantes (drogas, puerpério tardio, doenças sistêmicas).
+  4. Formule a hipótese diagnóstica e os principais diagnósticos diferenciais.
+  5. Proponha a conduta adequada ao nível primário de atenção e articule com a rede de saúde mental.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 120/78 mmHg |
+| FC | 94 bpm |
+| FR | 18 irpm |
+| Tax | 36,8°C |
+| Peso | 61 kg |
+| Altura | 1,60 m |
+| IMC | 23,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em regular estado geral, higiene regular (cabelo despenteado, roupa amassada). Inquieta, olhar desconfiado, fala em voz baixa e olha para o lado (alucinações auditivas durante a consulta). Lúcida, mas com orientação alopsíquica parcialmente prejudicada (não sabe o mês). Pupilas isocóricas e fotorreagentes.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Sem déficits motores ou sensitivos focais. Sem sinais de irritação meníngea. Sem nistagmo.
+- **Estado mental:** Aparência descuidada; psicomotricidade agitada; humor disfórico com afeto embotado; fala em murmúrios, desorganização do pensamento com delírio persecutório (envenenamento) e de referência (vizinhos a observam); alucinações auditivas (fala com "vozes" durante a entrevista); orientada no espaço, parcialmente no tempo; insight ausente.
+- **Dermatológico:** Sem marcas de injeção. Sem lesões cutâneas relevantes.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Glicemia capilar | 91 mg/dL | 70–140 mg/dL | Não |
+| Toxicológico urinário | Positivo para crack/cocaína | Negativo | Sim |
+| TSH | 2,4 mUI/L | 0,4–4,0 mUI/L | Não |
+| Hemograma | Normal | — | Não |
+| VDRL | Não reagente | Não reagente | Não |
+| Anti-HIV | Não reagente | Não reagente | Não |
+| Beta-HCG | Negativo | Negativo | Não |
+
+#### Exame de Imagem (image)
+
+**TC de crânio sem contraste (realizada pela UPA após referenciamento):** Sem alterações estruturais agudas. Parênquima e ventrículos dentro dos limites normais para a faixa etária.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. A irmã (segundo ator) está disponível na sala e pode ser interrogada. Exames laboratoriais entregues somente se solicitados. Resultado da TC é fornecido apenas se o candidato indicar o encaminhamento ou solicitar a imagem. A paciente pode ser entrevistada diretamente (ator deve manter postura desconfiada e olhar lateral — simulando alucinações auditivas).
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+S.V., 31 anos, feminino, cabeleireira autônoma, casada, filha de 4 anos. Irmã: 35 anos, agente de saúde. Natural de Fortaleza/CE. Sem diagnóstico psiquiátrico prévio documentado. Marido trabalha em outra cidade durante a semana.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Eu vim porque minha irmã insistiu. Não tenho nada. São eles que não me deixam em paz." |
+| Sobre os vizinhos | "Eles botaram veneno na minha água. Eu já sei que é pra me matar. Por isso eu não tomo água da torneira mais." |
+| Sobre as vozes | Se perguntado diretamente: "Umas vozes ficam falando que eu sou uma mãe ruim. Que eu devia morrer. Às vezes é uma voz, às vezes são duas." |
+| Sobre a filha | "Minha filha tá bem. Minha irmã cuida dela quando eu não tô podendo." |
+| Sobre o sono | "Fico acordada pensando. Tenho que ficar de olho nos vizinhos." |
+| Sobre drogas | Só se perguntado com paciência e sem julgamento: "Fumei umas pedras, umas vezes. Mas faz tempo..." (na verdade é recente — toxicológico positivo). |
+| Script da irmã | "Doutor(a), ela não tá bem há pelo menos dois meses. Parou de trabalhar, não cuida da menina direito, fica falando sozinha. O marido não sabe da gravidade. Ela nunca foi assim antes." |
+| Pergunta ativa da irmã | "Ela vai precisar ser internada? Quem vai cuidar da minha sobrinha?" |
+| Pergunta ativa da paciente | "Você vai me prender aqui?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Uso recente de crack (toxicológico positivo, mas paciente nega — revelar apenas via resultado laboratorial, não pelo script da paciente espontaneamente).
+- As vozes têm conteúdo de comando ("dizem que ela devia morrer") — revelar apenas se o candidato perguntar especificamente sobre o conteúdo e se as vozes mandam ela fazer algo.
+- Filha está sendo negligenciada (a irmã é quem cuida) — revelar se o candidato perguntar sobre quem cuida da criança.
+
+#### Comportamento do Ator (actorBehavior)
+
+Desconfiada, olha para os lados durante a entrevista (alucinações auditivas simuladas por movimentos de cabeça e murmúrios). Responde brevemente. Fica mais tranquila se o candidato não confrontar os delírios diretamente. Reage com irritabilidade se pressionada. A irmã é colaborativa, ansiosa e preocupada com a sobrinha.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Episódio psicótico agudo com delírios persecutórios, alucinações auditivas e comportamento desorganizado. Fator precipitante: uso de crack/cocaína (toxicológico positivo). Etiologia a esclarecer: psicose induzida por substância vs. esquizofrenia ou outro transtorno psicótico primário. CID-11: 6A24 / 6C44.5 / DSM-5: F29 / F14.959.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Psicose induzida por estimulantes (crack/cocaína) — toxicológico positivo, quadro agudo; no entanto a duração de 2 meses pode ultrapassar a janela de intoxicação, exigindo monitoramento após abstinência para definir diagnóstico.
+2. Esquizofrenia de início — critérios de duração (>1 mês) e declínio funcional; a esclarecer após período de abstinência.
+3. Transtorno esquizoafetivo — ausência de sintomas de humor proeminentes associados ao quadro.
+4. Encefalite autoimune (anti-NMDAR) — pode cursar com psicose aguda em mulher jovem; afastar com sorologia específica se refratária ao tratamento.
+
+**Síntese do Caso (context):**
+Mulher de 31 anos, previamente sem diagnóstico psiquiátrico, apresenta quadro psicótico agudo de 2 meses com delírios persecutórios, alucinações auditivas de comando, comportamento desorganizado, declínio funcional e uso recente de crack. Filha sendo negligenciada. Causa orgânica estrutural afastada por TC normal. Uso de substância como fator precipitante confirmado.
+
+**Justificativa Diagnóstica (justify):**
+Quadro psicótico com delírios persecutórios (envenenamento pelos vizinhos), alucinações auditivas (vozes de comando), comportamento desorganizado, declínio funcional e duração de 2 meses. Toxicológico positivo para cocaína/crack sugere contribuição de substância; no entanto a duração ultrapassa a janela típica de intoxicação aguda. Diagnóstico definitivo entre psicose primária e induzida por substância exige período de observação após abstinência. TC normal afasta causa estrutural.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar início, duração e evolução do quadro psicótico
+- Caracterizar alucinações auditivas (conteúdo, frequência, caráter de comando)
+- Caracterizar os delírios (persecutórios, de referência, de envenenamento)
+- Avaliar risco de suicídio (vozes de comando com conteúdo suicida)
+- Avaliar risco de auto e heteroagressão
+- Investigar uso de substâncias (crack, cocaína, outras)
+- Pesquisar antecedentes psiquiátricos próprios e familiares
+- Investigar situação da filha (avaliação de negligência infantil)
+- Pesquisar histórico obstétrico (puerpério tardio)
+- Investigar uso de medicamentos e doenças sistêmicas
+
+**Exame Físico Esperado (expectedPhysical):**
+- Avaliação do estado mental estruturada: aparência, psicomotricidade, humor/afeto, pensamento, percepção, orientação, memória, insight
+- Avaliação neurológica: sinais meníngeos, déficits focais, pupilas
+- Avaliação de intoxicação aguda: pupilas, reflexos, coordenação
+- Avaliação de automutilação: inspeção de membros
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Toxicológico urinário | Investigar psicose induzida por substância | Positivo crack/cocaína |
+| Beta-HCG | Descartar gravidez (psicose puerperal; segurança do antipsicótico) | Negativo |
+| TC de crânio | Afastar causa orgânica estrutural | Normal |
+| TSH | Afastar disfunção tireoidiana | Normal |
+| VDRL e Anti-HIV | Afastar neurossífilis e HIV | Não reagentes |
+| Glicemia capilar | Afastar hipoglicemia | Normal |
+
+**Conduta Esperada (expectedConduct):**
+- **Antipsicótico:** Haloperidol 2,5–5 mg/dia VO (início) ou Risperidona 1–2 mg/dia VO. Se agitação intensa: Haloperidol 5 mg IM + Prometazina 25 mg IM. (RENAME 2023; MS — PCDT Esquizofrenia, 2022)
+- **Encaminhamento:** Acionar CAPS III (com leitos de observação 24h) ou UPA/PS com psiquiatra para avaliação de internação. A UBS não tem estrutura para manejo de psicose aguda sem suporte psiquiátrico.
+- **Avaliação de risco para a filha:** Comunicar a situação ao Conselho Tutelar se houver negligência da criança (obrigação legal do médico — ECA, artigo 13). Acionar assistência social.
+- **Não farmacológica:** Ambiente calmo, sem confrontar os delírios, reduzir estímulos.
+- **Orientações à irmã:** Explicar o quadro como doença tratável, orientar sobre não confirmar os delírios, sobre cuidado da filha, e sobre a necessidade de suporte contínuo.
+- **Seguimento:** Referenciamento ao CAPS II/III. Projeto terapêutico singular com equipe multiprofissional.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Com a paciente:** Abordagem calma, sem confrontar os delírios, oferecer ajuda sem impor ("estou aqui para ajudar você a se sentir mais segura").
+- **Com a irmã:** Explicar o que é psicose em linguagem acessível, orientar sobre acompanhamento, e abordar a questão da filha com cuidado.
+- **Quanto à filha:** Abordar com a irmã o cuidado da criança e a necessidade de comunicar ao Conselho Tutelar.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não solicitar beta-HCG em mulher em idade fértil antes de indicar antipsicótico
+- ❌ Não solicitar toxicológico urinário em quadro psicótico agudo
+- ❌ Confrontar diretamente os delírios da paciente (agrava desconfiança e rompe vínculo)
+- ❌ Não avaliar a situação da filha (negligência infantil — obrigação legal de comunicar ao Conselho Tutelar)
+- ❌ Tentar manejar psicose aguda integralmente na UBS sem acionar rede de saúde mental (CAPS/PS)
+- ❌ Não avaliar risco de suicídio diante de vozes com conteúdo de comando suicida
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — MULHER FALANDO SOZINHA NA SALA DE ESPERA DA UBS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Abordou a paciente de forma calma e não confrontativa | 0.5 | MS — PCDT Esquizofrenia, 2022 |
+| Não confrontou diretamente os delírios da paciente | 0.5 | MS — PCDT Esquizofrenia, 2022 |
+| Explicou o quadro à irmã em linguagem acessível e sem estigma | 0.5 | Lei nº 10.216/2001 |
+| Abordou a situação da filha com a irmã de forma sensível | 0.5 | ECA — Lei nº 8.069/1990 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Caracterizou alucinações auditivas (conteúdo e caráter de comando) | 0.5 | MS — PCDT Esquizofrenia, 2022 |
+| Avaliou risco de suicídio (vozes com conteúdo suicida) | 1.0 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Pesquisou uso de substâncias (incluindo crack) | 1.0 | MS — PCDT Esquizofrenia, 2022 |
+| Investigou a situação da filha (cuidados, negligência) | 0.5 | ECA — Lei nº 8.069/1990 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Realizou avaliação estruturada do estado mental | 0.5 | MS — PCDT Esquizofrenia, 2022 |
+| Pesquisou sinais neurológicos focais e meníngeos | 0.3 | Semiologia Médica — FMUSP |
+| Avaliou pupilas e sinais de intoxicação aguda | 0.3 | MS — PCDT Esquizofrenia, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou toxicológico urinário | 0.5 | MS — PCDT Esquizofrenia, 2022 |
+| Solicitou beta-HCG em mulher em idade fértil | 1.0 | MS — PCDT Esquizofrenia, 2022 |
+| Formulou hipótese de episódio psicótico agudo com fator precipitante (substância) | 0.5 | DSM-5; MS — PCDT Esquizofrenia, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Acionou rede de saúde mental (CAPS/PS) para manejo adequado | 1.0 | Lei nº 10.216/2001; MS — Linha de Cuidado em Saúde Mental, 2022 |
+| Indicou comunicação ao Conselho Tutelar pela situação da filha | 0.5 | ECA — Art. 13, Lei nº 8.069/1990 |
+| Prescreveu antipsicótico em dose adequada se indicado | 0.5 | RENAME 2023; MS — PCDT Esquizofrenia, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-04
+
+### BLOCO 1 — METADADOS
+
+- **id:** 4
+- **title:** "Adolescente trazida pela coordenadora da escola após cortes nos braços"
+- **sub:** "UBS — Encaminhamento urgente pela escola"
+- **tema:** "Psiquiatria"
+- **topic:** "Automutilação e avaliação de risco de suicídio em adolescente"
+- **level:** complexo
+- **cardAccent:** "#880E4F"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação de risco de suicídio, comunicação com adolescente, conduta, articulação com rede
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Sala de acolhimento, turno da tarde. A coordenadora da escola trouxe a paciente após uma colega de classe avisar que a jovem tinha marcas de cortes no braço. Os pais foram avisados e o pai chegará em 20 minutos."
+- **patient:** "B.S., 15 anos, feminino, estudante do ensino médio, mora com o pai e a madrasta. Mãe faleceu há 2 anos."
+- **complaint:** "Coordenadora relata marcas de cortes recentes no antebraço esquerdo. A paciente diz que 'não foi pra se matar, só pra aliviar'."
+- **tasks:**
+  1. Realize a anamnese de forma empática e sem julgamento, garantindo espaço de fala à adolescente.
+  2. Avalie a automutilação: frequência, método, intenção suicida e acesso a meios.
+  3. Avalie o risco de suicídio de forma estruturada.
+  4. Identifique fatores de risco e de proteção específicos para adolescente.
+  5. Proponha a conduta e articule com a rede de proteção (família, escola, CAPS infantojuvenil).
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 108/68 mmHg |
+| FC | 88 bpm |
+| FR | 16 irpm |
+| Tax | 36,4°C |
+| Peso | 52 kg |
+| Altura | 1,60 m |
+| IMC | 20,3 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Adolescente em bom estado geral, lúcida e orientada. Manga comprida (dia quente). Fácies de tristeza, contato visual inicialmente esquivo. Sem sinais de anemia, icterícia ou trauma recente na face. Não há sinais de intoxicação aguda.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Dermatológico — antebraço esquerdo:** Múltiplos cortes paralelos superficiais (6 a 8 lesões), com diferentes fases de cicatrização (algumas recentes, com crosta; outras antigas, cicatrizadas). Lesões de 2 a 5 cm, sem necessidade de sutura. Sem sinais de infecção.
+- **Neurológico:** Sem déficits focais. Força e sensibilidade preservadas.
+- **Estado mental:** Humor disfórico, afeto congruente, fala baixa com latência aumentada. Pensamento organizado, sem delírios. Sem alucinações. Orientada. Insight parcialmente preservado.
+
+#### Exames Laboratoriais (labs)
+
+`labs: []`
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+A coordenadora está fora da sala — pode ser acionada se o candidato precisar de informações adicionais. O candidato deve conduzir a entrevista preferencialmente a sós com a adolescente para garantir espaço seguro de fala (boas práticas no atendimento ao adolescente). O pai chegará ao final da consulta — o candidato deve ser avaliado também pela forma como conduz a comunicação com o pai. Avaliar se o candidato inspeciona os membros superiores (solicitar autorização antes).
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+B.S., 15 anos, feminino, estudante do 1º ano do ensino médio. Mora com o pai (44 anos, motorista) e a madrasta (38 anos). Mãe faleceu em acidente de trânsito há 2 anos. Sem diagnóstico psiquiátrico prévio. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Eu sei que vão chamar meu pai e ele vai ficar bravo. Eu não fiz nada grave." |
+| Sobre os cortes | "Eu faço isso quando fico muito mal. Não é pra me matar, juro. É porque eu não sei mais como aliviar quando fica pesado demais." |
+| Sobre a frequência | "Comecei faz uns oito meses. No começo era uma vez por mês. Agora tá sendo umas duas, três vezes por semana." |
+| Sobre o que sente antes de se cortar | "Dá uma sensação de aperto no peito, como se fosse explodir. Quando me corto, parece que alivia. Depois vem a culpa, mas passa." |
+| Sobre pensamentos de suicídio | Só se perguntado diretamente: "Uma vez ou outra eu penso que seria melhor não estar aqui. Mas não tenho coragem de fazer nada de verdade." |
+| Sobre plano | Só se perguntado: "Não. Nunca pensei como faria. É só o pensamento que aparece." |
+| Sobre a mãe | "Depois que ela morreu ficou tudo diferente. Meu pai casou de novo, eu não me dou bem com minha madrasta. Fico me sentindo de lado." |
+| Sobre vínculos protetores | "Tenho uma amiga que me entende. E gosto muito da minha avó. Ela mora perto." |
+| Pergunta ativa da paciente | "Você vai contar tudo pro meu pai? Ele vai me internar?" |
+| Pergunta ativa da paciente | "Tem como parar de se cortar? Eu não quero fazer isso, mas não sei o que fazer quando fica ruim." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- A frequência dos cortes aumentou de mensal para 2–3 vezes por semana nos últimos 2 meses — revelar apenas se o candidato perguntar especificamente sobre a evolução da frequência.
+- A adolescente tem ideação suicida passiva ocasional ("seria melhor não estar aqui") sem plano — revelar apenas com pergunta direta e empática sobre pensamentos de morte.
+
+#### Comportamento do Ator (actorBehavior)
+
+Inicialmente fechada e defensiva, com braços cruzados (protegendo o antebraço). Abre-se progressivamente quando o candidato demonstra que não vai julgá-la. Chora ao falar da mãe. Demonstra ambivalência: quer parar de se cortar, mas não sabe como. Tem medo da reação do pai. Alivia visivelmente quando o candidato explica o que vai e o que não vai contar ao pai.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Automutilação não suicida (NSSA) recorrente com aumento de frequência, em contexto de transtorno depressivo maior em adolescente, com luto complicado e conflito familiar. Ideação suicida passiva sem plano. CID-11: MB23.E / 6A70 / DSM-5: 307.9 (NSSI) / F32.1.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Tentativa de suicídio abortada — os cortes são superficiais, paralelos e a adolescente afirma função regulatória emocional ("aliviar"), não intenção de morrer; no entanto, a avaliação deve ser formal e direta, pois intenção pode ser subestimada.
+2. Transtorno de personalidade borderline — padrão de instabilidade emocional, automutilação e medo de abandono são compatíveis; no entanto, o diagnóstico de TPB não deve ser feito em adolescentes (aguardar maturidade do padrão de personalidade — APA recomenda aguardar >18 anos).
+3. Transtorno de ajustamento com humor deprimido — relacionado à perda da mãe e conflito familiar; no entanto, a duração (8 meses), a intensidade e a automutilação recorrente indicam episódio depressivo maior.
+4. Transtorno dissociativo — automutilação pode ocorrer em contexto dissociativo; investigar episódios de despersonalização ou amnesia.
+
+**Síntese do Caso (context):**
+Adolescente de 15 anos com automutilação não suicida recorrente há 8 meses, com aumento progressivo de frequência (de mensal para 2–3 vezes/semana). Contexto de luto materno não elaborado, conflito familiar com madrasta, isolamento social e humor deprimido. Ideação suicida passiva sem plano. Fatores de proteção: amizade significativa, vínculo com a avó, insight sobre o comportamento.
+
+**Justificativa Diagnóstica (justify):**
+Automutilação não suicida com função regulatória emocional ("alívio do aperto no peito") — padrão típico de NSSA. Contexto depressivo: humor disfórico persistente, isolamento, luto complicado. A escalada de frequência (mensal → 2–3x/semana) indica deterioração do quadro e necessidade de intervenção especializada urgente. Ideação passiva de morte sem plano presente — risco de suicídio baixo a moderado no momento, mas requer monitoramento rigoroso.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Garantir privacidade para a entrevista com a adolescente (sem o pai na sala inicialmente)
+- Investigar função da automutilação (alívio emocional vs. intenção suicida)
+- Caracterizar os cortes: frequência, método, profundidade, localização, evolução
+- Perguntar diretamente sobre ideação suicida ("você já pensou em se matar?")
+- Investigar plano e acesso a meios letais
+- Pesquisar humor deprimido, anedonia, sono, apetite
+- Investigar contexto familiar (relação com pai, madrasta, morte da mãe)
+- Pesquisar vínculos e fatores de proteção (amigos, avó)
+- Investigar uso de álcool e drogas
+- Pesquisar bullying ou violência (escolar ou doméstica)
+- Explicar à adolescente o que será compartilhado com o pai (confidencialidade x sigilo)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Pedir autorização antes de inspecionar os membros ("posso dar uma olhada no seu braço?")
+- Inspeção do antebraço esquerdo: número, tamanho, profundidade e fase de cicatrização das lesões
+- Inspeção de outros sítios de automutilação (coxa, abdome)
+- Avaliação do estado mental: humor, afeto, pensamento, risco
+- Verificar sinais de anemia ou infecção nas lesões
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Nenhum exame laboratorial urgente indicado | Quadro clínico psiquiátrico sem suspeita de causa orgânica | — |
+
+> ⚠️ O candidato que solicitar exames laboratoriais desnecessários (TC de crânio, toxicológico sem suspeita clínica) sem justificativa deve ter a conduta avaliada como inapropriada.
+
+**Conduta Esperada (expectedConduct):**
+- **Encaminhamento prioritário:** CAPS Infantojuvenil (CAPSij) para acompanhamento especializado de automutilação em adolescente. Se não disponível no município: encaminhar à psiquiatria infantojuvenil ou ambulatório de saúde mental.
+- **Farmacológica:** Não iniciar antidepressivo na UBS sem avaliação psiquiátrica especializada em adolescente (risco de ativação comportamental com ISRS em <18 anos requer monitoramento especializado). (⚠️ FDA e ANVISA alertam para aumento de ideação suicida em adolescentes nas primeiras semanas de ISRS — monitoramento rigoroso obrigatório)
+- **Não farmacológica:** Psicoterapia focada na regulação emocional (DBT — Terapia Comportamental Dialética é padrão ouro para automutilação recorrente). Psicoeducação para o pai sobre automutilação não suicida.
+- **Comunicação com o pai:** Explicar o que é a automutilação não suicida, a importância de não punir, e como criar um ambiente de acolhimento. Comunicar a ideação passiva de morte.
+- **Plano de segurança:** Remover ou guardar objetos cortantes de fácil acesso no domicílio. Combinar com a adolescente alternativas ao corte quando sentir "o aperto" (ligar para a avó, escrever, técnicas de grounding). Estabelecer contato de crise (CVV 188).
+- **Escola:** Orientar a coordenadora sobre como a escola pode apoiar (sem expor a jovem para os colegas).
+- **Seguimento:** Retorno em 1 semana para avaliação e acompanhamento da referência ao CAPSij.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Com a adolescente:** Explicar antes da chegada do pai o que será e o que não será compartilhado ("vou contar ao seu pai que você está sofrendo e que precisa de ajuda — não vou mostrar fotos das marcas nem dar detalhes que você não queira"). Quebrar o sigilo somente no que for necessário para proteger a vida.
+- **Com o pai:** Evitar framing punitivo ("sua filha está precisando de ajuda, não de castigo"). Instruir sobre como acolher sem punir.
+- **Escuta ativa com a adolescente:** Validar a dor ("eu entendo que você não sabia como lidar com tanto sofrimento") antes de falar sobre as consequências.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não perguntar diretamente sobre ideação e intenção suicida
+- ❌ Não inspecionar o antebraço (avaliar a gravidade das lesões)
+- ❌ Contar todos os detalhes ao pai sem informar previamente a adolescente (violação da confiança terapêutica com adolescente)
+- ❌ Tratar a automutilação como "frescura" ou comportamento manipulativo sem investigar a função
+- ❌ Prescrever antidepressivo sem encaminhamento ao especialista e sem discussão do risco de ativação em adolescentes
+- ❌ Não encaminhar ao CAPSij ou serviço especializado em saúde mental infantojuvenil
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — ADOLESCENTE TRAZIDA PELA ESCOLA APÓS CORTES NOS BRAÇOS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Realizou a entrevista inicial a sós com a adolescente (sem o pai) | 0.5 | ECA — Lei nº 8.069/1990; MS — Saúde do Adolescente, 2020 |
+| Abordou a adolescente sem julgamento e com linguagem adequada à faixa etária | 0.5 | MS — Saúde do Adolescente, 2020 |
+| Explicou à adolescente o que seria e o que não seria compartilhado com o pai antes de chamá-lo | 0.5 | CFM — Sigilo Médico, 2009; ECA |
+| Orientou o pai sobre automutilação não suicida sem usar linguagem punitiva | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou a função da automutilação (alívio emocional vs. intenção suicida) | 1.0 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Perguntou diretamente sobre ideação suicida, plano e acesso a meios | 1.0 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Investigou frequência e evolução dos cortes (escalada mensal → 2–3x/semana) | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Pesquisou contexto familiar (mãe falecida, relação com madrasta) e vínculos de proteção | 0.5 | MS — Saúde do Adolescente, 2020 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou autorização antes de inspecionar o antebraço | 0.5 | CFM nº 1.931/2009 |
+| Inspecionou o antebraço esquerdo e caracterizou as lesões (número, profundidade, cicatrização) | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Diferenciou automutilação não suicida de tentativa de suicídio | 1.0 | MS — PCDT Prevenção do Suicídio, 2022; DSM-5 |
+| Identificou fatores de risco (luto, conflito familiar, escalada de frequência) e de proteção (amiga, avó) | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Encaminhou ao CAPSij ou serviço especializado em saúde mental infantojuvenil | 1.0 | Lei nº 10.216/2001; MS — Linha de Cuidado em Saúde Mental, 2022 |
+| Estabeleceu plano de segurança (remover objetos cortantes, alternativas ao corte, CVV 188) | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+| Não prescreveu antidepressivo sem encaminhamento especializado (risco de ativação em adolescente) | 0.5 | ⚠️ FDA/ANVISA — Alerta de caixa preta ISRS em <18 anos |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-05
+
+### BLOCO 1 — METADADOS
+
+- **id:** 5
+- **title:** "Idoso de 60 anos com euforia intensa e planos de 'mudar tudo' após aposentadoria"
+- **sub:** "Ambulatório de Psiquiatria — Referenciado pela UBS"
+- **tema:** "Psiquiatria"
+- **topic:** "Transtorno bipolar — primeiro episódio maníaco tardio"
+- **level:** complexo
+- **cardAccent:** "#E65100"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação do estado mental, raciocínio clínico diagnóstico diferencial, conduta
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Psiquiatria — hospital geral. Primeira consulta, turno matutino. Paciente veio acompanhado da filha, que o trouxe após preocupação com mudança abrupta de comportamento."
+- **patient:** "A.M., 60 anos, masculino, recém-aposentado (professor universitário), casado, três filhos adultos. Sem diagnóstico psiquiátrico prévio."
+- **complaint:** "Filha relata que o pai está 'completamente diferente há 15 dias': dorme 2 horas e diz estar descansado, fez doações impulsivas de R$ 30.000 para um projeto social que acabou de conhecer, planeja 'largar tudo e ir morar na praia', fala sem parar e diz que 'finalmente encontrou seu propósito'."
+- **tasks:**
+  1. Realize a anamnese com o paciente e a filha, investigando o episódio atual e o histórico psiquiátrico e médico prévio.
+  2. Realize a avaliação do estado mental do paciente.
+  3. Investigue causas orgânicas de mania de início tardio (após os 50 anos).
+  4. Formule a hipótese diagnóstica e os principais diagnósticos diferenciais.
+  5. Proponha a conduta terapêutica e a decisão sobre internação.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 152/94 mmHg |
+| FC | 108 bpm |
+| FR | 20 irpm |
+| Tax | 37,0°C |
+| Peso | 88 kg |
+| Altura | 1,74 m |
+| IMC | 29,1 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral aparente, bem arrumado, roupa colorida (diferente do estilo habitual, conforme relato da filha). Agitado, levanta-se da cadeira durante a consulta. Fala acelerada e difícil de interromper. Lúcido e orientado. Sem sinais focais neurológicos ao exame inicial.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Sem déficits motores ou sensitivos. Reflexos preservados e simétricos. Marcha sem alterações. Sem sinais de irritação meníngea.
+- **Cardiovascular:** Taquicardia sinusal. BRNF, sem sopros. Pulsos cheios e simétricos.
+- **Estado mental:** Aparência extravagante (roupas incomuns); psicomotricidade agitada; humor eufórico/expansivo; fala pressurosa, logorreia, fuga de ideias; pensamento com grandiosidade sem delírios estruturados; sem alucinações; orientado; memória preservada; insight ausente; juízo crítico gravemente comprometido.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma completo | Normal | — | Não |
+| TSH | 0,08 mUI/L | 0,4–4,0 mUI/L | Sim |
+| T4 livre | 2,9 ng/dL | 0,8–1,8 ng/dL | Sim |
+| Sódio | 140 mEq/L | 135–145 mEq/L | Não |
+| Glicemia de jejum | 128 mg/dL | 70–99 mg/dL | Sim |
+| Creatinina | 1,0 mg/dL | 0,7–1,2 mg/dL | Não |
+| TC de crânio com contraste | Sem lesões estruturais, sem realce patológico | Normal | Não |
+| Toxicológico urinário | Negativo | Negativo | Não |
+| ECG | Taquicardia sinusal 108 bpm, sem alterações de repolarização | — | Não |
+
+#### Exame de Imagem (image)
+
+**TC de crânio com contraste:** Sem hipodensidades, sem realce patológico. Sulcos e ventrículos dentro dos limites para a faixa etária. Sem sinais de tumor, AVC ou hematoma subdural.
+
+#### Nota ao Avaliador (note)
+
+Sinais vitais entregues ao início. Exames laboratoriais entregues somente se solicitados. **Ponto-chave deste caso: o TSH suprimido e o T4 livre elevado indicam hipertireoidismo como possível fator desencadeante da mania** — o candidato deve identificar essa correlação. A filha está disponível para ser interrogada (segundo ator ou professor).
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+A.M., 60 anos, masculino, professor universitário aposentado há 1 mês. Casado há 35 anos. Três filhos adultos. Sem uso de psicotrópicos, sem diagnóstico psiquiátrico prévio. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Doutor, eu entendo que minha filha ficou preocupada. Mas eu nunca me senti tão bem na vida! Quarenta anos esperando me aposentar e agora finalmente posso viver!" |
+| Sobre o sono | "Durmo duas horas e acordo disposto! Nunca precisei de 8 horas como dizia. Isso era perda de tempo." |
+| Sobre as doações | "Encontrei um projeto lindo, de crianças. Doei porque faz sentido. O dinheiro é pra ser usado!" |
+| Sobre os planos | "Vou vender o apartamento, comprar uma casa na praia, abrir um instituto de educação ambiental, escrever 3 livros e ainda fazer uma expedição pela Amazônia!" |
+| Sobre doenças prévias | Se perguntado: "Tomo remédio de pressão e tinha ficado com a tireoide alterada há uns 6 meses, mas parei de ir ao endocrinologista porque me sentia bem." |
+| Script da filha | "Pai nunca foi assim. É professor sério, metódico. De repente virou outra pessoa. Minha mãe está desesperada. Ele não deixou eu vir junto mas eu vim de surpresa." |
+| Pergunta ativa da filha | "Isso pode ser do remédio da tireoide que ele parou? Ou é doença mental mesmo?" |
+| Pergunta ativa do paciente | "Você vai me internar? Eu não sou louco, doutor. Nunca fui ao psiquiatra na vida." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Abandono do acompanhamento endocrinológico e possível hipertireoidismo não tratado (TSH suprimido no resultado) — revelar apenas se o candidato perguntar diretamente sobre doenças prévias e medicamentos em uso/abandonados.
+- A esposa está em casa, recusando-se a participar por não aceitar que o marido "precisa de psiquiatra" — revelar apenas se o candidato perguntar sobre o cônjuge e o suporte familiar.
+
+#### Comportamento do Ator (actorBehavior)
+
+Expansivo, fala acelerada, difícil de interromper. Gesticula excessivamente. Levanta-se da cadeira espontaneamente. Irrita-se quando a filha o contradiz. Não demonstra crítica em relação ao quadro. Reage com resistência à ideia de internação. A filha está ansiosa, preocupada, chora ao descrever a mudança do pai.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Episódio maníaco de início tardio (60 anos), provavelmente secundário a hipertireoidismo (TSH suprimido, T4 livre elevado) como fator desencadeante orgânico, em paciente sem TAB prévio diagnosticado. Diagnóstico diferencial: TAB tipo I de início tardio vs. mania secundária a hipertireoidismo. CID-11: 6A60 / MB24 / DSM-5: F31.10 / E05.90.
+
+**Diagnósticos Diferenciais (differentials):**
+1. TAB tipo I — primeiro episódio maníaco tardio: início após os 50 anos é menos comum mas possível; sem causa orgânica identificável seria o diagnóstico; aqui, o hipertireoidismo é causa alternativa a afastar/tratar.
+2. Mania secundária a hipertireoidismo: TSH suprimido (0,08) e T4 livre elevado (2,9) confirmam hipertireoidismo que pode causar quadro maníaco; tratar a tireoide pode resolver o episódio.
+3. Mania secundária a tumor cerebral ou AVC: deve ser afastada em mania de início tardio; TC de crânio normal afasta causa estrutural.
+4. Demência frontotemporal (variante comportamental): pode cursar com desinibição, comportamento impulsivo e mudança de personalidade em idosos; geralmente mais insidioso e sem euforia proeminente; TC normal e ausência de déficit cognitivo reduzem probabilidade.
+
+**Síntese do Caso (context):**
+Homem de 60 anos, sem diagnóstico psiquiátrico prévio, apresenta primeiro episódio maníaco há 15 dias com insônia (2h/noite), grandiosidade, logorreia, comportamento impulsivo (doações de R$30.000), planos grandiosos e insight ausente. Hipertireoidismo confirmado laboratorialmente (TSH 0,08; T4 livre 2,9) após abandono de acompanhamento endocrinológico. TC de crânio normal. Mania de início tardio com causa orgânica identificável.
+
+**Justificativa Diagnóstica (justify):**
+Preenche critérios para episódio maníaco (DSM-5): humor eufórico, diminuição da necessidade de sono (2h), logorreia, fuga de ideias, aumento de atividade dirigida a objetivos e comportamentos impulsivos de alto risco (doações impulsivas). Duração ≥7 dias. Insight ausente. A chave diagnóstica deste caso é a identificação do hipertireoidismo (TSH suprimido, T4 livre elevado) como causa orgânica que pode ter desencadeado ou estar contribuindo para o episódio — mania de início tardio exige investigação orgânica obrigatória.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar início e duração do episódio atual
+- Caracterizar humor, nível de energia e necessidade de sono
+- Pesquisar comportamentos impulsivos (gastos, doações, planos grandiosos)
+- Investigar episódios prévios de humor (mania, hipomania, depressão)
+- Pesquisar doenças médicas prévias (hipertireoidismo, neurológicas, neoplasias)
+- Investigar medicamentos em uso e abandono de tratamentos
+- Pesquisar história familiar de transtornos do humor
+- Avaliar risco para si e para terceiros (gastos que comprometem patrimônio familiar)
+- Pesquisar uso de corticoides, estimulantes ou outras substâncias que possam causar mania
+
+**Exame Físico Esperado (expectedPhysical):**
+- Avaliação do estado mental estruturada
+- Palpação da tireoide (bócio? nódulos?)
+- Avaliação neurológica completa (afastar causa estrutural — mania de início tardio)
+- Sinais de hipertireoidismo: taquicardia, tremor de extremidades, pele quente e úmida, exoftalmia
+- Avaliação cardiovascular: taquicardia sinusal esperada
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| TSH e T4 livre | Causa orgânica obrigatória em mania de início tardio | TSH suprimido; T4 livre elevado |
+| TC de crânio com contraste | Afastar tumor, AVC, hematoma em mania de início tardio | Normal |
+| Hemograma, glicemia, eletrólitos, creatinina | Avaliação sistêmica geral | Glicemia alterada; demais normais |
+| Toxicológico urinário | Afastar mania por substância (estimulantes, cocaína, corticoides) | Negativo |
+| ECG | Avaliar taquicardia e rastrear arritmia (hipertireoidismo) | Taquicardia sinusal |
+
+**Conduta Esperada (expectedConduct):**
+- **Tratar o hipertireoidismo:** Encaminhamento urgente ao endocrinologista. Metimazol (tionamida) conforme protocolo endocrinológico. (SBEM — Diretriz Hipertireoidismo, 2022)
+- **Estabilizador de humor:** Valproato de sódio 500–1000 mg/dia VO (preferível ao lítio em mania de início tardio com comorbidade tireoidiana — lítio pode interagir com função tireoidiana). Alternativa: Haloperidol 2,5–5 mg/dia VO + Valproato. (RENAME 2023; ABP — Diretrizes TAB, 2021)
+- **Internação:** Indicada — episódio maníaco grave com 15 dias de insônia severa, gastos impulsivos de R$30.000, insight ausente e recusa de tratamento. Avaliar internação voluntária; se recusa, involuntária conforme Lei nº 10.216/2001.
+- **Orientações à família:** Explicar que pode haver causa orgânica tratável (tireoide), que o tratamento é eficaz, que o comportamento é da doença e não "opção do pai".
+- **Seguimento:** Reavaliação em 2–3 semanas após início do tratamento. Reavaliar TSH após tratamento do hipertireoidismo.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Com o paciente:** Tom calmo, não confrontativo. Usar a relação com a causa orgânica: "seus exames mostraram que sua tireoide está muito acelerada, e isso pode estar causando essa energia toda".
+- **Com a filha:** Explicar o papel do hipertireoidismo, a necessidade de internação e como a família pode apoiar.
+- **Comunicar a decisão de internação:** "Quero que o senhor fique em segurança enquanto tratamos a tireoide e ajustamos a medicação."
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não solicitar TSH/T4 livre em mania de início tardio (>50 anos) — erro grave por omissão de causa orgânica tratável
+- ❌ Não solicitar neuroimagem (TC ou RNM de crânio) em primeiro episódio maníaco após os 50 anos
+- ❌ Prescrever antidepressivo durante episódio maníaco (piora da mania)
+- ❌ Iniciar lítio sem avaliar função tireoidiana (hipertireoidismo e lítio afetam mutuamente a tireoide)
+- ❌ Dispensar o paciente ambulatorialmente sem indicar internação em episódio maníaco grave com insight ausente e gastos impulsivos massivos
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — IDOSO COM EUFORIA INTENSA E PLANOS DE MUDAR TUDO APÓS APOSENTADORIA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Abordou o paciente de forma calma e sem confrontar diretamente os planos grandiosos | 0.3 | MS — Política Nacional de Humanização, 2013 |
+| Utilizou a causa orgânica (tireoide) como ponte para explicar o quadro ao paciente de forma acessível | 0.5 | CFM nº 1.931/2009 |
+| Explicou o quadro à filha em linguagem acessível, incluindo o papel da tireoide | 0.5 | CFM nº 1.931/2009 |
+| Comunicou a necessidade de internação de forma empática | 0.3 | Lei nº 10.216/2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou início, duração e progressão do episódio maníaco | 0.5 | ABP — Diretrizes TAB, 2021 |
+| Pesquisou doenças médicas prévias e abandono de tratamentos (hipertireoidismo) | 1.0 | ABP — Diretrizes TAB, 2021; SBEM 2022 |
+| Investigou comportamentos impulsivos e seu impacto financeiro/familiar | 0.5 | ABP — Diretrizes TAB, 2021 |
+| Pesquisou episódios prévios de humor (mania, hipomania, depressão) | 0.5 | ABP — Diretrizes TAB, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais (taquicardia, HAS) | 0.3 | Semiologia Médica — FMUSP |
+| Realizou avaliação do estado mental estruturada | 0.5 | ABP — Diretrizes TAB, 2021 |
+| Pesquisou sinais de hipertireoidismo (tremor, pele quente, exoftalmia, palpação tireoidiana) | 0.5 | SBEM — Diretriz Hipertireoidismo, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou TSH e T4 livre (identificou possível causa orgânica em mania de início tardio) | 1.0 | SBEM 2022; ABP — Diretrizes TAB, 2021 |
+| Solicitou TC de crânio (afastar causa estrutural em mania de início tardio) | 0.5 | ABP — Diretrizes TAB, 2021 |
+| Correlacionou o hipertireoidismo como possível fator desencadeante do episódio maníaco | 0.5 | SBEM 2022; ABP — Diretrizes TAB, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Indicou internação psiquiátrica como conduta adequada ao episódio | 1.0 | Lei nº 10.216/2001; ABP — Diretrizes TAB, 2021 |
+| Prescreveu estabilizador de humor adequado (valproato, sem lítio em hipertireoidismo) | 0.5 | RENAME 2023; ABP — Diretrizes TAB, 2021 |
+| Encaminhou ao endocrinologista para tratar o hipertireoidismo | 0.5 | SBEM — Diretriz Hipertireoidismo, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+Casos 1 a 5 entregues. Continuando com os casos 6 a 10 (temas novos: abstinência alcoólica, transtorno do pânico, agitação psicomotora, TEPT em homem e delirium):
+
+---
+
+## CASO OSCE-06
+
+### BLOCO 1 — METADADOS
+
+- **id:** 6
+- **title:** "Homem tremendo e suado que diz ter parado de beber há dois dias"
+- **sub:** "UPA — Urgência e Emergência"
+- **tema:** "Psiquiatria"
+- **topic:** "Síndrome de abstinência alcoólica"
+- **level:** moderado
+- **cardAccent:** "#BF360C"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação de risco de síndrome de abstinência, raciocínio clínico, conduta em emergência, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Urgência e Emergência — UPA 24h. Sala de observação, turno da tarde. Paciente chegou por conta própria, tremendo e com sudorese intensa."
+- **patient:** "W.F., 48 anos, masculino, pedreiro autônomo, divorciado. Sem diagnóstico psiquiátrico registrado."
+- **complaint:** "Paciente refere que parou de beber há dois dias e está se sentindo muito mal: tremor nas mãos, suadeira intensa, agitação, náuseas e 'visões estranhas' ao acordar."
+- **tasks:**
+  1. Realize a anamnese direcionada ao uso de álcool e ao quadro de abstinência.
+  2. Aplique a escala CIWA-Ar (ou seus critérios principais) para estratificar a gravidade da abstinência.
+  3. Solicite os exames complementares pertinentes.
+  4. Proponha a conduta terapêutica adequada para a síndrome de abstinência alcoólica.
+  5. Oriente o paciente sobre os riscos da abstinência não tratada e sobre o próximo passo do tratamento.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 162/102 mmHg |
+| FC | 116 bpm |
+| FR | 22 irpm |
+| Tax | 37,8°C |
+| Peso | 76 kg |
+| Altura | 1,70 m |
+| IMC | 26,3 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em regular estado geral, sudoreico intensamente, tremor fino de extremidades visível em repouso, agitado, hiperexcitado. Lúcido, orientado no tempo e espaço. Pele corada e quente. Sem icterícia. Sem sinais de trauma craniano.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Tremor fino bilateral de mãos. Hiperreflexia. Sem déficits focais. Sem nistagmo. Marcha instável. Coordenação prejudicada. Sem rigidez de nuca.
+- **Cardiovascular:** Taquicardia sinusal. BRNF, sem sopros.
+- **Abdominal:** Dor leve à palpação em hipocôndrio direito. Fígado palpável a 2 cm do rebordo costal. RHA presentes.
+- **CIWA-Ar (aplicado no momento da consulta):** Náusea (2), tremor (4), sudorese (3), ansiedade (3), agitação (3), distúrbios perceptuais (1 — alucinações leves ao acordar), cefaleia (2), orientação (0) = **Total: 18 — Abstinência moderada a grave.**
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Glicemia capilar | 68 mg/dL | 70–140 mg/dL | Sim |
+| Sódio | 128 mEq/L | 135–145 mEq/L | Sim |
+| Potássio | 3,1 mEq/L | 3,5–5,0 mEq/L | Sim |
+| Magnésio | 1,4 mg/dL | 1,7–2,4 mg/dL | Sim |
+| TGO | 98 U/L | <40 U/L | Sim |
+| TGP | 62 U/L | <41 U/L | Sim |
+| GGT | 310 U/L | <60 U/L | Sim |
+| Hemograma | Anemia macrocítica (VCM 106 fL, Hb 10,2) | VCM 80–96; Hb >13 | Sim |
+| Tempo de protrombina (TP) | 17 s (INR 1,5) | 11–14 s (INR <1,3) | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início (chamar atenção para taquicardia, hipertensão e febre baixa). Entregar exames laboratoriais somente se solicitados. O ator deve apresentar tremor visível de mãos durante toda a entrevista. Entregar o resultado do CIWA-Ar se o candidato aplicar a escala ou perguntar sobre os critérios de gravidade.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+W.F., 48 anos, masculino, pedreiro autônomo, divorciado há 5 anos. Mora sozinho. Dois filhos que moram com a ex-esposa. Bebe desde os 20 anos, com padrão de uso grave nos últimos 10 anos. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa inicial | "Eu sei que bebo muito, doutor. Mas dessa vez resolvi parar. Faz dois dias que não tomei nada e tô me sentindo péssimo. Nunca fiquei assim quando parei antes." |
+| Sobre o quanto bebe | "Quando tô bebendo, tomo mais de uma garrafa de cachaça por dia. Às vezes mais." |
+| Sobre há quanto tempo bebe assim | "Bebo desde os 20, mas faz uns dez anos que ficou pesado. Sem beber de manhã não funciono." |
+| Sobre as 'visões' | "Quando acordo, fico vendo umas coisas... bicho, sombras. Passa rápido. Tô com medo." |
+| Sobre tremor e suor | "Tô tremendo desde ontem. Suando muito, parece que vou sair da pele. Tive isso uma vez antes quando parei, mas passou." |
+| Sobre convulsão | Só se perguntado: "Da outra vez que parei, tive uma convulsão. Aí voltei a beber." |
+| Sobre a saúde geral | "Faz uns dois anos que não vou ao médico. Sei que meu fígado não deve estar bem." |
+| Pergunta ativa do paciente | "Isso pode matar, doutor? Eu fico com medo de ter convulsão de novo." |
+| Pergunta ativa do paciente | "Tem como largar o álcool de vez? Tô cansado disso." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Convulsão por abstinência alcoólica em episódio anterior de parada de bebida — revelar apenas se perguntado diretamente sobre convulsões ou sobre episódios anteriores de abstinência.
+- Bebe diariamente desde a manhã (dependência física estabelecida, critério de síndrome de dependência alcoólica) — revelar se perguntado especificamente sobre o padrão de consumo pela manhã.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tremendo visivelmente (ator deve movimentar as mãos de forma controlada para simular o tremor). Suado, inquieto na cadeira. Cooperativo — veio buscar ajuda. Demonstra medo genuíno ao falar das alucinações e da possível convulsão. Abre-se sobre o alcoolismo com menos resistência do que o esperado — está assustado e motivado.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Síndrome de abstinência alcoólica moderada a grave (CIWA-Ar 18), com alucinações de despertar (alucinose alcoólica), antecedente de convulsão por abstinência e dependência alcoólica grave. Complicações: hipoglicemia, hiponatremia, hipopotassemia, hipomagnesemia, hepatopatia alcoólica e anemia macrocítica. CID-11: 6C40.3 / DSM-5: F10.239.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Delirium tremens — forma mais grave da abstinência alcoólica (CIWA >20, confusão, alucinações vívidas, hiperatividade autonômica intensa); ainda não configurado (CIWA 18, orientado), mas risco iminente se não tratado.
+2. Hipoglicemia sintomática — glicemia de 68 mg/dL pode contribuir para tremor e agitação; tratar concomitantemente.
+3. Encefalopatia de Wernicke — deficiência de tiamina em alcoolista crônico pode causar confusão, ataxia e oftalmoplegia; prevenir com tiamina antes de glicose.
+4. Meningite ou encefalite — excluir em quadro com febre baixa, tremor e agitação; sem rigidez de nuca e contexto clínico claro de abstinência tornam menos provável.
+
+**Síntese do Caso (context):**
+Homem de 48 anos com dependência alcoólica grave, em abstinência há 48 horas, apresentando síndrome de abstinência moderada a grave (CIWA-Ar 18) com tremor, sudorese, taquicardia, hipertensão, alucinações de despertar e múltiplas complicações metabólicas. Antecedente de convulsão por abstinência é fator de alto risco para delirium tremens.
+
+**Justificativa Diagnóstica (justify):**
+Abstinência alcoólica confirmada pela história (parada há 48h em dependente grave) e pelos critérios clínicos (tremor, sudorese, taquicardia, hipertensão, agitação, alucinações leves, hiperreflexia). CIWA-Ar 18 = moderada a grave. Convulsão prévia por abstinência é o maior fator de risco para delirium tremens. Complicações metabólicas múltiplas exigem correção imediata.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar padrão e quantidade de uso de álcool (tipo, quantidade diária, frequência)
+- Pesquisar há quanto tempo bebe no padrão atual
+- Investigar há quanto tempo parou de beber e se parou abruptamente
+- Pesquisar episódios anteriores de abstinência e suas complicações (convulsões, delirium)
+- Investigar sintomas atuais de abstinência (tremor, sudorese, alucinações, convulsão)
+- Aplicar CIWA-Ar para estratificar gravidade
+- Pesquisar comorbidades (hepatopatia, doenças neurológicas)
+- Investigar uso de outras substâncias
+- Pesquisar última refeição e hidratação
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: avaliar taquicardia, hipertensão e febre (tríade de hiperatividade autonômica)
+- Avaliação neurológica: tremor, hiperreflexia, déficits focais, nistagmo (Wernicke), rigidez de nuca
+- Avaliação abdominal: hepatomegalia (hepatopatia alcoólica)
+- Avaliação do nível de consciência e orientação
+- Pesquisar sinais de desnutrição e deficiência de vitaminas
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Glicemia capilar | Afastar hipoglicemia (comum em alcoolistas) | Baixa (68 mg/dL) |
+| Eletrólitos (Na, K, Mg) | Distúrbios eletrolíticos na abstinência são fatores de risco para convulsão | Hiponatremia, hipopotassemia, hipomagnesemia |
+| TGO, TGP, GGT | Avaliar hepatopatia alcoólica | Elevados (hepatopatia) |
+| Hemograma | Anemia macrocítica por deficiência de folato/B12 | Anemia macrocítica |
+| Coagulograma (TP/INR) | Avaliação da função hepática sintética | INR 1,5 (alargado) |
+
+**Conduta Esperada (expectedConduct):**
+- **PRIORITÁRIO — Tiamina antes de glicose:** Tiamina 100 mg IV/IM ANTES de qualquer infusão de glicose (prevenção de encefalopatia de Wernicke). (MS — PCDT Alcoolismo, 2017; RENAME 2023)
+- **Correção da hipoglicemia:** Glicose 50% 40 mL IV após tiamina. SF 0,9% 500 mL IV para hidratação.
+- **Benzodiazepínico para abstinência (tratamento principal):** Diazepam 10 mg IV (ou VO) imediatamente, com doses adicionais conforme CIWA-Ar a cada 1–2 horas até CIWA <10. Regime de dose fixa ou sintomático guiado por CIWA-Ar. (MS — PCDT Alcoolismo, 2017)
+- **Correção eletrolítica:** Sulfato de magnésio EV, reposição de potássio conforme protocolo.
+- **Internação:** Indicada — CIWA-Ar ≥15 com antecedente de convulsão por abstinência (alto risco de delirium tremens).
+- **Profilaxia de convulsão:** Benzodiazepínico adequadamente dosado é a profilaxia de primeira linha; não usar fenitoína isolada para profilaxia de convulsão alcoólica. (MS — PCDT Alcoolismo, 2017)
+- **Seguimento:** Após estabilização, encaminhar ao CAPS AD para tratamento da dependência alcoólica.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Abordagem sem julgamento sobre o alcoolismo ("o senhor fez bem em vir buscar ajuda — parar de beber de repente sem acompanhamento pode ser perigoso").
+- **Comunicação do diagnóstico:** Explicar que o tremor e o desconforto são sinais de que o corpo está reagindo à falta do álcool ("é como se o corpo tivesse se acostumado com o álcool e agora está em choque sem ele").
+- **Responder sobre dependência:** Validar a motivação ("tem sim, tratamento pra isso — e o senhor deu um passo importante hoje").
+
+**Erros Críticos (criticalErrors):**
+- ❌ Administrar glicose antes da tiamina (risco de precipitar encefalopatia de Wernicke)
+- ❌ Não aplicar CIWA-Ar ou não estratificar a gravidade da abstinência
+- ❌ Não indicar benzodiazepínico como tratamento da abstinência alcoólica (padrão ouro)
+- ❌ Não indicar internação em paciente com CIWA ≥15 e antecedente de convulsão por abstinência
+- ❌ Usar haloperidol ou antipsicótico como única medida para as alucinações (sem tratar a causa da abstinência com BZD)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — HOMEM TREMENDO E SUADO QUE PAROU DE BEBER HÁ DOIS DIAS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Abordou o paciente sem julgamento em relação ao uso de álcool | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Validou a decisão de parar de beber e a iniciativa de buscar ajuda | 0.3 | MS — PCDT Alcoolismo, 2017 |
+| Explicou o diagnóstico e o risco da abstinência em linguagem acessível | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Respondeu à pergunta sobre tratamento da dependência com orientação sobre o CAPS AD | 0.3 | MS — PCDT Alcoolismo, 2017 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou padrão e quantidade de uso de álcool (tipo, volume, frequência) | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Pesquisou início da abstinência e se foi abrupta | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Investigou episódios anteriores de abstinência e convulsões | 1.0 | MS — PCDT Alcoolismo, 2017 |
+| Aplicou CIWA-Ar ou investigou os critérios de gravidade da abstinência | 0.5 | MS — PCDT Alcoolismo, 2017 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Avaliou sinais vitais com atenção a taquicardia, PA e temperatura | 0.5 | MS — PCDT Alcoolismo, 2017 |
+|---|---|---|
+| Avaliou tremor, hiperreflexia e sinais neurológicos de Wernicke (nistagmo, ataxia) | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Avaliou abdome (hepatomegalia) | 0.3 | Semiologia Médica — FMUSP |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou glicemia capilar imediatamente | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Solicitou eletrólitos (Na, K, Mg) para rastreio de distúrbios que precipitam convulsão | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Classificou a abstinência como moderada a grave (CIWA ≥15) | 0.5 | MS — PCDT Alcoolismo, 2017 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Administrou tiamina ANTES da glicose | 1.0 | MS — PCDT Alcoolismo, 2017; RENAME 2023 |
+| Prescreveu benzodiazepínico (diazepam) como tratamento principal da abstinência | 1.0 | MS — PCDT Alcoolismo, 2017; RENAME 2023 |
+| Indicou internação pelo risco de delirium tremens | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Orientou sobre encaminhamento ao CAPS AD após estabilização | 0.3 | MS — PCDT Alcoolismo, 2017 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-07
+
+### BLOCO 1 — METADADOS
+
+- **id:** 7
+- **title:** "Mulher grávida com sensação de sufocamento e medo de morrer na fila do banco"
+- **sub:** "UBS — Demanda espontânea"
+- **tema:** "Psiquiatria"
+- **topic:** "Transtorno do pânico com agorafobia em gestante"
+- **level:** moderado
+- **cardAccent:** "#AD1457"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, diagnóstico diferencial, raciocínio clínico, conduta em gestante, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório de pré-natal, turno da manhã. Paciente veio à consulta de pré-natal de rotina, mas ao sentar na sala de espera lotada teve um episódio de sufocamento e saiu correndo. Foi atendida pela enfermeira e encaminhada ao médico."
+- **patient:** "P.A., 29 anos, feminino, grávida de 22 semanas (primigesta), assistente administrativa, casada."
+- **complaint:** "Paciente relata episódios recorrentes de coração acelerado, falta de ar, formigamento e 'certeza de que vai morrer' desde o 3º mês de gestação. Hoje teve um episódio na fila do banco e outro na sala de espera da UBS."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso, investigando as características dos episódios e o impacto na gestação.
+  2. Interprete os dados do exame físico e exames fornecidos, excluindo causas obstétricas e cardíacas.
+  3. Formule a hipótese diagnóstica e os diferenciais pertinentes no contexto da gravidez.
+  4. Proponha a conduta terapêutica segura para gestante com transtorno do pânico.
+  5. Oriente a paciente sobre o manejo dos ataques e os riscos do não tratamento para a gestação.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 118/72 mmHg |
+| FC | 98 bpm |
+| FR | 20 irpm |
+| Tax | 36,6°C |
+| Peso | 68 kg (pré-gestacional: 60 kg) |
+| Altura | 1,63 m |
+| IMC pré-gestacional | 22,6 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, ansiosa, ainda levemente taquipneica ao entrar. Lúcida e orientada. Sem edema em membros inferiores. Mucosas rosadas e hidratadas. Sem icterícia ou cianose.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Obstétrico:** Altura uterina 20 cm (compatível com IG). BCF 148 bpm (normal). Sem contrações. Colo fechado ao toque (caso de referência).
+- **Cardiovascular:** BRNF em 2T. Sem sopros patológicos. Pulsos periféricos normais.
+- **Respiratório:** MV presente bilateralmente, sem ruídos adventícios. Expansibilidade normal.
+- **Neurológico:** Sem déficits focais.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| ECG (12 derivações) | Ritmo sinusal, FC 96 bpm, sem alterações de repolarização | Normal | Não |
+| TSH | 1,4 mUI/L | 0,1–2,5 mUI/L (1º trim.) / 0,2–3,0 (2º trim.) | Não |
+| Hemograma | Hb 11,2 g/dL, VCM 84 fL | Hb >11 (gestante) | Não |
+| Glicemia de jejum | 86 mg/dL | 70–92 mg/dL (gestante) | Não |
+| Ecocardiograma obstétrico (resultado de consulta anterior) | Normal | — | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Sinais vitais entregues ao início. O ECG e demais exames são entregues se solicitados. O candidato deve ser avaliado especialmente pela escolha da conduta farmacológica segura em gestante — o uso de benzodiazepínico está contraindicado / deve ser evitado na gestação. Avaliar se o candidato solicita suporte psicológico como primeira linha.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+P.A., 29 anos, feminino, assistente administrativa, casada (marido presente no pré-natal), primigesta, 22 semanas de gestação. Sem diagnóstico psiquiátrico prévio. Pré-natal regular na UBS. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, tô com medo de enlouquecer. Hoje tive aquela sensação de novo na fila do banco e corri pra fora. Faz três meses que isso acontece." |
+| Sobre o episódio | "De repente o coração dispara, fico sem ar, começo a formigar as mãos e a boca, e tenho certeza que vou morrer ali. Dura uns dez minutos e depois passa." |
+| Sobre a frequência | "Começou uma vez por semana. Agora tô tendo quase todo dia. Tô com medo de sair de casa." |
+| Sobre a gestação | "Tenho medo de que isso afete meu bebê. Fico me sentindo culpada. Já cheguei a pensar se minha bebê vai nascer com problema por causa dos meus ataques." |
+| Sobre evitação | "Parei de ir ao shopping, ao mercado, de pegar ônibus. Hoje foi a primeira vez que vim à UBS sozinha e já tive um ataque." |
+| Sobre remédio | "Posso tomar alguma coisa? Mas tenho medo de prejudicar a bebê. Não quero tomar nada que faça mal." |
+| Pergunta ativa | "Isso prejudica minha bebê, doutora? Os ataques fazem mal pra ela?" |
+| Pergunta ativa | "Tem tratamento que não seja remédio? Porque não quero colocar nada em risco na gravidez." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- A paciente está evitando sair de casa há 3 semanas, com impacto significativo no trabalho (está de licença) — revelar apenas se o candidato perguntar especificamente sobre mudanças na rotina e no trabalho.
+- Mãe da paciente tinha "crises de nervos" frequentes (possível história familiar de ansiedade/pânico) — revelar apenas se perguntado sobre história familiar.
+
+#### Comportamento do Ator (actorBehavior)
+
+Ainda levemente taquipneica ao entrar. Ansiosa, verbaliza preocupação com a bebê em múltiplos momentos. Alivia visivelmente quando o médico confirma que o coração e a bebê estão bem. Demonstra resistência ao uso de remédios ("não quero colocar nada em risco"). Abre-se com facilidade para estratégias não farmacológicas.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Transtorno do pânico com agorafobia em gestante (22 semanas). Ataques de pânico recorrentes com comportamento de evitação progressivo. CID-11: 6B01 / 6B02 / DSM-5: F41.0 + F40.00.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Síndrome do coração materno / palpitações gestacionais — taquicardia fisiológica da gestação pode ser confundida; no entanto, o padrão episódico, a intensidade, o medo de morrer e a evitação são incompatíveis com palpitação fisiológica; ECG normal.
+2. Hipertireoidismo gestacional — pode causar palpitações e ansiedade; TSH dentro da faixa gestacional normal.
+3. Hipoglicemia — pode causar sintomas adrenérgicos semelhantes; glicemia normal durante episódios.
+4. Embolia pulmonar — dispneia súbita na gestante deve ser considerada; clínica episódica e recorrente desde o 3º mês, com exame pulmonar normal, torna improvável.
+
+**Síntese do Caso (context):**
+Gestante de 29 anos, 22 semanas, primigesta, sem antecedentes psiquiátricos, com ataques de pânico recorrentes desde o 3º mês de gestação com escalada de frequência (semanal → diário) e desenvolvimento de agorafobia significativa (evitação de locais públicos, afastamento do trabalho). Causas orgânicas afastadas. Impacto crescente na qualidade de vida e na adesão ao pré-natal.
+
+**Justificativa Diagnóstica (justify):**
+Preenche critérios DSM-5 para transtorno do pânico: ataques recorrentes e inesperados com ≥4 sintomas (taquicardia, dispneia, parestesias, medo de morrer), seguidos de preocupação persistente com novos ataques e comportamento de evitação (agorafobia). Causas orgânicas afastadas sistematicamente. A gestação é fator precipitante ou agravante.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterizar os ataques: início, duração, sintomas, desencadeantes
+- Investigar frequência e evolução desde o início
+- Pesquisar comportamento de evitação (agorafobia) e impacto na rotina/trabalho/pré-natal
+- Investigar medo de consequências dos ataques para o bebê
+- Pesquisar antecedentes pessoais e familiares de ansiedade ou pânico
+- Investigar uso de cafeína e outras substâncias
+- Avaliar humor e rastreio de depressão perinatal (comórbida em até 50%)
+- Avaliar risco de suicídio (raramente presente mas deve ser avaliado)
+- Pesquisar impacto na adesão ao pré-natal
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: FC levemente elevada por ansiedade
+- Avaliação obstétrica: BCF, AU, movimentação fetal, colo
+- Cardiovascular: ausculta sem sopros patológicos
+- Respiratório: ausculta sem alterações
+- Neurológico: sem déficits focais
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| ECG | Afastar arritmia cardíaca | Normal, ritmo sinusal |
+| TSH (faixa gestacional) | Afastar hipertireoidismo gestacional | Normal para a IG |
+| Glicemia de jejum | Afastar hipoglicemia | Normal |
+
+**Conduta Esperada (expectedConduct):**
+- **Primeira linha — não farmacológica (preferida na gestação):** Psicoterapia — TCC com técnicas de exposição interoceptiva e reestruturação cognitiva. É o tratamento de primeira linha em gestantes com transtorno do pânico. Técnicas de respiração diafragmática (ensinar durante a consulta). Orientação sobre a fisiopatologia dos ataques ("o alarme do corpo disparando sem perigo real"). (⚠️ ABP, ACOG — recomendação de psicoterapia como primeira linha na gestação)
+- **Farmacológica (se necessário, após falha da psicoterapia ou gravidade significativa):** ISRS é a opção mais estudada e com melhor perfil de segurança na gestação: Sertralina (preferida — maior banco de dados de segurança gestacional) em dose mínima eficaz. Discutir o risco-benefício com a paciente. (⚠️ RENAME 2023; ACOG 2023 — sertralina como ISRS de preferência na gestação; evitar paroxetina — risco cardíaco fetal)
+- **Benzodiazepínicos:** EVITAR na gestação (risco de fenda palatina no 1º trimestre, síndrome de abstinência neonatal, hipotonia fetal). Se crise aguda intensa, uso pontual de baixa dose pode ser considerado com critério, mas NÃO como tratamento de manutenção. (⚠️ FDA categoria D; ABP, 2021)
+- **Orientações:** Explicar que os ataques não causam dano direto ao bebê (reduzir culpa). Orientar sobre a técnica de respiração diafragmática para uso durante os ataques. Encaminhar à psicologia do NASF ou referência de saúde mental.
+- **Seguimento:** Retorno em 2 semanas. Informar a equipe de pré-natal sobre o diagnóstico para vigilância de depressão perinatal.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Reassegurar sem minimizar:** "Os ataques são reais e muito assustadores, mas os exames mostram que seu coração e sua bebê estão bem."
+- **Abordar a culpa:** "Os ataques não causam dano direto à sua bebê. O que causa risco é não tratar — você fez certo em buscar ajuda."
+- **Psicoeducação:** Explicar o ciclo do pânico e o papel da respiração.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever benzodiazepínico de manutenção em gestante (risco fetal significativo)
+- ❌ Não solicitar ECG para afastar causa cardíaca
+- ❌ Não investigar comportamento de evitação (agorafobia) que está impactando o pré-natal
+- ❌ Não orientar sobre técnica não farmacológica (respiração diafragmática) como medida imediata
+- ❌ Dizer à paciente que os ataques prejudicam o bebê sem evidência (aumenta culpa e piora o pânico)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — GESTANTE COM SENSAÇÃO DE SUFOCAMENTO E MEDO DE MORRER"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se e acolheu a paciente ainda em estado ansioso | 0.3 | CFM nº 1.931/2009 |
+| Reassegurou que o coração e a bebê estão bem após os exames | 0.5 | MS — Política Nacional de Humanização, 2013 |
+| Abordou a culpa da paciente em relação aos ataques e ao bebê | 0.5 | MS — Saúde Mental na Gestação, 2022 |
+| Explicou o diagnóstico e o tratamento em linguagem acessível | 0.3 | CFM nº 1.931/2009 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Caracterizou os ataques (duração, sintomas, frequência, evolução) | 0.5 | DSM-5; ABP — Diretrizes Transtorno do Pânico, 2021 |
+| Investigou comportamento de evitação (agorafobia) e impacto na rotina e no pré-natal | 1.0 | DSM-5; ABP — Diretrizes Transtorno do Pânico, 2021 |
+| Rastreou depressão perinatal comórbida | 0.5 | MS — Saúde Mental na Gestação, 2022 |
+| Avaliou risco de suicídio | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais e realizou ausculta cardíaca e pulmonar | 0.5 | Semiologia Médica — FMUSP |
+| Realizou avaliação obstétrica (BCF, AU, movimentos fetais) | 0.5 | MS — Pré-Natal de Baixo Risco, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou ECG para afastar arritmia | 0.5 | ABP — Diretrizes Transtorno do Pânico, 2021 |
+| Formulou hipótese de transtorno do pânico com agorafobia | 0.5 | DSM-5; ABP — Diretrizes Transtorno do Pânico, 2021 |
+| Identificou contraindicação relativa do benzodiazepínico na gestação | 1.0 | ⚠️ FDA categoria D; ABP 2021; ACOG 2023 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Indicou psicoterapia (TCC) como tratamento de primeira linha na gestante | 1.0 | ABP 2021; ACOG 2023 |
+| Ensinou técnica de respiração diafragmática como manejo imediato dos ataques | 0.5 | ABP — Diretrizes Transtorno do Pânico, 2021 |
+| Não prescreveu benzodiazepínico de manutenção | 0.5 | ⚠️ FDA categoria D; ABP 2021 |
+| Encaminhou ao NASF/psicologia e estabeleceu seguimento | 0.3 | MS — Saúde Mental na Gestação, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-08
+
+### BLOCO 1 — METADADOS
+
+- **id:** 8
+- **title:** "Paciente confuso, gritando e tentando sair da cama na enfermaria"
+- **sub:** "Enfermaria de Clínica Médica — Hospital Geral"
+- **tema:** "Psiquiatria"
+- **topic:** "Delirium (síndrome confusional aguda)"
+- **level:** complexo
+- **cardAccent:** "#4E342E"
+- **Time:** 5 min
+- **Type:** Estação híbrida (paciente + familiar + prontuário)
+- **Comp:** raciocínio clínico, diagnóstico diferencial, investigação etiológica, conduta, comunicação com familiar
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Enfermaria de Clínica Médica — Hospital Geral. Internação no 3º dia pós-operatório de cirurgia de quadril. Plantão noturno. A enfermagem chamou o médico plantonista porque o paciente está agitado, desorientado e tentando tirar o acesso venoso."
+- **patient:** "O.S., 76 anos, masculino, ex-funcionário público, viúvo. Internado há 3 dias por fratura de quadril (queda da própria altura). Fez cirurgia de fixação interna ontem."
+- **complaint:** "Enfermagem relata que o paciente acordou às 2h da manhã gritando, não reconhece onde está, está tentando tirar o acesso venoso e a sonda vesical, e diz que 'tem gente estranha no quarto'. Não estava assim antes da cirurgia."
+- **tasks:**
+  1. Realize a avaliação clínica do paciente e aplique o CAM (Confusion Assessment Method) para confirmar delirium.
+  2. Investigue as causas orgânicas do delirium (AEIOU TIPS).
+  3. Revise o prontuário e a prescrição médica em busca de fatores iatrogênicos.
+  4. Proponha a conduta terapêutica para o delirium e seus fatores causais.
+  5. Comunique ao familiar (filho) presente o diagnóstico e o plano de cuidados.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 144/88 mmHg |
+| FC | 102 bpm |
+| FR | 24 irpm |
+| Tax | 38,4°C |
+| Peso | 72 kg |
+| Altura | 1,68 m |
+| IMC | 25,5 kg/m² |
+| SatO2 | 91% em ar ambiente |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em regular estado geral, agitado, tentando sentar na cama. Desorientado no tempo e espaço (não sabe onde está, acha que está em casa). Confuso, com fala incoerente e alternando períodos de agitação com sonolência (flutuação do nível de consciência). Febre. Taquicárdico. Saturação baixa.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Desorientado em tempo e espaço. Atenção gravemente comprometida (não consegue contar de trás para frente). Memória imediata comprometida. Discurso desorganizado. Alucinações visuais ("tem gente no canto do quarto"). Sem déficits focais motores ou sensitivos. Pupilas isocóricas, midriáticas leves (3,5 mm).
+- **Respiratório:** MV presente com estertores crepitantes em base direita. Taquipneia.
+- **Cardiovascular:** Taquicardia sinusal. BRNF, sem sopros.
+- **Abdominal:** Sonda vesical com urina turva e amarelo-escura. RHA hipoativos. Sem peritonismo.
+- **CAM (Confusion Assessment Method):** Critério 1 (início agudo e flutuação): SIM. Critério 2 (desatenção): SIM. Critério 3 (pensamento desorganizado): SIM. Critério 4 (nível de consciência alterado): SIM → **CAM POSITIVO = DELIRIUM.**
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma | Leucócitos 14.800/mm³ (neutrófilos 86%) | 4.000–10.000/mm³ | Sim |
+| PCR | 128 mg/L | <5 mg/L | Sim |
+| Sódio | 149 mEq/L | 135–145 mEq/L | Sim |
+| Glicemia | 62 mg/dL | 70–140 mg/dL | Sim |
+| Creatinina | 2,1 mg/dL | 0,7–1,2 mg/dL | Sim |
+| Ureia | 74 mg/dL | 15–40 mg/dL | Sim |
+| Urina I | Piúria (>50 leuc/campo), bacteriúria | Normal | Sim |
+| SatO2 | 91% AA | >95% | Sim |
+| RX tórax | Opacidade em base pulmonar direita sugestiva de pneumonia | Normal | Sim |
+
+#### Exame de Imagem (image)
+
+**Radiografia de tórax (AP):** Opacidade heterogênea em base pulmonar direita, compatível com processo infeccioso/consolidação. Seios costofrênicos esquerdos livres. Área cardíaca nos limites.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. O ator deve simular desorientação e agitação (tentando tirar o acesso). Um filho (segundo ator) está presente do lado de fora — pode ser chamado. Prontuário impresso disponível com: cirurgia de ontem, medicamentos em uso (morfina 5 mg SC 6/6h, dipirona, tramadol, omeprazol, atenolol). Exames laboratoriais e RX entregues se solicitados.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+O.S., 76 anos, masculino, ex-funcionário público aposentado, viúvo. Mora com o filho. Antecedentes: HAS, DM2, insuficiência renal crônica leve (creatinina basal 1,3 mg/dL). Internado por fratura de colo de fêmur direito após queda.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Quem é você? Onde estou? Eu quero ir pra casa! Tira isso do meu braço!" |
+| Sobre as pessoas que vê | "Tem uns homens ali no canto. Tão me olhando. Quem são eles?" (aponta para canto vazio) |
+| Quando orientado com calma | (confuso) "Eu fui operado? Não me lembro... Que dia é hoje?" |
+| Períodos de lucidez (flutuação) | "Doutor... tô com sede. Onde tô?" |
+| Script do filho | "Doutor, meu pai nunca foi assim. Antes da cirurgia estava bem, lúcido. De repente hoje à noite virou outra pessoa. Isso é o começo de uma demência?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Paciente recebeu morfina 5 mg SC às 20h, 22h e 00h (três doses em 4 horas, acima do prescrito) por erro de enfermagem — revelado apenas no prontuário se o candidato revisar a prescrição e a administração.
+- Paciente com insuficiência renal crônica leve pré-existente — revisar prontuário mostra creatinina basal 1,3 mg/dL; a creatinina atual de 2,1 indica piora renal aguda sobre crônica.
+
+#### Comportamento do Ator (actorBehavior)
+
+Alternância entre agitação (tentativa de tirar acesso, gritos, alucinações visuais) e períodos de sonolência/lucidez parcial. Responde quando abordado com calma e em voz clara e próxima. Fica mais tranquilo quando o candidato se apresenta, faz contato visual e toca o ombro com gentileza. O filho está ansioso e com medo de demência.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Delirium hiperativo em idoso (76 anos), multifatorial: pneumonia de base direita + infecção urinária + hipernatremia + hipoglicemia + superdosagem de morfina em contexto de insuficiência renal aguda sobre crônica. Pós-operatório de cirurgia de quadril (3º dia). CAM positivo. CID-11: 5C71 / DSM-5: F05.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Demência com agitação noturna (sundowning) — pode ser confundida; no entanto, o início agudo (antes da cirurgia estava lúcido), a flutuação e as alucinações visuais são característicos de delirium, não de demência isolada.
+2. Encefalopatia hepática — sem história de hepatopatia, função hepática preservada; menos provável.
+3. Acidente vascular cerebral — delirium pode ser apresentação de AVC; no entanto, ausência de déficit focal e contexto clínico de múltiplos fatores precipitantes tornam delirium mais provável; TC de crânio pode ser necessária se não houver melhora com tratamento.
+4. Psicose — alucinações visuais em idoso sem história psiquiátrica e com início agudo são características de delirium, não de psicose primária.
+
+**Síntese do Caso (context):**
+Idoso de 76 anos, 3º dia pós-operatório de cirurgia de quadril, apresenta delirium hiperativo com início agudo noturno (típico), flutuação do nível de consciência, desatenção grave, pensamento desorganizado e alucinações visuais. CAM positivo. Múltiplos fatores precipitantes identificados: pneumonia, ITU, hipernatremia, hipoglicemia e superdosagem de opioide em contexto de lesão renal aguda.
+
+**Justificativa Diagnóstica (justify):**
+CAM positivo com todos os 4 critérios presentes. Fatores precipitantes múltiplos: infecção pulmonar (leucocitose, PCR elevado, RX com consolidação), infecção urinária (urina I com piúria), hipernatremia (149 mEq/L), hipoglicemia (62 mg/dL), morfina em dose excessiva com acúmulo por insuficiência renal aguda. Contexto pós-operatório em idoso (fator de risco maior para delirium).
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Obter informações do filho sobre o estado pré-mórbido (cognição basal, funcionalidade)
+- Investigar início e flutuação do quadro confusional
+- Revisar o prontuário: cirurgia, anestesia, medicamentos em uso e doses administradas
+- Pesquisar sintomas infecciosos (febre, tosse, disúria)
+- Investigar ingestão de líquidos e diurese (desidratação/hipernatremia)
+- Pesquisar última medição de glicemia
+- Revisar medicações que podem precipitar delirium (opioides, anticolinérgicos, BZD)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Aplicar CAM para confirmar delirium
+- Avaliar sinais vitais: febre, taquicardia, taquipneia, SatO2 baixa
+- Avaliação neurológica: atenção, orientação, linguagem, alucinações, déficits focais
+- Avaliação pulmonar: crepitações em base direita (pneumonia)
+- Avaliação urinária: urina turva na sonda (ITU)
+- Avaliação do nível de hidratação: mucosas, turgor
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Hemograma e PCR | Investigar infecção como causa de delirium | Leucocitose, PCR elevado |
+| Glicemia capilar | Afastar hipoglicemia (agitação, confusão) | 62 mg/dL (baixa) |
+| Eletrólitos (Na, K) | Investigar distúrbios eletrolíticos | Hipernatremia (149) |
+| Creatinina e ureia | Avaliar função renal (acúmulo de morfina) | Elevadas — LRA |
+| Urina I e urocultura | Investigar ITU como foco infeccioso | Piúria, bacteriúria |
+| Radiografia de tórax | Investigar pneumonia como foco | Consolidação base D |
+| SatO2 / oximetria | Avaliar hipoxemia como causa de confusão | 91% — hipoxemia |
+
+**Conduta Esperada (expectedConduct):**
+- **Tratar as causas (pilar principal do tratamento do delirium):**
+  - Antibiótico para pneumonia: Amoxicilina-clavulanato 500/125 mg VO 8/8h (ou Ampicilina-sulbactam IV se grave) (Diretrizes SBPT, 2022)
+  - Antibiótico para ITU: Nitrofurantoína ou sulfametoxazol-trimetoprim (avaliar culturas) — ajustar para função renal
+  - Correção da hipoglicemia: Glicose 50% 20 mL IV + Soro glicosado 10% infusão
+  - Correção da hipernatremia: hidratação com solução hipotônica (SF 0,45% ou SG 5%) gradualmente
+  - Suspender ou reduzir morfina (acúmulo por LRA): avaliar naloxona se intoxicação opioide; analgesia alternativa com dipirona/paracetamol
+  - Oxigenoterapia: cateter nasal 2–3 L/min para SatO2 >95%
+- **Medidas não farmacológicas (fundamentais no delirium):**
+  - Orientação frequente (reorientação verbal — nome, local, data)
+  - Presença do familiar
+  - Luz adequada (clarear o quarto à noite — delirium piora com privação sensorial)
+  - Retirada de contenções físicas desnecessárias
+  - Mobilização precoce quando seguro
+  - Correção de privação sensorial (óculos, aparelho auditivo)
+- **Farmacológico para agitação (se necessário para segurança):** Haloperidol 0,5–1 mg VO ou IM (dose mínima eficaz). Evitar BZD (piora o delirium em idosos). (MS — Protocolo de Delirium, 2022; RENAME 2023)
+- **Comunicação com o filho:** Explicar que não é demência — é delirium, uma confusão reversível causada por múltiplos fatores tratáveis. Orientar a permanecer ao lado do pai para orientação.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Com o paciente (durante o delirium):** Voz calma e clara, frases curtas, identificar-se a cada abordagem, reorientar sem confrontar as alucinações.
+- **Com o filho:** "Seu pai está com uma confusão mental chamada delirium, que é diferente de demência. É causada por vários fatores que estamos tratando agora. Com o tratamento, a maioria dos idosos melhora em dias."
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não aplicar o CAM para confirmar delirium de forma estruturada
+- ❌ Não revisar o prontuário e as medicações (não identificar a superdosagem de morfina)
+- ❌ Não medir glicemia capilar imediatamente (hipoglicemia é causa emergencial de confusão)
+- ❌ Usar benzodiazepínico para sedar o idoso delirante (piora o delirium e aumenta mortalidade)
+- ❌ Dizer ao filho que é "começo de demência" sem investigar causas reversíveis
+- ❌ Realizar contenção física sem tratar as causas do delirium
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — PACIENTE CONFUSO E AGITADO NA ENFERMARIA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Abordou o paciente com voz calma, clara e em frases curtas | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Reorientou o paciente (nome, local, data) de forma gentil e repetida | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Explicou ao filho que delirium é diferente de demência e é potencialmente reversível | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Orientou o filho a permanecer ao lado do paciente para auxiliar na reorientação | 0.3 | MS — Protocolo de Delirium, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Obteve histórico do filho sobre estado cognitivo basal antes da cirurgia | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Revisou o prontuário e as medicações administradas (identificação da superdosagem de morfina) | 1.0 | MS — Protocolo de Delirium, 2022 |
+| Investigou fatores precipitantes: infecção, distúrbios metabólicos, hipoxemia | 0.5 | MS — Protocolo de Delirium, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Aplicou o CAM (Confusion Assessment Method) corretamente | 1.0 | MS — Protocolo de Delirium, 2022; Inouye et al. |
+| Avaliou SatO2 e realizou ausculta pulmonar | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Avaliou urina na sonda vesical (turva = ITU) | 0.3 | MS — Protocolo de Delirium, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Solicitou glicemia capilar imediatamente | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Solicitou hemograma, PCR, eletrólitos e creatinina para investigação etiológica | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Identificou múltiplas causas do delirium (pneumonia, ITU, hipernatremia, hipoglicemia, morfina) | 0.5 | MS — Protocolo de Delirium, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Tratou as causas identificadas (antibiótico, glicose, hidratação, ajuste da morfina, O2) | 1.0 | MS — Protocolo de Delirium, 2022; RENAME 2023 |
+| Indicou medidas não farmacológicas (reorientação, iluminação, mobilização, presença familiar) | 0.5 | MS — Protocolo de Delirium, 2022 |
+| Não usou benzodiazepínico para sedar o idoso delirante | 0.5 | MS — Protocolo de Delirium, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-09
+
+### BLOCO 1 — METADADOS
+
+- **id:** 9
+- **title:** "Policial militar com 'nervos destruídos' após operação há seis meses"
+- **sub:** "Ambulatório de Saúde Mental — Policlínica"
+- **tema:** "Psiquiatria"
+- **topic:** "Transtorno de estresse pós-traumático em homem — apresentação atípica"
+- **level:** complexo
+- **cardAccent:** "#1A237E"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação dos 4 clusters do TEPT, diagnóstico diferencial, conduta, comunicação empática com masculinidade normativa
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Saúde Mental — Policlínica Pública. Primeira consulta, turno da tarde. Paciente encaminhado pela médica do trabalho da corporação após dois acidentes sem vítimas no trabalho, irritabilidade intensa e dois episódios de licença médica por 'stress'."
+- **patient:** "R.C., 38 anos, masculino, policial militar (13 anos de carreira), casado, dois filhos. Encaminhado pela medicina do trabalho."
+- **complaint:** "Paciente afirma ter vindo 'para cumprir protocolo'. Minimiza os sintomas. A esposa relatou em ligação para a clínica que o marido está irreconhecível: agressivo, não dorme, bebe mais do que antes e deu um soco na parede na semana passada."
+- **tasks:**
+  1. Realize a anamnese de forma empática, explorando os sintomas sem forçar o relato do evento traumático.
+  2. Investigue os 4 clusters do TEPT (revivência, evitação, alterações cognitivas/humor, hiperexcitabilidade).
+  3. Avalie comorbidades: uso de álcool, depressão e risco de suicídio.
+  4. Formule a hipótese diagnóstica e os diagnósticos diferenciais.
+  5. Proponha a conduta terapêutica adaptada ao perfil do paciente, abordando a resistência ao tratamento.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 148/94 mmHg |
+| FC | 94 bpm |
+| FR | 18 irpm |
+| Tax | 36,7°C |
+| Peso | 92 kg |
+| Altura | 1,80 m |
+| IMC | 28,4 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, postura rígida, expressão fechada. Sem sinais de intoxicação aguda. Lúcido e orientado. Tônus muscular aumentado em ombros e pescoço. Sem lesões cutâneas. Hipervigilante — senta voltado para a porta, percebe os mínimos ruídos do corredor.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Neurológico:** Sem déficits focais. Atenção levemente reduzida. Reflexos normais.
+- **Cardiovascular:** PA elevada, FC levemente elevada. BRNF, sem sopros.
+- **Musculoesquelético:** Tensão muscular intensa em trapézio e cervical. Sem contractura articular.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma | Normal | — | Não |
+| TSH | 2,2 mUI/L | 0,4–4,0 mUI/L | Não |
+| Glicemia de jejum | 104 mg/dL | 70–99 mg/dL | Sim |
+| TGO | 52 U/L | <40 U/L | Sim |
+| TGP | 48 U/L | <41 U/L | Sim |
+| GGT | 98 U/L | <60 U/L | Sim |
+| CAGE | 3/4 (alto risco para dependência alcoólica) | 0–1: baixo risco | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Sinais vitais entregues ao início. Exames laboratoriais entregues somente se solicitados. O ator deve manter postura de resistência ao início — cruzando os braços, respondendo com frases curtas, minimizando ("tô bem, vim pra cumprir protocolo"). A abertura ocorre progressivamente quando o candidato adota abordagem respeitosa, sem pressionar para relato do trauma. O candidato deve ser avaliado especialmente pela habilidade de abordar TEPT em homem com resistência cultural à busca de ajuda.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+R.C., 38 anos, masculino, policial militar (13 anos), sargento. Casado há 12 anos, dois filhos (10 e 8 anos). Medalha de bravura. Participa de grupos de WhatsApp da corporação diariamente. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abordagem inicial | "Olha, eu vim porque mandaram me mandar. Não tô aqui por vontade própria. Policial não vai a psiquiatra." |
+| Sobre o que aconteceu na operação | Não falar espontaneamente. Se perguntado gentilmente: "Teve uma situação difícil. Perdi um colega. Não gosto de falar sobre isso." |
+| Sobre os flashbacks | Só se perguntado com empatia: "Às vezes a cena aparece na minha cabeça do nada. No trânsito, em qualquer barulho forte. Mas eu controlo." |
+| Sobre o sono | "Não durmo bem faz meses. Acordo de madrugada. Qualquer barulho me acorda. Mas é porque o serviço é perigoso mesmo." |
+| Sobre a irritabilidade | "Minha esposa reclama que eu tô diferente. Mas ela não entende o que é o meu trabalho." |
+| Sobre o álcool | Só se perguntado diretamente: "Tomo umas cervejas depois do serviço pra relaxar. Uns cinco ou seis. Todo dia. Às vezes mais." |
+| Sobre evitação | Se perguntado: "Evito algumas ruas onde aconteceu. Mudo de rota. É cautela de policial, não fraqueza." |
+| Sobre suicídio | Só se perguntado diretamente e com relação de confiança estabelecida: "Uma vez ou outra o pensamento aparece. Que eu não deveria ter sobrevivido. Que ele era melhor policial do que eu." |
+| Pergunta ativa do paciente | "O que o senhor vai escrever no meu prontuário? Isso vai afetar meu serviço?" |
+| Pergunta ativa do paciente | "Remédio de cabeça deixa lento? Não posso ficar lento no serviço." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Ideação de sobrevivente ("não deveria ter sobrevivido") com episódios ocasionais de pensamento de que seria melhor não estar aqui — revelar apenas com pergunta direta e com vínculo estabelecido.
+- Consumo de 5–6 cervejas diárias, todos os dias (CAGE 3/4 — dependência provável) — revelar apenas se perguntado especificamente sobre quantidade e frequência do consumo de álcool.
+
+#### Comportamento do Ator (actorBehavior)
+
+Postura defensiva no início — braços cruzados, respostas curtas, minimização. Senta voltado para a porta e reage a ruídos (hipervigilância). Abre-se progressivamente quando o candidato respeita o ritmo, não pressa para revelar o trauma e usa linguagem compatível com a identidade militar ("muitos soldados passam por isso"). Demonstra vulnerabilidade ao falar do colega morto — voz embarga. Emoção controlada e rapidamente suprimida (norma masculina).
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Transtorno de estresse pós-traumático (TEPT) em homem, com apresentação atípica (externalização via irritabilidade, uso de álcool e negação), decorrente de trauma de combate/operação policial com perda de colega. Comorbidade: uso nocivo/dependência de álcool (CAGE 3) e ideação de sobrevivente. CID-11: 6B40 / 6C40.1 / DSM-5: F43.10 + F10.20.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Transtorno de ajustamento com humor misto — sintomas de adaptação após evento estressor sem preencher critérios plenos de TEPT; excluído pela duração >6 meses, presença dos 4 clusters e intensidade do comprometimento funcional.
+2. Transtorno explosivo intermitente — episódios de agressividade desproporcional; no entanto, aqui os episódios ocorrem em contexto de hiperexcitabilidade do TEPT, com eventos desencadeantes relacionados ao trauma.
+3. Depressão maior com irritabilidade — humor deprimido proeminente com irritabilidade; no entanto, revivência, evitação e hipervigilância são dominantes no quadro, sugerindo TEPT como diagnóstico principal.
+4. Intoxicação crônica por álcool com transtorno comportamental — o álcool agrava o quadro mas não explica todos os sintomas, que precedem e superam o padrão de consumo.
+
+**Síntese do Caso (context):**
+Policial militar de 38 anos, após operação com perda de colega há 6 meses, apresenta TEPT com apresentação típica masculina: irritabilidade intensa, hipervigilância, evitação de locais relacionados ao trauma, insônia, flashbacks minimizados e uso nocivo de álcool como automedicação. Ideação de sobrevivente presente. Resistência cultural à busca de ajuda dificulta diagnóstico precoce.
+
+**Justificativa Diagnóstica (justify):**
+Preenche os 4 clusters DSM-5 do TEPT: revivência (flashbacks no trânsito e com barulhos), evitação (muda de rota para evitar o local), alterações cognitivas/humor (culpa de sobrevivente, distanciamento da família, irritabilidade), hiperexcitabilidade (insônia, sobressalto, hipervigilância). Duração >6 meses. Comprometimento funcional (dois acidentes, licenças). Comorbidade com uso nocivo de álcool.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Estabelecer vínculo e respeitar o ritmo do paciente antes de investigar o trauma
+- Investigar os 4 clusters do TEPT sem forçar o relato detalhado do evento
+- Pesquisar flashbacks e revivência (quando ocorrem, desencadeantes)
+- Investigar comportamentos de evitação (locais, situações, pessoas relacionadas ao trauma)
+- Pesquisar alterações de humor e cognição (culpa, distanciamento, irritabilidade)
+- Investigar hiperexcitabilidade (insônia, sobressalto, hipervigilância)
+- Pesquisar uso de álcool e outras substâncias (automedicação)
+- Avaliar risco de suicídio (incluindo ideação de sobrevivente)
+- Investigar impacto profissional e familiar
+- Abordar preocupações sobre confidencialidade e impacto na carreira
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: PA elevada (hiperexcitabilidade autonômica + álcool)
+- Avaliação do estado mental: hipervigilância, humor, afeto congruente
+- Avaliação muscular: tensão em trapézio e cervical
+- Avaliação de sinais de hepatopatia alcoólica (GGT e TGO/TGP elevados)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| CAGE | Rastreio de dependência alcoólica | 3/4 (alto risco) |
+| TGO, TGP, GGT | Avaliar hepatopatia alcoólica incipiente | Levemente elevados |
+| TSH | Afastar hipotireoidismo como causa de humor deprimido | Normal |
+| Glicemia | Rastreio de DM2 (sobrepeso + álcool) | Levemente alterada |
+
+**Conduta Esperada (expectedConduct):**
+- **Psicoterapia (primeira linha):** TCC focada no trauma (TCC-T), terapia de exposição prolongada (EP) ou EMDR. São as intervenções com maior evidência para TEPT. (⚠️ ABP — Diretrizes TEPT, 2022; UpToDate 2024)
+- **Farmacológica:** ISRS de primeira linha: Sertralina 50–200 mg/dia ou Paroxetina 20–60 mg/dia (aprovados para TEPT). Prazosina pode ser adicionada para pesadelos e hiperexcitabilidade noturna. (RENAME 2023; ABP — Diretrizes TEPT, 2022)
+- **Álcool:** Abordar o uso de álcool como automedicação do TEPT — explicar que o álcool piora os sintomas a médio prazo. Não iniciar abordagem punitiva. Encaminhar ao CAPS AD se dependência confirmada.
+- **Confidencialidade:** Abordar diretamente a preocupação com o prontuário. Explicar os limites do sigilo médico e que o objetivo é ajudá-lo a voltar ao trabalho em plenas condições.
+- **Abordagem da resistência:** Usar linguagem compatível com a identidade militar ("muitos veteranos e policiais passam por isso — buscar ajuda é parte do treinamento para continuar operacional").
+- **Seguimento:** Encaminhar ao serviço de saúde mental com experiência em trauma. Retorno em 2 semanas.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Abordagem da resistência:** Não confrontar a masculinidade normativa diretamente; usar enquadramento de resiliência e eficiência ("tratar isso vai te deixar mais eficaz no trabalho, não menos").
+- **Sobre o trauma:** Não forçar o relato; validar que não precisa contar tudo agora.
+- **Sobre suicídio:** Perguntar de forma direta mas respeitosa, enquadrando como preocupação com a saúde dele.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Forçar o relato detalhado do evento traumático na primeira consulta (pode retraumatizar e romper o vínculo)
+- ❌ Não investigar os 4 clusters do TEPT por aceitar a minimização do paciente
+- ❌ Não perguntar diretamente sobre risco de suicídio (ideação de sobrevivente é fator de risco)
+- ❌ Não investigar o uso de álcool (automedicação do TEPT — fator de risco para suicídio e perpetuação do quadro)
+- ❌ Usar benzodiazepínico de longa duração para o TEPT (evidência insuficiente; pode piorar o processamento do trauma e criar dependência em paciente já com uso problemático de álcool)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — POLICIAL COM NERVOS DESTRUÍDOS APÓS OPERAÇÃO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Respeitou o ritmo do paciente sem forçar o relato do trauma na primeira consulta | 0.5 | ABP — Diretrizes TEPT, 2022 |
+| Usou linguagem compatível com a identidade do paciente (militar/policial) sem reforçar estigma | 0.5 | MS — Saúde Mental do Trabalhador, 2022 |
+| Abordou diretamente a preocupação com confidencialidade e carreira | 0.5 | CFM — Código de Ética Médica, 2009 |
+| Explicou que buscar ajuda aumenta a capacidade operacional, não diminui | 0.3 | ABP — Diretrizes TEPT, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou revivência (flashbacks, pesadelos, reações a estímulos) | 0.5 | DSM-5; ABP — Diretrizes TEPT, 2022 |
+| Investigou evitação (locais, situações, pessoas relacionadas ao trauma) | 0.5 | DSM-5; ABP — Diretrizes TEPT, 2022 |
+| Investigou hiperexcitabilidade (insônia, sobressalto, hipervigilância, irritabilidade) | 0.5 | DSM-5; ABP — Diretrizes TEPT, 2022 |
+| Investigou alterações cognitivas/humor (culpa de sobrevivente, distanciamento) | 0.5 | DSM-5; ABP — Diretrizes TEPT, 2022 |
+| Pesquisou uso de álcool com quantidade e frequência (CAGE) | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Avaliou risco de suicídio (incluindo ideação de sobrevivente) | 1.0 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais (PA elevada, FC) | 0.3 | Semiologia Médica — FMUSP |
+| Observou e registrou hipervigilância (postura voltada para a porta, reação a ruídos) | 0.3 | ABP — Diretrizes TEPT, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Aplicou CAGE ou investigou critérios de dependência alcoólica | 0.5 | MS — PCDT Alcoolismo, 2017 |
+| Solicitou TGO, TGP e GGT para avaliar hepatopatia alcoólica | 0.3 | MS — PCDT Alcoolismo, 2017 |
+| Formulou diagnóstico de TEPT com apresentação masculina atípica | 1.0 | DSM-5; ABP — Diretrizes TEPT, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Indicou psicoterapia focada no trauma como tratamento de primeira linha | 1.0 | ABP — Diretrizes TEPT, 2022; UpToDate 2024 |
+| Prescreveu ISRS como suporte farmacológico | 0.5 | ABP — Diretrizes TEPT, 2022; RENAME 2023 |
+| Abordou o uso de álcool como automedicação e indicou suporte adequado | 0.3 | MS — PCDT Alcoolismo, 2017 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
+
+## CASO OSCE-10
+
+### BLOCO 1 — METADADOS
+
+- **id:** 10
+- **title:** "Mulher que não para de lavar as mãos e chegou atrasada por 'ter que conferir o gás'"
+- **sub:** "Ambulatório de Psiquiatria — Policlínica"
+- **tema:** "Psiquiatria"
+- **topic:** "Transtorno obsessivo-compulsivo (TOC)"
+- **level:** complexo
+- **cardAccent:** "#00695C"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, avaliação do Y-BOCS, raciocínio clínico, diagnóstico diferencial, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Psiquiatria — Policlínica Municipal. Primeira consulta, turno da manhã. A paciente chegou 40 minutos atrasada, apologética, explicando que 'teve que voltar três vezes pra checar o gás'."
+- **patient:** "I.R., 33 anos, feminino, contadora, casada, sem filhos. Encaminhada pelo clínico geral após queixa de 'pensamentos que não saem da cabeça' e 'rituais que estão tomando meu dia'."
+- **complaint:** "Paciente relata pensamentos intrusivos de contaminação e de que algo vai pegar fogo em casa, seguidos de rituais de lavar as mãos (40–60 vezes ao dia) e verificação de eletrodomésticos (volta para casa em média 3 vezes por semana). Refere que 'sabe que é loucura, mas não consegue resistir'."
+- **tasks:**
+  1. Realize a anamnese dirigida ao TOC, investigando obsessões, compulsões e seu impacto funcional.
+  2. Estime a gravidade com base nos critérios da Y-BOCS (Yale-Brown Obsessive Compulsive Scale).
+  3. Investigue diagnósticos diferenciais (TAG, TEPT, esquizofrenia, depressão).
+  4. Formule a hipótese diagnóstica.
+  5. Proponha o plano terapêutico baseado em evidências e oriente a paciente.
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 116/74 mmHg |
+| FC | 80 bpm |
+| FR | 16 irpm |
+| Tax | 36,5°C |
+| Peso | 63 kg |
+| Altura | 1,65 m |
+| IMC | 23,1 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, lúcida, orientada, bem arrumada. Sem sinais de doença dermatológica nas mãos (pele levemente ressecada e avermelhada na região dorsal das mãos — compatível com lavagem excessiva). Sem sinais de automutilação. Contato visual preservado. Sem lentidão psicomotora.
+
+#### Exame Segmentar (physicalSeg)
+
+- **Dermatológico:** Pele das mãos ressecada e com eritema difuso em dorso — compatível com lavagem compulsiva excessiva.
+- **Neurológico:** Sem déficits focais.
+- **Estado mental:** Aparência cuidada, psicomotricidade normal; humor levemente ansioso, afeto congruente; fala organizada e coerente; pensamento sem desorganização formal, obsessões egodistônicas presentes (reconhece como irracionais); sem alucinações; orientada; insight preservado.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemograma | Normal | — | Não |
+| TSH | 2,1 mUI/L | 0,4–4,0 mUI/L | Não |
+| Glicemia de jejum | 90 mg/dL | 70–99 mg/dL | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Sinais vitais e observação das mãos entregues ao início. Exames laboratoriais entregues apenas se solicitados. O candidato deve ser avaliado pela habilidade de distinguir TOC de TAG e de psicose, pela aplicação dos critérios da Y-BOCS (ou sua referência) e pela proposta terapêutica correta (ISRS em dose alta + TCC com EPR).
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+I.R., 33 anos, feminino, contadora em escritório de médio porte, casada há 4 anos. Sem diagnóstico psiquiátrico prévio. Sintomas presentes há cerca de 3 anos, com piora progressiva nos últimos 6 meses após promoção no trabalho. Natural de Fortaleza/CE.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Chegada e queixa inicial | "Desculpa o atraso, doutora. Tive que voltar duas vezes porque fiquei com a sensação de que tinha deixado o gás aberto. Eu sei que não tinha. Mas o pensamento não saía." |
+| Sobre as lavagens | "Lavo as mãos umas 40, 50 vezes por dia. Tenho a sensação de que estão sujas, de que vou contaminar meu marido ou eu vou ficar doente. Às vezes passo 20 minutos na pia." |
+| Sobre os rituais de verificação | "Antes de sair de casa, tenho que conferir o gás, o ferro de passar, as janelas. Faço isso em ordem. Se interromperem, tenho que começar do zero." |
+| Sobre o insight | "Eu sei que parece loucura. Meu marido fica desesperado. Eu sei que o gás não tá aberto, que minhas mãos não tão sujas. Mas não consigo não fazer." |
+| Sobre o início | "Sempre fui meio perfeccionista. Mas há uns 3 anos piorou muito. Depois de uma promoção no trabalho que me deixou sobrecarregada." |
+| Sobre o impacto | "Já cheguei a trabalhar em home office pra poder fazer os rituais sem ninguém ver. Saio de reuniões pra lavar a mão. Tô perdendo produtividade." |
+| Sobre tentativas de resistir | "Quando tento não lavar, fico tão ansiosa que parece que vou enlouquecer. Só alivia quando lavo." |
+| Pergunta ativa | "Eu tenho algum problema mental grave? Isso tem cura?" |
+| Pergunta ativa | "Remédio resolve? Ou vou precisar fazer terapia pra sempre?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Ritualiza também simetricamente os objetos da mesa de trabalho (precisa que estejam perfeitamente alinhados antes de começar a trabalhar) — revelar apenas se o candidato perguntar sobre outros rituais além da lavagem e verificação.
+- Evita tocar em maçanetas e corrimões fora de casa (usando lenço ou manga) há 1 ano — revelar apenas se perguntado sobre comportamentos de evitação relacionados à contaminação.
+
+#### Comportamento do Ator (actorBehavior)
+
+Colaborativa e aliviada por estar buscando ajuda. Demonstra vergonha ao descrever os rituais ("parece bobagem quando eu falo assim"). Chora levemente ao descrever o impacto no casamento. Demonstra insight preservado — reconhece a irracionalidade mas não consegue resistir. Alivia quando o candidato normaliza o diagnóstico de TOC sem estigma.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Transtorno obsessivo-compulsivo (TOC) de moderado a grave, com obsessões de contaminação e de catástrofe (gás, fogo) e compulsões de lavagem e verificação. Insight preservado. Duração ≥3 anos com comprometimento funcional significativo. CID-11: 6B20 / DSM-5: F42.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Transtorno de ansiedade generalizada — preocupações excessivas em múltiplas áreas sem rituais compulsivos definidos; no TAG não há compulsões estruturadas com caráter ritualístico e egodistônico; as preocupações do TAG são mais flexíveis e relacionadas a situações reais.
+2. Transtorno de personalidade obsessiva-compulsiva (TPOC) — padrão de rigidez, perfeccionismo e controle egossintônico (o paciente com TPOC não reconhece como problemático); no TOC as obsessões são egodistônicas (indesejadas, reconhecidas como irracionais).
+3. Esquizofrenia com pensamentos de controle — pensamentos intrusivos podem simular obsessões; no entanto, no TOC há insight preservado (reconhece como produção própria da mente) e sem alucinações ou delírios; excluído pelo exame do estado mental.
+4. Depressão maior com ruminação — ruminações depressivas são egossintônicas e relacionadas ao humor; no TOC as obsessões são egodistônicas e seguidas de compulsões para neutralizá-las.
+
+**Síntese do Caso (context):**
+Mulher de 33 anos com TOC há 3 anos, com piora progressiva nos últimos 6 meses. Obsessões de contaminação (lavagem das mãos 40–50 vezes/dia) e de catástrofe (verificação de gás e eletrodomésticos). Insight preservado. Comprometimento funcional progressivo (trabalho, casamento). Pele das mãos com dermatite de contato por lavagem excessiva.
+
+**Justificativa Diagnóstica (justify):**
+Preenche critérios DSM-5 para TOC: obsessões (pensamentos intrusivos indesejados de contaminação e catástrofe, reconhecidos como irracionais) + compulsões (rituais de lavagem e verificação realizados para reduzir a ansiedade) que consomem >1 hora/dia e causam comprometimento funcional significativo. Insight preservado — fator prognóstico favorável.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Investigar a natureza das obsessões: conteúdo, frequência, grau de angústia, controle
+- Investigar as compulsões: tipo, duração, frequência, capacidade de resistir
+- Pesquisar o impacto funcional (trabalho, casamento, social)
+- Estimar tempo consumido por obsessões e compulsões por dia (critério Y-BOCS)
+- Investigar comportamentos de evitação (maçanetas, corrimões)
+- Pesquisar outros tipos de obsessões (simétrica, agressiva, sexual, religiosa)
+- Investigar história pessoal e familiar de TOC ou tiques
+- Rastrear depressão comórbida (muito frequente no TOC — até 67%)
+- Avaliar risco de suicídio
+- Pesquisar uso de substâncias
+
+**Exame Físico Esperado (expectedPhysical):**
+- Avaliação das mãos: dermatite de contato por lavagem excessiva (confirma o comportamento compulsivo)
+- Avaliação do estado mental: insight, organização do pensamento, ausência de alucinações
+- Avaliação geral: sem sinais de doença neurológica
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| TSH | Afastar hipertireoidismo (ansiedade, rituais de verificação) | Normal |
+| Hemograma | Avaliação geral antes de iniciar farmacoterapia | Normal |
+
+**Conduta Esperada (expectedConduct):**
+- **Psicoterapia (primeira linha):** TCC com técnica de Exposição e Prevenção de Resposta (EPR) — padrão ouro para TOC. O paciente é exposto gradualmente aos estímulos que desencadeiam obsessões sem realizar as compulsões, até a habituação da ansiedade. (⚠️ ABP — Diretrizes TOC, 2022; UpToDate 2024)
+- **Farmacológica:** ISRS em dose alta (característica do tratamento do TOC — doses maiores que na depressão): Sertralina 150–200 mg/dia (dose-alvo), Fluoxetina 40–80 mg/dia ou Fluvoxamina 150–300 mg/dia. Clomipramina 150–300 mg/dia (tricíclico com melhor evidência para TOC — segunda linha por perfil de efeitos adversos). (RENAME 2023; ABP — Diretrizes TOC, 2022)
+- **Importante:** A resposta ao tratamento pode levar 8–12 semanas — orientar a paciente sobre a latência prolongada no TOC (maior que na depressão).
+- **Não farmacológico:** Psicoeducação para o cônjuge (não participar dos rituais — "acomodação familiar" mantém o TOC). Orientar sobre creme hidratante para as mãos (dermatite de contato).
+- **Encaminhamento:** Psicólogo com experiência em TCC/EPR para TOC.
+- **Seguimento:** Retorno em 4 semanas. Reavaliar com Y-BOCS em 12 semanas.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Normalizar sem minimizar:** "TOC é uma condição médica real, não é fraqueza de caráter. O cérebro manda alarmes falsos e você aprende a neutralizá-los com os rituais."
+- **Sobre o tratamento:** Explicar que a EPR pode parecer assustadora ("parece que vai piorar antes de melhorar") mas é o tratamento mais eficaz. Explicar a latência de 8–12 semanas para o medicamento.
+- **Sobre o cônjuge:** Orientar a paciente a pedir ao marido para não participar dos rituais.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não distinguir TOC de TAG (ausência de investigação das compulsões)
+- ❌ Prescrever ISRS em dose antidepressiva padrão (doses insuficientes para TOC — é necessário dose alta)
+- ❌ Não indicar TCC com EPR como componente essencial do tratamento
+- ❌ Dizer à paciente que ela tem "esquizofrenia" ou "loucura" por ter pensamentos irracionais (estigmatização e erro diagnóstico)
+- ❌ Não investigar depressão comórbida (presente em até 67% dos casos de TOC)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — MULHER QUE NÃO PARA DE LAVAR AS MÃOS E CONFERE O GÁS REPETIDAMENTE"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Acolheu a paciente sem demonstrar estranheza ou julgamento diante dos rituais | 0.5 | CFM nº 1.931/2009 |
+| Normalizou o diagnóstico de TOC sem estigmatizar ("não é loucura, é uma condição médica") | 0.5 | ABP — Diretrizes TOC, 2022 |
+| Explicou o diagnóstico e o tratamento de forma clara e sem termos técnicos excessivos | 0.3 | CFM nº 1.931/2009 |
+| Abordou o papel do cônjuge no tratamento (não participar dos rituais) | 0.3 | ABP — Diretrizes TOC, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou o conteúdo das obsessões (contaminação, catástrofe) e sua natureza egodistônica | 0.5 | DSM-5; ABP — Diretrizes TOC, 2022 |
+| Investigou as compulsões: tipo, duração e frequência dos rituais | 0.5 | DSM-5; ABP — Diretrizes TOC, 2022 |
+| Estimou o tempo consumido por obsessões e compulsões por dia (critério Y-BOCS) | 0.5 | Y-BOCS; ABP — Diretrizes TOC, 2022 |
+| Investigou comportamentos de evitação (maçanetas, corrimões) | 0.5 | ABP — Diretrizes TOC, 2022 |
+| Rastreou depressão comórbida | 0.5 | ABP — Diretrizes TOC, 2022 |
+| Avaliou risco de suicídio | 0.5 | MS — PCDT Prevenção do Suicídio, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou as mãos e identificou dermatite de contato por lavagem excessiva | 0.5 | ABP — Diretrizes TOC, 2022 |
+| Avaliou o estado mental (insight, organização do pensamento, ausência de alucinações) | 0.5 | ABP — Diretrizes TOC, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Formulou hipótese de TOC e diferenciou de TAG e de psicose | 1.0 | DSM-5; ABP — Diretrizes TOC, 2022 |
+| Solicitou TSH para afastar causa orgânica de ansiedade | 0.3 | ABP — Diretrizes TOC, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Indicou TCC com Exposição e Prevenção de Resposta (EPR) como tratamento de primeira linha | 1.0 | ABP — Diretrizes TOC, 2022; UpToDate 2024 |
+| Prescreveu ISRS em dose alta para TOC (não dose antidepressiva padrão) | 1.0 | ABP — Diretrizes TOC, 2022; RENAME 2023 |
+| Orientou sobre latência prolongada do tratamento no TOC (8–12 semanas) | 0.5 | ABP — Diretrizes TOC, 2022 |
+
+**TOTAL: _____ / 10,0 pontos**
+
+---
