@@ -45,17 +45,17 @@ function buildTabsNav(st) {
   const nav = document.querySelector('.tabs-nav');
   if (st.id >= 30) {
     nav.innerHTML = `
-      <button class="tab-btn active" onclick="showTab(0)">A — Instruções ao Candidato</button>
-      <button class="tab-btn" onclick="showTab(1)">B — Impressos</button>
-      <button class="tab-btn" onclick="showTab(2)">B1 — Script do Paciente</button>
-      <button class="tab-btn" onclick="showTab(3)">C — Gabarito do Avaliador</button>
-      <button class="tab-btn" onclick="showTab(4)">D — Checklist</button>`;
+      <button class="tab-btn active" onclick="showTab(0)"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+      <button class="tab-btn" onclick="showTab(1)"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+      <button class="tab-btn" onclick="showTab(2)"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
+      <button class="tab-btn" onclick="showTab(3)"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+      <button class="tab-btn" onclick="showTab(4)"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
   } else {
     nav.innerHTML = `
-      <button class="tab-btn active" onclick="showTab(0)">A — Instruções ao Candidato</button>
-      <button class="tab-btn" onclick="showTab(1)">B — Impressos</button>
-      <button class="tab-btn" onclick="showTab(2)">C — Gabarito do Avaliador</button>
-      <button class="tab-btn" onclick="showTab(3)">D — Material de Estudo</button>`;
+      <button class="tab-btn active" onclick="showTab(0)"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+      <button class="tab-btn" onclick="showTab(1)"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+      <button class="tab-btn" onclick="showTab(2)"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+      <button class="tab-btn" onclick="showTab(3)"><span class="tab-key">D</span><span class="tab-desc">Material de Estudo</span></button>`;
   }
 }
 
@@ -135,6 +135,7 @@ function renderExamsBlock(b) {
   if (b.labs && b.labs.length) {
     html += `<div class="section-block">
       <h3>Impresso — Exames Laboratoriais</h3>
+      <div class="table-scroll">
       <table class="lab-table">
         <tr><th>Exame</th><th>Resultado</th><th>Valor de Referência</th></tr>
         ${b.labs.map(l => `<tr>
@@ -143,6 +144,7 @@ function renderExamsBlock(b) {
           <td class="ref">${l.ref}</td>
         </tr>`).join('')}
       </table>
+      </div>
     </div>`;
   }
 
@@ -303,10 +305,12 @@ function renderTabC(st) {
   if (c.expectedExams && c.expectedExams.length) {
     html += `<div class="section-block">
       <h3>Exames Complementares Esperados</h3>
+      <div class="table-scroll">
       <table class="lab-table">
         <tr><th>Exame</th><th>Justificativa</th><th>Resultado Esperado</th></tr>
         ${c.expectedExams.map(e => `<tr><td>${e.exam}</td><td>${e.justify}</td><td>${e.expected}</td></tr>`).join('')}
       </table>
+      </div>
     </div>`;
   }
 
@@ -346,6 +350,7 @@ function renderTabC(st) {
     const rows = renderPepTable(c.pep, 0);
     html += `<div class="section-block">
       <h3>PEP — Padrão Esperado de Procedimentos</h3>
+      <div class="table-scroll">
       <table class="pep-table">
         <tr><th>Item Avaliado</th><th style="width:80px">Pontos</th><th class="checkbox-header"></th></tr>
         ${rows}
@@ -355,6 +360,7 @@ function renderTabC(st) {
           <td></td>
         </tr>
       </table>
+      </div>
     </div>`;
   }
 
@@ -386,6 +392,7 @@ function renderTabD(st) {
         <div style="font-size:20px;font-weight:600;color:var(--text)">${d.title}</div>
       </div>
       <div class="section-block">
+        <div class="table-scroll">
         <table class="pep-table">
           <tr><th>Item Avaliado</th><th style="width:80px">Pontos</th><th class="checkbox-header"></th></tr>
           ${rows}
@@ -395,6 +402,7 @@ function renderTabD(st) {
             <td></td>
           </tr>
         </table>
+        </div>
       </div>`;
   }
 

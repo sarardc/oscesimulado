@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"c:\\\\Users\\\\Sara Costa\\\\OneDrive\\\\Documentos\\\\oscesimulado\\\\index.html\")",
+      "PowerShell(Start-Sleep -Seconds 3; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait\\('%{PRTSC}'\\); Start-Sleep -Milliseconds 500; $img = [System.Windows.Forms.Clipboard]::GetImage\\(\\); if \\($img\\) { $img.Save\\(\"C:\\\\Users\\\\SARACO~1\\\\AppData\\\\Local\\\\Temp\\\\mobile_home.png\"\\); \"saved\" } else { \"no image\" })"
+    ]
+  }
+}

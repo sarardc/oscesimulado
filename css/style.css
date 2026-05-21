@@ -44,6 +44,9 @@
   html.light .pep-table td  { border-bottom-color: rgba(200,205,216,0.5); }
 
   html.light .task-num { color: #ffffffc5; }
+  html.light .filter-btn.tema-pediatria.active { border-color: #e91e8c; color: #e91e8c; }
+  html.light .filter-btn.tema-pediatria:hover  { border-color: #e91e8c; color: #e91e8c; }
+  html.light .pill-pediatria { border-color: #e91e8c; color: #e91e8c; }
 
   /* Theme toggle button */
   .theme-toggle {
@@ -123,11 +126,8 @@
     font-weight: 600;
     padding: 10px 4px;
     border-radius: 3px;
-    letter-spacing: 8px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
   }
   .header h1 { font-size: 30px; font-weight: 500; color: var(--text); margin: 0; }
   .header h3 { font-size: 20px; font-weight: 500; color: var(--text); }
@@ -218,6 +218,7 @@
   .pill-nefrologia { border-color: #38d9a9; color: #38d9a9; }
   .pill-endocrinologia { border-color: #d98038; color: #d98038; }
   .pill-psiquiatria { border-color: #a78bfa; color: #a78bfa; }
+  .pill-pediatria { border-color: #f783ac; color: #f783ac; }
   .pill-level-simples { border-color: #69db7c; color: #69db7c; }
   .pill-level-moderado { border-color: #ffd43b; color: #ffd43b; }
   .pill-level-complexo { border-color: #ff6b6b; color: #ff6b6b; }
@@ -298,9 +299,31 @@
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .tab-btn:hover { color: var(--text); }
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-key {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+  .tab-btn.active .tab-key {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0f1e;
+  }
+  .tab-btn:hover .tab-key { border-color: var(--accent); color: var(--accent); }
+  .tab-btn.active:hover .tab-key { color: #0a0f1e; }
 
   .tab-content { display: none; padding: 28px 24px; max-width: 900px; margin: 0 auto; }
   .tab-content.active { display: block; }
@@ -373,7 +396,8 @@
   .alert-success { background: rgba(105,219,124,0.1); border: 1px solid rgba(105,219,124,0.3); color: #69db7c; }
 
   /* Lab table */
-  .lab-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .lab-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 400px; }
   .lab-table th {
     text-align: left;
     padding: 8px 12px;
@@ -394,7 +418,7 @@
   .lab-table td.ref { color: var(--text3); font-family: var(--mono); font-size: 14px; }
 
   /* PEP table */
-  .pep-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .pep-table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 360px; }
   .pep-table th {
     text-align: left;
     padding: 10px 12px;
@@ -588,11 +612,13 @@
   .filter-btn.tema-urologia.active       { border-color: #4f9cf9; color: #4f9cf9; }
   .filter-btn.tema-endocrinologia.active { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria.active    { border-color: #a78bfa; color: #a78bfa; }
+  .filter-btn.tema-pediatria.active      { border-color: #f783ac; color: #f783ac; }
 
   .filter-btn.tema-nefrologia:hover     { border-color: #38d9a9; color: #38d9a9; }
   .filter-btn.tema-urologia:hover       { border-color: #4f9cf9; color: #4f9cf9; }
   .filter-btn.tema-endocrinologia:hover { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria:hover    { border-color: #a78bfa; color: #a78bfa; }
+  .filter-btn.tema-pediatria:hover      { border-color: #f783ac; color: #f783ac; }
 
   .home-main { flex: 1; min-width: 0; }
 
@@ -605,16 +631,25 @@
 
   /* ===== RESPONSIVE ===== */
 
-  /* Tablet (≤ 900px) */
+  /* iPad Pro 11"/12.9" — portrait (≤ 1024px) */
+  @media (max-width: 1024px) {
+    .header h1 { font-size: 26px; }
+    .header-sub { font-size: 18px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .tab-content { max-width: 800px; }
+  }
+
+  /* iPad 10 (820px) / Tablet genérico (≤ 900px) */
   @media (max-width: 900px) {
-    .header h1 { font-size: 36px; }
-    .header-sub { font-size: 17px; }
+    .header h1 { font-size: 24px; }
+    .header-sub { font-size: 16px; }
     .header-iframe-wrap { width: min(300px, 45%); }
     .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
     .filter-sidebar { width: 140px; }
+    .tab-content { max-width: 700px; }
   }
 
-  /* Mobile grande (≤ 768px) */
+  /* iPad 9 / Mobile grande (≤ 768px) */
   @media (max-width: 768px) {
     body { padding: 12px 10px; font-size: 16px; }
 
@@ -623,9 +658,9 @@
     .header-iframe-wrap { width: 100%; max-width: 420px; }
     .header-title { align-items: center; text-align: center; }
     .header-badge { align-self: center; }
-    .header h1 { font-size: 28px; text-align: center; }
-    .header-sub { font-size: 15px; }
-    .header p  { font-size: 13px; }
+    .header h1 { font-size: 20px; text-align: center; }
+    .header-sub { font-size: 13px; }
+    .header p  { font-size: 12px; }
 
     .home-body { padding: 16px; }
     .home-intro p { font-size: 15px; }
@@ -653,7 +688,7 @@
 
     .timer-wrap { padding: 6px 10px; gap: 6px; }
     #timer-display { font-size: 19px; min-width: 48px; }
-    .timer-btn { width: 32px; height: 32px; font-size: 15px; }
+    .timer-btn { width: 40px; height: 40px; font-size: 16px; }
 
     .tabs-nav { padding: 0 12px; }
     .tab-btn  { font-size: 14px; padding: 12px 14px; }
@@ -667,47 +702,96 @@
     .impression-box { padding: 16px; }
     .vt { grid-template-columns: 1fr; }
 
-    .back-btn { padding: 8px 16px; font-size: 14px; min-height: 36px; }
+    .back-btn { padding: 8px 14px; font-size: 14px; min-height: 36px; }
+  }
+
+  /* iPhone 11 / iPhone Plus (430px–480px) */
+  @media (max-width: 480px) and (min-width: 414px) {
+    .header h1 { font-size: 17px; }
+    .header-sub { font-size: 12px; }
+    .grid { grid-template-columns: 1fr; }
+    .card-title { font-size: 15px; }
+    .tab-btn { font-size: 13px; padding: 10px 10px; }
+    .tab-desc { display: none; }
+    .back-label { display: none; }
+    .back-btn { font-size: 18px; padding: 8px 12px; }
+    .section-block p,
+    .section-block ul li { font-size: 14px; }
+    .study-section p,
+    .study-section ul li { font-size: 14px; }
   }
 
   /* Mobile pequeno (≤ 480px) */
   @media (max-width: 480px) {
-    body { padding: 8px 6px; }
+    body { padding: 8px 6px; font-size: 15px; }
 
-    .header { padding: 12px; }
-    .header h1 { font-size: 22px; }
-    .header-sub { font-size: 14px; }
-    .header-badge { font-size: 10px; }
+    .header { padding: 10px 12px; }
+    .header h1 { font-size: 16px; }
+    .header-sub { font-size: 11px; }
+    .header-badge { font-size: 9px; padding: 8px 3px; }
+    .header p { font-size: 12px; }
 
     .home-body { padding: 10px; }
-    .home-intro { padding: 14px 16px; }
+    .home-intro { padding: 12px 14px; }
+    .home-intro h2 { font-size: 13px; }
+    .home-intro p { font-size: 13px; }
+
+    .section-label { font-size: 10px; }
 
     .grid { grid-template-columns: 1fr; gap: 10px; }
-    .card { padding: 14px; }
+    .card { padding: 12px; }
+    .card-num { font-size: 11px; }
+    .card-title { font-size: 14px; }
+    .card-sub { font-size: 12px; }
+    .pill { font-size: 11px; }
 
     .tabs-nav { padding: 0 8px; }
-    .tab-btn  { font-size: 13px; padding: 10px 10px; }
+    .tab-btn  { font-size: 12px; padding: 10px 8px; gap: 0; }
+    .tab-key  { font-size: 11px; padding: 2px 6px; }
+    .tab-desc { display: none; }
+    .back-label { display: none; }
+    .back-btn { padding: 8px 12px; font-size: 18px; }
 
-    .tab-content { padding: 16px 12px; }
+    .tab-content { padding: 14px 10px; }
+
+    .section-block h3 { font-size: 11px; }
+    .section-block p,
+    .section-block ul li { font-size: 13px; }
+    .study-section h3 { font-size: 13px; }
+    .study-section p,
+    .study-section ul li { font-size: 13px; }
 
     .sv-header { padding: 10px 12px; }
+    .sv-title { font-size: 14px; }
+    .sv-sub   { font-size: 12px; }
+    .timer-label { font-size: 11px; }
     .timer-wrap { width: 100%; justify-content: center; }
-    #timer-display { font-size: 22px; }
+    #timer-display { font-size: 20px; }
 
-    .lab-table { font-size: 13px; }
+    .impression-box { font-size: 13px; padding: 12px; }
+    .impression-box h4 { font-size: 11px; }
+    .vt-label, .vt-val { font-size: 13px; }
+
+    .lab-table { font-size: 12px; }
+    .lab-table th { font-size: 10px; }
     .lab-table th,
-    .lab-table td { padding: 7px 8px; }
+    .lab-table td { padding: 6px 8px; }
 
-    .pep-table { font-size: 13px; }
+    .pep-table { font-size: 12px; }
+    .pep-table th { font-size: 10px; }
     .pep-table th,
-    .pep-table td { padding: 8px; }
+    .pep-table td { padding: 7px 8px; }
 
-    .drug-box  { font-size: 14px; padding: 12px; }
-    .alert     { font-size: 14px; }
-    .pitfall   { font-size: 14px; }
+    .drug-box  { font-size: 13px; padding: 10px 12px; }
+    .alert     { font-size: 13px; }
+    .pitfall   { font-size: 13px; }
+    .critical-error { font-size: 13px; }
 
-    .task-list li { font-size: 15px; }
-    .script-line  { font-size: 14px; }
+    .task-list li { font-size: 13px; }
+    .task-num { font-size: 11px; width: 18px; height: 18px; }
+    .script-line  { font-size: 13px; }
+    .script-trigger { font-size: 11px; }
 
-    .filter-btn { flex: 1 1 calc(50% - 6px); text-align: center; }
+    .filter-btn { flex: 1 1 calc(50% - 6px); text-align: center; font-size: 12px; }
+    .filter-label { font-size: 10px; }
   }
