@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casos do OSCE</title>
+<title>OSCE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -20,6 +20,10 @@
       <div class="header-iframe-wrap">
           <iframe class="iframe_responsivo" src="https://www.youtube.com/embed/EUc1AhTdG3U?list=RDEUc1AhTdG3U" title="Jesus playing freebird 10 hours" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>Deus nos abençoe</iframe>
        </div>
+      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Alternar tema">
+        <span id="theme-icon">☀</span>
+        <span id="theme-label">Claro</span>
+      </button>
     </div>
     <h3 class="header-sub">QUE JESUS NOS ABENÇOE</h3>
   </div>
@@ -80,6 +84,27 @@
 <script src="data/casos.js"></script>
 <script src="data/endocrino_parsed.js"></script>
 <script src="data/pediatria_parsed.js"></script>
+
+<!-- THEME -->
+<script>
+  (function () {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.documentElement.classList.add('light');
+  })();
+
+  function toggleTheme() {
+    const isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    document.getElementById('theme-icon').textContent  = isLight ? '☽' : '☀';
+    document.getElementById('theme-label').textContent = isLight ? 'Escuro' : 'Claro';
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const isLight = document.documentElement.classList.contains('light');
+    document.getElementById('theme-icon').textContent  = isLight ? '☽' : '☀';
+    document.getElementById('theme-label').textContent = isLight ? 'Escuro' : 'Claro';
+  });
+</script>
 
 <!-- APP -->
 <script src="js/api.js"></script>

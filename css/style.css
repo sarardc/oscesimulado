@@ -15,6 +15,56 @@
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'IBM Plex Sans', sans-serif;
   }
+  /* ===== LIGHT THEME ===== */
+  html.light {
+    --bg: #e6debb;
+    --surface: #ffffff;
+    --surface2: #e8eaf0;
+    --border: #c8cdd8;
+    --accent: #2563eb;
+    --accent2: #0d9488;
+    --warn: #b45309;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --text: #111827;
+    --text2: #374151;
+    --text3: #6b7280;
+  }
+
+  html.light .alert-info    { background: rgba(37,99,235,0.08);  border-color: rgba(37,99,235,0.3);  color: #1d4ed8; }
+  html.light .alert-warn    { background: rgba(180,83,9,0.08);   border-color: rgba(180,83,9,0.3);   color: #92400e; }
+  html.light .alert-danger  { background: rgba(220,38,38,0.08);  border-color: rgba(220,38,38,0.3);  color: #b91c1c; }
+  html.light .alert-success { background: rgba(22,163,74,0.08);  border-color: rgba(22,163,74,0.3);  color: #15803d; }
+
+  html.light .pitfall       { background: rgba(220,38,38,0.06);  border-color: rgba(220,38,38,0.2);  color: #b91c1c; }
+  html.light .critical-error{ background: rgba(220,38,38,0.06);  border-color: rgba(220,38,38,0.2);  color: #b91c1c; }
+  html.light .pep-section   { background: rgba(37,99,235,0.06); }
+
+  html.light .lab-table td  { border-bottom-color: rgba(200,205,216,0.6); }
+  html.light .pep-table td  { border-bottom-color: rgba(200,205,216,0.5); }
+
+  html.light .task-num { color: #ffffffc5; }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    grid-column: 3;
+    justify-self: end;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 18px; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 24px 16px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
