@@ -47,6 +47,14 @@
   .header h3 { font-size: 20px; font-weight: 500; color: var(--text); }
   .header p { font-size: 15px; color: var(--text2); margin-top: 2px; }
 
+  .iframe-responsivo {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Ajuste para a proporção do seu conteúdo, como 16/9 ou 4/3 */
+  border: none;
+}
+
+
   .home-body { padding: 32px; max-width: 1100px; margin: 0 auto; }
   .home-intro {
     background: var(--surface);
