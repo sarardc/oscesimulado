@@ -2,13 +2,13 @@ import Anthropic from "@anthropic-ai/sdk";
 import http from "http";
 import fs from "fs";
 import path from "path";
+import { exec } from "child_process";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = 3333;
 
-const SCHEMA_EXAMPLE = `
-{
+const SCHEMA = `{
   id: <number>,
   title: "<card title>",
   sub: "<setting subtitle>",
@@ -72,39 +72,38 @@ const SCHEMA_EXAMPLE = `
       ...
     ]
   }
-}
-`;
+}`;
 
 const SYSTEM_PROMPT = `You are a medical education data engineer. Your job is to convert markdown OSCE case files into a strict JavaScript object literal.
 
 The object MUST match this schema exactly — do NOT add, rename, or remove any property:
-${SCHEMA_EXAMPLE}
+${SCHEMA}
 
 STRICT PROPERTY RULES:
-- Top-level properties allowed: id, title, sub, tema, topic, level, cardAccent — nothing else at the top level.
+- Top-level properties allowed ONLY: id, title, sub, tema, topic, level, cardAccent — nothing else.
 - instA properties: scenario, patient, complaint, tasks — nothing else.
 - instB properties: vitals, physicalGeneral, physicalSeg, labs, image, note, patientProfile, script, hiddenInfo, actorBehavior — nothing else.
 - instC properties: diagnosis, differentials, context, justify, expectedAnamnesis, expectedPhysical, expectedExams, expectedConduct, expectedCommunication, criticalErrors — nothing else.
 - instD properties: title, sections (array of {h, items: [{item, score, ref}]}) — nothing else.
-- If the markdown contains extra metadata fields (Time, Type, Comp, etc.) that do not map to the schema, DISCARD them silently.
+- Extra markdown fields like Time, Type, Comp, tempo, tipo, competências — DISCARD silently.
 
-FIELD MAPPING RULES:
+FIELD MAPPING:
 - BLOCO 1 (METADADOS) → top-level: id (number), title, sub, tema, topic, level, cardAccent
-- BLOCO 2 (BRIEFING / instA) → instA: scenario, patient, complaint, tasks (array of strings)
-- BLOCO 3 (PACIENTE SIMULADO / instB) → instB with all its sub-fields
-- BLOCO 4 (GABARITO TÉCNICO / instC) → instC with all its sub-fields
-- BLOCO 5 (CHECKLIST / instD) → instD: title (string), sections (array)
+- BLOCO 2 (BRIEFING / instA) → instA: scenario, patient, complaint, tasks[]
+- BLOCO 3 (PACIENTE SIMULADO / instB) → instB (all sub-fields)
+- BLOCO 4 (GABARITO TÉCNICO / instC) → instC (all sub-fields)
+- BLOCO 5 (CHECKLIST / instD) → instD: title, sections[]
 
 OUTPUT RULES:
-- Return ONLY the raw JavaScript object literal — no imports, exports, variable declarations, or markdown fences.
+- Return ONLY the raw JavaScript object literal — no imports, exports, const declarations, or markdown fences.
 - All string values use double quotes. No single quotes anywhere.
 - Boolean alt field in labs: true or false (never "sim"/"não").
-- score values in instD items must be JS numbers (e.g. 0.5, 1.0), not strings.
-- If a markdown field uses comma as decimal separator (0,5) convert it to a dot (0.5).
-- Strip ❌ / ✅ / → / emoji prefixes from all text values.
-- vitals values: use the string value if present, or null (not the string "null") if not available.
-- If a field is missing from the markdown: use null for scalars, [] for arrays, "" for strings.
-- Do NOT add comments inside the object.
+- score in instD items must be a JS number (0.5, 1.0), never a string.
+- Comma decimal separators (0,5) → dot (0.5).
+- Strip ❌ ✅ → and all emoji prefixes from text values.
+- vitals: use string value if present, or null (bare null, not the string "null") if missing/dashes.
+- Missing fields: null for scalars, [] for arrays, "" for strings.
+- No comments inside the object.
 - Preserve all Portuguese text exactly — accents, special characters, punctuation.`;
 
 async function convert(markdown) {
@@ -116,7 +115,10 @@ async function convert(markdown) {
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
-    messages: [{ role: "user", content: `Convert this markdown OSCE case to the JavaScript object literal:\n\n${markdown}` }]
+    messages: [{
+      role: "user",
+      content: `Convert this markdown OSCE case to the JavaScript object literal:\n\n${markdown}`
+    }]
   });
 
   let raw = message.content[0].text.trim();
@@ -133,22 +135,41 @@ function readBody(req) {
   });
 }
 
+const CORS = { "Access-Control-Allow-Origin": "*" };
+
 const server = http.createServer(async (req, res) => {
   const url = req.url.split("?")[0];
 
   if (req.method === "GET" && url === "/") {
-    const html = fs.readFileSync(path.join(__dirname, "converter.html"), "utf-8");
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(html);
+    try {
+      const html = fs.readFileSync(path.join(__dirname, "converter.html"), "utf-8");
+      res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(html);
+    } catch (e) {
+      res.writeHead(500);
+      res.end("Erro ao ler converter.html: " + e.message);
+    }
+    return;
+  }
+
+  if (req.method === "GET" && url === "/ping") {
+    res.writeHead(200, { "Content-Type": "text/plain", ...CORS });
+    res.end("ok");
+    return;
+  }
+
+  if (req.method === "OPTIONS" && url === "/convert") {
+    res.writeHead(204, {
+      ...CORS,
+      "Access-Control-Allow-Methods": "POST",
+      "Access-Control-Allow-Headers": "Content-Type"
+    });
+    res.end();
     return;
   }
 
   if (req.method === "POST" && url === "/convert") {
-    res.writeHead(200, {
-      "Content-Type": "text/plain; charset=utf-8",
-      "Access-Control-Allow-Origin": "*"
-    });
-
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8", ...CORS });
     try {
       const body = await readBody(req);
       const { markdown } = JSON.parse(body);
@@ -166,5 +187,11 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, "127.0.0.1", () => {
-  console.log(`\n  OSCE Converter rodando em http://localhost:${PORT}\n`);
+  const url = `http://localhost:${PORT}`;
+  console.log(`\n  OSCE Converter → ${url}\n`);
+  // Abre o navegador automaticamente
+  const cmd = process.platform === "win32" ? `start ${url}`
+            : process.platform === "darwin" ? `open ${url}`
+            : `xdg-open ${url}`;
+  exec(cmd, () => {});
 });

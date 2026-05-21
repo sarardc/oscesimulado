@@ -1,0 +1,1220 @@
+
+## CASO OSCE-01
+
+### BLOCO 1 — METADADOS
+
+- **id:** 1
+- **title:** "Dor lombar intensa de início súbito há 2 horas"
+- **sub:** "UPA — Urgência e Emergência"
+- **tema:** "Urologia"
+- **topic:** "Litíase ureteral"
+- **level:** "moderado"
+- **cardAccent:** "#E87040"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UPA — Urgência e Emergência. Sala de atendimento, turno diurno. Você é o médico plantonista."
+- **patient:** "R.M., 34 anos, masculino, motorista de aplicativo, sem comorbidades conhecidas."
+- **complaint:** "Dor na lombar direita muito forte, começou de repente há umas 2 horas e não passa."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Solicite e interprete os exames complementares pertinentes
+  3. Formule a hipótese diagnóstica principal e os diagnósticos diferenciais
+  4. Proponha a conduta terapêutica imediata
+  5. Oriente o paciente sobre diagnóstico, tratamento e sinais de alarme
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador. O estudante recebe apenas os impressos quando solicitados.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 148/92 mmHg |
+| FC | 102 bpm |
+| FR | 20 irpm |
+| Tax | 36,8°C |
+| Peso | 82 kg |
+| Altura | 1,75 m |
+| IMC | 26,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em sofrimento moderado a intenso, agitado, sem posição de alívio. Fácies de dor. Hidratado, corado, anictérico, acianótico. Pele úmida pelo suor. Orientado e cooperativo.
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Plano, sem cicatrizes. Ruídos hidroaéreos presentes. Dor à palpação profunda no flanco direito sem defesa ou rigidez. Ausência de massa palpável. Sinal de Giordano positivo à direita.
+- **GENITOURINÁRIO:** Genitália externa sem alterações. Sem dor à palpação suprapúbica.
+- **CARDIOVASCULAR:** Bulhas rítmicas, normofonéticas, sem sopros. Pulsos periféricos cheios e simétricos.
+- **RESPIRATÓRIO:** Murmúrio vesicular presente bilateralmente, sem ruídos adventícios.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Ureia | 38 mg/dL | 15–40 mg/dL | Não |
+| Creatinina | 1,1 mg/dL | 0,7–1,2 mg/dL | Não |
+| Sódio | 138 mEq/L | 136–145 mEq/L | Não |
+| Potássio | 4,0 mEq/L | 3,5–5,0 mEq/L | Não |
+| Leucócitos | 11.200/mm³ | 4.000–11.000/mm³ | Sim |
+| Hemoglobina | 14,8 g/dL | 13,5–17,5 g/dL | Não |
+| EQU — Hematúria | +++ (microscópica) | Ausente | Sim |
+| EQU — Leucocitúria | Ausente | Ausente | Não |
+| EQU — Nitrito | Negativo | Negativo | Não |
+| EQU — pH | 5,5 | 4,5–8,0 | Não |
+
+#### Exame de Imagem (image)
+
+**Ultrassonografia de vias urinárias:** Rim direito com dimensões aumentadas (13,2 cm), presença de hidronefrose grau II. Ureter proximal direito dilatado. Imagem hiperecogênica com sombra acústica posterior medindo 6 mm em ureter proximal direito, compatível com cálculo ureteral. Rim esquerdo de dimensões e ecotextura normais, sem dilatação pielocalicial. Bexiga com volume adequado, sem espessamento de parede ou imagens intraluminais.
+
+#### Nota ao Avaliador (note)
+
+Entregar impresso de sinais vitais e exame físico no início da estação. Entregar exames laboratoriais somente se solicitados verbalmente pelo candidato. Entregar laudo de imagem somente se candidato solicitar USG ou TC de vias urinárias. Caso o candidato solicite TC sem contraste de abdome e pelve, considerar como exame de escolha e fornecer laudo de USG como substituto (contexto de UPA sem TC disponível no momento — informar ao candidato se questionado).
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+R.M., 34 anos, masculino. Motorista de aplicativo. Casado, dois filhos. Mora em casa própria. Sem plano de saúde.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, tô com uma dor absurda aqui nas costas do lado direito. Começou do nada, fui buscar uma corrida e de repente deu essa dor. Não consigo achar jeito nenhum que melhore." |
+| Sobre caracterização da dor | "É uma cólica, doutor. Vai e volta, mas quando vem é demais. Umas 8, 9 de 10. Parece que tá torcendo por dentro." |
+| Sobre irradiação da dor | "A dor começa aqui nas costas e às vezes desce pra virilha, até o saco às vezes." |
+| Sobre sintomas urinários | "Fui tentar urinar na UPA mas saiu pouquinho. Vi uma manchinha de sangue na hora de limpar, me assustei." |
+| Sobre febre e calafrios | "Não tô com febre não, mas tô com muito suor." |
+| Sobre episódio anterior | "Tive uma coisa parecida uns dois anos atrás, mas passou sozinho depois de um dia. Nunca fui ao médico pra ver." |
+| Sobre alimentação e hidratação | "Bebo pouca água mesmo, doutor. Fico o dia inteiro no carro e acabo esquecendo." |
+| Sobre medicamentos e alergias | "Não tomo remédio nenhum. Alergia nunca tive não." |
+| Pergunta ativa — diagnóstico | "O que que eu tenho, doutor? É grave? Vou precisar de cirurgia?" |
+| Pergunta ativa — retorno | "Preciso ficar internado? Porque tenho corrida marcada amanhã cedo..." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Histórico familiar: pai teve pedra no rim aos 40 anos e precisou de cirurgia — revelar apenas se candidato perguntar sobre histórico familiar.
+- Dieta rica em proteína animal e sal (come fast food quase diariamente) — revelar apenas se candidato perguntar sobre hábitos alimentares de forma direcionada.
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente agitado, visivelmente em dor, não consegue ficar parado. Tom de voz tensa. Cooperativo com perguntas, mas impaciente se o médico demorar. Fica mais calmo à medida que o candidato demonstra segurança e explica o que está fazendo. Ao final, demonstra preocupação com o trabalho e as finanças.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador. O estudante NÃO tem acesso.
+
+**Diagnóstico Principal (diagnosis):**
+Cólica nefrética direita por cálculo ureteral proximal de 6 mm com hidronefrose grau II. Ausência de sinais de infecção associada.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Pielonefrite aguda — incluída pela dor lombar, leucocitose e sinal de Giordano positivo; excluída pela ausência de febre, leucocitúria e nitrito negativos no EQU.
+2. Apendicite aguda — incluída pela dor em flanco/fossa ilíaca direita; excluída pelo caráter cólico da dor, irradiação para genitália e ausência de defesa abdominal.
+3. Dissecção de aorta — incluída pela dor lombar intensa e de início súbito; excluída por paciente jovem, pulsos simétricos, sem dor torácica e achados de imagem compatíveis com litíase.
+
+**Síntese do Caso (context):**
+Homem jovem, com baixa ingesta hídrica, dieta hipercalórica e história familiar positiva para nefrolitíase, que apresenta cólica nefrética típica por cálculo ureteral proximal direito de 6 mm com hidronefrose grau II e hematúria microscópica. Quadro sem sinais de infecção ou anúria. Contexto clínico e epidemiológico altamente sugestivo de nefrolitíase por oxalato de cálcio.
+
+**Justificativa Diagnóstica (justify):**
+A tríade clássica dor lombar em cólica com irradiação para genitália + hematúria + Giordano positivo é altamente sugestiva de cólica nefrética. O cálculo de 6 mm em ureter proximal com hidronefrose grau II confirma o diagnóstico por imagem. A ausência de febre, leucocitúria e nitrito afasta pielonefrite. A leucocitose discreta é esperada como resposta ao estresse doloroso. Epidemiologia compatível: sexo masculino, 30–40 anos, baixa ingesta hídrica, dieta hiperproteica, história familiar positiva.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização da dor: início, localização, irradiação, intensidade, caráter, fatores de melhora/piora
+- Sintomas urinários associados: hematúria, disúria, polaciúria, retenção urinária
+- Febre e calafrios (afastar infecção)
+- Náuseas e vômitos (sintomas autonômicos associados)
+- Episódios anteriores semelhantes
+- Histórico familiar de litíase renal
+- Ingesta hídrica habitual
+- Hábitos alimentares (dieta hiperproteica, rica em sódio, oxalato)
+- Uso de medicamentos (ex: topiramato, indinavir, furosemida) e alergias
+- Profissão e condições de trabalho (exposição ao calor, desidratação)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: taquicardia reflexa pela dor, PA levemente elevada, afebril — esperado
+- Inspeção: agitação psicomotora, fácies de dor, sudorese
+- Palpação: dor à palpação profunda do flanco direito, ausência de defesa ou rigidez (afasta peritonite)
+- Percussão: Sinal de Giordano (punho-percussão lombar) — positivo à direita. Técnica: punho fechado percute a loja renal posterior com o paciente sentado ou de pé
+- Ausculta: ruídos hidroaéreos presentes (afasta íleo)
+- Genitourinário: inspeção da genitália externa, palpação suprapúbica (afastar globo vesical)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| EQU (urinálise) | Hematúria sugere litíase; leucocitúria e nitrito afastam infecção | Hematúria +++, leucocitúria ausente, nitrito negativo |
+| Creatinina e ureia | Avaliar função renal e obstrução | Normais |
+| Hemograma | Afastar leucocitose por infecção | Leucocitose leve (estresse), sem desvio |
+| USG de vias urinárias | Primeira escolha em UPA; detecta hidronefrose e cálculo | Hidronefrose grau II, cálculo 6 mm em ureter proximal D |
+| TC sem contraste de abdome e pelve | Padrão ouro para cálculos; sensibilidade >95% | Confirmaria o cálculo e sua exata localização |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Anti-inflamatório não esteroidal (AINE) — diclofenaco 75 mg IM ou cetoprofeno 100 mg IV como primeira linha para analgesia na cólica nefrética (Protocolo MS/SUS). Pode associar dipirona 1g IV se dor persistente. Evitar opioides como primeira linha. Ondansetrona 4 mg IV se vômitos. Tamsulosina 0,4 mg VO 1x/dia (terapia expulsiva para cálculo ≤10 mm — ver nota abaixo). Hidratação venosa moderada se vômitos. ⚠️ A terapia expulsiva com alfa-bloqueadores (tamsulosina) é recomendada por diretrizes internacionais (EAU 2024) e referendada pela SBU — verificar disponibilidade no RENAME local antes de prescrever.
+- **Não farmacológica:** Repouso relativo durante a crise. Aumentar ingesta hídrica para 2,5–3 L/dia após resolução da crise. Orientar filtrar a urina para capturar o cálculo para análise.
+- **Encaminhamento:** Encaminhamento para Urologia ambulatorial após resolução da crise aguda. Indicação de avaliação urológica de urgência se: anúria, febre (sinais de pionefrólise), rim único, cálculo bilateral, dor refratária.
+- **Orientações ao paciente:** Explicar que é uma pedra no rim que está tentando sair pelo canal; a maioria dos cálculos de até 6 mm sai espontaneamente; beber bastante água; filtrar urina; retornar imediatamente se febre, parar de urinar ou dor que não cede com remédio.
+- **Seguimento:** Retorno em 48–72 horas ou antes se sinais de alarme. Encaminhamento para Urologia em até 2 semanas para investigação metabólica e prevenção de recorrência.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se pelo nome, perguntar como pode ajudar, demonstrar atenção à dor do paciente.
+- **Comunicação do diagnóstico:** Informar em linguagem acessível que há uma pedra no canal que liga o rim à bexiga, causando a dor intensa; tranquilizar que o quadro tem tratamento e que a pedra tem bom potencial de saída espontânea.
+- **Escuta ativa:** Reconhecer a intensidade da dor e o impacto no trabalho; não minimizar a queixa; perguntar se o paciente entendeu as orientações.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não solicitar EQU — perde hematúria e não afasta infecção urinária associada
+- ❌ Prescrever antibiótico sem evidência de infecção (ausência de febre, leucocitúria e nitrito negativo)
+- ❌ Não avaliar função renal antes de prescrever AINE em paciente com suspeita de obstrução
+- ❌ Liberar o paciente sem orientar sinais de alarme (febre, anúria, dor refratária)
+- ❌ Não realizar ou não interpretar o sinal de Giordano
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — DOR LOMBAR INTENSA DE INÍCIO SÚBITO HÁ 2 HORAS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se pelo nome ao paciente | 0.5 | CFM, Código de Ética Médica, 2019 |
+| Demonstrou reconhecimento da dor do paciente verbalmente ("entendo que está com muita dor") | 0.5 | CNRM, Competências Comunicação Médica, 2021 |
+| Perguntou se o paciente tinha dúvidas ao final da consulta | 0.5 | MS, Política Nacional de Humanização, 2013 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou localização, caráter e irradiação da dor | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre hematúria macroscópica ou microscópica | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre febre e calafrios (rastreio de infecção) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou episódios anteriores semelhantes | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre histórico familiar de litíase renal | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou ingesta hídrica e hábitos alimentares | 0.5 | MS, Caderno de Atenção Básica — Nefrologia, 2019 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais com destaque para febre e taquicardia | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Realizou palpação do abdome pesquisando defesa e rigidez | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Realizou sinal de Giordano (punho-percussão lombar bilateral) e interpretou corretamente | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Formulou hipótese diagnóstica de cólica nefrética / litíase ureteral | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Solicitou EQU (urinálise) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Solicitou creatinina/ureia para avaliação de função renal | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Solicitou exame de imagem de vias urinárias (USG ou TC sem contraste) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Prescreveu AINE (diclofenaco ou cetoprofeno) como analgesia de primeira linha | 1.0 | MS/SUS, Protocolo de Dor Aguda em Urgência, 2020 |
+| Orientou aumento da ingesta hídrica (2,5–3 L/dia) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Orientou sinais de alarme para retorno imediato (febre, anúria, dor refratária) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+---
+
+## CASO OSCE-02
+
+### BLOCO 1 — METADADOS
+
+- **id:** 2
+- **title:** "Mulher com dor lombar e queimação ao urinar há 4 dias"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Urologia"
+- **topic:** "Infecção do trato urinário superior — pielonefrite aguda"
+- **level:** "moderado"
+- **cardAccent:** "#D04E6B"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, exame físico, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UBS — Atenção Primária. Consultório médico, turno matutino. Você é o médico de família da unidade."
+- **patient:** "C.A., 28 anos, feminino, professora do ensino fundamental, sem comorbidades conhecidas."
+- **complaint:** "Dor nas costas e ardência para urinar há 4 dias, com febre desde ontem."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Solicite e interprete os exames complementares adequados
+  4. Estabeleça a hipótese diagnóstica e os diagnósticos diferenciais
+  5. Proponha a conduta e oriente a paciente sobre tratamento e seguimento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador. O estudante recebe apenas os impressos quando solicitados.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 108/70 mmHg |
+| FC | 108 bpm |
+| FR | 18 irpm |
+| Tax | 38,6°C |
+| Peso | 62 kg |
+| Altura | 1,63 m |
+| IMC | 23,3 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral relativo, corada, hidratada, anictérica, acianótica. Febril ao toque. Orientada, comunicativa, com expressão de desconforto.
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Plano, sem cicatrizes. Ruídos hidroaéreos presentes e normais. Dor à palpação profunda em flanco esquerdo. Sem defesa, rigidez ou sinais de irritação peritoneal. Sem massas palpáveis.
+- **GENITOURINÁRIO:** Sem dor à palpação suprapúbica. Região perineal sem lesões visíveis.
+- **LOMBAR:** Sinal de Giordano positivo à esquerda, negativo à direita.
+- **CARDIOVASCULAR:** Bulhas rítmicas, normofonéticas, sem sopros.
+- **RESPIRATÓRIO:** Murmúrio vesicular presente bilateralmente, sem ruídos adventícios.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Leucócitos | 16.400/mm³ | 4.000–11.000/mm³ | Sim |
+| Neutrófilos | 82% (com desvio à esquerda) | 50–70% | Sim |
+| Hemoglobina | 12,9 g/dL | 12,0–16,0 g/dL | Não |
+| Plaquetas | 278.000/mm³ | 150.000–400.000/mm³ | Não |
+| Creatinina | 0,9 mg/dL | 0,5–1,1 mg/dL | Não |
+| Ureia | 28 mg/dL | 15–40 mg/dL | Não |
+| PCR | 48 mg/L | < 5 mg/L | Sim |
+| EQU — Leucocitúria | +++ | Ausente | Sim |
+| EQU — Nitrito | Positivo | Negativo | Sim |
+| EQU — Hematúria | + | Ausente | Sim |
+| EQU — Proteína | + | Ausente | Sim |
+| Urocultura | Pendente (aguardando resultado) | — | — |
+
+#### Exame de Imagem (image)
+
+**Ultrassonografia de vias urinárias:** Rim esquerdo com dimensões levemente aumentadas (12,8 cm), ecotextura heterogênea, edema do seio renal. Sem imagens hiperecogênicas sugestivas de cálculo. Sem hidronefrose. Rim direito com dimensões e ecotextura normais. Bexiga sem alterações. Exame compatível com processo inflamatório/infeccioso renal à esquerda.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais e exame físico ao início da estação. Entregar exames laboratoriais somente se solicitados pelo candidato. Entregar laudo de USG somente se solicitado. A urocultura está pendente — informar ao candidato que o resultado sai em 48–72 horas. Caso candidato solicite TC, informar que não está disponível na UBS e que USG foi solicitada.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+C.A., 28 anos, feminino. Professora do ensino fundamental. Solteira. Mora com a mãe.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, tô com umas dores horríveis nas costas do lado esquerdo e uma queimação terrível quando faço xixi. Começou há uns 4 dias, mas ontem apareceu febre e aí resolvi vir." |
+| Sobre os sintomas urinários | "Tô indo muito mais no banheiro que o normal, sai pouquinho e queima muito. Às vezes parece que não esvaziou direito." |
+| Sobre a febre | "Ontem à noite chegou a 38,8. Tomei dipirona, baixou um pouco, mas voltou." |
+| Sobre início dos sintomas urinários | "Primeiro foi só queimação pra urinar, sem febre. Fui na farmácia, me deram um negócio de cranberry, mas não melhorou." |
+| Sobre dor lombar | "A dor é nas costas, do lado esquerdo. Não desce pra virilha não. É constante, não é em cólica." |
+| Sobre atividade sexual | "Sim, tenho parceiro fixo. Usamos camisinha às vezes..." |
+| Sobre higiene | "Me limpo sempre da frente pra trás." |
+| Sobre gravidez | "Não, com certeza não tô grávida, tô menstruada há uma semana." |
+| Pergunta ativa — diagnóstico | "É infecção mesmo, doutora? Precisa de remédio forte?" |
+| Pergunta ativa — retorno | "Vou precisar ficar em casa? Tenho aula pra dar amanhã." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Teve ITU baixa há 6 meses, tratada com nitrofurantoína por 5 dias — revelar apenas se candidato perguntar sobre episódios anteriores de ITU.
+- Usa diafragma como método contraceptivo adicional — revelar apenas se candidato perguntar especificamente sobre métodos contraceptivos ou fatores de risco para ITU.
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente ansiosa, um pouco envergonhada ao falar sobre vida sexual. Cooperativa com a anamnese. Demonstra preocupação com o trabalho e resistência à ideia de afastamento. Fica mais tranquila quando o médico explica o diagnóstico com clareza.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador. O estudante NÃO tem acesso.
+
+**Diagnóstico Principal (diagnosis):**
+Pielonefrite aguda não complicada à esquerda em mulher jovem imunocompetente.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Cistite aguda complicada — incluída pelos sintomas urinários baixos; excluída pela presença de febre alta, Giordano positivo e leucocitose com desvio à esquerda, indicando comprometimento do trato superior.
+2. Cólica nefrética com infecção secundária — incluída pela dor lombar e hematúria; excluída pelo caráter contínuo (não cólico) da dor, ausência de imagem de cálculo ao USG e temperatura elevada desde o início.
+3. Apendicite aguda — incluída pela dor abdominal e febre; excluída pela localização da dor (flanco esquerdo), sintomas urinários predominantes e Giordano positivo à esquerda.
+
+**Síntese do Caso (context):**
+Mulher jovem, sexualmente ativa, com fatores de risco para ITU recorrente (uso de diafragma, ITU prévia), apresentando quadro de ITU baixa não tratada adequadamente que evoluiu para pielonefrite aguda esquerda, confirmada pela tríade febre + dor lombar + EQU com leucocitúria e nitrito positivos. Função renal preservada, sem critérios de internação.
+
+**Justificativa Diagnóstica (justify):**
+A tríade clássica de pielonefrite — febre > 38°C, dor lombar com Giordano positivo e sintomas urinários — está presente. O EQU confirma o processo infeccioso (leucocitúria +++, nitrito positivo, hematúria). O hemograma evidencia resposta inflamatória sistêmica (leucocitose com desvio à esquerda). O USG afasta litíase e obstrução. Critérios de internação ausentes: sem vômitos incoercíveis, sem sinais de sepse, função renal normal, paciente capaz de tomar medicação oral.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Sintomas urinários baixos: disúria, polaciúria, urgência, sensação de esvaziamento incompleto
+- Febre: início, temperatura máxima, resposta a antitérmicos
+- Dor lombar: localização, caráter (contínua x cólica), irradiação
+- Náuseas e vômitos (critério para internação se incoercíveis)
+- Episódios anteriores de ITU e tratamentos realizados
+- Vida sexual ativa, métodos contraceptivos, higiene íntima
+- Possibilidade de gravidez (teste de gravidez se dúvida)
+- Uso de antibióticos recentes (risco de resistência)
+- Alergias medicamentosas
+- Imunossupressão, diabetes, anomalias urológicas (fatores de complicação)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: febre, taquicardia — esperados; PA e FR para afastar sepse
+- Inspeção: estado geral, hidratação, fácies
+- Palpação: dor em flanco esquerdo; ausência de defesa (afasta peritonite); palpação suprapúbica (afasta cistite isolada com dor suprapúbica)
+- Giordano bilateral: positivo à esquerda — técnica: punho-percussão posterior sobre a loja renal com paciente sentado; diferencia ITU alta de baixa
+- Afastar sinais de sepse: rebaixamento de consciência, hipotensão, taquicardia intensa
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| EQU (urinálise) | Confirmar infecção; leucocitúria + nitrito diagnósticos | Leucocitúria +++, nitrito +, hematúria + |
+| Urocultura com antibiograma | Identificar agente e sensibilidade; orientar ajuste de antibiótico | E. coli (agente mais frequente) — resultado em 48–72h |
+| Hemograma | Avaliar resposta inflamatória sistêmica | Leucocitose com desvio à esquerda |
+| Creatinina e ureia | Avaliar função renal antes de prescrever antibiótico nefrotóxico | Normais |
+| PCR | Marcador inflamatório sistêmico | Elevado |
+| USG de vias urinárias | Afastar obstrução (litíase, hidronefrose) que exigiria drenagem | Sem cálculo, sem hidronefrose; edema renal |
+| Teste de gravidez (beta-hCG) | Mulher em idade fértil — gestação altera conduta antibiótica | Negativo (menstruada há 1 semana, mas confirmar) |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica (ambulatorial):** Ciprofloxacino 500 mg VO 12/12h por 7 dias — primeira escolha para pielonefrite não complicada ambulatorial conforme Protocolo MS/SBU (verificar perfil de resistência local). Alternativa: cefalexina 500 mg 6/6h por 10–14 dias se intolerância a quinolona. Dipirona 500 mg VO 6/6h se dor ou febre. Aguardar resultado de urocultura e ajustar antibiótico se necessário. Nitrofurantoína é CONTRAINDICADA para pielonefrite (não atinge concentração adequada no parênquima renal).
+- **Critérios de internação (ausentes neste caso):** vômitos incoercíveis, sepse, pielonefrite em gestante, imunossuprimida, obstrução urinária, falha ambulatorial.
+- **Não farmacológica:** Hidratação oral generosa (2–3 L/dia). Repouso relativo. Higiene perineal adequada (frente para trás).
+- **Encaminhamento:** Não necessário no momento. Encaminhar à Urologia se falha terapêutica em 72h ou ITU de repetição (≥2 episódios/ano).
+- **Orientações ao paciente:** Explicar que é uma infecção que chegou ao rim; é mais sério que infecção de bexiga mas tem cura com antibiótico correto; tomar todos os dias até terminar o tratamento mesmo se melhorar antes; retornar em 48–72h ou antes se piorar (febre alta, vômitos, muita dor).
+- **Seguimento:** Retorno em 48–72h para reavaliação clínica e resultado de urocultura. EQU de controle após término do tratamento.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, oferecer assento, demonstrar atenção.
+- **Comunicação do diagnóstico:** Explicar em linguagem simples que a infecção começou na bexiga e subiu para o rim; tranquilizar que tem cura com o antibiótico correto; explicar por que precisa tomar o remédio até o fim.
+- **Escuta ativa:** Abordar o tema de atividade sexual com respeito e sem julgamento; validar preocupação com o trabalho; orientar sobre uso do diafragma como fator de risco.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever nitrofurantoína para pielonefrite aguda (contraindicada — não atinge nível terapêutico no parênquima renal)
+- ❌ Não solicitar urocultura antes de iniciar antibiótico
+- ❌ Não avaliar critérios de internação (vômitos, sepse, gestação, obstrução)
+- ❌ Não realizar sinal de Giordano ou não diferenciá-lo da cistite isolada
+- ❌ Não orientar retorno em 48–72h com resultado de urocultura para ajuste de antibiótico
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — MULHER COM DOR LOMBAR E QUEIMAÇÃO AO URINAR HÁ 4 DIAS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se pelo nome à paciente | 0.5 | CFM, Código de Ética Médica, 2019 |
+| Abordou o tema de atividade sexual de forma respeitosa e sem julgamento | 0.5 | MS, Política Nacional de Humanização, 2013 |
+| Perguntou se a paciente tinha dúvidas ao final da consulta | 0.5 | CNRM, Competências Comunicação Médica, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou sintomas urinários baixos (disúria, polaciúria, urgência) | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Perguntou sobre febre (temperatura e duração) | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Investigou episódios anteriores de ITU e tratamentos realizados | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Perguntou sobre vida sexual, método contraceptivo e higiene íntima | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Perguntou sobre possibilidade de gravidez | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Perguntou sobre alergias medicamentosas | 0.5 | CFM, Código de Ética Médica, 2019 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou temperatura (confirmou febre) e taquicardia | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Realizou palpação do abdome pesquisando defesa, rigidez e dor suprapúbica | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Realizou sinal de Giordano bilateral e interpretou corretamente (positivo à esquerda) | 1.0 | SBU / MS, Protocolo ITU, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Formulou hipótese diagnóstica de pielonefrite aguda (e não apenas cistite) | 1.0 | SBU / MS, Protocolo ITU, 2022 |
+| Solicitou EQU (urinálise) | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Solicitou urocultura com antibiograma antes de iniciar antibiótico | 1.0 | SBU / MS, Protocolo ITU, 2022 |
+| Avaliou critérios de internação (vômitos, sepse, obstrução, gestação) | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Prescreveu antibiótico adequado para pielonefrite (ciprofloxacino ou cefalosporina) e NÃO prescreveu nitrofurantoína | 1.0 | SBU / MS, Protocolo ITU, 2022 |
+| Orientou hidratação oral generosa e adesão ao tratamento até o fim | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+| Orientou retorno em 48–72h com resultado de urocultura para reavaliação | 0.5 | SBU / MS, Protocolo ITU, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+---
+
+## CASO OSCE-03
+
+### BLOCO 1 — METADADOS
+
+- **id:** 3
+- **title:** "Homem de 52 anos com cólica lombar recorrente e cálculo conhecido"
+- **sub:** "Ambulatório de Urologia — Atenção Secundária"
+- **tema:** "Urologia"
+- **topic:** "Litíase renal — cálculo coraliforme / indicação cirúrgica"
+- **level:** "moderado"
+- **cardAccent:** "#5B7FD4"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, interpretação de imagem, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Urologia — Atenção Secundária. Consultório, turno matutino. Você é o médico urologista assistente."
+- **patient:** "J.O., 52 anos, masculino, agricultor, hipertenso em uso de losartana 50 mg/dia."
+- **complaint:** "Retorno de consulta: trouxe os exames solicitados na última consulta. Tem tido crises de dor lombar esquerda frequentes nos últimos 6 meses."
+- **tasks:**
+  1. Realize a anamnese do seguimento clínico do paciente
+  2. Interprete os exames complementares apresentados
+  3. Estabeleça a conduta adequada com base nos achados
+  4. Explique ao paciente a necessidade de intervenção e as opções disponíveis
+  5. Oriente sobre prevenção de recorrência e seguimento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador. O estudante recebe apenas os impressos quando solicitados.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 142/88 mmHg |
+| FC | 78 bpm |
+| FR | 16 irpm |
+| Tax | 36,5°C |
+| Peso | 91 kg |
+| Altura | 1,72 m |
+| IMC | 30,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, corado, hidratado, anictérico, acianótico, afebril. Sem sinais de sofrimento agudo. Orientado e cooperativo.
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Globoso (obesidade). Ruídos hidroaéreos normais. Sem dor à palpação. Sinal de Giordano negativo bilateralmente na consulta atual (fora de crise).
+- **LOMBAR:** Sem dor à punho-percussão bilateral no momento.
+- **CARDIOVASCULAR:** Bulhas rítmicas, normofonéticas, sem sopros. Pulsos periféricos presentes e simétricos.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Creatinina | 1,4 mg/dL | 0,7–1,2 mg/dL | Sim |
+| Ureia | 52 mg/dL | 15–40 mg/dL | Sim |
+| TFG estimada (CKD-EPI) | 54 mL/min/1,73m² | > 60 mL/min/1,73m² | Sim |
+| Sódio | 139 mEq/L | 136–145 mEq/L | Não |
+| Potássio | 4,6 mEq/L | 3,5–5,0 mEq/L | Não |
+| Cálcio sérico | 10,8 mg/dL | 8,5–10,5 mg/dL | Sim |
+| Ácido úrico | 7,2 mg/dL | < 7,0 mg/dL | Sim |
+| EQU — pH urinário | 5,2 | 4,5–8,0 | Não |
+| EQU — Hematúria | + | Ausente | Sim |
+| EQU — Leucocitúria | Ausente | Ausente | Não |
+| Citrato urinário 24h | 180 mg/dia | > 320 mg/dia | Sim |
+| Cálcio urinário 24h | 380 mg/dia | < 300 mg/dia | Sim |
+
+#### Exame de Imagem (image)
+
+**Tomografia computadorizada sem contraste de abdome e pelve (uro-TC):** Rim esquerdo com cálculo de 2,4 cm ocupando pelve renal e dois cálices maiores (configuração coraliforme parcial), com densidade de 1.100 UH (compatível com oxalato de cálcio). Hidronefrose grau I à esquerda. Rim direito com dois cálculos em cálice inferior medindo 4 mm e 6 mm, sem hidronefrose. Função excretora preservada bilateralmente. Ureter e bexiga sem alterações.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais e exame físico ao início da estação. Informar ao candidato que os exames foram solicitados na consulta anterior e que o paciente os trouxe em mãos — entregar o pacote de exames completo (labs + imagem) no início, como num ambulatório real. A uro-TC deve ser entregue como laudo impresso.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+J.O., 52 anos, masculino. Agricultor. Casado, três filhos adultos. Mora na zona rural. Hipertenso há 8 anos, em uso de losartana.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abertura da consulta | "Bom dia, doutor. Trouxe todos os exames que o senhor pediu. Fiz tudo certinho. Continuei tendo umas dores nas costas do lado esquerdo, umas 3, 4 vezes no mês." |
+| Sobre as crises de dor | "É uma cólica forte, dura umas 2, 3 horas. Tomo dipirona e passa. Mas tô cansado dessa dor toda semana." |
+| Sobre sintomas urinários | "Às vezes vejo o xixi meio avermelhado quando tô com dor. Sem ardência nem febre." |
+| Sobre ingesta hídrica | "Bebo pouca água, doutor. No sol quente do roçado, a gente sua muito e esquece de beber." |
+| Sobre alimentação | "Como de tudo. Muito feijão, carne de boi quase todo dia. Sal bastante porque minha mulher tempera forte." |
+| Sobre o rim direito | "O senhor falou que tinha umas pedrinha no rim direito também, mas lá não doi nada." |
+| Pergunta ativa — cirurgia | "Vai precisar tirar com cirurgia, doutor? Tenho medo de cirurgia, nunca fiz nenhuma." |
+| Pergunta ativa — gravidade | "Isso tá afetando meu rim? Pode parar de funcionar?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Usa hidroclorotiazida esporadicamente "quando a pressão sobe muito" além da losartana, sem prescrição — revelar apenas se candidato perguntar detalhadamente sobre medicamentos em uso.
+- Já fez uma litotricia extracorpórea há 3 anos para cálculo contralateral, com sucesso — revelar apenas se candidato perguntar sobre tratamentos anteriores para litíase.
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente calmo, colaborativo, mas visivelmente preocupado com a possibilidade de cirurgia. Tem vocabulário simples. Demonstra dificuldade em entender termos médicos — precisa de explicações acessíveis. Quando bem orientado, demonstra alívio e cooperação.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador. O estudante NÃO tem acesso.
+
+**Diagnóstico Principal (diagnosis):**
+Nefrolitíase esquerda com cálculo coraliforme parcial de 2,4 cm (oxalato de cálcio) com hidronefrose grau I e repercussão sobre função renal (DRC estágio G3a). Hipercalciúria e hipocitratúria como fatores metabólicos identificados. Cálculos contralaterais assintomáticos à direita.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Hiperparatireoidismo primário — incluído pela hipercalcemia e hipercalciúria associadas à litíase recorrente; deve ser investigado com PTH sérico — não é diagnóstico diferencial de exclusão, é comorbidade a ser rastreada.
+2. Nefrocalcinose — incluída pela hipercalciúria e pH urinário baixo; excluída pela ausência de calcificações difusas no parênquima à TC.
+3. Acidose tubular renal tipo 1 — incluída pela hipocitratúria e litíase recorrente; excluída pelo pH urinário ácido (pH 5,2 afasta ATR tipo 1, que cursa com pH > 5,5 e hipopotassemia).
+
+**Síntese do Caso (context):**
+Homem de meia-idade, agricultor, obeso, hipertenso, com dieta hiperproteica e hipossódica inadequada, baixa ingesta hídrica, que apresenta nefrolitíase recorrente bilateral com cálculo coraliforme parcial à esquerda causando crises de cólica, hematúria recorrente e início de disfunção renal. Perfil metabólico identificado: hipercalciúria + hipocitratúria + hiperuricemia. Quadro com indicação formal de intervenção cirúrgica.
+
+**Justificativa Diagnóstica (justify):**
+O cálculo de 2,4 cm coraliforme parcial com hidronefrose grau I tem indicação cirúrgica formal — cálculos > 2 cm não têm resolução espontânea e causam obstrução progressiva (SBU 2022). A hipercalcemia (10,8 mg/dL) associada à hipercalciúria exige rastreio de hiperparatireoidismo (PTH). A hipocitratúria é fator de risco independente para litíase e deve ser corrigida. A TFG de 54 mL/min configura DRC G3a, possivelmente relacionada à obstrução crônica.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Frequência e características das crises de cólica
+- Sintomas obstrutivos ou infecciosos intercorrentes
+- Hematúria e suas características
+- Ingesta hídrica quantificada
+- Dieta: proteína animal, sal, alimentos ricos em oxalato (espinafre, beterraba, chocolate), vitamina C em excesso
+- Medicamentos em uso completo (losartana, uso de diuréticos, suplementos)
+- Histórico de tratamentos anteriores para litíase (litotricia, cirurgia)
+- Histórico familiar de litíase, hiperparatireoidismo, gota
+- Investigar sintomas de hiperparatireoidismo (polidipsia, fraqueza muscular, constipação)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: PA elevada — relacionar ao hipertenso mal controlado
+- Inspeção: obesidade abdominal — fator de risco metabólico
+- Palpação: verificar ausência de dor lombar (fora de crise)
+- Sinal de Giordano: negativo bilateralmente no momento (fora de crise) — documentar
+- Avaliar edema de membros inferiores (rastreio de comprometimento renal)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| TC sem contraste (uro-TC) | Padrão ouro para litíase; avaliar tamanho, densidade e localização | Cálculo 2,4 cm coraliforme parcial E, hidronefrose G I, cálculos 4–6 mm D |
+| Creatinina + TFG | Avaliar repercussão renal da obstrução crônica | TFG 54 mL/min — DRC G3a |
+| Cálcio sérico | Rastrear hipercalcemia / hiperparatireoidismo | 10,8 mg/dL — hipercalcemia leve |
+| PTH sérico | Investigar hiperparatireoidismo primário como causa | Indicado — resultado não disponível neste caso |
+| Ácido úrico sérico | Avaliar hiperuricemia como fator de risco | 7,2 mg/dL — levemente elevado |
+| Citrato e cálcio urinários 24h | Identificar distúrbios metabólicos que predispõem à litíase | Hipercalciúria + hipocitratúria |
+| EQU | Rastrear infecção e hematúria | Hematúria +, sem infecção |
+
+**Conduta Esperada (expectedConduct):**
+- **Intervenção cirúrgica:** Indicação formal para cálculo coraliforme parcial > 2 cm. Primeira escolha: nefrolitotomia percutânea (NLP) para rim esquerdo (cálculo 2,4 cm). Alternativa: cirurgia aberta se NLP não disponível. Litotricia extracorpórea (LECO) é ineficaz para cálculo coraliforme — NÃO indicada como primeira escolha para este cálculo. Para cálculos direitos de 4–6 mm: conduta expectante com seguimento e terapia expulsiva se sinuomático.
+- **Farmacológica metabólica:** Citrato de potássio para hipocitratúria (20–40 mEq/dia VO) após avaliação renal. Avaliar alopurinol para hiperuricemia se indicado. Encaminhar para investigação de hiperparatireoidismo (PTH, vitamina D).
+- **Não farmacológica:** Aumentar ingesta hídrica para > 2,5 L/dia. Reduzir proteína animal (< 0,8–1,0 g/kg/dia). Reduzir sódio da dieta (< 5 g/dia). Manter dieta normocalcêmica (não restringir cálcio — piora a litíase por oxalato). Controle do peso.
+- **Encaminhamento:** Encaminhar para NLP em centro de referência urológica. Encaminhar para Nefrologia para manejo da DRC G3a. Solicitar PTH e vitamina D para rastreio de hiperparatireoidismo.
+- **Orientações ao paciente:** Explicar em linguagem simples que a pedra grande no rim esquerdo precisa ser retirada com um procedimento porque não sairá sozinha; tranquilizar que é um procedimento eficaz e seguro; orientar sobre importância de beber mais água e mudar a dieta para prevenir novas pedras.
+- **Seguimento:** Revisão pós-NLP em 4–6 semanas com imagem de controle. Monitorar função renal trimestralmente (DRC G3a).
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Cumprimentar, chamar pelo nome, demonstrar que revisou os exames.
+- **Comunicação do diagnóstico:** Explicar que a pedra esquerda está grande e obstruindo o rim, causando as crises frequentes e afetando a função renal; usar analogia clara ("é como uma tampa que tá bloqueando a saída do rim").
+- **Escuta ativa:** Acolher o medo de cirurgia; explicar que o procedimento não é uma cirurgia aberta; perguntar se o paciente entendeu; verificar se tem acompanhante para ajudar no seguimento.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Indicar litotricia extracorpórea (LECO) como primeira linha para cálculo coraliforme > 2 cm (ineficaz e contraindicada como monoterapia neste caso)
+- ❌ Não identificar a hipercalcemia como dado alterado e não propor investigação de hiperparatireoidismo primário
+- ❌ Não reconhecer o comprometimento renal (TFG 54) como fator que exige urgência na resolução da obstrução
+- ❌ Orientar conduta expectante para cálculo coraliforme de 2,4 cm com hidronefrose
+- ❌ Não orientar medidas dietéticas e de ingesta hídrica para prevenção de recorrência
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — HOMEM COM CÓLICA LOMBAR RECORRENTE E CÁLCULO CONHECIDO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se e chamou o paciente pelo nome | 0.5 | CFM, Código de Ética Médica, 2019 |
+| Acolheu o medo do paciente em relação à cirurgia de forma empática | 0.5 | MS, Política Nacional de Humanização, 2013 |
+| Explicou o diagnóstico e a conduta em linguagem acessível (sem jargão) | 0.5 | CNRM, Competências Comunicação Médica, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Investigou frequência e características das crises de cólica | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre ingesta hídrica diária | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou dieta (proteína animal, sal, oxalato) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre medicamentos em uso completo (incluindo automedicação) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou PA e identificou hipertensão não controlada | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Realizou sinal de Giordano bilateral e documentou resultado (negativo fora de crise) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Identificou o cálculo coraliforme parcial > 2 cm como indicação cirúrgica formal | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Identificou a hipercalcemia e propôs investigação de hiperparatireoidismo (PTH) | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Identificou comprometimento de função renal (TFG 54 — DRC G3a) | 0.5 | SBD / SBN, Diretrizes DRC, 2021 |
+| Identificou hipercalciúria e hipocitratúria como distúrbios metabólicos | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Indicou nefrolitotomia percutânea (NLP) como primeira escolha para o cálculo esquerdo | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| NÃO indicou LECO como primeira escolha para cálculo coraliforme > 2 cm | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Orientou aumento de ingesta hídrica e mudanças dietéticas para prevenção de recorrência | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Encaminhou para Nefrologia pelo comprometimento renal (DRC G3a) | 0.5 | SBN, Diretrizes DRC, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+---
+
+## CASO OSCE-04
+
+### BLOCO 1 — METADADOS
+
+- **id:** 4
+- **title:** "Dor lombar intensa, febre e oligúria em paciente com histórico de pedra no rim"
+- **sub:** "UPA — Urgência e Emergência"
+- **tema:** "Urologia"
+- **topic:** "Litíase ureteral obstrutiva com pielonefrite obstrutiva / pionefrólise"
+- **level:** "complexo"
+- **cardAccent:** "#B03A2E"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, reconhecimento de emergência, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UPA — Urgência e Emergência. Sala de atendimento, turno noturno. Você é o médico plantonista."
+- **patient:** "M.F., 47 anos, masculino, vigilante, histórico de nefrolitíase, portador de rim único funcional (nefrectomia direita por trauma há 15 anos)."
+- **complaint:** "Dor lombar esquerda forte, febre alta e urinando muito pouco desde ontem à tarde."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso, identificando fatores de risco e gravidade
+  2. Realize o exame físico pertinente
+  3. Solicite e interprete os exames complementares adequados
+  4. Identifique a urgência clínica e estabeleça a conduta imediata
+  5. Comunique ao paciente o diagnóstico e a necessidade de internação com clareza
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador. O estudante recebe apenas os impressos quando solicitados.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 94/60 mmHg |
+| FC | 118 bpm |
+| FR | 24 irpm |
+| Tax | 39,4°C |
+| Peso | 78 kg |
+| Altura | 1,70 m |
+| IMC | 27,0 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em mau estado geral, com fácies de sofrimento. Taquipneico, taquicárdico, febril ao toque. Hipocorado 2+/4+, desidratado 2+/4+. Sudorese fria. Levemente confuso (desorientado no tempo). Glasgow 14 (E4V4M6).
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Plano, cicatriz cirúrgica em flanco direito (nefrectomia prévia). Ruídos hidroaéreos diminuídos. Dor intensa à palpação profunda no flanco esquerdo. Sem defesa abdominal. Sinal de Giordano fortemente positivo à esquerda.
+- **GENITOURINÁRIO:** Ausência de rim direito palpável. Flanco esquerdo doloroso. Sondagem vesical realizada pela equipe: diurese nas últimas 6 horas = 90 mL (15 mL/h — oligúria).
+- **CARDIOVASCULAR:** Bulhas rítmicas, taquicárdicas. Tempo de enchimento capilar 4 segundos. Pulsos periféricos filiformes.
+- **RESPIRATÓRIO:** Taquipneia. Murmúrio vesicular presente bilateralmente, sem crepitações.
+- **NEUROLÓGICO:** Levemente confuso, responde perguntas com latência. Sem déficits focais.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Leucócitos | 23.800/mm³ | 4.000–11.000/mm³ | Sim |
+| Neutrófilos | 91% com desvio à esquerda e bastões | 50–70% | Sim |
+| Hemoglobina | 11,2 g/dL | 13,5–17,5 g/dL | Sim |
+| Plaquetas | 92.000/mm³ | 150.000–400.000/mm³ | Sim |
+| Creatinina | 4,8 mg/dL | 0,7–1,2 mg/dL | Sim |
+| Ureia | 118 mg/dL | 15–40 mg/dL | Sim |
+| Sódio | 132 mEq/L | 136–145 mEq/L | Sim |
+| Potássio | 5,8 mEq/L | 3,5–5,0 mEq/L | Sim |
+| Lactato | 3,8 mmol/L | < 2,0 mmol/L | Sim |
+| PCR | 312 mg/L | < 5 mg/L | Sim |
+| EQU — Leucocitúria | ++++ | Ausente | Sim |
+| EQU — Nitrito | Positivo | Negativo | Sim |
+| EQU — Hematúria | +++ | Ausente | Sim |
+| Gasometria arterial — pH | 7,28 | 7,35–7,45 | Sim |
+| Gasometria arterial — HCO₃ | 14 mEq/L | 22–26 mEq/L | Sim |
+| Gasometria arterial — BE | -10 | -2 a +2 | Sim |
+
+#### Exame de Imagem (image)
+
+**Ultrassonografia de urgência de vias urinárias:** Rim direito ausente (nefrectomia prévia). Rim esquerdo com dimensões aumentadas (15,1 cm), hidronefrose grau III, pelve renal muito dilatada com conteúdo interno heterogêneo (debris — sugestivo de pionefrólise). Cálculo hiperecogênico com sombra acústica medindo 9 mm em ureter proximal esquerdo. Sem rim contralateral para compensação. **ACHADO CRÍTICO: Rim único funcionante com obstrução completa e sinais de pionefrólise.**
+
+#### Nota ao Avaliador (note)
+
+Entregar os sinais vitais imediatamente ao início da estação — o candidato deve identificar a gravidade pelos sinais vitais desde o primeiro momento. Entregar exame físico junto. Fornecer exames laboratoriais somente se solicitados verbalmente. Fornecer laudo de USG se solicitado. A gasometria deve ser entregue somente se explicitamente solicitada. Caso candidato não identifique os critérios de sepse nos primeiros 2 minutos, o avaliador pode perguntar: "O que chamou sua atenção nos sinais vitais?"
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+M.F., 47 anos, masculino. Vigilante noturno. Casado. Tem rim único (nefrectomia direita por trauma de trânsito há 15 anos). Histórico de dois episódios de cólica nefrética nos últimos 2 anos, sem acompanhamento regular.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, tô muito mal. Tô com uma dor nas costas aqui do lado esquerdo horrorosa desde ontem de tarde. Veio febre alta, tô com frio, e quase não tô conseguindo fazer xixi. Acho que fiz só um pouquinho o dia todo." |
+| Sobre o rim único | "Tenho só um rim, doutor. Perdi o outro num acidente de carro há uns 15 anos. Operei aqui nessa mesma cidade." |
+| Sobre histórico de pedra | "Já tive pedra no rim duas vezes. Mas nunca fiquei assim doente." |
+| Sobre a febre | "Tô com muito frio, calafrio. A febre tava em 39 e alguma coisa quando medi em casa." |
+| Sobre a urina | "Tô quase não fazendo xixi. Hoje o dia todo acho que saiu uma xicarazinha só. Tá escurinha também." |
+| Sobre confusão | "Tô me sentindo meio tonto, sabe? Não tô me sentindo bem de jeito nenhum." |
+| Sobre alergia | "Sou alérgico a penicilina. Me disseram isso quando era criança." |
+| Pergunta ativa — gravidade | "Tô muito grave, doutor? Tô com medo..." |
+| Pergunta ativa — rim | "Meu rim vai ficar bom? Não vou ficar sem fazer xixi, né?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Alergia a penicilina (confirmada desde a infância) — revelar apenas se candidato perguntar especificamente sobre alergias medicamentosas.
+- Não fez acompanhamento urológico desde o segundo episódio de cólica há 8 meses — revelar apenas se candidato perguntar sobre acompanhamento médico.
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente visivelmente mal, taquipneico, sudorético. Fala em frases curtas, com esforço. Levemente confuso — responde perguntas mas com lentidão. Muito assustado. Fica mais tranquilo quando o médico demonstra segurança e age rapidamente. Não deve ser excessivamente dramático — a gravidade deve aparecer nos dados clínicos, não na atuação exagerada.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador. O estudante NÃO tem acesso.
+
+**Diagnóstico Principal (diagnosis):**
+Pionefrólise (pionefrosis) por litíase ureteral obstrutiva em rim único funcionante com sepse urinária (critérios de sepse: SOFA ≥ 2 + suspeita de infecção). Lesão renal aguda grave (creatinina 4,8 mg/dL — provável pré-renal + obstrutiva). Risco de choque séptico iminente.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Pielonefrite aguda grave sem obstrução — incluída pela febre, Giordano +, leucocitúria e nitrito positivos; excluída pela hidronefrose grau III com debris ao USG e obstrução comprovada por cálculo, configurando pionefrólise.
+2. Cólica nefrética simples com febre reacional — incluída pelo histórico de litíase e dor lombar; excluída pela gravidade sistêmica (hipotensão, confusão, lactato elevado, oligúria), que configura sepse.
+3. Lesão renal aguda de outra etiologia (pré-renal isolada) — incluída pela desidratação e oligúria; excluída pela obstrução documentada e processo infeccioso ativo com pionefrólise.
+
+**Síntese do Caso (context):**
+Homem de meia-idade com rim único funcionante e histórico de litíase renal sem acompanhamento regular, que apresenta obstrução ureteral por cálculo de 9 mm evoluindo para pionefrólise com sepse urinária e lesão renal aguda grave. Trata-se de emergência urológica com risco de vida e risco de perda definitiva do único rim funcionante.
+
+**Justificativa Diagnóstica (justify):**
+Critérios de sepse presentes: infecção documentada (pionefrólise) + disfunção orgânica (lactato 3,8, confusão, oligúria, trombocitopenia, acidose metabólica). PA de 94/60 mmHg configura hipotensão — risco de choque séptico. O USG confirma pionefrólise (hidronefrose grau III com debris + cálculo obstrutivo em rim único). A creatinina de 4,8 mg/dL em rim único representa comprometimento crítico da função renal. Alergia à penicilina altera escolha antibiótica.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Dor lombar: características, tempo de início, progressão
+- Sintomas sistêmicos: febre, calafrios (grau de comprometimento)
+- Diurese: volume e características da urina (oligúria = sinal crítico)
+- Histórico de rim único — FUNDAMENTAL identificar
+- Histórico de litíase e tratamentos anteriores
+- Alergias medicamentosas (penicilina — altera antibioticoterapia)
+- Outros medicamentos em uso
+- Tempo de início dos sintomas e progressão da gravidade
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: hipotensão (PA 94/60), taquicardia, febre alta, taquipneia — identificar critérios de sepse
+- Inspeção: mau estado geral, sudorese fria, palidez, confusão — reconhecer gravidade imediata
+- Palpação: dor intensa em flanco esquerdo; cicatriz de nefrectomia direita (confirmar rim único); ausência de defesa abdominal
+- Sinal de Giordano: fortemente positivo à esquerda
+- Avaliar tempo de enchimento capilar e perfusão periférica (pulsos filiformes)
+- Avaliar nível de consciência (Glasgow)
+- Sondagem vesical: avaliar diurese horária (15 mL/h — oligúria grave)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Hemograma | Avaliar leucocitose, desvio à esquerda, trombocitopenia (sepse) | Leucocitose intensa, bastões, plaquetopenia |
+| Creatinina e ureia | Avaliar LRA — crítico em rim único | Creatinina 4,8, ureia 118 — LRA grave |
+| Eletrólitos | Hipercalemia (risco cardíaco na LRA) | K+ 5,8 — hipercalemia leve |
+| Lactato | Avaliar hipoperfusão tecidual (critério de sepse) | 3,8 mmol/L — elevado |
+| Gasometria arterial | Avaliar acidose metabólica (complicação da LRA + sepse) | pH 7,28, HCO₃ 14 — acidose metabólica |
+| EQU | Confirmar infecção urinária | Leucocitúria ++++, nitrito +, hematúria +++ |
+| Hemocultura (2 amostras) | Identificar bacteremia — guiar antibiótico | Colher antes de iniciar antibiótico |
+| USG de urgência de vias urinárias | Identificar obstrução e pionefrólise em rim único | Hidronefrose grau III com debris, cálculo 9 mm |
+| PCR | Marcador inflamatório sistêmico | 312 mg/L — muito elevado |
+
+**Conduta Esperada (expectedConduct):**
+- **Conduta imediata de emergência (primeiros minutos):**
+  1. Acesso venoso calibroso (2 acessos); monitorização contínua (ECG, oximetria, PA invasiva se disponível)
+  2. Ressuscitação volêmica: SF 0,9% ou Ringer lactato 30 mL/kg em 3 horas (protocolo de sepse — Bundle 1h)
+  3. Oxigenoterapia se SpO₂ < 94%
+  4. Antibioticoterapia empírica imediata (após coleta de hemocultura): ciprofloxacino 400 mg IV 12/12h (considerando alergia à penicilina — evitar betalactâmicos). Alternativa: aminoglicosídeo (amicacina 15 mg/kg/dia) com cautela pela LRA. ⚠️ Gentamicina/amicacina têm nefrotoxicidade — monitorar creatinina. Ajustar dose pela TFG.
+  5. Sondagem vesical se ainda não realizada — monitorar diurese horária (meta: > 0,5 mL/kg/h)
+- **Intervenção urológica de emergência:** Desobstrução imediata — cateter ureteral (duplo J) ou nefrostomia percutânea. Não aguardar melhora clínica para intervenção. Esta é a medida que resolve a causa da sepse. Contato imediato com Urologia/CTI.
+- **Internação:** UTI/CTI. Monitorização intensiva. Avaliação de diálise se hipercalemia grave ou LRA refratária.
+- **Não farmacológica:** Balanço hídrico rigoroso. Restrição de K+ na dieta. Evitar nefrotóxicos (contraste, AINEs). Sondagem vesical mantida.
+- **Encaminhamento:** Transferência para hospital com UTI e Urologia de emergência se não disponível na UPA.
+- **Orientações ao paciente/familiar:** Explicar em linguagem acessível que há uma pedra obstruindo o único rim funcionante, causando uma infecção grave no rim; que precisará internar com urgência; que o procedimento para desobstruir o rim é prioritário e salva-vidas.
+- **Seguimento:** UTI com controle de função renal a cada 6–12h. Reavaliação após estabilização para tratamento definitivo do cálculo.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se rapidamente mas com calma e segurança — transmitir controle da situação ao paciente assustado.
+- **Comunicação do diagnóstico:** Explicar de forma direta mas empática que o rim está com uma pedra bloqueando e com infecção grave; que precisará ficar internado; que a equipe vai agir rapidamente para proteger o rim.
+- **Escuta ativa:** Reconhecer o medo do paciente; não minimizar a gravidade mas tranquilizar que há tratamento; incluir o familiar na conversa se presente.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não identificar critérios de sepse (hipotensão + febre + lactato + confusão + foco infeccioso) — maior erro crítico do caso
+- ❌ Não reconhecer rim único como fator que transforma a situação em emergência urológica
+- ❌ Não solicitar hemocultura antes de iniciar antibiótico
+- ❌ Prescrever AINE para analgesia (contraindicado na LRA e na sepse)
+- ❌ Não indicar desobstrução urinária de emergência (cateter duplo J ou nefrostomia)
+- ❌ Prescrever betalactâmico sem questionar alergias (alergia à penicilina documentada)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — DOR LOMBAR, FEBRE E OLIGÚRIA EM PACIENTE COM RIM ÚNICO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se ao paciente mesmo na situação de urgência | 0.3 | CFM, Código de Ética Médica, 2019 |
+| Transmitiu segurança ao paciente assustado e reconheceu seu medo verbalmente | 0.5 | MS, Política Nacional de Humanização, 2013 |
+| Comunicou a necessidade de internação de forma clara e acessível | 0.5 | CNRM, Competências Comunicação Médica, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Identificou o rim único como fator crítico de risco | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou volume urinário (oligúria) ativamente | 1.0 | SBU / AMIB, Protocolo de Sepse, 2021 |
+| Perguntou sobre alergias medicamentosas (identificou alergia à penicilina) | 0.5 | CFM, Código de Ética Médica, 2019 |
+| Investigou tempo de início dos sintomas e progressão da gravidade | 0.5 | AMIB, Protocolo de Sepse, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Avaliou sinais vitais e identificou hipotensão, taquicardia e febre alta como sinais de sepse | 1.0 | AMIB, Protocolo de Sepse, 2021 |
+| Avaliou nível de consciência (identificou confusão — disfunção orgânica) | 0.5 | AMIB, Protocolo de Sepse, 2021 |
+| Avaliou perfusão periférica (enchimento capilar prolongado, pulsos filiformes) | 0.5 | AMIB, Protocolo de Sepse, 2021 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Identificou critérios de sepse e nomeou o diagnóstico de sepse urinária / pionefrólise | 1.0 | AMIB, Protocolo de Sepse, 2021 |
+| Solicitou hemocultura antes de iniciar antibiótico | 0.5 | AMIB, Protocolo de Sepse, 2021 |
+| Solicitou USG de urgência de vias urinárias para identificar obstrução | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Iniciou ressuscitação volêmica imediata (SF ou Ringer 30 mL/kg) | 0.5 | AMIB, Protocolo de Sepse, 2021 |
+| Prescreveu antibiótico adequado IV sem betalactâmico (alergia à penicilina) | 0.5 | AMIB / SBU, Protocolo de Sepse, 2021 |
+| Indicou desobstrução urinária de emergência (nefrostomia ou duplo J) e contactou Urologia | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| NÃO prescreveu AINE para analgesia (contraindicado na LRA e sepse) | 0.3 | SBU / AMIB, Protocolo de Sepse, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+---
+
+## CASO OSCE-05
+
+### BLOCO 1 — METADADOS
+
+- **id:** 5
+- **title:** "Jovem com dor lombar recorrente e cálculo descoberto em exame de imagem"
+- **sub:** "Ambulatório — Atenção Secundária"
+- **tema:** "Urologia"
+- **topic:** "Litíase renal — investigação metabólica e prevenção"
+- **level:** "complexo"
+- **cardAccent:** "#2E86AB"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, interpretação de exames, raciocínio clínico, conduta preventiva, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Urologia — Atenção Secundária. Consultório, turno vespertino. Você é o médico urologista."
+- **patient:** "L.T., 26 anos, feminino, estudante de medicina, sem comorbidades conhecidas. Terceiro episódio de cólica nefrética em 18 meses."
+- **complaint:** "Terceiro episódio de pedra no rim em um ano e meio. Trouxe os exames pedidos na última consulta."
+- **tasks:**
+  1. Realize a anamnese clínica e metabólica dirigida à litíase recorrente
+  2. Interprete os exames complementares e identifique o distúrbio metabólico subjacente
+  3. Formule o diagnóstico etiológico da litíase recorrente
+  4. Proponha o tratamento farmacológico e não farmacológico individualizado
+  5. Oriente a paciente sobre adesão ao tratamento e prevenção de novos episódios
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador. O estudante recebe apenas os impressos quando solicitados.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 110/70 mmHg |
+| FC | 72 bpm |
+| FR | 14 irpm |
+| Tax | 36,4°C |
+| Peso | 55 kg |
+| Altura | 1,64 m |
+| IMC | 20,4 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Paciente em bom estado geral, corada, hidratada, anictérica, acianótica, afebril. Sem sinais de sofrimento agudo. Orientada, comunicativa, bem-informada.
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Plano, sem cicatrizes. Ruídos hidroaéreos normais. Sem dor à palpação. Sinal de Giordano negativo bilateralmente.
+- **CARDIOVASCULAR:** Bulhas rítmicas, normofonéticas, sem sopros.
+- **MEMBROS:** Sem edema. Sem sinais de artrite. Sem tofos.
+- **TEGUMENTAR:** Sem lesões cutâneas. Sem hiperpigmentação.
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Creatinina | 0,8 mg/dL | 0,5–1,1 mg/dL | Não |
+| Cálcio sérico | 9,4 mg/dL | 8,5–10,5 mg/dL | Não |
+| Fósforo sérico | 2,3 mg/dL | 2,5–4,5 mg/dL | Sim |
+| Ácido úrico sérico | 4,1 mg/dL | < 6,0 mg/dL | Não |
+| PTH intacto | 108 pg/mL | 15–65 pg/mL | Sim |
+| Vitamina D (25-OH) | 22 ng/mL | 30–100 ng/mL | Sim |
+| Cálcio urinário 24h | 420 mg/dia | < 300 mg/dia | Sim |
+| Fósforo urinário 24h | 1.450 mg/dia | 400–1.300 mg/dia | Sim |
+| Oxalato urinário 24h | 28 mg/dia | < 40 mg/dia | Não |
+| Citrato urinário 24h | 280 mg/dia | > 320 mg/dia | Sim |
+| pH urinário | 6,8 | 4,5–8,0 | Não |
+| EQU | Normal | — | Não |
+| Análise do cálculo expulso | Fosfato de cálcio (hidroxiapatita) 95% | — | Sim |
+
+#### Exame de Imagem (image)
+
+**Tomografia computadorizada sem contraste (uro-TC):** Cálculo de 7 mm em cálice inferior de rim direito, densidade 800 UH (compatível com fosfato de cálcio). Sem hidronefrose. Rim esquerdo sem alterações. Sem cálculos em ureter ou bexiga. Densidade óssea vertebral aparentemente reduzida para a idade (L2–L4) — sugestiva de osteopenia (avaliar complementar com densitometria). ⚠️ (observação de imagem — correlação clínica necessária).
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais e exame físico no início. Entregar o pacote completo de exames laboratoriais e laudo de TC somente após o candidato solicitá-los ou quando iniciar a revisão dos exames — esta é uma consulta de retorno com exames em mãos. A análise do cálculo expulso está incluída no impresso. Entregar como um único conjunto de exames.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+L.T., 26 anos, feminino. Estudante de medicina (6º ano). Solteira. Mora sozinha. Sem plano de saúde particular.
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abertura da consulta | "Boa tarde, doutor. Trouxe todos os exames. Confesso que fui pesquisar tudo que pedi antes de vir aqui porque quero entender o que tá acontecendo comigo. Três episódios com 26 anos me preocupa muito." |
+| Sobre ingesta hídrica | "Bebo em torno de 1 litro de água por dia, talvez menos. Sei que é pouco mas fico na correria da faculdade." |
+| Sobre alimentação | "Como bastante proteína — ovo, frango, atum. Faço academia. Tomo suplemento de proteína whey todos os dias desde os 21 anos. Ah, e tomo vitamina C em cápsulas de 1g todo dia desde que li que ajuda na imunidade." |
+| Sobre os episódios anteriores | "Os dois primeiros eu passei no pronto-socorro, tomei remédio pra dor e passou. Esse terceiro eu guardei o cálculo em um potinho, como o senhor pediu." |
+| Sobre histórico familiar | "Minha mãe tem osteoporose e teve nefrolitíase uma vez. Meu avô materno tinha pedra nos rins também." |
+| Sobre exposição solar | "Praticamente não pego sol. Fico o dia inteiro na faculdade ou em casa estudando." |
+| Sobre sintomas sistêmicos | "Às vezes sinto um cansaço que não passa e uma fraqueza muscular nas pernas. Achei que fosse estresse da faculdade." |
+| Pergunta ativa — causa | "Doutor, eu li sobre hiperparatireoidismo. Será que é isso? O PTH tá alto..." |
+| Pergunta ativa — tratamento | "Vou precisar operar alguma coisa? Tem como evitar mais pedras com remédio?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Toma 2 cápsulas de vitamina C de 500 mg ao dia (total 1g/dia) há 5 anos — revelar apenas se candidato perguntar especificamente sobre suplementos vitamínicos.
+- Usa suplemento de whey protein diariamente (2 doses/dia = ~50g de proteína suplementar) há 5 anos — revelar apenas se candidato perguntar sobre uso de suplementos ou quantificar a ingesta proteica.
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente inteligente, bem-informada (estudante de medicina), que já pesquisou os próprios exames. Não é arrogante — é ansiosa e curiosa. Faz perguntas técnicas e espera respostas bem fundamentadas. O candidato deve tratar a paciente com respeito à sua autonomia informativa, sem ser condescendente. Fica satisfeita e cooperativa quando o médico explica o raciocínio com clareza.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador. O estudante NÃO tem acesso.
+
+**Diagnóstico Principal (diagnosis):**
+Nefrolitíase recorrente por fosfato de cálcio (hidroxiapatita) em contexto de hiperparatireoidismo primário (PTH 108 pg/mL com cálcio sérico normal-alto) associado a hipovitaminose D, hipercalciúria, hipocitratúria e ingesta excessiva de proteína e vitamina C. Litíase normocalcêmica com hiperparatireoidismo primário — forma clínica reconhecida nas diretrizes atuais.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Hipercalciúria idiopática absortiva — incluída pela hipercalciúria e litíase recorrente; afastada pelo PTH elevado que configura hiperparatireoidismo primário como etiologia.
+2. Acidose tubular renal tipo 1 — incluída pela hipocitratúria e cálculos de fosfato de cálcio (que são característicos da ATR1); excluída pelo pH urinário 6,8 (ATR1 cursa com pH > 6,0 — presente — mas também por hipopotassemia ausente e bicarbonato sérico normal; diagnóstico diferencial relevante que merece investigação adicional).
+3. Hiperparatireoidismo secundário à hipovitaminose D — incluído pela vitamina D baixa (22 ng/mL); diferenciado do primário pelo cálcio sérico — no secundário, a calcemia tende a ser normal ou baixa com fósforo normal ou alto; aqui o fósforo está baixo (2,3 mg/dL), sugerindo hiperparatireoidismo primário (maior reabsorção tubular de cálcio e excreção de fósforo).
+
+**Síntese do Caso (context):**
+Mulher jovem, estudante de medicina, com nefrolitíase recorrente por fosfato de cálcio em contexto de hiperparatireoidismo primário normocalcêmico, hipovitaminose D, hipercalciúria, hipocitratúria, baixa ingesta hídrica, uso excessivo de vitamina C e sobrecarga proteica por suplementação. Provável adenoma de paratireoide como causa — investigação com cintilografia e USG de paratireoide indicada.
+
+**Justificativa Diagnóstica (justify):**
+O perfil bioquímico é característico de hiperparatireoidismo primário: PTH elevado (108 pg/mL) com cálcio sérico normal-alto (9,4 mg/dL — forma normocalcêmica), fósforo sérico baixo (2,3 mg/dL — excreção renal aumentada pelo PTH), hipercalciúria (420 mg/dia), hipofosforemia e análise do cálculo mostrando fosfato de cálcio (hidroxiapatita). A hipovitaminose D coexistente pode estar mascarando a hipercalcemia clássica. A vitamina C em excesso (1 g/dia) é metabolizada em oxalato e ácido ascórbico — pode contribuir para a litíase embora o oxalato urinário esteja normal. A baixa ingestão hídrica e a hipocitratúria são fatores agravantes independentes. A possível osteopenia na TC reforça o hiperparatireoidismo.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização dos três episódios (localização, tratamento, passagem espontânea)
+- Análise do cálculo anterior (componente mineral — fundamental para orientar investigação)
+- Ingesta hídrica quantificada
+- Dieta detalhada: proteína animal, laticínios, sódio, alimentos ricos em oxalato
+- Uso de suplementos: vitamina C, vitamina D, cálcio, whey protein
+- Exposição solar (síntese de vitamina D)
+- Sintomas de hipercalcemia: polidipsia, poliúria, constipação, fraqueza muscular, fadiga, nefrolitíase recorrente
+- Histórico familiar de litíase, hiperparatireoidismo, osteoporose
+- Uso de medicamentos (furosemida, carbonato de cálcio, topiramato, indinavir)
+- Menstruação regular (gravidez, alterações hormonais)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: normais — documentar
+- Inspeção: estado geral, ausência de sinais de doença sistêmica, ausência de tofos (afasta gota)
+- Pescoço: palpação da região cervical anterior para rastrear nódulo/adenoma de paratireoide (muitas vezes não palpável)
+- Membros: ausência de edema, artrite ou tofos
+- Sinal de Giordano: negativo bilateralmente (fora de crise) — documentar
+- Buscar sinais de hipercalcemia crônica: fraqueza muscular proximal, hiporreflexia (raro na forma normocalcêmica)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| PTH intacto | Rastrear hiperparatireoidismo como causa da litíase recorrente | 108 pg/mL — elevado (hiperparatireoidismo) |
+| Cálcio sérico (com albumina ou ionizado) | Avaliar hipercalcemia — pode ser normal no HPP normocalcêmico | 9,4 mg/dL — normal-alto |
+| Fósforo sérico | Baixo no hiperparatireoidismo primário | 2,3 mg/dL — baixo |
+| Vitamina D (25-OH) | Hipovitaminose D pode mascarar hipercalcemia e coexiste | 22 ng/mL — insuficiência |
+| Cálcio e fósforo urinários 24h | Avaliar hipercalciúria e hiperfosfatúria | Hipercalciúria 420 mg/dia |
+| Citrato urinário 24h | Hipocitratúria é fator de risco independente | 280 mg/dia — baixo |
+| Análise do cálculo | Definir composição e orientar investigação etiológica | Fosfato de cálcio (hidroxiapatita) — típico do HPP |
+| USG de região cervical e cintilografia com sestamibi | Localizar adenoma de paratireoide para planejamento cirúrgico | Provável adenoma único |
+| Densitometria óssea | Avaliar osteopenia sugerida na TC | Indicada — osteopenia esperada no HPP |
+| Bicarbonato sérico + potássio | Afastar ATR tipo 1 (hipopotassemia + acidose metabólica) | Normais — afastam ATR1 |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:**
+  Citrato de potássio 20–40 mEq/dia VO para hipocitratúria (após confirmar função renal normal).
+  Reposição de vitamina D: colecalciferol 7.000 UI/semana VO (ou 1.000 UI/dia) — com monitoramento de cálcio sérico durante reposição em portador de HPP (risco de hipercalcemia).
+  ⚠️ A indicação de tratamento cirúrgico (paratireoidectomia) para HPP normocalcêmico em jovem com litíase recorrente e possível osteopenia é recomendada pelas diretrizes internacionais (AACE/AAES 2022) e referendada pela SBEM — confirmar com endocrinologista antes da indicação formal.
+- **Não farmacológica:**
+  Aumentar ingesta hídrica para > 2,5 L/dia (meta: diurese > 2 L/dia).
+  Suspender vitamina C em doses suprafisiológicas (1 g/dia) — substituir por alimentação equilibrada.
+  Reduzir suplemento de whey protein — proteína dietética em excesso aumenta carga ácida e calciúria.
+  Reduzir sódio da dieta (< 5 g/dia) — sódio aumenta calciúria.
+  Manter dieta normocalcêmica (não restringir laticínios — piora a absorção de oxalato).
+  Aumentar exposição solar moderada (síntese de vitamina D).
+- **Encaminhamento:** Endocrinologia para confirmação e estadiamento do hiperparatireoidismo primário. Cirurgia de Cabeça e Pescoço / Endocrinologia Cirúrgica para avaliação de paratireoidectomia. Reumatologia/Endocrinologia para manejo da osteopenia. Nutrição para adequação dietética.
+- **Orientações ao paciente:** Explicar que o PTH elevado sugere uma glândula paratireoide produzindo hormônio em excesso, causando liberação de cálcio no sangue e excesso na urina, formando as pedras; que será investigada com exames de imagem para planejar possível procedimento cirúrgico pequeno e curativo; tranquilizar que o diagnóstico foi feito cedo e o prognóstico é excelente.
+- **Seguimento:** Encaminhamento à Endocrinologia em até 4 semanas. Controle de cálcio sérico em 30 dias após iniciar vitamina D. EQU e creatinina em 3 meses.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Cumprimentar com respeito à autonomia da paciente — reconhecer que ela já pesquisou sobre o caso.
+- **Comunicação do diagnóstico:** Validar a hipótese levantada pela paciente (hiperparatireoidismo) — explicar que ela estava no caminho certo; detalhar o raciocínio diagnóstico com linguagem acessível mas sem subestimar sua formação médica.
+- **Escuta ativa:** Perguntar se ela tem dúvidas; valorizar o esforço da paciente em se informar; não ser condescendente; tratar como parceira do cuidado.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não identificar o PTH elevado como sinal de hiperparatireoidismo primário e não propor investigação etiológica
+- ❌ Não solicitar ou não valorizar a análise do cálculo expulso (componente essencial da investigação metabólica)
+- ❌ Repor vitamina D em alta dose sem monitoramento de cálcio sérico em portador de hiperparatireoidismo (risco de hipercalcemia grave)
+- ❌ Não identificar a vitamina C e o whey protein como fatores agravantes modificáveis
+- ❌ Não encaminhar para Endocrinologia e não mencionar a possibilidade de paratireoidectomia como tratamento curativo
+- ❌ Tratar a paciente de forma condescendente desconsiderando sua formação e os dados que ela mesma trouxe
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — JOVEM COM LITÍASE RECORRENTE E INVESTIGAÇÃO METABÓLICA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se e respeitou a autonomia informativa da paciente (não foi condescendente com estudante de medicina) | 0.5 | CFM, Código de Ética Médica, 2019 |
+| Validou a hipótese levantada pela paciente e explicou o raciocínio diagnóstico | 0.5 | CNRM, Competências Comunicação Médica, 2021 |
+| Perguntou se a paciente tinha dúvidas ao final e a envolveu como parceira do cuidado | 0.5 | MS, Política Nacional de Humanização, 2013 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Perguntou sobre uso de suplementos (vitamina C, whey protein, vitamina D) | 1.0 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou ingesta hídrica quantificada | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Perguntou sobre histórico familiar de litíase, hiperparatireoidismo e osteoporose | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Investigou sintomas de hipercalcemia (fadiga, fraqueza muscular, constipação, poliúria) | 0.5 | SBEM, Diretriz de Hiperparatireoidismo, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Realizou palpação cervical anterior buscando nódulo de paratireoide | 0.5 | SBEM, Diretriz de Hiperparatireoidismo, 2021 |
+| Realizou sinal de Giordano bilateral e documentou resultado (negativo) | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Identificou PTH elevado + fósforo baixo + hipercalciúria como tríade do hiperparatireoidismo primário | 1.0 | SBEM, Diretriz de Hiperparatireoidismo, 2021 |
+| Valorizou a análise do cálculo (fosfato de cálcio — típico do HPP) como dado diagnóstico | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Identificou vitamina C e whey protein como fatores agravantes modificáveis | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Propôs investigação com USG cervical e cintilografia com sestamibi para localizar adenoma | 0.5 | SBEM, Diretriz de Hiperparatireoidismo, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Encaminhou para Endocrinologia para confirmação e manejo do HPP | 0.5 | SBEM, Diretriz de Hiperparatireoidismo, 2021 |
+| Orientou suspensão da vitamina C em alta dose e redução do whey protein | 0.5 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Orientou aumento de ingesta hídrica (> 2,5 L/dia) e redução de sódio da dieta | 0.3 | SBU, Diretrizes de Nefrolitíase, 2022 |
+| Prescreveu citrato de potássio para hipocitratúria e não prescreveu vitamina D sem monitoramento de cálcio | 0.7 | SBU / SBEM, Diretrizes, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+## VALIDAÇÃO FINAL DOS CASOS
+
+| Critério | C01 | C02 | C03 | C04 | C05 |
+|---|---|---|---|---|---|
+| instD soma exatamente 10 pontos | ✅ | ✅ | ✅ | ✅ | ✅ |
+| instD tem entre 15 e 20 itens | ✅ 17 | ✅ 16 | ✅ 16 | ✅ 16 | ✅ 17 |
+| criticalErrors entre 3 e 6 itens | ✅ 5 | ✅ 5 | ✅ 5 | ✅ 6 | ✅ 6 |
+| differentials entre 2 e 4 itens | ✅ 3 | ✅ 3 | ✅ 3 | ✅ 3 | ✅ 3 |
+| script com ≥ 2 perguntas ativas | ✅ | ✅ | ✅ | ✅ | ✅ |
+| hiddenInfo com ≥ 1 informação | ✅ 2 | ✅ 2 | ✅ 2 | ✅ 2 | ✅ 2 |
+| tasks entre 3 e 6 tarefas | ✅ 5 | ✅ 5 | ✅ 5 | ✅ 5 | ✅ 5 |
+| labs.alt é booleano | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Diagnóstico ausente no briefing | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Condutas baseadas em diretrizes BR | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Fontes estrangeiras sinalizadas ⚠️ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+---
+
+**Distribuição dos casos:**
+- Moderados: OSCE-01 (cólica nefrética aguda), OSCE-02 (pielonefrite — ITU alta), OSCE-03 (litíase com indicação cirúrgica)
+- Complexos: OSCE-04 (pionefrólise + sepse + rim único), OSCE-05 (litíase recorrente + hiperparatireoidismo primário)
+- Litíase: casos 01, 03, 04 e 05 · ITU: caso 02

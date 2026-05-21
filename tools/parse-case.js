@@ -1,76 +1,70 @@
 /**
- * parse-case.js
+ * parse-case.js  —  CLI: converte um arquivo .md de caso OSCE para objeto JS
  *
- * Converts a markdown case file into the JS object format used in casos.js / pediatria.js
+ * Uso:
+ *   ANTHROPIC_API_KEY=sk-... node parse-case.js <arquivo.md> [saida.js]
  *
- * Usage:
- *   ANTHROPIC_API_KEY=sk-... node parse-case.js <path-to-case.md> [output.js]
- *
- * If output file is omitted, prints to stdout.
- * Requires: npm install (inside tools/)
+ * Se o arquivo de saída for omitido, imprime no stdout.
  */
 
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";
 
-const SCHEMA_EXAMPLE = `
-{
-  id: <number>,                          // BLOCO 1 → id
-  title: "<card title>",                 // BLOCO 1 → title
-  sub: "<setting subtitle>",             // BLOCO 1 → sub
-  tema: "<specialty slug>",              // BLOCO 1 → tema
-  level: "simples" | "moderado" | "difícil",  // BLOCO 1 → level
-  time: "<station duration>",            // BLOCO 1 → tempo de estação
-  type: "<station type>",                // BLOCO 1 → tipo de estação
-  comp: ["<competency 1>", ...],         // BLOCO 1 → competências avaliadas
-  cardAccent: "<hex color>",             // BLOCO 1 → cardAccent
+const SCHEMA = `{
+  id: <number>,
+  title: "<card title>",
+  sub: "<setting subtitle>",
+  tema: "<specialty slug>",
+  topic: "<topic slug>",
+  level: "simples" | "moderado" | "difícil",
+  cardAccent: "<hex color>",
 
   instA: {
-    scenario: "<setting description>",   // BLOCO 2 → Cenário
-    patient: "<name, age, sex, ...>",    // BLOCO 2 → Paciente
-    complaint: "<chief complaint>",      // BLOCO 2 → Queixa
-    tasks: ["<task 1>", ...]             // BLOCO 2 → Tarefas
+    scenario: "<setting description>",
+    patient: "<name, age, sex, ...>",
+    complaint: "<chief complaint>",
+    tasks: ["<task 1>", ...]
   },
 
   instB: {
-    vitals: { PA: "", FC: "", FR: "", Tax: "", Peso: "", Altura: "", IMC: "" },  // BLOCO 3 → Sinais Vitais
-    physicalGeneral: "<general exam>",   // BLOCO 3 → Exame Físico Geral
-    physicalSeg: ["<system 1>", ...],    // BLOCO 3 → Exame Segmentar
+    vitals: { PA: "<value or null>", FC: "<value or null>", FR: "<value or null>", Tax: "<value or null>", Peso: "<value or null>", Altura: "<value or null>", IMC: "<value or null>" },
+    physicalGeneral: "<general exam text>",
+    physicalSeg: ["<SYSTEM: finding>", ...],
     labs: [
-      { test: "<exam name>", val: "<result>", ref: "<reference range>", alt: true|false },
+      { test: "<exam name>", val: "<result>", ref: "<reference range>", alt: true | false },
       ...
     ],
-    image: null | "<description>",          // BLOCO 3 → Exame de Imagem
-    note: "<examiner note>",                 // BLOCO 3 → Nota ao Avaliador
-    patientProfile: "<name, age, sex, ...>", // BLOCO 3 → Perfil do Paciente Simulado
-    script: [                                // BLOCO 3 → Script do Paciente
-      { trigger: "<trigger>", speech: "<patient response>" },
+    image: null,
+    note: "<examiner note>",
+    patientProfile: "<name, age, sex, context>",
+    script: [
+      { trigger: "<trigger phrase>", speech: "<patient speech>" },
       ...
     ],
-    hiddenInfo: ["<info 1>", ...],           // BLOCO 3 → Informações Escondidas
-    actorBehavior: "<actor directions>"      // BLOCO 3 → Comportamento do Ator
+    hiddenInfo: ["<hidden info 1>", ...],
+    actorBehavior: "<actor directions>"
   },
 
   instC: {
-    diagnosis: "<final diagnosis>",          // BLOCO 4 → Diagnóstico Principal
-    differentials: ["<diff 1>", ...],        // BLOCO 4 → Diagnósticos Diferenciais
-    context: "<case synthesis>",             // BLOCO 4 → Síntese do Caso
-    justify: "<diagnostic justification>",  // BLOCO 4 → Justificativa Diagnóstica
-    expectedAnamnesis: ["<item 1>", ...],    // BLOCO 4 → Anamnese Esperada
-    expectedPhysical: ["<item 1>", ...],     // BLOCO 4 → Exame Físico Esperado
-    expectedExams: [                         // BLOCO 4 → Exames Complementares Esperados
+    diagnosis: "<final diagnosis>",
+    differentials: ["<differential 1>", ...],
+    context: "<case synthesis>",
+    justify: "<diagnostic justification>",
+    expectedAnamnesis: ["<item 1>", ...],
+    expectedPhysical: ["<item 1>", ...],
+    expectedExams: [
       { exam: "<name>", justify: "<why>", expected: "<expected result>" },
       ...
     ],
-    expectedConduct: ["<item 1>", ...],      // BLOCO 4 → Conduta Esperada
-    expectedCommunication: ["<item 1>", ...], // BLOCO 4 → Comunicação Esperada
-    criticalErrors: ["<error 1>", ...]       // BLOCO 4 → Erros Críticos
+    expectedConduct: ["<item 1>", ...],
+    expectedCommunication: ["<item 1>", ...],
+    criticalErrors: ["<error 1>", ...]
   },
 
   instD: {
-    title: "<checklist title>",              // BLOCO 5 → título do checklist
-    sections: [                              // BLOCO 5 → cada sub-bloco do checklist
+    title: "<checklist title>",
+    sections: [
       {
         h: "<section heading>",
         items: [
@@ -81,95 +75,91 @@ const SCHEMA_EXAMPLE = `
       ...
     ]
   }
-}
-`;
+}`;
 
-const SYSTEM_PROMPT = `You are a medical education data engineer. Your job is to convert markdown case files into a strict JavaScript object literal.
+const SYSTEM_PROMPT = `You are a medical education data engineer. Your job is to convert markdown OSCE case files into a strict JavaScript object literal.
 
-The object must match this schema exactly:
-${SCHEMA_EXAMPLE}
+The object MUST match this schema exactly — do NOT add, rename, or remove any property:
+${SCHEMA}
 
-FIELD MAPPING RULES — follow these precisely:
-- BLOCO 1  → top-level fields: id, title, sub, tema, level, time, type, comp (array), cardAccent
-- BLOCO 2  → instA: scenario, patient, complaint, tasks (array)
-- BLOCO 3  → instB: vitals (object), physicalGeneral, physicalSeg (array), labs (array), image, note, patientProfile, script (array of {trigger, speech}), hiddenInfo (array of strings), actorBehavior
-- BLOCO 4  → instC: diagnosis, differentials (array), context, justify, expectedAnamnesis (array), expectedPhysical (array), expectedExams (array of {exam, justify, expected}), expectedConduct (array), expectedCommunication (array), criticalErrors (array)
-- BLOCO 5  → instD: title (checklist title string), sections (array of {h, items: [{item, score, ref}]})
+STRICT PROPERTY RULES:
+- Top-level properties allowed ONLY: id, title, sub, tema, topic, level, cardAccent — nothing else.
+- instA properties: scenario, patient, complaint, tasks — nothing else.
+- instB properties: vitals, physicalGeneral, physicalSeg, labs, image, note, patientProfile, script, hiddenInfo, actorBehavior — nothing else.
+- instC properties: diagnosis, differentials, context, justify, expectedAnamnesis, expectedPhysical, expectedExams, expectedConduct, expectedCommunication, criticalErrors — nothing else.
+- instD properties: title, sections (array of {h, items: [{item, score, ref}]}) — nothing else.
+- Extra markdown fields like Time, Type, Comp, tempo, tipo, competências — DISCARD silently.
+
+FIELD MAPPING:
+- BLOCO 1 (METADADOS) → top-level: id (number), title, sub, tema, topic, level, cardAccent
+- BLOCO 2 (BRIEFING / instA) → instA: scenario, patient, complaint, tasks[]
+- BLOCO 3 (PACIENTE SIMULADO / instB) → instB (all sub-fields)
+- BLOCO 4 (GABARITO TÉCNICO / instC) → instC (all sub-fields)
+- BLOCO 5 (CHECKLIST / instD) → instD: title, sections[]
 
 OUTPUT RULES:
-- Return ONLY the raw JavaScript object literal — no imports, exports, variable declarations, or markdown fences.
-- All string values use double quotes. No single quotes.
+- Return ONLY the raw JavaScript object literal — no imports, exports, const declarations, or markdown fences.
+- All string values use double quotes. No single quotes anywhere.
 - Boolean alt field in labs: true or false (never "sim"/"não").
-- score in instD items must be a JS number (e.g. 0.5, 1.0), not a string.
-- If a markdown field uses a comma as decimal separator (0,5), convert it to a dot (0.5).
-- Strip ❌ / ✅ / emoji prefixes from error and checklist text.
-- If a field is missing from the markdown, use: null for scalars, [] for arrays, "" for strings.
-- Do NOT add any comments inside the object.
-- If the file contains multiple cases, return a JS array [...] of objects, not a single object.`;
+- score in instD items must be a JS number (0.5, 1.0), never a string.
+- Comma decimal separators (0,5) → dot (0.5).
+- Strip ❌ ✅ → and all emoji prefixes from text values.
+- vitals: use string value if present, or null (bare null, not the string "null") if missing/dashes.
+- Missing fields: null for scalars, [] for arrays, "" for strings.
+- No comments inside the object.
+- Preserve all Portuguese text exactly — accents, special characters, punctuation.`;
 
 async function parseCase(mdPath, outPath) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("Error: ANTHROPIC_API_KEY environment variable is not set.");
+    console.error("Erro: variável ANTHROPIC_API_KEY não definida.");
     process.exit(1);
   }
 
   const mdContent = fs.readFileSync(path.resolve(mdPath), "utf-8");
-
   const client = new Anthropic({ apiKey });
 
-  console.error(`Sending ${path.basename(mdPath)} to Claude...`);
+  console.error(`Enviando ${path.basename(mdPath)} para Claude…`);
 
   const message = await client.messages.create({
     model: "claude-sonnet-4-6",
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
-    messages: [
-      {
-        role: "user",
-        content: `Convert this markdown case file to the JavaScript object literal:\n\n${mdContent}`,
-      },
-    ],
+    messages: [{
+      role: "user",
+      content: `Convert this markdown OSCE case to the JavaScript object literal:\n\n${mdContent}`
+    }]
   });
 
-  const raw = message.content[0].text.trim();
-
-  // Strip accidental code fences if model adds them
-  const cleaned = raw
-    .replace(/^```(?:javascript|js)?\n?/, "")
-    .replace(/\n?```$/, "")
-    .trim();
-
-  const output = `// Auto-generated from ${path.basename(mdPath)}\n// Edit the source .md file, not this output.\n\n${cleaned}`;
+  let raw = message.content[0].text.trim();
+  raw = raw.replace(/^```(?:javascript|js)?\n?/, "").replace(/\n?```$/, "").trim();
 
   if (outPath) {
-    fs.writeFileSync(path.resolve(outPath), output, "utf-8");
-    console.error(`Written to ${outPath}`);
+    fs.writeFileSync(path.resolve(outPath), raw, "utf-8");
+    console.error(`Salvo em: ${outPath}`);
   } else {
-    console.log(output);
+    console.log(raw);
   }
 }
-
-// ── CLI entry point ──────────────────────────────────────────────────────────
 
 const [, , mdPath, outPath] = process.argv;
 
 if (!mdPath) {
   console.error(
-    "Usage: node parse-case.js <path-to-case.md> [output.js]\n" +
-      "  ANTHROPIC_API_KEY must be set in the environment.\n" +
-      "\nExample:\n" +
-      "  ANTHROPIC_API_KEY=sk-... node parse-case.js ../cases/itu-simples.md ../data/itu-simples.js"
+    "Uso: node parse-case.js <arquivo.md> [saida.js]\n" +
+    "  ANTHROPIC_API_KEY deve estar definida no ambiente.\n\n" +
+    "Exemplo:\n" +
+    "  ANTHROPIC_API_KEY=sk-... node parse-case.js ../MDtoJS/Caso11.md ../MDtoJS/CASO11.js"
   );
   process.exit(1);
 }
 
 if (!fs.existsSync(path.resolve(mdPath))) {
-  console.error(`File not found: ${mdPath}`);
+  console.error(`Arquivo não encontrado: ${mdPath}`);
   process.exit(1);
 }
 
-parseCase(mdPath, outPath).catch((err) => {
-  console.error("Error:", err.message);
+parseCase(mdPath, outPath).catch(err => {
+  console.error("Erro:", err.message);
   process.exit(1);
 });
