@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "PowerShell(Start-Process \"c:\\\\Users\\\\Sara Costa\\\\OneDrive\\\\Documentos\\\\oscesimulado\\\\index.html\")",
-      "PowerShell(Start-Sleep -Seconds 3; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait\\('%{PRTSC}'\\); Start-Sleep -Milliseconds 500; $img = [System.Windows.Forms.Clipboard]::GetImage\\(\\); if \\($img\\) { $img.Save\\(\"C:\\\\Users\\\\SARACO~1\\\\AppData\\\\Local\\\\Temp\\\\mobile_home.png\"\\); \"saved\" } else { \"no image\" })"
+      "PowerShell(Start-Sleep -Seconds 3; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait\\('%{PRTSC}'\\); Start-Sleep -Milliseconds 500; $img = [System.Windows.Forms.Clipboard]::GetImage\\(\\); if \\($img\\) { $img.Save\\(\"C:\\\\Users\\\\SARACO~1\\\\AppData\\\\Local\\\\Temp\\\\mobile_home.png\"\\); \"saved\" } else { \"no image\" })",
+      "Bash(npm install *)",
+      "PowerShell(if \\($env:ANTHROPIC_API_KEY\\) { \"Chave configurada\" } else { \"Chave NÃO encontrada\" })",
+      "PowerShell(if \\($env:ANTHROPIC_API_KEY\\) { \"Chave configurada\" } else { \"Chave N�O encontrada\" })",
+      "Bash(grep -c \"^ {$\\\\|^ { $\" \"c:\\\\Users\\\\Sara Costa\\\\OneDrive\\\\Documentos\\\\oscesimulado\\\\data\\\\casos.js\")",
+      "Bash(node -e ' *)",
+      "Bash(python -m http.server 8765)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8765/)"
     ]
   }
 }

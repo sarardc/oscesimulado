@@ -242,9 +242,13 @@ function renderTabB1Script(st) {
 function renderPepTable(sections, startIndex) {
   let idx = startIndex;
   let rows = '';
+  // Support flat array [{item, score}] (legacy) and sectioned [{h/section, items:[...]}] (new)
+  if (sections.length && sections[0].items === undefined) {
+    sections = [{ h: '', items: sections }];
+  }
   sections.forEach(sec => {
     const heading = sec.section || sec.h;
-    rows += `<tr><td colspan="3" class="pep-section">${heading}</td></tr>`;
+    if (heading) rows += `<tr><td colspan="3" class="pep-section">${heading}</td></tr>`;
     sec.items.forEach(item => {
       rows += `<tr>
         <td>${item.item}</td>

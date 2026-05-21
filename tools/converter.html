@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD → JS · OSCE Converter</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2e3244;
+      --accent: #4f9cf9;
+      --text: #e2e8f0;
+      --muted: #7c8498;
+      --success: #22c55e;
+      --error: #ef4444;
+      --font-mono: "Fira Code", "Cascadia Code", "Consolas", monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+    }
+
+    header h1 { font-size: 1rem; font-weight: 600; }
+
+    header .badge {
+      font-size: 0.68rem;
+      background: #1e3a5f;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-weight: 600;
+    }
+
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pane {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border);
+    }
+
+    .pane:last-child { border-right: none; }
+
+    .pane-header {
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pane-header h2 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .pane-header .actions { display: flex; gap: 6px; }
+
+    textarea, pre#output {
+      flex: 1;
+      background: var(--bg);
+      color: var(--text);
+      border: none;
+      outline: none;
+      padding: 16px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      line-height: 1.65;
+      height: calc(100vh - 108px);
+      overflow: auto;
+    }
+
+    textarea { resize: none; }
+    pre#output { white-space: pre; }
+
+    .bottom-bar {
+      padding: 10px 18px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #status {
+      flex: 1;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+    #status.ok  { color: var(--success); }
+    #status.err { color: var(--error); }
+    #status.loading { color: var(--accent); }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      transition: opacity 0.15s;
+    }
+    button:hover { opacity: 0.82; }
+    button:disabled { opacity: 0.38; cursor: not-allowed; }
+
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-ghost   { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-copy    { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+
+    .spinner {
+      width: 13px; height: 13px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .spinner.active { display: inline-block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 760px) {
+      main { grid-template-columns: 1fr; }
+      .pane { border-right: none; border-bottom: 1px solid var(--border); }
+      textarea, pre#output { height: 42vh; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>OSCE · MD → JS Converter</h1>
+  <span class="badge">Backend local</span>
+</header>
+
+<main>
+  <!-- INPUT -->
+  <div class="pane">
+    <div class="pane-header">
+      <h2>Markdown · Entrada</h2>
+      <div class="actions">
+        <button class="btn-ghost" id="btnClear">Limpar</button>
+        <button class="btn-ghost" id="btnPaste">Colar</button>
+      </div>
+    </div>
+    <textarea id="input" placeholder="Cole aqui o markdown do caso OSCE (formato CASO XX com BLOCOs 1–5)…" spellcheck="false"></textarea>
+    <div class="bottom-bar">
+      <div class="spinner" id="spinner"></div>
+      <span id="status">Pronto. Cole o markdown e clique em Converter.</span>
+      <button class="btn-primary" id="btnConvert">Converter →</button>
+    </div>
+  </div>
+
+  <!-- OUTPUT -->
+  <div class="pane">
+    <div class="pane-header">
+      <h2>JavaScript · Saída</h2>
+      <div class="actions">
+        <button class="btn-copy" id="btnCopy">Copiar</button>
+        <button class="btn-ghost" id="btnDownload">Baixar .js</button>
+      </div>
+    </div>
+    <pre id="output"></pre>
+    <div class="bottom-bar" style="justify-content:flex-end;">
+      <span id="charCount" style="font-size:0.72rem;color:var(--muted);"></span>
+    </div>
+  </div>
+</main>
+
+<script>
+const inputEl    = document.getElementById("input");
+const outputEl   = document.getElementById("output");
+const statusEl   = document.getElementById("status");
+const spinner    = document.getElementById("spinner");
+const charCount  = document.getElementById("charCount");
+const btnConvert = document.getElementById("btnConvert");
+
+function setStatus(msg, type = "") {
+  statusEl.textContent = msg;
+  statusEl.className = type;
+}
+
+function setLoading(on) {
+  spinner.classList.toggle("active", on);
+  btnConvert.disabled = on;
+}
+
+btnConvert.addEventListener("click", async () => {
+  const md = inputEl.value.trim();
+  if (!md) { setStatus("⚠ Cole o markdown antes de converter.", "err"); return; }
+
+  setLoading(true);
+  setStatus("Enviando para Claude via backend local…", "loading");
+  outputEl.textContent = "";
+  charCount.textContent = "";
+
+  try {
+    const res = await fetch("/convert", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ markdown: md })
+    });
+
+    const text = await res.text();
+
+    if (text.startsWith("ERRO:")) {
+      setStatus(text, "err");
+    } else {
+      outputEl.textContent = text;
+      charCount.textContent = `${text.length.toLocaleString("pt-BR")} chars`;
+      setStatus("✓ Convertido com sucesso.", "ok");
+    }
+  } catch (e) {
+    setStatus(`Falha de rede: ${e.message} — o servidor está rodando?`, "err");
+  } finally {
+    setLoading(false);
+  }
+});
+
+document.getElementById("btnCopy").addEventListener("click", async () => {
+  const text = outputEl.textContent;
+  if (!text) return;
+  await navigator.clipboard.writeText(text);
+  const btn = document.getElementById("btnCopy");
+  btn.textContent = "Copiado!";
+  setTimeout(() => { btn.textContent = "Copiar"; }, 1500);
+});
+
+document.getElementById("btnDownload").addEventListener("click", () => {
+  const text = outputEl.textContent;
+  if (!text) return;
+  const a = Object.assign(document.createElement("a"), {
+    href: URL.createObjectURL(new Blob([text], { type: "text/javascript" })),
+    download: "caso_convertido.js"
+  });
+  a.click();
+});
+
+document.getElementById("btnClear").addEventListener("click", () => {
+  inputEl.value = "";
+  outputEl.textContent = "";
+  charCount.textContent = "";
+  setStatus("Pronto.");
+});
+
+document.getElementById("btnPaste").addEventListener("click", async () => {
+  try {
+    inputEl.value = await navigator.clipboard.readText();
+  } catch {
+    inputEl.focus();
+  }
+});
+</script>
+</body>
+</html>
