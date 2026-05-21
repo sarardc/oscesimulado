@@ -33,15 +33,14 @@ const psiq1stations = [
       "DERMATOLÓGICO: Sem lesões de trauma externo visíveis. Sem marcas de injeção."
     ],
     labs: [
-      { test: "Glicemia capilar", val: "48 mg/dL", ref: "70–140 mg/dL", alt: true },
+      { test: "Glicemia capilar - OBS: NAO MENCIONADO NA AULA", val: "48 mg/dL", ref: "70–140 mg/dL", alt: true },
       { test: "Alcoolemia (etilômetro/dosagem)", val: "3,2 g/L (320 mg/dL)", ref: "< 0,3 g/L", alt: true },
       { test: "Sódio", val: "134 mEq/L", ref: "135–145 mEq/L", alt: true },
       { test: "Potássio", val: "3,2 mEq/L", ref: "3,5–5,0 mEq/L", alt: true },
       { test: "Hemograma", val: "Normal", ref: "—", alt: false },
       { test: "Creatinina", val: "0,9 mg/dL", ref: "0,7–1,2 mg/dL", alt: false },
-      { test: "Toxicológico urinário", val: "Negativo para outras substâncias", ref: "Negativo", alt: false }
-    ],
-    image: "TC de crânio sem contraste: Sem hemorragia intracraniana. Sem edema cerebral. Parênquima sem alterações agudas. Estruturas da linha média centradas.",
+   
+    image: "OBS NAO FALADO NA AULA NADA SOBRE TC!!!! TC de crânio sem contraste: Sem hemorragia intracraniana. Sem edema cerebral. Parênquima sem alterações agudas. Estruturas da linha média centradas.",
     note: "Entregar sinais vitais e Glasgow ao início — são o gatilho para a avaliação prioritária. Informar amigos disponíveis fora da sala para coleta de história. Exames entregues conforme solicitação. TC de crânio entregue se o candidato indicar o exame ou se houver progressão sem melhora. O candidato deve ser avaliado especialmente pelo ABC inicial, pela identificação da hipoglicemia e pela sequência correta: tiamina → glicose.",
     patientProfile: "V.M., 19 anos, masculino, estudante universitário (Engenharia, 1º ano). Solteiro, mora em república. Sem comorbidades conhecidas. Amigos informam que nunca o viram assim antes.",
     script: [
@@ -119,13 +118,13 @@ const psiq1stations = [
   },
 
   instD: {
-    title: "CHECKLIST — JOVEM SONOLENTO COM HÁLITO DE ÁLCOOL TRAZIDO PELO SAMU",
+    title: "CHECKLIST — ESSE CHECKLIST TA MUITO MAIS COMPLEXO DO QUE A AULA, DESCONSIDERAR ALGUMAS COISAS",
     sections: [
       {
         h: "BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
         items: [
           { item: "Abordou os amigos sem julgamento e agradeceu pela chamada ao SAMU", score: 0.3, ref: "MS — Política Nacional de Humanização, 2013" },
-          { item: "Comunicou o plano de manejo à equipe de forma clara e estruturada (ABC)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
+          { item: "ACHO IRRELEVANTE - Comunicou o plano de manejo à equipe de forma clara e estruturada (ABC)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Orientou os amigos sobre os riscos do binge drinking após estabilização", score: 0.3, ref: "MS — Linha de Cuidado Álcool, 2022" }
         ]
       },
@@ -134,7 +133,7 @@ const psiq1stations = [
         items: [
           { item: "Obteve história com os amigos: tipo de bebida, quantidade e tempo de consumo", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Investigou uso concomitante de outras substâncias (drogas, medicamentos)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
-          { item: "Pesquisou possibilidade de trauma craniano durante a intoxicação", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
+          { item: "NAO MENCIONADO NA AULA - Pesquisou possibilidade de trauma craniano durante a intoxicação", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Investigou histórico de vômitos (risco de broncoaspiração)", score: 0.5, ref: "Sanarmed — Intoxicação Alcoólica Aguda, 2025" }
         ]
       },
@@ -144,21 +143,21 @@ const psiq1stations = [
           { item: "Avaliou ABC: vias aéreas, FR, SatO2, PA e FC como primeira ação", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Aplicou a Escala de Coma de Glasgow corretamente (E+V+M)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Avaliou pupilas e pesquisou sinais de TCE (hematoma, Battle sign)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
-          { item: "Posicionou o paciente em decúbito lateral (posição de recuperação)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
+          { item: "NAO MENCIONADO NA AULA - Posicionou o paciente em decúbito lateral (posição de recuperação)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
         ]
       },
       {
         h: "BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
         items: [
-          { item: "Solicitou glicemia capilar como medida prioritária imediata", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022" },
-          { item: "Solicitou toxicológico urinário para afastar intoxicação mista", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
-          { item: "Indicou TC de crânio para afastar TCE em rebaixamento de consciência", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
+          { item: "NAO MENCIONADO NA AULA - Solicitou glicemia capilar como medida prioritária imediata", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022" },
+          { item: "NAO MENCIONADO NA AULA - Solicitou toxicológico urinário para afastar intoxicação mista", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
+          { item: "NAO MENCIONADO NA AULA - Indicou TC de crânio para afastar TCE em rebaixamento de consciência", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
         ]
       },
       {
         h: "BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE",
         items: [
-          { item: "Administrou tiamina ANTES da glicose", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022; Laranjeira, 2013" },
+          { item: "Administrou tiamina ANTES da glicose - ATENCAO COM A GLICOSE (NA AULA APENAS FALOU SOBRE CUIDADO COM WERNICK NAO FALOU SOBRE HIPOGLICEMIA NEM USO DE GLICOSE", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022; Laranjeira, 2013" },
           { item: "Indicou oxigenoterapia para SatO2 93%", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Indicou monitorização contínua (Glasgow, SatO2, glicemia seriada)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
         ]
@@ -293,7 +292,7 @@ const psiq1stations = [
   },
 
   instD: {
-    title: "CHECKLIST — HOMEM COM TREMORES, SUADEIRA E ALUCINAÇÕES APÓS PARAR DE BEBER",
+    title: "CHECKLIST — ESSE CHECKLIST TA MUITO MAIS COMPLEXO DO QUE A AULA, DESCONSIDERAR ALGUMAS COISAS",
     sections: [
       {
         h: "BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
@@ -315,7 +314,7 @@ const psiq1stations = [
         h: "BLOCO 3 — EXAME FÍSICO",
         items: [
           { item: "Avaliou sinais vitais com atenção à tríade autonômica (HAS + taquicardia + febre)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
-          { item: "Aplicou o CIWA-Ar e identificou abstinência grave (score ≥20)", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022" },
+          { item: "NAO PRECISA!!! - Aplicou o CIWA-Ar e identificou abstinência grave (score ≥20)", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Pesquisou nistagmo e ataxia (sinais de Wernicke)", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Avaliou hepatomegalia e sinais de hepatopatia", score: 0.3, ref: "Semiologia Médica — FMUSP" }
         ]
@@ -331,7 +330,7 @@ const psiq1stations = [
       {
         h: "BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE",
         items: [
-          { item: "Administrou tiamina ANTES da glicose (dose alta — 250–500 mg IV)", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022; RENAME 2023" },
+          { item: "Administrou tiamina ANTES da glicose (dose alta — 250–500 mg IV) - CUIDADO COM GLICOSE PROVAVELMENTE NO NOSSO OSCE NAO VAI PRECISAR", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022; RENAME 2023" },
           { item: "Prescreveu benzodiazepínico (diazepam ou lorazepam IV) como tratamento principal", score: 1.0, ref: "MS — Linha de Cuidado Álcool, 2022; RENAME 2023" },
           { item: "Não usou clorpromazina nem fenitoína", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" },
           { item: "Indicou internação em UTI/leito monitorado", score: 0.5, ref: "MS — Linha de Cuidado Álcool, 2022" }
@@ -466,7 +465,7 @@ const psiq1stations = [
   },
 
   instD: {
-    title: "CHECKLIST — HOMEM QUE BEBE TODO DIA MAS DIZ QUE CONSEGUE PARAR QUANDO QUER",
+    title: "CHECKLIST — ESSE CHECKLIST TA MUITO MAIS COMPLEXO DO QUE A AULA, DESCONSIDERAR ALGUMAS COISAS (ACHO QUE NAO PRECISA DE ESCALAS)",
     sections: [
       {
         h: "BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
