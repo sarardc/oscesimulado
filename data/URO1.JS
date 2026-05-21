@@ -1,4 +1,4 @@
-const URO1stations = [
+const uro1stations = [
 {
   id: 1,
   title: "Dor lombar intensa de início súbito há 2 horas",
