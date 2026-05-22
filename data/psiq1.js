@@ -39,7 +39,7 @@ const psiq1stations = [
       { test: "Potássio", val: "3,2 mEq/L", ref: "3,5–5,0 mEq/L", alt: true },
       { test: "Hemograma", val: "Normal", ref: "—", alt: false },
       { test: "Creatinina", val: "0,9 mg/dL", ref: "0,7–1,2 mg/dL", alt: false },
-   
+    ],
     image: "OBS NAO FALADO NA AULA NADA SOBRE TC!!!! TC de crânio sem contraste: Sem hemorragia intracraniana. Sem edema cerebral. Parênquima sem alterações agudas. Estruturas da linha média centradas.",
     note: "Entregar sinais vitais e Glasgow ao início — são o gatilho para a avaliação prioritária. Informar amigos disponíveis fora da sala para coleta de história. Exames entregues conforme solicitação. TC de crânio entregue se o candidato indicar o exame ou se houver progressão sem melhora. O candidato deve ser avaliado especialmente pelo ABC inicial, pela identificação da hipoglicemia e pela sequência correta: tiamina → glicose.",
     patientProfile: "V.M., 19 anos, masculino, estudante universitário (Engenharia, 1º ano). Solteiro, mora em república. Sem comorbidades conhecidas. Amigos informam que nunca o viram assim antes.",
