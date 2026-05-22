@@ -1,5 +1,11 @@
 let activeFilter = 'all';
 
+function toList(val) {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  return val.split('|').map(s => s.trim()).filter(Boolean);
+}
+
 function setFilter(tema) {
   activeFilter = tema;
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -111,6 +117,7 @@ function renderTabA(st) {
 // ── TAB B — Impressos (Sinais Vitais, Exames, Script) ────────────────────────
 
 function renderExamsBlock(b) {
+  const physicalSegs = toList(b.physicalSeg);
   let html = `<div class="impression-box">
     <h4>Impresso — Sinais Vitais e Exame Físico</h4>
     <div class="vt">
@@ -128,7 +135,7 @@ function renderExamsBlock(b) {
     </div>
     <div style="margin-top:14px">
       <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME SEGMENTAR</div>
-      ${b.physicalSeg.map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${s}</div>`).join('')}
+      ${physicalSegs.map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${s}</div>`).join('')}
     </div>
   </div>`;
 
@@ -182,10 +189,11 @@ function renderTabB(st) {
   }
 
   if (b.hiddenInfo && b.hiddenInfo.length) {
+    const hiddenItems = toList(b.hiddenInfo);
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${b.hiddenInfo.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${hiddenItems.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
       </div>
     </div>`;
   }
@@ -218,10 +226,11 @@ function renderTabB1Script(st) {
   }
 
   if (b.hiddenInfo && b.hiddenInfo.length) {
+    const hiddenItems = toList(b.hiddenInfo);
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${b.hiddenInfo.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${hiddenItems.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
       </div>
     </div>`;
   }
@@ -319,21 +328,23 @@ function renderTabC(st) {
   }
 
   // Conduta esperada (novo schema)
-  if (c.expectedConduct && c.expectedConduct.length) {
+  const conducts = toList(c.expectedConduct);
+  if (conducts.length) {
     html += `<div class="section-block">
       <h3>Conduta Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedConduct.map(i => `<li>${i}</li>`).join('')}
+        ${conducts.map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
 
   // Comunicação esperada (novo schema)
-  if (c.expectedCommunication && c.expectedCommunication.length) {
+  const communications = toList(c.expectedCommunication);
+  if (communications.length) {
     html += `<div class="section-block">
       <h3>Comunicação Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedCommunication.map(i => `<li>${i}</li>`).join('')}
+        ${communications.map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
