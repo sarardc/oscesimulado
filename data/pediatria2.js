@@ -473,7 +473,7 @@ const pediatria2 = [
       { exam: "Cultura para BK (se disponível)", justify: "Maior sensibilidade que baciloscopia em crianças", expected: "Não disponível em APS" }
     ],
     expectedConduct: [
-      "Farmacológica: Esquema RHZE por 2 meses + RH por 4 meses. Doses calculadas pelo peso (18 kg): Rifampicina 10 mg/kg/dia = 180 mg/dia; Isoniazida 10 mg/kg/dia = 180 mg/dia; Pirazinamida 35 mg/kg/dia = 630 mg/dia; Etambutol 25 mg/kg/dia = 450 mg/dia (uso com cautela em < 10 anos — monitorizar acuidade visual). Total: 6 meses. Referência: MS — Manual de Tuberculose, 2019.",
+      "Farmacológica: Esquema RHZ por 2 meses + RH por 4 meses. Doses calculadas pelo peso (18 kg): Rifampicina 10 mg/kg/dia = 180 mg/dia; Isoniazida 10 mg/kg/dia = 180 mg/dia; Pirazinamida 35 mg/kg/dia = 630 mg/dia; Total: 6 meses. Referência: MS — Manual de Tuberculose, 2019.",
       "Não farmacológica: Tratamento supervisionado (DOTS) — garantir adesão; suporte nutricional (encaminhar para nutricionista); suplementação com piridoxina (vitamina B6) — crianças desnutridas em uso de isoniazida.",
       "Encaminhamento: Notificação compulsória imediata. Investigação dos contactantes domiciliares (pai em tratamento — verificar adesão; mãe e demais moradores devem fazer PPD e Rx de tórax). Encaminhar para referência de tuberculose do município se disponível.",
       "Orientações ao paciente: Explicar à mãe que Felipe não transmite tuberculose para os colegas (criança não é bacilífera — pode continuar na escola); que o tratamento dura 6 meses e não pode ser interrompido mesmo que melhore; que o pai precisa completar o tratamento para não reinfectar a família.",
@@ -535,7 +535,7 @@ const pediatria2 = [
       {
         h: "BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE",
         items: [
-          { item: "Prescreveu esquema RHZE (2 meses) + RH (4 meses) com doses adequadas ao peso.", score: 1.0, ref: "MS — Manual de TB, 2019" },
+          { item: "Prescreveu esquema RHZ (2 meses) + RH (4 meses) com doses adequadas ao peso.", score: 1.0, ref: "MS — Manual de TB, 2019" },
           { item: "Mencionou notificação compulsória e investigação dos contactantes domiciliares.", score: 0.5, ref: "MS — Manual de TB, 2019" },
           { item: "Orientou que Felipe pode frequentar a escola (criança não é bacilífera).", score: 0.5, ref: "MS — Manual de TB, 2019" },
           { item: "Orientou sobre importância de completar os 6 meses de tratamento sem interrupção.", score: 0.3, ref: "MS — Manual de TB, 2019" }
