@@ -34,16 +34,19 @@
 .pill{font-size:15px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-tertiary)}
 .qa{display:flex;flex-direction:column;gap:4px}
 .qi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:6px 9px}
-.qq{font: size 17px;px;color:var(--color-text-secondary);margin-bottom:1px}
+.qq{font-size:14px;color:var(--color-text-secondary);margin-bottom:1px}
 .qa-a{font-size:15px;font-weight:500;color:var(--color-text-primary)}
 .alert{background:var(--color-background-danger);border-radius:var(--border-radius-md);padding:6px 9px;margin-top:8px;font-size:12px;color:var(--color-text-danger)}
 .askb{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:4px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);font-size:12px;cursor:pointer}
 .askb:hover{background:var(--color-background-secondary)}
 .empty{text-align:center;color:var(--color-text-tertiary);padding:2rem;font-size:16px}
+.sec{margin-bottom:7px}
+.sec-t{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.sec-c{font-size:13px;color:var(--color-text-primary);line-height:1.6}
 </style>
 
 <div class="wrap">
-<h2>Flashcards OSCE — Saúde Mental, Pediatria e Endocrinologia</h2>
+<h2>Flashcards OSCE — Saúde Mental, Pediatria, Endocrinologia, Nefrologia e Urologia</h2>
 <div class="top-bar">
   <input type="text" id="search" placeholder="Buscar qualquer tema..." oninput="render()">
   <span class="count" id="count"></span>
@@ -69,59 +72,103 @@ const cats=[
   {id:'gi',label:'Cirúrgico/GI'},
   {id:'vac',label:'Vacinas'},
   {id:'end',label:'Endocrinologia'},
+  {id:'adol',label:'Adolescente'},
+  {id:'puericultura',label:'Puericultura'},
+  {id:'reuma',label:'Reumatologia Ped.'},
+  {id:'nefro',label:'Nefrologia'},
+  {id:'uro',label:'Urologia'},
 ];
 
-const bc={humor:'background:#EEEDFE;color:#3C3489',ansiedade:'background:#E1F5EE;color:#085041',psicotico:'background:#FCEBEB;color:#791F1F',toc:'background:#FAECE7;color:#712B13',infanto:'background:#FAEEDA;color:#633806',somatico:'background:#EAF3DE;color:#27500A',substancia:'background:#FBEAF0;color:#72243E',ped:'background:#E6F1FB;color:#0C447C',neo:'background:#EAF3DE;color:#27500A',resp:'background:#FAECE7;color:#712B13',infec:'background:#FBEAF0;color:#72243E',gi:'background:#EAF3DE;color:#27500A',vac:'background:#E6F1FB;color:#0C447C',end:'background:#FAEEDA;color:#633806'};
+const bc={
+  humor:'background:#EEEDFE;color:#3C3489',
+  ansiedade:'background:#E1F5EE;color:#085041',
+  psicotico:'background:#FCEBEB;color:#791F1F',
+  toc:'background:#FAECE7;color:#712B13',
+  infanto:'background:#FAEEDA;color:#633806',
+  somatico:'background:#EAF3DE;color:#27500A',
+  substancia:'background:#FBEAF0;color:#72243E',
+  ped:'background:#E6F1FB;color:#0C447C',
+  neo:'background:#EAF3DE;color:#27500A',
+  resp:'background:#FAECE7;color:#712B13',
+  infec:'background:#FBEAF0;color:#72243E',
+  gi:'background:#EAF3DE;color:#27500A',
+  vac:'background:#E6F1FB;color:#0C447C',
+  end:'background:#FAEEDA;color:#633806',
+  adol:'background:#F0E8FB;color:#4A1A7A',
+  puericultura:'background:#E8F5E9;color:#1B5E20',
+  reuma:'background:#FFF3E0;color:#7A3500',
+  nefro:'background:#E8F4FD;color:#0B3D6B',
+  uro:'background:#E8F0FE;color:#1A3A6B',
+};
 
 const data=[
+  // ── HUMOR ──────────────────────────────────────────────────────────────
   {id:'tab',cat:'humor',title:'Transtorno Afetivo Bipolar (TAB)',sub:'Alternância mania/hipomania ↔ depressão',sx:['Mania: humor eufórico, grandiosidade, logorreia, diminuição do sono, gastos excessivos','Depressão: tristeza, anedonia, fadiga, ideação suicida'],pontos:[{q:'Mania ≥ quantos dias?',a:'≥7 dias; hipomania ≥4 dias'},{q:'Psicose ocorre em qual?',a:'Mania (não na hipomania)'},{q:'TAB I vs II?',a:'Tipo I: mania franca. Tipo II: hipomania + depressão, nunca mania'},{q:'Antidepressivo isolado?',a:'Não — risco de virada maníaca'},{q:'Estabilizador 1ª linha?',a:'Carbonato de lítio'},{q:'Exames antes do lítio?',a:'Função renal + TSH'}],alerta:'Sempre avaliar risco suicida e diferenciar mania de hipomania'},
-  {id:'dep',cat:'humor',title:'Depressão (Transtorno Depressivo Maior)',sub:'≥5 sintomas por ≥15 dias — humor deprimido ou anedonia obrigatório',sx:['Humor deprimido','Anedonia','Fadiga, alteração sono/apetite','Culpa excessiva, desatenção','Ideação suicida'],pontos:[{q:'Sintomas cardinais?',a:'Humor deprimido e anedonia'},{q:'Critério mínimo?',a:'≥5 sintomas por ≥15 dias'},{q:'O que excluir antes do antidepressivo?',a:'TAB + causas orgânicas (TSH, hemograma)'},{q:'Primeira linha?', a:'ISRS + mev'},{q:'Melhor para insônia?',a:'Trazodona ou mirtazapina'},{q:'Melhor para dor crônica?',a:'Duloxetina (IRSN)'},{q:'ECT quando?',a:'Suicídio alto risco, psicose, catatonia, resistência'},{q:'Depressão leve: ATD obrigatório?',a:'Não — psicoterapia é suficiente'}],alerta:'Avaliar risco suicida em toda consulta'},
+  {id:'dep',cat:'humor',title:'Depressão (Transtorno Depressivo Maior)',sub:'≥5 sintomas por ≥15 dias — humor deprimido ou anedonia obrigatório',sx:['Humor deprimido','Anedonia','Fadiga, alteração sono/apetite','Culpa excessiva, desatenção','Ideação suicida'],pontos:[{q:'Sintomas cardinais?',a:'Humor deprimido e anedonia'},{q:'Critério mínimo?',a:'≥5 sintomas por ≥15 dias'},{q:'O que excluir antes do antidepressivo?',a:'TAB + causas orgânicas (TSH, hemograma)'},{q:'Primeira linha?',a:'ISRS + mev'},{q:'Melhor para insônia?',a:'Trazodona ou mirtazapina'},{q:'Melhor para dor crônica?',a:'Duloxetina (IRSN)'},{q:'ECT quando?',a:'Suicídio alto risco, psicose, catatonia, resistência'},{q:'Depressão leve: ATD obrigatório?',a:'Não — psicoterapia é suficiente'}],alerta:'Avaliar risco suicida em toda consulta'},
   {id:'distimia',cat:'humor',title:'Distimia',sub:'Humor deprimido crônico leve por ≥2 anos',sx:['Humor deprimido persistente','Baixa autoestima, fadiga','Alteração sono e apetite','Dificuldade de concentração'],pontos:[{q:'Tempo mínimo?',a:'≥2 anos em adultos; ≥1 ano em crianças'},{q:'Pode evoluir para depressão maior?',a:'Sim — chama-se depressão dupla'},{q:'Tratamento?',a:'Psicoterapia + ISRS'}],alerta:'Diagnóstico diferencial com depressão maior: gravidade e tempo de evolução'},
   {id:'dpp',cat:'humor',title:'Depressão pós-parto e psicótica',sub:'Puerpério — diferente do blues puerperal (<15 dias)',sx:['Tristeza, choro fácil, cansaço intenso','Culpa, dificuldade de vínculo com bebê','Em casos graves: pensamentos de causar mal ao bebê'],pontos:[{q:'Blues puerperal dura?',a:'<15 dias — mais leve, autolimitado'},{q:'Psicose puerperal é urgência?',a:'Sim — delírios, alucinações, emergência psiquiátrica'},{q:'ATD mais seguro na lactação?',a:'Sertralina'},{q:'Quando internar?',a:'Psicose, risco suicida, risco para bebê'}],alerta:'Avaliar sempre risco para a mãe E para o bebê'},
   {id:'suicidio',cat:'humor',title:'Síndrome da crise suicida',sub:'Avaliar sempre: plano, método, tentativa prévia',sx:['Ideação suicida, desesperança','Mensagens de despedida, doação de bens','Pesquisa de métodos, isolamento progressivo'],pontos:[{q:'Principal fator de risco?',a:'Tentativa prévia'},{q:'Principal fator protetor?',a:'Rede de apoio/família'},{q:'Paciente pode ficar sozinho?',a:'Não'},{q:'Medicação com redução comprovada?',a:'Lítio (longo prazo)'},{q:'Conduta inicial?',a:'Garantir segurança + retirar objetos + acionar psiquiatria'}],alerta:'NUNCA minimizar fala suicida. Não julgar. Não deixar sozinho.'},
+
+  // ── ANSIEDADE ──────────────────────────────────────────────────────────
   {id:'tag',cat:'ansiedade',title:'TAG — Transtorno de Ansiedade Generalizada',sub:'Preocupação excessiva na maioria dos dias por ≥6 meses',sx:['Preocupação excessiva e persistente','Inquietação, irritabilidade, fadiga','Dificuldade de concentração, tensão muscular','Insônia'],pontos:[{q:'Tempo mínimo?',a:'6 meses'},{q:'Tratamento 1ª linha?',a:'TCC + ISRS'},{q:'Benzodiazepínico resolve TAG?',a:'Não — só sintomático, evitar uso crônico'}],alerta:'Excluir causas orgânicas: TSH, glicemia, ECG'},
   {id:'panico',cat:'ansiedade',title:'Transtorno do pânico e agorafobia',sub:'Crises recorrentes + ansiedade antecipatória',sx:['Taquicardia, falta de ar, dor torácica','Sudorese, tremores, despersonalização','Medo de morrer ou enlouquecer'],pontos:[{q:'Duração do ataque?',a:'15–20 minutos'},{q:'Principal diferencial?',a:'IAM — sempre excluir'},{q:'Medicação na crise?',a:'Benzodiazepínico (lorazepam, diazepam)'},{q:'Tratamento manutenção?',a:'TCC + ISRS'},{q:'Agorafobia: medo principal?',a:'Não conseguir escapar ou receber ajuda'}],alerta:'Ataque de pânico é sintoma, não diagnóstico isolado'},
   {id:'fobias',cat:'ansiedade',title:'Fobias específicas e fobia social',sub:'Medo intenso + evitação + ≥6 meses + prejuízo funcional',sx:['Fobia específica: medo desproporcional de objeto/situação','Fobia social: medo de avaliação negativa, situações sociais','Ansiedade imediata ao contato com estímulo'],pontos:[{q:'Tempo mínimo?',a:'6 meses'},{q:'Tratamento principal?',a:'TCC + exposição gradual'},{q:'Fobia social 1ª linha?',a:'TCC + ISRS'},{q:'Timidez é doença?',a:'Não'},{q:'Medicação cura fobia?',a:'Não'}],alerta:'Fobia social: avaliar sempre uso de álcool/drogas como automedicação'},
   {id:'tept',cat:'ansiedade',title:'TEPT — Transtorno de Estresse Pós-Traumático',sub:'4 grupos de sintomas após trauma grave',sx:['Flashbacks e pesadelos (intrusão)','Evitação de gatilhos do trauma','Humor negativo, culpa, anedonia','Hipervigilância, irritabilidade, insônia'],pontos:[{q:'Grupos de sintomas?',a:'4: intrusão, evitação, cognição/humor, hiperexcitabilidade'},{q:'Sintoma clássico?',a:'Flashback'},{q:'Tratamento principal?',a:'Psicoterapia/TCC'},{q:'BZD é 1ª linha?',a:'Não — prejudica processamento do trauma'},{q:'ISRS usados?',a:'Sertralina e paroxetina'}],alerta:'Diagnóstico exige: exposição ao trauma + todos os 4 grupos'},
+
+  // ── PSICÓTICOS ─────────────────────────────────────────────────────────
   {id:'esquizo',cat:'psicotico',title:'Esquizofrenia',sub:'≥2 sintomas por ≥6 meses + prejuízo funcional obrigatório',sx:['Positivos: delírios, alucinações, discurso desorganizado','Negativos: embotamento afetivo, hipobulia, anedonia, isolamento'],pontos:[{q:'Tempo mínimo?',a:'6 meses (≥1 mês de fase ativa)'},{q:'Critério obrigatório?',a:'Prejuízo funcional'},{q:'Tratamento da refratária?',a:'Clozapina (após falha de 2 antipsicóticos)'},{q:'Principal risco da clozapina?',a:'Agranulocitose — hemograma semanal'},{q:'Extrapiramidais mais em quê?',a:'Antipsicóticos típicos (haloperidol)'}],alerta:'Excluir causas orgânicas: TSH, toxicologia, neuroimagem, sorologias'},
   {id:'outros_psi',cat:'psicotico',title:'Esquizoafetivo, esquizofreniforme e psicótico breve',sub:'Diferenciação pelo tempo e relação com humor',sx:['Esquizoafetivo: psicose + episódio de humor (depressão ou mania)','Esquizofreniforme: mesmo quadro da esquizofrenia, duração 1–6 meses','Psicótico breve: 1 dia a 1 mês + remissão completa'],pontos:[{q:'Esquizoafetivo vs TAB psicótico?',a:'Psicose por ≥2 semanas SEM episódio de humor'},{q:'Esquizofreniforme dura?',a:'1–6 meses (frequentemente evolui para esquizofrenia)'},{q:'Psicótico breve: diferença?',a:'Retorna ao funcionamento prévio após remissão'},{q:'Transtorno delirante: tempo mínimo?',a:'≥1 mês — sem grande prejuízo funcional'}],alerta:'Sempre excluir substâncias e causas orgânicas em qualquer quadro psicótico'},
+
+  // ── TOC ────────────────────────────────────────────────────────────────
   {id:'toc',cat:'toc',title:'TOC e transtornos relacionados',sub:'Obsessões e/ou compulsões — sintomas egodistônicos',sx:['Pensamentos intrusivos indesejados (obsessões)','Rituais repetitivos para aliviar ansiedade (compulsões)','Subtipos: contaminação, dúvida, simetria, pensamentos inaceitáveis'],pontos:[{q:'TOC é transtorno de ansiedade no DSM-5?',a:'Não — categoria própria'},{q:'Sintomas são egodistônicos?',a:'Sim — paciente reconhece como irracional'},{q:'Critério diagnóstico?',a:'Obsessão e/ou compulsão >1h/dia com prejuízo'},{q:'Tratamento 1ª linha?',a:'TCC + ISRS em doses altas'},{q:'Tricíclico do TOC?',a:'Clomipramina'}],alerta:'Compulsão serve para aliviar ansiedade temporariamente, não porque o paciente quer'},
   {id:'toc_rel',cat:'toc',title:'TDC, acumulação, tricotilomania, escoriação',sub:'Transtornos relacionados ao TOC — tratamento: TCC + ISRS',sx:['TDC: preocupação excessiva com defeito imaginário/mínimo','Acumulação: dificuldade de descartar objetos','Tricotilomania: arrancar cabelos/pelos compulsivamente','Escoriação: manipular pele repetidamente até causar lesão'],pontos:[{q:'TDC: defeito costuma ser?',a:'Imaginário ou mínimo'},{q:'Tricotilomania: pode ser inconsciente?',a:'Sim'},{q:'Acumulação pode ser digital?',a:'Sim (arquivos, fotos)'},{q:'Tratamento de todos?',a:'TCC + ISRS'}],alerta:'TDC: evitar reforçar busca por procedimentos estéticos'},
+
+  // ── INFANTIL/NEURODESENV. ──────────────────────────────────────────────
   {id:'tdah',cat:'infanto',title:'TDAH',sub:'Tríade: desatenção + hiperatividade + impulsividade por >6 meses',sx:['Distrai-se facilmente, não termina tarefas','Agitação motora, levanta da cadeira','Interrompe os outros, responde antes de terminar a pergunta','Início antes dos 12 anos'],pontos:[{q:'Subtipo mais comum?',a:'Misto (55%)'},{q:'Escala mais cobrada?',a:'SNAP-IV'},{q:'Medicação 1ª linha?',a:'Metilfenidato (psicoestimulante)'},{q:'Pré-escolar leve?',a:'Preferir não farmacológico'},{q:'Efeito colateral clássico?',a:'Perda de apetite e insônia'}],alerta:'Diagnóstico clínico. Sintomas em mais de um ambiente.'},
   {id:'tea',cat:'infanto',title:'TEA — Transtorno do Espectro Autista',sub:'Déficits de comunicação social + padrões restritos/repetitivos',sx:['Pouco contato visual, não responde pelo nome','Atraso ou regressão da fala, ecolalia','Estereotipias (flapping), andar nas pontas dos pés','Apego excessivo à rotina, hiper/hipossensibilidade'],pontos:[{q:'Escala e idade?',a:'M-CHAT — 18 a 24 meses'},{q:'Diagnóstico?',a:'Clínico'},{q:'Tratamento?',a:'Multidisciplinar (fono, TO, psico, pedagogia)'},{q:'Antipsicótico para irritabilidade?',a:'Risperidona'},{q:'ISRS melhoram TEA?',a:'Não têm boa eficácia'}],alerta:'Sinal precoce: não aponta, não olha ao ser chamado, regressão da fala'},
   {id:'tourette',cat:'infanto',title:'Tiques e síndrome de Tourette',sub:'Tourette = tique motor + vocal por ≥12 meses',sx:['Tiques motores: piscar, caretas, movimentos faciais','Tiques vocais: pigarros, sons, palavras involuntárias','Início antes dos 18 anos'],pontos:[{q:'Tourette precisa de?',a:'Tique motor + vocal'},{q:'Tempo mínimo?',a:'12 meses'},{q:'Tratamento 1ª linha?',a:'Psicoeducação + TCC'},{q:'Antipsicóticos usados?',a:'Risperidona, aripiprazol'},{q:'Estresse piora?',a:'Sim'},{q:'Comorbidade comum?',a:'TDAH e TOC'}],alerta:'Diagnóstico clínico. Estresse e fadiga agravam os tiques.'},
+
+  // ── SOMÁTICO ───────────────────────────────────────────────────────────
   {id:'somatico',cat:'somatico',title:'Transtornos somáticos e conversivo',sub:'Paciente sofre de verdade — sintomas não são inventados',sx:['TSS: múltiplos sintomas físicos, exames normais, alta procura por médicos','Hipocondria (TAD): medo de ter doença grave, sintomas ausentes/leves','Conversivo: sintomas neurológicos funcionais incompatíveis com doença neurológica'],pontos:[{q:'Paciente inventa os sintomas?',a:'Não — sofre de verdade'},{q:'Tempo mínimo TSS?',a:'6 meses'},{q:'La belle indifférence?',a:'Conversivo — pouca preocupação com sintomas graves'},{q:'Hipocondria: sintomas físicos importantes?',a:'Não'},{q:'Tratamento principal?',a:'Psicoterapia/TCC'},{q:'Factício: objetivo?',a:'Assumir papel de doente (sem ganho externo)'}],alerta:'Validar sofrimento. Evitar iatrogenia. Não confrontar diretamente.'},
+
+  // ── SUBSTÂNCIAS ────────────────────────────────────────────────────────
   {id:'tus',cat:'substancia',title:'TUS — Transtorno por uso de substâncias',sub:'≥2 critérios dos grupos A-D',sx:['Controle: uso maior que planejado, craving, tentativas frustradas de parar','Prejuízo social: falta no trabalho, abandono de atividades','Farmacológico: tolerância e abstinência'],pontos:[{q:'Quantos critérios?',a:'≥2 dos grupos A-D'},{q:'Teste para alcoolismo?',a:'CAGE'},{q:'Teste para nicotina?',a:'Fagerström'},{q:'Abstinência alcoólica: início?',a:'6h após interrupção — tremores, ansiedade, sudorese'},{q:'Delirium tremens: tratamento?',a:'Benzodiazepínico (diazepam/lorazepam)'},{q:'Glicose antes da tiamina?',a:'NUNCA — risco de Wernicke'},{q:'Dependência alcoólica: medicação?',a:'Naltrexona, topiramato'},{q:'Nicotina 1ª linha?',a:'TRN (adesivo, goma) + bupropiona/vareniclina'}],alerta:'NUNCA dar glicose antes da tiamina em alcoolistas!'},
+
+  // ── PEDIATRIA ──────────────────────────────────────────────────────────
   {id:'itu_ped',cat:'ped',title:'ITU pediátrica',sub:'E. coli mais comum — RN com ITU = tratar como sepse',sx:['Lactente: febre sem foco, irritabilidade, recusa alimentar','Criança maior: disúria, polaciúria, urina turva','Pielonefrite: febre alta, dor lombar, vômitos'],pontos:[{q:'Padrão-ouro?',a:'Urocultura'},{q:'Nitrito negativo exclui?',a:'Não'},{q:'Imagem inicial?',a:'USG renal (indicar <2 anos + ITU febril)'},{q:'Bacteriúria assintomática?',a:'NÃO tratar'},{q:'Quando internar?',a:'<3 meses, sepse, vômitos, toxemia'},{q:'Profilaxia ATB?',a:'Cefalexina'}],alerta:'Punção suprapúbica = qualquer crescimento bacteriano = positivo'},
   {id:'gnda',cat:'ped',title:'GNDA pós-estreptocócica',sub:'Síndrome nefrítica: edema + hematúria + HAS',sx:['Edema periorbitário matinal','Hematúria macroscópica (urina coca-cola)','Oligúria e hipertensão arterial'],pontos:[{q:'Agente?',a:'Streptococcus beta-hemolítico grupo A'},{q:'Complemento?',a:'C3 baixo, C4 normal'},{q:'Achado patognomônico?',a:'Cilindro hemático no EAS'},{q:'Diurético?',a:'Furosemida'},{q:'ATB?',a:'Penicilina benzatina'},{q:'Prognóstico?',a:'Excelente — 95% de recuperação'}],alerta:'Período de latência: 1–3 sem (faringite) ou 3–6 sem (piodermite)'},
   {id:'cvf',cat:'ped',title:'Convulsão febril',sub:'6 meses a 5 anos — sempre excluir meningite',sx:['Convulsão com febre ≥38°C, sem infecção do SNC','Simples: <15 min, sem recorrência em 24h, generalizada','Complexa: focal, >15 min, recorrente em 24h'],pontos:[{q:'Principal diferencial?',a:'Meningite'},{q:'Punção lombar é obrigatória?',a:'Não — indicar <6 meses, suspeita meningite'},{q:'BZD usado?',a:'Diazepam ou midazolam'},{q:'EEG na crise simples?',a:'Não'},{q:'Maioria evolui epilepsia?',a:'Não'}],alerta:'Crise focal = complexa. Crise simples tem prognóstico excelente.'},
   {id:'orl',cat:'ped',title:'OMA, rinossinusite e faringoamigdalite',sub:'Diagnóstico clínico — ATB nem sempre necessário',sx:['OMA: otalgia, febre, abaulamento da MT','Rinossinusite: sintomas >10–14 dias, febre, halitose','Faringoamigdalite bacteriana (SBHGA): febre alta, exsudato, petéquias palatinas'],pontos:[{q:'OMA 1ª linha?',a:'Amoxicilina'},{q:'OMA precisa sempre ATB?',a:'Não — observar em >2 anos sem gravidade'},{q:'Rinossinusite pista?',a:'Duração >10 dias sem melhora'},{q:'RX para rinossinusite?',a:'Não tem utilidade'},{q:'Faringoamigdalite SBHGA?',a:'Penicilina ou amoxicilina 10 dias'},{q:'Viral costuma ter?',a:'Tosse, coriza, rouquidão'}],alerta:'Sinais de alerta rinossinusite: edema orbitário → internação'},
   {id:'resfriado',cat:'ped',title:'Resfriado e bronquiolite viral',sub:'Resfriado: viral, autolimitado. Bronquiolite: VSR <2 anos',sx:['Resfriado: coriza, tosse, espirros, febre nos primeiros dias','Bronquiolite: sibilância + estertores, dificuldade alimentar, taquipneia'],pontos:[{q:'Resfriado: ATB indicado?',a:'Não'},{q:'Mel pode usar?',a:'≥1 ano'},{q:'Bronquiolite: agente?',a:'VSR'},{q:'Bronquiolite: tratamento?',a:'Suporte — lavagem nasal, hidratação, O2'},{q:'BZD ou corticoide na bronquiolite?',a:'Não'},{q:'Saturação de internação?',a:'<90–92%'}],alerta:'Bronquiolite: pico de gravidade no 3º–5º dia'},
   {id:'sib_rec',cat:'ped',title:'Sibilância recorrente no lactente',sub:'≥3 episódios em <5 anos — avaliar risco de asma',sx:['Chiado recorrente, tosse seca noturna','Piora com exercício, risos, IVAS','Melhora com broncodilatador'],pontos:[{q:'Definição?',a:'≥3 episódios de sibilância em <5 anos'},{q:'Sibilância unilateral sugere?',a:'Corpo estranho'},{q:'Baqueteamento digital sugere?',a:'Fibrose cística'},{q:'API positivo sugere?',a:'Maior risco de asma'},{q:'Tratamento persistente?',a:'ICS diário'}],alerta:'Sinais de alerta: desde nascimento, engasgos, falha de crescimento → investigar outra causa'},
+  {id:'criptorquidia',cat:'ped',title:'Criptorquidia',sub:'Testículo ausente da bolsa escrotal — mais comum em prematuros',sx:['Bolsa escrotal vazia uni ou bilateral','Testículo palpável ou não palpável','Pode associar hérnia inguinal'],pontos:[{q:'Principal exame?',a:'Clínico (exame físico)'},{q:'US é de rotina?',a:'Não — baixa acurácia'},{q:'Bilateral impalpável: pensar em?',a:'DDS (distúrbio do desenvolvimento sexual)'},{q:'Quando encaminhar cirurgia?',a:'Persistência após 6 meses'},{q:'Tratamento principal?',a:'Orquidopexia idealmente antes de 18 meses'},{q:'Principal complicação?',a:'Infertilidade e malignidade'},{q:'Testículo retrátil?',a:'Pode ser levado ao escroto — reflexo cremastérico'}],alerta:'Associação importante: criptorquidia + hipospádia → investigar DDS'},
+  {id:'escrotoa',cat:'ped',title:'Escroto agudo',sub:'Urgência urológica — torção testicular = emergência',sx:['Dor inguinoescrotal súbita ou progressiva','Edema e hiperemia escrotal','Náuseas, vômitos, febre'],pontos:[{q:'Principal emergência?',a:'Torção testicular'},{q:'Janela ideal cirúrgica?',a:'Até 6 horas'},{q:'Reflexo cremastérico na torção?',a:'Ausente'},{q:'Sinal de Prehn positivo sugere?',a:'Epididimite'},{q:'Fluxo Doppler na torção?',a:'Reduzido ou ausente'},{q:'Sinal do ponto azul?',a:'Torção do apêndice testicular'},{q:'Principal exame?',a:'US com Doppler'},{q:'Hidrocele transilumina?',a:'Sim'}],alerta:'Suspeita de torção = cirurgia imediata. Não esperar exames.'},
+  {id:'diarreia_ped',cat:'ped',title:'Diarreia aguda pediátrica',sub:'Principal tratamento: reidratação oral. Não suspender alimentação.',sx:['Fezes líquidas ≥3x/dia por até 14 dias','Diarreia viral: sem sangue, 5–7 dias','Disenteria (invasiva): sangue + muco + tenesmo + febre alta'],pontos:[{q:'Principal complicação?',a:'Desidratação'},{q:'Principal causa viral?',a:'Rotavírus'},{q:'Principal tratamento?',a:'Reidratação oral (SRO)'},{q:'Suspender alimentação?',a:'NÃO'},{q:'Zinco <6 meses?',a:'10 mg/dia por 10–14 dias'},{q:'Zinco ≥6 meses?',a:'20 mg/dia por 10–14 dias'},{q:'ATB de rotina?',a:'Não — indicar em casos específicos'},{q:'SHU: tríade?',a:'Anemia hemolítica + trombocitopenia + IRA'},{q:'Plano C: como?',a:'SF 0,9% ou RL 20 mL/kg EV rápido'}],alerta:'SHU associa com E. coli entero-hemorrágica (toxina Shiga)'},
+
+  // ── NEONATAL ───────────────────────────────────────────────────────────
+  {id:'ictericia',cat:'neo',title:'Hiperbilirrubinemia neonatal',sub:'Fisiológica = 2º–3º dia. Direta = sempre patológica.',sx:['Icterícia fisiológica: benigna, indireta, 2º–3º dia','Patológica: <24h, progressão rápida, bilirrubina direta elevada'],pontos:[{q:'Icterícia <24h?',a:'Patológica'},{q:'Tratamento principal?',a:'Fototerapia (bilirrubina indireta)'},{q:'Complicação grave?',a:'Kernicterus'},{q:'Incompatibilidade Rh?',a:'Mãe Rh negativo + bebê Rh positivo'},{q:'Kasai: melhor antes de?',a:'8 semanas'},{q:'Zona V de Kramer?',a:'Mãos e pés — grave'},{q:'Pico fisiológico no RN termo?',a:'3º–5º dia'},{q:'Banho de sol recomendado?',a:'Não'}],alerta:'Zonas de Kramer: progressão craniocaudal. Zona 5 (mãos e pés) = grave'},
+  {id:'descrn',cat:'neo',title:'Desconforto respiratório no RN',sub:'TTRN = mais comum. SDR = deficiência de surfactante.',sx:['Taquipneia >60 irpm, retrações, gemido','Batimento de asa nasal, cianose, apneia','Gasping = pré-parada respiratória'],pontos:[{q:'Principal causa?',a:'TTRN (autolimitada, melhora 24–72h)'},{q:'SDR: causa?',a:'Deficiência de surfactante (prematuro)'},{q:'RX SDR?',a:'Pulmão branco — quanto mais branco, mais grave'},{q:'Tratamento SDR grave?',a:'Surfactante exógeno + CPAP'},{q:'Hérnia diafragmática: pode usar máscara?',a:'Não'}],alerta:'Prevenção SDR: corticoide antenatal'},
+  {id:'rn_parto',cat:'neo',title:'Assistência ao RN em sala de parto',sub:'3 perguntas: Termo? Respira/chora? Bom tônus?',sx:['RN saudável: chora, bom tônus, FC >100, boa cor','Desconforto: gemência, tiragens, cianose, apneia, hipotonia','Má vitalidade: apneia, gasping, FC <100'],pontos:[{q:'Primeira coisa ao receber?',a:'Aquecer e secar'},{q:'Principal medida da reanimação?',a:'VPP (ventilação com pressão positiva)'},{q:'Quando iniciar VPP?',a:'Apneia, gasping ou FC <100 — em até 60s ("minuto de ouro")'},{q:'Massagem cardíaca quando?',a:'FC <60 após VPP efetiva'},{q:'Saturação no 1º minuto?',a:'60–65%'},{q:'Saturação no 5º minuto?',a:'80–85%'},{q:'Aspirar vias aéreas rotina?',a:'Não'},{q:'Clampeamento tardio?',a:'1–3 minutos'}],alerta:'APGAR NÃO define necessidade de reanimação'},
+  {id:'apgar',cat:'neo',title:'APGAR e semiologia do RN',sub:'A-P-G-A-R: Aparência, Pulso, Gesticulação, Atividade, Respiração',sx:['Avaliado no 1º e 5º minuto','Se <7: repetir a cada 5 min até 20 min','7–10: boa vitalidade / 4–6: asfixia moderada / 0–3: asfixia grave'],pontos:[{q:'Bossa serossanguinolenta vs cefalohematoma?',a:'Bossa: cruza suturas, edema. Cefalohematoma: NÃO cruza, sangue periosteal'},{q:'Leucocoria pensar em?',a:'Catarata congênita, retinoblastoma, glaucoma congênito'},{q:'Sialorreia excessiva RN?',a:'Atresia de esôfago / fístula traqueoesofágica'},{q:'Fontanela anterior fecha?',a:'9–18 meses'},{q:'Fontanela posterior fecha?',a:'3–6 meses'},{q:'Eritema tóxico?',a:'Benigno — lesões avermelhadas, pápula amarelada central'},{q:'Capurro serve para?',a:'Estimar IG em RN ≥29 semanas'}],alerta:'Implantação baixa da orelha: hélice abaixo da linha imaginária dos olhos'},
+
+  // ── RESPIRATÓRIO ───────────────────────────────────────────────────────
   {id:'asma',cat:'resp',title:'Asma na infância',sub:'Inflamação crônica — sibilância + tosse noturna + melhora com BD',sx:['Sibilância recorrente, tosse pior à noite','Dispneia, aperto torácico','Gatilhos: IVAS, exercício, fumaça, frio'],pontos:[{q:'Diagnóstico?',a:'Clínico'},{q:'Exame >6 anos?',a:'Espirometria'},{q:'Medicação controle base?',a:'Corticoide inalatório (ICS)'},{q:'Resgate?',a:'Salbutamol (SABA)'},{q:'SatO2 alvo na crise?',a:'92–95%'},{q:'Crise grave?',a:'Sulfato de magnésio'},{q:'Inalador <3 anos?',a:'Espaçador + máscara'}],alerta:'API: ≥3 episódios/ano + 1 critério maior OU 2 critérios menores'},
   {id:'pac',cat:'resp',title:'PAC — Pneumonia pediátrica',sub:'Principal sinal: taquipneia. Pneumococo = principal bactéria.',sx:['Febre, tosse, taquipneia','Desconforto respiratório, recusa alimentar','VSR <2 anos; Pneumococo em qualquer idade'],pontos:[{q:'FR em 2–11 meses?',a:'>50 irpm'},{q:'FR em 12–59 meses?',a:'>40 irpm'},{q:'RX é rotina?',a:'Não'},{q:'ATB 2m–5a?',a:'Amoxicilina 80–90 mg/kg/dia'},{q:'Sat para internação?',a:'<92%'},{q:'Melhor exame derrame?',a:'USG tórax'},{q:'Suspeita MRSA?',a:'Vancomicina'}],alerta:'Pneumonia afebril → pensar atípica (macrolídeo)'},
   {id:'coqueluche',cat:'resp',title:'Coqueluche',sub:'Bordetella pertussis — fase catarral = mais transmissível',sx:['Catarral: coriza, febre baixa (parece resfriado)','Paroxística: tosse em salva + guincho inspiratório','Vômitos pós-tosse, apneia em lactentes'],pontos:[{q:'ATB 1ª linha?',a:'Azitromicina'},{q:'Eritromicina evitar em?',a:'<1 mês — risco de estenose do piloro'},{q:'Hemograma?',a:'Leucocitose com linfocitose'},{q:'Hiperleucocitose pode causar?',a:'Hipertensão pulmonar grave'},{q:'Prevenção?',a:'Pentavalente + dTpa na gestante'},{q:'Lactente pode não ter guincho?',a:'Sim'}],alerta:'NÃO usar antitussígenos, corticoides ou broncodilatadores'},
+  {id:'bronq',cat:'resp',title:'Bronquiolite viral aguda (BVA)',sub:'VSR — lactente <2 anos — tratamento é suporte',sx:['Pródromos de IVAS','Tosse persistente','Taquipneia','Sibilância + estertores','Dificuldade alimentar'],pontos:[{q:'Principal agente?',a:'VSR'},{q:'Pico de gravidade?',a:'3º–5º dia'},{q:'Tratamento principal?',a:'Suporte (lavagem nasal, hidratação, O2)'},{q:'Corticoide rotina?',a:'Não'},{q:'Beta-2 agonista rotina?',a:'Não'},{q:'Saturação preocupante?',a:'<90–92%'},{q:'Diagnóstico é?',a:'Clínico'}],alerta:'Internação: SatO2 <90-92%, apneia, FR>60, recusa alimentar, <3 meses'},
+
+  // ── INFECÇÕES ──────────────────────────────────────────────────────────
   {id:'tb',cat:'infec',title:'Tuberculose infantil',sub:'Criança pega de adulto bacilífero — é paucibacilar',sx:['Tosse >3 semanas, febre vespertina >15 dias','Perda de peso, hiporexia, sudorese noturna','Falha de crescimento, linfonodomegalia hilar'],pontos:[{q:'Padrão-ouro?',a:'Cultura'},{q:'Exame rápido?',a:'GeneXpert (~2h)'},{q:'PPD reator?',a:'≥5 mm'},{q:'Tratamento <10 anos?',a:'RHZ 2 meses + RH 4 meses'},{q:'"Pneumonia" sem melhora ATB?',a:'Pensar TB'},{q:'BCG previne?',a:'Formas graves: miliar e meníngea'}],alerta:'Cavitação é mais comum em adolescentes'},
   {id:'torchs',cat:'infec',title:'Infecções congênitas (TORCHS)',sub:'Toxo, Sífilis, HIV, HepB, Zika, Rubéola, CMV, Herpes',sx:['Microcefalia, calcificações intracranianas','Coriorretinite, surdez','Hepatoesplenomegalia, petéquias, icterícia'],pontos:[{q:'Tríade toxoplasmose?',a:'Hidrocefalia + coriorretinite + calcificações difusas'},{q:'Tríade Gregg?',a:'Surdez + catarata + cardiopatia (rubéola)'},{q:'Principal causa surdez neurossensorial?',a:'CMV'},{q:'Calcificações CMV?',a:'Periventriculares'},{q:'HIV pode amamentar?',a:'Não'},{q:'Neurossífilis?',a:'Penicilina cristalina'},{q:'Baixa avidez IgG?',a:'Infecção recente'}],alerta:'Vacina rubéola é contraindicada na gestante'},
-  {id:'bronq',title:'Bronquiolite viral aguda (BVA)',cat:'resp',badge:'b-resp',
-  sub:'VSR — lactente <2 anos — tratamento é suporte',
-  sx:['Pródromos de IVAS','Tosse persistente','Taquipneia','Sibilância + estertores','Dificuldade alimentar'],
-  pontos:[
-    {q:'Principal agente?',a:'VSR'},
-    {q:'Pico de gravidade?',a:'3º–5º dia'},
-    {q:'Tratamento principal?',a:'Suporte (lavagem nasal, hidratação, O2)'},
-    {q:'Corticoide rotina?',a:'Não'},
-    {q:'Beta-2 agonista rotina?',a:'Não'},
-    {q:'Saturação preocupante?',a:'<90–92%'},
-    {q:'Diagnóstico é?',a:'Clínico'},
-  ],
-  alerta:'Internação: SatO2 <90-92%, apneia, FR>60, recusa alimentar, <3 meses'
-  },
+
+  // ── CIRÚRGICO/GI ───────────────────────────────────────────────────────
   {id:'piloro',cat:'gi',title:'Estenose hipertrófica do piloro',sub:'Lactente 2–8 semanas — vômito em jato não bilioso',sx:['Vômito em jato, não bilioso, 30–60 min após mamada','Fome imediatamente após vômito','Perda de peso, desidratação'],pontos:[{q:'Achado patognomônico?',a:'Oliva pilórica'},{q:'Principal exame?',a:'Ultrassonografia'},{q:'Distúrbio metabólico?',a:'Alcalose metabólica hipoclorêmica hipocalêmica'},{q:'Tratamento definitivo?',a:'Pilorotomia de Fredet-Ramstedt'},{q:'Principal diferencial?',a:'Refluxo GE (sem perda de peso, criança saciada)'}],alerta:'Estabilizar ANTES da cirurgia: jejum + hidratação EV + correção eletrolítica'},
   {id:'invag',cat:'gi',title:'Invaginação intestinal',sub:'Tríade clássica: dor + massa + geleia de morango',sx:['Dor abdominal intermitente (chora e flexiona pernas)','Fezes em geleia de morango/framboesa','Massa abdominal em salsicha'],pontos:[{q:'Faixa etária?',a:'<2 anos'},{q:'Principal exame?',a:'USG — sinal alvo (transversal)'},{q:'Tratamento inicial?',a:'Enema terapêutico (até 3x)'},{q:'>2 anos: pensar?',a:'Causa orgânica (tumor, pólipo)'},{q:'Quando operar?',a:'Peritonite, instabilidade, falha do enema'}],alerta:'Complicação temida: isquemia → perfuração → peritonite'},
-  {id:'ictericia',cat:'neo',title:'Hiperbilirrubinemia neonatal',sub:'Fisiológica = 2º–3º dia. Direta = sempre patológica.',sx:['Icterícia fisiológica: benigna, indireta, 2º–3º dia','Patológica: <24h, progressão rápida, bilirrubina direta elevada'],pontos:[{q:'Icterícia <24h?',a:'Patológica'},{q:'Tratamento principal?',a:'Fototerapia (bilirrubina indireta)'},{q:'Complicação grave?',a:'Kernicterus'},{q:'Incompatibilidade Rh?',a:'Mãe Rh negativo + bebê Rh positivo'},{q:'Kasai: melhor antes de?',a:'8 semanas'}],alerta:'Zonas de Kramer: progressão craniocaudal. Zona 5 (mãos e pés) = grave'},
-  {id:'descrn',cat:'neo',title:'Desconforto respiratório no RN',sub:'TTRN = mais comum. SDR = deficiência de surfactante.',sx:['Taquipneia >60 irpm, retrações, gemido','Batimento de asa nasal, cianose, apneia','Gasping = pré-parada respiratória'],pontos:[{q:'Principal causa?',a:'TTRN (autolimitada, melhora 24–72h)'},{q:'SDR: causa?',a:'Deficiência de surfactante (prematuro)'},{q:'RX SDR?',a:'Pulmão branco — quanto mais branco, mais grave'},{q:'Tratamento SDR grave?',a:'Surfactante exógeno + CPAP'},{q:'Hérnia diafragmática: pode usar máscara?',a:'Não'}],alerta:'Prevenção SDR: corticoide antenatal'},
+
+  // ── VACINAS ────────────────────────────────────────────────────────────
   {id:'vac',cat:'vac',title:'Imunizações na pediatria',sub:'Vacinas vivas contraindicadas em imunossuprimidos',sx:[],pontos:[{q:'BCG via/local?',a:'Intradérmica, braço direito'},{q:'RN <2 kg: BCG?',a:'Adiar'},{q:'Filho mãe HBsAg+?',a:'Vacina + HBIG primeiras 12h'},{q:'Rotavírus contraindicado em?',a:'Invaginação intestinal prévia'},{q:'Febre amarela contraindicação?',a:'Anafilaxia ao ovo'},{q:'Encefalopatia pós-pertussis?',a:'Trocar para DT'},{q:'Resfriado leve contraindica?',a:'Não'},{q:'HPV SUS?',a:'Quadrivalente (6, 11, 16, 18)'}],alerta:'BCG protege contra: TB miliar e meníngea (não previne TB pulmonar)'},
+
+  // ── ENDOCRINOLOGIA ─────────────────────────────────────────────────────
   {id:'dm',cat:'end',title:'Diabetes mellitus (DM1 e DM2)',sub:'Glicemia ≥126 ou HbA1c ≥6,5% = DM',sx:['Poliúria, polidipsia, polifagia, perda de peso','Acantose nigricans (resistência insulínica)','Fadiga, infecções recorrentes, visão turva'],pontos:[{q:'Pré-diabetes glicemia?',a:'100–125 mg/dL'},{q:'Pré-diabetes HbA1c?',a:'5,7–6,4%'},{q:'DM2 1ª linha?',a:'Metformina'},{q:'Mais hipoglicemia?',a:'Sulfonilureias e insulina'},{q:'Emagrece + protege coração/rim?',a:'SGLT2 e GLP-1'},{q:'Pioglitazona contraindicada em?',a:'Insuficiência cardíaca avançada'},{q:'DM1 tratamento?',a:'Insulinoterapia obrigatória'},{q:'Meta HbA1c?',a:'<7%'}],alerta:'CAD (DM1): hiperglicemia + acidose + cetose. SHH (DM2): hiperosmolar sem cetose'},
   {id:'comp_dm',cat:'end',title:'Complicações do diabetes',sub:'Micro: retina, rim, nervo. Macro: IAM, AVC, DAP.',sx:['Nefropatia: microalbuminúria assintomática → insuficiência renal','Retinopatia: visão borrada → cegueira','Neuropatia: formigamento, queimação, dormência','Pé diabético: úlceras, infecções, risco de amputação'],pontos:[{q:'Rastrear nefropatia DM1?',a:'Após 5 anos do diagnóstico'},{q:'Rastrear nefropatia DM2?',a:'Desde o diagnóstico'},{q:'Microalbuminúria?',a:'30–300 mg/24h'},{q:'Medicação renoprotetora?',a:'IECA/BRA + SGLT2'},{q:'Pé neuropático vs isquêmico?',a:'Neuropático: quente, pulsos presentes. Isquêmico: frio, pulsos diminuídos'},{q:'Retinopatia: tratamento?',a:'Fotocoagulação laser + anti-VEGF'}],alerta:'Avaliar os pés em TODA consulta do diabético'},
   {id:'hipoglicemia',cat:'end',title:'Hipoglicemia e cetoacidose (CAD)',sub:'CAD = DM1. SHH = DM2. Hipoglicemia = emergência imediata.',sx:['Hipoglicemia: sudorese, tremores, taquicardia, confusão, convulsão','CAD: hálito cetônico, Kussmaul, dor abdominal, vômitos','SHH: hiperglicemia grave, desidratação, rebaixamento consciência'],pontos:[{q:'Hipoglicemia consciente?',a:'Carboidrato oral'},{q:'Hipoglicemia inconsciente?',a:'Glicose EV + glucagon'},{q:'CAD: tratamento?',a:'SF 0,9% + insulina regular EV + reposição de K+'},{q:'SHH: diferença da CAD?',a:'Sem cetose significativa'},{q:'Fator desencadeante mais comum?',a:'Infecção / suspensão da insulina'}],alerta:'CAD: corrigir K+ antes da insulina se K+ <3,5'},
@@ -131,21 +178,299 @@ const data=[
   {id:'dislipi',cat:'end',title:'Dislipidemia',sub:'Geralmente assintomática — rastrear com lipidograma',sx:['Hipercolesterolemia: xantomas tendinosos, xantelasma, arco corneano','Hipertrigliceridemia: xantomas eruptivos, risco de pancreatite','Geralmente assintomática, descoberta em exames de rotina'],pontos:[{q:'LDL diagnóstico?',a:'≥160 mg/dL'},{q:'TG diagnóstico?',a:'≥150 mg/dL'},{q:'TG >500: risco de?',a:'Pancreatite aguda'},{q:'Fórmula de Friedewald?',a:'LDL = CT – HDL – TG/5 (só se TG <400)'},{q:'1ª linha?',a:'Estatinas'},{q:'TG alto: tratamento?',a:'Fibratos + ômega-3 + restrição de álcool'},{q:'Meta LDL muito alto risco?',a:'<50 mg/dL'}],alerta:'Estatinas: vigilância de mialgia e hepatotoxicidade'},
   {id:'menopausa',cat:'end',title:'Climatério e menopausa',sub:'Menopausa = ausência de menstruação por 12 meses consecutivos',sx:['Fogachos (ondas de calor) — sintoma mais clássico','Sudorese noturna, insônia, irritabilidade','Secura vaginal, dispareunia, ITU recorrente'],pontos:[{q:'FSH/LH/Estradiol na menopausa?',a:'FSH alto, LH alto, estradiol baixo'},{q:'TRH: indicações?',a:'Fogachos intensos, sintomas genitourinários, qualidade de vida'},{q:'Com útero: TRH?',a:'Estrógeno + progesterona (proteger endométrio)'},{q:'Sem útero: TRH?',a:'Estrógeno isolado'},{q:'Contraindicação absoluta?',a:'Câncer de mama, TEV prévio, AVC prévio, hepatopatia grave'},{q:'Menopausa precoce?',a:'Amenorreia antes dos 40 anos — FSH persistentemente elevado'}],alerta:'Janela de oportunidade: iniciar TRH antes dos 60 anos ou até 10 anos após menopausa'},
   {id:'hipogonadismo',cat:'end',title:'Hipogonadismo masculino',sub:'Primário (testículo) vs secundário (hipotálamo/hipófise)',sx:['Adolescente: puberdade atrasada, ginecomastia, micropênis','Adulto: redução libido, disfunção erétil, fadiga, perda de massa muscular','Osteoporose, aumento gordura abdominal'],pontos:[{q:'Primário (hipergonadotrófico)?',a:'Testosterona baixa + LH/FSH altos (problema no testículo)'},{q:'Secundário (hipogonadotrófico)?',a:'Testosterona baixa + LH/FSH baixos (problema no hipotálamo/hipófise)'},{q:'Síndrome de Kallmann?',a:'Hipogonadismo + anosmia/hiposmia'},{q:'Testosterona: quando dosar?',a:'Manhã (7h–10h), confirmar com 2 exames'},{q:'Quer fertilidade?',a:'Não usar testosterona isolada — usar HCG/FSH/gonadotrofinas'},{q:'Contraindicação reposição?',a:'Câncer de próstata, mama masculino'}],alerta:'Testosterona exógena pode causar infertilidade — sempre avaliar desejo reprodutivo'},
-  {id:'obesidade',title:'Obesidade e síndrome metabólica',cat:'end',badge:'b-end',
-  sub:'IMC ≥30 = obeso; ≥40 = grau 3',
-  sx:['Ganho de peso, circunferência abdominal aumentada','Apneia do sono, dor articular','Roncos, fadiga, dispneia'],
-  pontos:[
-    {q:'Síndrome metabólica diagnóstico?',a:'Circunferência abdominal + 2 critérios (PA, glicemia, TG, HDL)'},
-    {q:'Gordura mais perigosa?',a:'Visceral'},
-    {q:'Bariátrica: critérios?',a:'IMC ≥40 ou ≥35 + comorbidades'},
-    {q:'Qual bloqueia absorção de gordura?',a:'Orlistate (efeito: esteatorreia)'},
-    {q:'Maior perda de peso?',a:'GLP-1 (liraglutida/semaglutida) e tirzepatida'},
-    {q:'Contraindicação GLP-1?',a:'Carcinoma medular de tireoide / MEN 2'},
-    {q:'Sibutramina contraindicada em?',a:'Doença cardiovascular / HAS descompensada'},
-  ],
-  alerta:'Circunferência abdominal: mulher <80 cm, homem <90 cm'
-  },
+  {id:'obesidade',cat:'end',title:'Obesidade e síndrome metabólica',sub:'IMC ≥30 = obeso; ≥40 = grau 3',sx:['Ganho de peso, circunferência abdominal aumentada','Apneia do sono, dor articular','Roncos, fadiga, dispneia'],pontos:[{q:'Síndrome metabólica diagnóstico?',a:'Circunferência abdominal + 2 critérios (PA, glicemia, TG, HDL)'},{q:'Gordura mais perigosa?',a:'Visceral'},{q:'Bariátrica: critérios?',a:'IMC ≥40 ou ≥35 + comorbidades'},{q:'Qual bloqueia absorção de gordura?',a:'Orlistate (efeito: esteatorreia)'},{q:'Maior perda de peso?',a:'GLP-1 (liraglutida/semaglutida) e tirzepatida'},{q:'Contraindicação GLP-1?',a:'Carcinoma medular de tireoide / MEN 2'},{q:'Sibutramina contraindicada em?',a:'Doença cardiovascular / HAS descompensada'}],alerta:'Circunferência abdominal: mulher <80 cm, homem <90 cm'},
   {id:'amenorreia',cat:'end',title:'Amenorreia e SOP',sub:'Sempre excluir gravidez primeiro',sx:['Primária: sem menstruação até 15–16 anos','Secundária: ≥3 ciclos ou ≥90 dias sem menstruar','SOP: hirsutismo, acne, obesidade, irregularidade menstrual'],pontos:[{q:'1ª causa a excluir?',a:'Gestação (beta-hCG)'},{q:'Hipogonadismo hipogonadotrófico?',a:'FSH/LH baixos (problema central)'},{q:'Hipogonadismo hipergonadotrófico?',a:'FSH/LH altos (falência ovariana)'},{q:'Critérios SOP?',a:'2 de 3: oligomenorreia, hiperandrogenismo, USG sugestivo'},{q:'Amenorreia hipotalâmica funcional?',a:'Baixo peso + exercício excessivo + estresse'},{q:'Clitoromegalia sugere?',a:'Excesso androgênico importante — investigar'}],alerta:'SOP: tratamento inclui perda de peso + exercício + anticoncepcional + controle metabólico'},
+
+  // ── ADOLESCENTE ────────────────────────────────────────────────────────
+  {id:'adol_consulta',cat:'adol',title:'Consulta do adolescente',sub:'3 momentos: família → adolescente sozinho → retorno família',sx:['Confidencialidade, privacidade e autonomia','1º momento: antecedentes + queixa + vacinas com família','2º momento: temas sigilosos com adolescente sozinho','3º momento: retorno aos responsáveis'],pontos:[{q:'Sigilo deve quebrar quando?',a:'Violência, abuso, ideação suicida, gravidez, HIV, risco a terceiros'},{q:'Sigilo mantido em?',a:'Namoro, iniciação sexual, orientação sexual, uso experimental sem dependência'},{q:'Ferramenta da anamnese?',a:'HEEADSSSS (Habitação, Educação, Alimentação, Atividades, Drogas, Sexualidade, Suicídio, Segurança, Sono)'},{q:'Exceções ao 2º momento sozinho?',a:'Deficiência intelectual, distúrbio psiquiátrico grave, adolescente não quer'},{q:'Violência sexual <14 anos?',a:'Estupro de vulnerável — notificação obrigatória mesmo com consentimento'},{q:'Profilaxia HIV?',a:'Iniciar até 72h, manter 4 semanas'}],alerta:'Código de Ética: médico NÃO deve revelar segredo do menor com discernimento — EXCETO risco/dano'},
+  {id:'puberdade',cat:'adol',title:'Puberdade e desenvolvimento sexual',sub:'Meninas: telarca aos 8–13a. Meninos: aumento testicular 9–14a.',sx:['Meninos: testículo → pelos púbicos → crescimento peniano → mudança da voz','Meninas: telarca → pubarca → pelos axilares → menarca','Estirão puberal: meninas pico 11–12a, meninos pico 13–14a'],pontos:[{q:'Primeiro sinal puberal feminino?',a:'Telarca (broto mamário)'},{q:'Primeiro sinal puberal masculino?',a:'Aumento testicular ≥4 mL'},{q:'Puberdade precoce meninas?',a:'Antes dos 8 anos'},{q:'Puberdade precoce meninos?',a:'Antes dos 9 anos'},{q:'Ginecomastia puberal?',a:'Normal — >50% dos meninos, some em até 3 anos'},{q:'Menarca: quando?',a:'2–5 anos após telarca, média 12a4m'},{q:'Idade óssea: exame?',a:'RX de mão e punho'},{q:'GH liberado principalmente?',a:'Durante o sono (22h–6h)'}],alerta:'Ciclos menstruais iniciais irregulares por até 2–3 anos são fisiológicos'},
+
+  // ── PUERICULTURA ───────────────────────────────────────────────────────
+  {id:'puericultura_geral',cat:'puericultura',title:'Puericultura — crescimento e desenvolvimento',sub:'Instrumento mais importante: Caderneta da Criança',sx:['Acompanhamento mensal no 1º ano, depois semestral/anual','Avaliação de peso, altura, perímetro cefálico, vacinação','Identificação precoce de fatores de risco orgânicos, familiares e sociais'],pontos:[{q:'Ganho PC 0–3 meses?',a:'2 cm/mês'},{q:'Ganho PC 3–6 meses?',a:'1 cm/mês'},{q:'Ganho PC 6–12 meses?',a:'0,5 cm/mês'},{q:'Ganho peso 1º trimestre?',a:'20–30 g/dia'},{q:'Fórmula peso 3–12 meses?',a:'(N+9)/2 kg'},{q:'Crescimento 1º ano?',a:'20–25 cm'},{q:'Crescimento 2º ano?',a:'10–12 cm'},{q:'Após 3º ano?',a:'5–6 cm/ano'}],alerta:'FADVP: Febre, Alimentação, Diurese, Vacina, Prostração — perguntas essenciais na consulta pediátrica'},
+  {id:'disturbios_gi_func',cat:'puericultura',title:'Distúrbios GI funcionais do lactente',sub:'Cólica, disquesia, regurgitação — Roma IV',sx:['Cólica: choro ≥3h/dia, ≥3 dias/semana, <5 meses','Disquesia: esforço evacuatório >10 min, fezes pastosas, <9 meses','Regurgitação: ≥2x/dia, ≥3 semanas, 3 sem–12 meses'],pontos:[{q:'Cólica: choro melhora após evacuação?',a:'Não (diferente da disquesia)'},{q:'Disquesia: usar laxante?',a:'NÃO — manipular ânus NÃO'},{q:'Regurgitação: medicação?',a:'Geralmente não precisa — mantém AME'},{q:'Cólica: tratamento?',a:'Orientar pais, medidas comportamentais, AME'},{q:'Regurgitação melhora quando?',a:'Espontaneamente aos 12 meses'},{q:'Lactobacillus reuteri?',a:'Ajuda em cólica em RN em AME'}],alerta:'Todos são diagnósticos de exclusão — sinais de alarme (failure to thrive, sangue nas fezes) afastam diagnóstico funcional'},
+
+  // ── REUMATOLOGIA PED. ──────────────────────────────────────────────────
+  {id:'febre_reumatica',cat:'reuma',title:'Febre reumática',sub:'Streptococcus pyogenes (EBGA) → 5–15 anos',sx:['Artrite migratória de grandes articulações (mais comum)','Cardite: sopros, taquicardia desproporcional, ICC (mais grave)','Coreia de Sydenham: movimentos involuntários, instabilidade emocional','Eritema marginado e nódulos subcutâneos'],pontos:[{q:'Critérios maiores de Jones?',a:'Poliartrite, Cardite, Coreia, Eritema marginado, Nódulos subcutâneos'},{q:'Critérios menores?',a:'Febre, artralgia, PCR/VHS elevados, PR prolongado'},{q:'Diagnóstico 1º surto?',a:'2 maiores OU 1 maior + 2 menores + evidência estreptocócica'},{q:'Evidência estreptocócica?',a:'ASLO elevado, Anti-DNase B, cultura, teste rápido'},{q:'Melhor exame para cardite?',a:'Ecocardiograma com Doppler'},{q:'Lesão aguda mais comum?',a:'Regurgitação mitral'},{q:'Lesão crônica mais comum?',a:'Estenose mitral'},{q:'ATB erradicação?',a:'Penicilina benzatina IM (<27kg: 600.000 UI / ≥27kg: 1.200.000 UI)'},{q:'Profilaxia secundária?',a:'Penicilina benzatina periódica para evitar recidivas'},{q:'Coreia: desaparece quando?',a:'Durante o sono'}],alerta:'Principal prevenção: tratar amigdalite estreptocócica. Coreia pode durar meses.'},
+{id:'nef_nefrotica',cat:'nefro',
+title:'Síndrome Nefrótica',
+sub:'Proteinúria >3,5g/24h + hipoalbuminemia + edema + hiperlipidemia',
+clinica:['Edema gravitacional (MMII), anasarca, ascite','Espuma na urina (proteinúria intensa)','Hiperlipidemia, lipidúria','Trombose venosa (perda de anticoagulantes)'],
+ef:['Edema com cacifo MMII, periorbitário matinal','Ascite, derrame pleural nos casos graves','PA variável (pode ter HAS)','Xantomas se hiperlipidemia crônica'],
+lab:['Proteinúria >3,5 g/24h (ou relação prot/creat >3,5)','Albumina sérica <3,0 g/dL','Colesterol total >200 mg/dL, TG elevado','Complemento C3/C4: normal (exceto GNMP e nefropatia lúpica)','Urina: lipidúria, cilindros graxos'],
+img:['USG renal: rins aumentados (fase inicial) ou normais','Biópsia renal: indicada na maioria dos casos em adultos'],
+conduta:['Restrição de sódio e proteína','Diurético de alça (furosemida) para edema','IECA/BRA: reduz proteinúria e é renoprotetor','Estatina para hiperlipidemia','Anticoagulação se trombose (albumina <2 g/dL = alto risco)','Corticoide: 1ª linha em lesões mínimas','Imunossupressão específica conforme etiologia (biópsia)'],
+pontos:[{q:'Proteinúria diagnóstica?',a:'>3,5 g/24h'},{q:'Principal complicação infecciosa?',a:'Pneumococo (perda de IgG — vacinar!)'},{q:'Por que trombose?',a:'Perda urinária de antitrombina III e proteínas C e S'},{q:'Complemento baixo em qual nefrótica?',a:'GNMP e nefropatia lúpica'},{q:'Lesões mínimas: 1ª linha?',a:'Prednisona 1 mg/kg/dia'}],
+alerta:'Perda de IgG → infecções. Perda de ATIII → trombose. Perda de TBG → hipotireoidismo laboratorial.'},
+
+{id:'nef_nefritica',cat:'nefro',
+title:'Síndrome Nefrítica',
+sub:'Hematúria + oligúria + HAS + edema + proteinúria moderada',
+clinica:['Hematúria macroscópica (urina coca-cola/marrom)','Edema periorbitário matinal','Hipertensão arterial','Oligúria'],
+ef:['HAS (pode ser grave)','Edema periorbitário e MMII','Ausculta cardíaca: galope S3 se sobrecarga hídrica','Fundo de olho se HAS grave'],
+lab:['Hematúria dismórfica + cilindros hemáticos no EAS (patognomônico)','Proteinúria <3,5 g/24h (moderada)','Creatinina elevada (lesão glomerular)','Complemento C3 baixo: GNDA, GNMP, nefrite lúpica','ASLO elevado (pós-estreptocócica)','Anti-DNA nativo (lúpus), ANCA (vasculites)'],
+img:['USG renal: rins aumentados e hiperecoicos','Biópsia: indicada quando causa não é clara'],
+conduta:['Restrição hídrica e de sódio','Anti-hipertensivos (IECA ou BRA)','Diurético de alça se sobrecarga','Tratar causa de base','Diálise se anúria/hipercalemia/uremia grave'],
+pontos:[{q:'Achado patognomônico?',a:'Cilindro hemático no EAS'},{q:'C3 baixo + C4 normal?',a:'GNDA pós-estreptocócica'},{q:'C3 e C4 baixos?',a:'Nefrite lúpica e GNMP'},{q:'Hematúria dismórfica indica?',a:'Origem glomerular'}],
+alerta:'Cilindro hemático = glomerulonefrite até prova em contrário'},
+
+{id:'nef_gnda',cat:'nefro',
+title:'GNDA Pós-Estreptocócica',
+sub:'Síndrome nefrítica 1–3 sem pós-faringite ou 3–6 sem pós-piodermite',
+clinica:['Hematúria macroscópica (urina coca-cola)','Edema periorbitário matinal','HAS','Oligúria, diminuição do volume urinário'],
+ef:['HAS — pode ser grave e causar encefalopatia','Edema periorbitário e MMII','Ausculta: crepitações se edema pulmonar','Criança entre 5–15 anos tipicamente'],
+lab:['EAS: hematúria dismórfica, cilindros hemáticos (patognomônico), proteinúria leve','C3 ↓↓, C4 normal (consumo via via alternativa)','ASLO elevado (faringite) ou Anti-DNase B (piodermite)','Creatinina elevada transitoriamente','Ureia elevada','Hemograma: anemia dilucional'],
+img:['USG renal: rins aumentados, hiperecoicos — geralmente não muda conduta','Biópsia: raramente necessária em criança com quadro típico'],
+conduta:['Internação se HAS grave, oligúria, encefalopatia','Restrição hídrica e de sódio','Furosemida EV para edema e HAS','Anti-hipertensivo: nifedipino ou hidralazina (crise)','Penicilina benzatina IM (erradicar EBGA — não muda o curso da glomerulonefrite)','Diálise se anúria, hipercalemia, uremia ou encefalopatia refratária'],
+pontos:[{q:'Período de latência faringite?',a:'1–3 semanas'},{q:'Período de latência piodermite?',a:'3–6 semanas'},{q:'Complemento?',a:'C3 baixo, C4 normal'},{q:'Normaliza C3 em?',a:'6–8 semanas'},{q:'ATB muda o curso?',a:'Não — apenas erradica o estreptococo'},{q:'Prognóstico em crianças?',a:'Excelente — 95% de recuperação completa'}],
+alerta:'HAS grave pode causar encefalopatia hipertensiva — emergência. C3 que não normaliza em 8 semanas → investigar outra causa.'},
+
+{id:'nef_lesmin',cat:'nefro',
+title:'Doença de Lesões Mínimas',
+sub:'Principal causa de síndrome nefrótica em crianças (<15 anos)',
+clinica:['Edema intenso, anasarca','Espuma na urina','Geralmente SEM hematúria e SEM HAS (diferencia de nefrítica)','Início súbito após IVAS ou vacinação'],
+ef:['Edema maciço com cacifo, periorbitário','Ascite, hidrotórax nos casos graves','PA geralmente normal','Sem hematúria macroscópica'],
+lab:['Proteinúria maciça >3,5 g/24h (seletiva — albuminúria pura)','Albumina sérica muito baixa (<2 g/dL)','Complemento C3/C4 NORMAL','Colesterol e TG elevados','EAS: sem hematúria, sem cilindros hemáticos','ASLO negativo'],
+img:['USG renal: normal','Biópsia: microscopia óptica normal. Microscopia eletrônica: fusão de podócitos (característico)','Em crianças <15 anos com quadro típico, biópsia pode ser dispensada — tratar empiricamente'],
+conduta:['Corticoide: prednisona 1–2 mg/kg/dia (60 mg/m²) por 4–6 semanas — resposta excelente','Manter até remissão completa (proteinúria <0,3 g/24h)','Diurético de alça para edema intenso','IECA/BRA adjuvante','Recaída: repetir prednisona','Corticorresistente (>8 semanas sem resposta): ciclosporina ou tacrolimus'],
+pontos:[{q:'Principal faixa etária?',a:'Crianças — pico 2–6 anos'},{q:'Microscopia óptica?',a:'Normal'},{q:'Microscopia eletrônica?',a:'Fusão de podócitos'},{q:'Proteinúria é?',a:'Seletiva (albuminúria pura)'},{q:'Complemento?',a:'Normal'},{q:'Resposta ao corticoide?',a:'Excelente (>90% em crianças)'},{q:'Recorrência?',a:'Alta — pode ser corticodependente'}],
+alerta:'Biópsia dispensável em criança <15 anos com quadro típico. Tratar com prednisona.'},
+
+{id:'nef_iga',cat:'nefro',
+title:'Nefropatia por IgA (Berger)',
+sub:'GN mesangial por IgA — hematúria macroscópica episódica pós-IVAS',
+clinica:['Hematúria macroscópica 24–72h após IVAS (sinfaringítica)','Hematúria microscópica persistente nos intervalos','Proteinúria variável (<1 g/24h nos leves)','HAS em casos avançados'],
+ef:['Geralmente exame físico normal','HAS se evolução para DRC','Edema discreto se proteinúria significativa','Jovem adulto do sexo masculino tipicamente'],
+lab:['EAS: hematúria dismórfica + cilindros hemáticos','Proteinúria leve a moderada','IgA sérica elevada em 50% dos casos (não é diagnóstico)','Complemento C3/C4 NORMAL','Creatinina: normal ou levemente elevada','Biópsia renal: depósito mesangial de IgA (diagnóstico definitivo)'],
+img:['USG renal: normal nos estágios iniciais','Biópsia renal: obrigatória para confirmação diagnóstica'],
+conduta:['Proteinúria <1g/24h + função renal normal: observação + IECA/BRA','Proteinúria >1g/24h: IECA/BRA + corticoide (prednisona)','Proteinúria >3g/24h ou crescênticas: imunossupressão agressiva','Controle rigoroso da PA (<125/75 mmHg)','Evitar AINEs','Pior prognóstico: proteinúria persistente >1g, HAS, creatinina elevada'],
+pontos:[{q:'Diagnóstico definitivo?',a:'Biópsia — depósito mesangial de IgA'},{q:'Hematúria sinfaringítica vs GNDA?',a:'IgA: 24–72h após IVAS. GNDA: 1–3 semanas'},{q:'Complemento?',a:'Normal'},{q:'Tratamento 1ª linha?',a:'IECA/BRA + controle PA'},{q:'Corticoide quando?',a:'Proteinúria >1g/24h apesar de IECA/BRA'},{q:'Recorrência no transplante?',a:'Alta'}],
+alerta:'Intervalo 24–72h diferencia de GNDA (1–3 semanas). Complemento é normal na IgA.'},
+
+{id:'nef_lra',cat:'nefro',
+title:'Lesão Renal Aguda (LRA)',
+sub:'Creatinina ≥1,5× basal em 7 dias OU ↑≥0,3 mg/dL em 48h OU débito urinário <0,5 mL/kg/h por 6h',
+clinica:['Oligúria ou anúria','Edema, congestão','Encefalopatia urêmica (confusão, asterixis)','Náuseas, vômitos, soluço (uremia)'],
+ef:['Avaliar volemia: turgência jugular, edema, mucosas','Pressão arterial: hipotensão (pré-renal) ou HAS (parenquimatosa)','Bexiga palpável (pós-renal)','Asterixis, confusão (encefalopatia)'],
+lab:['Creatinina e ureia seriadas','EAS: cilindros granulosos (NTA), hemáticos (glomerular), leucocitários (nefrite intersticial)','Sódio urinário: <20 mEq/L (pré-renal) ou >40 mEq/L (NTA)','FeNa: <1% (pré-renal) ou >2% (NTA)','Potássio: hipercalemia (emergência)','Gasometria: acidose metabólica','Hemograma, coagulograma','Ureia: >100 mg/dL = uremia grave'],
+img:['USG renal com Doppler: 1º exame — avaliar obstrução (pós-renal), tamanho e resistência vascular','TC abdome: se suspeita de causa obstrutiva não definida pela USG','Biópsia: se causa parenquimatosa não esclarecida'],
+conduta:['Pré-renal: expansão volêmica com SF 0,9% (500 mL rápido) — retirar nefrotóxicos','NTA: suporte hídrico, suspender nefrotóxicos, manejo de complicações','Pós-renal: desobstrução urgente (cateter, nefrostomia)','Hipercalemia: gluconato de Ca²⁺ EV + insulina + glicose + bicarbonato + kayexalate + diálise','Acidose grave: bicarbonato EV','Indicações de DIÁLISE: Anúria, Uremia sintomática, Hipercalemia refratária, Acidose refratária, Sobrecarga hídrica refratária (AAKIS mnemônico)'],
+pontos:[{q:'FeNa pré-renal?',a:'<1%'},{q:'FeNa NTA?',a:'>2%'},{q:'Sódio urinário pré-renal?',a:'<20 mEq/L'},{q:'Cilindros granulosos?',a:'NTA (isquemia ou nefrotóxico)'},{q:'Indicações de diálise de urgência?',a:'Anúria, Uremia, hipercalemia, Acidose, Sobrecarga hídrica refratárias'},{q:'Causa mais comum LRA hospitalar?',a:'NTA (isquemia, sepse, nefrotóxicos)'}],
+alerta:'Hipercalemia com alterações ao ECG = emergência. Gluconato de Ca²⁺ EV imediato.'},
+
+{id:'nef_itu',cat:'nefro',
+title:'Infecção do Trato Urinário (ITU)',
+sub:'Cistite: baixa. Pielonefrite: alta. E. coli = 80% dos casos.',
+clinica:['Cistite: disúria, polaciúria, urgência, urina turva','Pielonefrite: febre alta, calafrios, dor lombar, náuseas','Bacteriúria assintomática: sem sintomas'],
+ef:['Cistite: punho-percussão lombar negativa, dor suprapúbica à palpação','Pielonefrite: punho-percussão lombar positiva (Giordano+), febre','Sepse urinária: hipotensão, taquicardia, confusão'],
+lab:['EAS: leucocitúria (>5 leuc/campo), nitrito positivo, esterase leucocitária','Urocultura: padrão-ouro (>10⁵ UFC/mL)','Hemograma: leucocitose com desvio à esquerda (pielonefrite)','PCR e hemocultura se pielonefrite grave ou sepse','Creatinina se suspeita de comprometimento renal'],
+img:['USG renal: se pielonefrite complicada, febre >72h sem melhora, suspeita de abscesso','TC: pielonefrite complicada, abscesso, litíase associada','Uretrocistografia: crianças com ITU recorrente (investigar RVU)'],
+conduta:['Cistite não complicada: nitrofurantoína 5–7 dias OU fosfomicina dose única OU SMX-TMP 3 dias','Pielonefrite leve-moderada: ciprofloxacino VO 7–14 dias','Pielonefrite grave/sepse: ceftriaxona EV — internar','Gestante: sempre tratar, incluindo bacteriúria assintomática (nitrofurantoína ou amoxicilina-clavulanato)','ITU recorrente: profilaxia com nitrofurantoína 50 mg/noite','Bacteriúria assintomática: tratar apenas gestante e pré-cirurgia urológica'],
+pontos:[{q:'Padrão-ouro?',a:'Urocultura'},{q:'Bacteriúria assintomática: tratar?',a:'Apenas gestante e pré-cirurgia urológica'},{q:'ITU em gestante: 1ª linha?',a:'Nitrofurantoína (evitar no 3º trim) ou amoxicilina-clavulanato'},{q:'Pielonefrite grave: ATB?',a:'Ceftriaxona EV'},{q:'ITU masculina: sempre pensar?',a:'Prostatite — tratar 14–21 dias com fluoroquinolona'}],
+alerta:'Gestante com bacteriúria assintomática DEVE ser tratada — risco de pielonefrite e parto prematuro.'},
+
+{id:'nef_na',cat:'nefro',
+title:'Distúrbios do Sódio',
+sub:'Sódio normal: 135–145 mEq/L',
+clinica:['Hiponatremia (<135): cefaleia, náuseas, confusão, convulsão (grave <120)','Hipernatremia (>145): sede intensa, letargia, convulsão (grave >160)','Velocidade de instalação determina gravidade dos sintomas'],
+ef:['Hiponatremia: avaliar volemia (hipovolêmica, euvolêmica, hipervolêmica)','Hipernatremia: mucosas secas, turgor reduzido, hipertonia muscular','Neurológico: confusão, letargia, convulsão'],
+lab:['Sódio sérico e urinário','Osmolalidade sérica e urinária','Sódio urinário >20: perda renal. <20: extra-renal','SIADH: Na sérico baixo, osmolaridade sérica baixa, osmolaridade urinária alta, sódio urinário >40','Urina 24h se necessário'],
+img:['USG ou TC crânio se encefalopatia ou suspeita de edema cerebral'],
+conduta:['Hiponatremia crônica (>48h): corrigir DEVAGAR — máx 8–10 mEq/L/dia (risco de mielinólise pontina)','Hiponatremia aguda sintomática grave: NaCl 3% EV — pode corrigir mais rápido (1–2 mEq/L/h até 5 mEq em 1ª hora)','SIADH: restrição hídrica 800–1000 mL/dia ± tolvaptana (vaptanos)','Hipovolêmica: repor volume com SF 0,9%','Hipervolêmica: restrição hídrica + diurético + tratar causa base','Hipernatremia: repor água livre — SF 0,45% ou SG 5% — corrigir devagar (máx 10 mEq/L/dia)'],
+pontos:[{q:'Risco de corrigir rápido demais hiponatremia?',a:'Mielinólise pontina central'},{q:'SIADH: osmolaridade?',a:'Sérica baixa + urinária alta'},{q:'Hiponatremia + Na urinário <20?',a:'Perda extra-renal (diarreia, vômito, 3º espaço)'},{q:'Hiponatremia + Na urinário >40 + euvolemia?',a:'SIADH'},{q:'Velocidade máxima de correção?',a:'8–10 mEq/L/dia (crônica)'}],
+alerta:'Corrigir hiponatremia crônica rápido demais = mielinólise pontina. Corrigir devagar!'},
+
+{id:'nef_k',cat:'nefro',
+title:'Distúrbios do Potássio',
+sub:'Potássio normal: 3,5–5,0 mEq/L',
+clinica:['Hipocalemia (<3,5): fraqueza muscular, câimbras, arritmias, obstipação','Hipercalemia (>5,5): parestesias, fraqueza, arritmias graves (risco de FV)','K+ <2,5 ou >6,5 = emergência'],
+ef:['Hipocalemia: diminuição de reflexos, íleo paralítico, fraqueza proximal','Hipercalemia: arritmias ao auscultar — solicitar ECG imediatamente','Avaliar causas: medicamentos, débito urinário, diarreia, vômito'],
+lab:['Potássio sérico','ECG: OBRIGATÓRIO em qualquer distúrbio do K+','Hipocalemia ECG: achatamento de onda T, onda U, QT longo','Hipercalemia ECG: onda T apiculada (precoce), alargamento QRS, onda P ausente, ritmo sinusoidal (tardio)','Gasometria: acidose → K+ sai da célula (hipercalemia). Alcalose → K+ entra na célula (hipocalemia)','Magnésio sérico (hipomagnesemia causa hipocalemia refratária)'],
+img:['ECG é o "exame de imagem" mais importante aqui'],
+conduta:['Hipocalemia leve (3,0–3,5): KCl VO','Hipocalemia moderada-grave (<3,0) ou sintomática: KCl EV (máx 10–20 mEq/h em veia periférica)','Hipocalemia refratária: checar e repor magnésio','Hipercalemia com ECG alterado (EMERGÊNCIA): 1) Gluconato de Ca²⁺ 10% EV (estabiliza membrana — efeito em minutos) → 2) Insulina + glicose (faz K+ entrar na célula) → 3) Bicarbonato EV → 4) Kayexalate/patiromer (remove K+) → 5) Diálise se refratária','Hipercalemia sem alteração ECG: kayexalate VO + diurético de alça + dieta'],
+pontos:[{q:'Hipercalemia: 1ª medida com ECG alterado?',a:'Gluconato de Ca²⁺ EV — estabiliza membrana'},{q:'K+ e pH: relação?',a:'Acidose → hipercalemia. Alcalose → hipocalemia'},{q:'Hipocalemia refratária: pensar?',a:'Hipomagnesemia — repor Mg²⁺'},{q:'Onda T apiculada?',a:'Hipercalemia precoce'},{q:'Onda U proeminente?',a:'Hipocalemia'}],
+alerta:'Hipercalemia com ECG alterado = emergência. Gluconato de Ca²⁺ EV imediato — NÃO aguardar diálise.'},
+
+{id:'nef_ca',cat:'nefro',
+title:'Distúrbios do Cálcio',
+sub:'Cálcio normal: 8,5–10,5 mg/dL (ionizado: 1,15–1,35 mmol/L)',
+clinica:['Hipocalcemia (<8,5): parestesias periorais e extremidades, tetania, convulsão, QT longo','Hipercalcemia (>10,5): "stones, bones, groans, psychic moans" (cálculos, dor óssea, constipação, confusão)','Hipercalcemia grave (>14): coma, insuficiência renal, arritmia'],
+ef:['Hipocalcemia: Chvostek+ (contração facial ao percutir nervo facial), Trousseau+ (espasmo carpo ao inflar manguito)','Hipercalcemia: desidratação, confusão, fraqueza, constipação, hipertonia arterial','Avaliar pescoço (paratireoides), busca por neoplasia'],
+lab:['Cálcio total e ionizado','PTH: elevado = hiperparatireoidismo. Baixo = hipoparatireoidismo, hipervitaminose D','Vitamina D (25-OH)','Fósforo: hipocalcemia + fósforo alto = hipoparatireoidismo. Hipocalcemia + fósforo baixo = déficit de vitamina D','Calciúria 24h, função renal','Cálcio urinário na hipercalcemia: hipercalciúria sugere hiperPTH primário'],
+img:['Densitometria óssea (hiperPTH crônico)','USG cervical e cintilografia de paratireoide (hiperPTH primário)','RX: reabsorção subperiosteal (hiperPTH), banda de Looser (osteomalácia)','TC tórax/abdome: investigar neoplasia na hipercalcemia sem causa'],
+conduta:['Hipocalcemia aguda/sintomática: gluconato de Ca²⁺ 10% EV lento (10 mL em 10 min)','Hipocalcemia crônica: carbonato de Ca²⁺ VO + vitamina D (calcitriol)','Hipercalcemia leve (<12): hidratação oral, tratar causa','Hipercalcemia moderada-grave (>12 sintomática): SF 0,9% EV (2–4 L) + furosemida após hidratação','Hipercalcemia grave (>14 ou crise): bisfosfonatos EV (zoledronato) + calcitonina (efeito rápido) + corticoide (neoplasia)','HiperPTH primário sintomático: paratireoidectomia'],
+pontos:[{q:'Chvostek e Trousseau?',a:'Sinais de hipocalcemia'},{q:'Stones, bones, groans?',a:'Hipercalcemia'},{q:'Hipercalcemia + PTH alto?',a:'HiperPTH primário (adenoma paratireoide)'},{q:'Hipercalcemia + PTH baixo?',a:'Neoplasia, vitamina D tóxica'},{q:'Hipocalcemia: 1ª medida aguda?',a:'Gluconato de Ca²⁺ EV lento'},{q:'Hipercalcemia grave: ação mais rápida?',a:'Calcitonina (horas) + hidratação'}],
+alerta:'Bisfosfonato + calcitonina na hipercalcemia grave: calcitonina age em horas, bisfosfonato em 48–72h.'},
+
+{id:'nef_ab',cat:'nefro',
+title:'Distúrbios Ácido-Base',
+sub:'pH normal 7,35–7,45 | HCO₃ normal 22–26 | pCO₂ normal 35–45',
+clinica:['Acidose metabólica: taquipneia, Kussmaul, confusão, hipercalemia','Alcalose metabólica: hipoventilação, câimbras, hipocalemia','Acidose respiratória: hipercapnia, sonolência, cianose','Alcalose respiratória: taquipneia, parestesias, tetania'],
+ef:['Acidose metabólica grave: respiração de Kussmaul (profunda e rápida)','Alcalose: hipoventilação compensatória, Trousseau/Chvostek se hipocalcemia associada','Acidose respiratória: confusão, asterixis, bradipneia'],
+lab:['Gasometria arterial: pH, pCO₂, HCO₃, BE','Passo 1: pH (acidose <7,35 ou alcalose >7,45)','Passo 2: primário — HCO₃ baixo = met. HCO₃ alto = met. pCO₂ alto = resp. pCO₂ baixo = resp.','Passo 3: compensação adequada? (se não → distúrbio misto)','Passo 4: ânion gap (Na – Cl – HCO₃) = 8–12. Alto (>12) = KLUSSMAPI (cetoacidose, lactato, uremia, salicilato, metanol, álcool, paraldéido, isoniazida)','Passo 5: AG alto — delta-delta para ver se há distúrbio misto adicional'],
+img:['Sem imagem específica — foco em gasometria e eletrólitos'],
+conduta:['Acidose met. AG alto: tratar causa (insulina na CAD, hemodiálise na uremia, naloxona/fomepizol nas intoxicações)','Bicarbonato EV: reservar para pH <7,10 ou hipercalemia grave associada','Alcalose metabólica: repor Cl⁻ (SF 0,9%), KCl, suspender diuréticos','Acidose respiratória: melhorar ventilação (VNI, intubação)','Alcalose respiratória: tratar causa (ansiedade → respiração em saco)'],
+pontos:[{q:'Ânion gap normal?',a:'8–12 mEq/L (Na – Cl – HCO₃)'},{q:'AG alto: mnemônico?',a:'KLUSSMAPI (cetoacidose, lactato, uremia, salicilato, metanol, álcool, paraldéido, isoniazida)'},{q:'Compensação acidose met.?',a:'pCO₂ = 1,5 × HCO₃ + 8 (±2) — fórmula de Winter'},{q:'Kussmaul é compensação de?',a:'Acidose metabólica'},{q:'AG normal acidose met.?',a:'Hiperclorêmica: diarreia (perda HCO₃), ATR, expansão volêmica'}],
+alerta:'Acidose met. AG alto = EMERGÊNCIA. Checar lactato, glicemia e toxicologia.'},
+
+{id:'nef_drc',cat:'nefro',
+title:'Doença Renal Crônica (DRC)',
+sub:'TFG <60 mL/min/1,73m² por >3 meses OU marcador de lesão renal',
+clinica:['Estágio 1–2: assintomático','Estágio 3–4: fadiga, hipertensão, anemia, noctúria','Estágio 5 (uremia): náuseas, vômito, prurido, encefalopatia, pericardite urêmica, frost urêmico'],
+ef:['HAS (quase universal)','Palidez (anemia)','Edema (retenção de sódio e água)','Odor urêmico, hálito amoniacal','Atrito pericárdico (pericardite urêmica — indicação urgente de diálise)','Fundoscopia: retinopatia hipertensiva'],
+lab:['Creatinina sérica seriada + cálculo de TFG (CKD-EPI)','Proteinúria: microalbuminúria 30–300 mg/g (precoce)','EAS: cilindros granulosos, hematúria','Ureia elevada','Hemograma: anemia normocrômica normocítica (↓eritropoetina)','Metabolismo mineral: Ca²⁺ baixo, fósforo alto, PTH elevado (osteodistrofia renal)','K⁺: hipercalemia (estágios avançados)','Acidose metabólica com AG normal (bicarbonato baixo)','Ácido úrico elevado'],
+img:['USG renal: rins pequenos e hiperecoicos = DRC (diferencia de LRA onde rins são normais ou aumentados)','RX de mãos: reabsorção subperiosteal (hiperPTH secundário)','Ecocardiograma: avaliar HVE e derrame pericárdico'],
+conduta:['Controle da PA: meta <130/80 — IECA ou BRA (1ª linha — reduz proteinúria)','Controle glicêmico rigoroso','Restrição proteica moderada (0,6–0,8 g/kg/dia) se TFG <30','Restrição de potássio e fósforo','Reposição de eritropoetina recombinante (EPO) se Hb <10 g/dL + suplemento de ferro','Calcitriol e quelantes de fósforo (sevelamer) para osteodistrofia','Bicarbonato VO para acidose','Estatina para risco cardiovascular','Preparar acesso para diálise quando TFG <15–20','Diálise: TFG <10–15 OU sintomas urêmicos','Transplante renal: melhor opção terapêutica'],
+pontos:[{q:'Diferença USG DRC vs LRA?',a:'DRC: rins pequenos. LRA: rins normais/aumentados'},{q:'Anemia da DRC: causa?',a:'Deficiência de eritropoetina'},{q:'Anti-hipertensivo 1ª linha?',a:'IECA ou BRA — reduz proteinúria'},{q:'Indicações de diálise urgente?',a:'Pericardite urêmica, encefalopatia, hipercalemia refratária, sobrecarga hídrica'},{q:'Melhor tratamento DRC estágio 5?',a:'Transplante renal'}],
+alerta:'Pericardite urêmica = diálise imediata. Não aguardar deterioração adicional.'},
+
+{id:'nef_drc_dm',cat:'nefro',
+title:'DRC — Nefropatia Diabética',
+sub:'Principal causa de DRC e de entrada em diálise no Brasil',
+clinica:['Evolução silenciosa — décadas de DM mal controlado','Microalbuminúria → macroalbuminúria → síndrome nefrótica → DRC','Retinopatia diabética associada em >90% dos casos (tríade nefropatia diabética)','HAS quase universal nos estágios avançados'],
+ef:['HAS','Edema','Retinopatia ao fundo de olho (se tiver, confirma nefropatia diabética)','Ausência de retinopatia deve levantar dúvida do diagnóstico'],
+lab:['Relação albumina/creatinina urinária (RAC): >30 mg/g = microalbuminúria (rastrear)','RAC >300 mg/g = macroalbuminúria (nefropatia estabelecida)','TFG calculada (CKD-EPI)','HbA1c (controle glicêmico)','Fundo de olho anual','Creatinina e ureia','Lipidograma'],
+img:['USG renal: rins aumentados no início (diabético) — diferente de outras DRCs','Biópsia: raramente necessária se quadro típico (DM + microalbuminúria + retinopatia)'],
+conduta:['Rastrear anualmente com RAC desde o diagnóstico do DM2, e após 5 anos em DM1','IECA ou BRA: 1ª linha — renoproteção mesmo sem HAS se microalbuminúria presente','SGLT2 (empagliflozina, dapagliflozina): reduz progressão da nefropatia diabética — indicar com TFG >20','GLP-1 (semaglutida): benefício cardiovascular e renal','Controle rigoroso da glicemia: HbA1c <7%','Controle da PA: <130/80 mmHg','Estatina: reduz risco CV','Suspender metformina se TFG <30','Evitar nefrotóxicos e contraste iodado sem preparo'],
+pontos:[{q:'Rastrear nefropatia DM1: quando?',a:'Após 5 anos do diagnóstico'},{q:'Rastrear nefropatia DM2: quando?',a:'Desde o diagnóstico'},{q:'Microalbuminúria: valor?',a:'RAC 30–300 mg/g'},{q:'Anti-hipertensivo + renoprotetor?',a:'IECA ou BRA'},{q:'SGLT2 na nefropatia?',a:'Reduz progressão — indicar com TFG >20'},{q:'Retinopatia associada: importância?',a:'Confirma diagnóstico de nefropatia diabética (evita biópsia)'}],
+alerta:'Ausência de retinopatia + nefropatia diabética típica → considerar biópsia para excluir outra causa.'},
+
+{id:'nef_drc_has',cat:'nefro',
+title:'DRC — Nefropatia Hipertensiva',
+sub:'2ª causa de DRC — nefroangiosclerose por HAS crônica mal controlada',
+clinica:['HAS longa e mal controlada (>10 anos)','Evolução lenta e insidiosa','Proteinúria leve a moderada (<3 g/24h)','Hematúria microscópica discreta ou ausente','Sintomas de DRC: fadiga, edema, oligúria tardia'],
+ef:['HAS (PA frequentemente muito elevada)','Fundoscopia: retinopatia hipertensiva (artérias em fio de prata, exsudatos, hemorragias)','Ausculta: sopro aórtico (se HAS grave)','HVE ao exame cardiovascular','Edema se comprometimento renal avançado'],
+lab:['Creatinina sérica e TFG seriadas (queda progressiva lenta)','Proteinúria leve: <1–2 g/24h (ao contrário da nefrótica)','EAS: sedimento urinário inativo (sem cilindros hemáticos)','Hemograma: anemia nos estágios avançados','Ecografia: rins pequenos e hiperecogênicos','Lipidograma (síndrome metabólica associada)'],
+img:['USG renal com Doppler: rins pequenos, aumento do índice de resistência','Ecocardiograma: HVE (marcador de lesão de órgão-alvo)','Fundoscopia: retinopatia hipertensiva','RX tórax: cardiomegalia'],
+conduta:['Meta PA: <130/80 mmHg (rigoroso)','IECA ou BRA: 1ª linha — renoproteção + controle de PA','Associar: bloqueador de canal de Ca²⁺ (anlodipino) ou diurético tiazídico','Diurético de alça se TFG <30 (tiazídico perde eficácia)','Restrição de sódio: <2 g/dia','Restrição proteica moderada se DRC avançada','Tratar fatores de risco: dislipidemia, obesidade, tabagismo','Monitorar TFG e potássio com IECA/BRA','Diálise se TFG <10–15 ou sintomas urêmicos'],
+pontos:[{q:'Diferença da nefropatia diabética?',a:'Proteinúria mais leve, sem retinopatia típica, sedimento inativo'},{q:'Anti-hipertensivo 1ª linha?',a:'IECA ou BRA'},{q:'Diurético de escolha se TFG <30?',a:'Furosemida (tiazídico perde eficácia)'},{q:'Diagnóstico definitivo?',a:'Clínico-laboratorial — biópsia se dúvida (ex: sem HAS prévia)'},{q:'Meta PA?',a:'<130/80 mmHg'}],
+alerta:'Sedimento urinário inativo (sem cilindros hemáticos) diferencia nefropatia hipertensiva de glomerulonefrites.'},
+
+  // ── UROLOGIA ───────────────────────────────────────────────────────────
+  {id:'torcao',cat:'uro',title:'Torção testicular',sub:'Emergência cirúrgica — janela de 6 horas para salvar o testículo',
+  clinica:['Dor testicular súbita e intensa','Edema e hiperemia escrotal rápidos','Náuseas e vômitos','Testículo horizontalizado (sinal de Gouverneur)','Ausência do reflexo cremastérico','Sinal de Prehn negativo (elevação NÃO alivia a dor)'],
+  ef:['Testículo retraído e horizontalizado','Ausência do reflexo cremastérico','Edema escrotal de instalação rápida'],
+  lab:['Hemograma (inespecífico)','EAS (excluir epididimite)'],
+  img:['USG Doppler: ausência de fluxo testicular','Diagnóstico é CLÍNICO — não atrasar cirurgia esperando exame'],
+  conduta:['Exploração cirúrgica imediata — todo caso suspeito, não aguardar confirmação por imagem','Detorção manual + fixação — manobra temporária pré-cirurgia','Orquidopexia bilateral — após detorção bem-sucedida','Orquiectomia — testículo inviável (necrose)'],
+  pontos:[{q:'Viabilidade em <6h?',a:'>90%'},{q:'Viabilidade em 6–12h?',a:'~50%'},{q:'Viabilidade após 24h?',a:'<10%'},{q:'Sinal de Prehn na torção?',a:'Negativo — elevação não alivia'},{q:'Reflexo cremastérico na torção?',a:'Ausente'}],
+  alerta:'Dúvida = operar. Não atrasar cirurgia esperando USG Doppler.'},
+
+  {id:'fournier',cat:'uro',title:'Síndrome de Fournier',sub:'Fasciíte necrosante perineal — mortalidade 20–40%',
+  clinica:['Dor perineal desproporcional ao exame','Edema, eritema e crepitação perineal','Necrose cutânea progressiva com odor fétido','Sepse grave, febre alta, toxemia'],
+  ef:['Crepitação subcutânea (gás nos tecidos)','Eritema com bordas que avançam rapidamente','Instabilidade hemodinâmica'],
+  lab:['Hemograma (leucocitose)','Hemoculturas + PCR + lactato','Ureia, creatinina, glicemia, eletrólitos'],
+  img:['TC de pelve/períneo — padrão-ouro (gás nos tecidos)','RX simples (gás subcutâneo)'],
+  conduta:['Desbridamento cirúrgico amplo imediato — todo caso confirmado','ATB EV de amplo espectro: piperacilina-tazobactam + vancomicina','UTI + suporte hemodinâmico — sepse grave/choque','Colostomia derivativa — envolvimento anal ou retal','Oxigenoterapia hiperbárica — adjuvante nos centros disponíveis'],
+  pontos:[{q:'Fatores de risco?',a:'DM, imunossupressão, obesidade'},{q:'Exame de imagem?',a:'TC de pelve/períneo — padrão-ouro'},{q:'Tratamento definitivo?',a:'Cirurgia — desbridamento amplo imediato'},{q:'ATB cobrir?',a:'Gram+, gram–, anaeróbios'}],
+  alerta:'Cirurgia é o único tratamento definitivo. Não atrasar por nenhum motivo.'},
+
+  {id:'fimose',cat:'uro',title:'Fimose e parafimose',sub:'Fimose: incapacidade de retrair prepúcio. Parafimose: urgência por anel constritivo.',
+  clinica:['Fimose fisiológica: normal até 3–4 anos','Fimose patológica: balanite de repetição, dificuldade de urinar, dor na ereção','Parafimose: edema progressivo da glande, dor intensa, cianose distal'],
+  ef:['Fimose: abertura prepucial estreita, avaliar jato urinário','Parafimose: glande edemaciada/cianótica, anel prepucial constritivo visível'],
+  lab:['EAS (excluir ITU)','Glicemia (DM como causa no adulto)'],
+  img:['Não necessário para diagnóstico'],
+  conduta:['Fimose fisiológica: observação','Fimose patológica: corticoide tópico (betametasona 0,05%) 4–8 semanas — 1ª linha','Fimose refratária/BXO/ITU recorrente: postectomia (circuncisão)','Parafimose: redução manual imediata (comprimir glande + reposicionar)','Parafimose refratária: anestesia local + dorsal slit ou postectomia'],
+  pontos:[{q:'Fimose fisiológica normal até?',a:'3–4 anos'},{q:'BXO exige?',a:'Cirurgia obrigatória'},{q:'Parafimose: 1ª medida?',a:'Redução manual imediata'},{q:'Fimose 1ª linha farmacológica?',a:'Betametasona tópica 0,05% por 4–8 semanas'}],
+  alerta:'Parafimose: isquemia progride para necrose em horas — nunca deixar sem tratamento'},
+
+  {id:'priapismo',cat:'uro',title:'Priapismo',sub:'Ereção >4h — isquêmico é emergência absoluta',
+  clinica:['Isquêmico (baixo fluxo): dor intensa, pênis rígido — EMERGÊNCIA','Não isquêmico (alto fluxo): indolor, fístula AV pós-trauma','Stuttering: episódios recorrentes (anemia falciforme)'],
+  ef:['Isquêmico: ereção dolorosa, rígida','Não isquêmico: pênis túrgido mas indolor'],
+  lab:['Gasometria cavernosa: isquêmico = pO2 <30, pCO2 >60, pH <7,25','Hemograma (excluir anemia falciforme)','Toxicologia'],
+  img:['USG Doppler peniano — sem fluxo = isquêmico / fluxo turbulento = não isquêmico'],
+  conduta:['Isquêmico: aspiração + irrigação cavernosa — 1ª linha imediata','Isquêmico: fenilefrina intracavernosa — após aspiração ou associada','Isquêmico refratário: shunt cirúrgico (Winter, Al-Ghorab)','Não isquêmico refratário: embolização da artéria pudenda','Implante peniano — fibrose por priapismo prolongado + DE'],
+  pontos:[{q:'Isquêmico >24h risco de?',a:'Fibrose e DE permanente'},{q:'1ª linha isquêmico?',a:'Aspiração cavernosa + fenilefrina'},{q:'Gasometria isquêmica?',a:'pO2 <30 + pCO2 >60 + pH <7,25'},{q:'Não isquêmico: tto?',a:'Embolização (se refratário)'}],
+  alerta:'Priapismo isquêmico >24h = alto risco de disfunção erétil permanente por fibrose'},
+
+  {id:'peyronie_fratura',cat:'uro',title:'Doença de Peyronie e fratura de pênis',sub:'Peyronie: placa fibrosa + curvatura. Fratura: ruptura da túnica durante ereção.',
+  clinica:['Peyronie fase aguda: placa palpável, dor na ereção, curvatura progressiva','Peyronie fase crônica (>12 meses): curvatura estável, dor cede','Fratura: "pop" + detumescência imediata + hematoma em berinjela','Fratura: 20–38% associada a lesão uretral'],
+  ef:['Peyronie: placa fibrosa palpável (dorsal mais comum)','Fratura: hematoma peniano, desvio contralateral ao local da ruptura','Fratura: inspecionar meato (hematúria = lesão uretral)'],
+  lab:['EAS (hematúria na fratura)','Uretrografia retrógrada (suspeita de lesão uretral)','Glicemia, lipídios, testosterona (avaliar DE na Peyronie)'],
+  img:['Peyronie: USG peniano com Doppler','Fratura: USG peniano ou RNM (padrão-ouro, raramente necessário na urgência)'],
+  conduta:['Peyronie fase aguda: observação — aguardar ≥12 meses antes de cirurgia','Peyronie estável curvatura 30–90°: collagenase de Clostridium (Xiaflex)','Peyronie curvatura <60°: plicatura (Nesbit)','Peyronie curvatura >60°: incisão + enxerto (Lue)','Peyronie + DE grave: implante peniano','Fratura: exploração e sutura cirúrgica imediata — padrão-ouro'],
+  pontos:[{q:'Fratura: tratamento?',a:'Cirurgia imediata — conservador causa Peyronie em 50%'},{q:'Peyronie: quando operar?',a:'Apenas na fase crônica (estável)'},{q:'Collagenase: indicação?',a:'Curvatura 30–90°, fase estável'},{q:'Peyronie + DE grave?',a:'Implante peniano resolve ambos'}],
+  alerta:'Fratura de pênis: tratamento conservador resulta em Peyronie em até 50%. Cirurgia imediata é padrão.'},
+
+  {id:'escroto_pat',cat:'uro',title:'Patologias escrotais',sub:'Hidrocele, varicocele, epididimite — USG Doppler diferencia torção',
+  clinica:['Hidrocele: aumento escrotal indolor, transiluminação positiva','Varicocele: "saco de minhocas" à esquerda, dor em queimação, infertilidade','Epididimite: dor gradual, febre, sinal de Prehn positivo (elevação alivia)'],
+  ef:['Transiluminação positiva (hidrocele)','Varicocele ao Valsalva','Sinal de Prehn: positivo = epididimite / negativo = torção'],
+  lab:['EAS + urocultura','NAAT gonorreia/clamídia (jovens)','Hemograma'],
+  img:['USG Doppler escrotal — essencial para diferenciar','Fluxo aumentado = epididimite | Fluxo ausente = torção'],
+  conduta:['Hidrocele <2 anos: observação (resolução espontânea)','Hidrocele adulto volumosa/sintomática: hidrocelectomia','Epididimite/orquite: ATB (quinolona ou ceftriaxone + doxiciclina)','Varicocele sintomática ou com infertilidade: varicocelectomia'],
+  pontos:[{q:'Varicocele grau III?',a:'Visível sem Valsalva — causa mais comum de infertilidade corrigível'},{q:'Transiluminação positiva?',a:'Hidrocele'},{q:'Sinal de Prehn positivo?',a:'Epididimite (alívio com elevação)'},{q:'Fluxo ausente no USG?',a:'Torção — operar imediatamente'}],
+  alerta:'Varicocele grau III = causa mais comum e corrigível de infertilidade masculina'},
+
+  {id:'itu_uro',cat:'uro',title:'ITU no adulto (urológica)',sub:'Cistite vs pielonefrite vs ITU complicada',
+  clinica:['Cistite: disúria, polaciúria, urgência, sem febre','Pielonefrite: febre alta, calafrios, dor lombar, náuseas','ITU complicada: gestante, homem, imunossuprimido, cateter, anomalia urológica'],
+  ef:['Punho-percussão lombar positiva (pielonefrite)','Avaliar sinais de sepse','Toque retal no homem (excluir prostatite)'],
+  lab:['EAS: leucocitúria, bacteriúria, nitritos','Urocultura — padrão-ouro','Hemocultura + hemograma (pielonefrite grave/sepse)'],
+  img:['USG renal: casos complicados ou febre persistente','TC sem contraste: suspeita de cálculo ou abscesso'],
+  conduta:['Cistite não complicada: nitrofurantoína ou fosfomicina VO 3–5 dias','Pielonefrite ambulatorial: fluoroquinolona VO 7 dias','Pielonefrite grave/sepse: ceftriaxone EV + internação','ITU complicada: ATB conforme cultura 7–14 dias','ITU recorrente: investigar anomalia, cálculo, fimose'],
+  pontos:[{q:'Padrão-ouro?',a:'Urocultura'},{q:'Bacteriúria assintomática tratar?',a:'Só gestante e pré-procedimento urológico'},{q:'ITU masculina sempre pensar?',a:'Prostatite — tratar 14–21 dias com fluoroquinolona'},{q:'Urosepse: conduta?',a:'Ceftriaxone EV + internação + investigar obstrução'}],
+  alerta:'Bacteriúria assintomática: tratar SOMENTE em gestantes e antes de procedimentos urológicos'},
+
+  {id:'litiase',cat:'uro',title:'Litíase urinária',sub:'Obstrução + febre = urosepse = drenagem emergencial imediata',
+  clinica:['Dor lombar súbita e intensa irradiando para genitália','Hematúria macro ou microscópica','Náuseas, vômitos','Febre + dor + obstrução = EMERGÊNCIA (urosepse)'],
+  ef:['Punho-percussão lombar positiva','Paciente agitado — não consegue se posicionar (diferente de peritonite)','Febre + dor lombar = urosepse até prova contrária'],
+  lab:['EAS (hematúria)','Ureia, creatinina, urocultura','Ácido úrico, PTH, cálcio (investigação metabólica)'],
+  img:['TC abdome/pelve SEM contraste — padrão-ouro (>95% sensibilidade)','USG — 1ª linha em gestantes e crianças','RX simples — visualiza cálculos cálcicos'],
+  conduta:['Cólica sem complicações: AINE + opioide + hidratação','Cálculo ureteral <10 mm: tamsulosina (expulsão espontânea)','Cálculos renais <2 cm / ureterais <1 cm: LEOC','Ureter / falha LEOC / obeso / marca-passo: ureteroscopia + laser','Cálculos >2 cm / staghorn: nefrolitotomia percutânea (NLP)','Obstrução + infecção (urosepse): duplo J ou nefrostomia IMEDIATAMENTE'],
+  pontos:[{q:'Exame padrão-ouro?',a:'TC abdominal sem contraste'},{q:'Cálculo <10 mm: conduta?',a:'Tamsulosina + esperar expulsão'},{q:'>2 cm ou staghorn?',a:'Nefrolitotomia percutânea (NLP)'},{q:'Febre + obstrução?',a:'Urosepse — drenar EMERGENCIALMENTE'}],
+  alerta:'Obstrução + febre = urosepse = drenar antes ou junto com ATB. Não atrasar drenagem.'},
+
+  {id:'ca_prostata',cat:'uro',title:'Câncer de próstata',sub:'Mais comum no homem — rastreamento com PSA + toque retal',
+  clinica:['Assintomático nos estágios iniciais','STUI: noctúria, jato fraco, hesitância','Hematúria, hematospermia','Metástases ósseas: dor lombar/pélvica, perda de peso'],
+  ef:['Toque retal: nódulo duro, irregular, assimétrico','Próstata endurecida com bordos irregulares'],
+  lab:['PSA total e livre — relação livre/total <15% = suspeita','Biópsia = padrão-ouro (Gleason/ISUP grade)'],
+  img:['RNM multiparamétrica (mpMRI) — pré-biópsia (PI-RADS)','Cintilografia óssea (PSA >20 ou Gleason ≥8)','PET-PSMA — linfonodos e metástases'],
+  conduta:['Baixo risco (Gleason ≤6, PSA <10): vigilância ativa','Localizado + vida >10 anos + baixo risco cirúrgico: prostatectomia radical','Localizado/localmente avançado: radioterapia ± braquiterapia','Avançado/metastático/recorrência: hormonioterapia (castração)','Vida <10 anos ou baixo grau: observação vigilante'],
+  pontos:[{q:'Gleason ≥8 = ?',a:'Alto risco'},{q:'PSA ≥20 ou Gleason ≥8: fazer?',a:'Cintilografia óssea'},{q:'Baixo risco + vida >10 anos?',a:'Vigilância ativa ou prostatectomia'},{q:'Metastático: tratamento?',a:'Hormonioterapia (castração)'}],
+  alerta:'Gleason 3+3=6 (ISUP 1) = baixo risco. Gleason ≥8 = alto risco — estadiar com cintilografia.'},
+
+  {id:'ca_renal',cat:'uro',title:'Câncer renal',sub:'Carcinoma de células claras — maioria é achado incidental',
+  clinica:['Tríade clássica (10%): hematúria + massa + dor lombar','Achado incidental em USG/TC (mais comum hoje)','Síndromes paraneoplásicas: policitemia, hipercalcemia, HAS','Perda de peso, febre, sudorese noturna'],
+  ef:['Massa palpável em flanco (tumores avançados)','Varicocele direita súbita = trombo em veia renal'],
+  lab:['Hemograma (policitemia ou anemia)','Cálcio, função renal','EAS (hematúria)','LDH, fosfatase alcalina'],
+  img:['USG renal — achado inicial','TC com contraste — padrão-ouro de estadiamento','RNM — trombo em veia cava','Cintilografia/PET — metástases'],
+  conduta:['Tumor >4 cm / central / rim saudável: nefrectomia radical laparoscópica','Tumor ≤4 cm (T1a) / rim único / DRC: nefrectomia parcial','Tumor <3 cm + alto risco cirúrgico: ablação (RF/crioablação)','Metastático: imunoterapia + terapia-alvo (nivolumabe, sunitinibe)','Tumor <1 cm + idoso com comorbidades: vigilância ativa'],
+  pontos:[{q:'Tríade clássica (% dos casos)?',a:'Apenas 10% — maioria incidental'},{q:'Varicocele direita súbita?',a:'Trombo em veia renal — suspeitar de CA'},{q:'Resistente a quimioterapia?',a:'Sim — usar imunoterapia + terapia-alvo'},{q:'T1a (<4 cm): preferir?',a:'Nefrectomia parcial (nephron-sparing)'}],
+  alerta:'CA renal é resistente à quimioterapia convencional. Imunoterapia e terapia-alvo são pilares no metastático.'},
+
+  {id:'de_uro',cat:'uro',title:'Disfunção erétil',sub:'Causa vascular mais comum — pode ser 1º sinal de DCV',
+  clinica:['Vascular: piora gradual, fatores de risco CV (DM, HAS, tabagismo)','Neurológica: pós-prostatectomia, DM, lesão medular','Hormonal: hipogonadismo, hiperprolactinemia','Psicogênica: início abrupto, situacional, ereções noturnas preservadas'],
+  ef:['Peso, IMC, PA','Exame genital (volume testicular, placas de Peyronie)','Pulsos periféricos','Reflexo bulbocavernoso'],
+  lab:['Glicemia/HbA1c + perfil lipídico','Testosterona total (coletar 7–10h)','Prolactina, TSH','PSA (se >40 anos + reposição androgênica)'],
+  img:['USG Doppler peniano com alprostadil — avalia fluxo arterial e venoso'],
+  conduta:['MEV (dieta, exercício, cessar tabagismo) — base para todo paciente','IPDE-5 (sildenafila, tadalafila): 1ª linha farmacológica — CONTRAINDICADO com nitratos','Reposição de testosterona — hipogonadismo confirmado','Alprostadil intracavernoso — falha ou contraindicação ao IPDE-5','Implante peniano — falha de todos os tratamentos'],
+  pontos:[{q:'IPDE-5 + nitratos?',a:'CONTRAINDICADO — hipotensão grave'},{q:'Ereções noturnas preservadas sugere?',a:'Causa psicogênica'},{q:'1ª linha farmacológica?',a:'IPDE-5 (sildenafila, tadalafila)'},{q:'DE pode ser 1º sinal de?',a:'Doença cardiovascular'}],
+  alerta:'DE pode ser o 1º sinal de DCV — sempre investigar fatores de risco cardiovascular.'},
+
+  {id:'infertilidade_masc',cat:'uro',title:'Infertilidade masculina',sub:'Investigar após 12 meses sem concepção — espermograma é padrão-ouro',
+  clinica:['Geralmente assintomático','Varicocele (causa mais comum e tratável)','Criptorquidia, orquite prévia (caxumba)','Uso de anabolizantes/esteroides','Disfunção ejaculatória'],
+  ef:['Testículos: volume (normal >15 mL) e consistência','Varicocele ao Valsalva','Epidídimo e vas deferens','Caracteres sexuais secundários'],
+  lab:['Espermograma x2 — padrão-ouro','FSH, LH, testosterona (manhã)','Prolactina, TSH','Cariótipo (azoospermia)','Microdeleções do cromossomo Y'],
+  img:['USG escrotal','USG transretal (obstrução ductal)'],
+  conduta:['Varicocele + parâmetros alterados: varicocelectomia','Hipogonadismo hipogonadotrófico: HCG + FSH','Azoospermia não obstrutiva: TESE/micro-TESE + ICSI','Azoospermia obstrutiva (pós-vasectomia): recanalização ou ICSI','Falha de todos: doação de esperma'],
+  pontos:[{q:'Anabolizantes causam?',a:'Azoospermia por supressão do eixo HPG'},{q:'Suspender anabolizante: reavaliar após?',a:'>6 meses'},{q:'Varicocele + espermograma alterado?',a:'Varicocelectomia'},{q:'Cariótipo: quando pedir?',a:'Azoospermia'}],
+  alerta:'Anabolizantes causam azoospermia reversível — suspender >6 meses antes de reavaliar espermograma.'},
+
+  {id:'hpb_uro',cat:'uro',title:'HPB — Hiperplasia Prostática Benigna',sub:'Homem >50 anos — STUI obstrutivos e irritativos',
+  clinica:['Obstrutivos: hesitância, jato fraco, gotejamento, esvaziamento incompleto','Irritativos: noctúria, urgência, polaciúria, disúria','Retenção urinária aguda (complicação grave)','IPSS >7 = sintomático | >19 = grave'],
+  ef:['Toque retal: tamanho, consistência e simetria da próstata','Globo vesical (retenção)','Reflexo bulbocavernoso'],
+  lab:['PSA (excluir CA próstata)','Ureia e creatinina (uropatia obstrutiva)','EAS + urocultura'],
+  img:['USG de vias urinárias com resíduo pós-miccional','Urofluxometria: Qmáx <10 mL/s = obstrutivo significativo','Uretrocistoscopia (pré-operatório ou hematúria)'],
+  conduta:['Medidas comportamentais — todo paciente (cafeína, álcool, horários)','Alfa-bloqueadores (tansulosina): STUI moderados-graves — alívio rápido','Inibidores 5-alfa-redutase (finasterida): próstata >30 mL — reduz volume em 3–6 meses','Combinação alfa-bloqueador + 5-ARI: próstata grande + sintomas intensos','Antimuscarínicos/mirabegrona: componente de urgência residual','Cirurgia (RTU-P, HoLEP): STUI grave refratário, retenção, IRA, hematúria recorrente'],
+  pontos:[{q:'PSA elevado na HPB = CA?',a:'Não — sempre correlacionar com toque retal e contexto clínico'},{q:'RTU-P complicação?',a:'Síndrome de ressecção (hiponatremia dilucional)'},{q:'Alfa-bloqueador: efeito em?',a:'Dias a semanas'},{q:'5-ARI: efeito em?',a:'3–6 meses (reduz volume)'}],
+  alerta:'PSA elevado na HPB não indica CA sem contexto clínico + toque retal. RTU-P: vigiar hiponatremia.'},
+
+  {id:'bexiga_incont',cat:'uro',title:'Bexiga neurogênica e incontinência urinária',sub:'Hiperativa vs hipoativa. Incontinência: esforço, urgência, mista, transbordamento.',
+  clinica:['Bexiga neurogênica hiperativa: urgência, incontinência, nictúria (lesão suprassacral)','Bexiga neurogênica hipoativa: retenção, gotejamento (lesão sacral)','Incontinência de esforço: perda ao tossir/espirrar/exercício','Incontinência de urgência: perda com desejo súbito (bexiga hiperativa)','Transbordamento: gotejamento contínuo com bexiga cheia (obstrução/hipoativa)'],
+  ef:['Teste do esforço (tosse com bexiga cheia)','Exame pélvico (prolapso, atrofia)','Exame neurológico (nível de lesão)','Globo vesical, reflexo anal e bulbocavernoso'],
+  lab:['EAS + urocultura (excluir infecção)','Glicemia, ureia, creatinina','Resíduo pós-miccional'],
+  img:['USG vesical (resíduo pós-miccional)','Urodinâmica — padrão-ouro para classificação e pré-cirurgia','RNM de coluna (lesão medular suspeita)'],
+  conduta:['Hipoativa/retenção: cateterismo intermitente limpo (CIL) — pilar do tratamento','Hiperativa: antimuscarínicos (oxibutinina) ou mirabegrona','Hiperativa refratária: toxina botulínica intravesical','Incontinência de esforço: reabilitação do assoalho pélvico (Kegel) — 1ª linha','Esforço refratária: sling suburetral (TOT/TVT) — padrão-ouro cirúrgico','Homem pós-prostatectomia: esfíncter urinário artificial'],
+  pontos:[{q:'Transbordamento: usar antimuscarínico?',a:'NÃO — piora a retenção'},{q:'Dissinergia vesicoesfincteriana risco?',a:'Hidronefrose + IRA (pressão intravesical alta)'},{q:'Incontinência esforço: 1ª linha?',a:'Exercícios de Kegel'},{q:'Incontinência esforço refratária: cirurgia?',a:'Sling suburetral (TOT/TVT)'}],
+  alerta:'Transbordamento: NUNCA usar antimuscarínicos. Excluir obstrução antes de tratar qualquer incontinência.'},
 ];
 
 let activecat='todos';
@@ -172,20 +497,27 @@ function render(){
 
 function catLabel(id){return cats.find(c=>c.id===id)?.label||id;}
 
+function sec(title,items){
+  if(!items||!items.length) return '';
+  return `<div class="sec"><div class="sec-t">${title}</div><div class="sec-c">${items.map(i=>'• '+i).join('<br>')}</div></div>`;
+}
+
 function cardHTML(d){
-  const sxpills=d.sx.length?`<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>`:'';
+  const body = d.clinica
+    ? sec('Clínica',d.clinica)+sec('Exame Físico',d.ef)+sec('Laboratoriais',d.lab)+sec('Imagem',d.img)+sec('Conduta',d.conduta)
+    : (d.sx&&d.sx.length ? `<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>` : '');
   const qa=d.pontos.map(p=>`<div class="qi"><div class="qq">${p.q}</div><div class="qa-a">${p.a}</div></div>`).join('');
   const bstyle=bc[d.cat]||'';
   return `<div class="card">
-    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico" aria-hidden="true"></i></div>
+    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico">▾</i></div>
     <div class="ctitle">${d.title}</div>
     <div class="csub">${d.sub}</div>
     <div class="body">
-      ${sxpills}
+      ${body}
       <div class="sl">Pontos-chave OSCE</div>
       <div class="qa">${qa}</div>
-      <div class="alert"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px" aria-hidden="true"></i>${d.alerta}</div>
-      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE: diagnóstico diferencial, tratamento e o que mais cai')">-↗</button>
+      <div class="alert">⚠ ${d.alerta}</div>
+      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE')">↗ Aprofundar</button>
     </div>
   </div>`;
 }
