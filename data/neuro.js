@@ -30,7 +30,9 @@ const neuro = [
       IMC: '26,5 kg/m²'
     },
     physicalGeneral: 'Bom estado geral, consciente, orientado, levemente ansioso. Normocorado, hidratado, anictérico. Sem sinais de sofrimento agudo no momento da consulta (crise já cessou há 2 horas).',
-    physicalSeg: 'NEUROLÓGICO: Sem déficit focal. Pupilas isocóricas e fotorreagentes. Sem rigidez de nuca. Nervos cranianos íntegros. Sem nistagmo. | OFTALMOLÓGICO: Hiperemia conjuntival leve em olho direito (relatada pelo paciente durante a crise; ausente no momento). Sem ptose ou miose no exame atual. | CABEÇA E FACE: Sem pontos dolorosos em seios da face. Sem dor à percussão do crânio. | CARDIOVASCULAR: Ritmo regular em 2 tempos, sem sopros.',
+    physicalSeg: [
+      'NEUROLÓGICO: Sem déficit focal. Pupilas isocóricas e fotorreagentes. Sem rigidez de nuca. Nervos cranianos íntegros. Sem nistagmo. | OFTALMOLÓGICO: Hiperemia conjuntival leve em olho direito (relatada pelo paciente durante a crise; ausente no momento). Sem ptose ou miose no exame atual. | CABEÇA E FACE: Sem pontos dolorosos em seios da face. Sem dor à percussão do crânio. | CARDIOVASCULAR: Ritmo regular em 2 tempos, sem sopros.',
+    ],
     labs: [
       { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
       { test: 'Glicemia de jejum', val: '94 mg/dL', ref: '70–99 mg/dL', alt: false },
