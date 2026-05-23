@@ -1,5 +1,11 @@
 let activeFilter = 'all';
 
+function toList(val) {
+  if (!val) return [];
+  if (Array.isArray(val)) return val;
+  return String(val).split('|').map(s => s.trim()).filter(Boolean);
+}
+
 function setFilter(tema) {
   activeFilter = tema;
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -128,7 +134,7 @@ function renderExamsBlock(b) {
     </div>
     <div style="margin-top:14px">
       <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME SEGMENTAR</div>
-      ${b.physicalSeg.map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${s}</div>`).join('')}
+      ${toList(b.physicalSeg).map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${s}</div>`).join('')}
     </div>
   </div>`;
 
@@ -185,7 +191,7 @@ function renderTabB(st) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${b.hiddenInfo.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
       </div>
     </div>`;
   }
@@ -221,7 +227,7 @@ function renderTabB1Script(st) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${b.hiddenInfo.map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
       </div>
     </div>`;
   }
@@ -290,7 +296,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Anamnese Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedAnamnesis.map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedAnamnesis).map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -300,7 +306,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Exame Físico Esperado</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedPhysical.map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedPhysical).map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -323,7 +329,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Conduta Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedConduct.map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedConduct).map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -333,7 +339,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Comunicação Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${c.expectedCommunication.map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedCommunication).map(i => `<li>${i}</li>`).join('')}
       </ul>
     </div>`;
   }
