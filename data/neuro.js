@@ -1893,7 +1893,7 @@ const neurostations = [
     ],
     hiddenInfo: 'Uso de suplemento de vitamina A 50.000 UI/dia há 4 meses — só revela se o candidato perguntar especificamente sobre uso de suplementos, vitaminas ou medicamentos (fator de risco identificável e potencialmente reversível) | Teve episódio de diplopia breve há 1 semana, durou algumas horas — só revela se o candidato perguntar sobre visão dupla ou movimentos oculares',
     actorBehavior: 'Ansiosa com a visão turva e o papiledema. Colaborativa. Reage com susto ao ouvir que pode haver risco para a visão. Fica mais tranquila com explicação clara sobre o diagnóstico e o tratamento. Pode se mostrar surpresa ao descobrir que a vitamina A pode ter causado o problema.'
-  },
+    },
   instC: {
     diagnosis: 'Hipertensão Intracraniana Idiopática (HII) — pseudotumor cerebri — em paciente obesa, com hipervitaminose A como provável fator contribuinte. Risco de perda visual permanente se não tratada.',
     differentials: [
@@ -1922,7 +1922,7 @@ const neurostations = [
     'Não encaminhar urgentemente para Oftalmologia (risco de perda visual permanente)',
     'Alta sem conduta ou sem encaminhamento em quadro de HIC com risco visual'
   ]
-},
+    },
 instD: {
   title: 'CHECKLIST — CEFALEIA QUE PIORA AO ABAIXAR A CABEÇA E VISÃO TURVA',
   sections: [
@@ -1968,7 +1968,7 @@ instD: {
         { item: 'Orientou sobre perda de peso como parte do tratamento', score: 0.4, ref: 'SBN — HII; UpToDate' }
       ]
     }
-  ]
-}
+
+},
 
 ]
