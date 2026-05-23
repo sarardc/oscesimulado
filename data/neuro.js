@@ -1,4 +1,4 @@
-const neurostations = [
+const neuro = [
     {
   id: 1,
   title: 'Dor de cabeça intensa e em crises há 2 semanas',
