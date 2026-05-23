@@ -1970,4 +1970,135 @@ instD: {
 }
 },
 
+{
+  id: 16,
+  title: 'Cabeça crescendo e fontanela abaulada em lactente',
+  sub: 'UPA Pediátrica — Urgência e Emergência',
+  tema: 'Neurologia',
+  topic: 'hidrocefalia',
+  level: 'moderado',
+  cardAccent: '#0E7490',
+  instA: {
+    scenario: 'Urgência e Emergência Pediátrica — UPA. Sala de atendimento, turno diurno. A mãe traz o lactente no colo.',
+    patient: 'K.S., 4 meses de idade, masculino, lactente, sem diagnóstico prévio. Mãe de 22 anos.',
+    complaint: 'Mãe relata que a cabeça do bebê está crescendo muito rápido, a moleirinha tá abaulada e ele ficou mais irritado e vomitando.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso (história com a mãe)',
+      'Realize o exame físico pediátrico pertinente, incluindo a medida do perímetro cefálico',
+      'Solicite os exames complementares de urgência adequados',
+      'Formule a hipótese diagnóstica e os diagnósticos diferenciais relevantes',
+      'Comunique à mãe o diagnóstico e a necessidade de encaminhamento urgente'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: 'Não aferida (lactente — opcional)',
+      FC: '142 bpm',
+      FR: '38 irpm',
+      Tax: '37,2°C',
+      Peso: '5,8 kg',
+      Altura: '59 cm (comprimento)',
+      IMC: '44 cm (perímetro cefálico)'
+    },
+    physicalGeneral: 'Lactente em regular estado geral, irritado, com choro agudo e fácil. Fontanela anterior (bregmática) abaulada e tensa à palpação. Suturas cranianas com diástase palpável. Normocorado, hidratado. "Sinal do sol poente" (desvio conjugado dos olhos para baixo) discreto. Vômitos relatados em jato.',
+    physicalSeg: 'NEUROLÓGICO: Irritabilidade marcada. Choro agudo. Fontanela anterior abaulada e tensa (4 x 4 cm). Suturas com diástase. "Sinal do sol poente" discreto (desvio ocular para baixo por paralisia do olhar vertical — sinal de Parinaud em lactente). Tônus muscular levemente aumentado em MMII. Reflexos hiperativos. | CRÂNIO: Macrocefalia. PC = 44 cm (> percentil 97 para 4 meses). Veias do couro cabeludo proeminentes (ingurgitamento venoso pelo aumento da PIC). Percussão: som de "pote rachado" (macicez à percussão — sinal de Macewen). | ABDÔMEN: Sem visceromegalias. | CARDIOVASCULAR: FC 142 bpm. Ritmo regular.',
+    labs: [
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'PCR', val: '6 mg/L', ref: '< 5 mg/L', alt: true },
+      { test: 'Glicemia', val: '82 mg/dL', ref: '70–110 mg/dL', alt: false },
+      { test: 'Sódio', val: '137 mEq/L', ref: '135–145 mEq/L', alt: false }
+    ],
+    image: 'Ultrassonografia transfontanelar (realizada na UPA): Dilatação de todos os ventrículos (hidrocefalia tetraventricular). Ventrículos laterais com índice ventricular aumentado. Terceiro ventrículo dilatado. Aumento da relação ventrículo/cérebro. Sem sinais de hemorragia intraventricular. Aqueduto de Sylvius não visualizado com clareza — possível obstrução (a confirmar com RM).',
+    note: 'O paciente é um lactente — não fala. Toda a história é obtida com a mãe. O exame físico inclui medida do PC com fita métrica (item essencial). Entregar sinais vitais ao início. Entregar exame físico se candidato examinar. Entregar exames laboratoriais se solicitados. Entregar laudo da USG transfontanelar se o candidato solicitar. A RM de crânio não está disponível na UPA — parte da conduta é o encaminhamento para neurocirurgia pediátrica. O candidato deve reconhecer que é uma emergência neurocirúrgica pediátrica.',
+    patientProfile: 'K.S., 4 meses, masculino, nascido a termo (38 semanas), parto vaginal hospitalar, sem intercorrências neonatais relatadas. Peso ao nascer 3.200 g, PC ao nascer 33 cm. Mãe, 22 anos, primípara, realizou pré-natal completo (7 consultas), sem intercorrências gestacionais relatadas. Sem histórico familiar de malformações.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutor, a cabeça do meu filho tá crescendo muito. A pediatra mediu na semana passada e disse que tava grande. Hoje a moleirinha tá mais empinada que antes e ele tá irritado, chorando muito, e vomitou três vezes essa manhã.' },
+      { trigger: 'Sobre o crescimento da cabeça', speech: 'Desde o mês passado parece que cresceu rápido. A roupinha de capuz não entra mais na cabeça dele.' },
+      { trigger: 'Sobre o vômito', speech: 'Vomitou em jato, sem esforço, a comida saiu longe. Não é como quando regurgita normal.' },
+      { trigger: 'Sobre o comportamento', speech: 'Tá muito irritado, chora mais que o normal, parece que tá com dor de cabeça. Não sossega.' },
+      { trigger: 'Sobre os olhos', speech: 'Percebi que os olhinhos dele ficam olhando pra baixo às vezes, como se tivesse vendo os próprios pés.' },
+      { trigger: 'Sobre o pré-natal', speech: 'Fiz o pré-natal todo, não tive problema. Não tive infecção, nem toxoplasmose não.' },
+      { trigger: 'Sobre a história neonatal', speech: 'O parto foi normal, ele chorou logo, não precisou de UTI.' },
+      { trigger: 'Sobre histórico familiar', speech: 'Na família não tem ninguém assim não.' },
+      { trigger: 'Pergunta ativa', speech: 'O que é isso, doutor? É grave? Vai precisar de cirurgia?' },
+      { trigger: 'Pergunta ativa', speech: 'Vai ter sequela?' }
+    ],
+    hiddenInfo: 'Lactente teve episódio de convulsão breve (movimentos em MMSS, duração < 1 minuto) há 2 dias, que a mãe não valorizou ("achei que era um susto") — só revela se o candidato perguntar sobre convulsão ou movimentos anormais nos últimos dias | Mãe relata que o pediatra do último mês já tinha chamado atenção para o PC no limite superior, mas não encaminhou — só revela se o candidato perguntar sobre consultas anteriores e medida prévia do PC',
+    actorBehavior: 'Mãe jovem, muito ansiosa, chorando. Traz o bebê no colo. Colaborativa, responde a todas as perguntas. Fica mais tranquila quando o candidato demonstra competência e explica o que está fazendo. Reage com muito medo ao ouvir a possibilidade de cirurgia.'
+  },
+  instC: {
+    diagnosis: 'Hidrocefalia obstrutiva (tetraventricular), provavelmente por estenose do aqueduto de Sylvius, com hipertensão intracraniana em lactente de 4 meses. Emergência neurocirúrgica pediátrica.',
+    differentials: [
+      'Hidrocefalia comunicante pós-infecciosa — Inclui-se; afastar com pesquisa de infecção neonatal (toxoplasmose, CMV, sífilis, rubéola — TORCHS) e análise do LCR; USG mostra dilatação tetraventricular',
+      'Hidrocefalia por hemorragia intraventricular neonatal — Inclui-se especialmente em prematuros; exclui-se pela USG sem hemorragia e pelo nascimento a termo sem intercorrências neonatais',
+      'Macrocefalia familiar benigna — Exclui-se pela fontanela abaulada, pelo vômito em jato, pela irritabilidade e pelo sinal do sol poente — sinais que indicam HIC real',
+      'Tumor de fossa posterior com hidrocefalia obstrutiva — Inclui-se; afastar com RM de crânio — obrigatória antes de qualquer derivação'
+    ],
+    context: 'Lactente de 4 meses com macrocefalia de crescimento rápido (PC 44 cm — > P97), fontanela anterior abaulada e tensa, diástase de suturas, sinal do sol poente, irritabilidade, choro agudo e vômitos em jato — tríade clássica de HIC em lactente. USG transfontanelar confirma hidrocefalia tetraventricular. Emergência neurocirúrgica com risco de dano neurológico permanente por compressão cortical.',
+    justify: 'Critérios de HIC em lactente: macrocefalia com crescimento acelerado (> P97), fontanela abaulada e tensa, suturas com diástase, sinal de Macewen (pote rachado), sinal de Parinaud/sol poente (compressão do teto do mesencéfalo), irritabilidade, choro agudo e vômitos em jato (vagotonia por HIC). USG transfontanelar confirmou hidrocefalia tetraventricular. Causa mais provável nesta faixa etária: estenose do aqueduto de Sylvius (congênita ou pós-infecciosa).',
+    expectedAnamnesis: 'Crescimento do PC: velocidade, quando notou, medidas anteriores | Fontanela: aspecto, tensão, modificação recente | Vômitos: tipo (jato, sem esforço), frequência, relação com a alimentação | Irritabilidade e choro: início, padrão, associação com mudança de posição | Convulsões ou movimentos anormais | Pré-natal: infecções (TORCHS), intercorrências | Parto e período neonatal: idade gestacional, intercorrências, necessidade de UTI | Desenvolvimento neuropsicomotor até o momento | Histórico familiar de hidrocefalia ou malformações',
+    expectedPhysical: 'Medida do PC com fita métrica — OBRIGATÓRIA (percentil e comparação com curva) | Inspeção da fontanela: tamanho, tensão, pulsatilidade | Palpação das suturas: diástase | Percussão do crânio: sinal de Macewen | Inspeção das veias do couro cabeludo: ingurgitamento | Avaliação dos olhos: sinal do sol poente (desvio ocular conjugado para baixo) | Avaliação do tônus e reflexos | Peso e comprimento em curva de crescimento',
+    expectedExams: [
+      { exam: 'USG transfontanelar', justify: 'Exame de 1ª linha em lactente com fontanela aberta — confirma hidrocefalia', expected: 'Dilatação ventricular tetraventricular' },
+      { exam: 'RM de crânio (encaminhar urgente)', justify: 'Superior à USG — identificar causa (tumor, estenose de aqueduto, malformação)', expected: 'A realizar em centro de referência' },
+      { exam: 'Hemograma e PCR', justify: 'Afastar processo infeccioso', expected: 'Normal / PCR levemente elevada' },
+      { exam: 'Sorologias TORCHS (toxoplasmose, CMV, sífilis, rubéola, herpes)', justify: 'Afastar hidrocefalia pós-infecciosa neonatal', expected: 'A solicitar' }
+    ],
+    expectedConduct: 'Emergência neurocirúrgica: Acionar transferência imediata para hospital com neurocirurgia pediátrica | Medidas de suporte: Elevar cabeceira 30°, monitorização de sinais vitais, acesso venoso | Farmacológica: Acetazolamida VO pode ser usada temporariamente para reduzir produção de LCR enquanto aguarda cirurgia — uso controverso e dependente da indicação neurocirúrgica. Antieméticos: ondansetrona 0,1 mg/kg EV se vômitos intensos. Não usar manitol sem orientação neurocirúrgica | Definitivo (neurocirúrgico): Derivação Ventrículo-Peritoneal (DVP) — tratamento padrão para hidrocefalia obstrutiva; ventriculostomia endoscópica do terceiro ventrículo (VETV) como alternativa em > 6 meses | Encaminhamento: SAMU / regulação médica para transferência imediata a centro de neurocirurgia pediátrica | Orientações à mãe: Explicar que há líquido acumulando na cabeça do bebê, que aumenta a pressão no cérebro, que precisa de cirurgia em um hospital especializado, que o tratamento cirúrgico tem bons resultados mas que a velocidade do atendimento é importante',
+    expectedCommunication: 'Apresentação: Apresentar-se à mãe, acolhê-la com empatia (jovem, ansiosa, sozinha) | Comunicação do diagnóstico: Explicar de forma acessível que há excesso de líquido na cabeça aumentando a pressão no cérebro; que é tratável com cirurgia; que precisará ir para outro hospital especializado | Escuta ativa: Acolher o choro, responder às perguntas sobre cirurgia e sequelas com honestidade ("o tratamento funciona bem quando feito rápido, e estamos tratando rápido")',
+    criticalErrors: [
+      'Não medir o perímetro cefálico (exame essencial e obrigatório em qualquer lactente com queixa neurológica ou crescimento cefálico anormal)',
+      'Alta sem encaminhamento para neurocirurgia pediátrica',
+      'Não reconhecer a fontanela abaulada como sinal de HIC (exame físico inadequado)',
+      'Não solicitar USG transfontanelar como exame inicial em lactente com fontanela aberta',
+      'Realizar punção lombar sem neuroimagem em lactente com suspeita de HIC (risco de herniação)'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — CABEÇA CRESCENDO E MOLEIRINHA ABAULADA EM BEBÊ',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Apresentou-se à mãe e acolheu sua ansiedade com empatia', score: 0.5, ref: 'CFM 2.149/2016; Humanização MS, 2013' },
+          { item: 'Comunicou a gravidade do quadro e a necessidade de cirurgia de forma clara e acessível', score: 0.5, ref: 'CFM 2.149/2016; ECA — Lei 8.069/1990' },
+          { item: 'Respondeu à pergunta sobre sequelas com honestidade e tranquilidade ("o tratamento funciona bem quando feito rapidamente")', score: 0.5, ref: 'CFM 2.149/2016; Humanização MS' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou velocidade de crescimento do PC e comparação com medidas anteriores', score: 1.0, ref: 'SBP — Neurologia Pediátrica; MS — Linha de Cuidado da Criança' },
+          { item: 'Investigou características dos vômitos (em jato, sem esforço) e irritabilidade', score: 0.5, ref: 'SBP — Neurologia Pediátrica' },
+          { item: 'Perguntou sobre pré-natal e parto (TORCHS, intercorrências neonatais)', score: 0.5, ref: 'SBP — Hidrocefalia; MS — Atenção à Criança' },
+          { item: 'Investigou convulsão ou movimentos anormais', score: 0.5, ref: 'SBP — Neurologia Pediátrica' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Mediu o perímetro cefálico com fita métrica e plotou na curva de crescimento', score: 1.0, ref: 'SBP — Neurologia Pediátrica; MS — Caderneta da Criança' },
+          { item: 'Avaliou a fontanela anterior: tensão e abaulamento', score: 1.0, ref: 'SBP — Hidrocefalia; MS — Atenção à Criança' },
+          { item: 'Identificou sinal do sol poente (desvio ocular conjugado para baixo)', score: 0.5, ref: 'SBP — Hidrocefalia' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Formulou hipótese diagnóstica de hidrocefalia com hipertensão intracraniana', score: 1.0, ref: 'SBP — Hidrocefalia; MS — Urgências Pediátricas' },
+          { item: 'Solicitou USG transfontanelar como exame inicial', score: 0.5, ref: 'SBP — Hidrocefalia; MS — Urgências Pediátricas' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO À MÃE',
+        items: [
+          { item: 'Reconheceu a emergência e acionou transferência para neurocirurgia pediátrica imediatamente', score: 1.0, ref: 'SBP — Hidrocefalia; MS — Regulação de Urgência; SAMU' },
+          { item: 'Posicionou o lactente com cabeceira elevada a 30° enquanto aguarda transferência', score: 0.5, ref: 'SBP — HIC Pediátrica; MS — Urgências Neurológicas' },
+          { item: 'Não realizou punção lombar sem neuroimagem confirmatória (contraindicação em HIC)', score: 0.5, ref: 'SBP — Hidrocefalia; MS — Urgências Pediátricas' }
+        ]
+      }
+    ]
+  }
+},
+
 ]
