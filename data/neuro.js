@@ -164,7 +164,6 @@ const neurostations = [
       Altura: '1,63 m',
       IMC: '25,6 kg/m²'
     },
-    physicalGeneral: 'Bom estado geral, consciente, orientada, levemente tensa. Normocorada, hidratada, anicté
     physicalGeneral: 'Bom estado geral, consciente, orientada, levemente tensa. Normocorada, hidratada, anictérica. Sem sinais de sofrimento agudo.',
     physicalSeg: 'NEUROLÓGICO: Sem déficit focal. Pupilas isocóricas e fotorreagentes. Pares cranianos íntegros. Sem nistagmo. Sem rigidez de nuca. | MUSCULOESQUELÉTICO (CABEÇA/PESCOÇO): Tensão muscular à palpação da musculatura pericraniana (temporal, esternocleidomastoideo, trapézio bilateral). Sem pontos gatilho definidos. Cervical com mobilidade levemente reduzida por tensão. | OFTALMOLÓGICO: Sem alterações. Acuidade visual referida como normal, usa óculos para leitura há 3 anos.',
     labs: [
