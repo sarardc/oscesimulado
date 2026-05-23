@@ -613,12 +613,14 @@
   .filter-btn.tema-endocrinologia.active { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria.active    { border-color: #a78bfa; color: #a78bfa; }
   .filter-btn.tema-pediatria.active      { border-color: #f783ac; color: #f783ac; }
+  .filter-btn.tema-neurologia.active     { border-color: #6366f1; color: #6366f1; }
 
   .filter-btn.tema-nefrologia:hover     { border-color: #38d9a9; color: #38d9a9; }
   .filter-btn.tema-urologia:hover       { border-color: #4f9cf9; color: #4f9cf9; }
   .filter-btn.tema-endocrinologia:hover { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria:hover    { border-color: #a78bfa; color: #a78bfa; }
   .filter-btn.tema-pediatria:hover      { border-color: #f783ac; color: #f783ac; }
+  .filter-btn.tema-neurologia:hover     { border-color: #6366f1; color: #6366f1; }
 
   .home-main { flex: 1; min-width: 0; }
 
