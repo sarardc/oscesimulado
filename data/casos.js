@@ -1632,9 +1632,6 @@ const endocrineStations = [
         "Toque vaginal: útero de volume normal, móvel e indolor; anexos não palpáveis."
       ],
       labs: [
-        { test: "FSH", val: "78 mUI/mL", ref: "pós-menopausa: > 40", alt: true },
-        { test: "LH", val: "45 mUI/mL", ref: "pós-menopausa: > 30", alt: true },
-        { test: "Estradiol", val: "18 pg/mL", ref: "pós-menopausa: < 30", alt: true },
         { test: "TSH", val: "2.8 μUI/mL", ref: "0.4 - 4.0", alt: false },
         { test: "Glicemia jejum", val: "92 mg/dL", ref: "70 - 100", alt: false },
         { test: "Colesterol total", val: "235 mg/dL", ref: "< 200", alt: true },
@@ -2297,7 +2294,7 @@ const endocrineStations = [
   },
   {
     id: 16,
-    title: "Amenorreia há 10 meses",
+    title: "Rotina",
     sub: "Ambulatório de clínica médica de uma UBS",
     tema: "endocrinologia",
     topic: "metabolica",
