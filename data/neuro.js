@@ -1968,7 +1968,8 @@ instD: {
         { item: 'Orientou sobre perda de peso como parte do tratamento', score: 0.4, ref: 'SBN — HII; UpToDate' }
       ]
     }
-
+    ]
+}
 },
 
 ]
