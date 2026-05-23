@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>cards OSCE</title>
+<link rel="stylesheet" href="osce-panel.css">
+</head>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+.wrap{padding:1rem 0}
+.top-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem}
+.top-bar input{flex:1;min-width:160px;padding:7px 12px;border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);color:var(--color-text-primary);font-size:14px}
+.count{font-size:13px;color:var(--color-text-secondary);padding:7px 0;white-space:nowrap}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.fb{padding:4px 13px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:12px;cursor:pointer}
+.fb.on{background:var(--color-background-info);color:var(--color-text-info);border-color:var(--color-border-info)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.85rem 1rem;cursor:pointer}
+.card:hover{border-color:var(--color-border-secondary)}
+.card.open{border-color:var(--color-border-info)}
+.ch{display:flex;align-items:flex-start;gap:7px;margin-bottom:5px}
+.badge{font-size:13px;padding:2px 8px;border-radius:20px;font-weight:500;white-space:nowrap}
+.ctitle{font-size:18px;font-weight:500;color:var(--color-text-primary);flex:1}
+.csub{font-size:16px;color:var(--color-text-secondary);margin-bottom:0}
+.ico{color:var(--color-text-tertiary);font-size:16px;transition:transform .2s;flex-shrink:0;margin-top:2px}
+.card.open .ico{transform:rotate(180deg)}
+.body{display:none;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px;margin-top:8px}
+.card.open .body{display:block}
+.sl{font-size:15px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:.05em;margin:7px 0 4px}
+.pills{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px}
+.pill{font-size:15px;padding:2px 8px;border-radius:20px;background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-tertiary)}
+.qa{display:flex;flex-direction:column;gap:4px}
+.qi{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:6px 9px}
+.qq{font: size 17px;px;color:var(--color-text-secondary);margin-bottom:1px}
+.qa-a{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.alert{background:var(--color-background-danger);border-radius:var(--border-radius-md);padding:6px 9px;margin-top:8px;font-size:12px;color:var(--color-text-danger)}
+.askb{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:4px 10px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:transparent;color:var(--color-text-secondary);font-size:12px;cursor:pointer}
+.askb:hover{background:var(--color-background-secondary)}
+.empty{text-align:center;color:var(--color-text-tertiary);padding:2rem;font-size:16px}
+</style>
+
+<div class="wrap">
+<h2>Flashcards OSCE — Saúde Mental, Pediatria e Endocrinologia</h2>
+<div class="top-bar">
+  <input type="text" id="search" placeholder="Buscar qualquer tema..." oninput="render()">
+  <span class="count" id="count"></span>
+</div>
+<div class="filters" id="filters"></div>
+<div class="grid" id="cards"></div>
+</div>
+
+<script>
+const cats=[
+  {id:'todos',label:'Todos'},
+  {id:'humor',label:'Humor'},
+  {id:'ansiedade',label:'Ansiedade'},
+  {id:'psicotico',label:'Psicóticos'},
+  {id:'toc',label:'TOC e rel.'},
+  {id:'infanto',label:'Infantil/Neurodesenv.'},
+  {id:'somatico',label:'Somático'},
+  {id:'substancia',label:'Substâncias'},
+  {id:'ped',label:'Pediatria'},
+  {id:'neo',label:'Neonatal'},
+  {id:'resp',label:'Respiratório'},
+  {id:'infec',label:'Infecções'},
+  {id:'gi',label:'Cirúrgico/GI'},
+  {id:'vac',label:'Vacinas'},
+  {id:'end',label:'Endocrinologia'},
+];
+
+const bc={humor:'background:#EEEDFE;color:#3C3489',ansiedade:'background:#E1F5EE;color:#085041',psicotico:'background:#FCEBEB;color:#791F1F',toc:'background:#FAECE7;color:#712B13',infanto:'background:#FAEEDA;color:#633806',somatico:'background:#EAF3DE;color:#27500A',substancia:'background:#FBEAF0;color:#72243E',ped:'background:#E6F1FB;color:#0C447C',neo:'background:#EAF3DE;color:#27500A',resp:'background:#FAECE7;color:#712B13',infec:'background:#FBEAF0;color:#72243E',gi:'background:#EAF3DE;color:#27500A',vac:'background:#E6F1FB;color:#0C447C',end:'background:#FAEEDA;color:#633806'};
+
+const data=[
+  {id:'tab',cat:'humor',title:'Transtorno Afetivo Bipolar (TAB)',sub:'Alternância mania/hipomania ↔ depressão',sx:['Mania: humor eufórico, grandiosidade, logorreia, diminuição do sono, gastos excessivos','Depressão: tristeza, anedonia, fadiga, ideação suicida'],pontos:[{q:'Mania ≥ quantos dias?',a:'≥7 dias; hipomania ≥4 dias'},{q:'Psicose ocorre em qual?',a:'Mania (não na hipomania)'},{q:'TAB I vs II?',a:'Tipo I: mania franca. Tipo II: hipomania + depressão, nunca mania'},{q:'Antidepressivo isolado?',a:'Não — risco de virada maníaca'},{q:'Estabilizador 1ª linha?',a:'Carbonato de lítio'},{q:'Exames antes do lítio?',a:'Função renal + TSH'}],alerta:'Sempre avaliar risco suicida e diferenciar mania de hipomania'},
+  {id:'dep',cat:'humor',title:'Depressão (Transtorno Depressivo Maior)',sub:'≥5 sintomas por ≥15 dias — humor deprimido ou anedonia obrigatório',sx:['Humor deprimido','Anedonia','Fadiga, alteração sono/apetite','Culpa excessiva, desatenção','Ideação suicida'],pontos:[{q:'Sintomas cardinais?',a:'Humor deprimido e anedonia'},{q:'Critério mínimo?',a:'≥5 sintomas por ≥15 dias'},{q:'O que excluir antes do antidepressivo?',a:'TAB + causas orgânicas (TSH, hemograma)'},{q:'Primeira linha?', a:'ISRS + mev'},{q:'Melhor para insônia?',a:'Trazodona ou mirtazapina'},{q:'Melhor para dor crônica?',a:'Duloxetina (IRSN)'},{q:'ECT quando?',a:'Suicídio alto risco, psicose, catatonia, resistência'},{q:'Depressão leve: ATD obrigatório?',a:'Não — psicoterapia é suficiente'}],alerta:'Avaliar risco suicida em toda consulta'},
+  {id:'distimia',cat:'humor',title:'Distimia',sub:'Humor deprimido crônico leve por ≥2 anos',sx:['Humor deprimido persistente','Baixa autoestima, fadiga','Alteração sono e apetite','Dificuldade de concentração'],pontos:[{q:'Tempo mínimo?',a:'≥2 anos em adultos; ≥1 ano em crianças'},{q:'Pode evoluir para depressão maior?',a:'Sim — chama-se depressão dupla'},{q:'Tratamento?',a:'Psicoterapia + ISRS'}],alerta:'Diagnóstico diferencial com depressão maior: gravidade e tempo de evolução'},
+  {id:'dpp',cat:'humor',title:'Depressão pós-parto e psicótica',sub:'Puerpério — diferente do blues puerperal (<15 dias)',sx:['Tristeza, choro fácil, cansaço intenso','Culpa, dificuldade de vínculo com bebê','Em casos graves: pensamentos de causar mal ao bebê'],pontos:[{q:'Blues puerperal dura?',a:'<15 dias — mais leve, autolimitado'},{q:'Psicose puerperal é urgência?',a:'Sim — delírios, alucinações, emergência psiquiátrica'},{q:'ATD mais seguro na lactação?',a:'Sertralina'},{q:'Quando internar?',a:'Psicose, risco suicida, risco para bebê'}],alerta:'Avaliar sempre risco para a mãe E para o bebê'},
+  {id:'suicidio',cat:'humor',title:'Síndrome da crise suicida',sub:'Avaliar sempre: plano, método, tentativa prévia',sx:['Ideação suicida, desesperança','Mensagens de despedida, doação de bens','Pesquisa de métodos, isolamento progressivo'],pontos:[{q:'Principal fator de risco?',a:'Tentativa prévia'},{q:'Principal fator protetor?',a:'Rede de apoio/família'},{q:'Paciente pode ficar sozinho?',a:'Não'},{q:'Medicação com redução comprovada?',a:'Lítio (longo prazo)'},{q:'Conduta inicial?',a:'Garantir segurança + retirar objetos + acionar psiquiatria'}],alerta:'NUNCA minimizar fala suicida. Não julgar. Não deixar sozinho.'},
+  {id:'tag',cat:'ansiedade',title:'TAG — Transtorno de Ansiedade Generalizada',sub:'Preocupação excessiva na maioria dos dias por ≥6 meses',sx:['Preocupação excessiva e persistente','Inquietação, irritabilidade, fadiga','Dificuldade de concentração, tensão muscular','Insônia'],pontos:[{q:'Tempo mínimo?',a:'6 meses'},{q:'Tratamento 1ª linha?',a:'TCC + ISRS'},{q:'Benzodiazepínico resolve TAG?',a:'Não — só sintomático, evitar uso crônico'}],alerta:'Excluir causas orgânicas: TSH, glicemia, ECG'},
+  {id:'panico',cat:'ansiedade',title:'Transtorno do pânico e agorafobia',sub:'Crises recorrentes + ansiedade antecipatória',sx:['Taquicardia, falta de ar, dor torácica','Sudorese, tremores, despersonalização','Medo de morrer ou enlouquecer'],pontos:[{q:'Duração do ataque?',a:'15–20 minutos'},{q:'Principal diferencial?',a:'IAM — sempre excluir'},{q:'Medicação na crise?',a:'Benzodiazepínico (lorazepam, diazepam)'},{q:'Tratamento manutenção?',a:'TCC + ISRS'},{q:'Agorafobia: medo principal?',a:'Não conseguir escapar ou receber ajuda'}],alerta:'Ataque de pânico é sintoma, não diagnóstico isolado'},
+  {id:'fobias',cat:'ansiedade',title:'Fobias específicas e fobia social',sub:'Medo intenso + evitação + ≥6 meses + prejuízo funcional',sx:['Fobia específica: medo desproporcional de objeto/situação','Fobia social: medo de avaliação negativa, situações sociais','Ansiedade imediata ao contato com estímulo'],pontos:[{q:'Tempo mínimo?',a:'6 meses'},{q:'Tratamento principal?',a:'TCC + exposição gradual'},{q:'Fobia social 1ª linha?',a:'TCC + ISRS'},{q:'Timidez é doença?',a:'Não'},{q:'Medicação cura fobia?',a:'Não'}],alerta:'Fobia social: avaliar sempre uso de álcool/drogas como automedicação'},
+  {id:'tept',cat:'ansiedade',title:'TEPT — Transtorno de Estresse Pós-Traumático',sub:'4 grupos de sintomas após trauma grave',sx:['Flashbacks e pesadelos (intrusão)','Evitação de gatilhos do trauma','Humor negativo, culpa, anedonia','Hipervigilância, irritabilidade, insônia'],pontos:[{q:'Grupos de sintomas?',a:'4: intrusão, evitação, cognição/humor, hiperexcitabilidade'},{q:'Sintoma clássico?',a:'Flashback'},{q:'Tratamento principal?',a:'Psicoterapia/TCC'},{q:'BZD é 1ª linha?',a:'Não — prejudica processamento do trauma'},{q:'ISRS usados?',a:'Sertralina e paroxetina'}],alerta:'Diagnóstico exige: exposição ao trauma + todos os 4 grupos'},
+  {id:'esquizo',cat:'psicotico',title:'Esquizofrenia',sub:'≥2 sintomas por ≥6 meses + prejuízo funcional obrigatório',sx:['Positivos: delírios, alucinações, discurso desorganizado','Negativos: embotamento afetivo, hipobulia, anedonia, isolamento'],pontos:[{q:'Tempo mínimo?',a:'6 meses (≥1 mês de fase ativa)'},{q:'Critério obrigatório?',a:'Prejuízo funcional'},{q:'Tratamento da refratária?',a:'Clozapina (após falha de 2 antipsicóticos)'},{q:'Principal risco da clozapina?',a:'Agranulocitose — hemograma semanal'},{q:'Extrapiramidais mais em quê?',a:'Antipsicóticos típicos (haloperidol)'}],alerta:'Excluir causas orgânicas: TSH, toxicologia, neuroimagem, sorologias'},
+  {id:'outros_psi',cat:'psicotico',title:'Esquizoafetivo, esquizofreniforme e psicótico breve',sub:'Diferenciação pelo tempo e relação com humor',sx:['Esquizoafetivo: psicose + episódio de humor (depressão ou mania)','Esquizofreniforme: mesmo quadro da esquizofrenia, duração 1–6 meses','Psicótico breve: 1 dia a 1 mês + remissão completa'],pontos:[{q:'Esquizoafetivo vs TAB psicótico?',a:'Psicose por ≥2 semanas SEM episódio de humor'},{q:'Esquizofreniforme dura?',a:'1–6 meses (frequentemente evolui para esquizofrenia)'},{q:'Psicótico breve: diferença?',a:'Retorna ao funcionamento prévio após remissão'},{q:'Transtorno delirante: tempo mínimo?',a:'≥1 mês — sem grande prejuízo funcional'}],alerta:'Sempre excluir substâncias e causas orgânicas em qualquer quadro psicótico'},
+  {id:'toc',cat:'toc',title:'TOC e transtornos relacionados',sub:'Obsessões e/ou compulsões — sintomas egodistônicos',sx:['Pensamentos intrusivos indesejados (obsessões)','Rituais repetitivos para aliviar ansiedade (compulsões)','Subtipos: contaminação, dúvida, simetria, pensamentos inaceitáveis'],pontos:[{q:'TOC é transtorno de ansiedade no DSM-5?',a:'Não — categoria própria'},{q:'Sintomas são egodistônicos?',a:'Sim — paciente reconhece como irracional'},{q:'Critério diagnóstico?',a:'Obsessão e/ou compulsão >1h/dia com prejuízo'},{q:'Tratamento 1ª linha?',a:'TCC + ISRS em doses altas'},{q:'Tricíclico do TOC?',a:'Clomipramina'}],alerta:'Compulsão serve para aliviar ansiedade temporariamente, não porque o paciente quer'},
+  {id:'toc_rel',cat:'toc',title:'TDC, acumulação, tricotilomania, escoriação',sub:'Transtornos relacionados ao TOC — tratamento: TCC + ISRS',sx:['TDC: preocupação excessiva com defeito imaginário/mínimo','Acumulação: dificuldade de descartar objetos','Tricotilomania: arrancar cabelos/pelos compulsivamente','Escoriação: manipular pele repetidamente até causar lesão'],pontos:[{q:'TDC: defeito costuma ser?',a:'Imaginário ou mínimo'},{q:'Tricotilomania: pode ser inconsciente?',a:'Sim'},{q:'Acumulação pode ser digital?',a:'Sim (arquivos, fotos)'},{q:'Tratamento de todos?',a:'TCC + ISRS'}],alerta:'TDC: evitar reforçar busca por procedimentos estéticos'},
+  {id:'tdah',cat:'infanto',title:'TDAH',sub:'Tríade: desatenção + hiperatividade + impulsividade por >6 meses',sx:['Distrai-se facilmente, não termina tarefas','Agitação motora, levanta da cadeira','Interrompe os outros, responde antes de terminar a pergunta','Início antes dos 12 anos'],pontos:[{q:'Subtipo mais comum?',a:'Misto (55%)'},{q:'Escala mais cobrada?',a:'SNAP-IV'},{q:'Medicação 1ª linha?',a:'Metilfenidato (psicoestimulante)'},{q:'Pré-escolar leve?',a:'Preferir não farmacológico'},{q:'Efeito colateral clássico?',a:'Perda de apetite e insônia'}],alerta:'Diagnóstico clínico. Sintomas em mais de um ambiente.'},
+  {id:'tea',cat:'infanto',title:'TEA — Transtorno do Espectro Autista',sub:'Déficits de comunicação social + padrões restritos/repetitivos',sx:['Pouco contato visual, não responde pelo nome','Atraso ou regressão da fala, ecolalia','Estereotipias (flapping), andar nas pontas dos pés','Apego excessivo à rotina, hiper/hipossensibilidade'],pontos:[{q:'Escala e idade?',a:'M-CHAT — 18 a 24 meses'},{q:'Diagnóstico?',a:'Clínico'},{q:'Tratamento?',a:'Multidisciplinar (fono, TO, psico, pedagogia)'},{q:'Antipsicótico para irritabilidade?',a:'Risperidona'},{q:'ISRS melhoram TEA?',a:'Não têm boa eficácia'}],alerta:'Sinal precoce: não aponta, não olha ao ser chamado, regressão da fala'},
+  {id:'tourette',cat:'infanto',title:'Tiques e síndrome de Tourette',sub:'Tourette = tique motor + vocal por ≥12 meses',sx:['Tiques motores: piscar, caretas, movimentos faciais','Tiques vocais: pigarros, sons, palavras involuntárias','Início antes dos 18 anos'],pontos:[{q:'Tourette precisa de?',a:'Tique motor + vocal'},{q:'Tempo mínimo?',a:'12 meses'},{q:'Tratamento 1ª linha?',a:'Psicoeducação + TCC'},{q:'Antipsicóticos usados?',a:'Risperidona, aripiprazol'},{q:'Estresse piora?',a:'Sim'},{q:'Comorbidade comum?',a:'TDAH e TOC'}],alerta:'Diagnóstico clínico. Estresse e fadiga agravam os tiques.'},
+  {id:'somatico',cat:'somatico',title:'Transtornos somáticos e conversivo',sub:'Paciente sofre de verdade — sintomas não são inventados',sx:['TSS: múltiplos sintomas físicos, exames normais, alta procura por médicos','Hipocondria (TAD): medo de ter doença grave, sintomas ausentes/leves','Conversivo: sintomas neurológicos funcionais incompatíveis com doença neurológica'],pontos:[{q:'Paciente inventa os sintomas?',a:'Não — sofre de verdade'},{q:'Tempo mínimo TSS?',a:'6 meses'},{q:'La belle indifférence?',a:'Conversivo — pouca preocupação com sintomas graves'},{q:'Hipocondria: sintomas físicos importantes?',a:'Não'},{q:'Tratamento principal?',a:'Psicoterapia/TCC'},{q:'Factício: objetivo?',a:'Assumir papel de doente (sem ganho externo)'}],alerta:'Validar sofrimento. Evitar iatrogenia. Não confrontar diretamente.'},
+  {id:'tus',cat:'substancia',title:'TUS — Transtorno por uso de substâncias',sub:'≥2 critérios dos grupos A-D',sx:['Controle: uso maior que planejado, craving, tentativas frustradas de parar','Prejuízo social: falta no trabalho, abandono de atividades','Farmacológico: tolerância e abstinência'],pontos:[{q:'Quantos critérios?',a:'≥2 dos grupos A-D'},{q:'Teste para alcoolismo?',a:'CAGE'},{q:'Teste para nicotina?',a:'Fagerström'},{q:'Abstinência alcoólica: início?',a:'6h após interrupção — tremores, ansiedade, sudorese'},{q:'Delirium tremens: tratamento?',a:'Benzodiazepínico (diazepam/lorazepam)'},{q:'Glicose antes da tiamina?',a:'NUNCA — risco de Wernicke'},{q:'Dependência alcoólica: medicação?',a:'Naltrexona, topiramato'},{q:'Nicotina 1ª linha?',a:'TRN (adesivo, goma) + bupropiona/vareniclina'}],alerta:'NUNCA dar glicose antes da tiamina em alcoolistas!'},
+  {id:'itu_ped',cat:'ped',title:'ITU pediátrica',sub:'E. coli mais comum — RN com ITU = tratar como sepse',sx:['Lactente: febre sem foco, irritabilidade, recusa alimentar','Criança maior: disúria, polaciúria, urina turva','Pielonefrite: febre alta, dor lombar, vômitos'],pontos:[{q:'Padrão-ouro?',a:'Urocultura'},{q:'Nitrito negativo exclui?',a:'Não'},{q:'Imagem inicial?',a:'USG renal (indicar <2 anos + ITU febril)'},{q:'Bacteriúria assintomática?',a:'NÃO tratar'},{q:'Quando internar?',a:'<3 meses, sepse, vômitos, toxemia'},{q:'Profilaxia ATB?',a:'Cefalexina'}],alerta:'Punção suprapúbica = qualquer crescimento bacteriano = positivo'},
+  {id:'gnda',cat:'ped',title:'GNDA pós-estreptocócica',sub:'Síndrome nefrítica: edema + hematúria + HAS',sx:['Edema periorbitário matinal','Hematúria macroscópica (urina coca-cola)','Oligúria e hipertensão arterial'],pontos:[{q:'Agente?',a:'Streptococcus beta-hemolítico grupo A'},{q:'Complemento?',a:'C3 baixo, C4 normal'},{q:'Achado patognomônico?',a:'Cilindro hemático no EAS'},{q:'Diurético?',a:'Furosemida'},{q:'ATB?',a:'Penicilina benzatina'},{q:'Prognóstico?',a:'Excelente — 95% de recuperação'}],alerta:'Período de latência: 1–3 sem (faringite) ou 3–6 sem (piodermite)'},
+  {id:'cvf',cat:'ped',title:'Convulsão febril',sub:'6 meses a 5 anos — sempre excluir meningite',sx:['Convulsão com febre ≥38°C, sem infecção do SNC','Simples: <15 min, sem recorrência em 24h, generalizada','Complexa: focal, >15 min, recorrente em 24h'],pontos:[{q:'Principal diferencial?',a:'Meningite'},{q:'Punção lombar é obrigatória?',a:'Não — indicar <6 meses, suspeita meningite'},{q:'BZD usado?',a:'Diazepam ou midazolam'},{q:'EEG na crise simples?',a:'Não'},{q:'Maioria evolui epilepsia?',a:'Não'}],alerta:'Crise focal = complexa. Crise simples tem prognóstico excelente.'},
+  {id:'orl',cat:'ped',title:'OMA, rinossinusite e faringoamigdalite',sub:'Diagnóstico clínico — ATB nem sempre necessário',sx:['OMA: otalgia, febre, abaulamento da MT','Rinossinusite: sintomas >10–14 dias, febre, halitose','Faringoamigdalite bacteriana (SBHGA): febre alta, exsudato, petéquias palatinas'],pontos:[{q:'OMA 1ª linha?',a:'Amoxicilina'},{q:'OMA precisa sempre ATB?',a:'Não — observar em >2 anos sem gravidade'},{q:'Rinossinusite pista?',a:'Duração >10 dias sem melhora'},{q:'RX para rinossinusite?',a:'Não tem utilidade'},{q:'Faringoamigdalite SBHGA?',a:'Penicilina ou amoxicilina 10 dias'},{q:'Viral costuma ter?',a:'Tosse, coriza, rouquidão'}],alerta:'Sinais de alerta rinossinusite: edema orbitário → internação'},
+  {id:'resfriado',cat:'ped',title:'Resfriado e bronquiolite viral',sub:'Resfriado: viral, autolimitado. Bronquiolite: VSR <2 anos',sx:['Resfriado: coriza, tosse, espirros, febre nos primeiros dias','Bronquiolite: sibilância + estertores, dificuldade alimentar, taquipneia'],pontos:[{q:'Resfriado: ATB indicado?',a:'Não'},{q:'Mel pode usar?',a:'≥1 ano'},{q:'Bronquiolite: agente?',a:'VSR'},{q:'Bronquiolite: tratamento?',a:'Suporte — lavagem nasal, hidratação, O2'},{q:'BZD ou corticoide na bronquiolite?',a:'Não'},{q:'Saturação de internação?',a:'<90–92%'}],alerta:'Bronquiolite: pico de gravidade no 3º–5º dia'},
+  {id:'sib_rec',cat:'ped',title:'Sibilância recorrente no lactente',sub:'≥3 episódios em <5 anos — avaliar risco de asma',sx:['Chiado recorrente, tosse seca noturna','Piora com exercício, risos, IVAS','Melhora com broncodilatador'],pontos:[{q:'Definição?',a:'≥3 episódios de sibilância em <5 anos'},{q:'Sibilância unilateral sugere?',a:'Corpo estranho'},{q:'Baqueteamento digital sugere?',a:'Fibrose cística'},{q:'API positivo sugere?',a:'Maior risco de asma'},{q:'Tratamento persistente?',a:'ICS diário'}],alerta:'Sinais de alerta: desde nascimento, engasgos, falha de crescimento → investigar outra causa'},
+  {id:'asma',cat:'resp',title:'Asma na infância',sub:'Inflamação crônica — sibilância + tosse noturna + melhora com BD',sx:['Sibilância recorrente, tosse pior à noite','Dispneia, aperto torácico','Gatilhos: IVAS, exercício, fumaça, frio'],pontos:[{q:'Diagnóstico?',a:'Clínico'},{q:'Exame >6 anos?',a:'Espirometria'},{q:'Medicação controle base?',a:'Corticoide inalatório (ICS)'},{q:'Resgate?',a:'Salbutamol (SABA)'},{q:'SatO2 alvo na crise?',a:'92–95%'},{q:'Crise grave?',a:'Sulfato de magnésio'},{q:'Inalador <3 anos?',a:'Espaçador + máscara'}],alerta:'API: ≥3 episódios/ano + 1 critério maior OU 2 critérios menores'},
+  {id:'pac',cat:'resp',title:'PAC — Pneumonia pediátrica',sub:'Principal sinal: taquipneia. Pneumococo = principal bactéria.',sx:['Febre, tosse, taquipneia','Desconforto respiratório, recusa alimentar','VSR <2 anos; Pneumococo em qualquer idade'],pontos:[{q:'FR em 2–11 meses?',a:'>50 irpm'},{q:'FR em 12–59 meses?',a:'>40 irpm'},{q:'RX é rotina?',a:'Não'},{q:'ATB 2m–5a?',a:'Amoxicilina 80–90 mg/kg/dia'},{q:'Sat para internação?',a:'<92%'},{q:'Melhor exame derrame?',a:'USG tórax'},{q:'Suspeita MRSA?',a:'Vancomicina'}],alerta:'Pneumonia afebril → pensar atípica (macrolídeo)'},
+  {id:'coqueluche',cat:'resp',title:'Coqueluche',sub:'Bordetella pertussis — fase catarral = mais transmissível',sx:['Catarral: coriza, febre baixa (parece resfriado)','Paroxística: tosse em salva + guincho inspiratório','Vômitos pós-tosse, apneia em lactentes'],pontos:[{q:'ATB 1ª linha?',a:'Azitromicina'},{q:'Eritromicina evitar em?',a:'<1 mês — risco de estenose do piloro'},{q:'Hemograma?',a:'Leucocitose com linfocitose'},{q:'Hiperleucocitose pode causar?',a:'Hipertensão pulmonar grave'},{q:'Prevenção?',a:'Pentavalente + dTpa na gestante'},{q:'Lactente pode não ter guincho?',a:'Sim'}],alerta:'NÃO usar antitussígenos, corticoides ou broncodilatadores'},
+  {id:'tb',cat:'infec',title:'Tuberculose infantil',sub:'Criança pega de adulto bacilífero — é paucibacilar',sx:['Tosse >3 semanas, febre vespertina >15 dias','Perda de peso, hiporexia, sudorese noturna','Falha de crescimento, linfonodomegalia hilar'],pontos:[{q:'Padrão-ouro?',a:'Cultura'},{q:'Exame rápido?',a:'GeneXpert (~2h)'},{q:'PPD reator?',a:'≥5 mm'},{q:'Tratamento <10 anos?',a:'RHZ 2 meses + RH 4 meses'},{q:'"Pneumonia" sem melhora ATB?',a:'Pensar TB'},{q:'BCG previne?',a:'Formas graves: miliar e meníngea'}],alerta:'Cavitação é mais comum em adolescentes'},
+  {id:'torchs',cat:'infec',title:'Infecções congênitas (TORCHS)',sub:'Toxo, Sífilis, HIV, HepB, Zika, Rubéola, CMV, Herpes',sx:['Microcefalia, calcificações intracranianas','Coriorretinite, surdez','Hepatoesplenomegalia, petéquias, icterícia'],pontos:[{q:'Tríade toxoplasmose?',a:'Hidrocefalia + coriorretinite + calcificações difusas'},{q:'Tríade Gregg?',a:'Surdez + catarata + cardiopatia (rubéola)'},{q:'Principal causa surdez neurossensorial?',a:'CMV'},{q:'Calcificações CMV?',a:'Periventriculares'},{q:'HIV pode amamentar?',a:'Não'},{q:'Neurossífilis?',a:'Penicilina cristalina'},{q:'Baixa avidez IgG?',a:'Infecção recente'}],alerta:'Vacina rubéola é contraindicada na gestante'},
+  {id:'bronq',title:'Bronquiolite viral aguda (BVA)',cat:'resp',badge:'b-resp',
+  sub:'VSR — lactente <2 anos — tratamento é suporte',
+  sx:['Pródromos de IVAS','Tosse persistente','Taquipneia','Sibilância + estertores','Dificuldade alimentar'],
+  pontos:[
+    {q:'Principal agente?',a:'VSR'},
+    {q:'Pico de gravidade?',a:'3º–5º dia'},
+    {q:'Tratamento principal?',a:'Suporte (lavagem nasal, hidratação, O2)'},
+    {q:'Corticoide rotina?',a:'Não'},
+    {q:'Beta-2 agonista rotina?',a:'Não'},
+    {q:'Saturação preocupante?',a:'<90–92%'},
+    {q:'Diagnóstico é?',a:'Clínico'},
+  ],
+  alerta:'Internação: SatO2 <90-92%, apneia, FR>60, recusa alimentar, <3 meses'
+  },
+  {id:'piloro',cat:'gi',title:'Estenose hipertrófica do piloro',sub:'Lactente 2–8 semanas — vômito em jato não bilioso',sx:['Vômito em jato, não bilioso, 30–60 min após mamada','Fome imediatamente após vômito','Perda de peso, desidratação'],pontos:[{q:'Achado patognomônico?',a:'Oliva pilórica'},{q:'Principal exame?',a:'Ultrassonografia'},{q:'Distúrbio metabólico?',a:'Alcalose metabólica hipoclorêmica hipocalêmica'},{q:'Tratamento definitivo?',a:'Pilorotomia de Fredet-Ramstedt'},{q:'Principal diferencial?',a:'Refluxo GE (sem perda de peso, criança saciada)'}],alerta:'Estabilizar ANTES da cirurgia: jejum + hidratação EV + correção eletrolítica'},
+  {id:'invag',cat:'gi',title:'Invaginação intestinal',sub:'Tríade clássica: dor + massa + geleia de morango',sx:['Dor abdominal intermitente (chora e flexiona pernas)','Fezes em geleia de morango/framboesa','Massa abdominal em salsicha'],pontos:[{q:'Faixa etária?',a:'<2 anos'},{q:'Principal exame?',a:'USG — sinal alvo (transversal)'},{q:'Tratamento inicial?',a:'Enema terapêutico (até 3x)'},{q:'>2 anos: pensar?',a:'Causa orgânica (tumor, pólipo)'},{q:'Quando operar?',a:'Peritonite, instabilidade, falha do enema'}],alerta:'Complicação temida: isquemia → perfuração → peritonite'},
+  {id:'ictericia',cat:'neo',title:'Hiperbilirrubinemia neonatal',sub:'Fisiológica = 2º–3º dia. Direta = sempre patológica.',sx:['Icterícia fisiológica: benigna, indireta, 2º–3º dia','Patológica: <24h, progressão rápida, bilirrubina direta elevada'],pontos:[{q:'Icterícia <24h?',a:'Patológica'},{q:'Tratamento principal?',a:'Fototerapia (bilirrubina indireta)'},{q:'Complicação grave?',a:'Kernicterus'},{q:'Incompatibilidade Rh?',a:'Mãe Rh negativo + bebê Rh positivo'},{q:'Kasai: melhor antes de?',a:'8 semanas'}],alerta:'Zonas de Kramer: progressão craniocaudal. Zona 5 (mãos e pés) = grave'},
+  {id:'descrn',cat:'neo',title:'Desconforto respiratório no RN',sub:'TTRN = mais comum. SDR = deficiência de surfactante.',sx:['Taquipneia >60 irpm, retrações, gemido','Batimento de asa nasal, cianose, apneia','Gasping = pré-parada respiratória'],pontos:[{q:'Principal causa?',a:'TTRN (autolimitada, melhora 24–72h)'},{q:'SDR: causa?',a:'Deficiência de surfactante (prematuro)'},{q:'RX SDR?',a:'Pulmão branco — quanto mais branco, mais grave'},{q:'Tratamento SDR grave?',a:'Surfactante exógeno + CPAP'},{q:'Hérnia diafragmática: pode usar máscara?',a:'Não'}],alerta:'Prevenção SDR: corticoide antenatal'},
+  {id:'vac',cat:'vac',title:'Imunizações na pediatria',sub:'Vacinas vivas contraindicadas em imunossuprimidos',sx:[],pontos:[{q:'BCG via/local?',a:'Intradérmica, braço direito'},{q:'RN <2 kg: BCG?',a:'Adiar'},{q:'Filho mãe HBsAg+?',a:'Vacina + HBIG primeiras 12h'},{q:'Rotavírus contraindicado em?',a:'Invaginação intestinal prévia'},{q:'Febre amarela contraindicação?',a:'Anafilaxia ao ovo'},{q:'Encefalopatia pós-pertussis?',a:'Trocar para DT'},{q:'Resfriado leve contraindica?',a:'Não'},{q:'HPV SUS?',a:'Quadrivalente (6, 11, 16, 18)'}],alerta:'BCG protege contra: TB miliar e meníngea (não previne TB pulmonar)'},
+  {id:'dm',cat:'end',title:'Diabetes mellitus (DM1 e DM2)',sub:'Glicemia ≥126 ou HbA1c ≥6,5% = DM',sx:['Poliúria, polidipsia, polifagia, perda de peso','Acantose nigricans (resistência insulínica)','Fadiga, infecções recorrentes, visão turva'],pontos:[{q:'Pré-diabetes glicemia?',a:'100–125 mg/dL'},{q:'Pré-diabetes HbA1c?',a:'5,7–6,4%'},{q:'DM2 1ª linha?',a:'Metformina'},{q:'Mais hipoglicemia?',a:'Sulfonilureias e insulina'},{q:'Emagrece + protege coração/rim?',a:'SGLT2 e GLP-1'},{q:'Pioglitazona contraindicada em?',a:'Insuficiência cardíaca avançada'},{q:'DM1 tratamento?',a:'Insulinoterapia obrigatória'},{q:'Meta HbA1c?',a:'<7%'}],alerta:'CAD (DM1): hiperglicemia + acidose + cetose. SHH (DM2): hiperosmolar sem cetose'},
+  {id:'comp_dm',cat:'end',title:'Complicações do diabetes',sub:'Micro: retina, rim, nervo. Macro: IAM, AVC, DAP.',sx:['Nefropatia: microalbuminúria assintomática → insuficiência renal','Retinopatia: visão borrada → cegueira','Neuropatia: formigamento, queimação, dormência','Pé diabético: úlceras, infecções, risco de amputação'],pontos:[{q:'Rastrear nefropatia DM1?',a:'Após 5 anos do diagnóstico'},{q:'Rastrear nefropatia DM2?',a:'Desde o diagnóstico'},{q:'Microalbuminúria?',a:'30–300 mg/24h'},{q:'Medicação renoprotetora?',a:'IECA/BRA + SGLT2'},{q:'Pé neuropático vs isquêmico?',a:'Neuropático: quente, pulsos presentes. Isquêmico: frio, pulsos diminuídos'},{q:'Retinopatia: tratamento?',a:'Fotocoagulação laser + anti-VEGF'}],alerta:'Avaliar os pés em TODA consulta do diabético'},
+  {id:'hipoglicemia',cat:'end',title:'Hipoglicemia e cetoacidose (CAD)',sub:'CAD = DM1. SHH = DM2. Hipoglicemia = emergência imediata.',sx:['Hipoglicemia: sudorese, tremores, taquicardia, confusão, convulsão','CAD: hálito cetônico, Kussmaul, dor abdominal, vômitos','SHH: hiperglicemia grave, desidratação, rebaixamento consciência'],pontos:[{q:'Hipoglicemia consciente?',a:'Carboidrato oral'},{q:'Hipoglicemia inconsciente?',a:'Glicose EV + glucagon'},{q:'CAD: tratamento?',a:'SF 0,9% + insulina regular EV + reposição de K+'},{q:'SHH: diferença da CAD?',a:'Sem cetose significativa'},{q:'Fator desencadeante mais comum?',a:'Infecção / suspensão da insulina'}],alerta:'CAD: corrigir K+ antes da insulina se K+ <3,5'},
+  {id:'tireoide',cat:'end',title:'Hipotireoidismo e nódulo tireoidiano',sub:'TSH = marcador mais sensível. Hashimoto = principal causa.',sx:['Astenia, sonolência, intolerância ao frio','Constipação, pele seca, queda de cabelo','Bradicardia, edema periocular, depressão'],pontos:[{q:'Primário: padrão?',a:'TSH alto + T4 livre baixo'},{q:'Subclínico: padrão?',a:'TSH alto + T4 livre normal'},{q:'Central: padrão?',a:'TSH baixo/normal + T4 baixo'},{q:'Marcador Hashimoto?',a:'Anti-TPO'},{q:'Tratamento?',a:'Levotiroxina em jejum — reavaliar em 6–8 sem'},{q:'Câncer mais comum?',a:'Papilífero (80%) — disseminação linfática'},{q:'Marcador medular?',a:'Calcitonina'},{q:'Bethesda suspeito/maligno?',a:'Cirurgia'}],alerta:'Hipotireoidismo central: acompanhar pelo T4 livre, não pelo TSH'},
+  {id:'adrenal',cat:'end',title:'Glândulas adrenais',sub:'Cushing, Addison, feocromocitoma, hiperaldosteronismo',sx:['Cushing: obesidade centrípeta, face em lua, estrias violáceas, HAS','Addison: fadiga, hiperpigmentação, hipotensão, hipoglicemia','Feocromocitoma: cefaleia + sudorese + palpitações (tríade)'],pontos:[{q:'Exame inicial Cushing?',a:'Cortisol salivar às 23h'},{q:'Doença de Cushing?',a:'Adenoma hipofisário produtor de ACTH'},{q:'Addison: lab?',a:'Cortisol baixo + ACTH elevado'},{q:'Crise adrenal: conduta?',a:'Hidrocortisona EV 100 mg imediatamente — não esperar exames'},{q:'HAS resistente + hipocalemia?',a:'Hiperaldosteronismo primário'},{q:'HSC: causa mais comum?',a:'Deficiência de 21-hidroxilase'}],alerta:'Addison: hiperpigmentação + hipotensão + hiponatremia + hipercalemia'},
+  {id:'hipofise',cat:'end',title:'Hipófise — acromegalia e prolactinoma',sub:'IGF-1 = exame inicial da acromegalia. Cabergolina = 1ª linha prolactinoma.',sx:['Acromegalia: mãos/pés grandes, prognatismo, cefaleia, apneia do sono','Prolactinoma (mulher): galactorreia + amenorreia + infertilidade','Prolactinoma (homem): disfunção erétil, ginecomastia'],pontos:[{q:'Exame inicial acromegalia?',a:'IGF-1'},{q:'Confirmação acromegalia?',a:'TOTG — GH não suprime'},{q:'Tratamento acromegalia?',a:'Cirurgia transesfenoidal'},{q:'Prolactinoma 1ª linha?',a:'Cabergolina'},{q:'Prolactinoma na gestação?',a:'Suspender; se necessário: bromocriptina'},{q:'Diabetes insípido: tratamento?',a:'Desmopressina'}],alerta:'Macroadenoma: vigilância do campo visual — risco de compressão do quiasma óptico'},
+  {id:'dislipi',cat:'end',title:'Dislipidemia',sub:'Geralmente assintomática — rastrear com lipidograma',sx:['Hipercolesterolemia: xantomas tendinosos, xantelasma, arco corneano','Hipertrigliceridemia: xantomas eruptivos, risco de pancreatite','Geralmente assintomática, descoberta em exames de rotina'],pontos:[{q:'LDL diagnóstico?',a:'≥160 mg/dL'},{q:'TG diagnóstico?',a:'≥150 mg/dL'},{q:'TG >500: risco de?',a:'Pancreatite aguda'},{q:'Fórmula de Friedewald?',a:'LDL = CT – HDL – TG/5 (só se TG <400)'},{q:'1ª linha?',a:'Estatinas'},{q:'TG alto: tratamento?',a:'Fibratos + ômega-3 + restrição de álcool'},{q:'Meta LDL muito alto risco?',a:'<50 mg/dL'}],alerta:'Estatinas: vigilância de mialgia e hepatotoxicidade'},
+  {id:'menopausa',cat:'end',title:'Climatério e menopausa',sub:'Menopausa = ausência de menstruação por 12 meses consecutivos',sx:['Fogachos (ondas de calor) — sintoma mais clássico','Sudorese noturna, insônia, irritabilidade','Secura vaginal, dispareunia, ITU recorrente'],pontos:[{q:'FSH/LH/Estradiol na menopausa?',a:'FSH alto, LH alto, estradiol baixo'},{q:'TRH: indicações?',a:'Fogachos intensos, sintomas genitourinários, qualidade de vida'},{q:'Com útero: TRH?',a:'Estrógeno + progesterona (proteger endométrio)'},{q:'Sem útero: TRH?',a:'Estrógeno isolado'},{q:'Contraindicação absoluta?',a:'Câncer de mama, TEV prévio, AVC prévio, hepatopatia grave'},{q:'Menopausa precoce?',a:'Amenorreia antes dos 40 anos — FSH persistentemente elevado'}],alerta:'Janela de oportunidade: iniciar TRH antes dos 60 anos ou até 10 anos após menopausa'},
+  {id:'hipogonadismo',cat:'end',title:'Hipogonadismo masculino',sub:'Primário (testículo) vs secundário (hipotálamo/hipófise)',sx:['Adolescente: puberdade atrasada, ginecomastia, micropênis','Adulto: redução libido, disfunção erétil, fadiga, perda de massa muscular','Osteoporose, aumento gordura abdominal'],pontos:[{q:'Primário (hipergonadotrófico)?',a:'Testosterona baixa + LH/FSH altos (problema no testículo)'},{q:'Secundário (hipogonadotrófico)?',a:'Testosterona baixa + LH/FSH baixos (problema no hipotálamo/hipófise)'},{q:'Síndrome de Kallmann?',a:'Hipogonadismo + anosmia/hiposmia'},{q:'Testosterona: quando dosar?',a:'Manhã (7h–10h), confirmar com 2 exames'},{q:'Quer fertilidade?',a:'Não usar testosterona isolada — usar HCG/FSH/gonadotrofinas'},{q:'Contraindicação reposição?',a:'Câncer de próstata, mama masculino'}],alerta:'Testosterona exógena pode causar infertilidade — sempre avaliar desejo reprodutivo'},
+  {id:'obesidade',title:'Obesidade e síndrome metabólica',cat:'end',badge:'b-end',
+  sub:'IMC ≥30 = obeso; ≥40 = grau 3',
+  sx:['Ganho de peso, circunferência abdominal aumentada','Apneia do sono, dor articular','Roncos, fadiga, dispneia'],
+  pontos:[
+    {q:'Síndrome metabólica diagnóstico?',a:'Circunferência abdominal + 2 critérios (PA, glicemia, TG, HDL)'},
+    {q:'Gordura mais perigosa?',a:'Visceral'},
+    {q:'Bariátrica: critérios?',a:'IMC ≥40 ou ≥35 + comorbidades'},
+    {q:'Qual bloqueia absorção de gordura?',a:'Orlistate (efeito: esteatorreia)'},
+    {q:'Maior perda de peso?',a:'GLP-1 (liraglutida/semaglutida) e tirzepatida'},
+    {q:'Contraindicação GLP-1?',a:'Carcinoma medular de tireoide / MEN 2'},
+    {q:'Sibutramina contraindicada em?',a:'Doença cardiovascular / HAS descompensada'},
+  ],
+  alerta:'Circunferência abdominal: mulher <80 cm, homem <90 cm'
+  },
+  {id:'amenorreia',cat:'end',title:'Amenorreia e SOP',sub:'Sempre excluir gravidez primeiro',sx:['Primária: sem menstruação até 15–16 anos','Secundária: ≥3 ciclos ou ≥90 dias sem menstruar','SOP: hirsutismo, acne, obesidade, irregularidade menstrual'],pontos:[{q:'1ª causa a excluir?',a:'Gestação (beta-hCG)'},{q:'Hipogonadismo hipogonadotrófico?',a:'FSH/LH baixos (problema central)'},{q:'Hipogonadismo hipergonadotrófico?',a:'FSH/LH altos (falência ovariana)'},{q:'Critérios SOP?',a:'2 de 3: oligomenorreia, hiperandrogenismo, USG sugestivo'},{q:'Amenorreia hipotalâmica funcional?',a:'Baixo peso + exercício excessivo + estresse'},{q:'Clitoromegalia sugere?',a:'Excesso androgênico importante — investigar'}],alerta:'SOP: tratamento inclui perda de peso + exercício + anticoncepcional + controle metabólico'},
+];
+
+let activecat='todos';
+
+function renderFilters(){
+  document.getElementById('filters').innerHTML=cats.map(c=>`<button class="fb${activecat===c.id?' on':''}" onclick="setcat('${c.id}')">${c.label}</button>`).join('');
+}
+function setcat(id){activecat=id;render();}
+
+function render(){
+  renderFilters();
+  const q=document.getElementById('search').value.toLowerCase();
+  const list=data.filter(d=>{
+    const mc=activecat==='todos'||d.cat===activecat;
+    const mq=!q||d.title.toLowerCase().includes(q)||d.sub.toLowerCase().includes(q)||d.cat.includes(q);
+    return mc&&mq;
+  });
+  document.getElementById('count').textContent=list.length+' temas';
+  const el=document.getElementById('cards');
+  if(!list.length){el.innerHTML='<div class="empty">Nenhum tema encontrado.</div>';return;}
+  el.innerHTML=list.map(d=>cardHTML(d)).join('');
+  el.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('open')));
+}
+
+function catLabel(id){return cats.find(c=>c.id===id)?.label||id;}
+
+function cardHTML(d){
+  const sxpills=d.sx.length?`<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>`:'';
+  const qa=d.pontos.map(p=>`<div class="qi"><div class="qq">${p.q}</div><div class="qa-a">${p.a}</div></div>`).join('');
+  const bstyle=bc[d.cat]||'';
+  return `<div class="card">
+    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico" aria-hidden="true"></i></div>
+    <div class="ctitle">${d.title}</div>
+    <div class="csub">${d.sub}</div>
+    <div class="body">
+      ${sxpills}
+      <div class="sl">Pontos-chave OSCE</div>
+      <div class="qa">${qa}</div>
+      <div class="alert"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px" aria-hidden="true"></i>${d.alerta}</div>
+      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE: diagnóstico diferencial, tratamento e o que mais cai')">-↗</button>
+    </div>
+  </div>`;
+}
+
+render();
+</script>
