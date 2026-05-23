@@ -72,6 +72,7 @@ const cats=[
   {id:'adol',label:'Adolescente'},
   {id:'puericultura',label:'Puericultura'},
   {id:'reuma',label:'Reumatologia Ped.'},
+  {id:'nefro',label:'Nefrologia'},
 ];
 
 const bc={
@@ -92,6 +93,7 @@ const bc={
   adol:'background:#F0E8FB;color:#4A1A7A',
   puericultura:'background:#E8F5E9;color:#1B5E20',
   reuma:'background:#FFF3E0;color:#7A3500',
+  nefro:'background:#E8F4FD;color:#0B3D6B',
 };
 
 const data=[
@@ -184,6 +186,159 @@ const data=[
 
   // ── REUMATOLOGIA PED. ──────────────────────────────────────────────────
   {id:'febre_reumatica',cat:'reuma',title:'Febre reumática',sub:'Streptococcus pyogenes (EBGA) → 5–15 anos',sx:['Artrite migratória de grandes articulações (mais comum)','Cardite: sopros, taquicardia desproporcional, ICC (mais grave)','Coreia de Sydenham: movimentos involuntários, instabilidade emocional','Eritema marginado e nódulos subcutâneos'],pontos:[{q:'Critérios maiores de Jones?',a:'Poliartrite, Cardite, Coreia, Eritema marginado, Nódulos subcutâneos'},{q:'Critérios menores?',a:'Febre, artralgia, PCR/VHS elevados, PR prolongado'},{q:'Diagnóstico 1º surto?',a:'2 maiores OU 1 maior + 2 menores + evidência estreptocócica'},{q:'Evidência estreptocócica?',a:'ASLO elevado, Anti-DNase B, cultura, teste rápido'},{q:'Melhor exame para cardite?',a:'Ecocardiograma com Doppler'},{q:'Lesão aguda mais comum?',a:'Regurgitação mitral'},{q:'Lesão crônica mais comum?',a:'Estenose mitral'},{q:'ATB erradicação?',a:'Penicilina benzatina IM (<27kg: 600.000 UI / ≥27kg: 1.200.000 UI)'},{q:'Profilaxia secundária?',a:'Penicilina benzatina periódica para evitar recidivas'},{q:'Coreia: desaparece quando?',a:'Durante o sono'}],alerta:'Principal prevenção: tratar amigdalite estreptocócica. Coreia pode durar meses.'},
+{id:'nef_nefrotica',cat:'nefro',
+title:'Síndrome Nefrótica',
+sub:'Proteinúria >3,5g/24h + hipoalbuminemia + edema + hiperlipidemia',
+clinica:['Edema gravitacional (MMII), anasarca, ascite','Espuma na urina (proteinúria intensa)','Hiperlipidemia, lipidúria','Trombose venosa (perda de anticoagulantes)'],
+ef:['Edema com cacifo MMII, periorbitário matinal','Ascite, derrame pleural nos casos graves','PA variável (pode ter HAS)','Xantomas se hiperlipidemia crônica'],
+lab:['Proteinúria >3,5 g/24h (ou relação prot/creat >3,5)','Albumina sérica <3,0 g/dL','Colesterol total >200 mg/dL, TG elevado','Complemento C3/C4: normal (exceto GNMP e nefropatia lúpica)','Urina: lipidúria, cilindros graxos'],
+img:['USG renal: rins aumentados (fase inicial) ou normais','Biópsia renal: indicada na maioria dos casos em adultos'],
+conduta:['Restrição de sódio e proteína','Diurético de alça (furosemida) para edema','IECA/BRA: reduz proteinúria e é renoprotetor','Estatina para hiperlipidemia','Anticoagulação se trombose (albumina <2 g/dL = alto risco)','Corticoide: 1ª linha em lesões mínimas','Imunossupressão específica conforme etiologia (biópsia)'],
+pontos:[{q:'Proteinúria diagnóstica?',a:'>3,5 g/24h'},{q:'Principal complicação infecciosa?',a:'Pneumococo (perda de IgG — vacinar!)'},{q:'Por que trombose?',a:'Perda urinária de antitrombina III e proteínas C e S'},{q:'Complemento baixo em qual nefrótica?',a:'GNMP e nefropatia lúpica'},{q:'Lesões mínimas: 1ª linha?',a:'Prednisona 1 mg/kg/dia'}],
+alerta:'Perda de IgG → infecções. Perda de ATIII → trombose. Perda de TBG → hipotireoidismo laboratorial.'},
+
+{id:'nef_nefritica',cat:'nefro',
+title:'Síndrome Nefrítica',
+sub:'Hematúria + oligúria + HAS + edema + proteinúria moderada',
+clinica:['Hematúria macroscópica (urina coca-cola/marrom)','Edema periorbitário matinal','Hipertensão arterial','Oligúria'],
+ef:['HAS (pode ser grave)','Edema periorbitário e MMII','Ausculta cardíaca: galope S3 se sobrecarga hídrica','Fundo de olho se HAS grave'],
+lab:['Hematúria dismórfica + cilindros hemáticos no EAS (patognomônico)','Proteinúria <3,5 g/24h (moderada)','Creatinina elevada (lesão glomerular)','Complemento C3 baixo: GNDA, GNMP, nefrite lúpica','ASLO elevado (pós-estreptocócica)','Anti-DNA nativo (lúpus), ANCA (vasculites)'],
+img:['USG renal: rins aumentados e hiperecoicos','Biópsia: indicada quando causa não é clara'],
+conduta:['Restrição hídrica e de sódio','Anti-hipertensivos (IECA ou BRA)','Diurético de alça se sobrecarga','Tratar causa de base','Diálise se anúria/hipercalemia/uremia grave'],
+pontos:[{q:'Achado patognomônico?',a:'Cilindro hemático no EAS'},{q:'C3 baixo + C4 normal?',a:'GNDA pós-estreptocócica'},{q:'C3 e C4 baixos?',a:'Nefrite lúpica e GNMP'},{q:'Hematúria dismórfica indica?',a:'Origem glomerular'}],
+alerta:'Cilindro hemático = glomerulonefrite até prova em contrário'},
+
+{id:'nef_gnda',cat:'nefro',
+title:'GNDA Pós-Estreptocócica',
+sub:'Síndrome nefrítica 1–3 sem pós-faringite ou 3–6 sem pós-piodermite',
+clinica:['Hematúria macroscópica (urina coca-cola)','Edema periorbitário matinal','HAS','Oligúria, diminuição do volume urinário'],
+ef:['HAS — pode ser grave e causar encefalopatia','Edema periorbitário e MMII','Ausculta: crepitações se edema pulmonar','Criança entre 5–15 anos tipicamente'],
+lab:['EAS: hematúria dismórfica, cilindros hemáticos (patognomônico), proteinúria leve','C3 ↓↓, C4 normal (consumo via via alternativa)','ASLO elevado (faringite) ou Anti-DNase B (piodermite)','Creatinina elevada transitoriamente','Ureia elevada','Hemograma: anemia dilucional'],
+img:['USG renal: rins aumentados, hiperecoicos — geralmente não muda conduta','Biópsia: raramente necessária em criança com quadro típico'],
+conduta:['Internação se HAS grave, oligúria, encefalopatia','Restrição hídrica e de sódio','Furosemida EV para edema e HAS','Anti-hipertensivo: nifedipino ou hidralazina (crise)','Penicilina benzatina IM (erradicar EBGA — não muda o curso da glomerulonefrite)','Diálise se anúria, hipercalemia, uremia ou encefalopatia refratária'],
+pontos:[{q:'Período de latência faringite?',a:'1–3 semanas'},{q:'Período de latência piodermite?',a:'3–6 semanas'},{q:'Complemento?',a:'C3 baixo, C4 normal'},{q:'Normaliza C3 em?',a:'6–8 semanas'},{q:'ATB muda o curso?',a:'Não — apenas erradica o estreptococo'},{q:'Prognóstico em crianças?',a:'Excelente — 95% de recuperação completa'}],
+alerta:'HAS grave pode causar encefalopatia hipertensiva — emergência. C3 que não normaliza em 8 semanas → investigar outra causa.'},
+
+{id:'nef_lesmin',cat:'nefro',
+title:'Doença de Lesões Mínimas',
+sub:'Principal causa de síndrome nefrótica em crianças (<15 anos)',
+clinica:['Edema intenso, anasarca','Espuma na urina','Geralmente SEM hematúria e SEM HAS (diferencia de nefrítica)','Início súbito após IVAS ou vacinação'],
+ef:['Edema maciço com cacifo, periorbitário','Ascite, hidrotórax nos casos graves','PA geralmente normal','Sem hematúria macroscópica'],
+lab:['Proteinúria maciça >3,5 g/24h (seletiva — albuminúria pura)','Albumina sérica muito baixa (<2 g/dL)','Complemento C3/C4 NORMAL','Colesterol e TG elevados','EAS: sem hematúria, sem cilindros hemáticos','ASLO negativo'],
+img:['USG renal: normal','Biópsia: microscopia óptica normal. Microscopia eletrônica: fusão de podócitos (característico)','Em crianças <15 anos com quadro típico, biópsia pode ser dispensada — tratar empiricamente'],
+conduta:['Corticoide: prednisona 1–2 mg/kg/dia (60 mg/m²) por 4–6 semanas — resposta excelente','Manter até remissão completa (proteinúria <0,3 g/24h)','Diurético de alça para edema intenso','IECA/BRA adjuvante','Recaída: repetir prednisona','Corticorresistente (>8 semanas sem resposta): ciclosporina ou tacrolimus'],
+pontos:[{q:'Principal faixa etária?',a:'Crianças — pico 2–6 anos'},{q:'Microscopia óptica?',a:'Normal'},{q:'Microscopia eletrônica?',a:'Fusão de podócitos'},{q:'Proteinúria é?',a:'Seletiva (albuminúria pura)'},{q:'Complemento?',a:'Normal'},{q:'Resposta ao corticoide?',a:'Excelente (>90% em crianças)'},{q:'Recorrência?',a:'Alta — pode ser corticodependente'}],
+alerta:'Biópsia dispensável em criança <15 anos com quadro típico. Tratar com prednisona.'},
+
+{id:'nef_iga',cat:'nefro',
+title:'Nefropatia por IgA (Berger)',
+sub:'GN mesangial por IgA — hematúria macroscópica episódica pós-IVAS',
+clinica:['Hematúria macroscópica 24–72h após IVAS (sinfaringítica)','Hematúria microscópica persistente nos intervalos','Proteinúria variável (<1 g/24h nos leves)','HAS em casos avançados'],
+ef:['Geralmente exame físico normal','HAS se evolução para DRC','Edema discreto se proteinúria significativa','Jovem adulto do sexo masculino tipicamente'],
+lab:['EAS: hematúria dismórfica + cilindros hemáticos','Proteinúria leve a moderada','IgA sérica elevada em 50% dos casos (não é diagnóstico)','Complemento C3/C4 NORMAL','Creatinina: normal ou levemente elevada','Biópsia renal: depósito mesangial de IgA (diagnóstico definitivo)'],
+img:['USG renal: normal nos estágios iniciais','Biópsia renal: obrigatória para confirmação diagnóstica'],
+conduta:['Proteinúria <1g/24h + função renal normal: observação + IECA/BRA','Proteinúria >1g/24h: IECA/BRA + corticoide (prednisona)','Proteinúria >3g/24h ou crescênticas: imunossupressão agressiva','Controle rigoroso da PA (<125/75 mmHg)','Evitar AINEs','Pior prognóstico: proteinúria persistente >1g, HAS, creatinina elevada'],
+pontos:[{q:'Diagnóstico definitivo?',a:'Biópsia — depósito mesangial de IgA'},{q:'Hematúria sinfaringítica vs GNDA?',a:'IgA: 24–72h após IVAS. GNDA: 1–3 semanas'},{q:'Complemento?',a:'Normal'},{q:'Tratamento 1ª linha?',a:'IECA/BRA + controle PA'},{q:'Corticoide quando?',a:'Proteinúria >1g/24h apesar de IECA/BRA'},{q:'Recorrência no transplante?',a:'Alta'}],
+alerta:'Intervalo 24–72h diferencia de GNDA (1–3 semanas). Complemento é normal na IgA.'},
+
+{id:'nef_lra',cat:'nefro',
+title:'Lesão Renal Aguda (LRA)',
+sub:'Creatinina ≥1,5× basal em 7 dias OU ↑≥0,3 mg/dL em 48h OU débito urinário <0,5 mL/kg/h por 6h',
+clinica:['Oligúria ou anúria','Edema, congestão','Encefalopatia urêmica (confusão, asterixis)','Náuseas, vômitos, soluço (uremia)'],
+ef:['Avaliar volemia: turgência jugular, edema, mucosas','Pressão arterial: hipotensão (pré-renal) ou HAS (parenquimatosa)','Bexiga palpável (pós-renal)','Asterixis, confusão (encefalopatia)'],
+lab:['Creatinina e ureia seriadas','EAS: cilindros granulosos (NTA), hemáticos (glomerular), leucocitários (nefrite intersticial)','Sódio urinário: <20 mEq/L (pré-renal) ou >40 mEq/L (NTA)','FeNa: <1% (pré-renal) ou >2% (NTA)','Potássio: hipercalemia (emergência)','Gasometria: acidose metabólica','Hemograma, coagulograma','Ureia: >100 mg/dL = uremia grave'],
+img:['USG renal com Doppler: 1º exame — avaliar obstrução (pós-renal), tamanho e resistência vascular','TC abdome: se suspeita de causa obstrutiva não definida pela USG','Biópsia: se causa parenquimatosa não esclarecida'],
+conduta:['Pré-renal: expansão volêmica com SF 0,9% (500 mL rápido) — retirar nefrotóxicos','NTA: suporte hídrico, suspender nefrotóxicos, manejo de complicações','Pós-renal: desobstrução urgente (cateter, nefrostomia)','Hipercalemia: gluconato de Ca²⁺ EV + insulina + glicose + bicarbonato + kayexalate + diálise','Acidose grave: bicarbonato EV','Indicações de DIÁLISE: Anúria, Uremia sintomática, Hipercalemia refratária, Acidose refratária, Sobrecarga hídrica refratária (AAKIS mnemônico)'],
+pontos:[{q:'FeNa pré-renal?',a:'<1%'},{q:'FeNa NTA?',a:'>2%'},{q:'Sódio urinário pré-renal?',a:'<20 mEq/L'},{q:'Cilindros granulosos?',a:'NTA (isquemia ou nefrotóxico)'},{q:'Indicações de diálise de urgência?',a:'Anúria, Uremia, hipercalemia, Acidose, Sobrecarga hídrica refratárias'},{q:'Causa mais comum LRA hospitalar?',a:'NTA (isquemia, sepse, nefrotóxicos)'}],
+alerta:'Hipercalemia com alterações ao ECG = emergência. Gluconato de Ca²⁺ EV imediato.'},
+
+{id:'nef_itu',cat:'nefro',
+title:'Infecção do Trato Urinário (ITU)',
+sub:'Cistite: baixa. Pielonefrite: alta. E. coli = 80% dos casos.',
+clinica:['Cistite: disúria, polaciúria, urgência, urina turva','Pielonefrite: febre alta, calafrios, dor lombar, náuseas','Bacteriúria assintomática: sem sintomas'],
+ef:['Cistite: punho-percussão lombar negativa, dor suprapúbica à palpação','Pielonefrite: punho-percussão lombar positiva (Giordano+), febre','Sepse urinária: hipotensão, taquicardia, confusão'],
+lab:['EAS: leucocitúria (>5 leuc/campo), nitrito positivo, esterase leucocitária','Urocultura: padrão-ouro (>10⁵ UFC/mL)','Hemograma: leucocitose com desvio à esquerda (pielonefrite)','PCR e hemocultura se pielonefrite grave ou sepse','Creatinina se suspeita de comprometimento renal'],
+img:['USG renal: se pielonefrite complicada, febre >72h sem melhora, suspeita de abscesso','TC: pielonefrite complicada, abscesso, litíase associada','Uretrocistografia: crianças com ITU recorrente (investigar RVU)'],
+conduta:['Cistite não complicada: nitrofurantoína 5–7 dias OU fosfomicina dose única OU SMX-TMP 3 dias','Pielonefrite leve-moderada: ciprofloxacino VO 7–14 dias','Pielonefrite grave/sepse: ceftriaxona EV — internar','Gestante: sempre tratar, incluindo bacteriúria assintomática (nitrofurantoína ou amoxicilina-clavulanato)','ITU recorrente: profilaxia com nitrofurantoína 50 mg/noite','Bacteriúria assintomática: tratar apenas gestante e pré-cirurgia urológica'],
+pontos:[{q:'Padrão-ouro?',a:'Urocultura'},{q:'Bacteriúria assintomática: tratar?',a:'Apenas gestante e pré-cirurgia urológica'},{q:'ITU em gestante: 1ª linha?',a:'Nitrofurantoína (evitar no 3º trim) ou amoxicilina-clavulanato'},{q:'Pielonefrite grave: ATB?',a:'Ceftriaxona EV'},{q:'ITU masculina: sempre pensar?',a:'Prostatite — tratar 14–21 dias com fluoroquinolona'}],
+alerta:'Gestante com bacteriúria assintomática DEVE ser tratada — risco de pielonefrite e parto prematuro.'},
+
+{id:'nef_na',cat:'nefro',
+title:'Distúrbios do Sódio',
+sub:'Sódio normal: 135–145 mEq/L',
+clinica:['Hiponatremia (<135): cefaleia, náuseas, confusão, convulsão (grave <120)','Hipernatremia (>145): sede intensa, letargia, convulsão (grave >160)','Velocidade de instalação determina gravidade dos sintomas'],
+ef:['Hiponatremia: avaliar volemia (hipovolêmica, euvolêmica, hipervolêmica)','Hipernatremia: mucosas secas, turgor reduzido, hipertonia muscular','Neurológico: confusão, letargia, convulsão'],
+lab:['Sódio sérico e urinário','Osmolalidade sérica e urinária','Sódio urinário >20: perda renal. <20: extra-renal','SIADH: Na sérico baixo, osmolaridade sérica baixa, osmolaridade urinária alta, sódio urinário >40','Urina 24h se necessário'],
+img:['USG ou TC crânio se encefalopatia ou suspeita de edema cerebral'],
+conduta:['Hiponatremia crônica (>48h): corrigir DEVAGAR — máx 8–10 mEq/L/dia (risco de mielinólise pontina)','Hiponatremia aguda sintomática grave: NaCl 3% EV — pode corrigir mais rápido (1–2 mEq/L/h até 5 mEq em 1ª hora)','SIADH: restrição hídrica 800–1000 mL/dia ± tolvaptana (vaptanos)','Hipovolêmica: repor volume com SF 0,9%','Hipervolêmica: restrição hídrica + diurético + tratar causa base','Hipernatremia: repor água livre — SF 0,45% ou SG 5% — corrigir devagar (máx 10 mEq/L/dia)'],
+pontos:[{q:'Risco de corrigir rápido demais hiponatremia?',a:'Mielinólise pontina central'},{q:'SIADH: osmolaridade?',a:'Sérica baixa + urinária alta'},{q:'Hiponatremia + Na urinário <20?',a:'Perda extra-renal (diarreia, vômito, 3º espaço)'},{q:'Hiponatremia + Na urinário >40 + euvolemia?',a:'SIADH'},{q:'Velocidade máxima de correção?',a:'8–10 mEq/L/dia (crônica)'}],
+alerta:'Corrigir hiponatremia crônica rápido demais = mielinólise pontina. Corrigir devagar!'},
+
+{id:'nef_k',cat:'nefro',
+title:'Distúrbios do Potássio',
+sub:'Potássio normal: 3,5–5,0 mEq/L',
+clinica:['Hipocalemia (<3,5): fraqueza muscular, câimbras, arritmias, obstipação','Hipercalemia (>5,5): parestesias, fraqueza, arritmias graves (risco de FV)','K+ <2,5 ou >6,5 = emergência'],
+ef:['Hipocalemia: diminuição de reflexos, íleo paralítico, fraqueza proximal','Hipercalemia: arritmias ao auscultar — solicitar ECG imediatamente','Avaliar causas: medicamentos, débito urinário, diarreia, vômito'],
+lab:['Potássio sérico','ECG: OBRIGATÓRIO em qualquer distúrbio do K+','Hipocalemia ECG: achatamento de onda T, onda U, QT longo','Hipercalemia ECG: onda T apiculada (precoce), alargamento QRS, onda P ausente, ritmo sinusoidal (tardio)','Gasometria: acidose → K+ sai da célula (hipercalemia). Alcalose → K+ entra na célula (hipocalemia)','Magnésio sérico (hipomagnesemia causa hipocalemia refratária)'],
+img:['ECG é o "exame de imagem" mais importante aqui'],
+conduta:['Hipocalemia leve (3,0–3,5): KCl VO','Hipocalemia moderada-grave (<3,0) ou sintomática: KCl EV (máx 10–20 mEq/h em veia periférica)','Hipocalemia refratária: checar e repor magnésio','Hipercalemia com ECG alterado (EMERGÊNCIA): 1) Gluconato de Ca²⁺ 10% EV (estabiliza membrana — efeito em minutos) → 2) Insulina + glicose (faz K+ entrar na célula) → 3) Bicarbonato EV → 4) Kayexalate/patiromer (remove K+) → 5) Diálise se refratária','Hipercalemia sem alteração ECG: kayexalate VO + diurético de alça + dieta'],
+pontos:[{q:'Hipercalemia: 1ª medida com ECG alterado?',a:'Gluconato de Ca²⁺ EV — estabiliza membrana'},{q:'K+ e pH: relação?',a:'Acidose → hipercalemia. Alcalose → hipocalemia'},{q:'Hipocalemia refratária: pensar?',a:'Hipomagnesemia — repor Mg²⁺'},{q:'Onda T apiculada?',a:'Hipercalemia precoce'},{q:'Onda U proeminente?',a:'Hipocalemia'}],
+alerta:'Hipercalemia com ECG alterado = emergência. Gluconato de Ca²⁺ EV imediato — NÃO aguardar diálise.'},
+
+{id:'nef_ca',cat:'nefro',
+title:'Distúrbios do Cálcio',
+sub:'Cálcio normal: 8,5–10,5 mg/dL (ionizado: 1,15–1,35 mmol/L)',
+clinica:['Hipocalcemia (<8,5): parestesias periorais e extremidades, tetania, convulsão, QT longo','Hipercalcemia (>10,5): "stones, bones, groans, psychic moans" (cálculos, dor óssea, constipação, confusão)','Hipercalcemia grave (>14): coma, insuficiência renal, arritmia'],
+ef:['Hipocalcemia: Chvostek+ (contração facial ao percutir nervo facial), Trousseau+ (espasmo carpo ao inflar manguito)','Hipercalcemia: desidratação, confusão, fraqueza, constipação, hipertonia arterial','Avaliar pescoço (paratireoides), busca por neoplasia'],
+lab:['Cálcio total e ionizado','PTH: elevado = hiperparatireoidismo. Baixo = hipoparatireoidismo, hipervitaminose D','Vitamina D (25-OH)','Fósforo: hipocalcemia + fósforo alto = hipoparatireoidismo. Hipocalcemia + fósforo baixo = déficit de vitamina D','Calciúria 24h, função renal','Cálcio urinário na hipercalcemia: hipercalciúria sugere hiperPTH primário'],
+img:['Densitometria óssea (hiperPTH crônico)','USG cervical e cintilografia de paratireoide (hiperPTH primário)','RX: reabsorção subperiosteal (hiperPTH), banda de Looser (osteomalácia)','TC tórax/abdome: investigar neoplasia na hipercalcemia sem causa'],
+conduta:['Hipocalcemia aguda/sintomática: gluconato de Ca²⁺ 10% EV lento (10 mL em 10 min)','Hipocalcemia crônica: carbonato de Ca²⁺ VO + vitamina D (calcitriol)','Hipercalcemia leve (<12): hidratação oral, tratar causa','Hipercalcemia moderada-grave (>12 sintomática): SF 0,9% EV (2–4 L) + furosemida após hidratação','Hipercalcemia grave (>14 ou crise): bisfosfonatos EV (zoledronato) + calcitonina (efeito rápido) + corticoide (neoplasia)','HiperPTH primário sintomático: paratireoidectomia'],
+pontos:[{q:'Chvostek e Trousseau?',a:'Sinais de hipocalcemia'},{q:'Stones, bones, groans?',a:'Hipercalcemia'},{q:'Hipercalcemia + PTH alto?',a:'HiperPTH primário (adenoma paratireoide)'},{q:'Hipercalcemia + PTH baixo?',a:'Neoplasia, vitamina D tóxica'},{q:'Hipocalcemia: 1ª medida aguda?',a:'Gluconato de Ca²⁺ EV lento'},{q:'Hipercalcemia grave: ação mais rápida?',a:'Calcitonina (horas) + hidratação'}],
+alerta:'Bisfosfonato + calcitonina na hipercalcemia grave: calcitonina age em horas, bisfosfonato em 48–72h.'},
+
+{id:'nef_ab',cat:'nefro',
+title:'Distúrbios Ácido-Base',
+sub:'pH normal 7,35–7,45 | HCO₃ normal 22–26 | pCO₂ normal 35–45',
+clinica:['Acidose metabólica: taquipneia, Kussmaul, confusão, hipercalemia','Alcalose metabólica: hipoventilação, câimbras, hipocalemia','Acidose respiratória: hipercapnia, sonolência, cianose','Alcalose respiratória: taquipneia, parestesias, tetania'],
+ef:['Acidose metabólica grave: respiração de Kussmaul (profunda e rápida)','Alcalose: hipoventilação compensatória, Trousseau/Chvostek se hipocalcemia associada','Acidose respiratória: confusão, asterixis, bradipneia'],
+lab:['Gasometria arterial: pH, pCO₂, HCO₃, BE','Passo 1: pH (acidose <7,35 ou alcalose >7,45)','Passo 2: primário — HCO₃ baixo = met. HCO₃ alto = met. pCO₂ alto = resp. pCO₂ baixo = resp.','Passo 3: compensação adequada? (se não → distúrbio misto)','Passo 4: ânion gap (Na – Cl – HCO₃) = 8–12. Alto (>12) = KLUSSMAPI (cetoacidose, lactato, uremia, salicilato, metanol, álcool, paraldéido, isoniazida)','Passo 5: AG alto — delta-delta para ver se há distúrbio misto adicional'],
+img:['Sem imagem específica — foco em gasometria e eletrólitos'],
+conduta:['Acidose met. AG alto: tratar causa (insulina na CAD, hemodiálise na uremia, naloxona/fomepizol nas intoxicações)','Bicarbonato EV: reservar para pH <7,10 ou hipercalemia grave associada','Alcalose metabólica: repor Cl⁻ (SF 0,9%), KCl, suspender diuréticos','Acidose respiratória: melhorar ventilação (VNI, intubação)','Alcalose respiratória: tratar causa (ansiedade → respiração em saco)'],
+pontos:[{q:'Ânion gap normal?',a:'8–12 mEq/L (Na – Cl – HCO₃)'},{q:'AG alto: mnemônico?',a:'KLUSSMAPI (cetoacidose, lactato, uremia, salicilato, metanol, álcool, paraldéido, isoniazida)'},{q:'Compensação acidose met.?',a:'pCO₂ = 1,5 × HCO₃ + 8 (±2) — fórmula de Winter'},{q:'Kussmaul é compensação de?',a:'Acidose metabólica'},{q:'AG normal acidose met.?',a:'Hiperclorêmica: diarreia (perda HCO₃), ATR, expansão volêmica'}],
+alerta:'Acidose met. AG alto = EMERGÊNCIA. Checar lactato, glicemia e toxicologia.'},
+
+{id:'nef_drc',cat:'nefro',
+title:'Doença Renal Crônica (DRC)',
+sub:'TFG <60 mL/min/1,73m² por >3 meses OU marcador de lesão renal',
+clinica:['Estágio 1–2: assintomático','Estágio 3–4: fadiga, hipertensão, anemia, noctúria','Estágio 5 (uremia): náuseas, vômito, prurido, encefalopatia, pericardite urêmica, frost urêmico'],
+ef:['HAS (quase universal)','Palidez (anemia)','Edema (retenção de sódio e água)','Odor urêmico, hálito amoniacal','Atrito pericárdico (pericardite urêmica — indicação urgente de diálise)','Fundoscopia: retinopatia hipertensiva'],
+lab:['Creatinina sérica seriada + cálculo de TFG (CKD-EPI)','Proteinúria: microalbuminúria 30–300 mg/g (precoce)','EAS: cilindros granulosos, hematúria','Ureia elevada','Hemograma: anemia normocrômica normocítica (↓eritropoetina)','Metabolismo mineral: Ca²⁺ baixo, fósforo alto, PTH elevado (osteodistrofia renal)','K⁺: hipercalemia (estágios avançados)','Acidose metabólica com AG normal (bicarbonato baixo)','Ácido úrico elevado'],
+img:['USG renal: rins pequenos e hiperecoicos = DRC (diferencia de LRA onde rins são normais ou aumentados)','RX de mãos: reabsorção subperiosteal (hiperPTH secundário)','Ecocardiograma: avaliar HVE e derrame pericárdico'],
+conduta:['Controle da PA: meta <130/80 — IECA ou BRA (1ª linha — reduz proteinúria)','Controle glicêmico rigoroso','Restrição proteica moderada (0,6–0,8 g/kg/dia) se TFG <30','Restrição de potássio e fósforo','Reposição de eritropoetina recombinante (EPO) se Hb <10 g/dL + suplemento de ferro','Calcitriol e quelantes de fósforo (sevelamer) para osteodistrofia','Bicarbonato VO para acidose','Estatina para risco cardiovascular','Preparar acesso para diálise quando TFG <15–20','Diálise: TFG <10–15 OU sintomas urêmicos','Transplante renal: melhor opção terapêutica'],
+pontos:[{q:'Diferença USG DRC vs LRA?',a:'DRC: rins pequenos. LRA: rins normais/aumentados'},{q:'Anemia da DRC: causa?',a:'Deficiência de eritropoetina'},{q:'Anti-hipertensivo 1ª linha?',a:'IECA ou BRA — reduz proteinúria'},{q:'Indicações de diálise urgente?',a:'Pericardite urêmica, encefalopatia, hipercalemia refratária, sobrecarga hídrica'},{q:'Melhor tratamento DRC estágio 5?',a:'Transplante renal'}],
+alerta:'Pericardite urêmica = diálise imediata. Não aguardar deterioração adicional.'},
+
+{id:'nef_drc_dm',cat:'nefro',
+title:'DRC — Nefropatia Diabética',
+sub:'Principal causa de DRC e de entrada em diálise no Brasil',
+clinica:['Evolução silenciosa — décadas de DM mal controlado','Microalbuminúria → macroalbuminúria → síndrome nefrótica → DRC','Retinopatia diabética associada em >90% dos casos (tríade nefropatia diabética)','HAS quase universal nos estágios avançados'],
+ef:['HAS','Edema','Retinopatia ao fundo de olho (se tiver, confirma nefropatia diabética)','Ausência de retinopatia deve levantar dúvida do diagnóstico'],
+lab:['Relação albumina/creatinina urinária (RAC): >30 mg/g = microalbuminúria (rastrear)','RAC >300 mg/g = macroalbuminúria (nefropatia estabelecida)','TFG calculada (CKD-EPI)','HbA1c (controle glicêmico)','Fundo de olho anual','Creatinina e ureia','Lipidograma'],
+img:['USG renal: rins aumentados no início (diabético) — diferente de outras DRCs','Biópsia: raramente necessária se quadro típico (DM + microalbuminúria + retinopatia)'],
+conduta:['Rastrear anualmente com RAC desde o diagnóstico do DM2, e após 5 anos em DM1','IECA ou BRA: 1ª linha — renoproteção mesmo sem HAS se microalbuminúria presente','SGLT2 (empagliflozina, dapagliflozina): reduz progressão da nefropatia diabética — indicar com TFG >20','GLP-1 (semaglutida): benefício cardiovascular e renal','Controle rigoroso da glicemia: HbA1c <7%','Controle da PA: <130/80 mmHg','Estatina: reduz risco CV','Suspender metformina se TFG <30','Evitar nefrotóxicos e contraste iodado sem preparo'],
+pontos:[{q:'Rastrear nefropatia DM1: quando?',a:'Após 5 anos do diagnóstico'},{q:'Rastrear nefropatia DM2: quando?',a:'Desde o diagnóstico'},{q:'Microalbuminúria: valor?',a:'RAC 30–300 mg/g'},{q:'Anti-hipertensivo + renoprotetor?',a:'IECA ou BRA'},{q:'SGLT2 na nefropatia?',a:'Reduz progressão — indicar com TFG >20'},{q:'Retinopatia associada: importância?',a:'Confirma diagnóstico de nefropatia diabética (evita biópsia)'}],
+alerta:'Ausência de retinopatia + nefropatia diabética típica → considerar biópsia para excluir outra causa.'},
+
+{id:'nef_drc_has',cat:'nefro',
+title:'DRC — Nefropatia Hipertensiva',
+sub:'2ª causa de DRC — nefroangiosclerose por HAS crônica mal controlada',
+clinica:['HAS longa e mal controlada (>10 anos)','Evolução lenta e insidiosa','Proteinúria leve a moderada (<3 g/24h)','Hematúria microscópica discreta ou ausente','Sintomas de DRC: fadiga, edema, oligúria tardia'],
+ef:['HAS (PA frequentemente muito elevada)','Fundoscopia: retinopatia hipertensiva (artérias em fio de prata, exsudatos, hemorragias)','Ausculta: sopro aórtico (se HAS grave)','HVE ao exame cardiovascular','Edema se comprometimento renal avançado'],
+lab:['Creatinina sérica e TFG seriadas (queda progressiva lenta)','Proteinúria leve: <1–2 g/24h (ao contrário da nefrótica)','EAS: sedimento urinário inativo (sem cilindros hemáticos)','Hemograma: anemia nos estágios avançados','Ecografia: rins pequenos e hiperecogênicos','Lipidograma (síndrome metabólica associada)'],
+img:['USG renal com Doppler: rins pequenos, aumento do índice de resistência','Ecocardiograma: HVE (marcador de lesão de órgão-alvo)','Fundoscopia: retinopatia hipertensiva','RX tórax: cardiomegalia'],
+conduta:['Meta PA: <130/80 mmHg (rigoroso)','IECA ou BRA: 1ª linha — renoproteção + controle de PA','Associar: bloqueador de canal de Ca²⁺ (anlodipino) ou diurético tiazídico','Diurético de alça se TFG <30 (tiazídico perde eficácia)','Restrição de sódio: <2 g/dia','Restrição proteica moderada se DRC avançada','Tratar fatores de risco: dislipidemia, obesidade, tabagismo','Monitorar TFG e potássio com IECA/BRA','Diálise se TFG <10–15 ou sintomas urêmicos'],
+pontos:[{q:'Diferença da nefropatia diabética?',a:'Proteinúria mais leve, sem retinopatia típica, sedimento inativo'},{q:'Anti-hipertensivo 1ª linha?',a:'IECA ou BRA'},{q:'Diurético de escolha se TFG <30?',a:'Furosemida (tiazídico perde eficácia)'},{q:'Diagnóstico definitivo?',a:'Clínico-laboratorial — biópsia se dúvida (ex: sem HAS prévia)'},{q:'Meta PA?',a:'<130/80 mmHg'}],
+alerta:'Sedimento urinário inativo (sem cilindros hemáticos) diferencia nefropatia hipertensiva de glomerulonefrites.'},
 ];
 
 let activecat='todos';
@@ -210,20 +365,27 @@ function render(){
 
 function catLabel(id){return cats.find(c=>c.id===id)?.label||id;}
 
+function sec(title,items){
+  if(!items||!items.length) return '';
+  return `<div class="sec"><div class="sec-t">${title}</div><div class="sec-c">${items.map(i=>'• '+i).join('<br>')}</div></div>`;
+}
+
 function cardHTML(d){
-  const sxpills=d.sx.length?`<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>`:'';
+  const body = d.clinica
+    ? sec('Clínica',d.clinica)+sec('Exame Físico',d.ef)+sec('Laboratoriais',d.lab)+sec('Imagem',d.img)+sec('Conduta',d.conduta)
+    : (d.sx&&d.sx.length ? `<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>` : '');
   const qa=d.pontos.map(p=>`<div class="qi"><div class="qq">${p.q}</div><div class="qa-a">${p.a}</div></div>`).join('');
   const bstyle=bc[d.cat]||'';
   return `<div class="card">
-    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico" aria-hidden="true"></i></div>
+    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico">▾</i></div>
     <div class="ctitle">${d.title}</div>
     <div class="csub">${d.sub}</div>
     <div class="body">
-      ${sxpills}
+      ${body}
       <div class="sl">Pontos-chave OSCE</div>
       <div class="qa">${qa}</div>
-      <div class="alert"><i class="ti ti-alert-triangle" style="font-size:13px;vertical-align:-1px;margin-right:4px" aria-hidden="true"></i>${d.alerta}</div>
-      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE: diagnóstico diferencial, tratamento e o que mais cai')">↗ .</button>
+      <div class="alert">⚠ ${d.alerta}</div>
+      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE')">↗ Aprofundar</button>
     </div>
   </div>`;
 }
