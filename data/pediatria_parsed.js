@@ -1195,8 +1195,8 @@ const pediatriaStations = [
 
     instA: {
       scenario: "Atenção Hospitalar — Maternidade, alojamento conjunto / UTI Neonatal. Berço aquecido, oxímetro, O₂, CPAP nasal disponíveis.",
-      patient: "RN masculino, 2 horas de vida, 38 semanas, cesárea eletiva. Mãe diabética gestacional. A mãe refere que o bebê está com 'respiração estranha' e 'fazendo barulho'.",
-      complaint: "RN de 38 semanas com 2 horas de vida com desconforto respiratório — gemido e respiração rápida.",
+      patient: "RN masculino, 2 horas de vida, 36 semanas, cesárea eletiva. Mãe diabética gestacional. A mãe refere que o bebê está com 'respiração estranha' e 'fazendo barulho'.",
+      complaint: "RN de 36 semanas com 2 horas de vida com desconforto respiratório — gemido e respiração rápida.",
       tasks: [
         "Avalie o RN de forma sistemática.",
         "Verbalize a avaliação respiratória de forma estruturada.",
@@ -1257,7 +1257,7 @@ const pediatriaStations = [
         "Pneumonia neonatal — considerar se história de corioamnionite, febre materna ou rotura prolongada de membranas; sem esses fatores, menos provável.",
         "Hipertensão pulmonar persistente do RN — considerar se cianose sem melhora ao O₂ e RX pouco alterado."
       ],
-      context: "RN de 38 semanas (prematuro tardio), filho de mãe diabética gestacional, com desconforto respiratório moderado desde as primeiras horas de vida (Silverman 5), SpO₂ 91%, RX com padrão em vidro despolido e broncograma aéreo — diagnóstico de DMH. A diabetes materna retarda a maturação pulmonar fetal.",
+      context: "RN de 36 semanas (prematuro), filho de mãe diabética gestacional, com desconforto respiratório moderado desde as primeiras horas de vida (Silverman 5), SpO₂ 91%, RX com padrão em vidro despolido e broncograma aéreo — diagnóstico de DMH. A diabetes materna retarda a maturação pulmonar fetal.",
       justify: "A DMH resulta da deficiência de surfactante, que estabiliza os alvéolos. Fatores de risco neste caso: prematuridade tardia (38 semanas — maturação pulmonar ainda incompleta) e filho de mãe diabética (hiperinsulinismo fetal inibe a síntese de surfactante). O quadro clínico (taquipneia, gemência, Silverman 5) e o RX (vidro despolido, broncograma, volume reduzido) são clássicos.",
       expectedAnamnesis: [
         "IG e tipo de parto.",
