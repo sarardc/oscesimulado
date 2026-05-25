@@ -1002,4 +1002,235 @@ const orl = [
     ]
   }
 },
+
+// CASO 09 — Rinite Alérgica
+{
+  id: 9,
+  title: 'Espirros e coriza que pioram em casa e no trabalho há meses',
+  sub: 'UBS — Atenção Primária',
+  tema: 'otorrinolaringologia',
+  topic: 'Rinite Alérgica',
+  level: 'moderado',
+  cardAccent: '#1976D2',
+  instA: {
+    scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',
+    patient: 'B.S., 28 anos, feminina, bibliotecária, sem comorbidades relatadas.',
+    complaint: 'Espirros em salva, coriza clara e coceira no nariz que pioram há cerca de 6 meses, especialmente ao acordar.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso',
+      'Realize o exame físico pertinente',
+      'Formule a hipótese diagnóstica e os diferenciais',
+      'Solicite os exames complementares adequados',
+      'Proponha a conduta terapêutica e oriente a paciente'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '110/70 mmHg',
+      FC: '72 bpm',
+      FR: '15 irpm',
+      Tax: '36,4°C',
+      Peso: '58 kg',
+      Altura: '1,65 m',
+      IMC: '21,3 kg/m²'
+    },
+    physicalGeneral: 'Bom estado geral, corada, hidratada, afebril, consciente e orientada. Olheiras (sinal de Denie-Morgan). Prega nasal transversa ("saudação alérgica"). Discreta hiperemia conjuntival bilateral.',
+    physicalSeg: 'RINOSCOPIA ANTERIOR: Mucosa nasal pálida e edemaciada bilateralmente. Cornetos inferiores hipertrofiados. Presença de secreção serosa abundante. Sem pólipos visíveis. | OROFARINGE: Secreção mucosa posterior (gotejamento pós-nasal). Sem exsudato amigdaliano. | OTOSCOPIA BILATERAL: Normal. | AUSCULTA PULMONAR: Murmúrio vesicular presente bilateralmente, sem sibilos.',
+    labs: [
+      { test: 'Hemograma', val: 'Eosinófilos 650/mm³ (8%)', ref: '< 500/mm³ (< 5%)', alt: true },
+      { test: 'IgE total', val: '320 UI/mL', ref: '< 100 UI/mL', alt: true }
+    ],
+    image: null,
+    note: 'Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e IgE somente se solicitados. Se o candidato solicitar teste cutâneo (prick test) ou IgE específica, informar que não estão disponíveis na UBS e devem ser solicitados via encaminhamento.',
+    patientProfile: 'Beatriz S., 28 anos, feminina, bibliotecária, solteira.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutora, tô com muito espirro, o nariz escorrendão e coçando muito, especialmente de manhã quando acordo.' },
+      { trigger: 'Sobre início', speech: 'Comecei a notar isso há uns 6 meses, foi piorando aos poucos.' },
+      { trigger: 'Sobre gatilhos', speech: 'Piora muito quando eu faço limpeza em casa ou quando entro nos arquivos do trabalho, onde tem muito livro velho.' },
+      { trigger: 'Sobre coceira', speech: 'Coça o nariz, os olhos, até o céu da boca às vezes.' },
+      { trigger: 'Sobre coriza', speech: 'A coriza é clarinha, tipo água.' },
+      { trigger: 'Sobre estações', speech: 'Parece que no outono e inverno é pior.' },
+      { trigger: 'Sobre sono', speech: 'Fico com o nariz entupido à noite, acordo várias vezes.' },
+      { trigger: 'Sobre medicamentos', speech: 'Tomei loratadina algumas vezes, ajudou bastante, mas parei quando melhorou.' },
+      { trigger: 'Pergunta ativa 1', speech: 'É alergia mesmo, doutora? O que me deixa assim?' },
+      { trigger: 'Pergunta ativa 2', speech: 'Tem como curar? Preciso tomar remédio pra sempre?' }
+    ],
+    hiddenInfo: 'Tem gato em casa há 1 ano (coincide com o início dos sintomas) — só revela se perguntado sobre animais domésticos. | Histórico familiar: mãe com asma e pai com rinite — só revela se perguntado sobre histórico familiar de atopia.',
+    actorBehavior: 'Tranquila, levemente incomodada com os sintomas crônicos. Colaborativa. Fica surpresa ao relacionar o gato com os sintomas. Curiosa sobre imunoterapia.'
+  },
+  instC: {
+    diagnosis: 'Rinite alérgica persistente moderada-grave, provavelmente sensibilizada a ácaros da poeira doméstica e pelo de gato, com rinoconjuntivite associada.',
+    differentials: [
+      'Rinite vasomotora — desencadeada por estímulos não alérgicos (temperatura, odores fortes, fumaça); sem eosinofilia, IgE normal, teste cutâneo negativo.',
+      'Rinossinusite crônica — congestão nasal predominante, cefaleia, pressão facial, secreção purulenta; aqui secreção é serosa.',
+      'Rinite medicamentosa — uso prolongado de descongestionante tópico (oximetazolina); aqui sem esse uso.'
+    ],
+    context: 'Adulta jovem com história familiar de atopia, trabalhando em ambiente com exposição a alérgenos (poeira de livros, ácaros) e com gato doméstico, apresentando rinite alérgica persistente com rinoconjuntivite. Eosinofilia e IgE total elevada corroboram mecanismo alérgico.',
+    justify: 'Tétrade clássica de rinite alérgica: espirros em salva + coriza aquosa + prurido nasal/ocular + congestão nasal. Piora em ambientes com poeira e com gato, associada a histórico familiar de atopia, eosinofilia e IgE total elevada. Mucosa pálida e cornetos hipertrofiados à rinoscopia confirmam quadro alérgico.',
+    expectedAnamnesis: 'Caracterização dos sintomas: espirros, coriza, prurido, obstrução | Padrão temporal: perene vs. sazonal | Gatilhos ambientais (poeira, animais, mofo, pólen, produtos químicos) | Sintomas oculares (rinoconjuntivite) | Comprometimento do sono | Histórico familiar de atopia (asma, rinite, eczema) | Histórico pessoal de asma ou eczema (comorbidades atópicas) | Uso de medicamentos (antihistamínico, corticoide nasal, descongestionante) | Animais domésticos',
+    expectedPhysical: 'Prega nasal transversa e olheiras ("saudação alérgica" e sinal de Denie-Morgan) | Rinoscopia: mucosa pálida, edemaciada, cornetos hipertrofiados, secreção serosa | Olhos: conjuntivite (hiperemia, lacrimejamento) | Ausculta pulmonar: afastar asma associada (sibilos) | Pesquisa de pólipos nasais',
+    expectedExams: [
+      { exam: 'Hemograma com diferencial', justify: 'Pesquisa de eosinofilia', expected: 'Eosinofilia' },
+      { exam: 'IgE total sérica', justify: 'Triagem de atopia', expected: 'Elevada' },
+      { exam: 'Teste cutâneo (prick test) ou IgE específica (RAST)', justify: 'Identificar o alérgeno causador — encaminhar para alergologista', expected: 'Positivo para ácaro/pelo de gato' },
+      { exam: 'Espirometria', justify: 'Rastrear asma associada (em 30–40% dos casos de rinite alérgica)', expected: 'Normal ou leve obstrução reversível' }
+    ],
+    expectedConduct: 'Farmacológica: 1ª linha: corticoide intranasal (mometasona ou budesonida spray) — 1 a 2 jatos em cada narina, 1x/dia, uso contínuo. Antihistamínico oral não sedativo (loratadina 10 mg/dia ou cetirizina 10 mg/dia) para alívio de sintomas agudos. (SBAI 2021 / RENAME 2022) | Não farmacológica: Controle ambiental: capa antiácaro no colchão e travesseiro; reduzir exposição ao gato (realocar o animal idealmente); lavagem nasal com soro fisiológico. | Encaminhamento: Alergologista para teste cutâneo e imunoterapia (vacina) se sintomas persistentes. Otorrinolaringologista se pólipo nasal ou complicações. | Orientações ao paciente: Explicar que a rinite alérgica não tem cura definitiva (exceto imunoterapia), mas tem controle excelente; importância do uso contínuo do corticoide nasal; orientar sobre o papel do gato nos sintomas. | Seguimento: Retorno em 4–6 semanas para reavaliação; rastreio de asma.',
+    expectedCommunication: 'Apresentação: Apresentar-se, perguntar sobre o contexto de vida da paciente. | Comunicação do diagnóstico: "A senhora tem rinite alérgica. Seu sistema imune reage exageradamente a partículas como poeira e pelo de gato. Isso causa todos esses sintomas. Tem tratamento e controle excelente." | Escuta ativa: Acolher a surpresa com o papel do gato; não impor decisão sobre o animal, mas informar claramente.',
+    criticalErrors: [
+      'Prescrever corticoide sistêmico oral como 1ª linha para rinite alérgica',
+      'Não investigar ou mencionar controle ambiental (alérgenos)',
+      'Não realizar ou solicitar ausculta pulmonar para afastar asma associada',
+      'Usar antihistamínico sedativo (prometazina) de 1ª linha desnecessariamente',
+      'Não encaminhar ao alergologista para imunoterapia'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ESPIRROS E CORIZA QUE PIORAM EM CASA E NO TRABALHO',
+    sections: [
+      { h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+        { item: 'Apresentou-se pelo nome e cumprimentou a paciente', score: 0.5, ref: 'CFM 2.217/2018' },
+        { item: 'Explicou o papel dos alérgenos (gato, poeira) sem julgamento', score: 0.5, ref: 'PNHAH/MS, 2001' },
+        { item: 'Utilizou linguagem acessível ao explicar rinite alérgica e seu controle', score: 0.5, ref: 'PNHAH/MS, 2001' }
+      ]},
+      { h: 'ANAMNESE', items: [
+        { item: 'Caracterizou os sintomas (espirros, coriza aquosa, prurido, obstrução)', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Identificou gatilhos ambientais (poeira, livros velhos, gato)', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Questionou histórico familiar de atopia (asma, rinite, eczema)', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Investigou sintomas de asma associada (falta de ar, sibilância, tosse)', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Perguntou sobre comprometimento do sono e da qualidade de vida', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'EXAME FÍSICO', items: [
+        { item: 'Identificou sinais alérgicos externos (prega nasal, olheiras)', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Realizou rinoscopia e descreveu mucosa pálida e cornetos hipertrofiados', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Realizou ausculta pulmonar para afastar asma', score: 0.5, ref: 'SBAI / GINA, 2023' }
+      ]},
+      { h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+        { item: 'Formulou hipótese de rinite alérgica persistente', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Solicitou IgE total e hemograma com diferencial', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Indicou encaminhamento ao alergologista para prick test e imunoterapia', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+        { item: 'Prescreveu corticoide intranasal (mometasona ou budesonida) como 1ª linha', score: 1.0, ref: 'SBAI 2021 / RENAME 2022' },
+        { item: 'Prescreveu antihistamínico oral não sedativo (loratadina ou cetirizina)', score: 0.5, ref: 'RENAME, 2022' },
+        { item: 'Orientou controle ambiental (capa antiácaro, redução da exposição ao gato)', score: 0.5, ref: 'SBAI, 2021' }
+      ]}
+    ]
+  }
+},
+
+// CASO 10 — Rinite Vasomotora
+{
+  id: 10,
+  title: 'Nariz entupido o tempo todo, piora com cheiros fortes e mudança de temperatura',
+  sub: 'Ambulatório — Clínica Médica',
+  tema: 'otorrinolaringologia',
+  topic: 'Rinite Vasomotora (Não Alérgica)',
+  level: 'moderado',
+  cardAccent: '#1976D2',
+  instA: {
+    scenario: 'Ambulatório de Clínica Médica. Consultório, turno vespertino.',
+    patient: 'T.M., 45 anos, feminina, cozinheira, hipertensa em uso de enalapril.',
+    complaint: 'Nariz entupido quase todos os dias, piora com vapores de cozinha, cheiros fortes e ar-condicionado, há cerca de 1 ano.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso',
+      'Realize o exame físico pertinente',
+      'Formule a hipótese diagnóstica e os diferenciais',
+      'Solicite os exames complementares se necessário',
+      'Proponha a conduta terapêutica e oriente a paciente'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '138/86 mmHg',
+      FC: '78 bpm',
+      FR: '16 irpm',
+      Tax: '36,7°C',
+      Peso: '70 kg',
+      Altura: '1,62 m',
+      IMC: '26,7 kg/m²'
+    },
+    physicalGeneral: 'Bom estado geral, corada, hidratada, afebril, consciente e orientada. Sem olheiras ou prega nasal.',
+    physicalSeg: 'RINOSCOPIA ANTERIOR: Mucosa nasal hiperemiada e edemaciada bilateralmente (eritematosa — diferente da palidez da rinite alérgica). Cornetos inferiores hipertrofiados. Secreção mucosa aquosa. Sem pólipos visíveis. Desvio de septo leve para direita. | OROFARINGE: Gotejamento pós-nasal. Sem exsudato. | OTOSCOPIA BILATERAL: Normal. | AUSCULTA PULMONAR: Normal. | OLHOS: Sem hiperemia conjuntival (ausência de rinoconjuntivite — diferencial importante da rinite alérgica).',
+    labs: [
+      { test: 'Hemograma', val: 'Eosinófilos 220/mm³ (3%)', ref: '< 500/mm³', alt: false },
+      { test: 'IgE total', val: '42 UI/mL', ref: '< 100 UI/mL', alt: false }
+    ],
+    image: null,
+    note: 'Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e IgE somente se solicitados. A ausência de eosinofilia e IgE normal são dados importantes que diferenciam da rinite alérgica — o candidato deve interpretar.',
+    patientProfile: 'Tereza M., 45 anos, feminina, cozinheira, casada, 3 filhos.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutora, meu nariz vive entupido, faz mais de um ano. É horrível, parece que nunca respiro direito.' },
+      { trigger: 'Sobre gatilhos', speech: 'Piora quando entro na cozinha com vapor, quando alguém usa perfume forte perto de mim, ou quando liga o ar-condicionado.' },
+      { trigger: 'Sobre espirros', speech: 'Espirro às vezes, mas não é aquele espirro em série igual de quem tem alergia.' },
+      { trigger: 'Sobre coriza', speech: 'Sai água do nariz às vezes, mas mais é aquela sensação de entupimento mesmo.' },
+      { trigger: 'Sobre coceira', speech: 'Coceira no nariz não tenho quase. Nos olhos também não.' },
+      { trigger: 'Sobre estações', speech: 'Não muda muito conforme a época do ano, é o ano todo.' },
+      { trigger: 'Sobre medicamentos', speech: 'Já usei aquela gotinha de nariz que descongesta, aliviei por umas horas, mas voltava pior depois.' },
+      { trigger: 'Sobre histórico familiar', speech: 'Minha mãe era alérgica a poeira, mas eu nunca fui diagnosticada como alérgica.' },
+      { trigger: 'Pergunta ativa 1', speech: 'Isso é alergia, doutora? Fiz exame de alergia uma vez e deu normal.' },
+      { trigger: 'Pergunta ativa 2', speech: 'Posso continuar usando aquela gotinha de nariz? Ela ajuda na hora.' }
+    ],
+    hiddenInfo: 'Usa oximetazolina (spray nasal descongestionante) quase diariamente há 4 meses — só revela se perguntado sobre descongestionante nasal tópico especificamente. | Iniciou enalapril há 14 meses (antes do início dos sintomas) — só revela se perguntado sobre quando começou o anti-hipertensivo.',
+    actorBehavior: 'Tranquila, cansada dos sintomas crônicos. Levemente defensiva sobre o uso do descongestionante (alivia e ela gosta). Surpresa ao saber que o enalapril pode piorar o quadro e que a "gotinha" está causando dependência.'
+  },
+  instC: {
+    diagnosis: 'Rinite vasomotora (não alérgica), com componente de rinite medicamentosa por uso crônico de oximetazolina e possível contribuição da tosse/rinite induzida por IECA (enalapril).',
+    differentials: [
+      'Rinite alérgica — espirros em salva, prurido nasal/ocular, mucosa pálida, eosinofilia, IgE elevada; aqui mucosa hiperemiada, sem eosinofilia, IgE normal, teste alérgico negativo previamente.',
+      'Rinossinusite crônica — congestão persistente + cefaleia/pressão facial, secreção purulenta; aqui sem esses achados.',
+      'Rinite medicamentosa (efeito rebote da oximetazolina) — uso crônico de descongestionante tópico causando congestão rebote; presente como fator complicador.',
+      'Rinite induzida por IECA (enalapril) — irritação de vias aéreas por bradicinina; pode contribuir para a congestão.'
+    ],
+    context: 'Mulher de meia-idade, cozinheira, com rinite vasomotora exacerbada por uso crônico de oximetazolina (rinite medicamentosa) e possível contribuição do enalapril. Ausência de atopia (IgE e eosinofilia normais) e gatilhos não alérgicos (vapor, perfume, temperatura) confirmam mecanismo vasomotor.',
+    justify: 'Obstrução nasal crônica + gatilhos não imunológicos (odores, temperatura, irritantes) + mucosa hiperemiada (e não pálida) + ausência de eosinofilia e IgE normal + teste de alergia negativo = rinite vasomotora. Uso de oximetazolina por > 3–5 dias configura rinite medicamentosa como fator agravante. Enalapril iniciado antes dos sintomas é fator colaborador a ser avaliado.',
+    expectedAnamnesis: 'Caracterização da obstrução nasal (bilateral, perene) | Gatilhos não alérgicos: odores, temperatura, irritantes ambientais, posição | Ausência de prurido nasal/ocular e espirros em salva (afasta alérgica) | Uso de descongestionante nasal tópico (tipo, frequência, duração) | Medicamentos em uso: IECA (enalapril) — causa rinite/tosse | Histórico de teste alérgico | Histórico familiar de atopia | Ausência de sintomas oculares (rinoconjuntivite)',
+    expectedPhysical: 'Rinoscopia: mucosa hiperemiada (não pálida), cornetos hipertrofiados, sem pólipos | Ausência de sinais alérgicos externos (sem olheiras, sem prega nasal transversa) | Ausência de rinoconjuntivite | Ausculta pulmonar: afastar asma',
+    expectedExams: [
+      { exam: 'Hemograma com diferencial', justify: 'Afastar eosinofilia (rinite alérgica)', expected: 'Sem eosinofilia' },
+      { exam: 'IgE total', justify: 'Afastar atopia', expected: 'Normal' },
+      { exam: 'Teste cutâneo (prick test)', justify: 'Confirmar ausência de sensibilização alérgica', expected: 'Negativo (ou encaminhar para alergologista)' }
+    ],
+    expectedConduct: 'Farmacológica: Corticoide intranasal (mometasona ou budesonida) — 1ª linha para rinite vasomotora. Suspensão gradual da oximetazolina (pode usar corticoide nasal para suavizar o desmame). Avaliar troca do enalapril por outro anti-hipertensivo (BRA — losartana) em conjunto com cardiologista/médico assistente. (SBAI 2021 / SBC 2020) | Não farmacológica: Lavagem nasal com soro fisiológico; evitar gatilhos (perfumes, mudanças bruscas de temperatura); ventilação adequada na cozinha. | Encaminhamento: Alergologista para confirmação diagnóstica; otorrinolaringologista se desvio de septo contribuindo para obstrução. | Orientações ao paciente: Explicar que não é alergia; é hipersensibilidade do nariz a irritantes; que a "gotinha" está piorando o problema (efeito rebote); que o tratamento com corticoide nasal é seguro e eficaz. | Seguimento: Retorno em 4–6 semanas para reavaliação.',
+    expectedCommunication: 'Apresentação: Apresentar-se, criar vínculo com a paciente. | Comunicação do diagnóstico: "A senhora não tem alergia. Seu nariz é muito sensível a cheiros e temperatura — isso tem um nome: rinite vasomotora. E aquela gotinha que a senhora usa está causando uma dependência que piora a obstrução." | Escuta ativa: Acolher sem culpar pelo uso da oximetazolina; explicar o mecanismo de rebote de forma clara.',
+    criticalErrors: [
+      'Diagnosticar rinite alérgica sem eosinofilia, IgE normal e gatilhos não alérgicos',
+      'Não identificar uso crônico de oximetazolina como causa de rinite medicamentosa',
+      'Não investigar relação com enalapril como possível fator contribuinte',
+      'Prescrever ou manter oximetazolina sem abordar o desmame',
+      'Prescrever corticoide sistêmico oral como 1ª linha'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — NARIZ ENTUPIDO QUE PIORA COM CHEIROS FORTES E TEMPERATURA',
+    sections: [
+      { h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+        { item: 'Apresentou-se pelo nome e acolheu a paciente', score: 0.5, ref: 'CFM 2.217/2018' },
+        { item: 'Explicou rinite vasomotora em linguagem acessível', score: 0.5, ref: 'PNHAH/MS, 2001' },
+        { item: 'Abordou o uso crônico da oximetazolina sem julgamento, explicando o efeito rebote', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'ANAMNESE', items: [
+        { item: 'Identificou gatilhos não alérgicos (vapor, perfume, temperatura, ar-condicionado)', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Questionou uso de descongestionante nasal tópico (oximetazolina) e duração', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Investigou uso de IECA (enalapril) e correlacionou com os sintomas', score: 0.5, ref: 'SBC 2020 / SBAI 2021' },
+        { item: 'Perguntou sobre ausência de prurido ocular/nasal e espirros em salva (afastar alérgica)', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'EXAME FÍSICO', items: [
+        { item: 'Realizou rinoscopia e identificou mucosa hiperemiada (não pálida)', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Avaliou ausência de sinais alérgicos externos (olheiras, prega nasal, conjuntivite)', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+        { item: 'Formulou hipótese de rinite vasomotora e afastou rinite alérgica com justificativa', score: 1.0, ref: 'SBAI, 2021' },
+        { item: 'Identificou rinite medicamentosa por oximetazolina como fator agravante', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Solicitou IgE total e hemograma para afastar atopia', score: 0.5, ref: 'SBAI, 2021' }
+      ]},
+      { h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+        { item: 'Prescreveu corticoide intranasal como 1ª linha', score: 1.0, ref: 'SBAI 2021 / RENAME 2022' },
+        { item: 'Orientou suspensão e desmame da oximetazolina', score: 0.5, ref: 'SBAI, 2021' },
+        { item: 'Avaliou necessidade de troca do enalapril por BRA', score: 0.5, ref: 'SBC 2020 / SBAI 2021' }
+      ]}
+    ]
+  }
+}
+
 ]
