@@ -1546,4 +1546,502 @@ const ped3 = [
   }
 },
 
+
+{
+  id: 13,
+  title: 'Bebê com pezinho alterado e genitália ambígua ao nascimento',
+  sub: 'Maternidade — Neonatologia',
+  tema: 'Pediatria',
+  topic: 'Hiperplasia Adrenal Congênita — Teste do Pezinho',
+  level: 'moderado',
+  cardAccent: '#1565C0',
+  instA: {
+    scenario: 'Maternidade. Alojamento conjunto, segundo dia de vida.',
+    patient: 'Mãe de R.S., 2 dias de vida, sexo feminino ao nascimento, a termo.',
+    complaint: 'Triagem neonatal com 17-OHP elevada. Ao exame: genitália ambígua com clitóris hipertrofiado.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso',
+      'Realize o exame físico pertinente',
+      'Explique a hipótese diagnóstica e sua gravidade',
+      'Solicite os exames de urgência',
+      'Inicie as medidas imediatas e oriente a família'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: 'Não aferida',
+      FC: '148 bpm',
+      FR: '46 irpm',
+      Tax: '36,9°C',
+      Peso: '3.100 g',
+      Altura: '49 cm',
+      IMC: '—'
+    },
+    physicalGeneral: 'Regular estado geral. Ativo, com choro vigoroso. Normocorado. Levemente irritado. Sem dismorfias faciais. Fontanela normotensa.',
+    physicalSeg: 'GENITÁLIA: Clitóris hipertrofiado (comprimento > 1 cm), lábios maiores fundidos parcialmente (escore de virilização de Prader grau III), orifício urogenital único. Sem gônadas palpáveis nas bolsas escrotalizadas. | ABDOME: Sem visceromegalias. | NEUROLÓGICO: Reflexos neonatais presentes e simétricos.',
+    labs: [
+      { test: '17-OHP triagem (pezinho)', val: '98 nmol/L', ref: '< 30 nmol/L', alt: true },
+      { test: '17-OHP sérica confirmatória', val: '420 nmol/L', ref: '< 10 nmol/L', alt: true },
+      { test: 'Sódio', val: '132 mEq/L', ref: '135–145 mEq/L', alt: true },
+      { test: 'Potássio', val: '6,2 mEq/L', ref: '3,5–5,5 mEq/L', alt: true },
+      { test: 'Cortisol basal', val: '2 µg/dL', ref: '5–25 µg/dL', alt: true },
+      { test: 'ACTH', val: '820 pg/mL', ref: '< 46 pg/mL', alt: true },
+      { test: 'Cariótipo (se solicitado)', val: '46XX', ref: '—', alt: false }
+    ],
+    image: 'USG pélvica/abdominal (se solicitada): Útero e ovários presentes. Sem gônadas na região inguinal ou escrotal. Sem suprarrenais visualizadas adequadamente.',
+    note: 'Ator é a mãe. Entregar sinais vitais e resultado do pezinho ao início. Entregar exame físico detalhado ao exame. Exames confirmatórios somente se solicitados. Reforçar urgência: forma perdedora de sal (sódio baixo, potássio alto) é emergência endócrina que pode ser fatal em dias se não tratada.',
+    patientProfile: 'Mãe: Renata S., 29 anos, professora. Bebê: nome não definido, sexo biológico 46XX, 2 dias de vida.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutor, me disseram que o resultado do pezinho e o exame do bebê estão alterados. Falaram que tem algo na genitália. Estou assustada.' },
+      { trigger: 'Sobre o nascimento', speech: 'Nasceu bem, de cesárea, 38 semanas. Só que desde o início o médico ficou olhando para a genitália do bebê.' },
+      { trigger: 'Sobre o bebê', speech: 'Está mamando pouco, fica jogando o leite fora. Parece mais irritada hoje.' },
+      { trigger: 'Sobre o nome', speech: 'A gente não deu nome ainda porque estava esperando para entender o que está acontecendo.' },
+      { trigger: 'Sobre a família', speech: 'Não sei de ninguém da família com isso. Mas somos parentes distantes, eu e meu marido.' },
+      { trigger: 'Sobre a gravidez', speech: 'O pré-natal foi normal, o ultrassom mostrou menina.' },
+      { trigger: 'Pergunta ativa 1', speech: 'Meu bebê é menina ou menino? Como vou registrar?' },
+      { trigger: 'Pergunta ativa 2', speech: 'Vai precisar de cirurgia?' }
+    ],
+    hiddenInfo: 'Os pais são primos de terceiro grau — consanguinidade aumenta risco de doenças autossômicas recessivas; só revela se perguntado sobre grau de parentesco. | Bebê com vômitos e irritabilidade crescentes — pode indicar crise adrenal por perda de sal; só revela se perguntado sobre alimentação e vômitos.',
+    actorBehavior: 'Mãe extremamente ansiosa e confusa sobre o sexo do bebê. Não recebeu explicação adequada até o momento. Cabe ao candidato ser empático, claro e multidisciplinar ao comunicar. Evitar termos como "hermafrodita" ou "sexo indefinido" — usar terminologia atual (diferença do desenvolvimento sexual — DDS).'
+  },
+  instC: {
+    diagnosis: 'Hiperplasia adrenal congênita (HAC) por deficiência de 21-hidroxilase — forma clássica perdedora de sal — em 46XX com virilização grau III de Prader. Urgência endócrina com risco de crise adrenal por perda de sal (hiponatremia, hipercalemia).',
+    differentials: [
+      'HAC forma virilizante simples — sem perda de sal; Na e K normais; aqui eletrólitos alterados confirma forma perdedora de sal.',
+      'Diferença do desenvolvimento sexual 46XY (ex: insensibilidade androgênica) — cariótipo 46XY com genitália feminina; aqui cariótipo 46XX.',
+      'Tumor virilizante materno — virilização materna durante gestação; aqui sem histórico.'
+    ],
+    context: 'Recém-nascida 46XX com HAC clássica perdedora de sal por deficiência de 21-hidroxilase: genitália ambígua (virilização Prader III), 17-OHP sérica muito elevada, crise adrenal em desenvolvimento (hiponatremia, hipercalemia, vômitos). Emergência endócrina neonatal com diagnóstico pela triagem neonatal.',
+    justify: '17-OHP > 100 nmol/L + genitália ambígua 46XX + hiponatremia + hipercalemia + cortisol baixo + ACTH muito elevado = HAC clássica perdedora de sal por deficiência de 21-OH. A forma perdedora de sal é a mais grave e potencialmente fatal se não tratada nas primeiras 2 semanas de vida.',
+    expectedAnamnesis: 'Resultado e data do pezinho | Aspecto da genitália desde o nascimento | Alimentação: vômitos, recusa, irritabilidade (sinais de crise adrenal) | Histórico familiar de consanguinidade ou HAC | Gestação e pré-natal (ultra-sonografia — identificou genitália?)',
+    expectedPhysical: 'Genitália: grau de virilização (escore de Prader), palpação de gônadas | Sinais de crise adrenal: hipotensão, taquicardia, desidratação, vômitos | Sinais vitais: PA, FC | Estado geral: irritabilidade, hipotonia',
+    expectedExams: [
+      { exam: '17-OHP sérica', justify: 'Confirmar HAC', expected: 'Muito elevada' },
+      { exam: 'Ionograma (Na, K)', justify: 'Avaliar perda de sal — urgência', expected: 'Hiponatremia, hipercalemia' },
+      { exam: 'Cortisol e ACTH', justify: 'Confirmar insuficiência adrenal', expected: 'Cortisol baixo, ACTH elevado' },
+      { exam: 'Cariótipo', justify: 'Definir sexo biológico', expected: '46XX' },
+      { exam: 'USG pélvica', justify: 'Identificar estruturas internas (útero, ovários)', expected: 'Útero e ovários presentes' }
+    ],
+    expectedConduct: 'Farmacológica: URGÊNCIA: Hidrocortisona EV 25 mg/m²/dose (dose de estresse) + reposição de sal (SF 0,9% EV) para correção da crise adrenal. Após estabilização: hidrocortisona oral + fludrocortisona + suplementação de sal. (SBP 2022 / SBEM 2022) | Não farmacológica: Monitorização cardíaca e de eletrólitos contínua. | Encaminhamento: Endocrinologia pediátrica URGENTE (em horas). Equipe multidisciplinar para DDS: endocrinologista, cirurgião pediátrico, psicólogo, assistente social — para orientação sobre identidade de gênero e cirurgia (se/quando/se indicada). | Orientações: Usar terminologia adequada ("diferença do desenvolvimento sexual — DDS"); não usar "hermafrodita"; explicar que o bebê tem genética feminina (46XX) e que o tratamento é urgente para a saúde; adiar decisões sobre nome e registro enquanto aguarda equipe especializada. | Seguimento: Acompanhamento multiprofissional; decisão sobre cirurgia é multidisciplinar e não urgente.',
+    expectedCommunication: 'Apresentação: Apresentar-se, acolher com empatia máxima. | Comunicação do diagnóstico: "Renata, sei que está muito assustada. Seu bebê tem uma condição chamada hiperplasia adrenal congênita — as glândulas produziram hormônios que alteraram a genitália. Geneticamente, seu bebê é feminino (46XX). Agora precisamos tratar uma urgência no sangue." | Escuta ativa: Acolher a pergunta sobre o sexo com respeito; não forçar decisões imediatas; encaminhar para equipe especializada antes de qualquer decisão sobre registro ou cirurgia.',
+    criticalErrors: [
+      'Não reconhecer a urgência da crise adrenal por perda de sal (pode ser fatal em dias)',
+      'Não iniciar hidrocortisona EV imediatamente',
+      'Usar terminologia inadequada ("hermafrodita", "sexo indefinido")',
+      'Forçar decisão sobre nome e sexo de registro sem suporte multidisciplinar',
+      'Não encaminhar urgentemente à endocrinologia pediátrica'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — BEBÊ COM PEZINHO ALTERADO E GENITÁLIA AMBÍGUA — HAC',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Acolheu a mãe com empatia máxima em situação de alta vulnerabilidade', score: 0.5, ref: 'CFM 2.217/2018' },
+          { item: 'Utilizou terminologia adequada ("DDS", não "hermafrodita")', score: 0.5, ref: 'SBP / CFM, 2022' },
+          { item: 'Não pressionou decisão imediata sobre nome/registro; explicou necessidade de equipe especializada', score: 0.5, ref: 'SBP / CFM, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou resultado do pezinho (17-OHP) e sinais de crise adrenal (vômitos, irritabilidade)', score: 1.0, ref: 'SBP / SBEM, 2022' },
+          { item: 'Questionou histórico familiar de consanguinidade ou HAC', score: 0.5, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou grau de virilização da genitália (Prader) e palpação de gônadas', score: 1.0, ref: 'SBP / SBEM, 2022' },
+          { item: 'Identificou sinais de crise adrenal: taquicardia, vômitos, irritabilidade', score: 1.0, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Formulou hipótese de HAC forma perdedora de sal com urgência clínica', score: 1.0, ref: 'SBP / SBEM, 2022' },
+          { item: 'Solicitou ionograma, cortisol, ACTH, 17-OHP confirmatória e cariótipo', score: 0.5, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Iniciou hidrocortisona EV (dose de estresse) e reposição de sal como emergência', score: 1.5, ref: 'SBP 2022 / SBEM 2022' },
+          { item: 'Encaminhou urgentemente à endocrinologia pediátrica e equipe multidisciplinar de DDS', score: 1.0, ref: 'SBP / CFM, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 14,
+  title: 'Bebê com pezinho alterado — enzima da biotina',
+  sub: 'UBS — Atenção Primária',
+  tema: 'Pediatria',
+  topic: 'Deficiência de Biotinidase — Teste do Pezinho',
+  level: 'moderado',
+  cardAccent: '#1565C0',
+  instA: {
+    scenario: 'UBS — Atenção Primária. Consultório, turno matutino. Mãe convocada por pezinho alterado.',
+    patient: 'Mãe de C.F., 20 dias de vida, feminina, a termo.',
+    complaint: 'Recém-nascida convocada por atividade de biotinidase reduzida no teste do pezinho. Bebê aparentemente bem.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso',
+      'Realize o exame físico pertinente',
+      'Explique a hipótese diagnóstica e seu significado',
+      'Solicite os exames confirmatórios',
+      'Inicie o tratamento e oriente a família'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: 'Não aferida',
+      FC: '128 bpm',
+      FR: '40 irpm',
+      Tax: '36,8°C',
+      Peso: '3.520 g',
+      Altura: '51 cm',
+      IMC: '—'
+    },
+    physicalGeneral: 'Bom estado geral, ativo, reativo, normocorado, hidratado, sem dismorfias. Sem manifestações clínicas no momento (fase assintomática — triagem precoce).',
+    physicalSeg: 'NEUROLÓGICO: Reflexos primitivos presentes, tônus normal. Sem convulsões. | PELE/CABELOS: Normais (alopecia e dermatite surgem tardiamente se não tratada). | SENSORIAL: Sem alterações evidentes (perda auditiva e visual surgem sem tratamento).',
+    labs: [
+      { test: 'Triagem — biotinidase (pezinho)', val: '12% atividade enzimática', ref: '> 30%', alt: true },
+      { test: 'Biotinidase sérica confirmatória', val: '10% atividade', ref: '> 30% (forma profunda: < 10%)', alt: true }
+    ],
+    image: null,
+    note: 'Ator é a mãe. Entregar peso e sinais vitais ao início. Bebê assintomático (triagem precoce). Exames confirmatórios somente se solicitados. Ressaltar que o tratamento é simples (biotina oral) e totalmente preventivo — prognóstico excelente com diagnóstico precoce.',
+    patientProfile: 'Mãe: Camila F., 26 anos, recepcionista. Bebê: Clara F., 20 dias, feminina.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutor, me ligaram dizendo que a biotinidase da minha filha está baixa no pezinho. Nem sabia o que era isso.' },
+      { trigger: 'Sobre o bebê', speech: 'Ela está ótima, mamando bem, ganhando peso, dormindo. Não parece nada errado.' },
+      { trigger: 'Sobre histórico', speech: 'Ninguém da família que eu saiba tem algum problema assim.' },
+      { trigger: 'Sobre a gravidez', speech: 'Gravidez e parto foram normais, sem complicação.' },
+      { trigger: 'Sobre biotina', speech: 'Ouvi que biotina é vitamina dos cabelos. Tem relação?' },
+      { trigger: 'Pergunta ativa 1', speech: 'O que pode acontecer se não tratar?' },
+      { trigger: 'Pergunta ativa 2', speech: 'O tratamento é para sempre? É caro?' }
+    ],
+    hiddenInfo: 'Os pais são primos afastados — consanguinidade relevante para doença autossômica recessiva; só revela se perguntado. | Uma sobrinha da mãe teve "convulsão inexplicável na infância" — possível caso não diagnosticado de deficiência de biotinidase; só revela se perguntado sobre histórico familiar de convulsões ou doenças neurológicas na infância.',
+    actorBehavior: 'Mãe tranquila mas curiosa. Fica aliviada quando entende que o tratamento é simples e eficaz. Cabe ao candidato comunicar claramente as consequências da não adesão.'
+  },
+  instC: {
+    diagnosis: 'Deficiência profunda de biotinidase (atividade enzimática < 10%) — doença autossômica recessiva — diagnosticada pela triagem neonatal em fase assintomática. Sem tratamento: convulsões, hipotonia, alopecia, dermatite, perda auditiva e visual.',
+    differentials: [
+      'Deficiência parcial de biotinidase (10–30%) — forma leve, pode não requerer tratamento contínuo ou requer só em períodos de estresse metabólico.',
+      'Deficiência de carboxilases múltiplas por deficiência de holocarboxilase sintetase — quadro similar mas sem resposta à biotina oral em altas doses.',
+      'Resultado falso-positivo do pezinho — biotinidase sérica confirmatória resolve.'
+    ],
+    context: 'Recém-nascida com deficiência profunda de biotinidase (< 10%) diagnosticada pela triagem neonatal em fase assintomática. A biotinidase é a enzima responsável por reciclar a biotina (vitamina B7); sua deficiência leva a deficiência de biotina livre, com consequências neurológicas, sensoriais e cutâneas graves se não tratada. O tratamento com biotina oral é simples, barato e completamente preventivo.',
+    justify: 'Atividade de biotinidase < 10% na triagem e confirmatória = deficiência profunda. Bebê assintomático porque ainda não acumulou substâncias tóxicas (triagem precoce). Sem tratamento, os sintomas surgem entre semanas e meses: convulsões mioclônicas, hipotonia, alopecia, dermatite perioral, crise acidótica, perda auditiva neurossensorial e atrofia óptica.',
+    expectedAnamnesis: 'Data e resultado do pezinho | Estado atual do bebê (assintomático) | Consanguinidade dos pais | Histórico familiar de convulsões ou doenças neurológicas inexplicadas na infância | Alimentação',
+    expectedPhysical: 'Estado geral, tônus, reflexos neonatais | Pele e cabelos (normais nessa fase) | Audição (teste da orelhinha — realizado?) | Ausência de dismorfias',
+    expectedExams: [
+      { exam: 'Biotinidase sérica confirmatória', justify: 'Confirmar deficiência e classificar gravidade', expected: '< 10% (deficiência profunda)' },
+      { exam: 'Amônia e lactato', justify: 'Avaliar crise acidótica metabólica', expected: 'Normais nessa fase' },
+      { exam: 'EEG', justify: 'Se convulsões presentes', expected: 'Normal nessa fase' }
+    ],
+    expectedConduct: 'Farmacológica: Biotina oral 5–20 mg/dia, dose única diária, por toda a vida. O tratamento é simples, de baixo custo e disponível no SUS. (SBP 2022 / MS 2013) | Não farmacológica: Manter aleitamento materno. Nenhuma restrição dietética necessária. | Encaminhamento: Serviço de referência em erros inatos do metabolismo (SREIM) para acompanhamento; genética médica para aconselhamento familiar. | Orientações: Explicar que a biotina é uma vitamina; que o tratamento é simples e previne completamente as sequelas; que sem tratamento podem ocorrer convulsões, surdez e cegueira; que o medicamento é para toda a vida e não pode ser interrompido. | Seguimento: SREIM; audiometria seriada; avaliação neurológica e oftalmológica periódica.',
+    expectedCommunication: 'Apresentação: Apresentar-se, acolher a mãe. | Comunicação do diagnóstico: "Camila, a Clara tem uma deficiência de uma enzima chamada biotinidase. A boa notícia é que o tratamento é uma vitamina oral, simples e eficaz. Com ela, a Clara pode crescer completamente normal." | Escuta ativa: Responder sobre custo e duração do tratamento; reforçar a importância da adesão.',
+    criticalErrors: [
+      'Não iniciar biotina oral imediatamente',
+      'Não encaminhar ao SREIM para acompanhamento especializado',
+      'Não explicar as graves consequências da não adesão ao tratamento',
+      'Não solicitar biotinidase sérica confirmatória antes de iniciar tratamento',
+      'Confundir com deficiência parcial (10–30%) e não tratar'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — BEBÊ COM PEZINHO ALTERADO — DEFICIÊNCIA DE BIOTINIDASE',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Acolheu a mãe e comunicou o diagnóstico com clareza', score: 0.5, ref: 'CFM 2.217/2018' },
+          { item: 'Transmitiu a mensagem positiva: tratamento simples com prognóstico excelente', score: 1.0, ref: 'PNS/MS, 2023' },
+          { item: 'Explicou as consequências da não adesão sem causar pânico', score: 0.5, ref: 'PNS/MS, 2023' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Verificou resultado do pezinho e estado atual do bebê', score: 0.5, ref: 'PNS/MS, 2023' },
+          { item: 'Investigou consanguinidade e histórico familiar de convulsões/doenças metabólicas', score: 1.0, ref: 'PNS/MS, 2023' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou tônus, reflexos neonatais e estado cutâneo', score: 0.5, ref: 'SBP, 2022' },
+          { item: 'Confirmou ausência de manifestações clínicas (fase assintomática)', score: 0.5, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Formulou hipótese de deficiência de biotinidase e solicitou confirmatório', score: 1.0, ref: 'PNS/MS, 2023' },
+          { item: 'Diferenciou deficiência profunda (< 10%) de parcial (10–30%)', score: 0.5, ref: 'PNS/MS, 2023' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Iniciou biotina oral (5–20 mg/dia) imediatamente', score: 2.0, ref: 'SBP 2022 / MS 2013' },
+          { item: 'Encaminhou ao SREIM e orientou sobre tratamento permanente', score: 1.0, ref: 'PNS/MS, 2023' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 15,
+  title: 'Adolescente que não quer mais sair de casa e parou de comer direito',
+  sub: 'UBS — Atenção Primária',
+  tema: 'Pediatria',
+  topic: 'Semiologia do Adolescente — Saúde Mental',
+  level: 'moderado',
+  cardAccent: '#512DA8',
+  instA: {
+    scenario: 'Atenção Primária — UBS. Consultório, turno vespertino.',
+    patient: 'L.M., 15 anos, feminina, estudante do ensino médio, trazida pela mãe.',
+    complaint: 'Adolescente que "mudou muito" segundo a mãe: isolamento social, tristeza, parou de comer e dorme muito há 3 meses.',
+    tasks: [
+      'Realize a anamnese com a adolescente, garantindo privacidade adequada',
+      'Realize o exame físico pertinente',
+      'Formule a hipótese diagnóstica e avalie risco',
+      'Proponha a conduta e encaminhamento',
+      'Oriente a adolescente e a família sobre o próximo passo'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '104/66 mmHg',
+      FC: '68 bpm',
+      FR: '15 irpm',
+      Tax: '36,5°C',
+      Peso: '48 kg (perdeu 4 kg em 3 meses)',
+      Altura: '1,62 m',
+      IMC: '18,3 kg/m²'
+    },
+    physicalGeneral: 'Regular estado geral, abatida, com fácies triste. Hipomímica. Contato visual reduzido. Sem sinais físicos de abuso. Pele sem lesões de automutilação visíveis. Sem dismorfias.',
+    physicalSeg: 'PELE: Braço esquerdo com cicatrizes lineares superficiais em face interna do antebraço — lesões sugestivas de automutilação (cutting). | NEUROLÓGICO: Lúcida, orientada, comunicação lenta, fala baixa. | ESTADO NUTRICIONAL: Perda de 4 kg em 3 meses — atenção (pode indicar depressão ou transtorno alimentar).',
+    labs: [
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'TSH', val: '1,8 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Glicemia', val: '88 mg/dL', ref: '70–110 mg/dL', alt: false }
+    ],
+    image: null,
+    note: 'A mãe deve ser convidada a aguardar fora do consultório antes da anamnese com a adolescente. Entregar sinais vitais e peso ao início. Entregar exame físico ao exame — reforçar que as cicatrizes de cutting devem ser identificadas pelo candidato ao examinar o antebraço. Exames laboratoriais somente se solicitados.',
+    patientProfile: 'Paciente: Laura M., 15 anos, feminina, estudante do 1º ano do ensino médio. Mãe: Márcia M., 42 anos.',
+    script: [
+      { trigger: 'Abertura com a mãe presente', speech: 'Não tenho nada. É a minha mãe que tá exagerando.' },
+      { trigger: 'Abertura após a mãe sair', speech: 'Tô bem... não sei. Tô me sentindo muito vazia.' },
+      { trigger: 'Sobre humor', speech: 'Não consigo sentir prazer em nada. Antes eu adorava dançar, agora não quero nem levantar da cama.' },
+      { trigger: 'Sobre escola', speech: 'Parei de ir às aulas. Não consigo me concentrar. Acho que não adianta mais nada.' },
+      { trigger: 'Sobre sono', speech: 'Durmo mais de 12 horas mas acordo cansada. Às vezes não consigo dormir de jeito nenhum.' },
+      { trigger: 'Sobre alimentação', speech: 'Não tenho fome. Às vezes fico o dia inteiro sem comer.' },
+      { trigger: 'Sobre automutilação (se perguntado com delicadeza)', speech: 'Às vezes quando tô muito mal, faço uns riscos no braço. Parece que alivia.' },
+      { trigger: 'Sobre ideação suicida (se perguntado)', speech: 'Já pensei que seria melhor não estar aqui. Mas não fiz nada.' },
+      { trigger: 'Pergunta ativa 1', speech: 'Você vai contar pra minha mãe?' },
+      { trigger: 'Pergunta ativa 2', speech: 'Você acha que tem algo errado comigo?' }
+    ],
+    hiddenInfo: 'Terminou um relacionamento sério há 4 meses e sofreu bullying virtual após o término — gatilho precipitante; só revela se perguntado sobre eventos marcantes nos últimos meses. | Realiza cutting há 2 meses — só revela se perguntado diretamente e com delicadeza sobre automutilação.',
+    actorBehavior: 'Adolescente inicialmente fechada e defensiva. Abre-se progressivamente com um médico empático que garantiu privacidade e não julgou. Fica ansiosa quando perguntada sobre contar para a mãe. Cabe ao candidato negociar a confidencialidade com a paciente de forma ética.'
+  },
+  instC: {
+    diagnosis: 'Episódio depressivo maior (EDM) em adolescente — gravidade moderada — com automutilação (cutting) sem intencionalidade suicida, e ideação suicida passiva sem plano. Gatilho psicossocial identificado (término de relacionamento + cyberbullying).',
+    differentials: [
+      'Transtorno bipolar — humor depressivo + episódios de hipomania/mania; avaliar se houve períodos de euforia, grandiosidade, impulsividade.',
+      'Transtorno de ansiedade generalizada com depressão secundária — preocupação excessiva como sintoma primário; aqui humor depressivo é predominante.',
+      'Hipotireoidismo — cansaço, ganho de peso, desânimo; TSH normal afasta.'
+    ],
+    context: 'Adolescente de 15 anos com episódio depressivo maior moderado de 3 meses de evolução, com sintomas típicos (humor depressivo, anedonia, hipersônia, anorexia, perda de 4 kg, isolamento, concentração reduzida) associado a automutilação (cutting) como regulação emocional disfuncional e ideação suicida passiva. Gatilhos psicossociais identificados (término de relacionamento, cyberbullying).',
+    justify: 'Critérios do DSM-5 para EDM: ≥ 5 sintomas por ≥ 2 semanas, incluindo humor depressivo e anedonia. Presentes: humor depressivo, anedonia, hipersônia, anorexia, perda de peso, isolamento social, dificuldade de concentração, fadiga, ideação suicida passiva. Automutilação (cutting) é comportamento de autolesão não suicida — diferente de tentativa de suicídio, mas indicativo de sofrimento intenso e necessidade de cuidado especializado.',
+    expectedAnamnesis: 'Privacidade garantida (mãe convidada a aguardar fora) | Humor: tristeza, vazio, anedonia | Sono, apetite, peso | Concentração e desempenho escolar | Isolamento social e atividades anteriores | Ideação suicida: passiva, ativa, plano (avaliação de risco) | Automutilação: tipo, frequência, função (regulação emocional) | Eventos precipitantes (gatilhos) | Uso de substâncias (álcool, cannabis) | Histórico de saúde mental familiar',
+    expectedPhysical: 'Peso e evolução ponderal | Exame da pele (antebraços — cicatrizes de cutting) | Fácies (hipomimia) | Estado geral (abatimento) | TSH para afastar hipotireoidismo',
+    expectedExams: [
+      { exam: 'TSH', justify: 'Afastar hipotireoidismo', expected: 'Normal' },
+      { exam: 'Hemograma', justify: 'Afastar anemia como causa de cansaço', expected: 'Normal' },
+      { exam: 'Escalas validadas (PHQ-A)', justify: 'Triagem e gravidade da depressão', expected: 'Pontuação moderada-grave' }
+    ],
+    expectedConduct: 'Farmacológica: Fluoxetina 10–20 mg/dia VO (ISRS de 1ª escolha em adolescentes). Iniciar apenas em conjunto com psicoterapia. (SBP 2022 / CFM / ANVISA) | Não farmacológica: Psicoterapia cognitivo-comportamental (TCC) — 1ª linha e obrigatória. Não iniciar ISRS sem suporte psicoterápico em adolescentes. | Encaminhamento: Psiquiatria infantojuvenil e psicologia — urgência moderada (não emergência se sem plano suicida ativo). | Orientações: Negociar com a paciente o que será comunicado à mãe — a automutilação e a ideação suicida devem ser compartilhadas com o responsável, com a adolescente presente e orientada; explicar que não é punição mas proteção. Orientar a mãe sobre a gravidade sem exagero e sem minimização. | Seguimento: Psiquiatria + psicologia + retorno médico em 2 semanas.',
+    expectedCommunication: 'Apresentação: Apresentar-se, convidar a mãe a aguardar fora antes de iniciar a anamnese com a adolescente. | Comunicação do diagnóstico: "Laura, o que você tá sentindo tem um nome — depressão. Não é frescura nem fraqueza. É uma doença que tem tratamento. E eu preciso te pedir algo: precisamos contar para sua mãe sobre as marcas no braço — não para te punir, mas para te proteger." | Escuta ativa: Não julgar a automutilação; validar o sofrimento; negociar a quebra parcial de sigilo com a adolescente presente.',
+    criticalErrors: [
+      'Não garantir privacidade à adolescente (não pedir para a mãe sair antes da anamnese)',
+      'Não perguntar sobre ideação suicida e automutilação',
+      'Não examinar os antebraços (não identificar as cicatrizes de cutting)',
+      'Quebrar o sigilo sem comunicar à paciente previamente',
+      'Iniciar ISRS sem encaminhar para psicoterapia',
+      'Minimizar os sintomas ("é fase da adolescência")'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ADOLESCENTE COM ISOLAMENTO, TRISTEZA E AUTOMUTILAÇÃO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Convidou a mãe a aguardar fora antes de iniciar a anamnese com a adolescente', score: 1.0, ref: 'ECA / CFM / SBP, 2022' },
+          { item: 'Criou vínculo de confiança, sem julgamento, com linguagem acessível à adolescente', score: 0.5, ref: 'SBP, 2022' },
+          { item: 'Negociou a quebra parcial de sigilo com a adolescente presente e orientada', score: 0.5, ref: 'CFM 2.217/2018' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou sintomas depressivos (humor, anedonia, sono, apetite, concentração, isolamento)', score: 1.0, ref: 'DSM-5 / SBP, 2022' },
+          { item: 'Perguntou sobre ideação suicida (passiva e ativa) e plano', score: 1.0, ref: 'SBP / CFM, 2022' },
+          { item: 'Perguntou sobre automutilação com delicadeza', score: 0.5, ref: 'SBP, 2022' },
+          { item: 'Investigou gatilhos psicossociais (término de relacionamento, bullying)', score: 0.5, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Examinou antebraços e identificou cicatrizes de cutting', score: 1.0, ref: 'SBP, 2022' },
+          { item: 'Avaliou peso e evolução ponderal (perda de 4 kg)', score: 0.5, ref: 'SBP, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Formulou hipótese de EDM moderado com automutilação e ideação passiva', score: 1.0, ref: 'DSM-5 / SBP, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Encaminhou para psiquiatria infantojuvenil e psicologia com urgência moderada', score: 1.0, ref: 'SBP / CFM, 2022' },
+          { item: 'Mencionou que ISRS só deve ser iniciado em conjunto com psicoterapia', score: 0.5, ref: 'SBP / ANVISA, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 16,
+  title: 'Adolescente trazida pela mãe após revelar abuso sexual pelo padrasto',
+  sub: 'UPA — Urgência / CRAS',
+  tema: 'Pediatria',
+  topic: 'Semiologia do Adolescente — Violência Sexual',
+  level: 'moderado',
+  cardAccent: '#B71C1C',
+  instA: {
+    scenario: 'UPA. Sala reservada, turno noturno. Mãe trouxe a filha após ela revelar abuso sexual pelo padrasto.',
+    patient: 'J.C., 14 anos, feminina, estudante, trazida pela mãe após revelação espontânea de abuso sexual recorrente pelo padrasto.',
+    complaint: 'Adolescente que revelou abuso sexual pelo padrasto. Último episódio relatado há 3 dias.',
+    tasks: [
+      'Realize o acolhimento inicial da adolescente com privacidade',
+      'Realize a anamnese de forma adequada, não vitimizante',
+      'Avalie necessidade de exame físico e profilaxias',
+      'Informe as medidas legais e protetivas obrigatórias',
+      'Encaminhe adequadamente e oriente a mãe e a paciente'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '108/68 mmHg',
+      FC: '88 bpm',
+      FR: '18 irpm',
+      Tax: '36,7°C',
+      Peso: '52 kg',
+      Altura: '1,60 m',
+      IMC: '20,3 kg/m²'
+    },
+    physicalGeneral: 'Bom estado geral físico. Fácies ansiosa, com olhar baixo, choro contido. Sem hematomas ou lesões externas visíveis. Contato visual esporádico. Colaborativa mas tensa.',
+    physicalSeg: 'GENITAL/ANAL: O exame deve ser realizado somente se houver indicação médica e com consentimento da paciente. No caso de abuso recorrente sem último episódio < 72h com suspeita de material biológico, o exame ginecológico forense deve ser realizado pela equipe especializada (IML ou serviço de referência). Para fins desta estação: exame não realizado na UPA — encaminhamento ao serviço especializado. | PELE/GERAL: Sem lesões físicas externas identificadas neste momento.',
+    labs: [
+      { test: 'Teste de gravidez (beta-hCG)', val: 'Negativo', ref: '—', alt: false },
+      { test: 'Sorologia HIV (baseline)', val: 'Negativo', ref: '—', alt: false },
+      { test: 'VDRL', val: 'Negativo', ref: '—', alt: false },
+      { test: 'HBsAg', val: 'Negativo', ref: '—', alt: false }
+    ],
+    image: null,
+    note: 'Mãe deve aguardar fora durante parte da consulta (anamnese com a adolescente). A anamnese não deve ser uma reinquirição exaustiva — o objetivo médico é: avaliar necessidade de profilaxias, registrar o relato sem repetição traumatizante, e acionar a rede de proteção. O exame físico ginecológico forense NÃO deve ser realizado pelo médico da UPA — apenas pelo serviço especializado. Entregar sinais vitais ao início.',
+    patientProfile: 'Paciente: Júlia C., 14 anos, feminina, estudante do 9º ano. Mãe: Joana C., 36 anos.',
+    script: [
+      { trigger: 'Abertura com a mãe presente', speech: 'Eu não quero falar isso de novo.' },
+      { trigger: 'Abertura após a mãe sair (privacidade)', speech: 'Tô com vergonha. Acho que é culpa minha.' },
+      { trigger: 'Sobre o abuso', speech: 'Faz uns 8 meses que o meu padrasto fica fazendo isso comigo. Quando minha mãe sai pra trabalhar.' },
+      { trigger: 'Sobre o tipo de abuso', speech: 'Ele me toca, me beija à força... uma vez foi mais. Eu fico paralisada, não consigo fazer nada.' },
+      { trigger: 'Sobre o último episódio', speech: 'Foi há 3 dias. Quando minha mãe chegou em casa eu não aguentei mais e contei.' },
+      { trigger: 'Sobre sintomas físicos', speech: 'Não tô grávida, né? Tô com medo disso.' },
+      { trigger: 'Sobre sentimentos', speech: 'Fico me sentindo suja. Acho que ninguém vai me acreditar.' },
+      { trigger: 'Pergunta ativa 1', speech: 'Você vai contar tudo pra minha mãe? O que vai acontecer com ele?' },
+      { trigger: 'Pergunta ativa 2', speech: 'Preciso fazer exame? Vai doer?' }
+    ],
+    hiddenInfo: 'O abuso é recorrente há 8 meses, com penetração em pelo menos uma ocasião — só revela se perguntado com delicadeza sobre o tipo e a frequência dos atos. | A adolescente já tentou contar antes para uma professora, mas não foi acreditada — só revela se perguntado sobre se alguém sabia antes.',
+    actorBehavior: 'Adolescente com vergonha intensa, culpa e medo. Fica mais à vontade quando percebe que não será julgada. Chora ao falar. Cabe ao candidato não repetir perguntas desnecessárias, validar o relato e comunicar os próximos passos com cuidado.'
+  },
+  instC: {
+    diagnosis: 'Violência sexual recorrente contra adolescente de 14 anos — abuso sexual intrafamiliar por padrasto — com último episódio há 3 dias. Indicação de profilaxias, notificação compulsória, acionamento do Conselho Tutelar e encaminhamento ao serviço especializado.',
+    differentials: [
+      'Não aplicável neste caso. O relato de violência sexual é suficiente para acionar a rede de proteção — não cabe ao médico "provar" ou refutar o relato.'
+    ],
+    context: 'Adolescente de 14 anos vítima de abuso sexual intrafamiliar recorrente por padrasto, com último episódio há 3 dias. Revelação espontânea para a mãe, que trouxe ao serviço de saúde. Necessidade imediata de: acolhimento não vitimizante, profilaxias (ISTs, gravidez), notificação compulsória, acionamento do Conselho Tutelar e encaminhamento ao serviço de referência.',
+    justify: 'Menor de 18 anos + relato de ato sexual sem consentimento + agressor com vínculo intrafamiliar (padrasto) = violência sexual contra menor. No Brasil, qualquer ato sexual com menores de 14 anos é crime (estupro de vulnerável, independentemente de consentimento). Aos 14 anos completos, o consentimento viciado pelo vínculo de poder configura igualmente crime. Notificação é obrigatória pelo ECA e pelo profissional de saúde.',
+    expectedAnamnesis: 'Garantir privacidade (mãe fora) | Acolhimento: validar o relato sem questionar a veracidade | Informações mínimas necessárias: tipo de ato (para definir profilaxias), data do último episódio (< ou > 72h — define protocolo de emergência), uso de preservativo, histórico menstrual e última menstruação (risco de gestação) | Não reinquirir: evitar repetição do relato — esse papel cabe ao serviço especializado e ao IML | Sintomas físicos ou psicológicos',
+    expectedPhysical: 'Exame geral: hematomas, lesões | Exame ginecológico/anal: NÃO realizar na UPA sem indicação clínica emergencial; encaminhar ao serviço especializado para perícia forense | Exceção: sangramento ativo, lesão que necessite sutura ou tratamento imediato',
+    expectedExams: [
+      { exam: 'Beta-hCG', justify: 'Afastar gravidez — se último episódio < 72h: contracepção de emergência', expected: 'Negativo' },
+      { exam: 'Sorologias baseline (HIV, sífilis, hepatite B)', justify: 'Avaliar condição prévia às profilaxias', expected: 'Negativos' },
+      { exam: 'Cultura/swab vaginal e anal', justify: 'Se < 72h do último episódio com material biológico', expected: 'Coletar no serviço especializado' }
+    ],
+    expectedConduct: 'Farmacológica: Profilaxia de ISTs: ceftriaxona 500 mg IM (gonorreia) + metronidazol 2g VO dose única (tricomoníase) + azitromicina 1g VO dose única (clamídia). Profilaxia antirretroviral (TARV — PEP) se < 72h do último episódio com risco de exposição ao HIV. Contracepção de emergência (levonorgestrel 1,5 mg) se risco de gestação e < 72h. Vacina hepatite B (se não imunizada) + imunoglobulina se < 14 dias. (MS/Protocolo de Violência Sexual 2022) | Não farmacológica: Acolhimento e apoio psicológico imediato; encaminhamento ao CRAS/CREAS para suporte social. | Encaminhamento: Conselho Tutelar — notificação imediata e obrigatória (ECA art. 13). IML ou serviço de referência para perícia. Delegacia de Proteção à Criança e ao Adolescente. CRAS/CREAS. Psicologia/psiquiatria. | Orientações: Explicar à paciente e à mãe que: o abuso não é culpa da vítima; que a notificação ao Conselho Tutelar é obrigatória e protetiva; que o agressor deve ser afastado do lar imediatamente; que haverá acompanhamento. | Seguimento: Serviço de referência em violência sexual; acompanhamento psicológico.',
+    expectedCommunication: 'Apresentação: Apresentar-se, garantir privacidade antes de qualquer pergunta. | Comunicação: "Júlia, primeiro quero que saiba que você não tem culpa de nada. O que aconteceu com você é errado e é crime. Estamos aqui para te proteger e cuidar de você." | Escuta ativa: Não questionar a veracidade do relato; não repetir perguntas traumatizantes; validar constantemente.',
+    criticalErrors: [
+      'Não garantir privacidade à adolescente',
+      'Questionar a veracidade do relato ou atribuir culpa à vítima',
+      'Realizar exame ginecológico forense na UPA sem indicação clínica emergencial',
+      'Não realizar notificação compulsória ao Conselho Tutelar (obrigação legal)',
+      'Não oferecer profilaxias (ISTs, gestação, HIV) conforme o protocolo do MS',
+      'Não encaminhar ao serviço especializado e ao IML'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ADOLESCENTE VÍTIMA DE VIOLÊNCIA SEXUAL',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Garantiu privacidade (mãe aguardando fora) antes de iniciar a anamnese', score: 1.0, ref: 'ECA / CFM / MS, 2022' },
+          { item: 'Acolheu sem julgamento e validou que o abuso não é culpa da vítima', score: 1.0, ref: 'MS — Violência Sexual, 2022' },
+          { item: 'Não repetiu perguntas traumatizantes desnecessárias (respeito ao relato único)', score: 0.5, ref: 'MS — Violência Sexual, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou data e tipo do último episódio (< ou > 72h — define protocolo)', score: 1.0, ref: 'MS — Violência Sexual, 2022' },
+          { item: 'Questionou sobre risco de gestação (menarca, última menstruação)', score: 0.5, ref: 'MS — Violência Sexual, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Realizou exame geral (hematomas, lesões) sem realizar exame ginecológico forense na UPA', score: 1.0, ref: 'MS — Violência Sexual, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Identificou corretamente a obrigação de notificação ao Conselho Tutelar', score: 1.0, ref: 'ECA art. 13 / MS, 2022' },
+          { item: 'Solicitou sorologias baseline e beta-hCG', score: 0.5, ref: 'MS — Violência Sexual, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu profilaxia de ISTs (ceftriaxona + azitromicina + metronidazol)', score: 1.0, ref: 'MS — Violência Sexual, 2022' },
+          { item: 'Indicou PEP se < 72h e contracepção de emergência se indicada', score: 0.5, ref: 'MS — Violência Sexual, 2022' },
+          { item: 'Encaminhou ao Conselho Tutelar, IML/serviço de referência e apoio psicológico', score: 1.0, ref: 'ECA / MS, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
 ];
