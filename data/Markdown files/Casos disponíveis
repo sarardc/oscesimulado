@@ -1,0 +1,32 @@
+
+11 CASOS DE OTORRINO
+| # | Tema | Diagnóstico |
+|---|---|---|
+| 01 | Orelha Externa | Otite Externa Aguda Difusa |
+| 02 | Orelha Externa | Otomicose |
+| 03 | Otite Média | OMA Bacteriana (Pediátrica) |
+| 04 | Otite Média Crônica | OMCS com Perfuração Central |
+| 05 | Complicação de Otite | Mastoidite Aguda |
+| 06 | Perda Auditiva | PAIR — Doença Ocupacional |
+| 07 | Síndrome Vertiginosa | VPPB de Canal Posterior |
+| 08 | Síndrome Vertiginosa | Neurite Vestibular |
+| 09 | Rinite | Rinite Alérgica Persistente |
+| 10 | Rinite | Rinite Vasomotora + Medicamentosa |
+| 11 | Rinossinusite | Rinossinusite Aguda Bacteriana |
+
+
+10 CASOS DE OFTALMOLOGIA
+| # | Tema | Nível | Local | Tempo |
+|---|---|---|---|---|
+| 01 | Conjuntivite bacteriana | Simples | UBS | 8 min |
+| 02 | Glaucoma Agudo (crise) | Complexo | UPA | 10 min |
+| 03 | Retinopatia Diabética | Moderado | UBS | 10 min |
+| 04 | Catarata Senil | Simples | Ambulatório/UBS | 8 min |
+| 05 | Trauma Ocular / Corpo Estranho | Moderado | UPA | 8 min |
+| 06 | Uveíte Anterior / Olho Vermelho Diferencial | Complexo | UBS | 10 min |
+| 07 | Ambliopia e Estrabismo (Pediátrico) | Moderado | UBS/Puericultura | 8 min |
+| 08 | DMRI (Degeneração Macular) | Moderado | UBS/Geriatria | 8 min |
+| 09 | Retinopatia Hipertensiva / Emergência | Moderado | UBS | 10 min |
+| 10 | Celulite Orbitária vs. Pré-septal | Complexo | UPA Pediátrica | 10 min |
+
+Todos os 10 casos estão prontos, validados e formatados conforme o schema do seu banco de dados! 🎓

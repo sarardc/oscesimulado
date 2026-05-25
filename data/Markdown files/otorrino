@@ -1,0 +1,2391 @@
+Perfeito! Vou criar os casos um a um, enviando conforme concluo cada um. São **11 casos no total**. Começando agora:
+
+---
+
+## CASO OSCE-01
+
+### BLOCO 1 — METADADOS
+
+- **id:** 1
+- **title:** "Dor de ouvido após mergulho na praia"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Otite Externa"
+- **level:** "moderado"
+- **cardAccent:** "#4f9cf9"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "R.S., 22 anos, masculino, estudante universitário, sem comorbidades conhecidas."
+- **complaint:** "Dor no ouvido direito há 2 dias, piorou ontem."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Solicite os exames complementares, se necessário
+  5. Proponha a conduta terapêutica e oriente o paciente
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+> ℹ️ Este bloco é confidencial do avaliador.
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 118/76 mmHg |
+| FC | 78 bpm |
+| FR | 16 irpm |
+| Tax | 37,4°C |
+| Peso | 74 kg |
+| Altura | 1,78 m |
+| IMC | 23,3 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corado, hidratado, afebril, consciente e orientado. Sem adenomegalias cervicais.
+
+#### Exame Segmentar (physicalSeg)
+
+- **OTOSCOPIA DIREITA:** Conduto auditivo externo (CAE) com edema e hiperemia difusos, presença de secreção serosa escassa, membrana timpânica não visualizada adequadamente pelo edema do CAE. Trago doloroso à compressão.
+- **OTOSCOPIA ESQUERDA:** Conduto auditivo externo livre, membrana timpânica íntegra, translúcida, sem alterações.
+- **OROFARINGE:** Sem hiperemia ou exsudato.
+- **CAVIDADE NASAL:** Mucosa normocorada, cornetos sem hipertrofia.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 9.200/mm³, sem desvio | 4.000–11.000/mm³ | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar impresso com sinais vitais ao início da estação. Entregar resultado da otoscopia e exame físico somente quando o candidato solicitar/realizar o exame físico. Entregar hemograma somente se o candidato solicitar exames complementares.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Rodrigo S., 22 anos, masculino, estudante de educação física, solteiro."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, meu ouvido direito tá doendo muito, começou depois que eu fui à praia anteontem." |
+| Sobre início e evolução | "Comecei a sentir uma coceira no ouvido no dia seguinte à praia, aí foi piorando e virou uma dorzão." |
+| Sobre contato com água | "Fico bastante tempo na água, mergulho bastante. Acho que entrou muita água." |
+| Sobre febre | "Não tive febre não, nem me sinto mal assim… só incomoda muito esse ouvido." |
+| Sobre saída de líquido | "Não saiu nada, mas parece que tem alguma coisa lá dentro." |
+| Sobre audição | "Tô ouvindo meio abafado pelo lado direito, mas não é tão forte assim." |
+| Sobre medicamentos | "Tomei um ibuprofeno que eu tinha em casa, melhorou um pouco a dor, mas voltou." |
+| Pergunta ativa 1 | "O que eu tenho, doutor? É grave?" |
+| Pergunta ativa 2 | "Posso continuar nadando?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Costuma limpar o ouvido com cotonete com frequência — só revela se perguntado sobre hábitos de higiene do ouvido.
+- Já teve episódio semelhante no verão passado, tratou com gotinha que um amigo deu — só revela se perguntado sobre episódios anteriores.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tom levemente ansioso, mas colaborativo. Responde objetivamente ao que é perguntado. Fica aliviado quando o candidato demonstra segurança no diagnóstico. Reage com preocupação ao saber que precisa evitar a água.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Otite externa aguda difusa (Ouvido do nadador) — OD.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Otite média aguda — dor de ouvido também presente, mas na OMA há febre, abaulamento timpânico e a dor não se acentua com a tração do trago; aqui não há febre e o trago é doloroso.
+2. Furunculose do CAE — infecção focal por S. aureus; dor intensa e localizada, sem edema difuso do CAE; possível visualização de foliculo.
+3. Otomicose — prurido predominante, aspecto esbranquiçado/escuro do CAE, comum em usuários crônicos de gotas antibióticas.
+
+**Síntese do Caso (context):**
+Jovem atleta aquático com otite externa aguda difusa após exposição prolongada à água do mar. Quadro típico com otalgia, edema e hiperemia difusos do CAE, sinal do trago positivo e hipoacusia leve ipsilateral. Ausência de febre e membrana timpânica não visualizada pelo edema.
+
+**Justificativa Diagnóstica (justify):**
+A tríade otalgia de início após imersão em água + edema/hiperemia difusos do CAE + sinal do trago positivo é clássica de otite externa aguda difusa. A ausência de febre e o contexto epidemiológico (nadador, verão) reforçam o diagnóstico. O uso de cotonete é fator predisponente relevante identificado na anamnese.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Início e evolução da otalgia (após contato com água)
+- Caracterização da dor (intensidade, localização, fatores de piora — mastigação, tração do pavilhão)
+- Presença de otorreia, prurido, plenitude auricular
+- Episódios anteriores semelhantes
+- Hábitos de higiene do ouvido (uso de cotonete)
+- Uso de medicamentos prévios
+- Presença de febre
+- Alteração auditiva
+- Antecedentes de otite, cirurgia otológica, perfuração timpânica
+- Alergias
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: afebril, estáveis
+- Inspeção do pavilhão auricular: sem alterações externas
+- Palpação: sinal do trago positivo (dor à compressão do trago), dor à tração do pavilhão auricular — patognomônico de otite externa
+- Otoscopia: CAE edemaciado, hiperemiado, com secreção serosa; MT não visualizada — entregar impresso
+- Avaliação de linfonodos periauriculares e cervicais
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Nenhum exame obrigatório na fase inicial | Diagnóstico clínico | — |
+| Cultura de secreção do CAE | Indicado apenas em casos recorrentes, imunossuprimidos ou refratários ao tratamento | Se solicitado: Pseudomonas aeruginosa ou S. aureus |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Ciprofloxacino + dexametasona otológico (gotas auriculares) — 4 gotas no ouvido afetado 2x/dia por 7 dias. Analgesia: dipirona 500 mg VO 6/6h ou ibuprofeno 400 mg VO 8/8h se dor intensa. (RENAME 2022 / SBO 2022)
+- **Não farmacológica:** Manter ouvido seco — evitar mergulho e natação durante o tratamento; ao banho, proteger o ouvido com algodão com vaselina; não usar cotonete.
+- **Encaminhamento:** Encaminhar ao otorrinolaringologista se: ausência de melhora em 72h, suspeita de otite externa maligna (necrotizante), imunossupressão.
+- **Orientações ao paciente:** Explicar que é uma infecção do canal do ouvido causada pela umidade e limpeza inadequada; orientar sobre técnica correta de aplicação das gotas; reforçar que não deve usar cotonete.
+- **Seguimento:** Retorno em 7–10 dias para reavaliação; sinais de alarme: piora da dor, febre, paralisia facial.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** "Bom dia, meu nome é [nome], sou médico(a) aqui na unidade. Pode me contar o que está sentindo?"
+- **Comunicação do diagnóstico:** "Você tem uma infecção no canal do ouvido chamada otite externa, muito comum em quem pratica natação. Não é grave, mas precisa de tratamento com gotinhas no ouvido."
+- **Escuta ativa:** Aguardar o paciente terminar de falar antes de responder; validar a dor ("Entendo que está incomodando bastante").
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever antibiótico oral sistêmico como primeira linha sem indicação (otite externa sem celulite periauricular ou imunocomprometimento)
+- ❌ Não realizar ou solicitar otoscopia
+- ❌ Não orientar sobre restrição de contato com água durante o tratamento
+- ❌ Confundir com otite média aguda e prescrever amoxicilina oral sem avaliação timpânica adequada
+- ❌ Não identificar o sinal do trago como elemento diferencial importante
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — DOR DE OUVIDO APÓS MERGULHO NA PRAIA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome ao paciente | 0.5 | CFM 2.217/2018 |
+| Explicou o que iria realizar antes de iniciar a consulta | 0.5 | CFM 2.217/2018 |
+| Utilizou linguagem acessível ao explicar diagnóstico e conduta | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou início da dor e relação com contato com água | 1.0 | SBO, Diretrizes de Otite Externa, 2022 |
+| Questionou presença de otorreia, prurido e plenitude auricular | 0.5 | SBO, 2022 |
+| Investigou hábitos de higiene auricular (uso de cotonete) | 0.5 | SBO, 2022 |
+| Questionou presença de febre e sintomas sistêmicos | 0.5 | SBO, 2022 |
+| Perguntou sobre episódios anteriores semelhantes | 0.5 | SBO, 2022 |
+| Investigou uso de medicamentos e alergias | 0.5 | RENAME, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou sinais vitais (temperatura) | 0.5 | SBO, 2022 |
+| Realizou palpação do trago e tração do pavilhão auricular (sinal do trago) | 1.0 | SBO, 2022 |
+| Solicitou/realizou otoscopia | 1.0 | SBO, 2022 |
+| Avaliou linfonodos periauriculares e cervicais | 0.5 | SBO, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de otite externa aguda difusa | 1.0 | SBO, 2022 |
+| Citou ao menos um diagnóstico diferencial pertinente (OMA ou otomicose) | 0.5 | SBO, 2022 |
+| Reconheceu que o diagnóstico é clínico e não solicitou exames desnecessários | 0.5 | SBO, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu corretamente gotas auriculares com antibiótico (ciprofloxacino otológico) | 1.0 | RENAME 2022 / SBO 2022 |
+| Orientou restrição de contato com água durante tratamento | 0.5 | SBO, 2022 |
+| Orientou sobre não uso de cotonete | 0.5 | SBO, 2022 |
+| Orientou sinais de alarme e retorno | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 01 concluído.** Gerando o Caso 02 (Doenças da Orelha Externa) agora.
+
+---
+
+## CASO OSCE-02
+
+### BLOCO 1 — METADADOS
+
+- **id:** 2
+- **title:** "Coceira intensa no ouvido há semanas"
+- **sub:** "Ambulatório — Clínica Médica"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Otomicose"
+- **level:** "moderado"
+- **cardAccent:** "#4f9cf9"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Clínica Médica. Consultório, turno vespertino."
+- **patient:** "M.L., 58 anos, feminina, aposentada, diabética tipo 2 em uso de metformina."
+- **complaint:** "Coceira e sensação de entupimento no ouvido esquerdo há cerca de 3 semanas."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Proponha a conduta terapêutica adequada
+  5. Oriente a paciente sobre o tratamento e cuidados
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 132/84 mmHg |
+| FC | 80 bpm |
+| FR | 16 irpm |
+| Tax | 36,8°C |
+| Peso | 72 kg |
+| Altura | 1,60 m |
+| IMC | 28,1 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corada, hidratada, afebril, consciente e orientada. Sem linfadenopatia cervical.
+
+#### Exame Segmentar (physicalSeg)
+
+- **OTOSCOPIA ESQUERDA:** Conduto auditivo externo com presença de material esbranquiçado e acinzentado de aspecto filamentoso (hifas visíveis), aderido às paredes do CAE. Hiperemia leve da pele do conduto. Membrana timpânica parcialmente visível, sem perfuração aparente.
+- **OTOSCOPIA DIREITA:** CAE livre, membrana timpânica íntegra, sem alterações.
+- **OROFARINGE:** Sem alterações.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Glicemia de jejum | 187 mg/dL | 70–99 mg/dL | Sim |
+| HbA1c | 8,2% | < 5,7% | Sim |
+| Hemograma | Leucócitos 8.400/mm³, sem desvio | 4.000–11.000/mm³ | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar impresso de sinais vitais ao início. Entregar resultado da otoscopia ao exame físico. Entregar exames laboratoriais somente se solicitados pelo candidato. Reforçar ao candidato que a paciente já tem DM2 conhecida — relevante para o caso.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Maria L., 58 anos, feminina, aposentada, casada, diabética tipo 2."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, tô com uma coceira horrível nesse ouvido esquerdo há umas três semanas, parece que tá entupido." |
+| Sobre início | "Começou do nada, não lembro de ter feito nada diferente. Só foi piorando." |
+| Sobre secreção | "Às vezes sai uma coisinha branca, parece farelo." |
+| Sobre dor | "Dor não tem muita não, é mais aquela coceira insuportável." |
+| Sobre tratamento anterior | "Fui à farmácia e comprei umas gotas de antibiótico, usei duas semanas, mas não melhorou nada." |
+| Sobre diabetes | "Tenho diabetes há uns 8 anos, tomo metformina todo dia, mas tô meio largada no tratamento não minto." |
+| Sobre hábitos | "Gosto de colocar um cotonete às vezes porque fica com aquela sensação de entupimento." |
+| Pergunta ativa 1 | "O que é isso no meu ouvido, doutora? É sério?" |
+| Pergunta ativa 2 | "Quanto tempo leva pra passar?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Fez uso prolongado de gotas de antibiótico auricular por conta própria (2 semanas) — só revela se perguntado sobre automedicação ou tratamentos anteriores.
+- Glicemia descontrolada nos últimos meses, não faz acompanhamento regular — só revela se perguntado sobre controle do diabetes.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tom tranquilo, mas com leve vergonha por estar sem acompanhamento adequado do diabetes. Colaborativa. Fica um pouco preocupada ao saber que o fungo pode estar relacionado ao açúcar alto.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Otomicose do ouvido esquerdo — provavelmente por Aspergillus sp. — em paciente diabética tipo 2 com mau controle glicêmico.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Otite externa bacteriana — hiperemia e edema do CAE presentes, mas o aspecto filamentoso/esbranquiçado e a ausência de resposta a antibiótico favorecem otomicose.
+2. Dermatite seborreica do CAE — prurido e descamação presentes, mas sem material filamentoso característico.
+3. Acúmulo de cerume — plenitude auricular presente, mas sem prurido intenso nem material filamentoso.
+
+**Síntese do Caso (context):**
+Paciente diabética com mau controle glicêmico apresentando otomicose, favorecida pela imunossupressão relativa da hiperglicemia e pelo uso prévio inadequado de antibiótico tópico. Quadro clínico típico com prurido intenso, material filamentoso esbranquiçado no CAE e ausência de resposta a antibioticoterapia.
+
+**Justificativa Diagnóstica (justify):**
+O achado otoscópico de material filamentoso esbranquiçado/acinzentado no CAE, associado a prurido intenso como sintoma predominante, falha terapêutica com antibiótico tópico e contexto de imunossupressão relativa (DM2 descontrolado) aponta fortemente para otomicose. O agente mais comum é o Aspergillus niger/flavus.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Início, evolução e caracterização do prurido
+- Presença de secreção (aspecto, cor)
+- Ausência ou presença de otalgia
+- Uso prévio de gotas auriculares (antibiótico tópico)
+- Hábitos de higiene auricular (cotonete)
+- Diagnóstico e controle do diabetes
+- Uso de medicamentos imunossupressores
+- Episódios anteriores
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: afebril, PA levemente elevada
+- Otoscopia: material filamentoso esbranquiçado/acinzentado no CAE — achado patognomônico de otomicose
+- Avaliação da membrana timpânica (integridade)
+- Sinal do trago: geralmente negativo ou leve
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Glicemia de jejum / HbA1c | Avaliar controle glicêmico — fator predisponente | Hiperglicemia, HbA1c elevada |
+| Cultura fúngica do material do CAE | Confirmar agente etiológico em casos recorrentes/refratários | Aspergillus sp. ou Candida sp. |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Limpeza do CAE (lavagem ou aspiração pelo médico/otorrino) + clotrimazol tópico auricular 1% — gotas, 3–4x/dia por 2–3 semanas. Alternativa: ácido acético 2% em gotas (SBO 2022 / UpToDate ⚠️). Em casos graves ou imunossuprimidos: fluconazol oral.
+- **Não farmacológica:** Manter ouvido seco; não usar cotonete; evitar automedicação com antibióticos.
+- **Encaminhamento:** Otorrinolaringologista para limpeza adequada do CAE; endocrinologista/clínico para otimização do controle glicêmico.
+- **Orientações ao paciente:** Explicar relação entre diabetes descontrolado e maior risco de infecções fúngicas; reforçar importância do controle glicêmico.
+- **Seguimento:** Retorno em 2–3 semanas; sinais de alarme: piora da dor, febre, paralisia facial (pensar em otite externa maligna).
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se pelo nome, perguntar como a paciente prefere ser chamada.
+- **Comunicação do diagnóstico:** "A senhora tem uma infecção por fungo no canal do ouvido, chamada otomicose. É diferente de uma infecção por bactéria, por isso as gotas de antibiótico não funcionaram. Precisamos tratar com um antifúngico."
+- **Escuta ativa:** Acolher sem julgamento a dificuldade no controle do diabetes; reforçar que o controle glicêmico protege contra esse tipo de infecção.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Manter antibiótico tópico sem identificar falha terapêutica e necessidade de antifúngico
+- ❌ Não investigar controle do diabetes como fator predisponente
+- ❌ Não realizar ou solicitar otoscopia
+- ❌ Não encaminhar ao otorrinolaringologista para limpeza do CAE
+- ❌ Não orientar sobre riscos da automedicação e uso indiscriminado de antibióticos tópicos
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — COCEIRA INTENSA NO OUVIDO HÁ SEMANAS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome e cumprimentou a paciente | 0.5 | CFM 2.217/2018 |
+| Utilizou linguagem acessível ao explicar diagnóstico e conduta | 0.5 | PNHAH/MS, 2001 |
+| Abordou o controle do diabetes sem julgamento ou tom punitivo | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou início, evolução e características do prurido e secreção | 0.5 | SBO, 2022 |
+| Questionou uso prévio de gotas auriculares (antibiótico tópico) | 1.0 | SBO, 2022 |
+| Investigou hábitos de higiene auricular (cotonete) | 0.5 | SBO, 2022 |
+| Questionou sobre diabetes e controle glicêmico | 1.0 | SBD, Diretrizes 2023 |
+| Perguntou sobre uso de imunossupressores ou outras comorbidades | 0.5 | SBO, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou temperatura e sinais vitais | 0.5 | SBO, 2022 |
+| Solicitou/realizou otoscopia e descreveu o achado filamentoso | 1.0 | SBO, 2022 |
+| Avaliou integridade da membrana timpânica | 0.5 | SBO, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de otomicose | 1.0 | SBO, 2022 |
+| Relacionou mau controle glicêmico como fator predisponente | 0.5 | SBD, 2023 |
+| Solicitou glicemia/HbA1c para avaliação do controle glicêmico | 0.5 | SBD, 2023 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu antifúngico tópico auricular (clotrimazol) | 1.0 | RENAME 2022 / SBO 2022 |
+| Encaminhou ao otorrinolaringologista para limpeza do CAE | 0.5 | SBO, 2022 |
+| Orientou sobre manutenção do ouvido seco e não uso de cotonete | 0.5 | SBO, 2022 |
+| Orientou sinais de alarme e retorno | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Casos 01 e 02 concluídos** (Doenças da Orelha Externa). Gerando agora os casos de **Otite Média** — Caso 03.
+
+---
+
+## CASO OSCE-03
+
+### BLOCO 1 — METADADOS
+
+- **id:** 3
+- **title:** "Criança com febre e choro ao puxar o ouvido há 1 dia"
+- **sub:** "UPA — Urgência e Emergência Pediátrica"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Otite Média Aguda"
+- **level:** "moderado"
+- **cardAccent:** "#FF7043"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UPA Pediátrica. Consultório, turno noturno."
+- **patient:** "Mãe de L.M., 2 anos, masculino, sem comorbidades conhecidas."
+- **complaint:** "Criança com febre e choro constante, puxando o ouvido direito desde ontem à noite."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso (com a mãe)
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Proponha a conduta terapêutica adequada
+  5. Oriente a mãe sobre o tratamento, cuidados e sinais de alarme
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | Não aferida (criança não colaborou) |
+| FC | 118 bpm |
+| FR | 26 irpm |
+| Tax | 38,8°C |
+| Peso | 12 kg |
+| Altura | 0,88 m |
+| IMC | 15,5 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral, irritado, choro fácil, corado, hidratado, febril. Sem toxemia. Consciente.
+
+#### Exame Segmentar (physicalSeg)
+
+- **OTOSCOPIA DIREITA:** Membrana timpânica hiperemiada, abaulada, sem perfuração. Perda do reflexo luminoso. Sem otorreia.
+- **OTOSCOPIA ESQUERDA:** Membrana timpânica íntegra, levemente hiperemiada, sem abaulamento. Reflexo luminoso presente.
+- **OROFARINGE:** Hiperemia leve de orofaringe posterior. Tonsilas sem exsudato, grau I.
+- **AUSCULTA PULMONAR:** Murmúrio vesicular presente bilateralmente, sem ruídos adventícios.
+- **CAVIDADE NASAL:** Rinorreia serosa bilateral.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 15.800/mm³, neutrófilos 72%, sem desvio à esquerda | 6.000–17.000/mm³ (2 anos) | Sim |
+| PCR | 18 mg/L | < 5 mg/L | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+O ator é a mãe da criança. A criança é representada por boneco/simulador ou apenas descrita pelo ator. Entregar sinais vitais ao início. Entregar otoscopia e exame físico quando solicitado. Entregar hemograma e PCR apenas se solicitados.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Mãe: Carla M., 28 anos, auxiliar de serviços gerais. Paciente: Lucas M., 2 anos, masculino, sem comorbidades."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, meu filho tá com muita febre desde ontem à noite e não para de chorar, fica puxando o ouvido dele." |
+| Sobre febre | "A febre foi até 39 graus, dei dipirona e baixou um pouco, mas volta logo." |
+| Sobre o ouvido | "Ele fica colocando a mão no ouvido direito e chora muito quando eu toco." |
+| Sobre coriza | "Tá com coriza há uns 4 dias, achei que era virose." |
+| Sobre alimentação | "Tá comendo menos, reclamou de dor quando mamou hoje cedo." |
+| Sobre medicamentos | "Só dei dipirona. Não dei antibiótico ainda." |
+| Sobre vacinação | "Tá com a vacina em dia sim, fiz o cartão agora." |
+| Pergunta ativa 1 | "O que ele tem, doutor? Precisa de antibiótico?" |
+| Pergunta ativa 2 | "Posso dar alguma coisa pra dor? Quanto tempo vai durar?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- A criança frequenta creche — fator de risco para OMA; só revela se perguntado sobre creche ou contato com outras crianças.
+- Há um irmão mais velho com "infecção de ouvido" recente — só revela se perguntado sobre contato familiar com infecção.
+
+#### Comportamento do Ator (actorBehavior)
+
+Mãe ansiosa, preocupada com o filho. Colaborativa. Fica aliviada ao receber orientações claras. Demonstra dúvida sobre necessidade de antibiótico — cabe ao candidato explicar a indicação.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Otite média aguda (OMA) bacteriana — ouvido direito — em criança de 2 anos com abaulamento timpânico e febre persistente.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Otite média com efusão (OME) — ausência de sinais inflamatórios agudos, sem febre; MT opaca ou com nível líquido, sem abaulamento.
+2. Otite externa aguda — dor à tração do pavilhão, CAE edemaciado; aqui o achado é na MT (abaulamento), não no CAE.
+3. Faringoamigdalite bacteriana — odinofagia predominante, sem achado timpânico; pode coexistir mas não explica o quadro principal.
+
+**Síntese do Caso (context):**
+Lactente de 2 anos, frequentador de creche, com OMA bacteriana direita, apresentando febre alta, irritabilidade, otalgia indireta (tração auricular) e membrana timpânica abaulada à otoscopia. Precedida por quadro de infecção viral de vias aéreas superiores.
+
+**Justificativa Diagnóstica (justify):**
+Critérios diagnósticos de OMA bacteriana presentes: início agudo (< 48h), membrana timpânica abaulada (sinal mais específico), febre ≥ 38°C, irritabilidade e otalgia. Fatores de risco: idade < 2 anos, frequência em creche. Leucocitose e PCR elevado corroboram processo bacteriano.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Início e evolução da febre e da irritabilidade
+- Sinais de otalgia indireta (tração do ouvido, choro ao deitar/mamar)
+- Rinorreia, tosse, sintomas de IVAS precedente
+- Alimentação (recusa, dor ao mamar)
+- Uso de medicamentos e antibióticos prévios
+- Histórico de episódios anteriores de OMA
+- Vacinação (pneumocócica, influenza)
+- Frequência em creche
+- Contato com fumantes (fator de risco)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: febre, taquicardia
+- Estado geral: irritado, choro fácil
+- Otoscopia: MT abaulada, hiperemiada, sem reflexo luminoso — achado mais específico de OMA bacteriana
+- Orofaringe: avaliar amígdalas e orofaringe posterior
+- Ausculta pulmonar: excluir pneumonia associada
+- Cavidade nasal: rinorreia
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Diagnóstico clínico — exames não obrigatórios | OMA é diagnóstico clínico | — |
+| Hemograma / PCR | Se dúvida sobre processo bacteriano ou toxemia | Leucocitose, PCR elevada |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Amoxicilina 50 mg/kg/dia VO dividido em 2–3 doses por 10 dias (criança < 2 anos). Analgesia: dipirona 15 mg/kg/dose VO 6/6h ou ibuprofeno 10 mg/kg/dose VO 8/8h. (SBP 2022 / MS 2022)
+- **Não farmacológica:** Elevação da cabeceira ao dormir; saline nasal para rinorreia; evitar fumo passivo.
+- **Encaminhamento:** Otorrinolaringologista se: ausência de melhora em 48–72h, episódios recorrentes (≥ 3 em 6 meses), suspeita de complicação.
+- **Orientações ao paciente:** Explicar que é uma infecção bacteriana do ouvido médio; orientar sobre a importância de completar o antibiótico; sinais de alarme.
+- **Seguimento:** Retorno em 48–72h se piora ou não melhora da febre; retorno em 2 semanas para reavaliação da MT.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, perguntar o nome da criança e da mãe.
+- **Comunicação do diagnóstico:** "Seu filho tem uma infecção no ouvido chamada otite média, que é bacteriana, por isso a febre alta e a dor. Vamos precisar de antibiótico."
+- **Escuta ativa:** Validar a preocupação da mãe; responder à dúvida sobre antibiótico de forma clara e sem tecnicismos.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não realizar otoscopia
+- ❌ Não prescrever antibiótico em criança < 2 anos com OMA e MT abaulada
+- ❌ Prescrever dose incorreta de amoxicilina (dose padrão 25 mg/kg em vez de 50 mg/kg para OMA)
+- ❌ Não orientar retorno precoce em caso de piora
+- ❌ Não avaliar orofaringe e pulmões para afastar complicações
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — CRIANÇA COM FEBRE E CHORO AO PUXAR O OUVIDO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se à mãe e perguntou o nome da criança | 0.5 | CFM 2.217/2018 |
+| Utilizou linguagem acessível ao explicar diagnóstico e conduta à mãe | 0.5 | PNHAH/MS, 2001 |
+| Respondeu à dúvida da mãe sobre necessidade de antibiótico | 0.5 | SBP, 2022 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou início da febre, evolução e picos térmicos | 0.5 | SBP, 2022 |
+| Identificou otalgia indireta (tração do ouvido, choro ao mamar/deitar) | 1.0 | SBP, 2022 |
+| Questionou sintomas de IVAS precedente (coriza, tosse) | 0.5 | SBP, 2022 |
+| Perguntou sobre vacinação (pneumocócica e influenza) | 0.5 | PNI/MS, 2023 |
+| Investigou episódios anteriores de otite e frequência em creche | 0.5 | SBP, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou temperatura e sinais vitais | 0.5 | SBP, 2022 |
+| Realizou otoscopia e identificou MT abaulada e hiperemiada | 1.0 | SBP, 2022 |
+| Avaliou orofaringe e ausculta pulmonar | 0.5 | SBP, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de OMA bacteriana com critérios corretos | 1.0 | SBP, 2022 |
+| Reconheceu que o diagnóstico é clínico e não exigiu exames para iniciar tratamento | 0.5 | SBP, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu amoxicilina na dose correta (50 mg/kg/dia) por 10 dias | 1.0 | SBP 2022 / RENAME 2022 |
+| Prescreveu analgesia adequada (dipirona ou ibuprofeno) | 0.5 | SBP, 2022 |
+| Orientou retorno precoce em 48–72h se piora ou ausência de melhora | 0.5 | SBP, 2022 |
+| Orientou sinais de alarme (piora da febre, abaulamento da orelha, paralisia facial) | 0.5 | SBP, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 03 concluído** (OMA). Prosseguindo com o **Caso 04 — Otite Média Crônica**.
+
+---
+
+## CASO OSCE-04
+
+### BLOCO 1 — METADADOS
+
+- **id:** 4
+- **title:** "Saída de líquido pelo ouvido há meses sem dor"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Otite Média Crônica Supurativa"
+- **level:** "moderado"
+- **cardAccent:** "#FF7043"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "J.O., 35 anos, masculino, pedreiro, sem comorbidades relatadas."
+- **complaint:** "Ouvido direito soltando líquido há mais de 3 meses, ouve menos desse lado."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Proponha a conduta e encaminhamento adequados
+  5. Oriente o paciente sobre cuidados e seguimento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 122/78 mmHg |
+| FC | 76 bpm |
+| FR | 15 irpm |
+| Tax | 36,6°C |
+| Peso | 78 kg |
+| Altura | 1,72 m |
+| IMC | 26,4 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corado, hidratado, afebril, consciente e orientado.
+
+#### Exame Segmentar (physicalSeg)
+
+- **OTOSCOPIA DIREITA:** Perfuração central de membrana timpânica (aproximadamente 40% da área), bordas regulares, sem colesteatoma visível. Presença de secreção mucopurulenta no CAE, inodora.
+- **OTOSCOPIA ESQUERDA:** Membrana timpânica íntegra, sem alterações.
+- **OROFARINGE:** Sem alterações.
+- **CAVIDADE NASAL:** Desvio de septo nasal leve para a esquerda, cornetos sem hipertrofia significativa.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 8.100/mm³, sem desvio | 4.000–11.000/mm³ | Não |
+| Glicemia de jejum | 92 mg/dL | 70–99 mg/dL | Não |
+
+#### Exame de Imagem (image)
+
+**Audiometria tonal (se solicitada):** Perda auditiva condutiva em ouvido direito — limiar médio de 35 dB (250–4000 Hz). Ouvido esquerdo dentro dos limites da normalidade.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar otoscopia ao exame físico. Entregar audiometria somente se o candidato solicitar avaliação auditiva. Hemograma somente se solicitado.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"José O., 35 anos, masculino, pedreiro, casado, 2 filhos."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, meu ouvido direito fica soltando uma secreção há uns 3 meses, e tô ouvindo menos por esse lado." |
+| Sobre início | "Começou depois de uma gripe forte que tive, aí ficou. Não doi, só incomoda." |
+| Sobre a secreção | "É um líquido meio amarelado às vezes, sem cheiro. Fica molhando o travesseiro à noite." |
+| Sobre dor | "Dor mesmo não tenho não, por isso fui deixando. Achei que ia passar." |
+| Sobre febre | "Febre não tenho, tô bem disposto." |
+| Sobre audição | "Tô ouvindo abafado pelo direito há bastante tempo. Às vezes peço pra minha mulher repetir o que fala." |
+| Sobre tratamentos | "Nunca fui ao médico pra isso, fui deixando porque não doía." |
+| Pergunta ativa 1 | "Isso tem cura, doutor? Vai precisar de cirurgia?" |
+| Pergunta ativa 2 | "Posso tomar banho e molhar o ouvido?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Teve múltiplos episódios de otite média na infância — só revela se perguntado sobre histórico de infecções de ouvido na infância.
+- Não usa proteção auricular no trabalho como pedreiro (exposição a poeira e ruído) — só revela se perguntado sobre exposição ocupacional.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tranquilo, levemente preocupado com a possibilidade de cirurgia. Colaborativo. Demonstra certo descaso inicial com os sintomas por não sentir dor — cabe ao candidato reforçar a importância do diagnóstico e tratamento.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Otite média crônica supurativa (OMCS) — ouvido direito — com perfuração central de MT e hipoacusia condutiva ipsilateral.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Otite média crônica com colesteatoma — perfuração marginal/aticoantral, secreção fétida, erosão óssea; aqui perfuração é central e secreção inodora.
+2. Otite média com efusão crônica — sem otorreia ativa; líquido retido atrás de MT íntegra.
+3. Otite externa crônica — afeta o CAE, não a MT; sem perfuração.
+
+**Síntese do Caso (context):**
+Adulto jovem com OMCS direita decorrente de episódios repetidos de OMA na infância, com perfuração central de MT, otorreia mucopurulenta crônica sem dor e hipoacusia condutiva ipsilateral de grau leve. Sem sinais de colesteatoma ou complicações.
+
+**Justificativa Diagnóstica (justify):**
+Perfuração central de MT com secreção mucopurulenta crônica sem otalgia caracteriza OMCS tubotimpânica (benigna). A ausência de secreção fétida e perfuração em área marginal afasta colesteatoma. Audiometria confirma componente condutivo.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Tempo, evolução e características da otorreia (cor, odor, volume)
+- Presença ou ausência de otalgia
+- Histórico de OMA na infância e episódios anteriores
+- Alteração auditiva (hipoacusia progressiva)
+- Presença de zumbido ou vertigem
+- Exposição ocupacional a ruído
+- Uso de medicamentos auriculares prévios
+- Presença de febre ou sinais de complicação
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: afebril, estáveis
+- Otoscopia: perfuração central de MT, secreção mucopurulenta, ausência de colesteatoma
+- Avaliação do CAE: limpo ou com secreção
+- Pesquisa de retração timpânica ou erosão óssea (afastar colesteatoma)
+- Teste do diapasão — Rinne e Weber (hipoacusia condutiva)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Audiometria tonal | Avaliar grau e tipo de perda auditiva | Perda condutiva em OD |
+| Cultura da secreção auricular | Identificar agente e orientar antibioticoterapia tópica | Pseudomonas aeruginosa ou S. aureus (comuns) |
+| TC de ossos temporais | Se suspeita de colesteatoma ou complicações | Normal ou erosão em mastóide (se colesteatoma) |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Ciprofloxacino tópico auricular nas fases de exacerbação com otorreia ativa. Evitar aminoglicosídeos tópicos ototóxicos em MT perfurada. (SBO 2022)
+- **Não farmacológica:** Proteger o ouvido da entrada de água (tampão com vaselina ao banho); não usar cotonete.
+- **Encaminhamento:** Encaminhamento obrigatório ao otorrinolaringologista para avaliação cirúrgica (timpanoplastia).
+- **Orientações ao paciente:** Explicar que a perfuração causa a saída de líquido e a perda auditiva; que existe tratamento cirúrgico (timpanoplastia) com boa chance de cura; que deve evitar água no ouvido.
+- **Seguimento:** Acompanhamento com otorrino; retorno na UBS se febre, dor intensa ou piora da audição.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher o paciente.
+- **Comunicação do diagnóstico:** "O senhor tem um furinho no tímpano que ficou após as infecções de ouvido, e isso causa essa secreção e a dificuldade para ouvir. Tem tratamento e pode melhorar muito com cirurgia."
+- **Escuta ativa:** Responder à preocupação com cirurgia de forma tranquilizadora e informativa.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever aminoglicosídeos tópicos (gentamicina, neomicina) em MT perfurada — risco de ototoxicidade
+- ❌ Não encaminhar ao otorrinolaringologista para avaliação cirúrgica
+- ❌ Não realizar otoscopia
+- ❌ Não solicitar audiometria para quantificar perda auditiva
+- ❌ Não afastar colesteatoma (omitir pergunta sobre odor da secreção e não avaliar tipo de perfuração)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — SAÍDA DE LÍQUIDO PELO OUVIDO HÁ MESES SEM DOR"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome ao paciente | 0.5 | CFM 2.217/2018 |
+| Utilizou linguagem acessível ao explicar diagnóstico e conduta | 0.5 | PNHAH/MS, 2001 |
+| Respondeu à preocupação do paciente sobre cirurgia de forma clara e acolhedora | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou características da otorreia (tempo, cor, odor, volume) | 1.0 | SBO, 2022 |
+| Questionou presença de otalgia e febre | 0.5 | SBO, 2022 |
+| Investigou hipoacusia e tempo de evolução | 0.5 | SBO, 2022 |
+| Perguntou sobre episódios de otite na infância | 0.5 | SBO, 2022 |
+| Questionou presença de zumbido ou vertigem | 0.5 | SBO, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Realizou otoscopia e identificou perfuração central de MT | 1.0 | SBO, 2022 |
+| Avaliou tipo e localização da perfuração (central vs. marginal — afastar colesteatoma) | 0.5 | SBO, 2022 |
+| Realizou ou solicitou teste com diapasão (Rinne/Weber) | 0.5 | SBO, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de OMCS (otite média crônica supurativa) | 1.0 | SBO, 2022 |
+| Afastou colesteatoma (ausência de secreção fétida, perfuração central) | 0.5 | SBO, 2022 |
+| Solicitou audiometria tonal | 0.5 | SBO, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Encaminhou obrigatoriamente ao otorrinolaringologista | 1.0 | SBO, 2022 |
+| Contraindicou aminoglicosídeos tópicos em MT perfurada | 0.5 | SBO 2022 / RENAME 2022 |
+| Orientou proteção do ouvido à água e não uso de cotonete | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 04 concluído** (Otite Média Crônica). Gerando agora o **Caso 05 — Complicação de Otite Média (Mastoidite)**.
+
+---
+
+## CASO OSCE-05
+
+### BLOCO 1 — METADADOS
+
+- **id:** 5
+- **title:** "Criança com dor atrás do ouvido e ouvido empurrado para frente"
+- **sub:** "UPA — Urgência e Emergência Pediátrica"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Mastoidite Aguda — Complicação de Otite Média"
+- **level:** "moderado"
+- **cardAccent:** "#D32F2F"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UPA Pediátrica. Triagem e consultório de urgência, turno vespertino."
+- **patient:** "Mãe de G.P., 4 anos, masculino, sem comorbidades conhecidas."
+- **complaint:** "Criança com febre, dor atrás do ouvido esquerdo e ouvido 'saindo para fora' há 2 dias."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso (com a mãe)
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Proponha a conduta imediata
+  5. Oriente a mãe sobre a gravidade e os próximos passos
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 98/62 mmHg |
+| FC | 124 bpm |
+| FR | 28 irpm |
+| Tax | 39,2°C |
+| Peso | 16 kg |
+| Altura | 1,02 m |
+| IMC | 15,4 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral, irritado, febril, corado, hidratado, consciente. Sem sinais de rigidez de nuca ou alteração neurológica.
+
+#### Exame Segmentar (physicalSeg)
+
+- **REGIÃO RETROAURICULAR ESQUERDA:** Eritema, edema e dor intensa à palpação da região mastóidea. Pavilhão auricular esquerdo deslocado anteriormente e para baixo (protrusão auricular).
+- **OTOSCOPIA ESQUERDA:** Membrana timpânica hiperemiada e abaulada, CAE com discreta hiperemia, sulco retroauricular apagado.
+- **OTOSCOPIA DIREITA:** Normal.
+- **OROFARINGE:** Hiperemia leve.
+- **NEUROLÓGICO SUMÁRIO:** Sem rigidez de nuca, sem sinal de Kernig ou Brudzinski, pupilas isocóricas e fotorreagentes.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 22.400/mm³, neutrófilos 85%, bastões 8% | 6.000–17.000/mm³ | Sim |
+| PCR | 98 mg/L | < 5 mg/L | Sim |
+| Hemocultura | Coletada — resultado pendente | — | Sim |
+
+#### Exame de Imagem (image)
+
+**TC de ossos temporais (se solicitada):** Opacificação das células mastóideas esquerdas, com áreas de erosão óssea septal. Sem coleção subperiosteal definida. Sem extensão intracraniana.
+
+#### Nota ao Avaliador (note)
+
+O ator é a mãe. Entregar sinais vitais ao início. Entregar achados do exame físico quando o candidato realizar o exame. Entregar hemograma e PCR somente se solicitados. Entregar TC somente se solicitada explicitamente. Enfatizar ao candidato que este é um caso de urgência — a conduta imediata é o foco.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Mãe: Paula P., 31 anos, cabeleireira. Paciente: Gabriel P., 4 anos, masculino, sem comorbidades."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, meu filho tá com febre alta há 2 dias, tá com uma dor horrível atrás do ouvido e o ouvido dele parece que tá saindo pra frente." |
+| Sobre otite prévia | "Ele teve otite semana passada, o médico receitou antibiótico, mas ele só tomou 3 dias porque melhorou e eu parei." |
+| Sobre a evolução | "Ficou melhor uns dias, aí piorou muito ontem, a febre subiu de novo e surgiu esse inchaço atrás do ouvido." |
+| Sobre outros sintomas | "Tá com dor de cabeça, mas não tá com o pescoço duro não." |
+| Sobre alimentação | "Tá comendo mal, muito irritado, não quer brincar." |
+| Sobre medicamentos | "Parei o antibiótico depois de 3 dias. Dei só dipirona pra febre esses dias." |
+| Pergunta ativa 1 | "É grave, doutor? Vai precisar de cirurgia?" |
+| Pergunta ativa 2 | "Precisa internar? Por que parar o antibiótico foi errado?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Antibiótico da OMA foi suspenso precocemente (3 dias) por iniciativa própria da mãe — só revela se perguntado sobre uso e adesão ao antibiótico prescrito.
+- A criança já teve 3 episódios de OMA no último ano — só revela se perguntado sobre episódios anteriores de otite.
+
+#### Comportamento do Ator (actorBehavior)
+
+Mãe muito ansiosa e com culpa por ter suspendido o antibiótico. Chora ao perceber a gravidade. Colaborativa. Cabe ao candidato acolher sem culpabilizar, mas deixar claro a importância da adesão ao tratamento.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Mastoidite aguda — complicação de otite média aguda — ouvido esquerdo, com erosão óssea septal à TC, sem abscesso subperiosteal ou extensão intracraniana.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Abscesso subperiosteal — coleção flutuante palpável na região retroauricular; TC mostraria coleção definida; aqui TC sem coleção.
+2. Linfadenite retroauricular — sem protrusão auricular, sem erosão óssea; linfonodo palpável isolado.
+3. Celulite periauricular — sem deslocamento do pavilhão, sem achados otoscópicos de OMA.
+
+**Síntese do Caso (context):**
+Criança de 4 anos com mastoidite aguda complicando OMA prévia mal tratada (antibiótico suspenso precocemente). Apresenta febre alta, dor e edema retroauricular com protrusão do pavilhão, leucocitose com desvio à esquerda e erosão óssea à TC — indicando necessidade de internação urgente.
+
+**Justificativa Diagnóstica (justify):**
+Protrusão auricular + eritema e edema retroauricular doloroso + OMA prévia com tratamento incompleto + leucocitose com desvio à esquerda + TC com erosão óssea mastóidea = mastoidite aguda coalescente. A ausência de rigidez de nuca e alteração neurológica afasta complicações intracranianas imediatas, mas exige vigilância.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- OMA prévia: diagnóstico, tratamento prescrito, adesão (suspensão precoce do antibiótico)
+- Início e evolução do edema retroauricular e da febre
+- Presença de dor de cabeça, rigidez de nuca, alteração de consciência (sinais de complicação intracraniana)
+- Episódios anteriores de OMA
+- Vacinação (pneumocócica)
+- Uso de medicamentos
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: febre alta, taquicardia
+- Inspeção e palpação retroauricular: eritema, edema, dor — sinal de Vacher (sulco retroauricular apagado)
+- Protrusão auricular: pavilhão deslocado anteriormente
+- Otoscopia: MT abaulada/hiperemiada
+- Neurológico sumário: rigidez de nuca, Kernig, Brudzinski — afastar meningite
+- Estado geral e nível de consciência
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Hemograma + PCR | Confirmar processo infeccioso bacteriano | Leucocitose com desvio, PCR elevada |
+| TC de ossos temporais | Avaliar extensão da infecção, erosão óssea, abscesso | Erosão septal, sem abscesso definido |
+| Hemocultura | Identificar agente etiológico antes do ATB EV | Pendente |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Internação hospitalar imediata. Antibioticoterapia EV: ceftriaxona 100 mg/kg/dia EV (máx 4g/dia). Analgesia EV. (SBP 2022 / MS)
+- **Não farmacológica:** Monitorização clínica contínua; avaliação neurológica seriada.
+- **Encaminhamento:** Internação imediata + avaliação obrigatória pelo otorrinolaringologista (mastoidectomia indicada se ausência de melhora em 24–48h ou abscesso).
+- **Orientações ao paciente:** Explicar à mãe a gravidade da situação; acolher sem culpabilizar; reforçar importância de completar antibióticos no futuro.
+- **Seguimento:** Monitorização hospitalar; TC de controle conforme evolução; avaliação cirúrgica em 24–48h.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher a mãe com empatia.
+- **Comunicação do diagnóstico:** "A infecção do ouvido se espalhou para o osso atrás do ouvido, por isso ele precisará ficar internado para tomar antibiótico na veia. Isso aconteceu porque a infecção não foi completamente tratada."
+- **Escuta ativa:** Acolher a culpa da mãe sem reforçá-la; explicar que o importante agora é o tratamento.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não reconhecer mastoidite e dispensar a criança sem internação
+- ❌ Não solicitar TC de ossos temporais para avaliar extensão
+- ❌ Prescrever antibiótico oral em vez de EV em mastoidite confirmada
+- ❌ Não realizar exame neurológico para afastar complicações intracranianas
+- ❌ Não encaminhar ao otorrinolaringologista para avaliação cirúrgica
+- ❌ Culpabilizar a mãe de forma inadequada
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — CRIANÇA COM DOR ATRÁS DO OUVIDO E PAVILHÃO PROTRUSO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se e acolheu a mãe com empatia | 0.5 | CFM 2.217/2018 |
+| Comunicou a gravidade de forma clara sem culpabilizar a mãe | 0.5 | PNHAH/MS, 2001 |
+| Explicou a necessidade de internação em linguagem acessível | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou OMA prévia e suspensão precoce do antibiótico | 1.0 | SBP, 2022 |
+| Investigou evolução do edema retroauricular e febre | 0.5 | SBP, 2022 |
+| Questionou sinais de complicação intracraniana (cefaleia, rigidez de nuca, alteração consciência) | 1.0 | SBP, 2022 |
+| Perguntou sobre vacinação e episódios anteriores de OMA | 0.5 | PNI/MS, 2023 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou temperatura e sinais vitais (febre, taquicardia) | 0.5 | SBP, 2022 |
+| Identificou eritema, edema retroauricular e protrusão do pavilhão | 1.0 | SBP, 2022 |
+| Realizou exame neurológico sumário (rigidez de nuca, Kernig, Brudzinski) | 1.0 | SBP, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de mastoidite aguda | 1.0 | SBP, 2022 |
+| Solicitou TC de ossos temporais | 0.5 | SBP, 2022 |
+| Solicitou hemograma, PCR e hemocultura | 0.5 | SBP, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Indicou internação hospitalar imediata | 1.0 | SBP 2022 / MS |
+| Prescreveu antibiótico EV (ceftriaxona) na dose correta | 0.5 | SBP 2022 / RENAME 2022 |
+| Encaminhou ao otorrinolaringologista para avaliação cirúrgica | 0.5 | SBP, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 05 concluído** (Mastoidite). Gerando agora o **Caso 06 — Perda Auditiva / Surdez**.
+
+---
+
+## CASO OSCE-06
+
+### BLOCO 1 — METADADOS
+
+- **id:** 6
+- **title:** "Dificuldade para ouvir progressiva há meses em adulto jovem"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Perda Auditiva Neurossensorial — PAIR"
+- **level:** "moderado"
+- **cardAccent:** "#7B1FA2"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "F.N., 42 anos, masculino, operador de máquinas em indústria, sem comorbidades relatadas."
+- **complaint:** "Está ouvindo cada vez menos, especialmente em ambientes barulhentos, há cerca de 8 meses."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica principal e os diferenciais
+  4. Solicite os exames complementares adequados
+  5. Proponha a conduta e oriente o paciente sobre prevenção e seguimento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 128/82 mmHg |
+| FC | 74 bpm |
+| FR | 15 irpm |
+| Tax | 36,5°C |
+| Peso | 82 kg |
+| Altura | 1,75 m |
+| IMC | 26,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corado, hidratado, afebril, consciente e orientado.
+
+#### Exame Segmentar (physicalSeg)
+
+- **OTOSCOPIA BILATERAL:** Condutos auditivos externos livres. Membranas timpânicas íntegras, translúcidas, com reflexo luminoso presente bilateralmente. Sem perfuração ou retração.
+- **TESTE DE RINNE (diapasão 512 Hz):** Positivo bilateralmente (CA > CO) — sugere perda neurossensorial ou audição normal.
+- **TESTE DE WEBER:** Lateraliza para nenhum dos lados (centralizado) — sem assimetria significativa.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| TSH | 2,1 mUI/L | 0,4–4,0 mUI/L | Não |
+| Glicemia de jejum | 98 mg/dL | 70–99 mg/dL | Não |
+| Hemograma | Normal | — | Não |
+
+#### Exame de Imagem (image)
+
+**Audiometria tonal (se solicitada):** Perda auditiva neurossensorial bilateral simétrica, com entalhe (notch) em 4.000 Hz bilateralmente. Limiar médio em 500–2.000 Hz: 25 dB (normal). Limiar em 4.000 Hz: 55 dB (perda moderada). Padrão compatível com PAIR (Perda Auditiva Induzida por Ruído).
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar otoscopia e diapasão ao exame físico. Entregar audiometria somente se solicitada. Exames laboratoriais somente se solicitados.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Fernando N., 42 anos, masculino, operador de máquinas em metalúrgica, casado, 2 filhos."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, tô ficando surdo. Principalmente quando tô em lugar barulhento, não consigo entender o que falam." |
+| Sobre início | "Foi piorando aos poucos, uns 8 meses assim. Achei que era coisa da idade." |
+| Sobre o trabalho | "Trabalho numa metalúrgica há 18 anos, tem muito barulho de máquina o dia todo." |
+| Sobre proteção auricular | "A empresa dá o protetor, mas eu não gosto de usar, é desconfortável." |
+| Sobre zumbido | "Ah sim, tenho um zumbido constante nos dois ouvidos, já faz uns 2 anos, achei que era normal." |
+| Sobre sintomas associados | "Vertigem não tenho. Dor de ouvido também não." |
+| Sobre audição em repouso | "Em casa quando tô num lugar quieto entendo bem, o problema é quando tem barulho." |
+| Pergunta ativa 1 | "Isso tem cura, doutor? Vou ficar surdo de vez?" |
+| Pergunta ativa 2 | "Preciso usar aparelho? E o meu serviço, posso continuar?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Não usa o protetor auricular fornecido pela empresa regularmente — só revela se perguntado sobre uso do EPI.
+- Participou de shows e eventos com música alta nos fins de semana nos últimos anos — só revela se perguntado sobre outros ambientes com ruído.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tom preocupado com o futuro profissional. Levemente defensivo sobre o não uso do protetor auricular. Colaborativo quando abordado sem julgamento. Fica ansioso ao discutir possibilidade de não melhora.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Perda auditiva induzida por ruído (PAIR) — perda neurossensorial bilateral simétrica com entalhe em 4.000 Hz — grau moderado, associada à exposição ocupacional a ruído por 18 anos sem uso de EPI.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Presbiacusia — perda neurossensorial bilateral simétrica de início em altas frequências, mas em geral ≥ 60 anos e de progressão lenta; aqui paciente tem 42 anos com exposição ocupacional clara.
+2. Hipoacusia por ototoxicidade medicamentosa — aminoglicosídeos, cisplatina, furosemida; anamnese sem uso desses fármacos.
+3. Neurinoma do acústico — perda assimétrica unilateral, com zumbido unilateral; aqui perda é simétrica.
+
+**Síntese do Caso (context):**
+Adulto de meia-idade com exposição ocupacional a ruído intenso por 18 anos sem proteção adequada, apresentando PAIR com padrão audiométrico clássico (entalhe em 4.000 Hz) e zumbido bilateral crônico. Quadro de doença ocupacional com implicações previdenciárias e trabalhistas.
+
+**Justificativa Diagnóstica (justify):**
+Exposição prolongada a ruído ocupacional + MT íntegra + Rinne positivo bilateral + audiometria com entalhe em 4.000 Hz = PAIR. O entalhe audiométrico em 4.000 Hz é o padrão patognomônico de PAIR. A simetria bilateral afasta patologia retrococlear unilateral.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Tempo de evolução da hipoacusia e progressão
+- Exposição ocupacional a ruído (tempo, nível, tipo de máquina)
+- Uso de EPI (protetor auricular)
+- Zumbido: tempo, característica, bilateralidade
+- Vertigem (afastar doença de Ménière)
+- Uso de medicamentos ototóxicos
+- Histórico familiar de surdez
+- Outros ambientes com ruído (shows, eventos)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Otoscopia bilateral: MT íntegra (afastar causa condutiva)
+- Teste de Rinne: positivo bilateral (CA > CO) — neurossensorial
+- Teste de Weber: centralizado (perda simétrica)
+- Avaliação geral: sem sinais de síndrome vestibular
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Audiometria tonal + vocal | Confirmar tipo e grau da perda auditiva — obrigatório | Entalhe em 4.000 Hz bilateral |
+| Imitanciometria | Afastar componente condutivo (tímpano e cadeia ossicular) | Normal |
+| TSH | Afastar hipotireoidismo como causa de hipoacusia | Normal |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Sem tratamento farmacológico eficaz para PAIR estabelecida. Tratamento de zumbido: encaminhamento para terapia sonora/TCC se incapacitante.
+- **Não farmacológica:** Uso obrigatório e correto de EPI (protetor auricular) no trabalho; afastamento de exposição a ruído intenso.
+- **Encaminhamento:** Otorrinolaringologista para avaliação e protetização (AASI — aparelho de amplificação sonora individual) se necessário. Notificação como doença ocupacional (CAT — Comunicação de Acidente de Trabalho). Encaminhamento ao serviço de saúde do trabalhador.
+- **Orientações ao paciente:** Explicar que a perda já instalada não tem reversão; uso consistente do EPI evita piora; direito ao AASI pelo SUS (portaria MS).
+- **Seguimento:** Audiometria de controle anual; acompanhamento com otorrino.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, perguntar sobre o contexto de trabalho do paciente.
+- **Comunicação do diagnóstico:** "O senhor tem uma perda auditiva causada pelo barulho do trabalho. Infelizmente essa perda não volta, mas podemos evitar que piore usando o protetor corretamente."
+- **Escuta ativa:** Acolher a preocupação com o emprego; informar sobre direitos trabalhistas sem julgamento.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não solicitar audiometria tonal para confirmar diagnóstico e tipo de perda
+- ❌ Não identificar o contexto ocupacional como fator causal
+- ❌ Informar ao paciente que a perda auditiva é reversível
+- ❌ Não orientar sobre uso obrigatório de EPI e notificação como doença ocupacional
+- ❌ Não encaminhar ao otorrinolaringologista e/ou serviço de saúde do trabalhador
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — DIFICULDADE PARA OUVIR PROGRESSIVA EM ADULTO JOVEM"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome ao paciente | 0.5 | CFM 2.217/2018 |
+| Abordou o não uso de EPI sem julgamento | 0.5 | PNHAH/MS, 2001 |
+| Comunicou o prognóstico (perda irreversível) com clareza e empatia | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou exposição ocupacional a ruído (tempo, tipo, EPI) | 1.0 | NR-7/MT, 2020 |
+| Questionou zumbido (tempo, bilateral, características) | 0.5 | SBO, 2022 |
+| Perguntou sobre vertigem, otalgia e otorreia | 0.5 | SBO, 2022 |
+| Investigou uso de medicamentos ototóxicos e histórico familiar | 0.5 | SBO, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Realizou otoscopia bilateral (MT íntegra) | 0.5 | SBO, 2022 |
+| Realizou teste de Rinne e Weber com diapasão | 1.0 | SBO, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de PAIR | 1.0 | SBO 2022 / NR-7 |
+| Solicitou audiometria tonal e imitanciometria | 1.0 | SBO 2022 / NR-7 |
+| Citou ao menos um diagnóstico diferencial relevante | 0.5 | SBO, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Encaminhou ao otorrinolaringologista e serviço de saúde do trabalhador | 0.5 | SBO 2022 / NR-7 |
+| Orientou uso obrigatório de EPI e notificação como doença ocupacional (CAT) | 1.0 | NR-7/MT 2020 / Lei 8.213/91 |
+| Informou ao paciente que a perda instalada não é reversível | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 06 concluído** (Perda Auditiva — PAIR). Gerando agora os **Casos 07 e 08 — Síndromes Vertiginosas**.
+
+---
+
+## CASO OSCE-07
+
+### BLOCO 1 — METADADOS
+
+- **id:** 7
+- **title:** "Tontura com sensação de girar ao virar na cama"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "VPPB — Vertigem Posicional Paroxística Benigna"
+- **level:** "moderado"
+- **cardAccent:** "#00897B"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "I.C., 52 anos, feminina, professora, sem comorbidades relatadas."
+- **complaint:** "Tontura com sensação de que tudo gira ao virar na cama ou levantar rápido, há 1 semana."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente, incluindo as manobras específicas
+  3. Formule a hipótese diagnóstica e os diferenciais
+  4. Proponha a conduta terapêutica adequada
+  5. Oriente a paciente sobre o tratamento e prognóstico
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 126/80 mmHg |
+| FC | 76 bpm |
+| FR | 16 irpm |
+| Tax | 36,6°C |
+| Peso | 66 kg |
+| Altura | 1,63 m |
+| IMC | 24,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corada, hidratada, afebril, consciente e orientada. Sem sinais de sofrimento agudo.
+
+#### Exame Segmentar (physicalSeg)
+
+- **NEUROLÓGICO:** Sem déficit motor ou sensitivo focal. Marcha sem ataxia no momento da consulta. Sem nistagmo espontâneo em repouso.
+- **MANOBRA DE DIX-HALLPIKE (ouvido direito):** Após latência de 3–5 segundos, nistagmo geotrópico rotatório com componente vertical para cima, com duração de 15 segundos e fatigabilidade na repetição. Paciente relata forte sensação de vertigem durante a manobra.
+- **MANOBRA DE DIX-HALLPIKE (ouvido esquerdo):** Negativa.
+- **OTOSCOPIA BILATERAL:** Normal.
+- **PRESSÃO ARTERIAL ORTOSTÁTICA:** Sem queda significativa (descarta hipotensão ortostática).
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Normal | — | Não |
+| Glicemia de jejum | 94 mg/dL | 70–99 mg/dL | Não |
+| TSH | 1,8 mUI/L | 0,4–4,0 mUI/L | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Ao exame físico, fornecer resultado da manobra de Dix-Hallpike como impresso somente quando o candidato solicitar/realizar a manobra. Exames laboratoriais somente se solicitados. Não há indicação de neuroimagem nesse caso — se solicitada, informar que não há disponibilidade imediata e questionar o candidato sobre a indicação.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Ivete C., 52 anos, feminina, professora de ensino fundamental, casada."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, toda vez que viro na cama ou levanto rápido, sinto que tudo gira. É assustador, parece que vou cair." |
+| Sobre duração dos episódios | "Passa rápido, uns 20, 30 segundos, mas quando acontece é muito intenso." |
+| Sobre os gatilhos | "Sempre que mudo de posição, principalmente quando deito para o lado direito." |
+| Sobre sintomas associados | "Não tenho zumbido nem perco a audição. Fico com um enjoo depois que passa." |
+| Sobre queda | "Não caí ainda, mas tenho medo de cair." |
+| Sobre febre e dor de cabeça | "Não tenho febre. Dor de cabeça forte não tenho não." |
+| Sobre medicamentos | "Tomei um remédio de tontura que eu tinha em casa — dimenidrinato — ajudou um pouco no enjoo." |
+| Pergunta ativa 1 | "O que é isso, doutora? É do coração? É AVC?" |
+| Pergunta ativa 2 | "Tem como curar? Precisa de remédio para sempre?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Teve um trauma leve na cabeça há 2 semanas (bateu a cabeça em um armário) — só revela se perguntado sobre trauma recente ou evento precedente.
+- Não pratica atividade física há anos, vive em sedentarismo — irrelevante para o diagnóstico, mas pode ser abordado no contexto de saúde geral.
+
+#### Comportamento do Ator (actorBehavior)
+
+Ansiosa, com medo de AVC ou doença cardíaca. Alivia visivelmente quando recebe explicação clara. Cooperativa nas manobras, mas relata forte desconforto durante Dix-Hallpike. Cabe ao candidato tranquilizá-la antes e durante a manobra.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Vertigem posicional paroxística benigna (VPPB) de canal semicircular posterior direito — confirmada pela manobra de Dix-Hallpike positiva com nistagmo geotrópico rotatório com fatigabilidade.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Hipotensão ortostática — tontura ao levantar, mas sem nistagmo rotatório, sem latência, sem fatigabilidade; PA ortostática normal aqui.
+2. Neurite vestibular — vertigem contínua (não paroxística), sem relação com posição, com nistagmo espontâneo horizontal; aqui episódios breves e posicionais.
+3. Doença de Ménière — vertigem episódica + hipoacusia flutuante + zumbido + plenitude auricular; aqui sem alteração auditiva.
+4. AVC de fossa posterior — vertigem persistente, ataxia, déficit neurológico focal; aqui sem déficits e Dix-Hallpike positivo típico.
+
+**Síntese do Caso (context):**
+Mulher de 52 anos com VPPB de canal posterior direito, apresentando vertigem paroxística posicional de curta duração (< 1 min) desencadeada por mudança de posição, com Dix-Hallpike positivo com nistagmo geotrópico rotatório e fatigabilidade. Possível fator desencadeante: trauma cefálico leve há 2 semanas.
+
+**Justificativa Diagnóstica (justify):**
+Os critérios diagnósticos de VPPB estão presentes: vertigem rotatória paroxística, desencadeada por posição específica (decúbito lateral direito), curta duração (< 1 min), com Dix-Hallpike positivo mostrando nistagmo geotrópico rotatório com latência e fatigabilidade — padrão de otólitos no canal posterior.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização da tontura (rotatória vs. desequilíbrio vs. pré-síncope)
+- Relação com posição (qual posição desencadeia)
+- Duração dos episódios
+- Zumbido, hipoacusia, plenitude auricular (afastar Ménière)
+- Cefaleia, diplopia, disfagia, disartria (afastar AVC)
+- Trauma cefálico recente
+- Medicamentos (ototóxicos, anti-hipertensivos, benzodiazepínicos)
+- PA em ortostase
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: PA em decúbito e ortostase (afastar hipotensão ortostática)
+- Manobra de Dix-Hallpike bilateral — obrigatória: pesquisa de nistagmo, latência, direção, duração e fatigabilidade
+- Exame neurológico: marcha, coordenação, força, sensibilidade
+- Nistagmo espontâneo em repouso (afastar causa central)
+- Otoscopia bilateral
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Nenhum — diagnóstico clínico | VPPB é diagnóstico clínico pela manobra de Dix-Hallpike | — |
+| RM de encéfalo | Somente se: nistagmo atípico, sinais neurológicos focais, ausência de fatigabilidade | Normal neste caso |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Meclizina ou dimenidrinato VO para controle de náuseas/enjoo — uso pontual, não como tratamento principal. Evitar uso prolongado de supressores vestibulares (retardam compensação). (SBO 2022)
+- **Não farmacológica:** Manobra de Epley para reposicionamento de otólitos — canal posterior direito. Taxa de sucesso > 80% em única sessão. Orientar sobre restrições posturais após a manobra nas primeiras 24–48h. (SBO 2022)
+- **Encaminhamento:** Fisioterapia vestibular se recorrência ou resposta incompleta. Otorrinolaringologista se refratário.
+- **Orientações ao paciente:** Explicar a causa (pedrinhas no ouvido interno), o caráter benigno, a alta taxa de cura com a manobra; orientar sobre precauções posturais pós-manobra.
+- **Seguimento:** Retorno em 1 semana se não melhora; prognóstico excelente com manobra de Epley.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher a ansiedade da paciente.
+- **Comunicação do diagnóstico:** "A senhora tem uma condição chamada VPPB, que em linguagem popular chamamos de 'cristais no ouvido'. Não é AVC nem doença do coração. A boa notícia é que tem cura com uma manobra simples."
+- **Escuta ativa:** Validar o medo de AVC; explicar com linguagem acessível.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não realizar a manobra de Dix-Hallpike
+- ❌ Prescrever supressor vestibular prolongado como tratamento principal
+- ❌ Não realizar a manobra de Epley ou não mencionar o reposicionamento como conduta
+- ❌ Solicitar TC/RM sem indicação (Dix-Hallpike típico com fatigabilidade não requer neuroimagem)
+- ❌ Não afastar causas centrais de vertigem (sem exame neurológico)
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — TONTURA COM SENSAÇÃO DE GIRAR AO VIRAR NA CAMA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se e acolheu a ansiedade da paciente (medo de AVC) | 0.5 | CFM 2.217/2018 |
+| Explicou o diagnóstico em linguagem acessível ("cristais no ouvido") | 0.5 | PNHAH/MS, 2001 |
+| Tranquilizou a paciente sobre o caráter benigno e curável da condição | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Caracterizou a tontura (rotatória, posicional, paroxística de curta duração) | 1.0 | SBO, 2022 |
+| Questionou zumbido, hipoacusia e plenitude auricular (afastar Ménière) | 0.5 | SBO, 2022 |
+| Investigou sinais de alarme central (cefaleia, diplopia, déficit focal) | 0.5 | SBO, 2022 |
+| Perguntou sobre trauma cefálico recente e medicamentos | 0.5 | SBO, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Aferiu PA em ortostase (afastar hipotensão ortostática) | 0.5 | SBO, 2022 |
+| Realizou manobra de Dix-Hallpike bilateral e descreveu o nistagmo corretamente | 1.5 | SBO, 2022 |
+| Realizou exame neurológico sumário (marcha, coordenação, nistagmo espontâneo) | 0.5 | SBO, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de VPPB de canal posterior direito | 1.0 | SBO, 2022 |
+| Reconheceu que não há indicação de neuroimagem com Dix-Hallpike típico | 0.5 | SBO, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Indicou e/ou realizou manobra de Epley como tratamento principal | 1.5 | SBO, 2022 |
+| Orientou restrições posturais após a manobra (24–48h) | 0.5 | SBO, 2022 |
+| Contraindicou uso prolongado de supressor vestibular | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 07 concluído** (VPPB). Gerando agora o **Caso 08 — Neurite Vestibular**.
+
+---
+
+## CASO OSCE-08
+
+### BLOCO 1 — METADADOS
+
+- **id:** 8
+- **title:** "Tontura intensa que não para, com enjoo e vômito desde ontem"
+- **sub:** "UPA — Urgência e Emergência"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Neurite Vestibular"
+- **level:** "moderado"
+- **cardAccent:** "#00897B"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "UPA — Urgência e Emergência. Sala de observação, turno noturno."
+- **patient:** "A.R., 46 anos, masculino, contador, sem comorbidades relatadas."
+- **complaint:** "Tontura intensa e contínua com vômitos desde ontem, piora ao movimentar a cabeça."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica e afaste causas centrais
+  4. Proponha a conduta terapêutica imediata
+  5. Oriente o paciente sobre o diagnóstico e seguimento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 136/88 mmHg |
+| FC | 96 bpm |
+| FR | 18 irpm |
+| Tax | 37,1°C |
+| Peso | 80 kg |
+| Altura | 1,76 m |
+| IMC | 25,8 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral, pálido, sudoreico, hidratado, afebril, consciente e orientado. Extremamente incomodado com a movimentação.
+
+#### Exame Segmentar (physicalSeg)
+
+- **NEUROLÓGICO:** Nistagmo espontâneo horizontal com componente rotatório, batendo para a esquerda (lado são), presente em posição neutra. Sem déficit motor ou sensitivo focal. Dismetria de membros: ausente. Marcha: impossível de avaliar — paciente não consegue ficar em pé.
+- **TESTE DE IMPULSO CEFÁLICO (Head Impulse Test — HIT):** Positivo — reflexo vestíbulo-ocular (RVO) anormal à direita (sacada corretiva visível ao impulso para a direita). Indica lesão periférica (vestibular direita).
+- **TESTE SKEW:** Negativo (sem desvio vertical dos olhos).
+- **MANOBRA DE DIX-HALLPIKE:** Não realizada pelo desconforto intenso do paciente.
+- **OTOSCOPIA BILATERAL:** Normal.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 9.800/mm³, sem desvio | 4.000–11.000/mm³ | Não |
+| Glicemia | 104 mg/dL | 70–99 mg/dL | Não |
+| Eletrólitos (Na/K) | Normais | — | Não |
+
+#### Exame de Imagem (image)
+
+**RM de encéfalo (se solicitada):** Sem lesões isquêmicas agudas, sem hipersinal em tronco encefálico ou cerebelo. Estruturas de fossa posterior preservadas. Labirinto sem alterações.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar achados do exame físico conforme o candidato solicita cada manobra. Reforçar que o paciente está visivelmente incapacitado pela tontura. Entregar RM somente se solicitada. Exames laboratoriais somente se solicitados.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Anderson R., 46 anos, masculino, contador, casado."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, tô com uma tontura horrível desde ontem, parece que tudo gira o tempo todo, não consigo nem ficar em pé." |
+| Sobre início | "Comecei a sentir quando acordei ontem de manhã, de repente, sem avisar." |
+| Sobre piora com movimento | "Qualquer mexida na cabeça piora muito. Fiquei deitado o dia todo." |
+| Sobre vômito | "Vomitei umas 4 vezes, não consigo comer nada." |
+| Sobre audição e zumbido | "Não tô com problema pra ouvir não. Zumbido também não." |
+| Sobre cefaleia | "Dor de cabeça muito forte não tenho, só uma leve dor." |
+| Sobre infecção prévia | "Tive uma gripe há uns 10 dias, tosse e coriza, já tava melhorando." |
+| Sobre febre atual | "Febre não tenho agora." |
+| Pergunta ativa 1 | "Isso é AVC, doutor? Estou com muito medo." |
+| Pergunta ativa 2 | "Quando vai passar? Vou conseguir trabalhar amanhã?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Infecção viral de vias aéreas superiores há 10 dias — só revela completamente se perguntado sobre doenças recentes ou infecção prévia.
+- Histórico de enxaqueca ocasional — só revela se perguntado sobre cefaleia prévia ou doenças neurológicas.
+
+#### Comportamento do Ator (actorBehavior)
+
+Muito ansioso, com medo de AVC. Pálido, com desconforto evidente. Coopera com o exame, mas pede para não movimentar muito a cabeça. Alivia quando o candidato demonstra segurança e afasta causa grave.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Neurite vestibular aguda — vertigem contínua de origem periférica, provavelmente pós-viral, com HIT positivo à direita e nistagmo horizontal para a esquerda, sem alteração auditiva e sem sinais neurológicos focais.
+
+**Diagnósticos Diferenciais (differentials):**
+1. AVC de cerebelo/tronco (síndrome de Wallenberg) — vertigem contínua, mas com HIT negativo, nistagmo atípico (vertical ou de direção variável), ataxia, disfagia, déficit sensitivo; RM afasta.
+2. Labirintite infecciosa — vertigem + hipoacusia neurossensorial ipsilateral; aqui sem alteração auditiva.
+3. Doença de Ménière — vertigem episódica (não contínua), com hipoacusia flutuante, zumbido e plenitude auricular.
+
+**Síntese do Caso (context):**
+Adulto de meia-idade com neurite vestibular aguda provavelmente pós-viral (IVAS 10 dias antes), apresentando vertigem contínua incapacitante com nistagmo periférico, HIT positivo e ausência de déficits neurológicos ou alteração auditiva.
+
+**Justificativa Diagnóstica (justify):**
+Tríade de neurite vestibular: vertigem contínua de início súbito + nistagmo horizontal para lado são + HIT positivo (RVO alterado para lado afetado). Ausência de déficit auditivo afasta labirintite. Ausência de sinais centrais (HIT positivo, SKEW negativo, nistagmo unidirecional) afasta AVC — regra HINTS (HIT, Nystagmus direction, Test of Skew). RM normal confirma.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização da tontura (contínua vs. paroxística)
+- Início (súbito ao acordar)
+- Náuseas, vômitos
+- Zumbido e hipoacusia (afastar labirintite e Ménière)
+- Cefaleia intensa (afastar AVC/hemorragia)
+- Diplopia, disfagia, disartria (afastar síndrome de Wallenberg)
+- Infecção viral recente (fator causal provável)
+- Medicamentos (aminoglicosídeos, anticonvulsivantes)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais
+- Avaliação do nistagmo espontâneo: direção, tipo (horizontal = periférico; vertical/multidirecional = central)
+- HIT (Head Impulse Test) — obrigatório: positivo = periférico; negativo = central
+- Teste SKEW — desvio vertical: positivo = central
+- Marcha e coordenação (ataxia de tronco = sinal central)
+- Otoscopia bilateral
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| RM de encéfalo com FLAIR/DWI | Afastar AVC de fossa posterior — indicado se HIT negativo ou sinais centrais | Normal neste caso |
+| Audiometria | Afastar labirintite (hipoacusia associada) | Normal |
+| Hemograma, glicemia, eletrólitos | Afastar causas metabólicas | Normais |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Dimenidrinato EV (ou VO) para náuseas/vômitos — uso curto (máximo 3 dias). Corticoterapia: prednisona 1 mg/kg/dia por 5 dias, redução progressiva — indicada nas primeiras 72h para acelerar recuperação. (SBO 2022 / UpToDate ⚠️ para corticoide)
+- **Não farmacológica:** Repouso relativo; reabilitação vestibular precoce (fisioterapia) após fase aguda — acelera compensação central.
+- **Encaminhamento:** Neurologia/otorrinolaringologia se sem melhora em 72h. Urgência neurológica se surgir qualquer sinal central.
+- **Orientações ao paciente:** Explicar que não é AVC; é uma inflamação do nervo do equilíbrio, provavelmente após a gripe; tende a melhorar em dias a semanas.
+- **Seguimento:** Reavaliação em 48–72h; fisioterapia vestibular após fase aguda.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher o medo do paciente.
+- **Comunicação do diagnóstico:** "O senhor não está tendo um AVC. Tem uma inflamação no nervo do equilíbrio, provavelmente por causa da gripe que teve. É tratável e melhora com o tempo."
+- **Escuta ativa:** Responder diretamente ao medo de AVC com clareza e segurança.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não realizar o HIT (Head Impulse Test) — exame essencial para diferenciar periférico de central
+- ❌ Não afastar AVC (não buscar sinais neurológicos centrais)
+- ❌ Prescrever supressor vestibular por mais de 3 dias (retarda a compensação central)
+- ❌ Diagnosticar AVC sem base clínica e encaminhar desnecessariamente para neurologia de emergência
+- ❌ Não mencionar reabilitação vestibular como parte do tratamento
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — TONTURA INTENSA E CONTÍNUA COM VÔMITO DESDE ONTEM"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se e acolheu o medo do paciente (medo de AVC) | 0.5 | CFM 2.217/2018 |
+| Comunicou o diagnóstico afastando AVC com clareza e segurança | 0.5 | PNHAH/MS, 2001 |
+| Utilizou linguagem acessível ao explicar neurite vestibular | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Caracterizou a tontura (contínua, início súbito ao acordar) | 0.5 | SBO, 2022 |
+| Questionou zumbido e hipoacusia (afastar labirintite/Ménière) | 0.5 | SBO, 2022 |
+| Investigou sinais de alarme central (cefaleia intensa, diplopia, disfagia, déficit focal) | 1.0 | SBO, 2022 |
+| Perguntou sobre infecção viral recente | 0.5 | SBO, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou nistagmo espontâneo e descreveu direção corretamente (horizontal, unidirecional) | 1.0 | SBO, 2022 |
+| Realizou HIT (Head Impulse Test) e interpretou corretamente (positivo = periférico) | 1.5 | SBO 2022 / HINTS |
+| Realizou teste SKEW (desvio vertical) e exame neurológico focal | 0.5 | SBO 2022 / HINTS |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de neurite vestibular e afastou AVC usando critérios HINTS | 1.0 | SBO 2022 / HINTS |
+| Indicou RM de encéfalo com justificativa correta (se HIT negativo ou sinal central) | 0.5 | SBO, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu antiemético/supressor vestibular por prazo curto (máx 3 dias) | 0.5 | SBO, 2022 |
+| Mencionou corticoterapia nas primeiras 72h como opção terapêutica | 0.5 | SBO 2022 ⚠️ UpToDate |
+| Indicou reabilitação vestibular após fase aguda | 0.5 | SBO, 2022 |
+| Orientou retorno imediato se surgir sinal neurológico (alarme) | 0.5 | SBO, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 08 concluído** (Neurite Vestibular). Gerando agora os **Casos 09 e 10 — Rinite**.
+
+---
+
+## CASO OSCE-09
+
+### BLOCO 1 — METADADOS
+
+- **id:** 9
+- **title:** "Espirros e coriza que pioram em casa e no trabalho há meses"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Rinite Alérgica"
+- **level:** "moderado"
+- **cardAccent:** "#1976D2"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "B.S., 28 anos, feminina, bibliotecária, sem comorbidades relatadas."
+- **complaint:** "Espirros em salva, coriza clara e coceira no nariz que pioram há cerca de 6 meses, especialmente ao acordar."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica e os diferenciais
+  4. Solicite os exames complementares adequados
+  5. Proponha a conduta terapêutica e oriente a paciente
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 110/70 mmHg |
+| FC | 72 bpm |
+| FR | 15 irpm |
+| Tax | 36,4°C |
+| Peso | 58 kg |
+| Altura | 1,65 m |
+| IMC | 21,3 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corada, hidratada, afebril, consciente e orientada. Olheiras (sinal de Denie-Morgan). Prega nasal transversa ("saudação alérgica"). Discreta hiperemia conjuntival bilateral.
+
+#### Exame Segmentar (physicalSeg)
+
+- **RINOSCOPIA ANTERIOR:** Mucosa nasal pálida e edemaciada bilateralmente. Cornetos inferiores hipertrofiados. Presença de secreção serosa abundante. Sem pólipos visíveis.
+- **OROFARINGE:** Secreção mucosa posterior (gotejamento pós-nasal). Sem exsudato amigdaliano.
+- **OTOSCOPIA BILATERAL:** Normal.
+- **AUSCULTA PULMONAR:** Murmúrio vesicular presente bilateralmente, sem sibilos.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Eosinófilos 650/mm³ (8%) | < 500/mm³ (< 5%) | Sim |
+| IgE total | 320 UI/mL | < 100 UI/mL | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e IgE somente se solicitados. Se o candidato solicitar teste cutâneo (prick test) ou IgE específica, informar que não estão disponíveis na UBS e devem ser solicitados via encaminhamento.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Beatriz S., 28 anos, feminina, bibliotecária, solteira."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, tô com muito espirro, o nariz escorrendão e coçando muito, especialmente de manhã quando acordo." |
+| Sobre início | "Comecei a notar isso há uns 6 meses, foi piorando aos poucos." |
+| Sobre gatilhos | "Piora muito quando eu faço limpeza em casa ou quando entro nos arquivos do trabalho, onde tem muito livro velho." |
+| Sobre coceira | "Coça o nariz, os olhos, até o céu da boca às vezes." |
+| Sobre coriza | "A coriza é clarinha, tipo água." |
+| Sobre estações | "Parece que no outono e inverno é pior." |
+| Sobre sono | "Fico com o nariz entupido à noite, acordo várias vezes." |
+| Sobre medicamentos | "Tomei loratadina algumas vezes, ajudou bastante, mas parei quando melhorou." |
+| Pergunta ativa 1 | "É alergia mesmo, doutora? O que me deixa assim?" |
+| Pergunta ativa 2 | "Tem como curar? Preciso tomar remédio pra sempre?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Tem gato em casa há 1 ano (coincide com o início dos sintomas) — só revela se perguntado sobre animais domésticos.
+- Histórico familiar: mãe com asma e pai com rinite — só revela se perguntado sobre histórico familiar de atopia.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tranquila, levemente incomodada com os sintomas crônicos. Colaborativa. Fica surpresa ao relacionar o gato com os sintomas. Curiosa sobre imunoterapia.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Rinite alérgica persistente moderada-grave, provavelmente sensibilizada a ácaros da poeira doméstica e pelo de gato, com rinoconjuntivite associada.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Rinite vasomotora — desencadeada por estímulos não alérgicos (temperatura, odores fortes, fumaça); sem eosinofilia, IgE normal, teste cutâneo negativo.
+2. Rinossinusite crônica — congestão nasal predominante, cefaleia, pressão facial, secreção purulenta; aqui secreção é serosa.
+3. Rinite medicamentosa — uso prolongado de descongestionante tópico (oximetazolina); aqui sem esse uso.
+
+**Síntese do Caso (context):**
+Adulta jovem com história familiar de atopia, trabalhando em ambiente com exposição a alérgenos (poeira de livros, ácaros) e com gato doméstico, apresentando rinite alérgica persistente com rinoconjuntivite. Eosinofilia e IgE total elevada corroboram mecanismo alérgico.
+
+**Justificativa Diagnóstica (justify):**
+Tétrade clássica de rinite alérgica: espirros em salva + coriza aquosa + prurido nasal/ocular + congestão nasal. Piora em ambientes com poeira e com gato, associada a histórico familiar de atopia, eosinofilia e IgE total elevada. Mucosa pálida e cornetos hipertrofiados à rinoscopia confirmam quadro alérgico.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização dos sintomas: espirros, coriza, prurido, obstrução
+- Padrão temporal: perene vs. sazonal
+- Gatilhos ambientais (poeira, animais, mofo, pólen, produtos químicos)
+- Sintomas oculares (rinoconjuntivite)
+- Comprometimento do sono
+- Histórico familiar de atopia (asma, rinite, eczema)
+- Histórico pessoal de asma ou eczema (comorbidades atópicas)
+- Uso de medicamentos (antihistamínico, corticoide nasal, descongestionante)
+- Animais domésticos
+
+**Exame Físico Esperado (expectedPhysical):**
+- Prega nasal transversa e olheiras ("saudação alérgica" e sinal de Denie-Morgan)
+- Rinoscopia: mucosa pálida, edemaciada, cornetos hipertrofiados, secreção serosa
+- Olhos: conjuntivite (hiperemia, lacrimejamento)
+- Ausculta pulmonar: afastar asma associada (sibilos)
+- Pesquisa de pólipos nasais
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Hemograma com diferencial | Pesquisa de eosinofilia | Eosinofilia |
+| IgE total sérica | Triagem de atopia | Elevada |
+| Teste cutâneo (prick test) ou IgE específica (RAST) | Identificar o alérgeno causador — encaminhar para alergologista | Positivo para ácaro/pelo de gato |
+| Espirometria | Rastrear asma associada (em 30–40% dos casos de rinite alérgica) | Normal ou leve obstrução reversível |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** 1ª linha: corticoide intranasal (mometasona ou budesonida spray) — 1 a 2 jatos em cada narina, 1x/dia, uso contínuo. Antihistamínico oral não sedativo (loratadina 10 mg/dia ou cetirizina 10 mg/dia) para alívio de sintomas agudos. (SBAI 2021 / RENAME 2022)
+- **Não farmacológica:** Controle ambiental: capa antiácaro no colchão e travesseiro; reduzir exposição ao gato (realocar o animal idealmente); lavagem nasal com soro fisiológico.
+- **Encaminhamento:** Alergologista para teste cutâneo e imunoterapia (vacina) se sintomas persistentes. Otorrinolaringologista se pólipo nasal ou complicações.
+- **Orientações ao paciente:** Explicar que a rinite alérgica não tem cura definitiva (exceto imunoterapia), mas tem controle excelente; importância do uso contínuo do corticoide nasal; orientar sobre o papel do gato nos sintomas.
+- **Seguimento:** Retorno em 4–6 semanas para reavaliação; rastreio de asma.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, perguntar sobre o contexto de vida da paciente.
+- **Comunicação do diagnóstico:** "A senhora tem rinite alérgica. Seu sistema imune reage exageradamente a partículas como poeira e pelo de gato. Isso causa todos esses sintomas. Tem tratamento e controle excelente."
+- **Escuta ativa:** Acolher a surpresa com o papel do gato; não impor decisão sobre o animal, mas informar claramente.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever corticoide sistêmico oral como 1ª linha para rinite alérgica
+- ❌ Não investigar ou mencionar controle ambiental (alérgenos)
+- ❌ Não realizar ou solicitar ausculta pulmonar para afastar asma associada
+- ❌ Usar antihistamínico sedativo (prometazina) de 1ª linha desnecessariamente
+- ❌ Não encaminhar ao alergologista para imunoterapia
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — ESPIRROS E CORIZA QUE PIORAM EM CASA E NO TRABALHO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome e cumprimentou a paciente | 0.5 | CFM 2.217/2018 |
+| Explicou o papel dos alérgenos (gato, poeira) sem julgamento | 0.5 | PNHAH/MS, 2001 |
+| Utilizou linguagem acessível ao explicar rinite alérgica e seu controle | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Caracterizou os sintomas (espirros, coriza aquosa, prurido, obstrução) | 0.5 | SBAI, 2021 |
+| Identificou gatilhos ambientais (poeira, livros velhos, gato) | 1.0 | SBAI, 2021 |
+| Questionou histórico familiar de atopia (asma, rinite, eczema) | 0.5 | SBAI, 2021 |
+| Investigou sintomas de asma associada (falta de ar, sibilância, tosse) | 0.5 | SBAI, 2021 |
+| Perguntou sobre comprometimento do sono e da qualidade de vida | 0.5 | SBAI, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou sinais alérgicos externos (prega nasal, olheiras) | 0.5 | SBAI, 2021 |
+| Realizou rinoscopia e descreveu mucosa pálida e cornetos hipertrofiados | 1.0 | SBAI, 2021 |
+| Realizou ausculta pulmonar para afastar asma | 0.5 | SBAI / GINA, 2023 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de rinite alérgica persistente | 1.0 | SBAI, 2021 |
+| Solicitou IgE total e hemograma com diferencial | 0.5 | SBAI, 2021 |
+| Indicou encaminhamento ao alergologista para prick test e imunoterapia | 0.5 | SBAI, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu corticoide intranasal (mometasona ou budesonida) como 1ª linha | 1.0 | SBAI 2021 / RENAME 2022 |
+| Prescreveu antihistamínico oral não sedativo (loratadina ou cetirizina) | 0.5 | RENAME, 2022 |
+| Orientou controle ambiental (capa antiácaro, redução da exposição ao gato) | 0.5 | SBAI, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 09 concluído** (Rinite Alérgica). Gerando agora o **Caso 10 — Rinite Não Alérgica / Vasomotora**.
+
+---
+
+## CASO OSCE-10
+
+### BLOCO 1 — METADADOS
+
+- **id:** 10
+- **title:** "Nariz entupido o tempo todo, piora com cheiros fortes e mudança de temperatura"
+- **sub:** "Ambulatório — Clínica Médica"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Rinite Vasomotora (Não Alérgica)"
+- **level:** "moderado"
+- **cardAccent:** "#1976D2"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Ambulatório de Clínica Médica. Consultório, turno vespertino."
+- **patient:** "T.M., 45 anos, feminina, cozinheira, hipertensa em uso de enalapril."
+- **complaint:** "Nariz entupido quase todos os dias, piora com vapores de cozinha, cheiros fortes e ar-condicionado, há cerca de 1 ano."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica e os diferenciais
+  4. Solicite os exames complementares se necessário
+  5. Proponha a conduta terapêutica e oriente a paciente
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 138/86 mmHg |
+| FC | 78 bpm |
+| FR | 16 irpm |
+| Tax | 36,7°C |
+| Peso | 70 kg |
+| Altura | 1,62 m |
+| IMC | 26,7 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corada, hidratada, afebril, consciente e orientada. Sem olheiras ou prega nasal.
+
+#### Exame Segmentar (physicalSeg)
+
+- **RINOSCOPIA ANTERIOR:** Mucosa nasal hiperemiada e edemaciada bilateralmente (eritematosa — diferente da palidez da rinite alérgica). Cornetos inferiores hipertrofiados. Secreção mucosa aquosa. Sem pólipos visíveis. Desvio de septo leve para direita.
+- **OROFARINGE:** Gotejamento pós-nasal. Sem exsudato.
+- **OTOSCOPIA BILATERAL:** Normal.
+- **AUSCULTA PULMONAR:** Normal.
+- **OLHOS:** Sem hiperemia conjuntival (ausência de rinoconjuntivite — diferencial importante da rinite alérgica).
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Eosinófilos 220/mm³ (3%) | < 500/mm³ | Não |
+| IgE total | 42 UI/mL | < 100 UI/mL | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e IgE somente se solicitados. A ausência de eosinofilia e IgE normal são dados importantes que diferenciam da rinite alérgica — o candidato deve interpretar.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Tereza M., 45 anos, feminina, cozinheira, casada, 3 filhos."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutora, meu nariz vive entupido, faz mais de um ano. É horrível, parece que nunca respiro direito." |
+| Sobre gatilhos | "Piora quando entro na cozinha com vapor, quando alguém usa perfume forte perto de mim, ou quando liga o ar-condicionado." |
+| Sobre espirros | "Espirro às vezes, mas não é aquele espirro em série igual de quem tem alergia." |
+| Sobre coriza | "Sai água do nariz às vezes, mas mais é aquela sensação de entupimento mesmo." |
+| Sobre coceira | "Coceira no nariz não tenho quase. Nos olhos também não." |
+| Sobre estações | "Não muda muito conforme a época do ano, é o ano todo." |
+| Sobre medicamentos | "Já usei aquela gotinha de nariz que descongesta, aliviei por umas horas, mas voltava pior depois." |
+| Sobre histórico familiar | "Minha mãe era alérgica a poeira, mas eu nunca fui diagnosticada como alérgica." |
+| Pergunta ativa 1 | "Isso é alergia, doutora? Fiz exame de alergia uma vez e deu normal." |
+| Pergunta ativa 2 | "Posso continuar usando aquela gotinha de nariz? Ela ajuda na hora." |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Usa oximetazolina (spray nasal descongestionante) quase diariamente há 4 meses — só revela se perguntado sobre descongestionante nasal tópico especificamente.
+- Iniciou enalapril há 14 meses (antes do início dos sintomas) — só revela se perguntado sobre quando começou o anti-hipertensivo.
+
+#### Comportamento do Ator (actorBehavior)
+
+Tranquila, cansada dos sintomas crônicos. Levemente defensiva sobre o uso do descongestionante (alivia e ela gosta). Surpresa ao saber que o enalapril pode piorar o quadro e que a "gotinha" está causando dependência.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Rinite vasomotora (não alérgica), com componente de rinite medicamentosa por uso crônico de oximetazolina e possível contribuição da tosse/rinite induzida por IECA (enalapril).
+
+**Diagnósticos Diferenciais (differentials):**
+1. Rinite alérgica — espirros em salva, prurido nasal/ocular, mucosa pálida, eosinofilia, IgE elevada; aqui mucosa hiperemiada, sem eosinofilia, IgE normal, teste alérgico negativo previamente.
+2. Rinossinusite crônica — congestão persistente + cefaleia/pressão facial, secreção purulenta; aqui sem esses achados.
+3. Rinite medicamentosa (efeito rebote da oximetazolina) — uso crônico de descongestionante tópico causando congestão rebote; presente como fator complicador.
+4. Rinite induzida por IECA (enalapril) — irritação de vias aéreas por bradicinina; pode contribuir para a congestão.
+
+**Síntese do Caso (context):**
+Mulher de meia-idade, cozinheira, com rinite vasomotora exacerbada por uso crônico de oximetazolina (rinite medicamentosa) e possível contribuição do enalapril. Ausência de atopia (IgE e eosinofilia normais) e gatilhos não alérgicos (vapor, perfume, temperatura) confirmam mecanismo vasomotor.
+
+**Justificativa Diagnóstica (justify):**
+Obstrução nasal crônica + gatilhos não imunológicos (odores, temperatura, irritantes) + mucosa hiperemiada (e não pálida) + ausência de eosinofilia e IgE normal + teste de alergia negativo = rinite vasomotora. Uso de oximetazolina por > 3–5 dias configura rinite medicamentosa como fator agravante. Enalapril iniciado antes dos sintomas é fator colaborador a ser avaliado.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Caracterização da obstrução nasal (bilateral, perene)
+- Gatilhos não alérgicos: odores, temperatura, irritantes ambientais, posição
+- Ausência de prurido nasal/ocular e espirros em salva (afasta alérgica)
+- Uso de descongestionante nasal tópico (tipo, frequência, duração)
+- Medicamentos em uso: IECA (enalapril) — causa rinite/tosse
+- Histórico de teste alérgico
+- Histórico familiar de atopia
+- Ausência de sintomas oculares (rinoconjuntivite)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Rinoscopia: mucosa hiperemiada (não pálida), cornetos hipertrofiados, sem pólipos
+- Ausência de sinais alérgicos externos (sem olheiras, sem prega nasal transversa)
+- Ausência de rinoconjuntivite
+- Ausculta pulmonar: afastar asma
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Hemograma com diferencial | Afastar eosinofilia (rinite alérgica) | Sem eosinofilia |
+| IgE total | Afastar atopia | Normal |
+| Teste cutâneo (prick test) | Confirmar ausência de sensibilização alérgica | Negativo (ou encaminhar para alergologista) |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Corticoide intranasal (mometasona ou budesonida) — 1ª linha para rinite vasomotora. Suspensão gradual da oximetazolina (pode usar corticoide nasal para suavizar o desmame). Avaliar troca do enalapril por outro anti-hipertensivo (BRA — losartana) em conjunto com cardiologista/médico assistente. (SBAI 2021 / SBC 2020)
+- **Não farmacológica:** Lavagem nasal com soro fisiológico; evitar gatilhos (perfumes, mudanças bruscas de temperatura); ventilação adequada na cozinha.
+- **Encaminhamento:** Alergologista para confirmação diagnóstica; otorrinolaringologista se desvio de septo contribuindo para obstrução.
+- **Orientações ao paciente:** Explicar que não é alergia; é hipersensibilidade do nariz a irritantes; que a "gotinha" está piorando o problema (efeito rebote); que o tratamento com corticoide nasal é seguro e eficaz.
+- **Seguimento:** Retorno em 4–6 semanas para reavaliação.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, criar vínculo com a paciente.
+- **Comunicação do diagnóstico:** "A senhora não tem alergia. Seu nariz é muito sensível a cheiros e temperatura — isso tem um nome: rinite vasomotora. E aquela gotinha que a senhora usa está causando uma dependência que piora a obstrução."
+- **Escuta ativa:** Acolher sem culpar pelo uso da oximetazolina; explicar o mecanismo de rebote de forma clara.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Diagnosticar rinite alérgica sem eosinofilia, IgE normal e gatilhos não alérgicos
+- ❌ Não identificar uso crônico de oximetazolina como causa de rinite medicamentosa
+- ❌ Não investigar relação com enalapril como possível fator contribuinte
+- ❌ Prescrever ou manter oximetazolina sem abordar o desmame
+- ❌ Prescrever corticoide sistêmico oral como 1ª linha
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — NARIZ ENTUPIDO QUE PIORA COM CHEIROS FORTES E TEMPERATURA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome e acolheu a paciente | 0.5 | CFM 2.217/2018 |
+| Explicou rinite vasomotora em linguagem acessível | 0.5 | PNHAH/MS, 2001 |
+| Abordou o uso crônico da oximetazolina sem julgamento, explicando o efeito rebote | 0.5 | SBAI, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou gatilhos não alérgicos (vapor, perfume, temperatura, ar-condicionado) | 1.0 | SBAI, 2021 |
+| Questionou uso de descongestionante nasal tópico (oximetazolina) e duração | 1.0 | SBAI, 2021 |
+| Investigou uso de IECA (enalapril) e correlacionou com os sintomas | 0.5 | SBC 2020 / SBAI 2021 |
+| Perguntou sobre ausência de prurido ocular/nasal e espirros em salva (afastar alérgica) | 0.5 | SBAI, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Realizou rinoscopia e identificou mucosa hiperemiada (não pálida) | 1.0 | SBAI, 2021 |
+| Avaliou ausência de sinais alérgicos externos (olheiras, prega nasal, conjuntivite) | 0.5 | SBAI, 2021 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de rinite vasomotora e afastou rinite alérgica com justificativa | 1.0 | SBAI, 2021 |
+| Identificou rinite medicamentosa por oximetazolina como fator agravante | 0.5 | SBAI, 2021 |
+| Solicitou IgE total e hemograma para afastar atopia | 0.5 | SBAI, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu corticoide intranasal como 1ª linha | 1.0 | SBAI 2021 / RENAME 2022 |
+| Orientou suspensão e desmame da oximetazolina | 0.5 | SBAI, 2021 |
+| Avaliou necessidade de troca do enalapril por BRA | 0.5 | SBC 2020 / SBAI 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Casos 09 e 10 concluídos** (Rinite). Gerando agora o **Caso 11 — Rinossinusite**, o último!
+
+---
+
+## CASO OSCE-11
+
+### BLOCO 1 — METADADOS
+
+- **id:** 11
+- **title:** "Dor de cabeça e pressão na face há 10 dias, com catarro amarelado"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Otorrinolaringologia"
+- **topic:** "Rinossinusite Aguda Bacteriana"
+- **level:** "moderado"
+- **cardAccent:** "#F57C00"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, turno matutino."
+- **patient:** "C.V., 38 anos, masculino, vendedor, sem comorbidades conhecidas."
+- **complaint:** "Dor de cabeça e sensação de pressão na face, com catarro amarelado há 10 dias, piorou nos últimos 2 dias."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica e os diferenciais
+  4. Solicite os exames complementares se indicados
+  5. Proponha a conduta terapêutica e oriente o paciente
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 124/80 mmHg |
+| FC | 84 bpm |
+| FR | 16 irpm |
+| Tax | 37,9°C |
+| Peso | 80 kg |
+| Altura | 1,78 m |
+| IMC | 25,2 kg/m² |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, corado, hidratado, subfebril, consciente e orientado. Leve mal-estar.
+
+#### Exame Segmentar (physicalSeg)
+
+- **RINOSCOPIA ANTERIOR:** Mucosa nasal hiperemiada e edemaciada bilateralmente, cornetos inferiores congestos. Secreção purulenta em meato médio bilateral.
+- **PALPAÇÃO DE SEIOS PARANASAIS:** Dor à palpação/percussão de seios maxilares bilateralmente, mais intensa à direita. Dor à palpação de seios frontais bilateralmente.
+- **OROFARINGE:** Secreção mucopurulenta em parede posterior. Tonsilas sem exsudato.
+- **OTOSCOPIA BILATERAL:** Normal.
+- **AUSCULTA PULMONAR:** Normal.
+- **NEUROLÓGICO:** Sem sinais de irritação meníngea. Sem déficits focais.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Hemograma | Leucócitos 13.200/mm³, neutrófilos 78%, sem desvio à esquerda | 4.000–11.000/mm³ | Sim |
+| PCR | 32 mg/L | < 5 mg/L | Sim |
+
+#### Exame de Imagem (image)
+
+**Radiografia de seios paranasais (Caldwell e Waters — se solicitada):** Opacificação parcial de seios maxilares bilateralmente, com nível hidroaéreo à direita. Seios frontais com velamento bilateral. Sem erosão óssea.
+
+#### Nota ao Avaliador (note)
+
+Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e PCR se solicitados. Entregar radiografia somente se solicitada. Orientar o candidato que TC de seios paranasais não está disponível na UBS — se solicitada, informar e questionar alternativa.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Carlos V., 38 anos, masculino, vendedor externo, casado, 2 filhos."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, tô com uma dor de cabeça e uma pressão no rosto há uns 10 dias, e saindo muito catarro amarelo." |
+| Sobre início | "Começou como gripe normal, com coriza transparente, mas foi piorando. Agora o catarro ficou amarelo e a dor de cabeça aumentou." |
+| Sobre a dor | "A dor é embaixo dos olhos e na testa, piora quando abaixo a cabeça ou quando acordo de manhã." |
+| Sobre febre | "Tive febre ontem à noite, 38 graus, tomei dipirona e melhorou." |
+| Sobre tratamento | "Tomei ibuprofeno e melhorou um pouco, mas voltou. Fui na farmácia e o farmacêutico me disse para comprar amoxicilina, mas ainda não comprei." |
+| Sobre olfato | "Tô sentindo quase nada de cheiro faz uns 4 dias." |
+| Sobre dentes | "Tenho uma dorzinha leve no dente superior direito, mas achei que era coincidência." |
+| Pergunta ativa 1 | "Isso é sinusite, doutor? Precisa de antibiótico?" |
+| Pergunta ativa 2 | "Quanto tempo vai durar? Posso trabalhar?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Dor em dente superior direito há alguns dias — pode indicar sinusite maxilar de origem dentária; só revela se perguntado especificamente sobre dores nos dentes ou saúde bucal.
+- Já teve episódio de sinusite há 2 anos tratada com antibiótico — só revela se perguntado sobre episódios anteriores.
+
+#### Comportamento do Ator (actorBehavior)
+
+Leve mal-estar. Ansioso para receber o antibiótico e melhorar rápido (compromissos de trabalho). Colaborativo. Cabe ao candidato explicar a indicação correta do antibiótico e não ceder à pressão desnecessária.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Rinossinusite aguda bacteriana — envolvimento maxilar bilateral e frontal bilateral — com critérios de bacteriana: duração > 10 dias, piora bifásica após melhora inicial, secreção purulenta, febre e dor facial intensa.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Rinossinusite viral aguda (resfriado comum) — duração < 10 dias, sem piora bifásica, sem secreção purulenta persistente; não indicado antibiótico.
+2. Rinossinusite de origem dentária — envolvimento maxilar unilateral com dor dentária ipsilateral; aqui bilateral com dor dentária leve — deve ser investigado.
+3. Cefaleia tensional — sem coriza purulenta, sem dor à palpação de seios, sem febre.
+4. Rinossinusite crônica — sintomas por mais de 12 semanas; aqui quadro agudo com 10 dias.
+
+**Síntese do Caso (context):**
+Adulto de meia-idade com rinossinusite aguda bacteriana maxilar e frontal bilateral, apresentando a tríade clássica: dor/pressão facial, obstrução nasal e secreção purulenta, com duração > 10 dias e piora bifásica após quadro viral inicial. Hiposmia e febre reforçam o diagnóstico bacteriano.
+
+**Justificativa Diagnóstica (justify):**
+Critérios de bacteriana pelo IDSA (Infectious Diseases Society of America) / SBOTA: (1) duração ≥ 10 dias sem melhora, ou (2) "double sickening" — melhora inicial seguida de piora, ou (3) início grave com febre ≥ 39°C e secreção purulenta por ≥ 3 dias consecutivos. Este caso preenche o critério (1) e (2). Radiografia com nível hidroaéreo reforça diagnóstico.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Duração e evolução dos sintomas (> 10 dias, piora bifásica)
+- Caracterização da dor facial (localização, piora ao abaixar a cabeça, pela manhã)
+- Tipo de secreção nasal (purulenta, coloração)
+- Febre: temperatura, duração
+- Hiposmia ou anosmia
+- Dor dentária (sinusite de origem odontogênica)
+- Tosse, otorreia (extensão da infecção)
+- Episódios anteriores de sinusite
+- Uso de medicamentos (ATB prévio, descongestionante)
+- Comorbidades (rinite alérgica, desvio de septo, pólipos)
+
+**Exame Físico Esperado (expectedPhysical):**
+- Sinais vitais: temperatura (subfebril)
+- Rinoscopia: secreção purulenta em meato médio, mucosa hiperemiada
+- Palpação/percussão de seios paranasais: dor em maxilares e frontais
+- Transiluminação dos seios (se disponível)
+- Orofaringe: gotejamento pós-nasal purulento
+- Neurológico sumário: afastar complicações (meningite, abscesso)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Diagnóstico clínico — exames não obrigatórios | Rinossinusite aguda bacteriana é diagnóstico clínico | — |
+| Radiografia de seios paranasais | Confirmar opacificação, nível hidroaéreo; disponível na UBS | Opacificação maxilar bilateral, nível hidroaéreo direito |
+| TC de seios paranasais | Padrão-ouro, indicado em casos complicados, recorrentes ou refratários | Indicar encaminhamento se disponível |
+| Hemograma + PCR | Confirmar processo bacteriano | Leucocitose leve, PCR elevada |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Amoxicilina 500 mg VO 8/8h por 10–14 dias (1ª linha em adultos sem uso de ATB recente). Se alergia a penicilina: azitromicina 500 mg/dia por 3 dias ou levofloxacino 500 mg/dia por 5–7 dias. Analgesia: ibuprofeno 400 mg VO 8/8h ou dipirona 500 mg VO 6/6h. (SBOTA 2022 / RENAME 2022)
+- **Não farmacológica:** Lavagem nasal com soro fisiológico isotônico; inalação com vapor; hidratação adequada; descanso.
+- **Encaminhamento:** Otorrinolaringologista se: ausência de melhora em 72h, suspeita de complicação (periorbital, intracraniana), recorrência (> 4 episódios/ano), suspeita de odontogênica (dentista).
+- **Orientações ao paciente:** Explicar que é infecção bacteriana dos seios da face; que precisa completar o antibiótico; retorno se piora da dor de cabeça, febre alta, inchaço ao redor dos olhos.
+- **Seguimento:** Retorno em 72h se piora; sinais de alarme: cefaleia intensa, edema periorbitário, alteração visual, rigidez de nuca.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, perguntar sobre contexto e impacto na vida do paciente.
+- **Comunicação do diagnóstico:** "O senhor tem sinusite bacteriana — uma infecção nas cavidades do rosto. Vamos precisar de antibiótico porque já faz mais de 10 dias e houve piora."
+- **Escuta ativa:** Acolher a pressão do trabalho, mas explicar que o repouso relativo ajuda na recuperação.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Prescrever antibiótico em sinusite viral (< 10 dias sem critérios de bacteriana)
+- ❌ Não completar o tempo mínimo de antibioticoterapia (< 10 dias)
+- ❌ Não orientar sinais de alarme de complicação (edema orbitário, meningite)
+- ❌ Não realizar palpação de seios paranasais
+- ❌ Não investigar origem dentária (dor dentária superior relatada)
+- ❌ Solicitar TC rotineiramente sem indicação em sinusite não complicada na atenção primária
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — DOR DE CABEÇA E PRESSÃO NA FACE COM CATARRO AMARELADO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Apresentou-se pelo nome ao paciente | 0.5 | CFM 2.217/2018 |
+| Explicou o diagnóstico e a indicação do antibiótico em linguagem acessível | 0.5 | PNHAH/MS, 2001 |
+| Respondeu à expectativa do paciente por antibiótico com raciocínio clínico claro | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou duração > 10 dias e piora bifásica (critério de bacteriana) | 1.0 | SBOTA, 2022 |
+| Caracterizou a dor facial (localização, piora ao abaixar a cabeça) | 0.5 | SBOTA, 2022 |
+| Investigou presença de febre, hiposmia e tipo de secreção | 0.5 | SBOTA, 2022 |
+| Perguntou sobre dor dentária superior (sinusite odontogênica) | 0.5 | SBOTA, 2022 |
+| Questionou sintomas de complicação (cefaleia intensa, edema orbital, alteração de consciência) | 0.5 | SBOTA, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Realizou palpação/percussão dos seios paranasais (maxilar e frontal) | 1.0 | SBOTA, 2022 |
+| Realizou rinoscopia e identificou secreção purulenta em meato médio | 0.5 | SBOTA, 2022 |
+| Realizou exame neurológico sumário (afastar complicação intracraniana) | 0.5 | SBOTA, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Formulou hipótese de rinossinusite aguda bacteriana com critérios corretos | 1.0 | SBOTA, 2022 |
+| Reconheceu que o diagnóstico é clínico e não indicou TC rotineiramente | 0.5 | SBOTA, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Prescreveu amoxicilina 500 mg 8/8h por 10–14 dias | 1.0 | SBOTA 2022 / RENAME 2022 |
+| Orientou lavagem nasal com soro fisiológico e medidas de suporte | 0.5 | SBOTA, 2022 |
+| Orientou sinais de alarme de complicação e retorno precoce | 0.5 | SBOTA, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---

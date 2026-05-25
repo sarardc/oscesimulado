@@ -2237,6 +2237,2546 @@ const psiq1stations = [
       }
     ]
   }
+},
+
+// NOVOS CASOS DE PSIQUIATRIA:
+
+{
+  id: 16,
+  title: 'Veterinária que revive o acidente de trabalho e não consegue entrar no canil',
+  sub: 'Ambulatório de Saúde Mental — Policlínica',
+  tema: 'Psiquiatria',
+  topic: 'TEPT — apresentação em mulher jovem após trauma ocupacional',
+  level: 'moderado',
+  cardAccent: '#1A237E',
+  instA: {
+    scenario: "Ambulatório de Saúde Mental — Policlínica Municipal. Primeira consulta, turno da tarde. Paciente encaminhada pelo médico do trabalho após 3 meses de licença por 'trauma psicológico'.",
+    patient: 'K.S., 29 anos, feminino, veterinária em clínica de animais de grande porte, solteira, sem filhos.',
+    complaint: 'Paciente relata que, há 4 meses, foi atacada por um touro durante procedimento de campo, sofrendo fratura de costelas e contusões. Desde então não consegue retornar ao trabalho, tem pesadelos frequentes e fica em pânico ao ouvir mugidos ou ver animais de grande porte.',
+    tasks: [
+      'Realize a anamnese investigando os 4 clusters do TEPT sem forçar o relato detalhado do evento.',
+      'Avalie comorbidades: depressão, ansiedade e uso de substâncias.',
+      'Avalie o risco de suicídio.',
+      'Formule a hipótese diagnóstica e os diferenciais pertinentes.',
+      'Proponha a conduta terapêutica e oriente a paciente sobre o processo de tratamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '124/80 mmHg',
+      FC: '94 bpm',
+      FR: '18 irpm',
+      Tax: '36,6°C',
+      Peso: '64 kg',
+      Altura: '1,66 m',
+      IMC: '23,2 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, lúcida e orientada. Cicatriz visível no hemitórax esquerdo (fratura cirúrgica). Aparência tensa, hipervigilante. Sobressalta-se quando a porta da sala é aberta com ruído. Contato visual intermitente.',
+    physicalSeg: 'Neurológico: Sem déficits focais. Atenção levemente reduzida. Memória preservada. | Estado mental: Humor disfórico, afeto congruente. Fala organizada. Pensamento sem desorganização formal. Revivência presente (flashbacks ao ouvir barulhos semelhantes ao ataque). Insight preservado.',
+    labs: [],
+    image: null,
+    note: 'Sinais vitais entregues ao início. Nenhum exame laboratorial necessário para este caso. O candidato deve ser avaliado especialmente pela habilidade de identificar os 4 clusters sem forçar o relato do evento traumático, e pela proposta de tratamento baseada em evidências (psicoterapia focada no trauma como 1ª linha).',
+    patientProfile: 'K.S., 29 anos, feminino, veterinária formada há 4 anos. Solteira, mora com os pais. Apaixonada pela profissão antes do acidente. Natural de Fortaleza/CE.',
+    script: [
+      { trigger: 'Abertura', speech: 'Meu médico do trabalho me mandou aqui. Eu sei que tenho que voltar, mas eu não consigo. Só de pensar em entrar no curral já começo a tremer.' },
+      { trigger: 'Sobre o que aconteceu', speech: 'Prefiro não entrar em detalhes. O touro me pegou. Fiquei no hospital uma semana. Aquilo ficou na minha cabeça.' },
+      { trigger: 'Sobre os pesadelos', speech: 'Toda noite. Eu acordo gritando. Revivo aquilo. É horrível.' },
+      { trigger: 'Sobre os flashbacks', speech: 'Qualquer mugido, qualquer cheiro de curral... é como se eu estivesse lá de novo. Até na TV, se passa cena de fazenda, eu mudo o canal correndo.' },
+      { trigger: 'Sobre o retorno ao trabalho', speech: 'Tentei ir ao consultório. Fiquei boa com animais pequenos. Mas quando vi um cavalo na rua, tive um ataque de pânico.' },
+      { trigger: 'Sobre humor e vida social', speech: 'Tô me sentindo distante de tudo. Antes adorava sair, ir a festas. Agora não tenho vontade de nada. Meus amigos dizem que mudei.' },
+      { trigger: 'Sobre uso de substâncias', speech: 'Tomo um vinho ou dois à noite pra conseguir dormir. Não é todo dia.' },
+      { trigger: 'Sobre suicídio', speech: 'Não, nunca pensei nisso. Só quero voltar a ser quem eu era.' },
+      { trigger: 'Pergunta ativa', speech: 'Isso tem cura, doutora? Ou vou ter medo de animais grandes para sempre?' },
+      { trigger: 'Pergunta ativa', speech: 'Vou precisar reviver tudo isso no tratamento? Porque não consigo falar sobre aquele dia.' }
+    ],
+    hiddenInfo: 'Uso de vinho quase diário para induzir o sono — revelar apenas se perguntado sobre frequência e quantidade exata do consumo de álcool. | Tentou voltar ao trabalho mas teve crise de pânico ao ver um cavalo na rua — revelar apenas se perguntado sobre tentativas de retorno às atividades relacionadas ao trauma.',
+    actorBehavior: 'Tensa, hipervigilante (olha para a porta quando há ruídos). Colaborativa. Evita entrar em detalhes do evento mas responde às perguntas sobre os sintomas. Demonstra alívio quando o candidato explica que não precisa reviver o evento em detalhes para o tratamento. Emocionada ao falar do impacto na carreira que amava.'
+  },
+  instC: {
+    diagnosis: 'Transtorno de estresse pós-traumático (TEPT) — trauma ocupacional por ataque animal, 4 meses de evolução, com todos os 4 clusters presentes. Uso de álcool como automedicação (fator de risco para manutenção do TEPT). CID-11: 6B40 / DSM-5: F43.10.',
+    differentials: [
+      'Transtorno de ajustamento com ansiedade — sintomas de adaptação a evento estressor sem preencher os 4 clusters do TEPT e sem a duração >1 mês; excluído pela presença de todos os critérios de TEPT.',
+      'Fobia específica (animais) — medo fóbico de animais de grande porte; no entanto, a presença de revivência, evitação generalizada e hiperexcitabilidade vai além de uma fobia específica.',
+      'Transtorno depressivo maior — humor disfórico e anedonia presentes; podem ser comorbidades do TEPT ou quadro depressivo secundário; investigar critérios completos.',
+      'Transtorno do pânico — crise de pânico ao ver o cavalo pode sugerir pânico; no entanto, as crises são situacionais (ligadas ao trauma) e não inesperadas, o que caracteriza melhor o TEPT.'
+    ],
+    context: 'Veterinária de 29 anos, 4 meses após ataque por touro com fratura de costelas, apresenta TEPT com revivência (pesadelos diários, flashbacks situacionais), evitação (não retorna ao trabalho com grandes animais, evita estímulos relacionados), alterações cognitivas e de humor (distanciamento, anedonia, sensação de mudança de identidade) e hiperexcitabilidade (hipervigilância, sobressalto, insônia). Uso de álcool como automedicação.',
+    justify: 'Preenche todos os 4 clusters do DSM-5 para TEPT: revivência (pesadelos diários, flashbacks com estímulos sensoriais), evitação (muda canal, evita curral, tentativa frustrada de retorno), alterações cognitivas/humor (distanciamento, anedonia, sensação de mudança), hiperexcitabilidade (sobressalto, hipervigilância, insônia). Duração >1 mês (4 meses). Comprometimento funcional (3 meses de licença, incapacidade de retornar ao trabalho).',
+    expectedAnamnesis: 'Investigar o evento traumático sem forçar detalhes desnecessários | Pesquisar revivência: pesadelos, flashbacks, reações a estímulos sensoriais (mugidos, cheiros) | Investigar evitação: locais, situações, pensamentos relacionados ao trauma | Pesquisar alterações cognitivas e de humor: distanciamento, anedonia, culpa, sensação de mudança | Investigar hiperexcitabilidade: insônia, hipervigilância, sobressalto | Pesquisar uso de álcool e outras substâncias (automedicação) | Rastrear depressão comórbida | Avaliar risco de suicídio | Avaliar impacto profissional e social',
+    expectedPhysical: 'Avaliação do estado mental: humor, afeto, hipervigilância, sobressalto | Observar cicatriz (confirma o trauma físico) | Sinais vitais: FC levemente elevada (hiperatividade autonômica)',
+    expectedExams: [
+      { exam: 'Nenhum exame laboratorial urgente', justify: 'Diagnóstico clínico; rastrear complicações do álcool se uso aumentar', expected: '—' }
+    ],
+    expectedConduct: 'Psicoterapia (1ª linha): TCC focada no trauma (TCC-T), Terapia de Exposição Prolongada (TEP) ou EMDR (Eye Movement Desensitization and Reprocessing). (ABP — Diretrizes TEPT, 2022; NICE 2018/2023) | Farmacológica: ISRS de 1ª linha: Sertralina 50–200 mg/dia ou Paroxetina 20–60 mg/dia. Prazosina 1–15 mg/noite para pesadelos refratários. (RENAME 2023; ABP 2022) | Abordar o álcool: Explicar que o álcool piora o TEPT a longo prazo; orientar redução gradual; encaminhar ao CAPS AD se dependência estabelecida. | Retorno ao trabalho: Gradual, com suporte da psicoterapia (exposição gradual e hierárquica). | Encaminhamento: Psicólogo com experiência em trauma para TCC-T ou EMDR. | Seguimento: Retorno em 2 semanas.',
+    expectedCommunication: 'Sobre o tratamento: "Você não precisa reviver o evento em detalhes agora. O tratamento mais eficaz trabalha com a memória do trauma de forma gradual e controlada." | Sobre o prognóstico: "O TEPT tem tratamento eficaz. A maioria das pessoas com tratamento adequado consegue retornar às atividades que amavam."',
+    criticalErrors: [
+      'Forçar o relato detalhado do evento traumático na primeira consulta',
+      'Não investigar os 4 clusters do TEPT (aceitar apenas a queixa superficial de "medo de animais")',
+      'Não avaliar risco de suicídio',
+      'Não investigar uso de álcool como fator de manutenção do TEPT',
+      'Não indicar psicoterapia focada no trauma como tratamento de 1ª linha'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — VETERINÁRIA QUE REVIVE O ACIDENTE E NÃO CONSEGUE ENTRAR NO CANIL',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não forçou o relato detalhado do evento traumático', score: 0.5, ref: 'ABP — Diretrizes TEPT, 2022' },
+          { item: 'Explicou que o tratamento não exige reviver o trauma em detalhes na primeira consulta', score: 0.5, ref: 'ABP — Diretrizes TEPT, 2022' },
+          { item: 'Acolheu o impacto do trauma na identidade profissional da paciente', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou revivência (pesadelos, flashbacks sensoriais)', score: 0.5, ref: 'DSM-5; ABP — Diretrizes TEPT, 2022' },
+          { item: 'Investigou evitação (locais, estímulos, tentativas frustradas de retorno)', score: 0.5, ref: 'DSM-5; ABP — Diretrizes TEPT, 2022' },
+          { item: 'Investigou hiperexcitabilidade (sobressalto, hipervigilância, insônia)', score: 0.5, ref: 'DSM-5; ABP — Diretrizes TEPT, 2022' },
+          { item: 'Pesquisou uso de álcool como automedicação', score: 0.5, ref: 'ABP — Diretrizes TEPT, 2022' },
+          { item: 'Avaliou risco de suicídio', score: 0.5, ref: 'MS — PCDT Prevenção do Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Observou e registrou a cicatriz (confirmação do trauma físico)', score: 0.3, ref: 'Semiologia Médica — FMUSP' },
+          { item: 'Avaliou estado mental: hipervigilância, sobressalto, humor', score: 0.5, ref: 'ABP — Diretrizes TEPT, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Identificou e nomeou os 4 clusters do TEPT', score: 1.0, ref: 'DSM-5; ABP — Diretrizes TEPT, 2022' },
+          { item: 'Diferenciou TEPT de fobia específica e transtorno de ajustamento', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou psicoterapia focada no trauma (TCC-T, EMDR ou TEP) como 1ª linha', score: 1.0, ref: 'ABP — Diretrizes TEPT, 2022' },
+          { item: 'Prescreveu ISRS como suporte farmacológico', score: 0.5, ref: 'RENAME 2023; ABP — Diretrizes TEPT, 2022' },
+          { item: 'Abordou o uso de álcool e orientou sobre redução', score: 0.5, ref: 'ABP — Diretrizes TEPT, 2022' },
+          { item: 'Estabeleceu plano de retorno gradual ao trabalho com apoio psicoterápico', score: 0.3, ref: 'ABP — Diretrizes TEPT, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 17,
+  title: "Diabético que ficou 'nervoso e perturbado' depois de descobrir que vai amputar o pé",
+  sub: 'Enfermaria de Endocrinologia — Hospital Geral',
+  tema: 'Psiquiatria',
+  topic: 'Transtorno de ansiedade devido a outra condição médica',
+  level: 'moderado',
+  cardAccent: '#00695C',
+  instA: {
+    scenario: 'Enfermaria de Endocrinologia — Hospital Geral. 3º dia de internação. Turno da tarde. A equipe de endocrinologia solicitou avaliação psiquiátrica porque o paciente está com ansiedade intensa, palpitações e recusa assinar o termo de consentimento para amputação do 1º pododáctilo direito.',
+    patient: 'G.P., 58 anos, masculino, agricultor aposentado, casado, três filhos. Internado por pé diabético com gangrena do 1º dedo direito. DM2 há 15 anos, HAS, IRC leve.',
+    complaint: "Paciente refere palpitações, sudorese, insônia e 'perturbação na cabeça' desde que soube da cirurgia. Diz estar com medo de 'nunca mais andar direito' e de 'virar inválido'.",
+    tasks: [
+      'Realize a anamnese investigando os sintomas de ansiedade e sua relação com o diagnóstico de pé diabético.',
+      'Afaste causas orgânicas dos sintomas ansiosos (hipoglicemia, distúrbios metabólicos, medicamentos).',
+      'Avalie o risco de suicídio e a capacidade de tomada de decisão do paciente.',
+      'Formule a hipótese diagnóstica e proponha a conduta.',
+      'Comunique ao paciente e à equipe de forma empática e coordenada.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '146/92 mmHg',
+      FC: '104 bpm',
+      FR: '20 irpm',
+      Tax: '37,2°C',
+      Peso: '82 kg',
+      Altura: '1,68 m',
+      IMC: '29,0 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral, ansioso, agitado. Pé direito com curativo oclusivo no 1º dedo (gangrena). Lúcido, orientado, discurso coerente. Mãos úmidas (sudorese). Sem sinais de intoxicação ou rebaixamento de consciência.',
+    physicalSeg: 'Neurológico: Lúcido e orientado. Capacidade de compreender e expressar decisão presente. Sem déficits focais. | Cardiovascular: Taquicardia sinusal. Sem sopros. Sem turgência jugular. | Endócrino: Sem sinais de hipertireoidismo (sem tremor, sem exoftalmia, tireoide não aumentada).',
+    labs: [
+      { test: 'Glicemia capilar (última)', val: '182 mg/dL', ref: '70–140 mg/dL', alt: true },
+      { test: 'Sódio', val: '138 mEq/L', ref: '135–145 mEq/L', alt: false },
+      { test: 'Potássio', val: '4,1 mEq/L', ref: '3,5–5,0 mEq/L', alt: false },
+      { test: 'TSH', val: '2,2 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Creatinina', val: '1,4 mg/dL', ref: '0,7–1,2 mg/dL', alt: true },
+      { test: 'ECG', val: 'Taquicardia sinusal 104 bpm, sem alterações de repolarização', ref: 'Normal', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais e exames disponíveis mediante solicitação. ECG entregue se solicitado. O candidato deve ser avaliado especialmente pela habilidade de diferenciar o transtorno de ansiedade devido à condição médica de TAG primário ou transtorno de ajustamento, e pela avaliação da capacidade de tomada de decisão (capacidade decisória — o paciente recusa o procedimento cirúrgico necessário).',
+    patientProfile: 'G.P., 58 anos, masculino, agricultor aposentado. Casado há 30 anos. Três filhos adultos. DM2 há 15 anos, HAS há 10 anos. IRC leve. Baixa adesão ao tratamento. Natural de interior do Ceará.',
+    script: [
+      { trigger: 'Abertura', speech: 'Doutor, eu não consigo dormir, o coração dispara, fico com a cabeça perturbada desde que me falaram que vão cortar meu dedo. Minha cabeça não para.' },
+      { trigger: 'Sobre o medo da cirurgia', speech: 'Tenho medo que corte hoje o dedo, amanhã o pé, depois a perna. Vi isso acontecer com meu irmão. Ele ficou na cama até morrer.' },
+      { trigger: 'Sobre as palpitações', speech: 'O coração fica acelerado o tempo todo. Fico suando mesmo com o ar condicionado. Não consigo comer.' },
+      { trigger: 'Sobre a recusa cirúrgica', speech: 'Não assinei porque tenho medo. Não é que não quero me cuidar. É que aquilo me dá um desespero que não consigo controlar.' },
+      { trigger: 'Sobre a capacidade de decidir', speech: 'Eu entendo o que os médicos falam. Sei que é grave. Mas o medo trava tudo.' },
+      { trigger: 'Sobre suicídio', speech: 'Não tenho esse pensamento não. Quero ver meus filhos crescerem, ver meus netos.' },
+      { trigger: 'Pergunta ativa', speech: 'Esse negócio que tô sentindo é loucura? Vou ficar com problema de cabeça por causa do diabetes?' },
+      { trigger: 'Pergunta ativa', speech: 'Tem remédio pra acalmar que não faça mal pro meu rim?' }
+    ],
+    hiddenInfo: 'Irmão faleceu após amputação de membro inferior por DM — esse é o fator precipitante central do medo; revelar apenas se perguntado sobre experiência prévia com diabetes na família. | Nunca teve episódio de ansiedade antes do adoecimento — confirma que os sintomas são secundários à condição médica; revelar se perguntado sobre histórico psiquiátrico prévio.',
+    actorBehavior: 'Ansioso, agitado, mas colaborativo e capaz de raciocinar. Demonstra medo genuíno e concreto (experiência com o irmão). Capacidade decisória preservada — entende a situação mas está emocionalmente paralisado. Alivia quando o candidato valida o medo e oferece suporte para a tomada de decisão.'
+  },
+  instC: {
+    diagnosis: 'Transtorno de ansiedade devido à condição médica (pé diabético com indicação de amputação parcial), com sintomas de ansiedade clinicamente significativos que excedem a resposta adaptativa esperada e comprometem a tomada de decisão cirúrgica. Capacidade decisória preservada. CID-11: 6E62 / DSM-5: F06.4.',
+    differentials: [
+      'Transtorno de ajustamento com ansiedade — resposta ansiosa proporcional ao estressor clínico; a distinção do transtorno de ansiedade devido à condição médica está na intensidade e no papel direto da condição médica na gênese dos sintomas (taquicardia, sudorese, palpitações ligadas diretamente ao DM e à cirurgia).',
+      'TAG primário — preocupações em múltiplas áreas sem relação com condição médica específica; excluído pela ausência de antecedentes de ansiedade e pelo início claramente relacionado ao diagnóstico.',
+      'Hipertireoidismo — pode causar palpitações e ansiedade; TSH normal afasta.',
+      'Hipoglicemia — causa sintomas adrenérgicos; glicemia 182 mg/dL afasta.'
+    ],
+    context: 'Homem de 58 anos com DM2 de longa data, internado por pé diabético com gangrena, apresenta ansiedade intensa (palpitações, insônia, sudorese, agitação) após comunicação da necessidade de amputação, precipitada pelo trauma vicário da morte do irmão após amputação. Causa orgânica afastada. Capacidade decisória preservada — compreende a situação mas está emocionalmente comprometido para assinar o consentimento.',
+    justify: 'Sintomas de ansiedade (palpitações, taquicardia, insônia, sudorese) diretamente relacionados ao diagnóstico de pé diabético e à comunicação da indicação cirúrgica. Sem antecedente de transtorno de ansiedade. Causas orgânicas (hipoglicemia, hipertireoidismo, distúrbios metabólicos) afastadas. Trauma vicário (irmão com amputação fatal) como fator precipitante. Capacidade decisória preservada (entende a situação, identifica opções, comunica escolha).',
+    expectedAnamnesis: 'Investigar início e evolução dos sintomas ansiosos em relação ao diagnóstico | Pesquisar palpitações, insônia, sudorese, agitação | Investigar experiências prévias com diabetes na família (irmão) | Avaliar antecedentes de ansiedade ou transtornos mentais | Pesquisar medicamentos em uso (corticoides, broncodilatadores, descongestionantes podem causar ansiedade) | Avaliar capacidade decisória para o procedimento cirúrgico | Avaliar risco de suicídio | Investigar suporte familiar disponível',
+    expectedPhysical: 'Sinais vitais: taquicardia (componente autonômico da ansiedade) | Avaliação tireoidiana: excluir hipertireoidismo | Avaliação neurológica: capacidade cognitiva para tomada de decisão | ECG: afastar arritmia como causa de palpitações',
+    expectedExams: [
+      { exam: 'Glicemia capilar', justify: 'Afastar hipoglicemia como causa de ansiedade', expected: '182 mg/dL (hiperglicemia — não hipoglicemia)' },
+      { exam: 'TSH', justify: 'Afastar hipertireoidismo', expected: 'Normal' },
+      { exam: 'ECG', justify: 'Afastar arritmia como causa de palpitações', expected: 'Taquicardia sinusal' },
+      { exam: 'Eletrólitos', justify: 'Afastar distúrbios eletrolíticos em IRC leve', expected: 'Normais' }
+    ],
+    expectedConduct: 'Intervenção psicológica de suporte imediata: Técnicas de relaxamento (respiração diafragmática, orientação à realidade), psicoeducação sobre a ansiedade e o procedimento cirúrgico. Apoio para tomada de decisão informada. | Farmacológica: Benzodiazepínico de curta duração para manejo da ansiedade aguda pré-cirúrgica (avaliar com cautela em IRC leve): Lorazepam 0,5–1 mg VO (metabolismo não hepático — mais seguro em IRC) OU Oxazepam 10 mg VO. Dose única ou por período muito curto. (RENAME 2023 — avaliar clearance de creatinina antes) | Alternativa não benzodiazepínica: Hidroxizina 25 mg VO (antihistamínico com propriedade ansiolítica — seguro em IRC leve, sem dependência). (RENAME 2023) | Comunicação com a equipe cirúrgica: Informar sobre o contexto do medo (irmão), sugerir conversa adicional do cirurgião com o paciente. Informar que a capacidade decisória está preservada — não há indicação de internação compulsória. | Suporte familiar: Incluir a esposa na conversa sobre a cirurgia. | Seguimento: Avaliação pós-cirúrgica. Encaminhar ao ambulatório de saúde mental para acompanhamento.',
+    expectedCommunication: 'Validar o medo: "Seu medo faz todo o sentido. Você viu seu irmão passar por algo muito difícil. É natural que isso afete como você está sentindo agora." | Distinguir a situação: "O caso do seu irmão foi diferente do seu. Vamos conversar sobre isso para que você possa tomar sua decisão com mais clareza." | Capacidade decisória: Nunca questionar a capacidade do paciente publicamente sem avaliação formal.',
+    criticalErrors: [
+      'Não avaliar glicemia capilar como causa orgânica dos sintomas ansiosos em diabético',
+      'Questionar publicamente a capacidade decisória do paciente sem avaliação formal',
+      'Prescrever benzodiazepínico sem considerar a IRC (ajuste de dose necessário)',
+      'Não investigar a experiência com o irmão (fator precipitante central)',
+      'Não comunicar achados à equipe cirúrgica de forma colaborativa'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — DIABÉTICO ANSIOSO QUE RECUSA ASSINAR CONSENTIMENTO PARA AMPUTAÇÃO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou o medo do paciente sem minimizar', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' },
+          { item: 'Distinguiu a situação atual da experiência com o irmão', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' },
+          { item: 'Comunicou achados à equipe cirúrgica de forma colaborativa', score: 0.5, ref: 'CFM nº 1.931/2009' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou início dos sintomas em relação ao diagnóstico (sem antecedente prévio)', score: 0.5, ref: 'DSM-5; MS — Linha de Cuidado Saúde Mental, 2022' },
+          { item: 'Pesquisou experiência familiar com diabetes/amputação (irmão)', score: 1.0, ref: 'MS — Política Nacional de Humanização, 2013' },
+          { item: 'Avaliou capacidade decisória para o procedimento cirúrgico', score: 0.5, ref: 'CFM — Capacidade decisória, 2009' },
+          { item: 'Avaliou risco de suicídio', score: 0.5, ref: 'MS — PCDT Prevenção do Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou sinais vitais (taquicardia)', score: 0.3, ref: 'Semiologia Médica — FMUSP' },
+          { item: 'Avaliou função cognitiva e capacidade decisória', score: 0.5, ref: 'CFM — Capacidade decisória' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou glicemia capilar para afastar hipoglicemia', score: 0.5, ref: 'MS — Linha de Cuidado DM, 2022' },
+          { item: 'Solicitou TSH e ECG para afastar causas orgânicas', score: 0.5, ref: 'DSM-5; MS 2022' },
+          { item: 'Formulou diagnóstico de transtorno de ansiedade devido à condição médica', score: 1.0, ref: 'DSM-5 F06.4' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu ansiolítico adequado considerando a IRC (lorazepam ou hidroxizina)', score: 1.0, ref: 'RENAME 2023' },
+          { item: 'Aplicou técnica de relaxamento ou respiração diafragmática na consulta', score: 0.5, ref: 'MS — Linha de Cuidado Saúde Mental, 2022' },
+          { item: 'Incluiu esposa/familiar no suporte para tomada de decisão', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 18,
+  title: "Estudante que ficou 'perturbado e acelerado' depois de usar energético com suplemento termogênico",
+  sub: 'UPA — Demanda espontânea',
+  tema: 'Psiquiatria',
+  topic: 'Transtorno de ansiedade induzido por substância',
+  level: 'moderado',
+  cardAccent: '#E65100',
+  instA: {
+    scenario: 'UPA 24h. Sala de triagem, turno noturno. Paciente chegou por conta própria muito agitado e com coração acelerado.',
+    patient: 'T.R., 22 anos, masculino, estudante de educação física, solteiro. Sem comorbidades conhecidas.',
+    complaint: "Paciente relata que há 2 horas tomou 3 latas de energético e um suplemento termogênico (com efedrina) antes de treinar e está com 'coração saindo pela boca', tremor, sudorese e sensação de que vai morrer.",
+    tasks: [
+      'Realize a anamnese investigando as substâncias ingeridas, quantidade e tempo de uso.',
+      'Avalie e exclua causas orgânicas primárias (cardíacas, tireoidiana, hipoglicemia).',
+      'Formule a hipótese diagnóstica principal e os diferenciais.',
+      'Proponha a conduta terapêutica adequada.',
+      'Oriente o paciente sobre os riscos das substâncias utilizadas.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '168/102 mmHg',
+      FC: '136 bpm',
+      FR: '22 irpm',
+      Tax: '37,4°C',
+      Peso: '82 kg',
+      Altura: '1,80 m',
+      IMC: '25,3 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral, ansioso, sudoreico, tremor fino de mãos. Pele quente. Lúcido e orientado. Midríase bilateral (5 mm). Sem hálito etílico. Sem sinais de trauma.',
+    physicalSeg: 'Cardiovascular: Taquicardia intensa (136 bpm). BRNF sem sopros. | Neurológico: Lúcido, tremor fino, hiperreflexia. Sem déficits focais. | Psíquico: Ansiedade intensa, medo de morrer. Sem alucinações. Sem desorganização do pensamento.',
+    labs: [
+      { test: 'ECG', val: 'Taquicardia sinusal FC 134 bpm, PR e QT normais, sem supradesnivelamento', ref: 'Normal', alt: false },
+      { test: 'Glicemia capilar', val: '108 mg/dL', ref: '70–140 mg/dL', alt: false },
+      { test: 'TSH', val: '1,8 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Toxicológico urinário', val: 'Positivo para efedrina/anfetamínicos', ref: 'Negativo', alt: true },
+      { test: 'Troponina I', val: '0,02 ng/mL', ref: '<0,04 ng/mL', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais e ECG entregues ao início. Demais exames conforme solicitação. O candidato deve ser avaliado especialmente pela distinção entre transtorno de ansiedade induzido por substância e TAG primário ou transtorno do pânico, e pela orientação sobre risco do uso de termogênicos com efedrina.',
+    patientProfile: 'T.R., 22 anos, masculino, estudante de educação física, pratica musculação diariamente. Usa suplementos há 6 meses. Comprou o termogênico em loja de suplementos sem orientação médica.',
+    script: [
+      { trigger: 'Abertura', speech: 'Doutor, eu tô passando muito mal. Coração acelerado demais, tremendo, suando. Achei que ia ter um infarto.' },
+      { trigger: 'Sobre o que tomou', speech: 'Tomei três RedBulls e um termogênico antes do treino. Sempre faço isso, mas hoje tomei mais que o normal.' },
+      { trigger: 'Sobre o suplemento', speech: 'É um termogênico que comprei na loja de suplemento. Diz na embalagem que tem efedrina, cafeína, guaraná. Tomei dose dupla pra ter mais energia.' },
+      { trigger: 'Sobre crises anteriores', speech: 'Nunca tive isso antes. Só hoje, depois do suplemento.' },
+      { trigger: 'Sobre uso de drogas', speech: 'Não uso nada ilegal. Só o suplemento.' },
+      { trigger: 'Pergunta ativa', speech: 'É o coração? Vou ficar com sequela?' },
+      { trigger: 'Pergunta ativa', speech: 'Posso continuar usando o termogênico se tomar menos?' }
+    ],
+    hiddenInfo: 'Tomou dose dupla do termogênico (acima da recomendação da embalagem) — revelar apenas se perguntado especificamente sobre a dose utilizada. | Não consultou médico antes de iniciar suplementação — revelar se perguntado sobre orientação prévia.',
+    actorBehavior: 'Muito agitado e assustado no início. Alivia progressivamente com a abordagem calma e com a confirmação de que o coração está sem alterações estruturais. Fica envergonhado quando percebe que a causa é o suplemento.'
+  },
+  instC: {
+    diagnosis: 'Transtorno de ansiedade induzido por substância (efedrina + cafeína em dose excessiva — síndrome simpatomimética). Hipertensão e taquicardia por toxicidade de estimulantes do SNC. CID-11: 6C4H.20 / DSM-5: F15.180.',
+    differentials: [
+      'Transtorno do pânico — crise de ansiedade intensa com taquicardia e medo de morrer; distingue-se pela causa clara (substância simpatomimética, sem crises prévias espontâneas), toxicológico positivo e resolução esperada com eliminação da substância.',
+      'Síndrome coronariana aguda — HAS + taquicardia + medo de morrer podem simular; troponina normal e ECG sem supradesnivelamento afastam em jovem sem fatores de risco.',
+      'Hipertireoidismo — pode causar taquicardia e ansiedade; TSH normal afasta.',
+      'Feocromocitoma — síndrome simpatomimética clássica; no entanto, contexto de uso de estimulante é causa mais provável; investigar se persistir após eliminação da substância.'
+    ],
+    context: 'Jovem de 22 anos, sem comorbidades, com síndrome simpatomimética aguda por ingestão excessiva de efedrina + cafeína (dose dupla de termogênico + 3 energéticos). Taquicardia 136 bpm, HAS 168/102, midríase, tremor, sudorese. Toxicológico positivo para efedrina. ECG e troponina normais. Sem antecedente de transtorno de ansiedade.',
+    justify: 'Síntese simpatomimética por ingestão de estimulantes do SNC (efedrina, cafeína em excesso) confirmada por toxicológico positivo, história clínica e resolução esperada com suporte. A ausência de antecedentes psiquiátricos e o início imediatamente após a ingestão indicam causa por substância, não TAG ou transtorno do pânico primário.',
+    expectedAnamnesis: 'Investigar substâncias ingeridas: tipo, quantidade, tempo de ingestão | Pesquisar uso de outros estimulantes, drogas ilícitas, medicamentos | Investigar crises prévias de ansiedade (sem uso de substância) | Pesquisar doenças cardíacas ou tireoidianas prévias | Avaliar uso regular de suplementos e orientação médica',
+    expectedPhysical: 'Sinais vitais: HAS e taquicardia intensas | Pupilas: midríase (síndrome simpatomimética) | Cardiovascular: ausculta, pulsos | Neurológico: tremor, hiperreflexia',
+    expectedExams: [
+      { exam: 'ECG', justify: 'Afastar arritmia e SCA', expected: 'Normal, taquicardia sinusal' },
+      { exam: 'Troponina', justify: 'Afastar lesão miocárdica', expected: 'Normal' },
+      { exam: 'Glicemia capilar', justify: 'Afastar hipoglicemia', expected: 'Normal' },
+      { exam: 'Toxicológico urinário', justify: 'Confirmar efedrina/estimulantes', expected: 'Positivo' },
+      { exam: 'TSH', justify: 'Afastar hipertireoidismo', expected: 'Normal' }
+    ],
+    expectedConduct: 'Suporte: Monitorização contínua (FC, PA, SatO2, ECG). | Observação até resolução: Metabolização da efedrina (meia-vida ~6 horas). | HAS sintomática: Se PA ≥180/110 ou sintomática: nitroprussiato de sódio ou labetalol IV. Neste caso PA 168/102 — observação e monitorização com meta de melhora espontânea com metabolização do estimulante. | Taquicardia: Evitar beta-bloqueador isolado em taquicardia por estimulante sem alfa-bloqueio (risco de hipertensão paradoxal por atividade alfa não antagonizada). Benzodiazepínico (diazepam 5–10 mg VO) reduz ansiedade e componente adrenérgico. | Orientação obrigatória: Contraindicar o uso de efedrina e termogênicos com estimulantes sem orientação médica. Explicar o risco de arritmia, AVC e morte súbita com dose excessiva. | Alta: Após normalização dos sinais vitais e FC, com orientações por escrito.',
+    expectedCommunication: 'Sobre o diagnóstico: "O seu coração não tem problema — o que está acontecendo é uma reação ao estimulante que você tomou em dose muito alta." | Sobre o suplemento: "Efedrina é uma substância com ação similar à adrenalina. Em excesso, pode causar arritmia grave e até morte súbita."',
+    criticalErrors: [
+      'Não solicitar ECG em paciente com taquicardia e HAS por estimulante',
+      'Administrar beta-bloqueador isolado em taquicardia por estimulante simpatomimético sem alfa-bloqueio',
+      'Não orientar sobre a contraindicação do uso de termogênicos com efedrina',
+      'Diagnosticar transtorno do pânico primário sem investigar a causa por substância',
+      'Dispensar o paciente sem observação até normalização dos sinais vitais'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ESTUDANTE AGITADO APÓS USO DE ENERGÉTICO COM TERMOGÊNICO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Reassegurou sobre o coração sem minimizar a gravidade da situação', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' },
+          { item: 'Explicou o risco do uso de termogênicos com efedrina em linguagem acessível', score: 0.5, ref: 'ANVISA — Regulamentação de suplementos, 2023' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou todas as substâncias ingeridas (tipo, quantidade, tempo)', score: 1.0, ref: 'DSM-5; MS — Linha de Cuidado Álcool/Drogas, 2022' },
+          { item: 'Pesquisou crises prévias de ansiedade sem uso de substância', score: 0.5, ref: 'DSM-5 F15.180' },
+          { item: 'Investigou uso de drogas ilícitas concomitantes', score: 0.5, ref: 'MS — Linha de Cuidado Álcool/Drogas, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou sinais vitais com atenção à FC e PA', score: 0.5, ref: 'Semiologia Médica — FMUSP' },
+          { item: 'Avaliou pupilas (midríase = simpatomimético)', score: 0.5, ref: 'Toxicologia Clínica — FMUSP' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou ECG e troponina para afastar SCA', score: 1.0, ref: 'SBC — Diretriz Emergência Cardiovascular, 2021' },
+          { item: 'Solicitou toxicológico para confirmar substância', score: 0.5, ref: 'DSM-5; MS — Linha de Cuidado, 2022' },
+          { item: 'Formulou hipótese de transtorno de ansiedade induzido por substância', score: 1.0, ref: 'DSM-5 F15.180' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou monitorização contínua até resolução', score: 0.5, ref: 'SBC — Diretriz Emergência, 2021' },
+          { item: 'Não usou beta-bloqueador isolado em taquicardia por estimulante', score: 1.0, ref: 'SBC — Diretriz Emergência, 2021' },
+          { item: 'Orientou contraindicação definitiva ao termogênico com efedrina', score: 0.5, ref: 'ANVISA — Resolução suplementos, 2023' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 19,
+  title: "Jovem de 26 anos 'diferente desde sempre' que busca diagnóstico depois de ver vídeo sobre autismo",
+  sub: 'Ambulatório de Psiquiatria — Policlínica',
+  tema: 'Psiquiatria',
+  topic: 'Transtorno do Espectro Autista — diagnóstico tardio em adulto',
+  level: 'moderado',
+  cardAccent: '#1565C0',
+  instA: {
+    scenario: 'Ambulatório de Psiquiatria — Policlínica Municipal. Primeira consulta, turno da manhã. Paciente veio por conta própria com um caderno de anotações.',
+    patient: 'H.L., 26 anos, masculino, programador de sistemas (trabalho remoto), solteiro, mora sozinho.',
+    complaint: "Paciente relata que após assistir a um documentário sobre autismo reconheceu em si mesmo as características descritas. Traz lista de dificuldades que tem 'desde sempre': dificuldade de olho no olho, não entender 'subentendidos', precisar de rotinas fixas e interesse intenso e exclusivo em programação e trens.",
+    tasks: [
+      'Realize a anamnese do neurodesenvolvimento investigando os dois domínios do TEA: comunicação social e comportamentos repetitivos/restritos.',
+      'Investigue o histórico desde a infância: linguagem, relacionamentos, escola, rotinas.',
+      'Avalie comorbidades (ansiedade, depressão, TDAH) e diagnósticos diferenciais.',
+      'Explique ao paciente o processo diagnóstico do TEA em adultos e o que ele pode esperar.',
+      'Proponha os próximos passos do plano diagnóstico e terapêutico.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '118/76 mmHg',
+      FC: '78 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '72 kg',
+      Altura: '1,75 m',
+      IMC: '23,5 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, lúcido e orientado. Contato visual reduzido e intermitente. Fala com velocidade e entonação levemente monotônicas. Traz caderno com lista de sintomas anotados. Bem arrumado, roupa funcional (mesma combinação de cores). Sem sinais de intoxicação ou déficit neurológico.',
+    physicalSeg: 'Estado mental: Aparência cuidada mas levemente incomum (roupa idêntica à semana anterior, segundo ele); contato visual reduzido mas não ausente; fala precisa e literal; interesse restrito proeminente (desvia o assunto para trens com frequência); sem estereotipias motoras visíveis no consultório; orientado; memória excelente para fatos concretos; cognição preservada; sem alucinações nem delírios. | Neurológico: Sem déficits focais.',
+    labs: [],
+    image: null,
+    note: 'Nenhum exame laboratorial necessário. O candidato deve ser avaliado especialmente pela habilidade de realizar anamnese do neurodesenvolvimento (desde a infância), pela explicação honesta do processo diagnóstico do TEA em adultos (que requer avaliação multidisciplinar e instrumentos padronizados — não é diagnóstico de consulta única), e por não diagnosticar nem excluir o TEA precipitadamente.',
+    patientProfile: 'H.L., 26 anos, masculino, programador. Filho único. Pais divorciados desde os 8 anos. Escola regular com dificuldades de relacionamento com colegas. Nunca teve namorado/a. Amigos são colegas de trabalho remoto — relacionamento por texto. Interesse intenso e exclusivo em trens e programação desde os 7 anos.',
+    script: [
+      { trigger: 'Abertura', speech: 'Trouxe uma lista do que identifiquei em mim. Posso ler? (abre o caderno) Dificuldade de contato visual, não entendo ironia, preciso de rotina, fico sobrecarregado em lugares barulhentos, tenho interesse intenso em trens e programação desde os 7 anos.' },
+      { trigger: 'Sobre a infância', speech: 'Na escola tinha dificuldade de fazer amigos. As crianças diziam que eu era estranho. Falava sobre trens quando ninguém perguntava.' },
+      { trigger: 'Sobre relacionamentos', speech: 'Nunca tive namorado. Não entendo os sinais que as pessoas dão. Uma vez uma colega ficou insinuando que gostava de mim e eu não percebi até ela falar direto.' },
+      { trigger: 'Sobre o trabalho', speech: 'No trabalho remoto vou muito bem. Por e-mail e texto consigo me comunicar perfeitamente. Em reunião por vídeo é mais difícil.' },
+      { trigger: 'Sobre rotinas', speech: 'Faço as mesmas refeições nos mesmos horários. Se alguém muda a minha rotina sem avisar fico muito angustiado.' },
+      { trigger: 'Sobre sensibilidade sensorial', speech: 'Não suporto barulho de mastiguação. Roupas com etiqueta me incomodam tanto que recorto todas.' },
+      { trigger: 'Pergunta ativa', speech: 'Você acha que eu tenho autismo? Quero saber de verdade, não uma resposta educada.' },
+      { trigger: 'Pergunta ativa', speech: 'Se eu tiver autismo, tem tratamento? Posso melhorar?' }
+    ],
+    hiddenInfo: 'Faz camuflagem social (masking) — aprende scripts de conversação de forma deliberada para parecer neurotípico — revelar apenas se perguntado sobre como lida com situações sociais no trabalho ou na vida adulta. | Apresenta ansiedade social significativa que ele interpreta como "não gostar de pessoas" — revelar se perguntado sobre humor e ansiedade.',
+    actorBehavior: 'Contato visual reduzido mas não ausente. Fala precisa, literal e levemente monótona. Desvia ocasionalmente para falar de trens quando há silêncio. Aprecia quando o candidato faz perguntas diretas e objetivas — responde melhor a perguntas fechadas do que a abertas amplas. Demonstra ansiedade quando não sabe o que esperar do processo.'
+  },
+  instC: {
+    diagnosis: 'Suspeita clínica de Transtorno do Espectro Autista (TEA) — diagnóstico tardio em adulto. Diagnóstico definitivo requer avaliação multidisciplinar com instrumentos padronizados (ADOS-2, ADI-R, RAADS-R). Possível comorbidade: transtorno de ansiedade social. CID-11: 6A02 / DSM-5: F84.0 (a confirmar).',
+    differentials: [
+      'Transtorno de personalidade esquizoide — isolamento social, indiferença afetiva; distingue-se do TEA pela ausência de déficits na comunicação social recíproca, comportamentos repetitivos e interesses restritos desde a infância.',
+      'Transtorno de ansiedade social — dificuldade nas interações sociais por medo de julgamento; no TEA as dificuldades são de natureza qualitativa (não entende os sinais sociais), não primariamente por medo.',
+      'TDAH — pode coexistir com TEA; investigar desatenção, impulsividade e hiperatividade desde a infância.',
+      'Transtorno de personalidade obsessivo-compulsiva — rigidez, interesses restritos; no TPOC são egossintônicos e sem os déficits de comunicação social do TEA.'
+    ],
+    context: 'Homem de 26 anos com história desde a infância de dificuldades persistentes na comunicação social (contato visual reduzido, não compreende ironias/subentendidos, dificuldade de relacionamentos), comportamentos repetitivos e interesses restritos (trens e programação desde os 7 anos, rotinas inflexíveis, sensibilidade sensorial). Funcionamento preservado em contexto estruturado (trabalho remoto por texto).',
+    justify: 'Presença dos dois domínios principais do DSM-5 para TEA desde a infância: (A) déficits na comunicação social recíproca em múltiplos contextos (contato visual, não compreende sinais implícitos, dificuldade de relacionamentos, comunicação literal) e (B) padrões restritos e repetitivos de comportamento (rotinas inflexíveis com angústia à mudança, interesse restrito intenso em trens/programação, sensibilidade sensorial). Diagnóstico definitivo requer instrumentos padronizados e avaliação multidisciplinar.',
+    expectedAnamnesis: 'Investigar desenvolvimento infantil: linguagem, marco motor, interação social precoce | Pesquisar relacionamentos na infância e adolescência | Investigar desempenho escolar e universitário | Pesquisar interesses restritos: início, intensidade, exclusividade | Investigar rotinas e rigidez: reação a mudanças | Pesquisar sensibilidade sensorial (tátil, auditiva, olfativa, gustativa) | Investigar comunicação: compreensão de ironia, sarcasmo, subentendidos | Pesquisar camuflagem social (masking) | Avaliar comorbidades: ansiedade, depressão, TDAH | Investigar diagnósticos prévios',
+    expectedPhysical: 'Avaliação do estado mental: contato visual, entonação vocal, literalidade do discurso, interesse restrito durante a consulta | Ausência de déficits neurológicos',
+    expectedExams: [
+      { exam: 'RAADS-R (Ritvo Autism Asperger Diagnostic Scale)', justify: 'Rastreio de TEA em adultos — aplicação por profissional capacitado', expected: 'Resultado a confirmar em avaliação multidisciplinar' },
+      { exam: 'Avaliação neuropsicológica', justify: 'Avaliação padronizada para confirmação diagnóstica', expected: 'A realizar' }
+    ],
+    expectedConduct: 'Explicação honesta do processo diagnóstico: O diagnóstico definitivo de TEA em adultos requer avaliação multidisciplinar (psiquiatra + psicólogo com experiência em TEA + avaliação neuropsicológica). Uma única consulta não é suficiente para confirmar ou excluir TEA. | Encaminhamento: Serviço especializado em TEA em adultos (CAPS, ambulatório universitário, serviço de referência). RAADS-R pode ser aplicado neste primeiro contato como instrumento de rastreio. | Farmacológico: Não há farmacoterapia específica para o TEA. Tratar comorbidades (ansiedade social: ISRS; TDAH: metilfenidato). | Não farmacológico: Terapia de habilidades sociais, TCC adaptada para TEA, orientação sobre masking e autoadvocacia. | Orientações ao paciente: Validar o autoconhecimento. Explicar que mesmo sem diagnóstico formal, estratégias de adaptação já podem ser iniciadas.',
+    expectedCommunication: 'Sobre o diagnóstico: "Pelo que você descreveu, há características consistentes com o que vemos no TEA, mas para ter certeza precisamos de uma avaliação mais completa. Você merece uma resposta cuidadosa, não uma precipitada." | Sobre o tratamento: "TEA não tem cura porque não é uma doença — é uma forma diferente de funcionamento. O que podemos fazer é trabalhar as dificuldades que causam sofrimento e potencializar o que você já faz bem."',
+    criticalErrors: [
+      'Diagnosticar TEA definitivamente em uma única consulta sem instrumentos padronizados',
+      'Excluir TEA categoricamente sem investigar adequadamente o histórico desde a infância',
+      'Não investigar comorbidades (ansiedade social, TDAH) que podem ser tratadas independentemente do diagnóstico de TEA',
+      'Minimizar o autoconhecimento do paciente ("você não parece autista")',
+      'Não encaminhar para avaliação multidisciplinar especializada'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — JOVEM QUE SE IDENTIFICOU COM AUTISMO E BUSCA DIAGNÓSTICO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou o autoconhecimento e a lista trazida pelo paciente', score: 0.5, ref: 'MS — Política Nacional de Humanização, 2013' },
+          { item: 'Respondeu diretamente à pergunta sobre diagnóstico sem evasivas', score: 0.5, ref: 'CFM nº 1.931/2009' },
+          { item: 'Explicou que TEA não é doença mas forma diferente de funcionamento', score: 0.5, ref: 'DSM-5; ABP 2022' },
+          { item: 'Usou linguagem literal e objetiva (compatível com o estilo comunicativo do paciente)', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou os dois domínios do TEA: comunicação social e comportamentos restritos/repetitivos', score: 1.0, ref: 'DSM-5; ABP — Diretrizes TEA, 2022' },
+          { item: 'Investigou o histórico desde a infância (linguagem, escola, amizades)', score: 0.5, ref: 'DSM-5; ABP — Diretrizes TEA, 2022' },
+          { item: 'Pesquisou sensibilidade sensorial', score: 0.3, ref: 'DSM-5; ABP — Diretrizes TEA, 2022' },
+          { item: 'Investigou comorbidades: ansiedade social e TDAH', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental com atenção ao contato visual, entonação e literalidade', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Não diagnosticou TEA definitivamente em consulta única', score: 1.0, ref: 'ABP — Diretrizes TEA, 2022; NICE 2021' },
+          { item: 'Identificou necessidade de avaliação multidisciplinar com instrumentos padronizados', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Encaminhou para serviço especializado em TEA adulto', score: 1.0, ref: 'ABP — Diretrizes TEA, 2022' },
+          { item: 'Orientou sobre a possibilidade de tratar comorbidades independentemente do diagnóstico formal', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' },
+          { item: 'Mencionou instrumentos de rastreio (RAADS-R) e avaliação neuropsicológica', score: 0.5, ref: 'ABP — Diretrizes TEA, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 20,
+  title: "Professora que 'não consegue terminar nada' e perde tudo que precisa",
+  sub: 'UBS — Demanda espontânea',
+  tema: 'Psiquiatria',
+  topic: 'TDAH em adulto — apresentação predominantemente desatenta em mulher',
+  level: 'moderado',
+  cardAccent: '#0277BD',
+  instA: {
+    scenario: 'UBS. Consultório, turno matutino. Consulta agendada por queixa de "não conseguir se organizar".',
+    patient: 'A.P., 34 anos, feminino, professora do ensino fundamental, casada, dois filhos.',
+    complaint: "Paciente relata que 'sempre foi assim' mas que na maturidade as demandas aumentaram e ela não consegue mais acompanhar: esquece compromissos, perde documentos, não termina tarefas, procrastina muito e se sente 'sobrecarregada o tempo todo'. A diretora ameaçou avaliá-la por atrasos nas entregas.",
+    tasks: [
+      'Realize a anamnese investigando critérios de TDAH adulto (desatenção predominante) e histórico desde a infância.',
+      'Aplique o rastreio com escala ASRS (Adult ADHD Self-Report Scale) ou investigue seus critérios principais.',
+      'Investigue diagnósticos diferenciais e comorbidades.',
+      'Formule a hipótese diagnóstica e explique ao paciente.',
+      'Proponha o plano terapêutico inicial.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '118/76 mmHg',
+      FC: '80 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '65 kg',
+      Altura: '1,62 m',
+      IMC: '24,8 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, bem arrumada mas levemente desorganizada (bolsa com muitos papéis, sem encontrar o cartão do SUS). Lúcida, orientada, levemente ansiosa. Sem déficits neurológicos.',
+    physicalSeg: 'Estado mental: Fala fluente, sem desorganização formal. Pensamento organizado mas com tendência a mudanças de assunto. Sem alucinações ou delírios. Humor levemente ansioso. Insight preservado.',
+    labs: [
+      { test: 'TSH', val: '2,1 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'Vitamina B12', val: '290 pg/mL', ref: '200–900 pg/mL', alt: false },
+      { test: 'Vitamina D', val: '22 ng/mL', ref: '>30 ng/mL', alt: true },
+      { test: 'Glicemia', val: '88 mg/dL', ref: '70–99 mg/dL', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. Exames se solicitados. O candidato deve ser avaliado especialmente pelo rastreio desde a infância (TDAH é transtorno do neurodesenvolvimento — os sintomas devem ter início antes dos 12 anos) e pela distinção de TDAH de depressão, ansiedade e hipotireoidismo como causas de desatenção e esquecimento.',
+    patientProfile: 'A.P., 34 anos, professora. Na escola era "sonhadora", tirava boas notas em algumas matérias e péssimas em outras. Perdeu a bolsa de estudos na faculdade por não entregar trabalho. Nunca teve diagnóstico psiquiátrico.',
+    script: [
+      { trigger: 'Abertura', speech: 'Doutora, eu sou burra ou tenho algum problema? Não consigo terminar nada. Perco tudo. Começo mil coisas e não acabo nenhuma.' },
+      { trigger: 'Sobre a infância', speech: 'Na escola era assim também. Minha mãe dizia que eu vivia "no mundo da lua". Mas tirava notas boas quando gostava da matéria.' },
+      { trigger: 'Sobre o trabalho', speech: 'Já deixei prazo de entrega passar umas três vezes esse ano. Não é falta de vontade. Sento pra fazer e de repente estou pensando em outra coisa.' },
+      { trigger: 'Sobre hiperatividade', speech: 'Não sou agitada. Pelo contrário, parece que minha cabeça viaja mas meu corpo fica parado.' },
+      { trigger: 'Sobre organização', speech: 'Tenho três agendas e não uso nenhuma. Perco chaves, documentos, caneta. Meu marido me chama de "desastre".' },
+      { trigger: 'Sobre humor', speech: 'Fico triste às vezes por causa disso. Mas não é tristeza o tempo todo. É frustração comigo mesma.' },
+      { trigger: 'Pergunta ativa', speech: 'Pode ser TDAH? Vi um vídeo sobre isso e me identifiquei muito. É isso?' },
+      { trigger: 'Pergunta ativa', speech: 'Vou precisar de remédio pra sempre?' }
+    ],
+    hiddenInfo: 'Na faculdade perdeu bolsa de estudos por não entregar TCC no prazo — revelar se perguntado sobre consequências acadêmicas. | Deficiência de vitamina D (22 ng/mL) como fator contribuinte para fadiga e dificuldade de concentração — identificado nos exames.',
+    actorBehavior: 'Fala animada, muda de assunto com facilidade. Interrompe a si mesma ("ah, esqueci de falar..."). Demonstra alívio quando o candidato valida que TDAH não é "preguiça" ou "falta de esforço". Ri de si mesma com ironia saudável.'
+  },
+  instC: {
+    diagnosis: 'TDAH em adulto, apresentação predominantemente desatenta (TDAH-D). Sintomas presentes desde antes dos 12 anos (critério obrigatório do DSM-5). Comprometimento em ≥2 contextos (trabalho e vida doméstica). CID-11: 6A05.0 / DSM-5: F90.0. Deficiência de vitamina D como fator contribuinte para fadiga e dificuldade de concentração.',
+    differentials: [
+      'Depressão maior — pode causar desatenção e dificuldade de concentração; no entanto, os sintomas no TDAH precedem à infância e não há humor deprimido persistente.',
+      'TAG — pode prejudicar a concentração; a desatenção no TAG é secundária à preocupação excessiva; no TDAH é primária.',
+      'Hipotireoidismo — causa fadiga, lentidão cognitiva e esquecimento; TSH normal afasta.',
+      'Deficiência de vitamina D — pode contribuir com fadiga e dificuldade de concentração mas não explica o padrão desde a infância.'
+    ],
+    context: 'Mulher de 34 anos com desatenção predominante desde a infância (critério retroativo preenchido), descompensada na maturidade com aumento das demandas funcionais. TDAH em mulheres frequentemente apresenta-se de forma mais internalizada (desatenção predominante, menos hiperatividade externa), levando ao diagnóstico tardio.',
+    justify: 'Preenche ≥6 critérios de desatenção do DSM-5 (não termina tarefas, perde objetos, se distrai facilmente, evita tarefas que exigem esforço mental sustentado, esquece compromissos) desde antes dos 12 anos (sintomas na escola relatados pela paciente), em ≥2 contextos (trabalho e domicílio), com comprometimento funcional significativo (risco de avaliação negativa no trabalho). Sem outro transtorno que explique melhor os sintomas.',
+    expectedAnamnesis: 'Investigar os critérios de desatenção e hiperatividade/impulsividade do DSM-5 | Pesquisar início dos sintomas (obrigatório antes dos 12 anos) | Investigar comprometimento em múltiplos contextos | Pesquisar diagnósticos prévios de dificuldade de aprendizagem | Rastrear depressão e ansiedade comórbidas | Investigar uso de substâncias (álcool, estimulantes como café em excesso) | Pesquisar TDAH em familiares (herdabilidade alta)',
+    expectedPhysical: 'Estado mental: atenção, memória, organização do discurso | Avaliação tireoidiana: afastar hipotireoidismo',
+    expectedExams: [
+      { exam: 'TSH', justify: 'Afastar hipotireoidismo como causa de desatenção', expected: 'Normal (2,1 mUI/L)' },
+      { exam: 'Hemograma', justify: 'Avaliação basal', expected: 'Normal' },
+      { exam: 'Vitamina D', justify: 'Rastrear deficiência como fator contribuinte para fadiga', expected: '22 ng/mL — deficiente' }
+    ],
+    expectedConduct: 'Psicoeducação: Explicar que TDAH não é preguiça — é déficit de regulação atencional. | Farmacológica (1ª linha): Metilfenidato de liberação imediata 10 mg VO 2x/dia (manhã e início da tarde), com ajuste gradual até dose eficaz (máx. 60 mg/dia). (MS — PCDT TDAH, 2022; RENAME 2023) | Não farmacológico: TCC para TDAH (organização, gestão do tempo, estratégias compensatórias). Aplicativos de organização. Envolver cônjuge no suporte. | Vitamina D: Suplementação 2.000 UI/dia VO. (SBEM, 2022) | Encaminhamento: Psicologia para TCC adaptada para TDAH. Retorno em 4 semanas para avaliação da resposta ao metilfenidato.',
+    expectedCommunication: "TDAH em mulheres frequentemente é diagnosticado tarde porque a apresentação é mais interna — menos agitação, mais 'mundo da lua'. Você não é burra nem preguiçosa.",
+    criticalErrors: [
+      'Não investigar início dos sintomas antes dos 12 anos (critério obrigatório do DSM-5)',
+      'Diagnosticar TDAH sem afastar hipotireoidismo como causa de desatenção',
+      'Não mencionar a necessidade de rastreio em múltiplos contextos',
+      'Não prescrever metilfenidato com controle de risco (PA, FC, uso em cardiopatas)',
+      "Dizer à paciente que 'é normal para mulher com filhos'"
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — PROFESSORA QUE NÃO CONSEGUE TERMINAR NADA E PERDE TUDO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou que TDAH não é preguiça ou falta de esforço', score: 0.5, ref: 'MS — PCDT TDAH, 2022' },
+          { item: 'Explicou a apresentação diferente do TDAH em mulheres', score: 0.5, ref: 'MS — PCDT TDAH, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou ≥6 critérios de desatenção do DSM-5', score: 0.5, ref: 'DSM-5; MS — PCDT TDAH, 2022' },
+          { item: 'Confirmou início dos sintomas antes dos 12 anos', score: 1.0, ref: 'DSM-5; MS — PCDT TDAH, 2022' },
+          { item: 'Confirmou comprometimento em ≥2 contextos', score: 0.5, ref: 'DSM-5; MS — PCDT TDAH, 2022' },
+          { item: 'Rastreou depressão e ansiedade comórbidas', score: 0.5, ref: 'MS — PCDT TDAH, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental (atenção, memória, organização)', score: 0.5, ref: 'Semiologia Médica — FMUSP' },
+          { item: 'Avaliou PA e FC (baseline antes do metilfenidato)', score: 0.3, ref: 'MS — PCDT TDAH, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou TSH para afastar hipotireoidismo', score: 0.5, ref: 'MS — PCDT TDAH, 2022' },
+          { item: 'Formulou hipótese de TDAH-D adulto com critérios retroativos', score: 1.0, ref: 'DSM-5; MS — PCDT TDAH, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu metilfenidato em dose inicial correta (10 mg 2x/dia)', score: 1.0, ref: 'MS — PCDT TDAH, 2022; RENAME 2023' },
+          { item: 'Indicou TCC para TDAH como tratamento não farmacológico', score: 0.5, ref: 'MS — PCDT TDAH, 2022' },
+          { item: 'Orientou sobre suplementação de vitamina D', score: 0.3, ref: 'SBEM, 2022' },
+          { item: 'Estabeleceu retorno em 4 semanas para avaliação da resposta', score: 0.4, ref: 'MS — PCDT TDAH, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 21,
+  title: 'Homem que confere a torneira 40 vezes antes de sair e chegou atrasado à consulta',
+  sub: 'CAPS II',
+  tema: 'Psiquiatria',
+  topic: 'TOC — verificação e contaminação, apresentação masculina',
+  level: 'moderado',
+  cardAccent: '#1B5E20',
+  instA: {
+    scenario: 'CAPS II. Sala de acolhimento, turno da manhã. Paciente chegou 55 minutos atrasado, apologético.',
+    patient: 'F.A., 41 anos, masculino, contador, divorciado há 2 anos, mora sozinho.',
+    complaint: "Paciente relata que 'tudo demorou muito hoje': checou as torneiras 40 vezes, o gás 20 vezes e precisou voltar duas vezes para casa depois de sair. Diz que 'sabe que está tudo bem, mas precisa checar mesmo assim'. Encaminhado pelo clínico após piora progressiva nos últimos 6 meses.",
+    tasks: [
+      'Realize a anamnese investigando obsessões, compulsões e seu impacto funcional.',
+      'Estime a gravidade com base nos critérios da Y-BOCS (tempo consumido, angústia, resistência, controle).',
+      'Investigue diagnósticos diferenciais e rastreie depressão comórbida.',
+      'Formule o diagnóstico e proponha o tratamento baseado em evidências.',
+      'Explique ao paciente o que é TOC e como funciona o tratamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '128/84 mmHg',
+      FC: '82 bpm',
+      FR: '16 irpm',
+      Tax: '36,6°C',
+      Peso: '88 kg',
+      Altura: '1,78 m',
+      IMC: '27,8 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, bem vestido mas levemente suado (veio correndo). Lúcido, orientado. Sem lesões nas mãos (sem lavagem excessiva). Insight preservado — reconhece os rituais como excessivos.',
+    physicalSeg: 'Estado mental: Humor moderadamente ansioso, afeto congruente. Fala organizada. Pensamento sem desorganização formal. Obsessões egodistônicas. Sem alucinações ou delírios. Insight preservado.',
+    labs: [
+      { test: 'TSH', val: '2,0 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'Glicemia', val: '92 mg/dL', ref: '70–99 mg/dL', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. Exames se solicitados. O candidato deve ser avaliado especialmente pela distinção do TOC de TAG (no TAG não há compulsões ritualizadas) e pela proposta correta de ISRS em dose alta para TOC.',
+    patientProfile: 'F.A., 41 anos, contador. Divorciado por "exigências que minha esposa não aguentou". Mora sozinho há 2 anos. Sintomas desde os 25 anos mas com piora após o divórcio.',
+    script: [
+      { trigger: 'Abertura', speech: 'Desculpa o atraso. Fiquei preso em casa checando tudo. Hoje foram 40 vezes a torneira. Sei que tá tudo bem, mas se eu não checar fica uma angústia insuportável.' },
+      { trigger: 'Sobre as compulsões', speech: 'É torneira, gás, porta, janela. Tenho uma ordem: torneira (3 vezes cada, conto até 3), depois gás (5 vezes), depois porta (10 vezes). Se interromper, recomeço.' },
+      { trigger: 'Sobre o impacto', speech: 'Levo 2 horas pra sair de casa. Já cheguei atrasado em reuniões importantes. Fui demitido de um emprego por isso.' },
+      { trigger: 'Sobre o início', speech: 'Desde os 25 anos, mas era leve. Piorou muito depois que me divorciei.' },
+      { trigger: 'Sobre depressão', speech: 'Me sinto triste por causa disso, mas não é uma tristeza que fica o tempo todo.' },
+      { trigger: 'Sobre suicídio', speech: 'Não. Às vezes me sinto preso, mas não penso em me machucar.' },
+      { trigger: 'Pergunta ativa', speech: 'Isso tem cura? Porque eu já tentei parar de checar e não consigo.' },
+      { trigger: 'Pergunta ativa', speech: 'O remédio que o senhor vai dar vai me deixar dependente?' }
+    ],
+    hiddenInfo: 'Demissão de emprego anterior por chegar atrasado devido às compulsões — revelar se perguntado sobre outras consequências profissionais além da situação atual. | As compulsões pioraram após o divórcio (estressor) — revelar se perguntado sobre quando começou a piora.',
+    actorBehavior: 'Apologético pelo atraso, levemente envergonhado. Insight excelente — reconhece a irracionalidade mas não consegue resistir. Alivia quando o candidato valida que TOC é uma condição médica real. Fica preocupado quando se fala em "expor-se ao desconforto" no tratamento (EPR).'
+  },
+  instC: {
+    diagnosis: 'TOC — compulsões de verificação, com obsessões de catástrofe (torneira, gás), insight preservado. Y-BOCS estimado grave (>24 — >3h/dia de rituais, angústia intensa, controle mínimo). CID-11: 6B20 / DSM-5: F42.',
+    differentials: [
+      'TAG — preocupações sem rituais compulsivos estruturados; exclui-se pela presença das compulsões ritualizadas e da sequência rígida.',
+      'Transtorno de personalidade TPOC — rigidez e perfeccionismo egossintônicos; no TOC as obsessões são egodistônicas.',
+      'Depressão maior com ruminação — ruminações depressivas egossintônicas; no TOC são egodistônicas e seguidas de compulsões.',
+      'Psicose — pensamentos intrusivos podem simular obsessões; no entanto, insight preservado e ausência de alucinações/delírios afastam.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'ISRS em dose alta: Fluoxetina 40–80 mg/dia OU Sertralina 150–200 mg/dia VO. Clomipramina 150–300 mg/dia como alternativa de 2ª linha. TCC com EPR como componente obrigatório. Encaminhamento para psicólogo com experiência em TCC/EPR para TOC. Latência de resposta: 8–12 semanas. (ABP — Diretrizes TOC, 2022; RENAME 2023)',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Prescrever ISRS em dose antidepressiva padrão (insuficiente para TOC)',
+      'Não indicar TCC com EPR como componente essencial',
+      'Não diferenciar TOC de TAG',
+      'Não investigar depressão comórbida',
+      'Não avaliar risco de suicídio'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — HOMEM QUE CONFERE A TORNEIRA 40 VEZES ANTES DE SAIR',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou que TOC não é frescura nem falta de vontade', score: 0.5, ref: 'ABP — Diretrizes TOC, 2022' },
+          { item: 'Explicou o conceito de EPR de forma acessível', score: 0.5, ref: 'ABP — Diretrizes TOC, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou obsessões (conteúdo, frequência, angústia)', score: 0.5, ref: 'DSM-5; ABP 2022' },
+          { item: 'Investigou compulsões (tipo, duração, sequência, resistência)', score: 0.5, ref: 'DSM-5; ABP 2022' },
+          { item: 'Estimou tempo consumido por dia (>3h = grave)', score: 0.5, ref: 'Y-BOCS; ABP 2022' },
+          { item: 'Rastreou depressão comórbida', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Avaliou risco de suicídio', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou insight (egodistônico vs egossintônico)', score: 0.5, ref: 'DSM-5; ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Formulou TOC e diferenciou de TAG', score: 1.0, ref: 'DSM-5; ABP 2022' },
+          { item: 'Solicitou TSH para afastar causa orgânica', score: 0.3, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu ISRS em dose ALTA para TOC', score: 1.0, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Indicou TCC com EPR como 1ª linha', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Orientou sobre latência prolongada (8–12 semanas)', score: 0.5, ref: 'ABP 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 22,
+  title: 'Criança que não consegue entrar no elevador depois de ficar presa por 10 minutos',
+  sub: 'Ambulatório de Psiquiatria Infantil',
+  tema: 'Psiquiatria',
+  topic: 'Fobia específica — situacional (elevadores/espaços fechados)',
+  level: 'moderado',
+  cardAccent: '#F57F17',
+  instA: {
+    scenario: 'Ambulatório de Psiquiatria Infantil. Primeira consulta, turno da tarde. Mãe trouxe a filha de 10 anos.',
+    patient: 'L.C., 10 anos, feminino, estudante do 5º ano, mora em apartamento no 12º andar.',
+    complaint: 'Mãe relata que há 3 meses, após a filha ficar presa em um elevador por 10 minutos, a criança não entra mais em elevadores, recusa-se a ir à escola (que tem elevadores), chora ao ver imagens de elevadores e está dormindo mal.',
+    tasks: [
+      'Realize a anamnese com a criança e a mãe, investigando o evento precipitante e os sintomas atuais.',
+      'Avalie o impacto funcional: escola, vida social, sono.',
+      'Diferencie de TEPT, TAG e transtorno de ajustamento.',
+      'Proponha o plano terapêutico baseado em evidências.',
+      'Oriente a mãe sobre como ajudar sem reforçar a evitação.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '100/64 mmHg',
+      FC: '88 bpm',
+      FR: '18 irpm',
+      Tax: '36,4°C',
+      Peso: '36 kg',
+      Altura: '1,42 m',
+      IMC: '17,8 kg/m²'
+    },
+    physicalGeneral: 'Criança em bom estado geral, lúcida, orientada. Levemente tímida na consulta. Sem déficits neurológicos. Sem sinais de maus-tratos.',
+    physicalSeg: 'Estado mental: Humor ansioso apenas ao falar sobre elevadores. Afeto congruente. Sem alucinações ou delírios. Insight parcialmente preservado para a idade (sabe que o medo é grande demais, mas não consegue controlar). Sem ideação suicida.',
+    labs: [],
+    image: null,
+    note: 'Nenhum exame necessário. O candidato deve ser avaliado pela habilidade de conduzir a entrevista com a criança (linguagem adaptada) e de diferenciar fobia específica de TEPT (a fobia específica tem o medo circunscrito a um estímulo específico, sem os outros clusters do TEPT).',
+    patientProfile: 'L.C., 10 anos, bem desenvolvida cognitivamente. Bons relacionamentos antes do incidente. Pai acompanhou e ficou calmo no momento da prisão no elevador (não foi traumático para o pai).',
+    script: [
+      { trigger: 'Abertura', speech: 'Eu sei que é bobagem. Mas quando penso no elevador fico com o coração acelerado e parece que vou sufocar.' },
+      { trigger: 'Sobre o incidente', speech: 'A gente ficou presa uns 10 minutos. Eu gritei muito. Achei que ia ficar presa pra sempre. Meu pai ficava dizendo que ia passar, mas eu não acreditava.' },
+      { trigger: 'Sobre ir à escola', speech: 'A escola tem elevador na entrada do prédio. Eu não consigo mais entrar. Fico esperando minha mãe pegar comigo na escada mas a escola tem 12 andares.' },
+      { trigger: 'Sobre pesadelos', speech: 'Não tenho pesadelo. Só fico com medo quando vejo elevador ou penso nisso.' },
+      { trigger: 'Script da mãe', speech: 'Doutor, desde que aconteceu ela chora se a gente fala em elevador. Faltou 15 dias à escola. Está subindo e descendo 12 andares de escada. Não tem pesadelo, não fica revivendo o incidente — só tem esse medo específico de elevador.' },
+      { trigger: 'Pergunta ativa da criança', speech: 'Vai me colocar no elevador na força? Porque não consigo.' },
+      { trigger: 'Pergunta ativa da mãe', speech: 'Posso ir evitando o elevador com ela ou isso piora?' }
+    ],
+    hiddenInfo: 'A mãe passou a evitar o elevador junto com a filha (reforço materno da evitação) — revelar se perguntado sobre como a família tem lidado com o medo.',
+    actorBehavior: 'Criança cooperativa, levemente tímida. Consegue falar sobre o incidente sem revivência ou pânico — diferenciando do TEPT. A mãe é colaborativa e ansiosa.'
+  },
+  instC: {
+    diagnosis: 'Fobia específica — tipo situacional (elevadores / espaços fechados), precipitada por evento específico. CID-11: 6B03 / DSM-5: F40.248.',
+    differentials: [
+      'TEPT — sem revivência do evento, sem pesadelos, sem evitação generalizada; o medo é circunscrito ao estímulo (elevador); afastado.',
+      'Transtorno de ajustamento com ansiedade — duração <3 meses e sem medo específico ritualizado; excluído pela presença de medo fóbico claro e impacto funcional significativo (15 dias sem escola).',
+      'Claustrofobia como parte de agorafobia — no transtorno do pânico com agorafobia o medo é de situações onde a fuga é difícil; aqui o medo é específico ao elevador.',
+      'Ansiedade de separação — medo de ser separada dos pais; não se aplica ao caso.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'TCC com exposição gradual (hierarquia de medo): Tratamento de 1ª linha para fobia específica em crianças. Construir hierarquia de medo com a criança (1 = ver foto de elevador; 10 = entrar sozinha no elevador por 5 andares). Iniciar do item menos ansioso com técnicas de relaxamento. (ABP — Diretrizes Fobias, 2021; NICE 2013 — atualizado 2019) | Psicoeducação para a mãe: Explicar que evitar o elevador junto com a filha mantém e piora a fobia (reforço negativo). A exposição gradual é necessária. | Farmacológico: Geralmente não indicado para fobia específica em crianças. Se sintomas ansiosos intensos interferirem na exposição: considerar ISRS como adjuvante (sertralina em baixa dose). (ABP 2021) | Escola: Comunicar a escola sobre o plano de exposição gradual; iniciar com entrada pela escada mas com exposição planejada ao elevador.',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Diagnosticar TEPT sem a presença dos 4 clusters (especialmente ausência de revivência)',
+      'Orientar a mãe a continuar evitando o elevador com a filha (piora a fobia)',
+      'Forçar a criança a entrar no elevador imediatamente (flooding sem preparação — pode agravar)',
+      'Não incluir a mãe no plano terapêutico',
+      'Prescrever benzodiazepínico em criança para fobia específica (contraindicado como 1ª linha)'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — CRIANÇA QUE NÃO CONSEGUE ENTRAR NO ELEVADOR',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Usou linguagem adaptada à faixa etária com a criança', score: 0.5, ref: 'MS — Saúde da Criança, 2022' },
+          { item: 'Orientou a mãe que a evitação conjunta piora a fobia', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou o evento precipitante sem forçar detalhes', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Pesquisou presença (ou ausência) de revivência e pesadelos', score: 0.5, ref: 'DSM-5' },
+          { item: 'Avaliou impacto funcional (escola, sono, socialização)', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Investigou reforço materno da evitação', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental da criança (humor, ansiedade específica)', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Diferenciou fobia específica de TEPT e TA', score: 1.0, ref: 'DSM-5; ABP 2021' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou TCC com exposição gradual como 1ª linha', score: 1.5, ref: 'ABP 2021; NICE 2019' },
+          { item: 'Não prescreveu benzodiazepínico em criança como 1ª linha', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Construiu hierarquia de medo com a criança', score: 1.0, ref: 'ABP 2021' },
+          { item: 'Orientou escola sobre o plano terapêutico', score: 0.5, ref: 'MS — Saúde da Criança, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 23,
+  title: "Músico que recusa shows por medo de 'dar branco' e ser ridicularizado",
+  sub: 'Ambulatório de Saúde Mental',
+  tema: 'Psiquiatria',
+  topic: 'Fobia social (transtorno de ansiedade social)',
+  level: 'moderado',
+  cardAccent: '#4527A0',
+  instA: {
+    scenario: 'Ambulatório de Saúde Mental — Policlínica. Primeira consulta, turno vespertino.',
+    patient: 'M.C., 28 anos, masculino, músico (guitarrista), solteiro. Encaminhado pelo clínico após relato de ansiedade extrema em situações de performance.',
+    complaint: "Paciente relata que nos últimos 2 anos passou a recusar shows e apresentações por medo intenso de 'dar branco', errar na frente do público e ser ridicularizado. Recusa jantares e reuniões sociais com pessoas desconhecidas pelo mesmo motivo. O medo está prejudicando sua carreira musical.",
+    tasks: [
+      'Realize a anamnese investigando o padrão de medo social, os gatilhos específicos e os comportamentos de evitação.',
+      'Diferencie de timidez normal, transtorno do pânico e TAG.',
+      'Avalie comorbidades: depressão, álcool (como automedicação).',
+      'Formule o diagnóstico e proponha o tratamento.',
+      'Oriente o paciente sobre o processo de tratamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '122/78 mmHg',
+      FC: '84 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '74 kg',
+      Altura: '1,77 m',
+      IMC: '23,6 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral. Levemente ansioso na consulta. Contato visual reduzido quando fala de si mesmo. Lúcido, orientado. Sem déficits neurológicos.',
+    physicalSeg: '',
+    labs: [
+      { test: 'TSH', val: '1,9 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Glicemia', val: '91 mg/dL', ref: '70–99 mg/dL', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. Exames se solicitados. O candidato deve ser avaliado pela distinção entre fobia social e timidez normal (a fobia social tem impacto funcional significativo e comportamento de evitação) e pela proposta de tratamento (ISRS + TCC).',
+    patientProfile: 'M.C., 28 anos, músico talentoso reconhecido por professores. Desde os 14 anos tem dificuldade em apresentações, mas piorou após "branco" em um show importante há 2 anos.',
+    script: [
+      { trigger: 'Abertura', speech: 'Eu sei tocar guitarra muito bem quando estou sozinho ou com amigos íntimos. Mas na frente de pessoas desconhecidas, meu coração acelera, começo a tremer, e fico com medo de dar branco e todo mundo me achar um fracasso.' },
+      { trigger: 'Sobre o evento precipitante', speech: 'Há 2 anos eu estava tocando em um bar, travei numa parte que sei de cor e todo mundo percebeu. Desde então não consigo mais me apresentar.' },
+      { trigger: 'Sobre situações sociais', speech: 'Evito também jantares com pessoas que não conheço, reuniões de condomínio, falar na frente de grupo. Não é em todos os lugares — com amigos íntimos sou normal.' },
+      { trigger: 'Sobre o álcool', speech: 'Antes de shows bebia umas doses pra relaxar. Mas aí parei de ir aos shows. Hoje bebo socialmente, sem exagero.' },
+      { trigger: 'Sobre depressão', speech: 'Fico triste pela carreira que estou perdendo. Mas não é uma tristeza permanente, é mais frustração.' },
+      { trigger: 'Sobre suicídio', speech: 'Não. Quero resolver isso.' },
+      { trigger: 'Pergunta ativa', speech: 'É fraqueza minha? Outros músicos passam por isso?' },
+      { trigger: 'Pergunta ativa', speech: 'Preciso de remédio ou só terapia resolve?' }
+    ],
+    hiddenInfo: 'Usou álcool como automedicação antes de shows por 2 anos antes de parar de se apresentar — revelar se perguntado sobre estratégias que usava para encarar as situações temidas.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno de ansiedade social (fobia social), tipo performance + social generalizado. CID-11: 6B04 / DSM-5: F40.10.',
+    differentials: [
+      'Timidez normal — a timidez não causa comprometimento funcional significativo nem evitação sistemática; excluída pelo impacto na carreira e recusa de múltiplas situações sociais.',
+      'Transtorno do pânico — crises inesperadas e espontâneas, sem relação específica com situações de avaliação social; excluído pela situacionalidade.',
+      'TAG — preocupações generalizadas sem foco no julgamento alheio; excluído.',
+      'Depressão maior com isolamento social — humor deprimido persistente como causa primária do isolamento; excluído pelo humor preservado fora das situações temidas.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'ISRS de 1ª linha: Sertralina 50–150 mg/dia OU Paroxetina 20–40 mg/dia. Beta-bloqueador (propranolol 10–20 mg VO antes da performance) para sintomas autonômicos em situações específicas. TCC com reestruturação cognitiva e exposição gradual às situações temidas. (ABP — Diretrizes Fobias, 2021; RENAME 2023)',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Não distinguir fobia social de transtorno do pânico',
+      'Não indicar TCC como componente essencial do tratamento',
+      'Prescrever benzodiazepínico de longa duração como tratamento principal',
+      'Não investigar uso de álcool como automedicação',
+      'Minimizar como "timidez normal"'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — MÚSICO QUE RECUSA SHOWS POR MEDO DE SER RIDICULARIZADO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou que não é fraqueza — é uma condição médica', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Informou que músicos profissionais frequentemente têm fobia de performance', score: 0.3, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou situações específicas temidas e generalização', score: 0.5, ref: 'DSM-5; ABP 2021' },
+          { item: 'Pesquisou comportamento de evitação e impacto na carreira', score: 0.5, ref: 'DSM-5' },
+          { item: 'Investigou uso de álcool como automedicação', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Rastreou depressão comórbida e risco de suicídio', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental (ansiedade social durante a consulta)', score: 0.3, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Diferenciou fobia social de timidez normal e transtorno do pânico', score: 1.0, ref: 'DSM-5; ABP 2021' },
+          { item: 'Solicitou TSH para afastar hipertireoidismo', score: 0.3, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu ISRS adequado para fobia social', score: 1.0, ref: 'ABP 2021; RENAME 2023' },
+          { item: 'Mencionou propranolol para situações de performance', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Indicou TCC como tratamento 1ª linha', score: 1.0, ref: 'ABP 2021' },
+          { item: 'Estabeleceu retorno e plano de exposição gradual', score: 0.6, ref: 'ABP 2021' }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 24,
+  title: "Mulher que acredita que está tendo infarto sempre que o coração dispara no shopping",
+  sub: 'UBS — Demanda espontânea',
+  tema: 'Psiquiatria',
+  topic: 'Transtorno do pânico sem agorafobia — início recente',
+  level: 'moderado',
+  cardAccent: '#C62828',
+  instA: {
+    scenario: 'UBS. Consultório, turno da tarde. Quarta consulta em 2 meses — as três anteriores foram na UPA por "infarto" e os exames estavam normais.',
+    patient: 'C.B., 43 anos, feminino, gerente de loja, casada, dois filhos adolescentes.',
+    complaint: "Paciente retorna após três atendimentos na UPA por 'infarto' com exames normais. Refere episódios recorrentes de coração disparado, falta de ar e certeza de que vai morrer, especialmente em locais movimentados.",
+    tasks: [
+      'Realize a anamnese investigando características dos episódios (início, duração, sintomas, desencadeantes).',
+      'Interprete os exames previamente normais e avalie se há necessidade de investigação adicional.',
+      'Formule a hipótese diagnóstica e os diferenciais.',
+      'Proponha a conduta terapêutica.',
+      'Explique o diagnóstico à paciente de forma que valide os sintomas sem reforçar a busca por exames.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '128/82 mmHg',
+      FC: '90 bpm',
+      FR: '18 irpm',
+      Tax: '36,6°C',
+      Peso: '71 kg',
+      Altura: '1,63 m',
+      IMC: '26,7 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral. Ansiosa, mas cooperativa. Lúcida, orientada. Sem sinais de intoxicação. Sem déficits neurológicos. Hálito sem odor de álcool.',
+    physicalSeg: '',
+    labs: [
+      { test: 'ECG (3 realizados)', val: 'Ritmos sinusais, normais', ref: 'Normal', alt: false },
+      { test: 'Troponina (2x)', val: '<0,02 ng/mL', ref: '<0,04 ng/mL', alt: false },
+      { test: 'TSH', val: '1,7 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+      { test: 'Glicemia', val: '92 mg/dL', ref: '70–99 mg/dL', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false }
+    ],
+    image: null,
+    note: 'Entregar os exames das UPAs ao início (impresso). O candidato deve ser avaliado especialmente por NÃO solicitar novos exames cardiológicos (reasseguramento desnecessário) e pela comunicação empática que valida os sintomas sem reforçar a crença de doença cardíaca.',
+    patientProfile: 'C.B., 43 anos, gerente de loja de shopping. Primeiro episódio há 2 meses, dentro do shopping no horário de pico.',
+    script: [
+      { trigger: 'Abertura', speech: 'Doutora, eu sei que os exames deram normal, mas não pode estar tudo certo. Aquilo que sinto é real. No shopping parece que vou morrer.' },
+      { trigger: 'Sobre os episódios', speech: 'Dura uns 15 minutos. Coração dispara, falta ar, formigamento nas mãos, tontura. Tenho certeza que é infarto. Depois passa, mas fico esperando o próximo.' },
+      { trigger: 'Sobre os locais', speech: 'Acontece mais no shopping, no supermercado, em lugares cheios. Mas já aconteceu em casa uma vez.' },
+      { trigger: 'Sobre evitação', speech: 'Tô evitando o shopping. Pedi à minha gerente pra trabalhar mais no escritório do fundo.' },
+      { trigger: 'Sobre o medo entre as crises', speech: 'Fico com medo de ter outra crise. Comprei um aparelho de pressão. Meço 10 vezes por dia.' },
+      { trigger: 'Sobre solicitar novos exames', speech: 'A senhora pode me pedir um ecocardiograma? Só pra ter certeza.' },
+      { trigger: 'Pergunta ativa', speech: 'Então é da cabeça? Porque eu sinto de verdade.' }
+    ],
+    hiddenInfo: 'Evitação do shopping (local de trabalho) há 3 semanas — revelar se perguntado sobre mudanças de comportamento no trabalho. | Comprou aparelho de pressão e mede 10 vezes/dia (busca excessiva por reasseguramento) — revelar se perguntado sobre o que faz entre os episódios.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno do pânico sem agorafobia, com comportamento de busca por reasseguramento (medição de PA, múltiplas idas à UPA) e início de evitação situacional. CID-11: 6B01 / DSM-5: F41.0.',
+    differentials: [
+      'SCA — três ECGs e duas troponinas normais afastam de forma robusta.',
+      'Hipertireoidismo — TSH normal afasta.',
+      'Fobia social — crises em locais movimentados podem simular; no entanto, no pânico as crises são inesperadas (também ocorreu em casa) e não motivadas pelo medo de julgamento.',
+      'Hipoglicemia — glicemia normal afasta.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Não solicitar ecocardiograma sem indicação clínica (reasseguramento). | ISRS de 1ª linha: Sertralina 50 mg/dia OU Escitalopram 10 mg/dia (iniciar com metade da dose para evitar ativação ansiosa). (ABP — Diretrizes Pânico, 2021; RENAME 2023) | TCC com técnica de exposição interoceptiva. | Orientar sobre o ciclo do pânico e a respiração diafragmática. | Orientar para reduzir a medição de PA (busca por reasseguramento mantém o pânico).',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Solicitar ecocardiograma sem indicação clínica (reforça a crença de doença cardíaca)',
+      'Dizer que "é da cabeça" sem validar os sintomas físicos',
+      'Prescrever benzodiazepínico de manutenção',
+      'Não orientar sobre a redução da busca por reasseguramento',
+      'Não identificar o início de agorafobia (evitação do trabalho)'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — MULHER QUE ACREDITA TER INFARTO QUANDO O CORAÇÃO DISPARA',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Validou os sintomas físicos como reais ("não é da cabeça")', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Recusou ecocardiograma e explicou o motivo adequadamente', score: 0.5, ref: 'CFM — Uso racional de exames, 2022' },
+          { item: 'Orientou sobre o ciclo do pânico em linguagem acessível', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Caracterizou os episódios (início, duração, sintomas, desencadeantes)', score: 0.5, ref: 'DSM-5; ABP 2021' },
+          { item: 'Identificou episódio inesperado (em casa) — critério do pânico', score: 0.5, ref: 'DSM-5' },
+          { item: 'Investigou evitação e busca por reasseguramento', score: 0.5, ref: 'DSM-5' },
+          { item: 'Avaliou risco de suicídio', score: 0.3, ref: 'MS 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Não solicitou novos exames cardiológicos sem indicação', score: 1.0, ref: 'CFM — Uso racional, 2022' },
+          { item: 'Formulou transtorno do pânico com diferenciais', score: 0.5, ref: 'DSM-5; ABP 2021' }
+        ]
+      },
+      {
+                h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu ISRS em dose inicial baixa (evitar ativação)', score: 1.0, ref: 'ABP 2021; RENAME 2023' },
+          { item: 'Ensinou respiração diafragmática como manejo imediato', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Orientou sobre redução da medição de PA', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Indicou TCC e retorno em 2 semanas', score: 0.5, ref: 'ABP 2021' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 25
+{
+  id: 25,
+  title: 'Mãe que perdeu o filho há 18 meses e não consegue aceitar que ele morreu',
+  sub: 'UBS — Consulta agendada pelo ACS',
+  tema: 'psiquiatria',
+  topic: 'Transtorno do luto prolongado',
+  level: 'moderado',
+  cardAccent: '#37474F',
+  instA: {
+    scenario: 'UBS. Consultório, turno da manhã. ACS trouxe a paciente após visita domiciliar.',
+    patient: 'D.M., 52 anos, feminino, dona de casa, casada, dois filhos (um falecido). Filho de 24 anos morreu em acidente de moto há 18 meses.',
+    complaint: "ACS relata que a paciente não saiu de casa desde o velório, mantém o quarto do filho intacto como 'museu', não consegue mencionar o nome do filho sem entrar em colapso e diz que a vida 'não faz mais sentido' sem ele.",
+    tasks: [
+      'Realize a anamnese investigando os critérios do Transtorno do Luto Prolongado (DSM-5-TR).',
+      'Diferencie luto normal de luto prolongado e de depressão maior.',
+      'Avalie o risco de suicídio.',
+      'Formule a hipótese diagnóstica e proponha a conduta.',
+      'Comunique o diagnóstico com empatia e respeito ao processo de luto.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '136/88 mmHg',
+      FC: '76 bpm',
+      FR: '15 irpm',
+      Tax: '36,4°C',
+      Peso: '68 kg',
+      Altura: '1,60 m',
+      IMC: '26,6 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral. Aparência de sofrimento, roupas pretas. Lúcida e orientada. Olhos marejados. Sem sinais de automutilação. Levemente emagrecida (relata ACS — perdeu 6 kg).',
+    physicalSeg: 'Estado mental: Humor de dor intensa, não depressão global. Afeto congruente ao tema (chora ao falar do filho, recupera-se ao falar de outros assuntos). Sem alucinações. Pensamento organizado, conteúdo de luto. Insight parcialmente comprometido (não reconhece que precisa de ajuda).',
+    labs: [
+      { test: 'TSH', val: '2,3 mUI/L', ref: 'Normal', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. Exames se solicitados. O candidato deve ser avaliado especialmente pela distinção entre luto normal (sem comprometimento global e com tendência à recuperação progressiva) e transtorno do luto prolongado (comprometimento funcional intenso por >12 meses, saudade incapacitante, dificuldade de aceitar a morte).',
+    patientProfile: "D.M., 52 anos, dona de casa. Filho João, 24 anos, morreu há 18 meses em acidente de moto. Marido trabalha e 'tenta seguir em frente'. Filha mais nova mora em outra cidade.",
+    script: [
+      { trigger: 'Abertura', speech: 'Doutora, meu filho morreu há um ano e meio. As pessoas dizem que é pra eu superar. Mas como supero? Ele era minha vida.' },
+      { trigger: 'Sobre o quarto', speech: 'Deixo tudo igualzinho. Quando entro lá parece que ele ainda vai voltar. Não consigo tocar em nada.' },
+      { trigger: 'Sobre o cotidiano', speech: 'Não saio mais. Não tenho mais vontade de nada. Quando tentam me tirar de casa sinto que estou abandonando ele.' },
+      { trigger: 'Sobre outros momentos de prazer', speech: 'Às vezes rio de uma coisa e depois me sinto culpada. Como posso rir se meu filho está morto?' },
+      { trigger: 'Sobre o futuro', speech: 'Não consigo imaginar como vou viver sem ele. A vida não faz sentido sem o João.' },
+      { trigger: 'Sobre suicídio', speech: "Só se perguntado: 'Às vezes penso que seria melhor estar com ele. Mas não faria nada — pelo meu marido e pela minha filha.'" },
+      { trigger: 'Pergunta ativa', speech: 'Isso vai passar algum dia? Porque parece que não vai.' },
+      { trigger: 'Pergunta ativa', speech: 'As pessoas me dizem que é pra aceitar. Como aceita que seu filho morreu?' }
+    ],
+    hiddenInfo: "Ideação passiva de morte ('seria melhor estar com ele') — revelar apenas com pergunta direta sobre pensamentos de morrer. | Sentimento de culpa ('devia ter proibido de usar moto') — revelar se perguntado sobre pensamentos sobre a morte do filho.",
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno do luto prolongado (TLP) — saudade ou preocupação intensa com o filho por >12 meses após a morte, com dificuldade de aceitar a morte, crença de que parte de si morreu com ele, incapacidade de experimentar emoções positivas sem culpa, evitação de lembretes e comprometimento funcional grave (isolamento domiciliar 18 meses). Ideação passiva de morte. CID-11: 6B42 / DSM-5-TR: F43.8.',
+    differentials: [
+      "Luto normal — a dor da perda de um filho nunca é 'normal' em intensidade; no entanto, no luto não complicado há progressão gradual e preservação de algumas áreas de funcionamento; aqui, 18 meses de isolamento total, incapacidade de mencionar o nome do filho e ideação passiva de morte indicam patologia.",
+      'Depressão maior — humor deprimido persistente em todas as áreas; aqui o humor varia com os assuntos (chora com o filho, ri de outro assunto), o que é mais consistente com luto; no entanto, pode ser comórbido.',
+      'TEPT — trauma pelo acidente; no entanto, sem os 4 clusters típicos (ausência de flashbacks, pesadelos, hiperexcitabilidade predominante); a apresentação é dominada pela saudade e pela recusa em aceitar a morte.',
+      'Transtorno de ajustamento — sintomas desproporcionais ao esperado culturalmente por >6 meses após o evento; excluído pela gravidade e duração (18 meses).'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: "Psicoterapia específica para luto prolongado: Terapia do Luto Complicado (TLC/CGT — Complicated Grief Treatment), desenvolvida por Shear et al. Inclui técnicas de exposição à dor da perda e revisão dos objetivos de vida. (Shear et al., UpToDate 2023; não há diretriz brasileira específica — referenciar ao especialista) | Farmacológica: Se depressão comórbida: ISRS (sertralina). O TLP isolado responde menos a antidepressivos do que à psicoterapia específica. (UpToDate 2023) | Encaminhamento: CAPS II para acompanhamento ou psicólogo com experiência em luto. | Avaliação de suicídio: Ideação passiva presente — estabelecer plano de segurança, combinar retorno breve. | Orientação à família: Explicar que 'superar' não é o objetivo — o objetivo é 'integrar a perda' e retomar a vida com a presença do filho na memória.",
+    expectedCommunication: '',
+    criticalErrors: [
+      "Não avaliar ideação de morte em paciente em luto prolongado com frase 'a vida não faz sentido'",
+      "Dizer à paciente que 'precisa superar' ou que 'o tempo cura' (invalida o sofrimento e é clinicamente incorreto)",
+      'Diagnosticar depressão maior sem investigar a especificidade do luto',
+      'Não encaminhar para psicoterapia específica de luto',
+      'Não incluir o marido no plano de cuidado'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — MÃE QUE NÃO CONSEGUE ACEITAR A MORTE DO FILHO HÁ 18 MESES',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não usou a expressão "superar" — usou "integrar a perda"', score: 0.5, ref: 'DSM-5-TR; Shear 2023' },
+          { item: 'Validou a intensidade da dor sem minimizar', score: 0.5, ref: 'MS — Humanização, 2013' },
+          { item: 'Explicou que o objetivo não é esquecer o filho', score: 0.5, ref: 'Shear 2023' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou saudade intensa e dificuldade de aceitar a morte', score: 0.5, ref: 'DSM-5-TR' },
+          { item: 'Investigou comprometimento funcional (isolamento, trabalho, social)', score: 0.5, ref: 'DSM-5-TR' },
+          { item: 'Avaliou diretamente ideação de morte ("seria melhor estar com ele")', score: 1.0, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Investigou culpa e crença de que parte de si morreu', score: 0.5, ref: 'DSM-5-TR' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Diferenciou luto prolongado de depressão maior', score: 0.5, ref: 'DSM-5-TR' },
+          { item: 'Confirmou duração >12 meses como critério diagnóstico', score: 0.5, ref: 'DSM-5-TR' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou psicoterapia específica para luto (TLC/CGT)', score: 1.0, ref: 'Shear 2023' },
+          { item: 'Estabeleceu plano de segurança para ideação passiva', score: 1.0, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Incluiu o marido e a família no plano de cuidado', score: 0.5, ref: 'MS — Humanização, 2013' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 26
+{
+  id: 26,
+  title: 'Homem que se jogou da maca do PS e está gritando que vai morrer',
+  sub: 'PS — Emergência Psiquiátrica',
+  tema: 'psiquiatria',
+  topic: "Emergência psiquiátrica — agitação psicomotora por mania aguda",
+  level: 'moderado',
+  cardAccent: '#BF360C',
+  instA: {
+    scenario: "PS de Hospital Geral. Sala de emergência psiquiátrica, turno noturno. Paciente foi trazido pela família por agitação crescente há 48 horas. Ao chegar ao PS, pulou da maca e está andando pelo corredor gritando que 'tem uma missão divina'.",
+    patient: 'R.T., 35 anos, masculino, pastor, casado. Em uso irregular de valproato para TAB diagnosticado há 4 anos.',
+    complaint: "Família relata 4 dias sem dormir, gastos impulsivos de R$20.000 em 'projetos missionários', comportamento grandioso e agressivo. Abandonou o valproato há 6 semanas.",
+    tasks: [
+      'Realize a abordagem inicial do paciente agitado, priorizando segurança e contenção verbal.',
+      'Investigue possíveis causas orgânicas da agitação.',
+      'Proponha a conduta de contenção farmacológica adequada.',
+      'Solicite exames pertinentes.',
+      'Comunique à família o diagnóstico e o plano de manejo.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '148/92 mmHg',
+      FC: '118 bpm',
+      FR: '20 irpm',
+      Tax: '37,0°C',
+      Peso: '86 kg',
+      Altura: '1,78 m',
+      IMC: '27,1 kg/m²'
+    },
+    physicalGeneral: 'Paciente em mau estado geral por privação de sono (olhos avermelhados). Agitado, andando pelo corredor. Discurso grandioso e acelerado. Lúcido mas com julgamento gravemente comprometido. Sem sinais de intoxicação.',
+    physicalSeg: 'Estado mental: Humor eufórico/irritável. Logorreia. Fuga de ideias. Grandiosidade. Sem alucinações evidentes. Insight ausente. | Neurológico: Sem déficits focais.',
+    labs: [
+      { test: 'Glicemia', val: '102 mg/dL', ref: '70–140', alt: false },
+      { test: 'Sódio', val: '140 mEq/L', ref: '135–145', alt: false },
+      { test: 'Valproato sérico', val: '8 µg/mL', ref: '50–100 µg/mL', alt: true },
+      { test: 'Toxicológico', val: 'Negativo', ref: 'Negativo', alt: false },
+      { test: 'ECG', val: 'Taquicardia sinusal, QTc 420 ms', ref: 'Normal', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. O valproato subterapêutico confirma abandono medicamentoso. O candidato deve ser avaliado especialmente pela prioridade da contenção verbal, pela não confrontação direta dos conteúdos maníacos religiosos e pela escolha da contenção farmacológica adequada.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abordagem inicial', speech: 'Eu tenho uma missão! Deus me escolheu! Vocês não podem me parar!' },
+      { trigger: 'Após abordagem calma', speech: 'Por que vocês me trouxeram aqui? Estou ótimo! Nunca me senti tão bem!' },
+      { trigger: 'Sobre o sono', speech: 'Não preciso dormir! Durmo quando a missão acabar!' },
+      { trigger: 'Script da família', speech: "Doutor, ele está assim há 4 dias. Já gastou tudo que tinha. Estava tomando valproato mas parou porque disse que estava 'curado'." },
+      { trigger: 'Pergunta ativa da família', speech: 'Vai precisar internar? Ele aceita?' }
+    ],
+    hiddenInfo: 'Parou o valproato por conta própria (valproato sérico subterapêutico confirma) — revelar via exame laboratorial.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'TAB tipo I — episódio maníaco grave com sintomas psicóticos (grandiosidade com conteúdo religioso). Valproato subterapêutico por abandono. CID-11: 6A60 / DSM-5: F31.2.',
+    differentials: [
+      'Mania induzida por substância — toxicológico negativo afasta.',
+      'Episódio psicótico agudo — sem sintomas negativos, sem delírios persecutórios; a grandiosidade e a euforia são mais consistentes com mania.',
+      'Hipertireoidismo — TSH não disponível ainda mas quadro clínico favorece mania.',
+      'Encefalopatia — glicemia e eletrólitos normais, sem rebaixamento de consciência.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Contenção verbal obrigatória primeiro: Tom calmo, identificar-se, não confrontar os conteúdos religiosos. | Contenção farmacológica (se falha verbal): Haloperidol 5 mg IM + Prometazina 25 mg IM OU Midazolam 15 mg IM. (CFM nº 1.720/2004; MS 2023) | Reiniciar valproato: Carga de valproato IV ou VO para atingir nível terapêutico rapidamente. | Internação: Indicada — mania grave com 4 dias sem dormir, gastos impulsivos, insight ausente. | Não confrontar o conteúdo religioso: Agrava a agitação.',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Confrontar diretamente os conteúdos religiosos delirantes',
+      'Realizar contenção física antes de tentar contenção verbal',
+      'Não verificar o nível sérico de valproato (confirma abandono)',
+      'Usar clorpromazina (reduz limiar convulsivante)',
+      'Alta sem internação em episódio maníaco grave com insight ausente'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — HOMEM QUE SE JOGOU DA MACA E GRITA QUE TEM MISSÃO DIVINA',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não confrontou os conteúdos religiosos', score: 0.5, ref: 'CFM 1.720/2004' },
+          { item: 'Tentou contenção verbal antes de qualquer medida farmacológica', score: 1.0, ref: 'CFM 1.720/2004' },
+          { item: 'Orientou família sobre diagnóstico e internação', score: 0.5, ref: 'Lei 10.216/2001' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Obteve história do abandono do valproato com a família', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Investigou duração do episódio e dias sem dormir', score: 0.5, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou sinais vitais e estado mental', score: 0.3, ref: 'ABP 2021' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou valproato sérico', score: 1.0, ref: 'ABP 2021' },
+          { item: 'Solicitou toxicológico e glicemia', score: 0.5, ref: 'ABP 2021' },
+          { item: 'Formulou TAB — episódio maníaco grave', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu contenção farmacológica correta (haloperidol + prometazina IM)', score: 1.0, ref: 'CFM 1.720/2004; RENAME 2023' },
+          { item: 'Reiniciou valproato VO com dose de ataque', score: 0.5, ref: 'ABP 2021; RENAME 2023' },
+          { item: 'Indicou internação psiquiátrica', score: 0.7, ref: 'Lei 10.216/2001' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 27
+{
+  id: 27,
+  title: 'Mulher que tomou todos os remédios da cômoda depois de briga com namorado',
+  sub: 'UPA — Urgência e Emergência',
+  tema: 'psiquiatria',
+  topic: 'Emergência psiquiátrica — tentativa de suicídio por intoxicação medicamentosa',
+  level: 'moderado',
+  cardAccent: '#880E4F',
+  instA: {
+    scenario: 'UPA 24h. Sala de observação, turno da noite. Paciente trazida pela amiga após ingerir medicamentos. SAMU realizou lavagem gástrica no domicílio. Chegou orientada, com hálito de comprimidos. ECG feito na chegada.',
+    patient: 'L.P., 24 anos, feminino, recepcionista, namorada há 2 anos. Sem diagnóstico psiquiátrico prévio documentado.',
+    complaint: "Amiga relata que a paciente teve briga intensa com o namorado, foi ao quarto e tomou 'vários remédios da cômoda da mãe'. A paciente diz que 'queria que parassem de brigar', mas também diz que 'não queria mais viver'.",
+    tasks: [
+      'Realize a avaliação clínica inicial e determine o risco imediato de vida.',
+      'Realize a avaliação do risco de suicídio de forma estruturada e empática.',
+      'Investigue o contexto, a intenção e os fatores de risco e proteção.',
+      'Proponha a conduta imediata e o encaminhamento adequado.',
+      'Comunique a conduta à paciente e ao familiar presente.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '104/68 mmHg',
+      FC: '88 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '58 kg',
+      Altura: '1,62 m',
+      IMC: '22,1 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral, chorosa, cooperativa. Lúcida e orientada. Glasgow 15. Sem evidência de apneia. Hálito de comprimidos. Sem sinais de trauma externo. Pupilas isocóricas fotorreagentes (3 mm).',
+    physicalSeg: "Neurológico: Glasgow 15. Sem déficits focais. Reflexos normais. | Cardiovascular: BRNF. FC levemente elevada. | Estado mental: Humor disfórico, afeto lábil (choro fácil). Pensamento organizado. Sem psicose. Ambivalência presente ('não queria morrer, mas não aguentava mais').",
+    labs: [
+      { test: 'SatO2', val: '97% AA', ref: '95–100%', alt: false },
+      { test: 'ECG', val: 'Ritmo sinusal, QTc 440 ms, sem alargamento de QRS', ref: 'Normal', alt: false },
+      { test: 'Glicemia', val: '96 mg/dL', ref: '70–140', alt: false },
+      { test: 'Sódio', val: '139 mEq/L', ref: '135–145', alt: false },
+      { test: 'Paracetamol sérico', val: '48 µg/mL', ref: '<10 µg/mL (tóxico >150 nas primeiras 4h)', alt: true },
+      { test: 'TGO', val: '28 U/L', ref: '<40', alt: false },
+      { test: 'Toxicológico geral', val: 'Positivo paracetamol e diazepam', ref: '—', alt: true }
+    ],
+    image: null,
+    note: 'Sinais vitais e ECG entregues ao início. Exames disponíveis se solicitados. O nível de paracetamol (48 µg/mL) é subtóxico nas primeiras 4h mas requer monitoramento. O candidato deve ser avaliado pela avaliação estruturada do risco de suicídio E pela conduta clínica para a intoxicação.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abordagem inicial', speech: 'Eu não queria que ele fosse embora. Tomei os remédios sem pensar. Mas também estava tão cansada de tudo...' },
+      { trigger: 'Sobre a intenção', speech: 'Não sei bem o que eu queria. Parte de mim queria morrer. Mas quando a Bruna chegou, fiquei aliviada.' },
+      { trigger: 'Sobre o plano', speech: 'Não planejei. Foi impulsivo. Vi os remédios e tomei.' },
+      { trigger: 'Sobre o namorado', speech: 'A gente briga muito. Ele me chama de histérica. Já terminou três vezes.' },
+      { trigger: 'Sobre tentativas anteriores', speech: "Só se perguntado: 'Uma vez me cortei nos pulsos há 1 ano. Mas foi leve.'" },
+      { trigger: 'Sobre fatores de proteção', speech: 'Tenho minha mãe. Ela vai ficar destruída. Não quero machucar ela.' },
+      { trigger: 'Pergunta ativa', speech: 'Vão internar? Não quero que minha mãe saiba.' }
+    ],
+    hiddenInfo: 'Automutilação prévia há 1 ano (corte superficial de pulso) — revelar apenas com pergunta direta sobre tentativas anteriores.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: "Tentativa de suicídio por intoxicação medicamentosa (paracetamol + diazepam), impulsiva, em contexto de crise relacional aguda. Risco de suicídio ALTO (tentativa prévia, intenção ambivalente mas presente, impulsividade, relacionamento instável). Possível transtorno de personalidade borderline a investigar. CID-11: MB26.B / F60.31 a investigar / DSM-5: Z91.5.",
+    differentials: [
+      "Gesto manipulativo sem intenção de morrer — a ambivalência é real ('parte de mim queria morrer') e há tentativa prévia; NÃO minimizar como 'só fez pra chamar atenção'.",
+      'Depressão maior com tentativa — investigar critérios completos de depressão em avaliação posterior.',
+      'Transtorno de personalidade borderline — instabilidade emocional, automutilação prévia, relacionamentos instáveis, impulsividade; diagnóstico formal requer avaliação longitudinal.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: "Conduta Clínica: Monitorizar paracetamol em 4h (nomograma de Rumack-Matthew); se atingir nível tóxico: N-acetilcisteína IV. ECG seriado (diazepam + outros possíveis). Manter em observação mínimo 12h após intoxicação. | Conduta Psiquiátrica: Internação psiquiátrica voluntária — risco ALTO (tentativa com plano e acesso, impulsividade, tentativa anterior, ambivalência sobre morte). Comunicar à mãe com consentimento da paciente — familiares são fatores de proteção essenciais. Não minimizar como 'só foi porque brigou' — isso aumenta o risco.",
+    expectedCommunication: '',
+    criticalErrors: [
+      "Minimizar a tentativa como 'gesto' sem avaliar o risco formalmente",
+      'Não monitorar paracetamol sérico seriado (hepatotoxicidade tardia mesmo em nível inicial subtóxico)',
+      'Não investigar tentativas anteriores de automutilação',
+      'Alta sem avaliação psiquiátrica e sem internação indicada',
+      'Não comunicar à família sem levar em conta o papel protetivo da mãe'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — MULHER QUE TOMOU REMÉDIOS DEPOIS DE BRIGA COM NAMORADO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Abordou sem minimizar ("só foi porque brigou")', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Validou o sofrimento com empatia', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Abordou comunicação à mãe como fator de proteção', score: 0.3, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou intenção real de morrer (além do contexto relacional)', score: 1.0, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Perguntou sobre tentativas anteriores de automutilação', score: 1.0, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Investigou fatores de proteção (mãe)', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou Glasgow e estado mental (ambivalência, psicose)', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou paracetamol sérico e ECG', score: 1.0, ref: 'Toxicologia Clínica — FMUSP' },
+          { item: 'Classificou risco de suicídio como ALTO', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou internação psiquiátrica como conduta adequada', score: 1.0, ref: 'Lei 10.216/2001' },
+          { item: 'Indicou monitoramento de paracetamol seriado', score: 0.5, ref: 'Toxicologia Clínica — FMUSP' },
+          { item: 'Envolveu a mãe no plano de cuidado', score: 0.5, ref: 'MS — PCDT Suicídio, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 28
+{
+  id: 28,
+  title: "Paciente com esclerose múltipla que 'deixou de ser ela mesma' após o diagnóstico",
+  sub: 'Ambulatório de Neurologia / Psiquiatria de Ligação',
+  tema: 'psiquiatria',
+  topic: 'Medicina psicossomática — transtorno depressivo em doença crônica (EM)',
+  level: 'moderado',
+  cardAccent: '#6A1B9A',
+  instA: {
+    scenario: "Ambulatório de Neurologia — interconsulta de psiquiatria. Neurologista solicitou avaliação de 'estado depressivo' em paciente com EM.",
+    patient: 'A.S., 36 anos, feminino, arquiteta (trabalho remoto), casada. Diagnóstico de esclerose múltipla recorrente-remitente há 8 meses.',
+    complaint: "Paciente relata que desde o diagnóstico 'deixou de ser ela mesma': perdeu o prazer no trabalho, chora com frequência, não se sente mais capaz de planejar o futuro e tem pensamentos de que 'seria melhor não saber que tem isso'. Neurologista relata que a fadiga da EM pode explicar parte dos sintomas, mas a intensidade do quadro afetivo preocupa.",
+    tasks: [
+      'Realize a anamnese distinguindo sintomas depressivos dos sintomas neurológicos da EM (fadiga, lentidão cognitiva).',
+      'Avalie o risco de suicídio.',
+      'Formule a hipótese diagnóstica.',
+      'Proponha a conduta integrada (psiquiatria + neurologia).',
+      'Comunique o diagnóstico com sensibilidade ao impacto do diagnóstico de EM.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '116/74 mmHg',
+      FC: '76 bpm',
+      FR: '15 irpm',
+      Tax: '36,5°C',
+      Peso: '62 kg',
+      Altura: '1,65 m',
+      IMC: '22,8 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral. Fácies de tristeza. Lúcida, orientada. Leve fadiga visível. Sem déficits motores no momento. Contato visual preservado.',
+    physicalSeg: '',
+    labs: [
+      { test: 'TSH', val: '2,0 (normal)', ref: 'Normal', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'Vitamina D', val: '18 ng/mL', ref: '>30 ng/mL', alt: true }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. O candidato deve ser avaliado pela distinção entre fadiga neurológica da EM (constante, piorada pelo esforço, sem variação diurna) e depressão (humor deprimido persistente, anedonia, ideação suicida), e pela escolha do antidepressivo mais adequado na EM.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Não sou mais a mesma pessoa. Antes adorava trabalhar, criar, planejar. Agora não consigo nem olhar para os projetos. O diagnóstico destruiu quem eu era.' },
+      { trigger: 'Sobre o humor', speech: 'Choro quase todo dia. Não consigo imaginar o futuro — como vou trabalhar, ter filhos, ficar velha com essa doença?' },
+      { trigger: 'Sobre a fadiga', speech: 'Fico muito cansada. Mas a tristeza é diferente da fadiga — mesmo descansada, não tenho vontade de nada.' },
+      { trigger: 'Sobre anedonia', speech: 'Antes amava jazz, arquitetura, sair com amigas. Agora nada me dá prazer. Fico no celular sem fazer nada.' },
+      { trigger: 'Sobre suicídio', speech: 'Já pensei que seria melhor não ter esse diagnóstico. Às vezes acho que quem não sabe vive melhor. Mas não penso em me machucar.' },
+      { trigger: 'Sobre o marido', speech: 'Ele está sendo incrível. Mas sinto que sou um peso.' },
+      { trigger: 'Pergunta ativa', speech: 'Posso tomar antidepressivo junto com o medicamento da EM (Interferon beta)?' }
+    ],
+    hiddenInfo: "Deficiência de vitamina D (18 ng/mL) — associada a piora da EM e da depressão; revelar via exames. | Pensamento de 'seria melhor não saber que tem isso' — pode ser interpretado como ideação passiva de morte ou como negação do diagnóstico; investigar com cuidado.",
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Episódio depressivo maior em paciente com esclerose múltipla — depressão é a comorbidade psiquiátrica mais comum na EM (prevalência 50%). Anedonia, humor deprimido, incapacidade de imaginar o futuro e ideação passiva distintos da fadiga neurológica da EM. CID-11: 6A70.1 / DSM-5: F32.1.',
+    differentials: [
+      'Fadiga neurológica da EM — constante, piora com esforço/calor (fenômeno de Uhthoff), sem variação diurna; a depressão tem variação de humor, anedonia e ideação suicida ausentes na fadiga pura.',
+      'Pseudobulbar da EM (choro patológico) — riso/choro involuntários sem congruência com o humor; excluído pelo contexto emocional congruente.',
+      'Transtorno de ajustamento com humor deprimido — resposta adaptativa ao diagnóstico; excluído pela intensidade, anedonia global e ideação passiva de morte.',
+      'Hipotireoidismo — TSH normal afasta.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: "Farmacológica: ISRS — Sertralina 50 mg/dia (melhor perfil de segurança na EM, sem interações significativas com Interferon beta). Evitar amitriptilina (efeitos anticolinérgicos piores na EM, constipação, retenção urinária). (UpToDate 2024 — não há PCDT brasileiro específico para depressão na EM) | Vitamina D: Suplementar — deficiência de vitamina D piora a EM e pode piorar a depressão. | Não farmacológico: TCC — eficaz tanto para depressão quanto para adaptação à doença crônica. Grupos de apoio para pacientes com EM. | Psicoeducação: Explicar que depressão na EM é uma comorbidade médica real, não 'fraqueza', e que é mais prevalente do que na população geral pela própria neurobiologia da doença. | Integração neurologia-psiquiatria: Comunicar ao neurologista sobre o tratamento antidepressivo.",
+    expectedCommunication: '',
+    criticalErrors: [
+      'Não distinguir depressão da fadiga neurológica da EM (pode levar a subtratamento)',
+      'Prescrever amitriptilina em paciente com EM (efeitos anticolinérgicos problemáticos)',
+      'Não avaliar risco de suicídio em paciente com doença crônica e ideação passiva',
+      'Não comunicar ao neurologista sobre o tratamento antidepressivo',
+      'Não corrigir a vitamina D'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ARQUITETA COM ESCLEROSE MÚLTIPLA QUE DEIXOU DE SER ELA MESMA',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Abordou o impacto emocional do diagnóstico de EM com empatia', score: 0.5, ref: 'MS — Humanização, 2013' },
+          { item: 'Explicou que depressão na EM é neurobiológica, não fraqueza', score: 0.5, ref: 'UpToDate 2024' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Distinguiu sintomas depressivos da fadiga neurológica da EM', score: 1.0, ref: 'UpToDate 2024' },
+          { item: 'Avaliou diretamente o risco de suicídio', score: 1.0, ref: 'MS — PCDT Suicídio, 2022' },
+          { item: 'Investigou anedonia e incapacidade de imaginar o futuro', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental (humor, anedonia, pensamento)', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou/verificou TSH e vitamina D', score: 0.5, ref: 'UpToDate 2024' },
+          { item: 'Formulou depressão maior em EM (comorbidade)', score: 1.0, ref: 'DSM-5; UpToDate 2024' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu ISRS adequado na EM (sertralina)', score: 1.0, ref: '⚠️ UpToDate 2024; RENAME 2023' },
+          { item: 'Não prescreveu amitriptilina (contraindicada na EM)', score: 0.5, ref: '⚠️ UpToDate 2024' },
+          { item: 'Comunicou ao neurologista sobre tratamento', score: 0.5, ref: 'CFM 1.931/2009' },
+          { item: 'Indicou TCC e vitamina D', score: 0.5, ref: 'UpToDate 2024; SBEM 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 29
+{
+  id: 29,
+  title: "Adolescente de 16 anos pesando 39 kg que diz estar 'acima do peso ideal'",
+  sub: 'UBS — Encaminhamento da escola',
+  tema: 'psiquiatria',
+  topic: 'Anorexia nervosa — tipo restritivo',
+  level: 'moderado',
+  cardAccent: '#AD1457',
+  instA: {
+    scenario: 'UBS. Consultório, turno da tarde. Professora de educação física encaminhou a aluna após perceber perda de peso intensa e desmaio na aula.',
+    patient: 'B.R., 16 anos, feminino, estudante do 2º ano do ensino médio, mora com os pais.',
+    complaint: "Mãe relata que a filha 'faz dieta há 8 meses' e perdeu 18 kg nesse período. A paciente diz estar 'ainda acima do peso' mesmo pesando 39 kg para 1,62 m. Teve um desmaio na aula de educação física.",
+    tasks: [
+      'Realize a anamnese com a paciente e a mãe investigando o padrão alimentar, a imagem corporal e os comportamentos de restrição.',
+      'Avalie os riscos clínicos imediatos da desnutrição (cardiovascular, eletrolítico).',
+      'Identifique critérios diagnósticos para anorexia nervosa.',
+      'Proponha a conduta e o nível de cuidado adequado.',
+      'Comunique à paciente e à mãe de forma empática.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '88/58 mmHg',
+      FC: '54 bpm (bradicardia)',
+      FR: '14 irpm',
+      Tax: '35,8°C (hipotermia)',
+      Peso: '39 kg',
+      Altura: '1,62 m',
+      IMC: '14,8 kg/m²'
+    },
+    physicalGeneral: 'Paciente muito emagrecida, caquética. Cabelos finos e quebradiços. Pele seca, lanugem em braços e abdome. Lúcida e orientada. Hipotensa e bradicárdica. Hipotérmica. Sem edema. Sem icterícia.',
+    physicalSeg: 'Cardiovascular: Bradicardia sinusal (54 bpm). BRNF. Sem sopros. | Neurológico: Lúcida. Cabelo com alopecia difusa. | Dermatológico: Lanugem, cabelo quebradiço, unhas frágeis.',
+    labs: [
+      { test: 'Potássio', val: '2,9 mEq/L', ref: '3,5–5,0', alt: true },
+      { test: 'Sódio', val: '132 mEq/L', ref: '135–145', alt: true },
+      { test: 'Glicemia', val: '58 mg/dL', ref: '70–99', alt: true },
+      { test: 'Hemograma', val: 'Hb 9,8 g/dL (anemia)', ref: '>12 (F)', alt: true },
+      { test: 'ECG', val: 'Bradicardia sinusal, QTc 468 ms (limítrofe)', ref: '<450 ms (F)', alt: true },
+      { test: 'FSH/LH', val: 'Suprimidos', ref: '—', alt: true },
+      { test: 'TSH', val: '1,6 (normal)', ref: '0,4–4,0', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início — chamar atenção para a tríade: bradicardia + hipotensão + hipotermia (critérios de instabilidade clínica). Exames disponíveis se solicitados. O candidato deve ser avaliado especialmente pelo reconhecimento dos critérios de internação hospitalar urgente (instabilidade clínica) e pela NÃO confrontação direta da distorção da imagem corporal.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Eu tô bem. Só desmaiei porque tava calor. Não precisava vir aqui.' },
+      { trigger: 'Sobre o peso', speech: '39 kg ainda é muito pra mim. Meu peso ideal é 35 kg. Eu preciso emagrecer mais.' },
+      { trigger: 'Sobre a alimentação', speech: 'Como o suficiente. Tomo café com adoçante e uma fruta de manhã. No almoço como um pouco de salada. À noite nada. Faço isso há 8 meses.' },
+      { trigger: 'Sobre o desmaio', speech: 'Foi só de calor. Acontece.' },
+      { trigger: 'Sobre menstruação', speech: 'Parei de menstruar faz 5 meses. Acho bom, menos uma preocupação.' },
+      { trigger: 'Script da mãe', speech: 'Doutor, ela era gordinha e começou a dieta. A gente achou que era saudável. Mas foi ficando mais e mais. Não consigo convencê-la que ela não está gorda. Ela está sumindo na nossa frente.' },
+      { trigger: 'Pergunta ativa da paciente', speech: 'Vão me internar pra me engordar?' },
+      { trigger: 'Pergunta ativa da mãe', speech: 'Isso tem cura? Ela vai voltar a comer normal?' }
+    ],
+    hiddenInfo: 'Amenorreia há 5 meses (critério de gravidade) — revelar se perguntado sobre menstruação. | Faz exercício excessivo de 2h/dia escondida dos pais — revelar apenas se perguntado sobre atividade física.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Anorexia nervosa, tipo restritivo, gravidade extrema (IMC 14,8 kg/m²). Com sinais de instabilidade clínica: bradicardia, hipotensão, hipotermia, hipoglicemia, hipopotassemia, hiponatremia, amenorreia e QTc limítrofe. CID-11: 6B80 / DSM-5: F50.01.',
+    differentials: [
+      'Perda de peso por doença orgânica (neoplasia, doença inflamatória intestinal, diabetes tipo 1) — a distorção da imagem corporal e a restrição alimentar voluntária intencional diferenciam a AN de causas orgânicas; TSH normal, sem outros sinais sistêmicos de doença.',
+      'Depressão maior com perda de apetite — na depressão a perda de peso é secundária à anorexia afetiva, sem distorção da imagem corporal ou medo intenso de ganhar peso.',
+      'Hipotireoidismo — pode causar perda de peso ou ganho; TSH normal afasta.',
+      'Bulimia nervosa — sem episódios de compulsão e purgação relatados; IMC muito abaixo do normal (na BN geralmente IMC normal).'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: "INTERNAÇÃO HOSPITALAR URGENTE — critérios de instabilidade clínica presentes (bradicardia <60, hipotensão, hipoglicemia, hipopotassemia, hipotermia, QTc limítrofe). Não manejar ambulatorialmente. | Clínica imediata: Monitorização cardíaca contínua. Reposição de potássio e sódio EV. Correção da hipoglicemia. Aquecimento passivo. | Nutrição: Realimentação gradual e supervisionada (risco de síndrome de realimentação — hipofosfatemia grave com realimentação rápida). Equipe de nutrição especializada em TA. | Não confrontar a distorção da imagem corporal diretamente — agrava a resistência. | Equipe multiprofissional: Pediatria/clínica, psiquiatria, psicologia, nutrição, endocrinologia (amenorreia). | Comunicação: Não usar linguagem que foque no peso ('vamos te engordar') — usar 'vamos cuidar da sua saúde'.",
+    expectedCommunication: '',
+    criticalErrors: [
+      'Alta domiciliar com paciente em instabilidade clínica (bradicardia, hipotensão, hipoglicemia)',
+      'Confrontar diretamente a distorção da imagem corporal ("você não está gorda, está esquelética")',
+      'Iniciar realimentação rápida sem monitorização de fósforo (síndrome de realimentação)',
+      'Não solicitar ECG em paciente com anorexia grave (risco de arritmia por distúrbio eletrolítico)',
+      'Não envolver equipe multiprofissional'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — ADOLESCENTE DE 16 ANOS COM 39 KG QUE DIZ ESTAR ACIMA DO PESO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não usou linguagem focada em engordar', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Não confrontou a distorção da imagem corporal diretamente', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Acolheu a mãe e explicou a gravidade sem catastrofizar', score: 0.5, ref: 'MS — Humanização, 2013' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou padrão alimentar detalhado (tipo, quantidade, horários)', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Pesquisou amenorreia (gravidade)', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Pesquisou exercício excessivo', score: 0.3, ref: 'ABP — TA, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Identificou tríade de instabilidade (bradicardia + hipotensão + hipotermia)', score: 1.0, ref: 'ABP — TA, 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou ECG, eletrólitos e glicemia', score: 1.0, ref: 'ABP — TA, 2022' },
+          { item: 'Formulou AN tipo restritivo com instabilidade clínica', score: 0.5, ref: 'DSM-5; ABP — TA, 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou internação hospitalar urgente (instabilidade)', score: 1.5, ref: 'ABP — TA, 2022' },
+          { item: 'Mencionou risco de síndrome de realimentação', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Indicou equipe multiprofissional', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Não confrontou a distorção de imagem', score: 0.2, ref: 'ABP — TA, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 30
+{
+  id: 30,
+  title: 'Jovem que come escondido à noite e se envergonha do próprio corpo',
+  sub: 'UBS — Consulta agendada',
+  tema: 'psiquiatria',
+  topic: 'Bulimia nervosa',
+  level: 'moderado',
+  cardAccent: '#E65100',
+  instA: {
+    scenario: 'UBS. Consultório, turno vespertino. Paciente veio por iniciativa própria, sozinha.',
+    patient: 'P.S., 19 anos, feminino, estudante universitária (nutrição), mora em república. IMC 23,4 kg/m².',
+    complaint: "Paciente relata episódios frequentes de comer 'muito mais do que deveria' à noite, escondida das colegas, com sensação de perda de controle, seguidos de vômito induzido para 'compensar'. Diz estar com 'vergonha do próprio corpo' e que não consegue parar.",
+    tasks: [
+      'Realize a anamnese investigando os critérios diagnósticos de bulimia nervosa (compulsão, comportamento purgativo, frequência, distorção corporal).',
+      'Avalie as complicações clínicas dos vômitos (eletrólitos, dentição, esôfago, mãos).',
+      'Avalie comorbidades: depressão, ansiedade, automutilação.',
+      'Formule o diagnóstico e proponha o tratamento.',
+      'Comunique o diagnóstico sem estigmatizar.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '108/70 mmHg',
+      FC: '76 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '61 kg',
+      Altura: '1,62 m',
+      IMC: '23,4 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral. IMC normal. Erosões dentárias visíveis (ácido gástrico). Calosidades nos nós dos dedos da mão direita (sinal de Russell). Lúcida, orientada, levemente envergonhada.',
+    physicalSeg: '',
+    labs: [
+      { test: 'Potássio', val: '3,1 mEq/L', ref: '3,5–5,0', alt: true },
+      { test: 'Sódio', val: '136 mEq/L', ref: '135–145', alt: false },
+      { test: 'Amilase salivar', val: '2,1x LSN', ref: 'Normal', alt: true },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'TGO/TGP', val: 'Normais', ref: '—', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais e inspeção das mãos e boca ao início. Exames se solicitados. O candidato deve ser avaliado especialmente pela busca ativa pelos sinais físicos de purga (sinal de Russell, erosões dentárias, hipertrofia de parótidas) e pela distinção de BN de compulsão alimentar (na compulsão não há comportamento purgativo).',
+    patientProfile: '',
+          // caso 30 — a partir de script:
+      script: [
+        { trigger: 'Abertura', speech: 'Eu vim porque não aguento mais. Faço nutrição, sei que o que faço é errado, mas não consigo parar.' },
+        { trigger: 'Sobre a compulsão', speech: 'Quase toda noite, quando as colegas dormem, eu como muito. Salgadinho, sorvete, pão... Às vezes gasto R$50 de uma vez. Sinto que perco o controle.' },
+        { trigger: 'Sobre o vômito', speech: 'Depois provoco o vômito. Me sinto aliviada, mas também com nojo de mim mesma. Isso acontece umas 4 ou 5 vezes por semana.' },
+        { trigger: 'Sobre a imagem corporal', speech: 'Sei que meu peso tá normal. Mas quando me olho no espelho, acho que estou gorda. Me sinto enorme.' },
+        { trigger: 'Sobre o segredo', speech: 'Minha família não sabe. Meu namorado não sabe. Tenho muito medo que descubram e me achem nojenta.' },
+        { trigger: 'Sobre depressão e automutilação', speech: 'Fico muito triste depois dos episódios. Nunca me machuquei.' },
+        { trigger: 'Pergunta ativa', speech: 'Tem cura? Vai ser assim pra sempre?' },
+        { trigger: 'Pergunta ativa', speech: 'Precisa contar pra minha mãe?' }
+      ],
+      hiddenInfo: 'Gasta em média R$200/mês com comida para os episódios de compulsão (impacto financeiro significativo para estudante) — revelar se perguntado sobre impacto financeiro.',
+      actorBehavior: ''
+    },
+    instC: {
+      diagnosis: 'Bulimia nervosa, com comportamento purgativo (vômito autoprovocado), frequência 4–5x/semana, com distorção da imagem corporal. Complicações: hipopotassemia, amilase salivar elevada (hipertrofia de parótidas), erosão dentária, sinal de Russell. CID-11: 6B81 / DSM-5: F50.2.',
+      differentials: [
+        'Transtorno de compulsão alimentar (TCA) — compulsão alimentar sem comportamento purgativo ou compensatório; excluída pelo vômito autoprovocado.',
+        'Anorexia nervosa tipo purgativo — AN com compulsão + purgação em paciente com IMC abaixo do normal; IMC normal exclui.',
+        'Episódio depressivo maior com hiperfagia — comer emocional sem perda de controle característica e sem purga.'
+      ],
+      context: '',
+      justify: '',
+      expectedAnamnesis: '',
+      expectedPhysical: '',
+      expectedExams: [],
+      expectedConduct: 'Farmacológica: Fluoxetina 60 mg/dia VO (única dose aprovada pelo FDA/ANVISA para bulimia nervosa — dose mais alta que na depressão). (ABP — TA, 2022; RENAME 2023) | Psicoterapia: TCC para bulimia nervosa é o tratamento de 1ª linha. (ABP — TA, 2022) | Correção eletrolítica: Reposição de potássio oral (cloreto de potássio) enquanto há vômitos. | Encaminhamento: Serviço especializado em transtornos alimentares; odontologia para as erosões dentárias. | Confidencialidade: Paciente adulta (19 anos) — respeitar confidencialidade a menos que haja risco de vida.',
+      expectedCommunication: '',
+      criticalErrors: [
+        'Prescrever fluoxetina em dose antidepressiva padrão (20 mg) — dose para bulimia é 60 mg',
+        'Não buscar ativamente os sinais físicos de purga (sinal de Russell, erosões dentárias)',
+        'Não solicitar eletrólitos (hipopotassemia por vômito — risco de arritmia)',
+        'Constranger a paciente pelo fato de cursar nutrição',
+        'Não indicar TCC como componente essencial do tratamento'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — JOVEM QUE COME ESCONDIDA À NOITE E PROVOCA VÔMITO',
+      sections: [
+        {
+          h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Abordou sem estigmatizar pelo curso de nutrição', score: 0.5, ref: 'ABP — TA, 2022' },
+            { item: 'Respondeu sobre confidencialidade (adulta — respeitar)', score: 0.5, ref: 'CFM — Código de Ética, 2009' }
+          ]
+        },
+        {
+          h: 'ANAMNESE',
+          items: [
+            { item: 'Investigou critérios de compulsão (frequência, perda de controle, quantidade)', score: 0.5, ref: 'DSM-5; ABP 2022' },
+            { item: 'Pesquisou comportamento purgativo (tipo, frequência)', score: 0.5, ref: 'DSM-5' },
+            { item: 'Rastreou depressão e automutilação', score: 0.5, ref: 'ABP 2022' }
+          ]
+        },
+        {
+          h: 'EXAME FÍSICO',
+          items: [
+            { item: 'Inspecionou mãos (sinal de Russell) e dentes (erosões)', score: 1.0, ref: 'ABP — TA, 2022' }
+          ]
+        },
+        {
+          h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou eletrólitos (hipopotassemia por purga)', score: 1.0, ref: 'ABP — TA, 2022' },
+            { item: 'Formulou BN e diferenciou de TCA', score: 0.5, ref: 'DSM-5; ABP 2022' }
+          ]
+        },
+        {
+          h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Prescreveu fluoxetina 60 mg/dia (dose específica para BN)', score: 1.5, ref: 'ABP 2022; RENAME 2023' },
+            { item: 'Indicou TCC como 1ª linha', score: 1.0, ref: 'ABP 2022' },
+            { item: 'Encaminhou à odontologia para erosões', score: 0.5, ref: 'ABP 2022' },
+            { item: 'Indicou reposição de potássio', score: 0.5, ref: 'ABP 2022' }
+          ]
+        }
+      ]
+    }
+  },
+
+// CASO 31
+{
+  id: 31,
+  title: 'Homem que perde o controle comendo até sentir dor e se isola com vergonha',
+  sub: 'UBS — Demanda espontânea',
+  tema: 'psiquiatria',
+  topic: 'Transtorno de compulsão alimentar periódica (TCAP)',
+  level: 'moderado',
+  cardAccent: '#4E342E',
+  instA: {
+    scenario: 'UBS. Consultório, turno matutino. Paciente veio encaminhado pelo nutricionista após 3 falhas em dietas para perda de peso.',
+    patient: 'C.R., 38 anos, masculino, analista financeiro, casado, obesidade grau II (IMC 36,4). Hipertensão. Faz dieta há 5 anos sem sucesso.',
+    complaint: "Paciente relata que 'perde o controle' com a comida pelo menos 3 vezes por semana: come grandes quantidades em menos de 2 horas, muito além da saciedade ('até doer'), escondido da esposa, e depois sente vergonha intensa e se isola. Nega vômito ou uso de laxantes.",
+    tasks: [
+      'Realize a anamnese investigando os critérios de TCAP (frequência, perda de controle, ausência de comportamento purgativo, sofrimento).',
+      'Diferencie de bulimia nervosa e de hiperfagia simples.',
+      'Avalie comorbidades: depressão, ansiedade.',
+      'Formule o diagnóstico e proponha o tratamento.',
+      "Oriente o paciente sobre o diagnóstico e desmistifique a 'falta de vontade'."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '148/94 mmHg',
+      FC: '82 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '108 kg',
+      Altura: '1,72 m',
+      IMC: '36,5 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, obeso. Sem erosões dentárias. Sem sinal de Russell. Lúcido, orientado. Discretamente envergonhado ao falar do tema.',
+    physicalSeg: '',
+    labs: [
+      { test: 'Glicemia em jejum', val: '118 mg/dL', ref: '70–99', alt: true },
+      { test: 'Triglicerídeos', val: '280 mg/dL', ref: '<150', alt: true },
+      { test: 'HDL', val: '34 mg/dL', ref: '>40 (H)', alt: true },
+      { test: 'HbA1c', val: '6,1%', ref: '<5,7%', alt: true },
+      { test: 'TSH', val: '2,2 (normal)', ref: '0,4–4,0', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. Exames se solicitados. O candidato deve ser avaliado especialmente pela distinção de TCAP de bulimia (no TCAP não há comportamento purgativo) e de hiperfagia simples (no TCAP há perda de controle e sofrimento significativo).',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Eu sei que sou gordo. Já tentei de tudo. Mas quando eu começo a comer não consigo parar. É como se não fosse eu.' },
+      { trigger: 'Sobre os episódios', speech: 'Três, quatro vezes por semana. Acontece mais à noite. Como pizza inteira, salgados, doces... Só paro quando dói. Não é fome — é outra coisa.' },
+      { trigger: 'Sobre o controle', speech: 'Me sinto envergonhado depois. Escondo da minha esposa. Ela acha que faço dieta. Não sou capaz de parar mesmo tentando.' },
+      { trigger: 'Sobre vômito ou laxante', speech: 'Não, nunca fiz isso. Só como mesmo. E engordo.' },
+      { trigger: 'Sobre o humor', speech: 'Fico deprimido depois. A vergonha é enorme. Sinto que sou fraco.' },
+      { trigger: 'Pergunta ativa', speech: 'Isso tem nome? Porque as pessoas dizem que é fraqueza.' },
+      { trigger: 'Pergunta ativa', speech: 'Tem remédio pra isso? Porque dieta nunca funcionou.' }
+    ],
+    hiddenInfo: 'Esconde comida no carro e no escritório para os episódios — revelar se perguntado sobre onde ocorrem os episódios.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno de compulsão alimentar periódica (TCAP) — episódios de compulsão alimentar ≥3x/semana, sem comportamento compensatório, com sofrimento significativo e ocultamento. Comorbidades: síndrome metabólica (glicemia alterada, pré-diabetes, hipertrigliceridemia, HDL baixo, HAS). CID-11: 6B82 / DSM-5: F50.81.',
+    differentials: [
+      'Bulimia nervosa — compulsão alimentar seguida de purga (vômito, laxante, exercício excessivo); excluída pela ausência de comportamento compensatório.',
+      'Hiperfagia simples sem perda de controle — comer em excesso sem a característica de "transe" ou perda de controle; no TCAP há dissociação e sofrimento posterior.',
+      'Transtorno depressivo com hiperfagia — comer emocional como sintoma depressivo; investigar se os episódios precedem o humor deprimido (sugere TCAP primário).'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Farmacológica: Lisdexanfetamina (Vyvanse) 30–70 mg/dia — único fármaco aprovado pelo FDA para TCAP; indicado quando disponível e sem contraindicações cardiovasculares (monitorar PA e FC). (FDA aprovado; no Brasil aprovado pela ANVISA mas acesso limitado — mencionar como opção; RENAME 2023 não inclui para essa indicação específica). Alternativa: Topiramato 100–300 mg/dia (reduz episódios de compulsão — evidência moderada). Fluoxetina 60 mg/dia (reduz frequência dos episódios). (ABP — TA, 2022) | Psicoterapia: TCC para TCAP é a 1ª linha para o transtorno alimentar. (ABP — TA, 2022) | Tratar síndrome metabólica: Controle da PA, glicemia, triglicerídeos. | Orientar: Não é fraqueza — é um transtorno do controle do impulso alimentar com neurobiologia específica.',
+    expectedCommunication: '',
+    criticalErrors: [
+      "Diagnosticar como 'falta de força de vontade' ou 'ausência de comprometimento com a dieta'",
+      'Não diferenciar de bulimia (ausência de purga é critério diagnóstico diferencial)',
+      'Apenas prescrever dieta restritiva (piora o TCAP — gatilho para episódios)',
+      'Não rastrear síndrome metabólica (comorbidade obrigatória a investigar)',
+      'Não indicar TCC como parte do tratamento'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — HOMEM QUE PERDE O CONTROLE COMENDO ATÉ SENTIR DOR',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Explicou que TCAP não é fraqueza — é transtorno médico', score: 0.5, ref: 'ABP — TA, 2022' },
+          { item: 'Desmistificou "só fazer dieta" como solução', score: 0.5, ref: 'ABP — TA, 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou perda de controle, frequência e sofrimento', score: 0.5, ref: 'DSM-5' },
+          { item: 'Perguntou diretamente sobre comportamento purgativo (vômito, laxante)', score: 1.0, ref: 'DSM-5' },
+          { item: 'Rastreou depressão comórbida', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou IMC, PA e sinais físicos de purga (ausentes)', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou exames de síndrome metabólica (glicemia, perfil lipídico)', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Diferenciou TCAP de BN e hiperfagia simples', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Indicou farmacoterapia adequada (fluoxetina 60 mg ou topiramato)', score: 1.0, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Indicou TCC para TCAP', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Tratou as comorbidades (HAS, pré-diabetes, dislipidemia)', score: 1.0, ref: 'MS — Doenças Crônicas, 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 32
+{
+  id: 32,
+  title: 'Homem com episódios psicóticos que ocorrem apenas durante crises depressivas',
+  sub: 'CAPS II',
+  tema: 'psiquiatria',
+  topic: 'Transtorno esquizoafetivo — tipo depressivo',
+  level: 'moderado',
+  cardAccent: '#311B92',
+  instA: {
+    scenario: 'CAPS II. Sala de acolhimento, turno da manhã. Paciente acompanhado do irmão. Em acompanhamento irregular há 2 anos.',
+    patient: 'S.M., 42 anos, masculino, técnico de laboratório (afastado), divorciado. Com histórico de 3 episódios psiquiátricos nos últimos 5 anos.',
+    complaint: "Irmão relata que o paciente está em sua 3ª crise: 'na crise, além de ficar muito deprimido, começa a ouvir vozes e achar que vai ser preso'. Fora das crises, fica 'apagado, sem energia, mas normal'. Psiquiatra anterior diagnosticou 'depressão com psicose'.",
+    tasks: [
+      'Realize a anamnese investigando a relação temporal entre os sintomas psicóticos e os episódios de humor.',
+      'Diferencie transtorno esquizoafetivo de esquizofrenia e de depressão psicótica.',
+      'Avalie o funcionamento entre os episódios.',
+      'Formule a hipótese diagnóstica e proponha a conduta.',
+      'Oriente o paciente e o familiar sobre o diagnóstico e o tratamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '124/80 mmHg',
+      FC: '80 bpm',
+      FR: '16 irpm',
+      Tax: '36,5°C',
+      Peso: '79 kg',
+      Altura: '1,74 m',
+      IMC: '26,1 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral. Fácies de tristeza. Lúcido e orientado. Cabelos e barba por fazer (descuido em crise depressiva). Sem sinais de agitação. Psicomotricidade lentificada.',
+    physicalSeg: 'Estado mental: Humor deprimido, afeto congruente. Fala lenta. Alucinações auditivas ativas ("ouve vozes acusando-o"). Delírio persecutório presente ("acha que será preso por algo que não fez"). Insight parcial sobre a crise. Sem desorganização formal do pensamento.',
+    labs: [
+      { test: 'TSH', val: '2,1 (normal)', ref: '0,4–4,0', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'Toxicológico', val: 'Negativo', ref: '—', alt: false }
+    ],
+    image: null,
+    note: 'Sinais vitais ao início. O candidato deve ser avaliado pela investigação da relação temporal entre psicose e humor (critério diagnóstico chave do transtorno esquizoafetivo: os sintomas psicóticos devem estar presentes por pelo menos 2 semanas na AUSÊNCIA de episódio de humor proeminente).',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Tô mal de novo. As vozes voltaram. E acho que vão me prender.' },
+      { trigger: 'Sobre as crises anteriores', speech: 'Toda vez que fico muito deprimido, as vozes aparecem também. Acho que as duas coisas vêm juntas.' },
+      { trigger: 'Sobre o período entre crises', speech: 'Fora das crises fico bem. Trabalho, me relaciono. Mas fico meio sem energia, sabe? Não fico feliz como antes, mas funciono.' },
+      { trigger: 'Sobre o início dos sintomas psicóticos', speech: 'As vozes começam quando a depressão já tá forte. Não vêm sozinhas, sem eu estar deprimido.' },
+      { trigger: 'Sobre o diagnóstico anterior', speech: 'Me disseram que era depressão com psicose. Mas tô em dúvida porque você perguntou diferente.' },
+      { trigger: 'Script do irmão', speech: 'Doutor, nas três crises, a psicose e a depressão vieram juntas. Fora das crises, ele fica bem, só um pouco apagado.' }
+    ],
+    hiddenInfo: 'Funcionamento entre crises: trabalhou por 2 anos como técnico de laboratório sem intercorrências — confirma preservação relativa do funcionamento interepisódio, que diferencia do esquizofrenia.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno esquizoafetivo, tipo depressivo. Critério chave: sintomas psicóticos (alucinações + delírios) ocorrem concomitantemente a episódios depressivos maiores, mas a questão é se os sintomas psicóticos persistem por ≥2 semanas na ausência dos sintomas de humor — precisa ser investigado em detalhe. Padrão das 3 crises sugere psicose que acompanha e pode preceder levemente o humor, sem ocorrência independente prolongada. CID-11: 6A21 / DSM-5: F25.1.',
+    differentials: [
+      'Depressão maior com características psicóticas — os sintomas psicóticos ocorrem APENAS durante o episódio depressivo; no TEA os sintomas psicóticos são mais proeminentes e podem ocorrer além do humor; a investigação da relação temporal é chave.',
+      'Esquizofrenia — sintomas psicóticos proeminentes com episódios de humor relativamente breves; funcionamento entre episódios mais comprometido; excluída pelo bom funcionamento interepisódico e pela relação estreita entre psicose e depressão.',
+      'TAB tipo I com características psicóticas — episódios maníacos/depressivos com psicose; excluído pela ausência de episódios maníacos/hipomaníacos.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Antipsicótico de manutenção: Risperidona 2–4 mg/dia VO ou Olanzapina 10 mg/dia (previne tanto os episódios psicóticos quanto contribui para estabilização do humor). (RENAME 2023; ABP — Diretrizes Esquizofrenia, 2022) | Para o episódio depressivo: ISRS adjuvante (sertralina 50–100 mg/dia) ou antidepressivo com estabilizador de humor, com cautela para não precipitar viragem. Avaliar com psiquiatra. | Não usar antidepressivo sem antipsicótico (pode piorar a psicose). | Psicoeducação: Explicar a diferença entre esquizofrenia, depressão psicótica e transtorno esquizoafetivo. | Seguimento: CAPS II com projeto terapêutico singular.',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Não investigar a relação temporal entre psicose e humor (critério diagnóstico chave)',
+      'Tratar apenas com antidepressivo sem antipsicótico (pode exacerbar a psicose)',
+      'Diagnosticar esquizofrenia sem avaliar o funcionamento interepisódico',
+      'Não envolver o familiar no plano de tratamento',
+      'Não solicitar toxicológico (afastar psicose induzida por substância)'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — HOMEM COM PSICOSE QUE OCORRE APENAS DURANTE CRISES DEPRESSIVAS',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Explicou a diferença entre esquizofrenia e TE em linguagem acessível', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Envolveu o familiar na anamnese e no plano', score: 0.5, ref: 'MS — Humanização, 2013' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou a relação temporal entre psicose e episódios de humor', score: 1.5, ref: 'DSM-5; ABP 2022' },
+          { item: 'Avaliou funcionamento entre as crises', score: 0.5, ref: 'DSM-5' },
+          { item: 'Investigou número e padrão das crises anteriores', score: 0.5, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou toxicológico', score: 0.3, ref: 'ABP 2022' },
+          { item: 'Diferenciou TE de depressão psicótica e esquizofrenia', score: 1.0, ref: 'DSM-5' },
+          { item: 'Formulou hipótese de transtorno esquizoafetivo tipo depressivo', score: 1.0, ref: 'DSM-5; ABP 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu antipsicótico de manutenção', score: 1.0, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Não prescreveu antidepressivo isolado sem antipsicótico', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Planejou seguimento no CAPS II', score: 0.7, ref: 'Lei 10.216/2001' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 33
+{
+  id: 33,
+  title: "Jovem com 'surto' de 4 meses após morte do pai que agora está melhorando",
+  sub: 'CAPS II — Reavaliação',
+  tema: 'psiquiatria',
+  topic: 'Transtorno esquizofreniforme',
+  level: 'moderado',
+  cardAccent: '#4527A0',
+  instA: {
+    scenario: 'CAPS II. Consulta de reavaliação, turno da tarde. Paciente em acompanhamento há 4 meses após primeiro episódio psicótico.',
+    patient: 'J.F., 27 anos, masculino, analista de RH (retornou ao trabalho há 1 mês), solteiro. Pai faleceu 2 semanas antes do início do quadro psicótico.',
+    complaint: "Psiquiatra anterior iniciou haloperidol há 4 meses após episódio psicótico agudo com delírios persecutórios e alucinações auditivas. Hoje o paciente está praticamente assintomático e questiona: 'Tenho esquizofrenia para sempre?'",
+    tasks: [
+      'Realize a anamnese investigando a evolução dos sintomas e o funcionamento atual.',
+      'Revise o diagnóstico inicial à luz da duração total do episódio.',
+      'Explique ao paciente a diferença entre transtorno esquizofreniforme e esquizofrenia.',
+      'Discuta o plano de continuação ou retirada gradual do antipsicótico.',
+      'Comunique o prognóstico de forma honesta e esperançosa.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '118/76 mmHg',
+      FC: '78 bpm',
+      FR: '15 irpm',
+      Tax: '36,5°C',
+      Peso: '74 kg',
+      Altura: '1,76 m',
+      IMC: '23,9 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral. Higiene adequada. Lúcido e orientado. Sem efeitos extrapiramidais visíveis. Contato visual preservado.',
+    physicalSeg: 'Estado mental: Humor eutímico. Sem alucinações ou delírios ativos. Pensamento organizado. Fala fluente. Insight preservado. Funcionamento social e laboral retomado.',
+    labs: [],
+    image: null,
+    note: 'O candidato deve ser avaliado especialmente pelo raciocínio diagnóstico: transtorno esquizofreniforme dura de 1 a 6 meses — abaixo de 1 mês é psicose breve, acima de 6 meses com funcionamento prejudicado é esquizofrenia. A remissão completa em 4 meses com boa recuperação funcional é compatível com esquizofreniforme, não esquizofrenia.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Tô muito melhor. Voltei a trabalhar. Aquelas vozes e o medo que as pessoas me faziam mal sumiram completamente faz 6 semanas. Mas quero saber: tenho esquizofrenia pra sempre?' },
+      { trigger: 'Sobre a evolução', speech: 'No começo foi muito assustador. Mas depois de uns 3 meses tomando o remédio, foi melhorando. Hoje me sinto igual a antes.' },
+      { trigger: 'Sobre o trabalho', speech: 'Voltei ao trabalho há um mês. Tô indo bem, meus colegas não perceberam nada diferente.' },
+      { trigger: 'Sobre o pai', speech: 'Meu pai morreu 2 semanas antes de tudo começar. Ainda tô em luto, mas normal.' },
+      { trigger: 'Sobre a medicação', speech: 'Ainda tomo o haloperidol. Tenho efeito colateral de leve tremor. Posso parar?' },
+      { trigger: 'Pergunta ativa', speech: 'Se melhorei tão rápido, então não é esquizofrenia?' },
+      { trigger: 'Pergunta ativa', speech: 'Vai voltar?' }
+    ],
+    hiddenInfo: 'O tremor pelo haloperidol é leve mas incomoda — pode justificar troca para antipsicótico atípico se a retirada não for indicada ainda.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno esquizofreniforme com bom prognóstico (duração total de ~4 meses, remissão completa, retorno ao funcionamento pré-mórbido, possível precipitante: morte do pai). CID-11: 6A22 / DSM-5: F20.81.',
+    differentials: [
+      'Esquizofrenia — duração ≥6 meses com comprometimento funcional; excluída pela duração de 4 meses e recuperação completa.',
+      'Psicose breve — duração <1 mês; excluída pela duração de 4 meses.',
+      'Transtorno esquizoafetivo — sintomas de humor proeminentes associados; não identificados no caso.',
+      'Psicose induzida por luto complicado — o luto pode precipitar psicose em indivíduos vulneráveis; o contexto é sugestivo mas não altera o diagnóstico categorial.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Continuidade do antipsicótico: Manter por pelo menos 12–18 meses após remissão completa do 1º episódio (mesmo no esquizofreniforme) antes de considerar retirada gradual. Suspensão prematura aumenta risco de recorrência. (ABP — Diretrizes Esquizofrenia, 2022) | Trocar para antipsicótico atípico se o tremor do haloperidol for relevante: Risperidona 2 mg/dia ou Quetiapina 150 mg/dia (menor incidência de SEP). | Prognóstico: Transtorno esquizofreniforme com bom prognóstico (início agudo, ausência de sintomas negativos proeminentes, boa recuperação funcional) tem prognóstico muito melhor que esquizofrenia. | Psicoeducação: Explicar a diferença entre esquizofreniforme e esquizofrenia.',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Confirmar o diagnóstico de esquizofrenia sem verificar a duração total do episódio',
+      'Suspender o antipsicótico imediatamente após remissão (retirada prematura antes de 12–18 meses)',
+      'Não explicar a diferença de prognóstico entre esquizofreniforme e esquizofrenia',
+      'Não abordar o efeito colateral do haloperidol (tremor) como motivo para troca ou ajuste',
+      'Não manter o seguimento no CAPS após remissão clínica'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — JOVEM COM SURTO DE 4 MESES QUE AGORA ESTÁ MELHORANDO',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Explicou a diferença entre esquizofreniforme e esquizofrenia', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Comunicou prognóstico favorável de forma honesta e esperançosa', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou duração exata dos sintomas psicóticos ativos', score: 1.0, ref: 'DSM-5' },
+          { item: 'Avaliou funcionamento atual vs pré-mórbido', score: 0.5, ref: 'DSM-5' },
+          { item: 'Investigou sintomas residuais e efeitos adversos (tremor)', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Revisou e corrigiu diagnóstico de esquizofrenia para esquizofreniforme', score: 1.5, ref: 'DSM-5' },
+          { item: 'Aplicou critério de duração: 1–6 meses = esquizofreniforme', score: 1.0, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Manteve antipsicótico por pelo menos 12–18 meses (não suspendeu prematuramente)', score: 1.5, ref: 'ABP 2022' },
+          { item: 'Considerou troca para antipsicótico atípico pelo tremor', score: 0.5, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Manteve seguimento no CAPS', score: 1.0, ref: 'Lei 10.216/2001' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 34
+{
+  id: 34,
+  title: 'Homem que começou a acreditar que a vizinha coloca veneno na comida dele há 3 semanas',
+  sub: 'UBS — Trazido pelo filho',
+  tema: 'psiquiatria',
+  topic: 'Psicose breve (transtorno psicótico breve)',
+  level: 'moderado',
+  cardAccent: '#880E4F',
+  instA: {
+    scenario: 'UBS. Sala de acolhimento, turno matutino. Filho trouxe o pai após preocupação com comportamento "completamente fora do normal" há 3 semanas.',
+    patient: 'A.B., 55 anos, masculino, comerciante, casado. Sem antecedente psiquiátrico conhecido.',
+    complaint: 'Filho relata que há 3 semanas, logo após demissão de dois funcionários de confiança, o pai começou a afirmar que a vizinha está colocando veneno na comida e na água dele. Para de comer, jogou fora toda a comida da geladeira, briga com a esposa quando ela nega o envenenamento.',
+    tasks: [
+      'Realize a anamnese com o paciente e o filho, investigando início, duração, conteúdo dos delírios e nível de organização.',
+      'Exclua causas orgânicas de psicose aguda.',
+      'Diferencie psicose breve de transtorno delirante e de esquizofrenia.',
+      'Avalie risco de heteroagressão (em relação à vizinha) e de desnutrição.',
+      'Proponha a conduta imediata e o encaminhamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '138/88 mmHg',
+      FC: '88 bpm',
+      FR: '18 irpm',
+      Tax: '36,7°C',
+      Peso: '74 kg',
+      Altura: '1,72 m',
+      IMC: '25,0 kg/m²'
+    },
+    physicalGeneral: 'Paciente em regular estado geral. Desconfiado, olhar esquivo. Lúcido e orientado. Sem sinais de desnutrição grave (perdeu 2 kg em 3 semanas). Sem intoxicação.',
+    physicalSeg: 'Estado mental: Delírio persecutório sistematizado (envenenamento pela vizinha), sem alucinações evidentes. Humor levemente irritável. Pensamento organizado exceto pelo conteúdo delirante. Sem sintomas negativos.',
+    labs: [
+      { test: 'TSH', val: 'Normal', ref: 'Normal', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'Glicemia', val: 'Normal', ref: '70–140', alt: false },
+      { test: 'Toxicológico', val: 'Negativo', ref: '—', alt: false },
+      { test: 'TC crânio', val: 'Sem alterações estruturais agudas', ref: '—', alt: false }
+    ],
+    image: 'TC de crânio sem contraste: Sem alterações estruturais agudas.',
+    note: 'Sinais vitais ao início. O candidato deve ser avaliado especialmente pela distinção entre psicose breve (duração <1 mês com início agudo após estressor), transtorno delirante (delírio isolado, sem alucinações, por >1 mês) e esquizofrenia (>6 meses com múltiplos sintomas). Com apenas 3 semanas de evolução, o diagnóstico definitivo não pode ser fechado — é psicose breve ou início de transtorno delirante.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Não preciso de médico. O problema não é meu — é a minha vizinha que tá me envenenando.' },
+      { trigger: 'Sobre o veneno', speech: 'Ela bota veneno na torneira do prédio. Eu sei porque desde que comecei a perceber fico com dor de estômago.' },
+      { trigger: 'Sobre a demissão', speech: 'Tive que demitir dois funcionários há 3 semanas. Fiquei muito estressado. Mas não tem relação com a vizinha.' },
+      { trigger: 'Sobre o início', speech: 'Há 3 semanas notei que a comida tava com gosto estranho. Comecei a entender o que estava acontecendo.' },
+      { trigger: 'Sobre alucinações', speech: 'Não ouço vozes. Só sei o que sei.' },
+      { trigger: 'Script do filho', speech: 'Doutor, meu pai nunca foi assim. Era uma pessoa normal, de negócios. Esse problema da vizinha começou do nada, 3 semanas atrás. Antes disso, tinha tido uma situação difícil na empresa. É uma pessoa completamente diferente.' },
+      { trigger: 'Pergunta ativa do filho', speech: 'Isso é psicose? Vai durar muito? Tem risco de ele agredir a vizinha?' }
+    ],
+    hiddenInfo: 'Estressor precipitante (demissão dos funcionários) — revelar se perguntado sobre eventos na vida recente antes do início dos sintomas.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Diagnóstico Provisório: Psicose breve (possível transtorno delirante em início — decisão após evolução). Delírio persecutório de envenenamento de início agudo (3 semanas) após estressor identificável (demissão de funcionários). Sem alucinações, sem sintomas negativos. Duração atual <1 mês. CID-11: 6A24 / DSM-5: F23.',
+    differentials: [
+      'Transtorno delirante — delírio não bizarro persistente por >1 mês sem outros sintomas psicóticos proeminentes; ainda não pode ser diagnosticado (3 semanas — aguardar evolução).',
+      'Esquizofrenia — múltiplos sintomas psicóticos por ≥6 meses; excluída pela duração e pela ausência de sintomas negativos.',
+      'Transtorno esquizofreniforme — duração de 1–6 meses; ainda não atingido.',
+      'Delirium por causa orgânica — TC e exames normais; lúcido e orientado; afastado.',
+      'TAB com psicose — sem episódio de humor proeminente; excluído.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Antipsicótico: Haloperidol 2,5–5 mg/dia VO (início em baixa dose). Risperidona 1–2 mg/dia como alternativa. (RENAME 2023; ABP — Diretrizes Esquizofrenia, 2022) | Risco de heteroagressão: Avaliar e orientar o filho a vigiar o comportamento em relação à vizinha. Não há indicação atual de internação, mas monitorar. | Risco de desnutrição: Orientar para comer alimentos preparados por ele mesmo ou pelo filho (respeitando o delírio sem confrontar). | Encaminhamento: CAPS II para acompanhamento urgente ou psiquiatra ambulatorial. | Não confrontar diretamente o delírio — agrava a resistência e a agitação. | Aguardar evolução antes de fechar diagnóstico definitivo (psicose breve vs. transtorno delirante).',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Fechar diagnóstico definitivo de esquizofrenia com apenas 3 semanas de evolução',
+      'Confrontar diretamente o delírio ("a vizinha não está te envenenando")',
+      'Não avaliar risco de heteroagressão contra a vizinha',
+      'Não solicitar TC de crânio em psicose aguda sem antecedente em adulto de 55 anos (afastar orgânico)',
+      'Alta sem encaminhamento urgente para psiquiatra/CAPS'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — HOMEM QUE ACREDITA QUE A VIZINHA ENVENENA SUA COMIDA HÁ 3 SEMANAS',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não confrontou o delírio diretamente', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Orientou o filho sobre risco de heteroagressão', score: 0.5, ref: 'Lei 10.216/2001' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou início agudo e estressor precipitante', score: 0.5, ref: 'DSM-5' },
+          { item: 'Investigou ausência de alucinações e sintomas negativos', score: 0.5, ref: 'DSM-5' },
+          { item: 'Avaliou risco de heteroagressão e de desnutrição', score: 1.0, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Avaliou estado mental (delírio, sem alucinações, orientação)', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou TC de crânio, TSH e toxicológico', score: 1.0, ref: 'ABP 2022' },
+          { item: 'Não fechou diagnóstico de esquizofrenia com 3 semanas', score: 1.0, ref: 'DSM-5' },
+          { item: 'Formulou psicose breve (ou início de transtorno delirante)', score: 1.0, ref: 'DSM-5' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu antipsicótico em dose inicial adequada', score: 1.0, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Encaminhou ao CAPS/psiquiatra com urgência', score: 0.5, ref: 'Lei 10.216/2001' },
+          { item: 'Orientou sobre vigilância nutricional (risco de recusa alimentar)', score: 1.0, ref: 'ABP 2022' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 35
+{
+  id: 35,
+  title: 'Aposentado que há 3 anos acredita que sua esposa o trai com o vizinho',
+  sub: 'CAPS II — Encaminhamento da UBS',
+  tema: 'psiquiatria',
+  topic: 'Transtorno delirante — tipo ciúme (síndrome de Otelo)',
+  level: 'moderado',
+  cardAccent: '#1B5E20',
+  instA: {
+    scenario: 'CAPS II. Sala de acolhimento, turno matutino. Esposa trouxe o marido após ele quebrar o celular dela procurando "provas de traição".',
+    patient: 'O.M., 67 anos, masculino, aposentado (ex-policial), casado há 40 anos, dois filhos adultos.',
+    complaint: 'Esposa relata que há 3 anos o marido acredita com convicção inabalável que ela o trai com o vizinho. Vasculha o celular, segue-a até o mercado, questiona a mesma coisa repetidamente. Ontem quebrou o celular dela. Nunca teve comportamentos como esse antes.',
+    tasks: [
+      'Realize a anamnese investigando o conteúdo, a sistematização e a duração do delírio.',
+      'Avalie o funcionamento geral fora do tema do delírio.',
+      'Avalie o risco de violência contra a esposa ou o vizinho.',
+      'Diferencie de esquizofrenia, TAB e demência.',
+      'Proponha a conduta terapêutica e de segurança.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '142/90 mmHg',
+      FC: '82 bpm',
+      FR: '16 irpm',
+      Tax: '36,6°C',
+      Peso: '88 kg',
+      Altura: '1,74 m',
+      IMC: '29,1 kg/m²'
+    },
+    physicalGeneral: 'Paciente em bom estado geral, bem vestido. Lúcido e orientado. Fácies séria. Sem agitação no momento.',
+    physicalSeg: 'Estado mental: Delírio sistematizado de ciúme (apresenta "evidências" — mudança de perfume, sair mais de casa). Sem alucinações. Humor levemente irritável relacionado ao tema. Funcionamento preservado em outros domínios. Sem sintomas negativos. Mini-Exame do Estado Mental (MEEM): 27/30 — cognitivamente preservado para a idade.',
+    labs: [
+      { test: 'TSH', val: '2,1 (normal)', ref: 'Normal', alt: false },
+      { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+      { test: 'VDRL', val: 'Não reagente', ref: 'Não reagente', alt: false },
+      { test: 'Anti-HIV', val: 'Não reagente', ref: 'Não reagente', alt: false },
+      { test: 'TC crânio', val: 'Sem atrofia ou lesão focal', ref: '—', alt: false }
+    ],
+    image: 'TC de crânio: Sulcos e ventrículos dentro dos limites para a faixa etária. Sem hipodensidades, sem atrofia significativa.',
+    note: 'Sinais vitais ao início. O candidato deve ser avaliado especialmente pela avaliação formal do risco de violência contra a esposa e o vizinho (transtorno delirante de ciúme — Síndrome de Otelo — tem risco elevado de violência) e pela distinção de demência (MEEM preservado, delírio sistematizado sem outros déficits cognitivos).',
+    patientProfile: '',
+    script: [
+      { trigger: 'Abertura', speech: 'Fui trazido pelo meu filho. Mas o problema não é meu — é a minha esposa que me está traindo.' },
+      { trigger: "Sobre as 'provas'", speech: 'Ela mudou de perfume. Sai mais pra fazer mercado. Uma vez o vizinho acenou pra ela. Tenho certeza.' },
+      { trigger: 'Sobre o funcionamento', speech: 'Fora disso, minha vida é normal. Cuido da casa, vejo meus filhos, jogo dominó. Só não consigo confiar nela.' },
+      { trigger: 'Sobre violência', speech: 'Quebrei o celular porque precisava de provas. Não vou machucar ela. Mas se eu pegar o vizinho...' },
+      { trigger: 'Script da esposa', speech: 'Doutor, eu jamais o traí. Ele era ciumento, mas normal. Há 3 anos ficou assim. Tenho muito medo. Ontem foi o celular. E amanhã?' },
+      { trigger: 'Pergunta ativa da esposa', speech: 'Ele é perigoso? Devo sair de casa?' }
+    ],
+    hiddenInfo: 'O filho relatou ao CAPS que o pai já seguiu o vizinho até o trabalho semana passada — revelar se perguntado sobre comportamentos de vigilância além do rastreio do celular.',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Transtorno delirante, tipo ciúme (Síndrome de Otelo). Delírio não bizarro (traição conjugal), sistematizado, persistente por 3 anos, sem alucinações, sem sintomas negativos, com funcionamento preservado fora do tema. Alto risco de violência contra cônjuge e contra o suposto amante. CID-11: 6A24 / DSM-5: F22.',
+    differentials: [
+      'Esquizofrenia — múltiplos sintomas psicóticos, sintomas negativos, funcionamento comprometido em múltiplas áreas; excluída pelo funcionamento preservado e pelo delírio isolado sem outros sintomas.',
+      'Demência com psicose — MEEM 27/30 normal para a idade; TC sem atrofia; excluída.',
+      'TAB com psicose — sem episódios de humor; excluído.',
+      'Ciúme patológico não delirante (transtorno de personalidade paranoide) — sem a certeza inabalável e a sistematização do delírio; excluído pela convicção absoluta ("tenho certeza") e pela incapacidade de considerar o contrário.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: "Risco de violência — PRIORIDADE: Avaliar formalmente o risco de violência (seguiu o vizinho, quebrou o celular). Orientar a esposa sobre segurança (não confrontar o delírio, ter plano de saída em caso de escalada). Considerar internação se risco iminente. | Antipsicótico: Risperidona 1–2 mg/dia VO ou Pimozida (se disponível — específico para transtorno delirante, mas disponibilidade limitada no SUS). (RENAME 2023; ABP 2022) | Psicoterapia: Limitada no transtorno delirante; abordagem de suporte sem confrontar o delírio. | Engajamento terapêutico: O paciente não reconhece adoência — o engajamento deve focar em objetivos que ele aceita ('quero ajudá-lo a resolver o conflito com a vizinhança'). | Orientação à esposa: Não confrontar o delírio. Comunicar ao filho e planejar a segurança.",
+    expectedCommunication: '',
+    criticalErrors: [
+      'Não avaliar formalmente o risco de violência contra esposa e vizinho',
+      'Dizer à esposa que "não é perigoso" sem avaliação formal do risco',
+      'Diagnosticar esquizofrenia sem evidência de outros sintomas psicóticos além do delírio',
+      'Não solicitar TC de crânio para afastar demência em idoso com psicose de início tardio',
+      'Confrontar o delírio diretamente ("sua esposa não está te traindo") — rompe o vínculo e aumenta o risco de violência'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — APOSENTADO QUE ACREDITA QUE A ESPOSA O TRAI HÁ 3 ANOS',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Não confrontou o delírio diretamente', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Orientou a esposa sobre segurança e plano em caso de escalada', score: 1.0, ref: 'Lei 10.216/2001; ABP 2022' }
+        ]
+      },
+      {
+        h: 'ANAMNESE',
+        items: [
+          { item: 'Investigou conteúdo, sistematização e duração do delírio', score: 0.5, ref: 'DSM-5' },
+          { item: 'Avaliou funcionamento fora do tema do delírio', score: 0.5, ref: 'DSM-5' },
+          { item: 'Pesquisou comportamentos de vigilância e violência prévia', score: 1.0, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Aplicou MEEM para afastar demência', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou TC de crânio e VDRL em idoso com psicose tardia', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Diferenciou transtorno delirante de esquizofrenia e demência', score: 1.0, ref: 'DSM-5' },
+          { item: 'Formulou transtorno delirante tipo ciúme com alto risco de violência', score: 1.0, ref: 'DSM-5; ABP 2022' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Prescreveu antipsicótico adequado (risperidona)', score: 1.0, ref: 'ABP 2022; RENAME 2023' },
+          { item: 'Avaliou necessidade de internação pelo risco de violência', score: 1.0, ref: 'Lei 10.216/2001' },
+          { item: 'Incluiu o filho no plano de segurança', score: 0.5, ref: 'Lei 10.216/2001' }
+        ]
+      }
+    ]
+  }
+},
+
+// CASO 36
+{
+  id: 36,
+  title: 'Mulher encontrada na rua repetindo as mesmas frases e sem identificação',
+  sub: 'PS — Emergência Psiquiátrica',
+  tema: 'psiquiatria',
+  topic: 'Emergência psiquiátrica — catatonia',
+  level: 'moderado',
+  cardAccent: '#4E342E',
+  instA: {
+    scenario: 'PS de Hospital Geral. Sala de emergência, turno noturno. SAMU trouxe paciente encontrada em calçada por transeuntes. Sem identificação. Não responde a perguntas — só repete uma frase.',
+    patient: 'Paciente feminina, aparentemente 35–45 anos, sem identificação. Trazida pelo SAMU.',
+    complaint: "SAMU relata que a paciente foi encontrada na calçada, imóvel, repetindo a frase 'não posso sair daqui' continuamente, sem responder a perguntas, sem sinais de trauma e sem alteração da consciência aparente.",
+    tasks: [
+      'Realize a avaliação clínica inicial com prioridade para ABC e causas orgânicas.',
+      'Realize o exame do estado mental para identificar características catatônicas.',
+      'Exclua causas orgânicas de catatonia (neurológica, tóxica, metabólica).',
+      'Proponha a conduta terapêutica para catatonia.',
+      'Comunique à equipe o plano de manejo e o encaminhamento.'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '124/80 mmHg',
+      FC: '78 bpm',
+      FR: '14 irpm',
+      Tax: '36,8°C',
+      Peso: '~60 kg',
+      Altura: 'Não disponível',
+      IMC: 'Não disponível'
+    },
+    physicalGeneral: "Paciente sentada rígida, olhar fixo. Não responde a perguntas verbais. Repete 'não posso sair daqui' quando estimulada. Sem sinais de trauma. Sem sinais de intoxicação. Pele íntegra. Mucosas hidratadas. Pupilas isocóricas fotorreagentes.",
+    physicalSeg: 'Neurológico: Sem déficits motores ou sensitivos focais. Rigidez muscular generalizada (flexibilidade cérea — mantém posições impostas). Sem sinais de irritação meníngea. Reflexos preservados. Pupilas normais. | Catatonia — Escala de Bush-Francis: Estupor (2), mutismo (2), rigidez (2), ecolalia (2 — repete), postura fixada (2) = escore ≥2 itens = CATATONIA confirmada. | Cardiovascular e Respiratório: Normais.',
+    labs: [
+      { test: 'SatO2', val: '97% AA', ref: '95–100%', alt: false },
+      { test: 'Glicemia capilar', val: '88 mg/dL', ref: '70–140', alt: false },
+      { test: 'Sódio', val: '138 mEq/L', ref: '135–145', alt: false },
+      { test: 'Cálcio', val: '9,2 mg/dL', ref: '8,5–10,5', alt: false },
+      { test: 'TSH', val: '2,0 (normal)', ref: '—', alt: false },
+      { test: 'Toxicológico', val: 'Positivo anti-NMDAR a confirmar', ref: '—', alt: true },
+      { test: 'Anti-NMDAR IgG LCR', val: 'Positivo (resultado aguardado)', ref: '—', alt: true },
+      { test: 'TC de crânio', val: 'Sem alterações estruturais agudas', ref: '—', alt: false },
+      { test: 'EEG', val: 'Padrão de atividade lenta difusa', ref: 'Normal', alt: true }
+    ],
+    image: 'TC de crânio sem contraste: Sem hipodensidades, sem edema, sem desvio de linha média.',
+    note: 'Sinais vitais ao início. EEG e TC entregues se solicitados. Anti-NMDAR: resultado pendente — pedir se candidato considerar encefalite autoimune. O candidato deve ser avaliado pela identificação dos sinais catatônicos, pelo uso do lorazepam como teste terapêutico diagnóstico, e pela investigação de encefalite autoimune (anti-NMDAR) como causa de catatonia em mulher jovem.',
+    patientProfile: '',
+    script: [
+      { trigger: 'Estímulo verbal', speech: "Não posso sair daqui. (repete a mesma frase ao ser estimulada verbalmente — ecolalia/verbigeration)" },
+      { trigger: 'Ao tentar mover o braço', speech: '(mantém a posição imposta — flexibilidade cérea / catalepsia)' }
+    ],
+    hiddenInfo: '',
+    actorBehavior: ''
+  },
+  instC: {
+    diagnosis: 'Diagnóstico Provisório: Síndrome catatônica de etiologia a esclarecer. Suspeita principal: encefalite autoimune anti-NMDAR (mulher jovem, catatonia, EEG com lentificação difusa, sem causa orgânica metabólica identificada). Diagnósticos diferenciais incluem catatonia em psicose (esquizofrenia, TAB), catatonia por causa orgânica. CID-11: MB23.1 / DSM-5: 293.89.',
+    differentials: [
+      'Catatonia por transtorno psiquiátrico primário (esquizofrenia, TAB) — mais provável em paciente com histórico psiquiátrico; sem história disponível.',
+      'Encefalite autoimune anti-NMDAR — causa crescente de catatonia em mulheres jovens; EEG anormal e ausência de causa metabólica aumentam suspeita; anti-NMDAR a confirmar.',
+      'Estado epiléptico não convulsivo — EEG com lentificação pode ocorrer; EEG mostra padrão lento mas não epileptiforme.',
+      'Intoxicação/abstinência por substâncias — toxicológico aguardado.',
+      'Síndrome neuroléptica maligna — sem uso prévio de antipsicótico relatado; sem febre alta ou rigidez extrema.'
+    ],
+    context: '',
+    justify: '',
+    expectedAnamnesis: '',
+    expectedPhysical: '',
+    expectedExams: [],
+    expectedConduct: 'Teste terapêutico com lorazepam: Lorazepam 1–2 mg IV — se a catatonia for de origem psiquiátrica, há resposta em 15–30 min (melhora do mutismo, da rigidez, reaparece o contato verbal). É diagnóstico e terapêutico. (ABP 2022; UpToDate 2024) | Suspender antipsicóticos se em uso (piora a catatonia — síndrome neuroléptica maligna). | Investigação para encefalite autoimune: Anti-NMDAR IgG no LCR (punção lombar), RM de crânio, EEG. | Suporte: Hidratação IV, nutrição enteral se mutismo mantido, profilaxia de TVP. | Internação: UTI ou leito monitorado. | Comunicar à equipe: Verbalizar o diagnóstico de síndrome catatônica, o teste com lorazepam e a investigação em curso.',
+    expectedCommunication: '',
+    criticalErrors: [
+      'Administrar antipsicótico (haloperidol) em catatonia — pode precipitar síndrome neuroléptica maligna',
+      'Não realizar o teste terapêutico com lorazepam',
+      'Não investigar encefalite autoimune anti-NMDAR em mulher jovem com catatonia',
+      'Não solicitar TC de crânio e EEG para afastar causas orgânicas',
+      'Não garantir suporte nutricional e de hidratação para paciente em mutismo'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — MULHER ENCONTRADA NA RUA REPETINDO FRASES E IMÓVEL',
+    sections: [
+      {
+        h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+        items: [
+          { item: 'Verbalizou diagnóstico e plano à equipe de forma clara', score: 0.5, ref: 'CFM 1.931/2009' }
+        ]
+      },
+      {
+        h: 'AVALIAÇÃO INICIAL',
+        items: [
+          { item: 'Avaliou ABC imediatamente (via aérea, respiração, circulação)', score: 0.5, ref: 'MS — Emergências, 2022' }
+        ]
+      },
+      {
+        h: 'EXAME FÍSICO',
+        items: [
+          { item: 'Identificou sinais catatônicos: mutismo, rigidez, ecolalia, catalepsia', score: 1.5, ref: 'Bush-Francis Scale; ABP 2022' },
+          { item: 'Avaliou pupilas, sinais meníngeos e déficits focais', score: 0.5, ref: 'ABP 2022' }
+        ]
+      },
+      {
+        h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+        items: [
+          { item: 'Solicitou glicemia capilar, eletrólitos e TSH', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Solicitou TC de crânio e EEG', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Suspeitou de encefalite autoimune (anti-NMDAR) em mulher jovem', score: 1.0, ref: '⚠️ UpToDate 2024' }
+        ]
+      },
+      {
+        h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE',
+        items: [
+          { item: 'Realizou teste terapêutico com lorazepam IV', score: 1.5, ref: 'ABP 2022; UpToDate 2024' },
+          { item: 'Não administrou antipsicótico (contraindicado em catatonia)', score: 1.5, ref: 'ABP 2022' },
+          { item: 'Garantiu hidratação IV e suporte nutricional', score: 0.5, ref: 'ABP 2022' },
+          { item: 'Indicou internação em leito monitorado', score: 0.5, ref: 'ABP 2022' }
+        ]
+      }
+    ]
+  }
 }
 
 ]
