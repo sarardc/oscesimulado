@@ -1231,6 +1231,122 @@ const orl = [
       ]}
     ]
   }
+},
+
+// CASO 11
+{
+  id: 11,
+  title: 'Dor de cabeça e pressão na face há 10 dias, com catarro amarelado',
+  sub: 'UBS — Atenção Primária',
+  tema: 'otorrinolaringologia',
+  topic: 'Rinossinusite Aguda Bacteriana',
+  level: 'moderado',
+  cardAccent: '#F57C00',
+  instA: {
+    scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',
+    patient: 'C.V., 38 anos, masculino, vendedor, sem comorbidades conhecidas.',
+    complaint: 'Dor de cabeça e sensação de pressão na face, com catarro amarelado há 10 dias, piorou nos últimos 2 dias.',
+    tasks: [
+      'Realize a anamnese dirigida ao caso',
+      'Realize o exame físico pertinente',
+      'Formule a hipótese diagnóstica e os diferenciais',
+      'Solicite os exames complementares se indicados',
+      'Proponha a conduta terapêutica e oriente o paciente'
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: '124/80 mmHg',
+      FC: '84 bpm',
+      FR: '16 irpm',
+      Tax: '37,9°C',
+      Peso: '80 kg',
+      Altura: '1,78 m',
+      IMC: '25,2 kg/m²'
+    },
+    physicalGeneral: 'Bom estado geral, corado, hidratado, subfebril, consciente e orientado. Leve mal-estar.',
+    physicalSeg: 'RINOSCOPIA ANTERIOR: Mucosa nasal hiperemiada e edemaciada bilateralmente, cornetos inferiores congestos. Secreção purulenta em meato médio bilateral. | PALPAÇÃO DE SEIOS PARANASAIS: Dor à palpação/percussão de seios maxilares bilateralmente, mais intensa à direita. Dor à palpação de seios frontais bilateralmente. | OROFARINGE: Secreção mucopurulenta em parede posterior. Tonsilas sem exsudato. | OTOSCOPIA BILATERAL: Normal. | AUSCULTA PULMONAR: Normal. | NEUROLÓGICO: Sem sinais de irritação meníngea. Sem déficits focais.',
+    labs: [
+      { test: 'Hemograma', val: 'Leucócitos 13.200/mm³, neutrófilos 78%, sem desvio à esquerda', ref: '4.000–11.000/mm³', alt: true },
+      { test: 'PCR', val: '32 mg/L', ref: '< 5 mg/L', alt: true }
+    ],
+    image: 'Radiografia de seios paranasais (Caldwell e Waters — se solicitada): Opacificação parcial de seios maxilares bilateralmente, com nível hidroaéreo à direita. Seios frontais com velamento bilateral. Sem erosão óssea.',
+    note: 'Entregar sinais vitais ao início. Entregar achados do exame físico ao exame. Entregar hemograma e PCR se solicitados. Entregar radiografia somente se solicitada. Orientar o candidato que TC de seios paranasais não está disponível na UBS — se solicitada, informar e questionar alternativa.',
+    patientProfile: 'Carlos V., 38 anos, masculino, vendedor externo, casado, 2 filhos.',
+    script: [
+      { trigger: 'Queixa principal', speech: 'Doutor, tô com uma dor de cabeça e uma pressão no rosto há uns 10 dias, e saindo muito catarro amarelo.' },
+      { trigger: 'Sobre início', speech: 'Começou como gripe normal, com coriza transparente, mas foi piorando. Agora o catarro ficou amarelo e a dor de cabeça aumentou.' },
+      { trigger: 'Sobre a dor', speech: 'A dor é embaixo dos olhos e na testa, piora quando abaixo a cabeça ou quando acordo de manhã.' },
+      { trigger: 'Sobre febre', speech: 'Tive febre ontem à noite, 38 graus, tomei dipirona e melhorou.' },
+      { trigger: 'Sobre tratamento', speech: 'Tomei ibuprofeno e melhorou um pouco, mas voltou. Fui na farmácia e o farmacêutico me disse para comprar amoxicilina, mas ainda não comprei.' },
+      { trigger: 'Sobre olfato', speech: 'Tô sentindo quase nada de cheiro faz uns 4 dias.' },
+      { trigger: 'Sobre dentes', speech: 'Tenho uma dorzinha leve no dente superior direito, mas achei que era coincidência.' },
+      { trigger: 'Pergunta ativa 1', speech: 'Isso é sinusite, doutor? Precisa de antibiótico?' },
+      { trigger: 'Pergunta ativa 2', speech: 'Quanto tempo vai durar? Posso trabalhar?' }
+    ],
+    hiddenInfo: 'Dor em dente superior direito há alguns dias — pode indicar sinusite maxilar de origem dentária; só revela se perguntado especificamente sobre dores nos dentes ou saúde bucal. | Já teve episódio de sinusite há 2 anos tratada com antibiótico — só revela se perguntado sobre episódios anteriores.',
+    actorBehavior: 'Leve mal-estar. Ansioso para receber o antibiótico e melhorar rápido (compromissos de trabalho). Colaborativo. Cabe ao candidato explicar a indicação correta do antibiótico e não ceder à pressão desnecessária.'
+  },
+  instC: {
+    diagnosis: 'Rinossinusite aguda bacteriana — envolvimento maxilar bilateral e frontal bilateral — com critérios de bacteriana: duração > 10 dias, piora bifásica após melhora inicial, secreção purulenta, febre e dor facial intensa.',
+    differentials: [
+      'Rinossinusite viral aguda (resfriado comum) — duração < 10 dias, sem piora bifásica, sem secreção purulenta persistente; não indicado antibiótico.',
+      'Rinossinusite de origem dentária — envolvimento maxilar unilateral com dor dentária ipsilateral; aqui bilateral com dor dentária leve — deve ser investigado.',
+      'Cefaleia tensional — sem coriza purulenta, sem dor à palpação de seios, sem febre.',
+      'Rinossinusite crônica — sintomas por mais de 12 semanas; aqui quadro agudo com 10 dias.'
+    ],
+    context: 'Adulto de meia-idade com rinossinusite aguda bacteriana maxilar e frontal bilateral, apresentando a tríade clássica: dor/pressão facial, obstrução nasal e secreção purulenta, com duração > 10 dias e piora bifásica após quadro viral inicial. Hiposmia e febre reforçam o diagnóstico bacteriano.',
+    justify: 'Critérios de bacteriana pelo IDSA / SBOTA: (1) duração ≥ 10 dias sem melhora, ou (2) "double sickening" — melhora inicial seguida de piora, ou (3) início grave com febre ≥ 39°C e secreção purulenta por ≥ 3 dias consecutivos. Este caso preenche o critério (1) e (2). Radiografia com nível hidroaéreo reforça diagnóstico.',
+    expectedAnamnesis: 'Duração e evolução dos sintomas (> 10 dias, piora bifásica) | Caracterização da dor facial (localização, piora ao abaixar a cabeça, pela manhã) | Tipo de secreção nasal (purulenta, coloração) | Febre: temperatura, duração | Hiposmia ou anosmia | Dor dentária (sinusite de origem odontogênica) | Tosse, otorreia (extensão da infecção) | Episódios anteriores de sinusite | Uso de medicamentos (ATB prévio, descongestionante) | Comorbidades (rinite alérgica, desvio de septo, pólipos)',
+    expectedPhysical: 'Sinais vitais: temperatura (subfebril) | Rinoscopia: secreção purulenta em meato médio, mucosa hiperemiada | Palpação/percussão de seios paranasais: dor em maxilares e frontais | Transiluminação dos seios (se disponível) | Orofaringe: gotejamento pós-nasal purulento | Neurológico sumário: afastar complicações (meningite, abscesso)',
+    expectedExams: [
+      { exam: 'Diagnóstico clínico — exames não obrigatórios', justify: 'Rinossinusite aguda bacteriana é diagnóstico clínico', expected: '—' },
+      { exam: 'Radiografia de seios paranasais', justify: 'Confirmar opacificação, nível hidroaéreo; disponível na UBS', expected: 'Opacificação maxilar bilateral, nível hidroaéreo direito' },
+      { exam: 'TC de seios paranasais', justify: 'Padrão-ouro, indicado em casos complicados, recorrentes ou refratários', expected: 'Indicar encaminhamento se disponível' },
+      { exam: 'Hemograma + PCR', justify: 'Confirmar processo bacteriano', expected: 'Leucocitose leve, PCR elevada' }
+    ],
+    expectedConduct: 'Farmacológica: Amoxicilina 500 mg VO 8/8h por 10–14 dias (1ª linha em adultos sem uso de ATB recente). Se alergia a penicilina: azitromicina 500 mg/dia por 3 dias ou levofloxacino 500 mg/dia por 5–7 dias. Analgesia: ibuprofeno 400 mg VO 8/8h ou dipirona 500 mg VO 6/6h. (SBOTA 2022 / RENAME 2022) | Não farmacológica: Lavagem nasal com soro fisiológico isotônico; inalação com vapor; hidratação adequada; descanso. | Encaminhamento: Otorrinolaringologista se: ausência de melhora em 72h, suspeita de complicação (periorbital, intracraniana), recorrência (> 4 episódios/ano), suspeita de odontogênica (dentista). | Orientações ao paciente: Explicar que é infecção bacteriana dos seios da face; que precisa completar o antibiótico; retorno se piora da dor de cabeça, febre alta, inchaço ao redor dos olhos. | Seguimento: Retorno em 72h se piora; sinais de alarme: cefaleia intensa, edema periorbitário, alteração visual, rigidez de nuca.',
+    expectedCommunication: "Apresentação: Apresentar-se, perguntar sobre contexto e impacto na vida do paciente. | Comunicação do diagnóstico: 'O senhor tem sinusite bacteriana — uma infecção nas cavidades do rosto. Vamos precisar de antibiótico porque já faz mais de 10 dias e houve piora.' | Escuta ativa: Acolher a pressão do trabalho, mas explicar que o repouso relativo ajuda na recuperação.",
+    criticalErrors: [
+      'Prescrever antibiótico em sinusite viral (< 10 dias sem critérios de bacteriana)',
+      'Não completar o tempo mínimo de antibioticoterapia (< 10 dias)',
+      'Não orientar sinais de alarme de complicação (edema orbitário, meningite)',
+      'Não realizar palpação de seios paranasais',
+      'Não investigar origem dentária (dor dentária superior relatada)',
+      'Solicitar TC rotineiramente sem indicação em sinusite não complicada na atenção primária'
+    ]
+  },
+  instD: {
+    title: 'CHECKLIST — DOR DE CABEÇA E PRESSÃO NA FACE COM CATARRO AMARELADO',
+    sections: [
+      { h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+        { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM 2.217/2018' },
+        { item: 'Explicou o diagnóstico e a indicação do antibiótico em linguagem acessível', score: 0.5, ref: 'PNHAH/MS, 2001' },
+        { item: 'Respondeu à expectativa do paciente por antibiótico com raciocínio clínico claro', score: 0.5, ref: 'PNHAH/MS, 2001' }
+      ]},
+      { h: 'ANAMNESE', items: [
+        { item: 'Identificou duração > 10 dias e piora bifásica (critério de bacteriana)', score: 1.0, ref: 'SBOTA, 2022' },
+        { item: 'Caracterizou a dor facial (localização, piora ao abaixar a cabeça)', score: 0.5, ref: 'SBOTA, 2022' },
+        { item: 'Investigou presença de febre, hiposmia e tipo de secreção', score: 0.5, ref: 'SBOTA, 2022' },
+        { item: 'Perguntou sobre dor dentária superior (sinusite odontogênica)', score: 0.5, ref: 'SBOTA, 2022' },
+        { item: 'Questionou sintomas de complicação (cefaleia intensa, edema orbital, alteração de consciência)', score: 0.5, ref: 'SBOTA, 2022' }
+      ]},
+      { h: 'EXAME FÍSICO', items: [
+        { item: 'Realizou palpação/percussão dos seios paranasais (maxilar e frontal)', score: 1.0, ref: 'SBOTA, 2022' },
+        { item: 'Realizou rinoscopia e identificou secreção purulenta em meato médio', score: 0.5, ref: 'SBOTA, 2022' },
+        { item: 'Realizou exame neurológico sumário (afastar complicação intracraniana)', score: 0.5, ref: 'SBOTA, 2022' }
+      ]},
+      { h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+        { item: 'Formulou hipótese de rinossinusite aguda bacteriana com critérios corretos', score: 1.0, ref: 'SBOTA, 2022' },
+        { item: 'Reconheceu que o diagnóstico é clínico e não indicou TC rotineiramente', score: 0.5, ref: 'SBOTA, 2022' }
+      ]},
+      { h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+        { item: 'Prescreveu amoxicilina 500 mg 8/8h por 10–14 dias', score: 1.0, ref: 'SBOTA 2022 / RENAME 2022' },
+        { item: 'Orientou lavagem nasal com soro fisiológico e medidas de suporte', score: 0.5, ref: 'SBOTA, 2022' },
+        { item: 'Orientou sinais de alarme de complicação e retorno precoce', score: 0.5, ref: 'SBOTA, 2022' }
+      ]}
+    ]
+  }
 }
 
 ]
