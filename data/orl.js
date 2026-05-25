@@ -1,7 +1,3 @@
-// ============================================================
-// MÓDULO: otorrino
-// ============================================================
-
 const orl = [
 
 // CASO 01
@@ -980,7 +976,8 @@ const orl = [
         { item: 'Apresentou-se e acolheu o medo do paciente (medo de AVC)', score: 0.5, ref: 'CFM 2.217/2018' },
         { item: 'Comunicou o diagnóstico afastando AVC com clareza e segurança', score: 0.5, ref: 'PNHAH/MS, 2001' },
         { item: 'Utilizou linguagem acessível ao explicar neurite vestibular', score: 0.5, ref: 'PNHAH/MS, 2001' }
-      ]},
+      ]
+    },
       { h: 'ANAMNESE', items: [
         { item: 'Caracterizou a tontura (contínua, início súbito ao acordar)', score: 0.5, ref: 'SBO, 2022' },
         { item: 'Questionou zumbido e hipoacusia (afastar labirintite/Ménière)', score: 0.5, ref: 'SBO, 2022' },
