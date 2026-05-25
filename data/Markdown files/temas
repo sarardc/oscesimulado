@@ -30,3 +30,27 @@
 | 10 | Celulite Orbitária vs. Pré-septal | Complexo | UPA Pediátrica | 10 min |
 
 Todos os 10 casos estão prontos, validados e formatados conforme o schema do seu banco de dados! 🎓
+
+PED3
+| # | Tema | Diagnóstico |
+|---|---|---|
+| 01 | Diarreia Aguda | Gastroenterite por Rotavírus |
+| 02 | Diarreia Aguda | Síndrome Hemolítica Urêmica |
+| 03 | Diarreia Persistente | Intolerância Secundária à Lactose |
+| 04 | Diarreia Crônica Sanguinolenta | Doença de Crohn Pediátrica |
+| 05 | Diarreia Crônica — SII | Síndrome do Intestino Irritável |
+| 06 | Diarreia Crônica | Doença Celíaca |
+| 07 | Diarreia Crônica — FC | Fibrose Cística |
+| 08 | Diarreia Crônica — APLV | Alergia à Proteína do Leite de Vaca |
+| 09 | Diarreia Crônica | Intolerância à Lactose Primária |
+| 10 | Teste do Pezinho | Fenilcetonúria |
+| 11 | Teste do Pezinho | Hipotireoidismo Congênito |
+| 12 | Teste do Pezinho | Doença Falciforme |
+| 13 | Teste do Pezinho | Hiperplasia Adrenal Congênita |
+| 14 | Teste do Pezinho | Deficiência de Biotinidase |
+| 15 | Semiologia do Adolescente | Depressão + Automutilação |
+| 16 | Semiologia do Adolescente | Violência Sexual |
+| 17 | Neonatal | Reanimação Neonatal |
+| 18 | Neonatal | Icterícia Neonatal |
+| 19 | Neonatal | Colestase Neonatal — AVB |
+| 20 | Neonatal | Hipoglicemia Neonatal |

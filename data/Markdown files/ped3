@@ -3418,8 +3418,847 @@ Menor de 18 anos + relato de ato sexual sem consentimento + agressor com víncul
 
 **TOTAL: _____ / 10 pontos**
 
----
-
-✅ **Casos de Semiologia do Adolescente concluídos** (15 e 16). Gerando agora os **4 casos Neonatais** — Casos 17 a 20 (Reanimação, Icterícia, Colestase, Hipoglicemia).
 
 ---
+
+## CASO OSCE-17
+
+### BLOCO 1 — METADADOS
+
+- **id:** 17
+- **title:** "Recém-nascido que não chora e está flácido ao nascer"
+- **sub:** "Sala de Parto — Maternidade"
+- **tema:** "Pediatria"
+- **topic:** "Reanimação Neonatal"
+- **level:** "moderado"
+- **cardAccent:** "#C62828"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Sala de parto — Maternidade. Nascimento iminente de recém-nascido com sofrimento fetal agudo ao monitoramento (desacelerações tardias). Você é o pediatra chamado para a sala de parto."
+- **patient:** "RN de 39 semanas, masculino. Líquido amniótico meconial espesso. Mãe: G1P0, sem intercorrências no pré-natal além de desacelerações tardias no cardiotocograma."
+- **complaint:** "RN nasceu sem choro, flácido, apneico, com FC estimada < 100 bpm."
+- **tasks:**
+  1. Avalie a necessidade de reanimação imediatamente ao nascimento
+  2. Realize os passos iniciais da reanimação neonatal na sequência correta
+  3. Reavalie após cada intervenção e tome as decisões sequenciais
+  4. Comunique à equipe e à família sobre as condutas adotadas
+  5. Indique o destino adequado do recém-nascido
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| FC ao nascimento | < 60 bpm (estimada pela ausculta) |
+| FR | Apneia |
+| Tax | 36,2°C (queda térmica — importância do aquecimento) |
+| Peso estimado | 3.200 g |
+| IG | 39 semanas |
+| Apgar | 1 min: 2 / 5 min: (após reanimação) |
+
+#### Exame Físico Geral (physicalGeneral)
+
+RN flácido (hipotônico), apneico, cianótico, sem resposta a estímulos. Líquido amniótico meconial espesso presente na pele. FC < 60 bpm. Sem choro.
+
+#### Exame Segmentar (physicalSeg)
+
+- **RESPOSTA:** Ausente a estímulo tátil.
+- **COLORAÇÃO:** Cianose central.
+- **TÔNUS:** Flácido (ausente).
+- **RESPIRAÇÃO:** Apneia.
+- **FC:** < 60 bpm.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Gasometria (pós-reanimação) | pH 7,12; pCO₂ 62; BE -10 | pH 7,35–7,45 | Sim |
+| Glicemia capilar | 42 mg/dL | 45–125 mg/dL | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Este caso é uma **estação de procedimento/decisão sequencial** — não há ator. O avaliador descreve o estado do RN a cada etapa e responde às intervenções do candidato com os dados clínicos esperados. O candidato deve verbalizar cada ação. A sequência deve seguir o fluxograma da SBP/AHA 2021.
+
+**Roteiro de respostas do avaliador por etapa:**
+- Após passos iniciais (aquecimento, posicionamento, aspiração, estimulação): "FC ainda < 60 bpm, apneia mantida"
+- Após VPP com O₂ 21% por 30s: "FC 72 bpm, ainda sem respiração espontânea"
+- Após VPP continuada: "FC 68 bpm, sem melhora"
+- Após intubação orotraqueal + VPP: "FC 90 bpm, surgem movimentos respiratórios"
+- Após estabilização: "FC 118 bpm, início de choro fraco, cianose central cedendo"
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"RN masculino, 39 semanas, parto vaginal, LA meconial espesso."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Nascimento | Avaliador: "O bebê nasce flácido, apneico, cianótico. FC estimada < 60 bpm. LA meconial espesso na pele." |
+| Após passos iniciais | Avaliador: "Após aquecimento, posicionamento, aspiração e estimulação: apneia persiste. FC < 60 bpm." |
+| Após VPP 30s (O₂ 21%) | Avaliador: "FC sobe para 72 bpm. Respiração espontânea ainda ausente." |
+| Após reavaliação | Avaliador: "FC 68 bpm. VPP ineficaz — reavalie técnica e considere intubação." |
+| Após IOT + VPP | Avaliador: "FC 90 bpm. Início de movimentos respiratórios." |
+| Estabilização | Avaliador: "FC 118 bpm. Início de choro fraco. Cianose cedendo. Saturação 88% em O₂ 21%." |
+
+#### Informações Escondidas (hiddenInfo)
+
+Não aplicável neste caso (estação de habilidade prática/decisão).
+
+#### Comportamento do Ator (actorBehavior)
+
+Não há ator. O avaliador simula as respostas clínicas do RN conforme o roteiro acima.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Asfixia perinatal com necessidade de reanimação neonatal avançada (IOT + VPP) em RN de 39 semanas com LA meconial espesso e sofrimento fetal agudo.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Síndrome de aspiração de mecônio (SAM) — comprometimento pulmonar por aspiração de mecônio; avaliar na UTI neonatal.
+2. Encefalopatia hipóxico-isquêmica (EHI) — complicação da asfixia; avaliar critérios de hipotermia terapêutica.
+3. Pneumotórax — complicação possível da VPP vigorosa; ausculta assimétrica.
+
+**Síntese do Caso (context):**
+RN a termo com sofrimento fetal agudo, LA meconial espesso, nascido apneico, flácido, cianótico e com FC < 60 bpm — Apgar 2 ao 1º minuto. Necessitou de passos iniciais, VPP e intubação orotraqueal para estabilização. Pós-reanimação: acidose respiratória e metabólica mista, hipoglicemia.
+
+**Justificativa Diagnóstica (justify):**
+Fluxograma SBP/AHA 2021: RN com ≥ 1 fator de risco → equipe preparada na sala de parto → avaliar tônus, FR, FC → se apneia/hipotonia → iniciar passos iniciais → VPP → IOT → compressões cardíacas → adrenalina. FC < 60 após VPP = intubação orotraqueal.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Antecedentes maternos (GnPn, GIG, pré-natal, patologias)
+- LA: cor, quantidade de mecônio
+- IG e peso estimado
+- Monitoramento fetal: desacelerações, tipo (tardias = sofrimento)
+
+**Exame Físico Esperado (expectedPhysical):**
+Avaliação sequencial conforme fluxograma:
+1. Tônus muscular
+2. Frequência respiratória (apneia/gasping/regular)
+3. FC (método: ausculta ou oxímetro)
+4. Coloração (cianose central/acrocianose)
+
+**Sequência de reanimação esperada (expectedExams/condutas):**
+
+| Etapa | Ação | Critério para avançar |
+|---|---|---|
+| 1 | Aquecimento, posicionamento, aspiração (bulbo/sonda se mecônio espesso em RN sem vitalidade), estimulação tátil | Avaliar após 30s |
+| 2 | VPP com peça T ou balão + máscara, O₂ 21%, 40–60 irpm | FC < 100 após 30s → continua VPP; se não melhora → verificar técnica/IOT |
+| 3 | Intubação orotraqueal + VPP | FC < 60 após VPP adequada |
+| 4 | Compressão cardíaca + VPP (3:1) + O₂ 100% | FC < 60 após IOT |
+| 5 | Adrenalina EV/IO (0,01–0,03 mg/kg) | FC < 60 após compressões |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Adrenalina EV/IO se FC < 60 após compressões (0,01–0,03 mg/kg IV ou 0,05–0,1 mg/kg ET). Glicose EV se hipoglicemia. (SBP/AHA 2021)
+- **Não farmacológica:** VPP com técnica correta; IOT com tubo adequado ao peso; manutenção de temperatura.
+- **Encaminhamento:** UTI neonatal após estabilização. Avaliação para hipotermia terapêutica se EHI (critérios de Sarnat).
+- **Orientações:** Comunicar à família após estabilização; explicar o que ocorreu; evitar comunicação prematura de prognóstico.
+- **Seguimento:** UTI neonatal; monitorização neurológica; critérios de EHI.
+
+**Comunicação Esperada (expectedCommunication):**
+- Comunicar à equipe durante a reanimação (liderança clara).
+- Após estabilização, comunicar à família: "Seu filho precisou de ajuda para respirar ao nascer. Estamos cuidando dele na UTI neonatal."
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não iniciar reanimação imediatamente em RN apneico com FC < 60
+- ❌ Não intubar após VPP sem melhora da FC (FC < 60 após 30–60s de VPP)
+- ❌ Usar O₂ 100% desde o início (iniciar com O₂ 21% em RN ≥ 35 semanas)
+- ❌ Não verificar técnica de VPP antes de avançar para IOT
+- ❌ Não aspirar vias aéreas em RN com LA meconial espesso e sem vitalidade
+- ❌ Não comunicar à família após estabilização
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — REANIMAÇÃO NEONATAL EM SALA DE PARTO"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Comunicou à equipe de sala de parto de forma clara e organizada (liderança) | 0.5 | SBP/AHA, 2021 |
+| Comunicou à família após estabilização de forma acolhedora | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — AVALIAÇÃO INICIAL
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou tônus, FR e FC imediatamente ao nascer (3 perguntas: tônus, choro, cor) | 1.0 | SBP/AHA, 2021 |
+| Identificou necessidade de reanimação (apneia + FC < 60 + hipotonia) | 0.5 | SBP/AHA, 2021 |
+
+#### BLOCO 3 — PASSOS INICIAIS
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Realizou aquecimento, posicionamento, aspiração e estimulação na sequência correta | 1.0 | SBP/AHA, 2021 |
+| Iniciou VPP com O₂ 21% em frequência correta (40–60 irpm) | 0.5 | SBP/AHA, 2021 |
+
+#### BLOCO 4 — REAVALIAÇÃO E PROGRESSÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Reavaliou FC após 30s de VPP e tomou decisão correta | 1.0 | SBP/AHA, 2021 |
+| Indicou intubação orotraqueal com FC persistentemente < 60 bpm | 1.5 | SBP/AHA, 2021 |
+
+#### BLOCO 5 — CONDUTA PÓS-REANIMAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Indicou internação em UTI neonatal após estabilização | 0.5 | SBP/AHA, 2021 |
+| Avaliou glicemia e hipotermia terapêutica (critérios de EHI) | 0.5 | SBP/AHA, 2021 |
+| Não utilizou O₂ 100% desde o início (iniciou com 21%) | 0.5 | SBP/AHA, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 17 concluído** (Reanimação Neonatal). Gerando **Caso 18 — Icterícia Neonatal**.
+
+---
+
+## CASO OSCE-18
+
+### BLOCO 1 — METADADOS
+
+- **id:** 18
+- **title:** "Recém-nascido com pele amarela no 3º dia de vida"
+- **sub:** "Alojamento Conjunto — Maternidade"
+- **tema:** "Pediatria"
+- **topic:** "Icterícia Neonatal"
+- **level:** "moderado"
+- **cardAccent:** "#F9A825"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Alojamento conjunto — Maternidade. Visita médica, 3º dia de vida do RN."
+- **patient:** "Mãe de T.L., 3 dias de vida, masculino, 38 semanas, AME exclusivo. Mãe com tipo sanguíneo O positivo."
+- **complaint:** "Enfermagem comunicou icterícia progressiva desde ontem. Mãe relata que filho mama pouco e está sonolento."
+- **tasks:**
+  1. Realize a anamnese com a mãe
+  2. Realize o exame físico com avaliação clínica da icterícia (zonas de Kramer)
+  3. Formule a hipótese diagnóstica e avalie gravidade
+  4. Solicite os exames adequados e interprete os resultados
+  5. Proponha a conduta e oriente a mãe
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | Não aferida |
+| FC | 148 bpm |
+| FR | 44 irpm |
+| Tax | 36,9°C |
+| Peso | 3.080 g (peso ao nascer: 3.350g — perda de 8%) |
+| Altura | 50 cm |
+| IMC | — |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral, ictérico (++/4+), levemente sonolento, reflexo de sucção presente mas fraco. Zona de Kramer III (icterícia até o umbigo). Pele e escleróticas amareladas.
+
+#### Exame Segmentar (physicalSeg)
+
+- **NEUROLÓGICO:** Hipotônico leve, choro de tonalidade normal, reflexos neonatais presentes com latência aumentada. Sem opistótono, sem olhar em pôr do sol.
+- **PELE:** Icterícia de face, tronco até umbigo (Kramer III). Sem petéquias, sem palidez.
+- **ABDOME:** Fígado a 2 cm RCD (normal). Baço não palpável.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Bilirrubina total | 14,8 mg/dL | Variável por IG e hora de vida | Sim |
+| Bilirrubina direta | 0,4 mg/dL | < 20% da BT (ou < 1 mg/dL) | Não |
+| Bilirrubina indireta | 14,4 mg/dL | — | Sim |
+| Tipagem sanguínea RN | O positivo | — | Não |
+| Teste de Coombs direto | Negativo | — | Não |
+| Hemograma | Hb 15,2 g/dL, hemácias normais | — | Não |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Ator é a mãe. Entregar peso ao nascimento e atual ao início (calcular % perda). Entregar exame físico ao exame. Exames laboratoriais somente se solicitados. A bilirrubina de 14,8 mg/dL em RN de 72h (3 dias) de vida = avaliar no nomograma de Bhutani/SBP — zona de risco intermediário alto, indicando fototerapia.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Mãe: Tânia L., 27 anos, professora, tipo O+. Bebê: Tomás L., 3 dias de vida, masculino, 38 semanas."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, a enfermeira disse que o meu filho tá muito amarelo. Ontem já estava um pouco, mas hoje piorou." |
+| Sobre amamentação | "Ele mama, mas muito pouco. Fica dormindo no peito, não suga direito." |
+| Sobre o peso | "Pesou menos hoje, disseram que perdeu peso. Será que meu leite não tá saindo?" |
+| Sobre o comportamento | "Tá mais sonolento que os outros dias. Ontem ele acordava pra mamar, hoje preciso acordar ele." |
+| Sobre o grupo sanguíneo | "Eu sou O positivo. Não sei o do bebê." |
+| Pergunta ativa 1 | "O amarelo vai fazer mal pro cérebro dele, doutor?" |
+| Pergunta ativa 2 | "Precisa tirar do peito pra usar fórmula?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- RN com 38 semanas (próximo de pré-termo tardio) — fator de risco para icterícia mais grave; só destaca se perguntado sobre a IG exata.
+- Mãe com dificuldade no estabelecimento do aleitamento materno, pega inadequada — causa da perda de peso e icterícia por subnutrição; só revela se perguntado sobre a pega e a técnica de amamentação.
+
+#### Comportamento do Ator (actorBehavior)
+
+Mãe ansiosa, especialmente com a pergunta sobre dano cerebral (kernicterus). Insegura com a amamentação. Cabe ao candidato tranquilizar sem minimizar, e reforçar o aleitamento materno com apoio.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Icterícia neonatal por bilirrubina indireta — provável icterícia do aleitamento materno (por subnutrição/pega inadequada) — em RN de 38 semanas, com nível de bilirrubina indicando fototerapia pelo nomograma de Bhutani (SBP 2021).
+
+**Diagnósticos Diferenciais (differentials):**
+1. Incompatibilidade ABO (mãe O, filho A ou B) — Coombs positivo, hemólise ativa; aqui filho também O e Coombs negativo — afastado.
+2. Icterícia fisiológica — pico em 3–4 dias, BI < 12 em RN a termo; aqui 14,8 mg/dL com perda de peso e subnutrição indicam componente patológico.
+3. Icterícia por incompatibilidade Rh — em geral mais grave, com Coombs positivo; aqui mãe e filho Rh positivo.
+
+**Síntese do Caso (context):**
+RN de 38 semanas com icterícia por bilirrubina indireta (BI 14,4 mg/dL) no 3º dia de vida, agravada por perda de peso acima do aceitável (8%) por subnutrição (pega inadequada no AME), classificando-se em zona de risco intermediário-alto no nomograma de Bhutani — indicação de fototerapia. Coombs negativo e tipagem O/O afastam hemólise por incompatibilidade.
+
+**Justificativa Diagnóstica (justify):**
+BI 14,4 mg/dL às 72h de vida em RN de 38 semanas = zona de risco intermediário-alto no nomograma de Bhutani/SBP 2021 → fototerapia indicada. Perda de peso 8% (limiar para investigar) + pega inadequada = icterícia de subnutrição (jejum prolonga circulação entero-hepática de bilirrubina). BD normal e Coombs negativo afastam colestase e hemólise imune.
+
+**Anamnese Esperada (expectedAnamnasis):**
+- IG ao nascimento (38 semanas = fator de risco)
+- Início e progressão da icterícia
+- Amamentação: frequência, duração, pega, sinais de ejeção do leite
+- Eliminações: número de evacuações e micções (avaliar hidratação)
+- Comportamento: sonolência, choro, reflexo de sucção
+- Tipagem sanguínea materna
+- Histórico de icterícia em irmãos
+
+**Exame Físico Esperado (expectedPhysical):**
+- Zonas de Kramer (progressão cefalocaudal): Zona I (face), II (tronco superior), III (abdome abaixo do umbigo), IV (membros), V (palmas e plantas)
+- Sinais de kernicterus: opistótono, hipertonia, olhar em pôr do sol, choro estridente (sinais tardios)
+- Hidratação e peso
+- Palidez (hemólise)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Bilirrubina total e frações | Quantificar e classificar | BI elevada, BD normal |
+| Tipagem sanguínea RN + Coombs direto | Afastar incompatibilidade ABO/Rh | Negativo |
+| Hemograma | Avaliar anemia hemolítica | Normal |
+| Nomograma de Bhutani | Definir zona de risco e conduta | Zona intermediário-alto → fototerapia |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Fototerapia convencional (lâmpada azul) — iniciar imediatamente. Manter AME durante fototerapia (interromper apenas se exsanguineotransfusão). Oferecer suplemento de leite materno ordenhado ou fórmula se perda de peso > 10% e dificuldade persistente na amamentação. (SBP 2021)
+- **Não farmacológica:** Apoio ao aleitamento materno (consultora de amamentação); correção da pega; aumentar frequência das mamadas (mínimo 8–12x/dia).
+- **Encaminhamento:** Manter internação; avaliar bilirrubin seriada a cada 6–12h; critério para exsanguineotransfusão se BI > 20–25 mg/dL (conforme IG e fatores de risco — nomograma SBP).
+- **Orientações:** Explicar à mãe que a fototerapia é eficaz e segura; que não precisa tirar do peito; que a pega adequada é essencial para melhorar.
+- **Seguimento:** Controle de bilirrubina a cada 6–12h durante fototerapia; teste do pezinho antes da alta.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher a mãe ansiosa.
+- **Comunicação do diagnóstico:** "Tânia, o Tomás está com icterícia mais alta do que o esperado, em parte porque ele ainda não está mamando na quantidade ideal. Vamos colocar ele sob a luizinha (fototerapia) e ajudar você na amamentação."
+- **Escuta ativa:** Responder à pergunta sobre dano cerebral: "Com o tratamento agora, o risco de problema no cérebro é muito baixo."
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não aplicar o nomograma de Bhutani para definir conduta
+- ❌ Não indicar fototerapia com BI 14,8 mg/dL em 38 semanas às 72h de vida
+- ❌ Orientar suspensão do AME sem indicação
+- ❌ Não avaliar zonas de Kramer ao exame físico
+- ❌ Não solicitar bilirrubina fracionada e Coombs direto
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — RECÉM-NASCIDO COM ICTERÍCIA NO 3º DIA DE VIDA"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Acolheu a mãe e respondeu à pergunta sobre risco de dano cerebral com clareza | 0.5 | PNHAH/MS, 2001 |
+| Orientou sobre fototerapia e manutenção do AME sem gerar pânico | 0.5 | SBP, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou fatores de risco: 38 semanas, perda de peso, AME com dificuldade | 1.0 | SBP, 2021 |
+| Avaliou eliminações (diurese e evacuações — hidratação) | 0.5 | SBP, 2021 |
+| Investigou comportamento (sonolência, sucção fraca) | 0.5 | SBP, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou zonas de Kramer corretamente (zona III) | 1.0 | SBP, 2021 |
+| Pesquisou sinais de kernicterus (opistótono, olhar em pôr do sol) | 0.5 | SBP, 2021 |
+| Calculou percentual de perda de peso (8%) | 0.5 | SBP, 2021 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Solicitou bilirrubina fracionada + Coombs direto + tipagem sanguínea | 1.0 | SBP, 2021 |
+| Aplicou nomograma de Bhutani para definir conduta (zona intermediário-alto → fototerapia) | 1.0 | SBP, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Indicou fototerapia e orientou manutenção do AME durante fototerapia | 1.0 | SBP, 2021 |
+| Indicou apoio à amamentação (consultora/correção da pega) | 0.5 | SBP / MS, 2021 |
+| Programou controle seriado de bilirrubina | 0.5 | SBP, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 18 concluído** (Icterícia Neonatal). Gerando **Caso 19 — Colestase Neonatal**.
+
+---
+
+## CASO OSCE-19
+
+### BLOCO 1 — METADADOS
+
+- **id:** 19
+- **title:** "Bebê de 6 semanas com icterícia que não passou e fezes claras"
+- **sub:** "UBS — Atenção Primária"
+- **tema:** "Pediatria"
+- **topic:** "Colestase Neonatal — Atresia de Vias Biliares"
+- **level:** "moderado"
+- **cardAccent:** "#F57F17"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Atenção Primária — UBS. Consultório, retorno de puericultura com 6 semanas."
+- **patient:** "Mãe de O.R., 6 semanas de vida, masculino, a termo."
+- **complaint:** "Bebê com icterícia que não passou desde o nascimento. Mãe trouxe as fezes na fralda — estão muito claras, quase brancas."
+- **tasks:**
+  1. Realize a anamnese dirigida ao caso
+  2. Realize o exame físico pertinente
+  3. Formule a hipótese diagnóstica e avalie urgência
+  4. Solicite os exames adequados
+  5. Encaminhe com urgência e oriente a família
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | Não aferida |
+| FC | 138 bpm |
+| FR | 40 irpm |
+| Tax | 37,0°C |
+| Peso | 4.620 g (peso ao nascer: 3.400g — ganho adequado) |
+| Altura | 56 cm |
+| IMC | — |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral. Ictérico (+++/4+), escleróticas amarelas. Fezes acólicas (quase brancas) apresentadas na fralda pela mãe. Urina cor de chá/escura (bilirubinúria). Fígado palpável 4 cm abaixo do RCD (hepatomegalia).
+
+#### Exame Segmentar (physicalSeg)
+
+- **ABDOME:** Fígado palpável e endurecido a 4 cm do RCD. Baço palpável 2 cm abaixo do RCE (esplenomegalia discreta). Sem ascite.
+- **PELE:** Icterícia difusa, prurido (escoriações discretas).
+- **URINA:** Escura (bilirubinúria — eliminação de bilirrubina direta na urina).
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Bilirrubina total | 12,4 mg/dL | — | Sim |
+| Bilirrubina direta | 8,6 mg/dL | < 20% da BT ou < 1 mg/dL | Sim |
+| Bilirrubina indireta | 3,8 mg/dL | — | — |
+| GGT | 468 U/L | < 60 U/L | Sim |
+| FA | 820 U/L | < 450 U/L | Sim |
+| ALT | 98 U/L | < 40 U/L | Sim |
+| AST | 112 U/L | < 40 U/L | Sim |
+
+#### Exame de Imagem (image)
+
+**USG abdominal (se solicitada):** Vesícula biliar não visualizada (sinal de "cordão fibroso" na hepática). Não evidencia dilatação de vias biliares intra-hepáticas. Fígado aumentado com ecogenicidade heterogênea.
+
+#### Nota ao Avaliador (note)
+
+Ator é a mãe. Entregar sinais vitais ao início. Entregar exame físico ao exame — reforçar que a mãe trouxe a fralda com fezes acólicas (elemento pedagógico fundamental). Exames somente se solicitados. Reforçar a urgência: janela cirúrgica para a cirurgia de Kasai fecha após 60–90 dias — cada semana conta.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Mãe: Olivia R., 24 anos, auxiliar de saúde. Bebê: Oscar R., 6 semanas, masculino."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, meu filho nunca perdeu esse amarelo desde que nasceu. E as fezes dele ficaram branquinhas, trouxe aqui pra mostrar." |
+| Sobre a icterícia | "No hospital disseram que era normal de recém-nascido. Mas já faz 6 semanas e não passou." |
+| Sobre as fezes | "Foram ficando cada vez mais claras. Agora estão quase brancas. Achei que era o leite." |
+| Sobre a urina | "A urina ficou escura, cor de chá. Ainda achei que era pouca hidratação." |
+| Sobre o crescimento | "Ele tá ganhando peso bem, come bastante, parece saudável. Por isso demorei a me preocupar." |
+| Sobre o barriguinha | "A barriga dele parece um pouco maior, né?" |
+| Pergunta ativa 1 | "É grave, doutor? Vai precisar de cirurgia?" |
+| Pergunta ativa 2 | "Por que ninguém falou isso lá no hospital quando ele nasceu?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- No hospital neonatal, foi dito que a icterícia era "fisiológica" e a família foi dispensada sem investigação de bilirrubina fracionada — erro de rastreamento; só revela se perguntado sobre orientações recebidas na alta hospitalar.
+- A mãe tem uma tia com "hepatite autoimune" — pode ser relevante para hepatite neonatal como diagnóstico diferencial; só revela se perguntado sobre doenças hepáticas na família.
+
+#### Comportamento do Ator (actorBehavior)
+
+Mãe ansiosa e um pouco irritada por não ter sido investigada antes. Cabe ao candidato acolher sem culpabilizar o serviço anterior, mas ser enfático na urgência do encaminhamento atual.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Colestase neonatal por provável atresia de vias biliares (AVB) — fezes acólicas + bilirrubina direta elevada + GGT/FA muito elevadas + hepatomegalia + vesícula biliar não visualizada à USG — emergência cirúrgica pediátrica.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Hepatite neonatal (hepatite idiopática de células gigantes) — colestase com BD elevada, mas GGT geralmente menor; USG pode mostrar vesícula biliar; biópsia hepática distingue.
+2. Colestase intra-hepática familiar progressiva (PFIC) — GGT normal ou baixa; forma genética; sem "sinal do cordão fibroso" à USG.
+3. Síndrome de Alagille — colestase + dismorfias faciais + vértebras em "borboleta" + estenose pulmonar; investigação genética.
+
+**Síntese do Caso (context):**
+Lactente de 6 semanas com colestase neonatal por provável AVB: icterícia prolongada + fezes acólicas (patognomônicas) + urina colúrica + hepatomegalia + bilirrubina direta > 50% da BT + GGT muito elevada + vesícula não visualizada à USG. Janela cirúrgica para portoenterostomia de Kasai fecha progressivamente após 60 dias de vida — urgência máxima.
+
+**Justificativa Diagnóstica (justify):**
+Qualquer icterícia > 14 dias com fezes acólicas é colestase neonatal até prova em contrário. BD > 1 mg/dL ou > 20% da BT = colestase. GGT muito elevada + ausência de vesícula biliar à USG + fezes acólicas = AVB (sensibilidade > 90% da combinação). Cirurgia de Kasai com sucesso > 80% se realizada antes dos 60 dias.
+
+**Anamnese Esperada (expectedAnamnesis):**
+- Duração da icterícia (> 14 dias = alerta para colestase)
+- Cor das fezes (acolia = biliar obstruída)
+- Cor da urina (escura = bilirubinúria)
+- Orientações na alta hospitalar
+- Crescimento e alimentação (ganho de peso preservado na AVB)
+- Histórico familiar de doenças hepáticas
+
+**Exame Físico Esperado (expectedPhysical):**
+- Icterícia (grau, escleróticas)
+- Fezes acólicas (trazer fralda — elemento diagnóstico)
+- Hepatomegalia (tamanho, consistência)
+- Esplenomegalia
+- Ascite
+- Dismorfias (síndrome de Alagille)
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Bilirrubina total e fracionada | Confirmar colestase (BD > 1 ou > 20%) | BD 8,6 (colestase) |
+| GGT e FA | Marcadores colestáticos | Muito elevados |
+| USG abdominal | Avaliar vesícula, vias biliares | Vesícula não visualizada |
+| Biópsia hepática percutânea | Confirmar AVB vs. hepatite neonatal | Proliferação ductal, fibrose |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Vitaminas lipossolúveis (A, D, E, K) EV/IM — má absorção por colestase. Ácido ursodesoxicólico (UDCA) como coadjuvante. (SBP 2022)
+- **Não farmacológica:** Fórmula com TCM (triglicerídeos de cadeia média) para melhor absorção.
+- **Encaminhamento:** URGÊNCIA MÁXIMA — cirurgia pediátrica/hepatologia pediátrica para portoenterostomia de Kasai IMEDIATAMENTE. Cada semana reduz a chance de sucesso cirúrgico.
+- **Orientações:** Explicar à mãe a gravidade e a urgência sem omitir; que a cirurgia pode salvar o fígado; que o diagnóstico precoce é fundamental.
+- **Seguimento:** Hepatologia pediátrica; avaliação para transplante hepático se Kasai falhar.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher a mãe.
+- **Comunicação do diagnóstico:** "Oscar tem uma condição chamada atresia de vias biliares — os canais do fígado estão bloqueados. É sério, mas tem tratamento cirúrgico que pode resolver. Precisamos encaminhar HOJE."
+- **Escuta ativa:** Acolher a frustração sobre o diagnóstico tardio sem culpabilizar o serviço anterior; focar no que pode ser feito agora.
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não solicitar bilirrubina fracionada em icterícia com > 14 dias de evolução
+- ❌ Não reconhecer fezes acólicas como sinal patognomônico de colestase
+- ❌ Não encaminhar com urgência máxima à cirurgia pediátrica (janela de Kasai)
+- ❌ Não solicitar USG abdominal para avaliar vesícula biliar
+- ❌ Minimizar a urgência do caso
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — BEBÊ COM ICTERÍCIA PROLONGADA E FEZES CLARAS"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Acolheu a mãe sem culpabilizar o serviço anterior pela demora no diagnóstico | 0.5 | PNHAH/MS, 2001 |
+| Comunicou a urgência de forma clara sem omitir a gravidade | 0.5 | PNHAH/MS, 2001 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Identificou icterícia > 14 dias como alerta obrigatório para colestase | 1.0 | SBP, 2022 |
+| Investigou cor das fezes (acolia) e cor da urina (colúria) | 1.0 | SBP, 2022 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou hepatomegalia (tamanho e consistência) e esplenomegalia | 1.0 | SBP, 2022 |
+| Identificou fezes acólicas na fralda como elemento diagnóstico | 1.0 | SBP, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Solicitou bilirrubina fracionada e confirmou colestase (BD > 1 mg/dL) | 1.0 | SBP, 2022 |
+| Solicitou USG abdominal para avaliar vesícula biliar | 0.5 | SBP, 2022 |
+| Formulou hipótese de AVB e reconheceu a urgência cirúrgica | 0.5 | SBP, 2022 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Encaminhou URGENTEMENTE à cirurgia pediátrica/hepatologia (janela de Kasai) | 1.5 | SBP, 2022 |
+| Indicou vitaminas lipossolúveis para a má absorção | 0.5 | SBP, 2022 |
+
+**TOTAL: _____ / 10 pontos**
+
+---
+
+✅ **Caso 19 concluído** (Colestase Neonatal). Gerando o **último caso — Caso 20 — Hipoglicemia Neonatal**.
+
+---
+
+## CASO OSCE-20
+
+### BLOCO 1 — METADADOS
+
+- **id:** 20
+- **title:** "Recém-nascido de mãe diabética com tremores e sonolência excessiva"
+- **sub:** "Alojamento Conjunto — Maternidade"
+- **tema:** "Pediatria"
+- **topic:** "Hipoglicemia Neonatal"
+- **level:** "moderado"
+- **cardAccent:** "#1B5E20"
+- **Time:** 5 min
+- **Type:** Paciente padronizado (ator)
+- **Comp:** anamnese, raciocínio clínico, conduta, comunicação
+
+---
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Alojamento conjunto — Maternidade. 4 horas após o nascimento. A enfermagem chamou o pediatra porque o bebê está com tremores e difícil de acordar para mamar."
+- **patient:** "Mãe de G.B., 4 horas de vida, feminina, 38 semanas, nascida de mãe com diabetes gestacional mal controlado. Peso ao nascer: 4.400g (GIG)."
+- **complaint:** "RN GIG com tremores e dificuldade para acordar para mamar 4 horas após o nascimento."
+- **tasks:**
+  1. Realize a anamnese com a mãe sobre o período pré-natal e perinatal
+  2. Realize o exame físico pertinente com avaliação clínica
+  3. Solicite e interprete a glicemia capilar
+  4. Formule a hipótese diagnóstica e proponha a conduta imediata
+  5. Oriente a mãe sobre o diagnóstico e o tratamento
+
+---
+
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | Não aferida |
+| FC | 154 bpm |
+| FR | 52 irpm |
+| Tax | 36,4°C |
+| Peso | 4.400 g (GIG — > p90 para 38 semanas) |
+| Altura | 53 cm |
+| IMC | — |
+
+#### Exame Físico Geral (physicalGeneral)
+
+Regular estado geral. Sonolenta, difícil de despertar. Tremores finos em membros superiores. Tônus levemente reduzido. Sem cianose. Fácies de criança GIG (bochechas proeminentes, aspecto "cushingóide"). Coto umbilical úmido, sem sinais de infecção.
+
+#### Exame Segmentar (physicalSeg)
+
+- **NEUROLÓGICO:** Tremores finos em MsSs, hipotonia leve, sucção fraca. Sem convulsões clínicas evidentes. Sem abaulamento de fontanela.
+- **COLORAÇÃO:** Levemente ictérica (icterícia precoce de RN GIG).
+- **RESPIRATÓRIO:** Taquipneia (FR 52), sem retrações. Ausculta normal.
+
+#### Exames Laboratoriais (labs)
+
+| Exame | Resultado | Referência | Alterado? |
+|---|---|---|---|
+| Glicemia capilar (HGT) | 28 mg/dL | ≥ 45 mg/dL nas primeiras horas de vida | Sim |
+| Glicemia venosa confirmatória | 24 mg/dL | ≥ 45–50 mg/dL | Sim |
+| Cálcio sérico | 6,8 mg/dL | 8,0–10,5 mg/dL | Sim |
+| Hemograma | Policitemia: Ht 68% | Ht < 65% | Sim |
+
+#### Exame de Imagem (image)
+
+`null`
+
+#### Nota ao Avaliador (note)
+
+Ator é a mãe. Entregar peso ao nascer ao início (reforçar que é GIG). Entregar exame físico ao exame. Glicemia capilar disponível imediatamente quando solicitada. Exames venosos e cálcio somente se solicitados. Reforçar que hipocalcemia e policitemia são comorbidades frequentes em filhos de mãe diabética.
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+"Mãe: Gabriela B., 32 anos, contadora, diabética gestacional mal controlada. RN: Giovana B., 4h de vida, feminina."
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Queixa principal | "Doutor, a enfermeira disse que minha filha tá tremendo e não acorda pra mamar. Tô muito assustada." |
+| Sobre diabetes gestacional | "Tive diabetes na gravidez. Tentei controlar com dieta mas as glicemias ainda estavam altas no terceiro trimestre." |
+| Sobre o pré-natal | "O médico disse que o bebê estava grande, mais de 4 kg já no último ultra." |
+| Sobre o parto | "Nasceu por cesárea de 38 semanas porque estava grande demais. Nasceu bem, chorou logo." |
+| Sobre a amamentação | "Ainda não consegui dar de mamar, ela não acorda e quando acordo ela não suga." |
+| Sobre os tremores | "Os tremores são nas mãozinhas, como se estivesse com frio. Mas ela não tá fria." |
+| Pergunta ativa 1 | "Isso é do diabetes que eu tive? A culpa é minha?" |
+| Pergunta ativa 2 | "Vai ter problema no neurodesenvolvimento dela?" |
+
+#### Informações Escondidas (hiddenInfo)
+
+- Mãe não fez controle adequado da glicemia no 3º trimestre — hiperglicemia materna → hiperinsulinismo fetal → hipoglicemia neonatal; só revela se perguntado sobre controle glicêmico no 3º trimestre.
+- Bebê não recebeu glicose no berçário após o nascimento (protocolo não seguido) — só revela se perguntado sobre cuidados nas primeiras horas de vida.
+
+#### Comportamento do Ator (actorBehavior)
+
+Mãe muito culpada. Ansiosa. Fica aliviada quando informada que tem tratamento e que não é "culpa" dela. Cabe ao candidato acolher sem reforçar a culpa e explicar o mecanismo de forma simples.
+
+---
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+**Diagnóstico Principal (diagnosis):**
+Hipoglicemia neonatal sintomática (glicemia 24 mg/dL) em RN GIG (4.400g, 38 semanas) filho de mãe com diabetes gestacional mal controlado — por hiperinsulinismo transitório. Comorbidades: hipocalcemia neonatal e policitemia.
+
+**Diagnósticos Diferenciais (differentials):**
+1. Hipocalcemia neonatal — tremores e irritabilidade neonatal, comum em filhos de mãe diabética; aqui também presente (Ca 6,8) e contribuindo para os tremores.
+2. Convulsão neonatal — fenômeno neurológico, mas os tremores aqui cedem com estimulação e são contextualizados pela hipoglicemia.
+3. Sepse neonatal — pode causar hipoglicemia e letargia; hemograma e cultura distinguem; aqui contexto clínico de DM materno é mais explicativo.
+
+**Síntese do Caso (context):**
+RN GIG (filho de mãe diabética) com hiperinsulinismo transitório causando hipoglicemia sintomática (glicemia 24 mg/dL) nas primeiras horas de vida, manifestando-se com tremores, hipotonia e sonolência. Comorbidades típicas de filhos de mãe diabética: hipocalcemia e policitemia. Risco de dano neurológico se hipoglicemia prolongada não tratada.
+
+**Justificativa Diagnóstica (justify):**
+Mecanismo: hiperglicemia materna → hiperinsulinismo fetal compensatório → ao nascer, sem glicose materna + hiperinsulinemia persistente → queda abrupta de glicemia. Glicemia capilar 28 (confirmada venosa 24 mg/dL) < 45 mg/dL = hipoglicemia neonatal sintomática. GIG + diabetes gestacional + tremores + sonolência nas primeiras horas = diagnóstico clássico.
+
+**Anamnese Esperada (expectedAnamnasis):**
+- Diabetes gestacional: tipo, controle glicêmico, medicação
+- IG ao nascimento e peso (GIG)
+- Primeiras mamadas: frequência, duração, sucção
+- Sintomas: tremores, sonolência, cianose, apneia
+- Cuidados pós-parto no berçário (glicose profilática?)
+- Hipoglicemia em gestações anteriores
+
+**Exame Físico Esperado (expectedPhysical):**
+- Peso (GIG, > p90)
+- Estado neurológico: tremores, hipotonia, nível de consciência
+- Coloração: cianose, icterícia, policitemia (rubor)
+- Temperatura
+- Sinais de dificuldade respiratória
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame | Justificativa | Resultado Esperado |
+|---|---|---|
+| Glicemia capilar (HGT) | 1ª linha — diagnóstico imediato | < 45 mg/dL |
+| Glicemia venosa | Confirmar HGT alterado | < 45 mg/dL |
+| Cálcio sérico | Hipocalcemia — comorbidade em filho de mãe diabética | Baixo |
+| Hematócrito | Policitemia — comorbidade | Ht elevado |
+
+**Conduta Esperada (expectedConduct):**
+- **Farmacológica:** Hipoglicemia sintomática: glicose EV 200 mg/kg em bolus (2 mL/kg de SG 10%) → manutenção 4–8 mg/kg/min (SG 10% EV). Monitorar glicemia a cada 30–60 min até estabilização ≥ 50–70 mg/dL. Se hipocalcemia sintomática: gluconato de cálcio 10% diluído EV. (SBP 2021)
+- **Não farmacológica:** Após estabilização glicemica → estimular AME precocemente; manter temperatura; monitorização contínua.
+- **Encaminhamento:** UTI neonatal ou berçário de alto risco para monitorização e infusão contínua de glicose.
+- **Orientações:** Explicar à mãe o mecanismo (hiperinsulinismo pelo diabetes) sem culpabilizar; que o tratamento é eficaz; que com controle glicêmico o dano neurológico é evitável.
+- **Seguimento:** Monitorização glicemica seriada; desmame progressivo do suporte de glicose; alta após estabilização (geralmente 24–48h); acompanhamento do neurodesenvolvimento.
+
+**Comunicação Esperada (expectedCommunication):**
+- **Apresentação:** Apresentar-se, acolher a mãe culpada.
+- **Comunicação do diagnóstico:** "Gabriela, a Giovana está com o açúcar muito baixo. Isso acontece porque o pâncreas dela produziu insulina em excesso para compensar o açúcar da gravidez. Tem tratamento com glicose na veia e ela vai melhorar."
+- **Escuta ativa:** "Não é culpa sua — o diabetes gestacional tem esse risco mesmo com controle; o importante agora é o tratamento."
+
+**Erros Críticos (criticalErrors):**
+- ❌ Não aferir glicemia capilar imediatamente em RN com tremores e sonolência (especialmente filho de mãe diabética)
+- ❌ Não tratar hipoglicemia sintomática com glicose EV imediatamente
+- ❌ Tentar corrigir hipoglicemia sintomática apenas com amamentação (insuficiente)
+- ❌ Não investigar hipocalcemia e policitemia como comorbidades
+- ❌ Culpabilizar a mãe pelo mau controle do diabetes
+
+---
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título:** "CHECKLIST — RN COM TREMORES E SONOLÊNCIA — HIPOGLICEMIA NEONATAL"
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Acolheu a mãe sem reforçar sentimento de culpa | 0.5 | PNHAH/MS, 2001 |
+| Explicou o mecanismo da hipoglicemia (hiperinsulinismo) em linguagem acessível | 0.5 | SBP, 2021 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Investigou diabetes gestacional e controle glicêmico materno | 1.0 | SBP, 2021 |
+| Identificou GIG como fator de risco maior para hipoglicemia | 0.5 | SBP, 2021 |
+| Perguntou sobre mamadas e sinais clínicos (tremores, sonolência) | 0.5 | SBP, 2021 |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Avaliou tremores, hipotonia e nível de consciência | 0.5 | SBP, 2021 |
+| Avaliou temperatura e coloração (policitemia, icterícia) | 0.5 | SBP, 2021 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Solicitou glicemia capilar imediatamente como 1ª medida | 1.5 | SBP, 2021 |
+| Formulou hipótese de hipoglicemia neonatal por hiperinsulinismo | 0.5 | SBP, 2021 |
+| Investigou hipocalcemia e policitemia como comorbidades | 0.5 | SBP, 2021 |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE
+
+| Item | Pontos | Referência |
+|---|---|---|
+| Iniciou glicose EV (bolus 200 mg/kg + manutenção) imediatamente | 1.5 | SBP 2021 / RENAME 2022 |
+| Programou monitorização glicemica seriada (a cada 30–60 min) | 0.5 | SBP, 2021 |
+| Encaminhou para UTI neonatal/berçário de alto risco | 0.5 | SBP, 2021 |
+
+**TOTAL: _____ / 10 pontos**
+

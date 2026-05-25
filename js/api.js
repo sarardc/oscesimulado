@@ -15,6 +15,7 @@ const allSpecialties = [
   ...nefro2,
   ...neuro,
   ...orl,
+  ...ped3,
 ];
 
 const stations = allSpecialties.map((st, idx) => ({
