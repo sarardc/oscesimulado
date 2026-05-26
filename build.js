@@ -1,4 +1,4 @@
-import { writeFileSync } from 'fs';
+﻿import { writeFileSync } from 'fs';
 import { urologyStations, endocrineStations } from './data/casos.js';
 import endocrineStations1 from './data/endocrino_parsed.js';
 import pediatriaStations from './data/pediatria_parsed.js';
@@ -38,4 +38,4 @@ const allStations = [
 }));
 
 writeFileSync('data/stations.json', JSON.stringify(allStations));
-console.log(`Build concluído: ${allStations.length} estações → data/stations.json`);
+console.log(`Build concluido: ${allStations.length} estacoes -> data/stations.json`);

@@ -1,4 +1,4 @@
-let stations = [];
+﻿let stations = [];
 
 async function loadStations() {
   const base = document.querySelector('base')?.href ?? location.href;
