@@ -475,6 +475,8 @@ alerta:'Sedimento urinário inativo (sem cilindros hemáticos) diferencia nefrop
 
 let activecat='todos';
 
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
 function renderFilters(){
   document.getElementById('filters').innerHTML=cats.map(c=>`<button class="fb${activecat===c.id?' on':''}" onclick="setcat('${c.id}')">${c.label}</button>`).join('');
 }
@@ -499,24 +501,24 @@ function catLabel(id){return cats.find(c=>c.id===id)?.label||id;}
 
 function sec(title,items){
   if(!items||!items.length) return '';
-  return `<div class="sec"><div class="sec-t">${title}</div><div class="sec-c">${items.map(i=>'• '+i).join('<br>')}</div></div>`;
+  return `<div class="sec"><div class="sec-t">${esc(title)}</div><div class="sec-c">${items.map(i=>'• '+esc(i)).join('<br>')}</div></div>`;
 }
 
 function cardHTML(d){
   const body = d.clinica
     ? sec('Clínica',d.clinica)+sec('Exame Físico',d.ef)+sec('Laboratoriais',d.lab)+sec('Imagem',d.img)+sec('Conduta',d.conduta)
-    : (d.sx&&d.sx.length ? `<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${s}</span>`).join('')}</div>` : '');
-  const qa=d.pontos.map(p=>`<div class="qi"><div class="qq">${p.q}</div><div class="qa-a">${p.a}</div></div>`).join('');
+    : (d.sx&&d.sx.length ? `<div class="sl">Apresentação</div><div class="pills">${d.sx.map(s=>`<span class="pill">${esc(s)}</span>`).join('')}</div>` : '');
+  const qa=d.pontos.map(p=>`<div class="qi"><div class="qq">${esc(p.q)}</div><div class="qa-a">${esc(p.a)}</div></div>`).join('');
   const bstyle=bc[d.cat]||'';
   return `<div class="card">
-    <div class="ch"><span class="badge" style="${bstyle}">${catLabel(d.cat)}</span><i class="ti ti-chevron-down ico">▾</i></div>
-    <div class="ctitle">${d.title}</div>
-    <div class="csub">${d.sub}</div>
+    <div class="ch"><span class="badge" style="${bstyle}">${esc(catLabel(d.cat))}</span><i class="ti ti-chevron-down ico">▾</i></div>
+    <div class="ctitle">${esc(d.title)}</div>
+    <div class="csub">${esc(d.sub)}</div>
     <div class="body">
       ${body}
       <div class="sl">Pontos-chave OSCE</div>
       <div class="qa">${qa}</div>
-      <div class="alert">⚠ ${d.alerta}</div>
+      <div class="alert">⚠ ${esc(d.alerta)}</div>
       <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE')">↗ Aprofundar</button>
     </div>
   </div>`;

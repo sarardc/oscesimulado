@@ -1,4 +1,5 @@
 import express from 'express';
+import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { urologyStations, endocrineStations } from '../data/casos.js';
@@ -43,6 +44,7 @@ const allStations = [
 }));
 
 const app = express();
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // Block sensitive server-side paths
 app.use(['/data', '/.git', '/backend', '/node_modules'], (_req, res) => res.status(403).end());

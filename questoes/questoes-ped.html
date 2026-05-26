@@ -1644,6 +1644,8 @@
             ]
         }; // Fechamento do objeto quizData
 
+        function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
         // UI Logic
         const quizArea = document.getElementById('quiz-area');
         const tituloBloco = document.getElementById('titulo-bloco');
@@ -1708,7 +1710,7 @@
                 // Feedback/Rationale Box
                 const feedbackBox = document.createElement('div');
                 feedbackBox.className = 'feedback-box';
-                feedbackBox.innerHTML = `<h4>Revisão Geral e Resposta:</h4><p>${q.rationale}</p>`;
+                feedbackBox.innerHTML = `<h4>Revisão Geral e Resposta:</h4><p>${esc(q.rationale)}</p>`;
                 qDiv.appendChild(feedbackBox);
 
                 quizArea.appendChild(qDiv);
