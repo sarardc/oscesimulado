@@ -1752,3 +1752,5 @@ const pediatria2 = [
 
 
 ];
+
+export default pediatria2;

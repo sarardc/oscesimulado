@@ -1350,3 +1350,4 @@ const orl = [
 }
 
 ]
+export default orl;

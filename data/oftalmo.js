@@ -1100,3 +1100,5 @@ const oftalmo = [
 }
 
 ]
+
+export default oftalmo;

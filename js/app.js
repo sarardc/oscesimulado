@@ -38,4 +38,3 @@ function openStation(id) {
   pepScores = {};
 }
 
-renderCards();

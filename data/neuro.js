@@ -2103,3 +2103,5 @@ instD: {
   }
 },
 ]
+
+export default neuro;

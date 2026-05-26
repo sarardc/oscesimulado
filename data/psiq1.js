@@ -4780,3 +4780,5 @@ const psiq1stations = [
 }
 
 ]
+
+export default psiq1stations;

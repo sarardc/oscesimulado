@@ -3312,3 +3312,5 @@ const endocrineStations = [
     }
   }
 ];
+
+export { urologyStations, endocrineStations };

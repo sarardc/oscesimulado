@@ -307,3 +307,5 @@ const endocrineStations1 = [
 
 ];
 
+
+export default endocrineStations1;

@@ -1694,3 +1694,5 @@ const pediatriaStations = [
 
 ];
 
+
+export default pediatriaStations;

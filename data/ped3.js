@@ -2045,3 +2045,5 @@ const ped3 = [
 },
 
 ];
+
+export default ped3;

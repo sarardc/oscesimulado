@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "start": "node backend/server.js",
     "parse": "node parse-case.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.54.0"
+    "@anthropic-ai/sdk": "^0.54.0",
+    "express": "^4.19.2"
   }
 }
