@@ -14,6 +14,7 @@ import neuro from '../data/neuro.js';
 import orl from '../data/orl.js';
 import ped3 from '../data/ped3.js';
 import oftalmo from '../data/oftalmo.js';
+import ctoracica from '../data/cc/cirurgiatoracica.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -37,6 +38,7 @@ const allStations = [
   ...orl,
   ...ped3,
   ...oftalmo,
+  ...ctoracica,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,
