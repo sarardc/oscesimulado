@@ -1,0 +1,313 @@
+Guia de Construção do Markdown para o Conversor OSCE
+Estrutura Geral
+O arquivo deve ter exatamente 5 blocos identificados por ### BLOCO N:
+
+
+## CASO OSCE [N]
+
+### BLOCO 1 — METADADOS
+### BLOCO 2 — BRIEFING (instA)
+### BLOCO 3 — PACIENTE SIMULADO + IMPRESSOS (instB)
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+O texto após o ### BLOCO N na mesma linha é ignorado — o número é o único critério de detecção.
+
+BLOCO 1 — METADADOS
+Cada campo é uma linha com o padrão - **chave:** valor. O conversor descarta automaticamente Time, Type e Comp.
+
+
+### BLOCO 1 — METADADOS
+
+- **id:** 11
+- **title:** "Título do caso entre aspas"
+- **sub:** "Subtítulo / Cenário"
+- **tema:** "Especialidade"
+- **topic:** "Tema específico"
+- **level:** "simples"
+- **cardAccent:** "#4f9cf9"
+- **Time:** 8 min
+- **Type:** Paciente padronizado
+- **Comp:** anamnese, conduta
+Regras:
+
+id → número (sem aspas)
+cardAccent → código hex com #
+level → qualquer string: "simples", "moderado", "difícil"
+As aspas duplas ao redor dos valores são opcionais — o parser remove se presentes
+Time, Type, Comp são descartados silenciosamente (podem constar ou não)
+BLOCO 2 — BRIEFING (instA)
+
+### BLOCO 2 — BRIEFING (instA)
+
+- **scenario:** "Descrição do cenário."
+- **patient:** "Nome, idade, sexo. Contexto breve."
+- **complaint:** "Queixa principal do paciente ou motivo da consulta."
+- **tasks:**
+  1. Primeira tarefa do candidato
+  2. Segunda tarefa
+  3. Terceira tarefa
+Regras:
+
+tasks é detectado pela linha - **tasks:** — o que vem depois é a lista
+A lista pode ser numerada (1., 2.) ou com bullets (-, *) — ambos funcionam
+A lista termina quando aparece uma linha que começa com # ou ---
+Indentação nos itens da lista é opcional
+BLOCO 3 — PACIENTE SIMULADO (instB)
+O bloco 3 usa #### para separar as 10 subsecções. A chave de identificação está sempre entre parênteses no título, como (vitals), (labs), etc.
+
+3.1 Sinais Vitais (vitals)
+
+#### Sinais Vitais (vitals)
+
+| Parâmetro | Valor |
+|---|---|
+| PA | 120/80 mmHg |
+| FC | 88 bpm |
+| FR | 16 irpm |
+| Tax | 37,2°C |
+| Peso | 70 kg |
+| Altura | 168 cm |
+| IMC | 24,8 kg/m² |
+Regras dos vitais:
+
+Os nomes dos parâmetros na coluna esquerda devem ser exatamente: PA, FC, FR, Tax, Peso, Altura, IMC (a comparação é case-insensitive)
+Valores que viram null automaticamente: —, -, vazio, Não aferida, Não aferida (RN), Não calculado nessa faixa, null, N/A
+Qualquer outro valor é preservado como string
+A linha de cabeçalho com "Parâmetro" é ignorada automaticamente
+SatO2 ou outros campos extras não entram nos vitals (só esses 7)
+3.2 Exame Físico Geral (physicalGeneral)
+
+#### Exame Físico Geral (physicalGeneral)
+
+Bom estado geral, consciente, orientado. Corado, hidratado, anictérico, afebril.
+Regra: texto simples, pode ter múltiplas linhas — são unidas com espaço numa só string.
+
+3.3 Exame Segmentar (physicalSeg)
+
+#### Exame Segmentar (physicalSeg)
+
+- **NEUROLÓGICO:** Consciente, orientado, sem déficits focais.
+- **CARDIOVASCULAR:** RCR 2T, bulhas normofonéticas, sem sopros.
+- **RESPIRATÓRIO:** MV presente bilateralmente, sem ruídos adventícios.
+- **ABDOME:** Plano, RHA presentes, sem dor à palpação.
+- **MMII:** Sem edema, panturrilhas livres.
+Regras:
+
+Formato - **SISTEMA:** texto → produz "SISTEMA: texto" no JS
+Também aceita - Texto simples (sem bold) → preservado como está
+Uma linha por sistema
+3.4 Exames Laboratoriais (labs)
+
+#### Exames Laboratoriais (labs)
+
+| Exame (test) | Resultado (val) | Referência (ref) | Alterado? (alt) |
+|---|---|---|---|
+| Hemoglobina | 11,2 g/dL | 12,0–16,0 g/dL | Sim |
+| Glicemia de jejum | 95 mg/dL | 70–99 mg/dL | Não |
+| Creatinina | 1,1 mg/dL | 0,6–1,1 mg/dL | Não |
+Regras:
+
+Exatamente 4 colunas: test, val, ref, alt
+alt → true se o valor for Sim, yes, s ou true; qualquer outra coisa → false
+A linha de cabeçalho é pulada automaticamente (detectada porque contém "exame" ou "test")
+Se não houver exames: deixe a subsecção vazia ou omita-a → labs: []
+3.5 Exame de Imagem (image)
+
+#### Exame de Imagem (image)
+
+`image: null`
+Ou com descrição:
+
+
+#### Exame de Imagem (image)
+
+Radiografia de tórax PA: área cardíaca normal, sem infiltrados pulmonares.
+Regras:
+
+`image: null`, null ou conteúdo vazio → image: null
+Qualquer outro texto → string com a descrição
+Backticks ao redor do texto são removidos automaticamente
+3.6 Nota ao Avaliador (note)
+
+#### Nota ao Avaliador (note)
+
+Entregar o impresso de exame físico somente se o candidato solicitar verbalmente.
+Regra: parágrafo simples, múltiplas linhas são unidas com espaço.
+
+3.7 Perfil do Paciente Simulado (patientProfile)
+
+#### Perfil do Paciente Simulado (patientProfile)
+
+João S., 45 anos, masculino. Casado, contador. Sedentário, tabagista há 20 anos.
+3.8 Script do Paciente (script)
+
+#### Script do Paciente (script)
+
+| Gatilho (trigger) | Fala do paciente (speech) |
+|---|---|
+| Abertura / queixa principal | "Boa tarde, doutor(a). Estou com dor no peito desde ontem." |
+| Sobre histórico | "Nunca tive nada grave, mas meu pai teve infarto." |
+| Pergunta ativa — diagnóstico | "É grave o que eu tenho, doutor(a)?" |
+Regras:
+
+2 colunas: trigger e speech
+A linha de cabeçalho é pulada (detectada porque contém "gatilho" ou "trigger")
+As aspas dentro do speech são preservadas normalmente
+3.9 Informações Escondidas (hiddenInfo)
+
+#### Informações Escondidas (hiddenInfo)
+
+- Só revela uso de álcool se perguntado diretamente: "Às vezes bebo umas cervejas no fim de semana."
+- Só menciona histórico familiar se questionado: "Meu pai morreu de infarto aos 50 anos."
+Regra: lista de bullets simples (- ou *). Cada bullet vira um item do array.
+
+3.10 Comportamento do Ator (actorBehavior)
+
+#### Comportamento do Ator (actorBehavior)
+
+Paciente ansioso, fala rápido. Colaborativo mas demonstra medo do diagnóstico. Responde diretamente quando perguntado.
+BLOCO 4 — GABARITO TÉCNICO (instC)
+O bloco 4 usa headers bold **Título (chave):** no início da linha (sem - antes).
+
+Atenção: bullets dentro das seções como - **Farmacológica:** texto são aceitos — o parser distingue pelo - no início.
+
+
+### BLOCO 4 — GABARITO TÉCNICO (instC)
+
+> ℹ️ Uso exclusivo do avaliador.
+
+**Diagnóstico Principal (diagnosis):**
+Texto do diagnóstico principal numa ou mais linhas.
+
+**Diagnósticos Diferenciais (differentials):**
+
+1. Primeiro diferencial com justificativa.
+2. Segundo diferencial.
+3. Terceiro diferencial.
+
+**Síntese do Caso (context):**
+Resumo do caso em texto livre.
+
+**Justificativa Diagnóstica (justify):**
+Por que esse diagnóstico, com base nos dados apresentados.
+
+**Anamnese Esperada (expectedAnamnesis):**
+
+- Investigar queixa principal e duração.
+- Perguntar sobre uso de medicamentos.
+- Verificar histórico familiar.
+
+**Exame Físico Esperado (expectedPhysical):**
+
+- Sinais vitais completos.
+- Ausculta cardíaca e pulmonar.
+- Palpação abdominal.
+
+**Exames Complementares Esperados (expectedExams):**
+
+| Exame (exam) | Justificativa (justify) | Resultado Esperado (expected) |
+|---|---|---|
+| Hemograma | Investigar anemia | Hb 11 g/dL |
+| ECG | Rastrear arritmia | Taquicardia sinusal |
+
+**Conduta Esperada (expectedConduct):**
+
+- **Farmacológica:** Ibuprofeno 600 mg VO 8/8h por 5 dias.
+- **Não farmacológica:** Repouso relativo, hidratação oral.
+- **Encaminhamento:** Cardiologia eletiva em 30 dias.
+- **Seguimento:** Retorno em 7 dias ou antes se piora.
+
+**Comunicação Esperada (expectedCommunication):**
+
+- **Apresentação:** Apresentar-se pelo nome e função.
+- **Diagnóstico:** Explicar em linguagem acessível.
+- **Escuta ativa:** Perguntar se ficou com dúvidas ao final.
+
+**Erros Críticos (criticalErrors):**
+
+- ❌ Não investigar dor torácica com ECG.
+- ❌ Prescrever anticoagulante sem avaliar contraindicações.
+- ❌ Dispensar o paciente sem orientação de retorno.
+Regras por campo:
+
+Campo	Formato esperado	Produz no JS
+diagnosis, context, justify	Parágrafo livre	string
+differentials	Lista numerada ou bullets	["string", ...]
+expectedAnamnesis, expectedPhysical	Bullets (bold é removido)	["string", ...]
+expectedExams	Tabela 3 colunas	[{exam, justify, expected}]
+expectedConduct, expectedCommunication	Bullets; - **Label:** texto → "Label: texto"	["string", ...]
+criticalErrors	Bullets com ❌ ou sem; emoji é removido	["string", ...]
+Nomes de campo aceitos (o conversor reconhece em português e inglês):
+
+Header no markdown	Campo JS
+Diagnóstico Principal (diagnosis)	diagnosis
+Diagnósticos Diferenciais (differentials)	differentials
+Síntese do Caso (context)	context
+Justificativa Diagnóstica (justify)	justify
+Anamnese Esperada (expectedAnamnesis)	expectedAnamnesis
+Exame Físico Esperado (expectedPhysical)	expectedPhysical
+Exames Complementares Esperados (expectedExams)	expectedExams
+Conduta Esperada (expectedConduct)	expectedConduct
+Comunicação Esperada (expectedCommunication)	expectedCommunication
+Erros Críticos (criticalErrors)	criticalErrors
+BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+### BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+
+**Título (title):** "CHECKLIST — NOME DO CASO"
+
+---
+
+#### BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Apresentou-se pelo nome e função antes de iniciar o atendimento. | 0.5 | CFM 2232/2019 |
+| Explicou o que iria fazer antes de iniciar. | 0.5 | MS — Humanização, 2013 |
+
+#### BLOCO 2 — ANAMNESE
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Perguntou sobre início e duração dos sintomas. | 1.0 | Referência clínica |
+| Investigou uso de medicamentos. | 0.5 | Referência clínica |
+
+#### BLOCO 3 — EXAME FÍSICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Aferiu sinais vitais completos. | 0.5 | SBP, 2022 |
+
+#### BLOCO 4 — RACIOCÍNIO CLÍNICO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Formulou hipótese diagnóstica correta. | 1.0 | Protocolo MS |
+
+#### BLOCO 5 — CONDUTA E ORIENTAÇÃO
+
+| Item (item) | Pontos (score) | Referência (ref) |
+|---|---|---|
+| Prescreveu medicação na dose correta. | 1.0 | Protocolo MS |
+| Orientou retorno adequado. | 0.5 | Protocolo MS |
+
+**TOTAL: _____ / 10 pontos**
+Regras:
+
+**Título (title):** pode ter aspas ou não ao redor do valor — ambos funcionam
+Cada #### cria uma seção; o texto completo do header vira o campo h
+A tabela tem obrigatoriamente 3 colunas: item, score, ref
+A linha de cabeçalho com "Item (item)" é pulada automaticamente
+score aceita ponto (.) ou vírgula (,) como decimal: 0.5 e 0,5 são equivalentes
+A linha **TOTAL:** é ignorada
+Resumo dos padrões críticos
+O que escrever	Como o parser detecta
+### BLOCO 1	3 cerquilhas + espaço + BLOCO + número
+#### Secção (chave)	4 cerquilhas; chave extraída de (...)
+- **chave:** valor	Bullet com bold; chave em minúsculas
+**Header (chave):**	Linha iniciando com **, sem - antes
+- **Label:** texto em lista	Produz "Label: texto" no array
+- ❌ Texto	❌ e emojis removidos do início
+Valor vital — ou Não aferida	Vira null no JS
+alt na tabela labs = Sim	Vira true; qualquer outro → false
+`image: null`	Vira null no JS

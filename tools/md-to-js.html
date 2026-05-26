@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MD → JS · OSCE Local Converter</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2e3244;
+      --accent: #4f9cf9;
+      --text: #e2e8f0;
+      --muted: #7c8498;
+      --success: #22c55e;
+      --error: #ef4444;
+      --warn: #f59e0b;
+      --font-mono: "Fira Code", "Cascadia Code", "Consolas", monospace;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 0.95rem; font-weight: 600; }
+
+    .badge {
+      font-size: 0.68rem;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-weight: 600;
+    }
+    .badge-accent {
+      background: #1e3a5f;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+    .badge-green {
+      background: #0e2e1a;
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+    .badge-dim {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .pane {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .pane + .pane {
+      border-left: 1px solid var(--border);
+    }
+
+    .pane-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .pane-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex: 1;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { opacity: 0.7; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #0f1117;
+      border-color: var(--accent);
+    }
+
+    .btn-success {
+      background: #0e2e1a;
+      color: var(--success);
+      border-color: var(--success);
+    }
+
+    textarea {
+      flex: 1;
+      resize: none;
+      background: var(--bg);
+      color: var(--text);
+      border: none;
+      outline: none;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      padding: 14px;
+      white-space: pre;
+      overflow: auto;
+    }
+    textarea::placeholder { color: var(--muted); }
+
+    .output-wrap {
+      flex: 1;
+      overflow: auto;
+      position: relative;
+    }
+    pre#output {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      padding: 14px;
+      color: var(--text);
+      white-space: pre;
+      min-height: 100%;
+    }
+    pre#output.placeholder { color: var(--muted); font-style: italic; }
+
+    /* drag-over highlight */
+    .pane.drag-over textarea {
+      outline: 2px dashed var(--accent);
+      outline-offset: -2px;
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+
+    .convert-btn {
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    /* ── STATUS BAR ── */
+    #status-bar {
+      padding: 5px 16px;
+      font-size: 0.72rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      min-height: 27px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    #status-bar.ok { color: var(--success); }
+    #status-bar.err { color: var(--error); }
+    #status-bar.idle { color: var(--muted); }
+
+    /* ── SYNTAX HIGHLIGHT (simple) ── */
+    .kw { color: #c792ea; }
+    .str { color: #c3e88d; }
+    .num { color: #f78c6c; }
+    .bool { color: #89ddff; }
+    .null { color: #89ddff; }
+    .key { color: #82aaff; }
+    .punct { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MD → JS · OSCE Converter</h1>
+  <span class="badge badge-green">100% local · sem API</span>
+  <span class="badge badge-accent">Parsing determinístico</span>
+  <span class="badge badge-dim" style="margin-left:auto">oscesimulado</span>
+</header>
+
+<main>
+  <!-- LEFT PANE: input -->
+  <div class="pane" id="left-pane">
+    <div class="pane-header">
+      <span class="pane-title">Markdown de entrada</span>
+      <button class="btn btn-ghost" id="btn-open" title="Abrir arquivo .md">📂 Abrir .md</button>
+      <button class="btn btn-ghost" id="btn-paste" title="Colar da área de transferência">📋 Colar</button>
+      <button class="btn btn-ghost" id="btn-clear-in" title="Limpar">✕ Limpar</button>
+    </div>
+    <textarea id="input" placeholder="Cole o markdown do caso OSCE aqui, arraste um arquivo .md, ou use o botão Abrir .md…
+
+O arquivo deve ter a estrutura:
+  ### BLOCO 1 — METADADOS
+  ### BLOCO 2 — BRIEFING (instA)
+  ### BLOCO 3 — PACIENTE SIMULADO (instB)
+  ### BLOCO 4 — GABARITO TÉCNICO (instC)
+  ### BLOCO 5 — CHECKLIST AVALIATIVO (instD)"></textarea>
+    <input type="file" id="file-input" accept=".md,.txt" style="display:none" />
+  </div>
+
+  <!-- RIGHT PANE: output -->
+  <div class="pane" id="right-pane">
+    <div class="pane-header">
+      <span class="pane-title">Objeto JS gerado</span>
+      <button class="btn btn-ghost" id="btn-copy" title="Copiar">📋 Copiar</button>
+      <button class="btn btn-ghost" id="btn-download" title="Baixar .js">⬇ Baixar .js</button>
+      <button class="btn btn-ghost" id="btn-clear-out" title="Limpar saída">✕</button>
+    </div>
+    <div class="output-wrap">
+      <pre id="output" class="placeholder">// O objeto JS aparecerá aqui após a conversão…</pre>
+    </div>
+  </div>
+</main>
+
+<div class="bottom-bar">
+  <button class="btn btn-accent convert-btn" id="btn-convert">Converter →</button>
+  <span style="color:var(--muted);font-size:0.72rem">Converte markdown OSCE (5 blocos) para o schema JS do simulador</span>
+</div>
+
+<div id="status-bar" class="idle">Pronto. Cole ou abra um arquivo .md e clique em Converter.</div>
+
+<script>
+'use strict';
+
+// ─────────────────────────────────────────────────────────────
+//  UTILITIES
+// ─────────────────────────────────────────────────────────────
+
+function trim(s) { return s == null ? '' : String(s).trim(); }
+
+/** Remove markdown bold markers **text** → text */
+function stripBold(s) {
+  return trim(s).replace(/\*\*([^*]*)\*\*/g, '$1');
+}
+
+/** Remove leading emojis / special symbols (e.g. ❌, ✅, ⚠, bullets) */
+function stripLeadingSymbols(s) {
+  // Remove emoji, ❌, ✅, ⚠️, ⭕, etc. and leading dashes/spaces
+  return trim(s)
+    .replace(/^[ -㌀\uD800-\uDFFF©-®☀-➿⭐⭕️⃣]+\s*/u, '')
+    .replace(/^[-–—•]\s*/, '')
+    .trim();
+}
+
+/** Parse markdown table rows → array of arrays (skips separator rows) */
+function parseTable(lines) {
+  const rows = [];
+  for (const line of lines) {
+    const t = trim(line);
+    if (!t.startsWith('|')) continue;
+    // Skip separator rows like |---|---|
+    if (/^\|[\s|:-]+\|$/.test(t)) continue;
+    const cells = t.split('|').map(c => trim(c)).filter((_, i, arr) => i > 0 && i < arr.length - 0);
+    // remove first empty and last empty caused by leading/trailing |
+    const cleaned = t.replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => trim(c));
+    if (cleaned.length > 0) rows.push(cleaned);
+  }
+  return rows;
+}
+
+/** Null-ish values for vitals */
+const NULL_VALS = new Set(['—', '-', 'null', '', 'não aferida', 'não calculado', 'não calculado nessa faixa', 'não aferida (rn)', 'n/a', 'na']);
+
+function parseVitalValue(s) {
+  const v = trim(s);
+  if (!v) return null;
+  const lower = v.toLowerCase().replace(/\*/g, '').trim();
+  if (NULL_VALS.has(lower)) return null;
+  if (lower.startsWith('não aferida')) return null;
+  if (lower.startsWith('—') || lower === '-') return null;
+  return v;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCK SPLITTER
+// ─────────────────────────────────────────────────────────────
+
+function splitBlocks(md) {
+  const lines = md.split('\n');
+  const blocks = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+  let current = 0;
+
+  for (const line of lines) {
+    const m = line.match(/^###\s+BLOCO\s+(\d)/i);
+    if (m) {
+      current = parseInt(m[1]);
+      continue;
+    }
+    if (current >= 1 && current <= 5) {
+      blocks[current].push(line);
+    }
+  }
+  return blocks;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCO 1 — METADADOS
+// ─────────────────────────────────────────────────────────────
+
+const DISCARD_KEYS = new Set(['time', 'type', 'comp']);
+
+function parseBloco1(lines) {
+  const meta = {};
+  for (const line of lines) {
+    const m = trim(line).match(/^[-*]?\s*\*\*([^*:]+?):?\*\*:?\s*(.*)/);
+    if (!m) continue;
+    const key = trim(m[1]).toLowerCase();
+    if (DISCARD_KEYS.has(key)) continue;
+    let val = trim(m[2]).replace(/^"(.*)"$/, '$1'); // strip surrounding quotes
+    meta[key] = val;
+  }
+  return {
+    id: meta.id != null ? (isNaN(Number(meta.id)) ? meta.id : Number(meta.id)) : null,
+    title: meta.title || '',
+    sub: meta.sub || '',
+    tema: meta.tema || '',
+    topic: meta.topic || '',
+    level: meta.level || '',
+    cardAccent: meta.cardaccent || meta['cardaccent'] || '#4f9cf9'
+  };
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCO 2 — BRIEFING (instA)
+// ─────────────────────────────────────────────────────────────
+
+function parseBloco2(lines) {
+  const instA = {
+    scenario: '',
+    patient: '',
+    complaint: '',
+    tasks: []
+  };
+
+  let inTasks = false;
+  for (const line of lines) {
+    const t = trim(line);
+
+    // Key-value line: - **key:** value
+    const kv = trim(line).match(/^[-*]?\s*\*\*([^*:]+?):?\*\*:?\s*(.*)/);
+    if (kv) {
+      inTasks = false;
+      const key = trim(kv[1]).toLowerCase();
+      let val = trim(kv[2]).replace(/^"(.*)"$/, '$1');
+
+      if (key === 'scenario') { instA.scenario = val; continue; }
+      if (key === 'patient') { instA.patient = val; continue; }
+      if (key === 'complaint') { instA.complaint = val; continue; }
+      if (key === 'tasks') {
+        inTasks = true;
+        // value might be on the same line (unlikely) or the list follows
+        if (val) instA.tasks.push(val);
+        continue;
+      }
+    }
+
+    // Numbered list items for tasks
+    if (inTasks) {
+      const numbered = t.match(/^\d+\.\s+(.*)/);
+      if (numbered) {
+        instA.tasks.push(trim(numbered[1]));
+        continue;
+      }
+      // Bullet list items also accepted
+      const bullet = t.match(/^[-*]\s+(.*)/);
+      if (bullet) {
+        instA.tasks.push(trim(bullet[1]));
+        continue;
+      }
+      // Empty line or other marker ends task list only if it's a header
+      if (t.startsWith('#') || t.startsWith('---')) { inTasks = false; }
+    }
+  }
+
+  return instA;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCO 3 — PACIENTE SIMULADO (instB)
+// ─────────────────────────────────────────────────────────────
+
+const VITAL_MAP = {
+  'pa': 'PA', 'fc': 'FC', 'fr': 'FR', 'tax': 'Tax',
+  'peso': 'Peso', 'altura': 'Altura', 'imc': 'IMC'
+};
+
+const VITAL_KEYS = Object.keys(VITAL_MAP);
+
+function parseBloco3(lines) {
+  const instB = {
+    vitals: { PA: null, FC: null, FR: null, Tax: null, Peso: null, Altura: null, IMC: null },
+    physicalGeneral: '',
+    physicalSeg: [],
+    labs: [],
+    image: null,
+    note: '',
+    patientProfile: '',
+    script: [],
+    hiddenInfo: [],
+    actorBehavior: ''
+  };
+
+  // Split into subsections by #### headers
+  const sections = {};
+  let currentSec = null;
+  let currentLines = [];
+
+  for (const line of lines) {
+    const h4 = line.match(/^####\s+(.*)/);
+    if (h4) {
+      if (currentSec) sections[currentSec] = currentLines;
+      currentSec = trim(h4[1]);
+      currentLines = [];
+    } else {
+      if (currentSec) currentLines.push(line);
+    }
+  }
+  if (currentSec) sections[currentSec] = currentLines;
+
+  for (const [secName, secLines] of Object.entries(sections)) {
+    const key = extractParenKey(secName);
+
+    if (key === 'vitals') {
+      const rows = parseTable(secLines);
+      // rows: [[Parâmetro, Valor], ...]
+      // skip header row if it contains "Parâmetro" or "Parameter"
+      for (const row of rows) {
+        if (row.length < 2) continue;
+        const paramRaw = trim(row[0]).toLowerCase();
+        if (paramRaw === 'parâmetro' || paramRaw === 'parametro' || paramRaw === 'parameter') continue;
+        // Find which vital key this matches
+        const matched = VITAL_KEYS.find(k => paramRaw === k || paramRaw.startsWith(k));
+        if (matched) {
+          instB.vitals[VITAL_MAP[matched]] = parseVitalValue(row[1]);
+        }
+      }
+    }
+
+    else if (key === 'physicalgeneral') {
+      instB.physicalGeneral = collectParagraph(secLines);
+    }
+
+    else if (key === 'physicalseg') {
+      for (const line of secLines) {
+        const t = trim(line);
+        // - **SISTEMA:** texto  OR  - SISTEMA: texto
+        const m = t.match(/^-\s+\*\*([^*]+)\*\*[:\s]*(.*)/);
+        if (m) {
+          const seg = trim(m[1]).replace(/:$/, '') + ': ' + trim(m[2]);
+          instB.physicalSeg.push(seg);
+          continue;
+        }
+        // fallback: plain bullet
+        const plain = t.match(/^[-*]\s+(.*)/);
+        if (plain) {
+          instB.physicalSeg.push(stripBold(plain[1]));
+        }
+      }
+    }
+
+    else if (key === 'labs') {
+      const rows = parseTable(secLines);
+      for (const row of rows) {
+        if (row.length < 4) continue;
+        // skip header row
+        const first = trim(row[0]).toLowerCase();
+        if (first.includes('exame') || first.includes('test')) continue;
+        const altRaw = trim(row[3]).toLowerCase();
+        instB.labs.push({
+          test: trim(row[0]),
+          val:  trim(row[1]),
+          ref:  trim(row[2]),
+          alt:  altRaw === 'sim' || altRaw === 'yes' || altRaw === 's' || altRaw === 'true'
+        });
+      }
+    }
+
+    else if (key === 'image') {
+      const para = collectParagraph(secLines);
+      // `image: null` or just "null" → null
+      if (!para || /^[`"']?(?:image:\s*)?null[`"']?$/i.test(para)) {
+        instB.image = null;
+      } else {
+        // Strip backtick wrappers if present
+        instB.image = para.replace(/^`|`$/g, '').trim() || null;
+      }
+    }
+
+    else if (key === 'note') {
+      instB.note = collectParagraph(secLines);
+    }
+
+    else if (key === 'patientprofile') {
+      instB.patientProfile = collectParagraph(secLines);
+    }
+
+    else if (key === 'script') {
+      const rows = parseTable(secLines);
+      for (const row of rows) {
+        if (row.length < 2) continue;
+        const first = trim(row[0]).toLowerCase();
+        if (first === 'gatilho' || first.includes('trigger')) continue;
+        instB.script.push({
+          trigger: trim(row[0]),
+          speech:  trim(row[1])
+        });
+      }
+    }
+
+    else if (key === 'hiddeninfo') {
+      for (const line of secLines) {
+        const t = trim(line);
+        const m = t.match(/^[-*]\s+(.*)/);
+        if (m) instB.hiddenInfo.push(stripBold(trim(m[1])));
+      }
+    }
+
+    else if (key === 'actorbehavior') {
+      instB.actorBehavior = collectParagraph(secLines);
+    }
+  }
+
+  return instB;
+}
+
+/** Extract the key inside parentheses, lowercased, no spaces */
+function extractParenKey(header) {
+  const m = header.match(/\(([^)]+)\)/);
+  if (!m) return header.toLowerCase().replace(/\s+/g, '');
+  return m[1].toLowerCase().replace(/\s+/g, '');
+}
+
+/** Collect non-empty non-header lines into a single paragraph string */
+function collectParagraph(lines) {
+  return lines
+    .map(l => trim(l))
+    .filter(l => l && !l.startsWith('#') && !l.startsWith('>') && !l.startsWith('---'))
+    .join(' ')
+    .trim();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCO 4 — GABARITO TÉCNICO (instC)
+// ─────────────────────────────────────────────────────────────
+
+const INSTC_KEY_MAP = {
+  'diagnóstico principal': 'diagnosis',
+  'diagnóstico principal (diagnosis)': 'diagnosis',
+  'diagnosis': 'diagnosis',
+  'diagnósticos diferenciais': 'differentials',
+  'diagnósticos diferenciais (differentials)': 'differentials',
+  'differentials': 'differentials',
+  'síntese do caso': 'context',
+  'síntese do caso (context)': 'context',
+  'context': 'context',
+  'justificativa diagnóstica': 'justify',
+  'justificativa diagnóstica (justify)': 'justify',
+  'justify': 'justify',
+  'anamnese esperada': 'expectedAnamnesis',
+  'anamnese esperada (expectedanamnesis)': 'expectedAnamnesis',
+  'expectedanamnesis': 'expectedAnamnesis',
+  'exame físico esperado': 'expectedPhysical',
+  'exame físico esperado (expectedphysical)': 'expectedPhysical',
+  'expectedphysical': 'expectedPhysical',
+  'exames complementares esperados': 'expectedExams',
+  'exames complementares esperados (expectedexams)': 'expectedExams',
+  'expectedexams': 'expectedExams',
+  'conduta esperada': 'expectedConduct',
+  'conduta esperada (expectedconduct)': 'expectedConduct',
+  'expectedconduct': 'expectedConduct',
+  'comunicação esperada': 'expectedCommunication',
+  'comunicação esperada (expectedcommunication)': 'expectedCommunication',
+  'expectedcommunication': 'expectedCommunication',
+  'erros críticos': 'criticalErrors',
+  'erros críticos (criticalerrors)': 'criticalErrors',
+  'criticalerrors': 'criticalErrors',
+};
+
+function resolveInstCKey(rawHeader) {
+  const normalized = rawHeader.toLowerCase()
+    .replace(/\*\*/g, '')
+    .replace(/[:\s]+$/, '')
+    .trim();
+
+  // Try direct match
+  if (INSTC_KEY_MAP[normalized]) return INSTC_KEY_MAP[normalized];
+
+  // Try stripping parenthetical
+  const noParens = normalized.replace(/\s*\([^)]*\)/, '').trim();
+  if (INSTC_KEY_MAP[noParens]) return INSTC_KEY_MAP[noParens];
+
+  // Try matching with paren key only
+  const parenOnly = (normalized.match(/\(([^)]+)\)/) || [])[1];
+  if (parenOnly) {
+    const pk = parenOnly.toLowerCase().replace(/\s+/g, '');
+    const found = Object.keys(INSTC_KEY_MAP).find(k => k === pk);
+    if (found) return INSTC_KEY_MAP[found];
+  }
+
+  return null;
+}
+
+function parseBloco4(lines) {
+  const instC = {
+    diagnosis: '',
+    differentials: [],
+    context: '',
+    justify: '',
+    expectedAnamnesis: [],
+    expectedPhysical: [],
+    expectedExams: [],
+    expectedConduct: [],
+    expectedCommunication: [],
+    criticalErrors: []
+  };
+
+  // Split into logical sections by **Bold (key):** headers
+  const sections = [];
+  let currentKey = null;
+  let currentLines = [];
+
+  for (const line of lines) {
+    // Match bold header: **Text (key):** or **Text:**
+    const tl = trim(line);
+    const boldHeader = tl.match(/^\*\*([^*:]+?):?\*\*:?/);
+    if (boldHeader) {
+      if (currentKey) sections.push({ key: currentKey, lines: currentLines });
+      const rawKey = trim(boldHeader[1]);
+      currentKey = resolveInstCKey(rawKey + ':') || resolveInstCKey(rawKey);
+      currentLines = [];
+      // If there's content after the colon on the same line, capture it
+      const afterColon = trim(tl.replace(/^\*\*[^*:]+?:?\*\*:?\s*/, ''));
+      if (afterColon) currentLines.push(afterColon);
+    } else {
+      if (currentKey !== null) currentLines.push(line);
+    }
+  }
+  if (currentKey) sections.push({ key: currentKey, lines: currentLines });
+
+  for (const sec of sections) {
+    const { key, lines: secLines } = sec;
+    if (!key) continue;
+
+    const arrayKeys = ['differentials', 'expectedAnamnesis', 'expectedPhysical',
+                       'expectedConduct', 'expectedCommunication', 'criticalErrors'];
+    const paragraphKeys = ['diagnosis', 'context', 'justify'];
+
+    if (paragraphKeys.includes(key)) {
+      instC[key] = collectParagraph(secLines);
+    }
+
+    else if (key === 'differentials') {
+      for (const line of secLines) {
+        const t = trim(line);
+        // numbered list
+        const n = t.match(/^\d+\.\s+(.*)/);
+        if (n) { instC.differentials.push(stripBold(trim(n[1]))); continue; }
+        // bullet
+        const b = t.match(/^[-*]\s+(.*)/);
+        if (b) { instC.differentials.push(stripBold(trim(b[1]))); continue; }
+      }
+    }
+
+    else if (['expectedAnamnesis', 'expectedPhysical'].includes(key)) {
+      for (const line of secLines) {
+        const t = trim(line);
+        const b = t.match(/^[-*]\s+(.*)/);
+        if (b) {
+          instC[key].push(stripBold(b[1]));
+          continue;
+        }
+        const n = t.match(/^\d+\.\s+(.*)/);
+        if (n) { instC[key].push(stripBold(n[1])); continue; }
+      }
+    }
+
+    else if (key === 'expectedExams') {
+      const rows = parseTable(secLines);
+      for (const row of rows) {
+        if (row.length < 3) continue;
+        const first = trim(row[0]).toLowerCase();
+        if (first === 'exame' || first.includes('exam')) continue;
+        instC.expectedExams.push({
+          exam:     trim(row[0]),
+          justify:  trim(row[1]),
+          expected: trim(row[2])
+        });
+      }
+    }
+
+    else if (['expectedConduct', 'expectedCommunication'].includes(key)) {
+      for (const line of secLines) {
+        const t = trim(line);
+        // - **Label:** texto → "Label: texto"
+        const boldBullet = t.match(/^[-*]\s+\*\*([^*]+)\*\*[:\s]+(.*)/);
+        if (boldBullet) {
+          const label = trim(boldBullet[1]).replace(/:$/, '');
+          const text = trim(boldBullet[2]);
+          instC[key].push(label + ': ' + text);
+          continue;
+        }
+        const b = t.match(/^[-*]\s+(.*)/);
+        if (b) { instC[key].push(stripBold(b[1])); continue; }
+        const n = t.match(/^\d+\.\s+(.*)/);
+        if (n) { instC[key].push(stripBold(n[1])); continue; }
+      }
+    }
+
+    else if (key === 'criticalErrors') {
+      for (const line of secLines) {
+        const t = trim(line);
+        const b = t.match(/^[-*❌✅⚠]\s*(.*)/u) || t.match(/^[-*]\s+(.*)/);
+        if (b) {
+          instC.criticalErrors.push(stripLeadingSymbols(b[1] || b[0]));
+          continue;
+        }
+        // Line may start directly with ❌
+        const directEmoji = t.match(/^[^\w\s]*❌[^\w\s]*\s*(.*)/u);
+        if (directEmoji) {
+          instC.criticalErrors.push(trim(directEmoji[1]));
+          continue;
+        }
+        // plain line that's not empty
+        if (t && !t.startsWith('#') && !t.startsWith('>')) {
+          const cleaned = stripLeadingSymbols(t);
+          if (cleaned) instC.criticalErrors.push(cleaned);
+        }
+      }
+    }
+  }
+
+  return instC;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  BLOCO 5 — CHECKLIST AVALIATIVO (instD)
+// ─────────────────────────────────────────────────────────────
+
+function parseBloco5(lines) {
+  const instD = {
+    title: '',
+    sections: []
+  };
+
+  // Extract title: **Título (title):** "TEXT"
+  for (const line of lines) {
+    const m = line.match(/^\*\*T[ií]tulo\s*(?:\(title\))?\s*\*\*\s*:\s*"?([^"]+)"?/i);
+    if (m) {
+      instD.title = trim(m[1]);
+      break;
+    }
+  }
+
+  // Split into sections by #### headers
+  let currentH = null;
+  let currentLines = [];
+
+  for (const line of lines) {
+    const h4 = line.match(/^####\s+(.*)/);
+    if (h4) {
+      if (currentH !== null) {
+        const items = parseInstDItems(currentLines);
+        if (items.length > 0) instD.sections.push({ h: currentH, items });
+      }
+      currentH = trim(h4[1]);
+      currentLines = [];
+    } else {
+      if (currentH !== null) currentLines.push(line);
+    }
+  }
+  if (currentH !== null) {
+    const items = parseInstDItems(currentLines);
+    if (items.length > 0) instD.sections.push({ h: currentH, items });
+  }
+
+  return instD;
+}
+
+function parseInstDItems(lines) {
+  const items = [];
+  const rows = parseTable(lines);
+  for (const row of rows) {
+    if (row.length < 3) continue;
+    const first = trim(row[0]).toLowerCase();
+    if (first === 'item' || first.includes('item (item)')) continue;
+    const scoreRaw = trim(row[1]).replace(',', '.');
+    const score = parseFloat(scoreRaw);
+    items.push({
+      item:  trim(row[0]),
+      score: isNaN(score) ? 0 : score,
+      ref:   trim(row[2])
+    });
+  }
+  return items;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  MASTER PARSER
+// ─────────────────────────────────────────────────────────────
+
+function parseMarkdown(md) {
+  const blocks = splitBlocks(md);
+
+  const meta  = parseBloco1(blocks[1]);
+  const instA = parseBloco2(blocks[2]);
+  const instB = parseBloco3(blocks[3]);
+  const instC = parseBloco4(blocks[4]);
+  const instD = parseBloco5(blocks[5]);
+
+  return { ...meta, instA, instB, instC, instD };
+}
+
+// ─────────────────────────────────────────────────────────────
+//  SERIALIZER — JSON → JS (unquote keys)
+// ─────────────────────────────────────────────────────────────
+
+function serializeToJS(obj) {
+  let json = JSON.stringify(obj, null, 2);
+  // Strip quotes from valid JS identifier keys
+  json = json.replace(/"([a-zA-Z_$][a-zA-Z0-9_$]*)"\s*:/g, '$1:');
+  return json;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  SYNTAX HIGHLIGHTING (in-browser, minimal)
+// ─────────────────────────────────────────────────────────────
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function highlight(js) {
+  // Tokenise line by line for simplicity
+  const lines = js.split('\n');
+  return lines.map(line => {
+    // key:
+    let l = escapeHtml(line);
+    // keys (unquoted identifiers before colon)
+    l = l.replace(/\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=:)/g, '<span class="key">$1</span>');
+    // strings
+    l = l.replace(/"((?:[^"\\]|\\.)*)"/g, '<span class="str">&quot;$1&quot;</span>');
+    // booleans
+    l = l.replace(/\b(true|false)\b/g, '<span class="bool">$1</span>');
+    // null
+    l = l.replace(/\bnull\b/g, '<span class="null">null</span>');
+    // numbers (not inside strings)
+    l = l.replace(/(?<![a-zA-Z"'\w])(-?\d+(\.\d+)?)\b/g, '<span class="num">$1</span>');
+    return l;
+  }).join('\n');
+}
+
+// ─────────────────────────────────────────────────────────────
+//  UI
+// ─────────────────────────────────────────────────────────────
+
+const inputEl   = document.getElementById('input');
+const outputEl  = document.getElementById('output');
+const statusEl  = document.getElementById('status-bar');
+const fileInput = document.getElementById('file-input');
+
+let lastRawJS = '';
+
+function setStatus(msg, type = 'idle') {
+  statusEl.textContent = msg;
+  statusEl.className = type;
+}
+
+function setOutput(rawJS, doHighlight = true) {
+  lastRawJS = rawJS;
+  if (doHighlight) {
+    outputEl.innerHTML = highlight(rawJS);
+  } else {
+    outputEl.textContent = rawJS;
+  }
+  outputEl.classList.remove('placeholder');
+}
+
+function clearOutput() {
+  outputEl.innerHTML = '// O objeto JS aparecerá aqui após a conversão…';
+  outputEl.classList.add('placeholder');
+  lastRawJS = '';
+  setStatus('Pronto.', 'idle');
+}
+
+document.getElementById('btn-convert').addEventListener('click', () => {
+  const md = inputEl.value.trim();
+  if (!md) {
+    setStatus('⚠ Nenhum conteúdo no painel esquerdo. Cole ou abra um arquivo .md.', 'err');
+    return;
+  }
+  try {
+    const obj = parseMarkdown(md);
+    const js  = serializeToJS(obj);
+    setOutput(js);
+    setStatus(`✓ Convertido com sucesso. id=${obj.id} · "${obj.title}"`, 'ok');
+  } catch (e) {
+    setStatus(`✗ Erro ao converter: ${e.message}`, 'err');
+    console.error(e);
+  }
+});
+
+// Keyboard shortcut: Ctrl+Enter to convert
+inputEl.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    document.getElementById('btn-convert').click();
+  }
+});
+
+document.getElementById('btn-open').addEventListener('click', () => fileInput.click());
+
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    inputEl.value = e.target.result;
+    setStatus(`Arquivo carregado: ${file.name}`, 'ok');
+  };
+  reader.readAsText(file, 'UTF-8');
+  fileInput.value = '';
+});
+
+document.getElementById('btn-paste').addEventListener('click', async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    inputEl.value = text;
+    setStatus('Conteúdo colado da área de transferência.', 'ok');
+  } catch {
+    setStatus('⚠ Permissão de clipboard negada. Use Ctrl+V no textarea.', 'err');
+  }
+});
+
+document.getElementById('btn-clear-in').addEventListener('click', () => {
+  inputEl.value = '';
+  setStatus('Entrada limpa.', 'idle');
+});
+
+document.getElementById('btn-clear-out').addEventListener('click', clearOutput);
+
+document.getElementById('btn-copy').addEventListener('click', async () => {
+  if (!lastRawJS) { setStatus('Nada a copiar.', 'idle'); return; }
+  try {
+    await navigator.clipboard.writeText(lastRawJS);
+    setStatus('✓ Copiado para a área de transferência.', 'ok');
+  } catch {
+    setStatus('⚠ Falha ao copiar. Selecione o texto manualmente.', 'err');
+  }
+});
+
+document.getElementById('btn-download').addEventListener('click', () => {
+  if (!lastRawJS) { setStatus('Nada a baixar.', 'idle'); return; }
+  const blob = new Blob([lastRawJS], { type: 'text/javascript' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'caso.js';
+  a.click();
+  URL.revokeObjectURL(url);
+  setStatus('✓ Arquivo baixado.', 'ok');
+});
+
+// ── DRAG & DROP ──
+const leftPane = document.getElementById('left-pane');
+
+leftPane.addEventListener('dragover', e => {
+  e.preventDefault();
+  leftPane.classList.add('drag-over');
+});
+leftPane.addEventListener('dragleave', () => leftPane.classList.remove('drag-over'));
+leftPane.addEventListener('drop', e => {
+  e.preventDefault();
+  leftPane.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    inputEl.value = ev.target.result;
+    setStatus(`Arquivo carregado via drag & drop: ${file.name}`, 'ok');
+  };
+  reader.readAsText(file, 'UTF-8');
+});
+</script>
+</body>
+</html>
