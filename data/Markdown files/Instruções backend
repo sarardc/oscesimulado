@@ -48,3 +48,9 @@ Registrar import + spread	backend/server.js
 Botão de filtro	index.html (aside)
 Cor do tema	css/style.css
 Quer que eu mostre um caso de exemplo completo preenchido?
+
+O que foi feito:
+
+Adicionei import ctoracica from './data/cc/cirurgiatoracica.js' ao build.js
+Adicionei ...ctoracica ao array allStations no build.js
+Rodei node build.js — o arquivo data/stations.json foi regenerado com 172 estações (antes devia ter menos)
