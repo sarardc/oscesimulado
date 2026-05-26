@@ -142,3 +142,5 @@ const ctoracica = [
 },
 
 ]
+
+export default ctoracica;
