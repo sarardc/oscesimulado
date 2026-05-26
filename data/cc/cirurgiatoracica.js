@@ -588,7 +588,7 @@ Sem cirurgias prévias relevantes. Sem alergias medicamentosas conhecidas.”
     script: [{
         trigger: "caso clinico"
         speech: "Paciente masculino, 58 anos, contador, tabagista, com história de DRGE há cerca de 12 anos. Refere pirose e regurgitação ácida frequentes, principalmente após refeições volumosas e ao deitar, com piora noturna. Relata uso irregular de omeprazol, tomando apenas quando apresenta sintomas, sem adesão contínua ao tratamento prescrito. Há aproximadamente 6 semanas iniciou disfagia para alimentos sólidos, inicialmente intermitente, atualmente mais frequente, sem disfagia para líquidos. Nega odinofagia. Refere sensação de alimento parado em região retroesternal distal. Nega hematêmese e melena. Refere discreta perda ponderal não intencional nos últimos meses e redução da ingesta por medo da disfagia. História de tabagismo de longa data (quantificar anos-maço) e etilismo social/leve. Nega história familiar conhecida de câncer esofágico ou gástrico. Sem cirurgias prévias relevantes. Sem alergias medicamentosas conhecidas.”},
-            ]
+            ],
     hiddenInfo: "Uso irregular de omeprazol — tomava apenas quando os sintomas apareciam, sem uso contínuo como prescrito; só revela se o candidato perguntar sobre adesão ao tratamento ou modo de uso do IBP. | Disfagia para sólidos há 6 semanas — dado de alarme presente no briefing mas que deve ser explorado quanto à frequência, progressão e alimentos afetados.",
     actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
   },
