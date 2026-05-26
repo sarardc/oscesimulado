@@ -3,291 +3,105 @@ const oftalmo = [
 // CASO 01
 {
   id: 1,
-  title: "Olhos vermelhos e secreção há 3 dias",
-  sub: "UBS — Atenção Primária",
-  tema: "Oftalmologia",
-  topic: "Conjuntivite",
-  level: "simples",
-  cardAccent: "#4CAF50",
+  title: 'Olhos vermelhos e secreção há 3 dias',
+  sub: 'UBS — Atenção Primária',
+  tema: 'oftalmologia',
+  topic: 'Conjuntivite',
+  level: 'simples',
+  cardAccent: '#4CAF50',
   instA: {
-    scenario: "Atenção Primária — UBS. Consultório de clínica geral, turno matutino.",
-    patient: "R.M., 24 anos, feminino, auxiliar de creche, sem comorbidades conhecidas.",
+    scenario: 'Atenção Primária — UBS. Consultório de clínica geral, turno matutino.',
+    patient: 'R.M., 24 anos, feminino, auxiliar de creche, sem comorbidades conhecidas.',
     complaint: "Olhos vermelhos com 'meleca' há 3 dias, começando no olho direito.",
     tasks: [
-      "Realize a anamnese dirigida ao caso.",
-      "Realize o exame físico oftalmológico pertinente.",
-      "Formule a hipótese diagnóstica e os principais diagnósticos diferenciais.",
-      "Solicite os exames complementares adequados, se indicados.",
-      "Oriente a paciente sobre o diagnóstico, tratamento e medidas preventivas."
+      'Realize a anamnese dirigida ao caso.',
+      'Realize o exame físico oftalmológico pertinente.',
+      'Formule a hipótese diagnóstica e os principais diagnósticos diferenciais.',
+      'Solicite os exames complementares adequados, se indicados.',
+      'Oriente a paciente sobre o diagnóstico, tratamento e medidas preventivas.'
     ]
   },
   instB: {
-    vitals: {
-      PA: "110/70 mmHg",
-      FC: "78 bpm",
-      FR: "16 irpm",
-      Tax: "36,8°C",
-      Peso: "62 kg",
-      Altura: "1,63 m",
-      IMC: "23,3 kg/m²"
-    },
-    physicalGeneral: "Bom estado geral, corada, hidratada, anictérica, afebril, consciente e orientada.",
-    physicalSeg: [
-      "OLHO DIREITO: Hiperemia conjuntival difusa (+3/4), secreção mucopurulenta em quantidade moderada, sem fotofobia, sem dor à movimentação ocular, córnea transparente, pupila isocórica e fotorreagente, pálpebras com leve edema.",
-      "OLHO ESQUERDO: Hiperemia conjuntival leve (+1/4), pequena quantidade de secreção serosa matinal, córnea transparente, pupila isocórica e fotorreagente.",
-      "LINFONODOS: Adenopatia pré-auricular direita palpável, indolor, de consistência elástica (~1 cm).",
-      "DEMAIS SISTEMAS: Sem alterações relevantes."
-    ],
-    labs: [
-      {
-        test: "Cultura de secreção conjuntival",
-        val: "Não indicado na APS inicialmente",
-        ref: "—",
-        alt: false
-      }
-    ],
+    vitals: { PA: '110/70 mmHg', FC: '78 bpm', FR: '16 irpm', Tax: '36,8°C', Peso: '62 kg', Altura: '1,63 m', IMC: '23,3 kg/m²' },
+    physicalGeneral: 'Bom estado geral, corada, hidratada, anictérica, afebril, consciente e orientada.',
+    physicalSeg: 'OLHO DIREITO: Hiperemia conjuntival difusa (+3/4), secreção mucopurulenta em quantidade moderada, sem fotofobia, sem dor à movimentação ocular, córnea transparente, pupila isocórica e fotorreagente, pálpebras com leve edema. | OLHO ESQUERDO: Hiperemia conjuntival leve (+1/4), pequena quantidade de secreção serosa matinal, córnea transparente, pupila isocórica e fotorreagente. | LINFONODOS: Adenopatia pré-auricular direita palpável, indolor, de consistência elástica (~1 cm). | DEMAIS SISTEMAS: Sem alterações relevantes.',
+    labs: [],
     image: null,
-    note: "Entregar o impresso dos sinais vitais ao início da estação. O impresso do exame físico segmentar deve ser entregue somente após o candidato solicitar ou iniciar o exame físico. Não há exames complementares para entregar nesta estação.",
-    patientProfile: "\"Renata M., 24 anos, feminino, auxiliar de creche, solteira. Trabalha em período integral em creche municipal com crianças de 1 a 3 anos.\"",
+    note: 'Entregar o impresso dos sinais vitais ao início da estação. O impresso do exame físico segmentar deve ser entregue somente após o candidato solicitar ou iniciar o exame físico. Não há exames complementares para entregar nesta estação.',
+    patientProfile: 'Renata M., 24 anos, feminino, auxiliar de creche, solteira. Trabalha em período integral em creche municipal com crianças de 1 a 3 anos.',
     script: [
-      {
-        trigger: "Queixa principal",
-        speech: "\"Doutora, meu olho direito tá vermelho e cheio de secreção há uns 3 dias. Ontem o esquerdo também começou a ficar vermelho. Tô com vergonha de ir trabalhar assim.\""
-      },
-      {
-        trigger: "Sobre início e evolução",
-        speech: "\"Começou de repente, no olho direito. Acordei com o olho grudado de manhã. Aí foi piorando, e hoje o outro também tá começando.\""
-      },
-      {
-        trigger: "Sobre a secreção",
-        speech: "\"É um negócio amarelado, meio grosso. De manhã meu olho fica todo grudado, preciso limpar com água pra abrir.\""
-      },
-      {
-        trigger: "Sobre dor",
-        speech: "\"Não dói não. Mas coça bastante, e parece que tem uma areia no olho o tempo todo.\""
-      },
-      {
-        trigger: "Sobre visão",
-        speech: "\"Tá um pouco embaçado, mas acho que é por causa da secreção. Quando limpo, melhora.\""
-      },
-      {
-        trigger: "Sobre casos semelhantes",
-        speech: "\"Ah, tem umas crianças na creche com o olho vermelho também faz uns dias. A gente tava achando que era alergia delas.\""
-      },
-      {
-        trigger: "Sobre uso de colírio",
-        speech: "\"Comprei um colírio no posto de gasolina, desses de tirar vermelhidão. Usei uns dois dias mas não melhorou.\""
-      },
-      {
-        trigger: "Pergunta ativa — diagnóstico",
-        speech: "\"O que eu tenho, doutora? É grave? Posso passar pros meus filhos?\""
-      },
-      {
-        trigger: "Pergunta ativa — retorno ao trabalho",
-        speech: "\"Posso voltar pra creche amanhã? Tô com medo de perder o emprego.\""
-      }
+      { trigger: 'Queixa principal', speech: 'Doutora, meu olho direito tá vermelho e cheio de secreção há uns 3 dias. Ontem o esquerdo também começou a ficar vermelho. Tô com vergonha de ir trabalhar assim.' },
+      { trigger: 'Sobre início e evolução', speech: 'Começou de repente, no olho direito. Acordei com o olho grudado de manhã. Aí foi piorando, e hoje o outro também tá começando.' },
+      { trigger: 'Sobre a secreção', speech: 'É um negócio amarelado, meio grosso. De manhã meu olho fica todo grudado, preciso limpar com água pra abrir.' },
+      { trigger: 'Sobre dor', speech: 'Não dói não. Mas coça bastante, e parece que tem uma areia no olho o tempo todo.' },
+      { trigger: 'Sobre visão', speech: 'Tá um pouco embaçado, mas acho que é por causa da secreção. Quando limpo, melhora.' },
+      { trigger: 'Sobre casos semelhantes', speech: 'Ah, tem umas crianças na creche com o olho vermelho também faz uns dias. A gente tava achando que era alergia delas.' },
+      { trigger: 'Sobre uso de colírio', speech: "Comprei um colírio no posto de gasolina, desses de tirar vermelhidão. Usei uns dois dias mas não melhorou." },
+      { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutora? É grave? Posso passar pros meus filhos?' },
+      { trigger: 'Pergunta ativa — retorno ao trabalho', speech: 'Posso voltar pra creche amanhã? Tô com medo de perder o emprego.' }
     ],
-    hiddenInfo: [
-      "Uso de lente de contato: Só revelar se o candidato perguntar especificamente — \"Ah, eu uso lente de contato colorida nos finais de semana, mas essa semana não usei.\"",
-      "Histórico de alergia: Só revelar se perguntado — \"Tenho rinite alérgica, mas nunca tive problema nos olhos por causa disso.\""
-    ],
-    actorBehavior: "Tom levemente ansioso e envergonhado pelo aspecto estético. Colaborativa e comunicativa. Tende a minimizar os sintomas (\"acho que não é nada grave\"). Fica claramente preocupada ao mencionar o trabalho na creche e se anima quando o candidato demonstra empatia e escuta ativa. Coça os olhos durante a consulta se o candidato não orientar sobre isso."
+    hiddenInfo: 'Uso de lente de contato: Só revelar se o candidato perguntar especificamente — "Ah, eu uso lente de contato colorida nos finais de semana, mas essa semana não usei." | Histórico de alergia: Só revelar se perguntado — "Tenho rinite alérgica, mas nunca tive problema nos olhos por causa disso."',
+    actorBehavior: 'Tom levemente ansioso e envergonhado pelo aspecto estético. Colaborativa e comunicativa. Tende a minimizar os sintomas. Fica claramente preocupada ao mencionar o trabalho na creche e se anima quando o candidato demonstra empatia. Coça os olhos durante a consulta se o candidato não orientar sobre isso.'
   },
   instC: {
-    diagnosis: "Conjuntivite bacteriana aguda bilateral (predominantemente OD), com possível disseminação por contato com crianças da creche.",
+    diagnosis: 'Conjuntivite bacteriana aguda bilateral (predominantemente OD), com possível disseminação por contato com crianças da creche.',
     differentials: [
-      "Conjuntivite viral (adenovírus) — incluir: adenopatia pré-auricular presente, início unilateral com progressão contralateral, quadro epidemiológico (crianças da creche); excluir parcialmente: secreção predominantemente mucopurulenta (mais típica de bacteriana) e ausência de sintomas de via aérea superior.",
-      "Conjuntivite alérgica — incluir: histórico de rinite alérgica, prurido intenso; excluir: secreção purulenta não é típica, sem exposição alergênica identificada, quadro epidemiológico coletivo.",
-      "Ceratite — excluir: ausência de fotofobia intensa, córnea transparente ao exame, sem dor importante."
+      'Conjuntivite viral (adenovírus) — incluir: adenopatia pré-auricular presente, início unilateral com progressão contralateral, quadro epidemiológico (creche); excluir parcialmente: secreção predominantemente mucopurulenta (mais típica de bacteriana) e ausência de sintomas de via aérea superior.',
+      'Conjuntivite alérgica — incluir: histórico de rinite alérgica, prurido intenso; excluir: secreção purulenta não é típica, sem exposição alergênica identificada, quadro epidemiológico coletivo.',
+      'Ceratite — excluir: ausência de fotofobia intensa, córnea transparente ao exame, sem dor importante.'
     ],
-    context: "Adulta jovem, auxiliar de creche, com conjuntivite aguda bilateral de início unilateral há 3 dias, com secreção mucopurulenta, prurido e sensação de corpo estranho. Quadro epidemiológico sugestivo de transmissão no ambiente de trabalho (creche com casos semelhantes). A adenopatia pré-auricular levanta dúvida com conjuntivite viral, porém a secreção purulenta favorece etiologia bacteriana.",
-    justify: "A conjuntivite bacteriana aguda é caracterizada por hiperemia conjuntival, secreção mucopurulenta (especialmente matinal com \"grudamento\" das pálpebras), ausência de dor significativa e ausência de alteração visual importante após limpeza. A progressão unilateral → bilateral em dias, o contexto epidemiológico com crianças acometidas na creche e a ausência de sintomas sistêmicos consolidam a hipótese. A adenopatia pré-auricular é mais sugestiva de etiologia viral (adenovírus), tornando o diagnóstico diferencial relevante — contudo, a secreção abundante e purulenta pesa para bacteriana. Na atenção primária, em adulto imunocompetente sem sinais de alarme, o tratamento empírico bacteriano é conduta aceita.",
-    expectedAnamnesis: [
-      "Início, tempo de evolução e olho acometido primeiro",
-      "Caracterização da secreção (cor, consistência, quantidade)",
-      "Prurido, dor, fotofobia, ardência, sensação de corpo estranho",
-      "Alteração visual (embaçamento, queda de acuidade)",
-      "Uso prévio de colírios ou medicamentos",
-      "Casos semelhantes em contatos (família, trabalho)",
-      "Uso de lentes de contato",
-      "Antecedentes alérgicos (rinite, asma, dermatite atópica)",
-      "Exposição a produtos químicos, cloro (piscina), vento/poeira",
-      "Histórico de infecções oculares prévias"
-    ],
-    expectedPhysical: [
-      "Sinais vitais: avaliar temperatura (febre ausente corrobora ausência de infecção sistêmica grave)",
-      "Inspeção: avaliar pálpebras (edema, crostas), conjuntiva (hiperemia, papilas, folículos), córnea (transparência), íris e pupila",
-      "Palpação: linfonodos pré-auriculares e submandibulares (adenopatia pré-auricular sugere etiologia viral)",
-      "Avaliação da acuidade visual (teste de Snellen ou leitura de texto simples)",
-      "Everter pálpebra superior para pesquisa de folículos/papilas e corpo estranho",
-      "Reflexo fotomotor bilateral"
-    ],
+    context: 'Adulta jovem, auxiliar de creche, com conjuntivite aguda bilateral de início unilateral há 3 dias, com secreção mucopurulenta, prurido e sensação de corpo estranho. Quadro epidemiológico sugestivo de transmissão no ambiente de trabalho (creche com casos semelhantes). A adenopatia pré-auricular levanta dúvida com conjuntivite viral, porém a secreção purulenta favorece etiologia bacteriana.',
+    justify: 'A conjuntivite bacteriana aguda é caracterizada por hiperemia conjuntival, secreção mucopurulenta, ausência de dor significativa e ausência de alteração visual importante após limpeza. A progressão unilateral → bilateral em dias, o contexto epidemiológico com crianças acometidas na creche e a ausência de sintomas sistêmicos consolidam a hipótese. A adenopatia pré-auricular é mais sugestiva de etiologia viral (adenovírus), tornando o diagnóstico diferencial relevante — contudo, a secreção abundante e purulenta pesa para bacteriana. Na atenção primária, em adulto imunocompetente sem sinais de alarme, o tratamento empírico bacteriano é conduta aceita.',
+    expectedAnamnesis: 'Início, tempo de evolução e olho acometido primeiro | Caracterização da secreção (cor, consistência, quantidade) | Prurido, dor, fotofobia, ardência, sensação de corpo estranho | Alteração visual (embaçamento, queda de acuidade) | Uso prévio de colírios ou medicamentos | Casos semelhantes em contatos (família, trabalho) | Uso de lentes de contato | Antecedentes alérgicos (rinite, asma, dermatite atópica) | Exposição a produtos químicos, cloro (piscina), vento/poeira | Histórico de infecções oculares prévias',
+    expectedPhysical: 'Sinais vitais: avaliar temperatura (febre ausente corrobora ausência de infecção sistêmica grave) | Inspeção: avaliar pálpebras (edema, crostas), conjuntiva (hiperemia, papilas, folículos), córnea (transparência), íris e pupila | Palpação: linfonodos pré-auriculares e submandibulares | Avaliação da acuidade visual (teste de Snellen ou leitura de texto simples) | Everter pálpebra superior para pesquisa de folículos/papilas e corpo estranho | Reflexo fotomotor bilateral',
     expectedExams: [
-      {
-        exam: "Cultura de secreção conjuntival",
-        justify: "Indicado apenas em casos graves, neonatos, falha terapêutica ou imunocomprometidos",
-        expected: "Não indicado neste caso na APS"
-      },
-      {
-        exam: "Biomicroscopia (lâmpada de fenda)",
-        justify: "Avaliação detalhada de córnea e conjuntiva — realizada pelo oftalmologista",
-        expected: "Reservado para encaminhamento se necessário"
-      }
+      { exam: 'Cultura de secreção conjuntival', justify: 'Indicado apenas em casos graves, neonatos, falha terapêutica ou imunocomprometidos', expected: 'Não indicado neste caso na APS' },
+      { exam: 'Biomicroscopia (lâmpada de fenda)', justify: 'Avaliação detalhada de córnea e conjuntiva — realizada pelo oftalmologista', expected: 'Reservado para encaminhamento se necessário' }
     ],
-    expectedConduct: [
-      "Farmacológica: Colírio de tobramicina 0,3% ou ciprofloxacino 0,3% — 1 a 2 gotas no(s) olho(s) afetado(s), 4x/dia, por 7 dias. Alternativa: colírio de azitromicina 1,5% — 1 gota 2x/dia por 3 dias. *(Baseado em: CBO/CFF, 2022; RENAME 2023 — tobramicina disponível no SUS como medicamento de atenção especializada; em muitas UBS, orienta-se encaminhamento ou uso de cloranfenicol colírio 0,5%, disponível na atenção básica, como alternativa de 1ª linha.)*",
-      "Não farmacológica: Limpeza dos olhos com soro fisiológico ou água limpa; não coçar os olhos; não compartilhar toalhas, travesseiros ou maquiagem; lavagem frequente das mãos.",
-      "Encaminhamento: Encaminhar ao oftalmologista se: ausência de melhora em 48–72h, piora da acuidade visual, fotofobia intensa, dor ocular, suspeita de ceratite ou uveíte.",
-      "Orientações ao paciente: Explicar que a doença é contagiosa; orientar afastamento das crianças da creche pelo período de contagiosidade (mínimo 5–7 dias, enquanto houver secreção ativa); notificar surto ao serviço de saúde da creche.",
-      "Seguimento: Retorno em 5–7 dias ou antes se piora. Sinais de alarme: dor intensa, queda de visão, opacidade da córnea."
-    ],
-    expectedCommunication: [
-      "Apresentação: Apresentar-se pelo nome, cumprimentar a paciente, garantir privacidade, perguntar como se sente.",
-      "Comunicação do diagnóstico: Explicar em linguagem acessível que se trata de uma infecção ocular (conjuntivite) bacteriana, provavelmente pega no contato com as crianças da creche; informar que é tratável e que não é grave se tratada corretamente.",
-      "Escuta ativa: Acolher a preocupação com o trabalho; validar o sentimento de vergonha; esclarecer que o afastamento temporário é necessário para proteger as crianças, não uma punição."
-    ],
+    expectedConduct: 'Farmacológica: Colírio de tobramicina 0,3% ou ciprofloxacino 0,3% — 1 a 2 gotas no(s) olho(s) afetado(s), 4x/dia, por 7 dias. Alternativa: colírio de azitromicina 1,5% — 1 gota 2x/dia por 3 dias. Em muitas UBS: cloranfenicol colírio 0,5%, disponível na atenção básica, como alternativa de 1ª linha. (CBO/CFF, 2022; RENAME 2023) | Não farmacológica: Limpeza dos olhos com soro fisiológico ou água limpa; não coçar os olhos; não compartilhar toalhas, travesseiros ou maquiagem; lavagem frequente das mãos. | Encaminhamento: Encaminhar ao oftalmologista se: ausência de melhora em 48–72h, piora da acuidade visual, fotofobia intensa, dor ocular, suspeita de ceratite ou uveíte. | Orientações ao paciente: Explicar que a doença é contagiosa; orientar afastamento das crianças da creche pelo período de contagiosidade (mínimo 5–7 dias, enquanto houver secreção ativa); notificar surto ao serviço de saúde da creche. | Seguimento: Retorno em 5–7 dias ou antes se piora. Sinais de alarme: dor intensa, queda de visão, opacidade da córnea.',
+    expectedCommunication: 'Apresentação: Apresentar-se pelo nome, cumprimentar a paciente, garantir privacidade, perguntar como se sente. | Comunicação do diagnóstico: Explicar em linguagem acessível que se trata de uma infecção ocular bacteriana, provavelmente pega no contato com as crianças da creche; informar que é tratável e não é grave se tratada corretamente. | Escuta ativa: Acolher a preocupação com o trabalho; validar o sentimento de vergonha; esclarecer que o afastamento temporário é necessário para proteger as crianças, não uma punição.',
     criticalErrors: [
-      "Prescrever corticoide ocular tópico sem confirmação diagnóstica (pode agravar infecção bacteriana/viral e causar glaucoma corticosteróide-induzido)",
-      "Não orientar sobre contagiosidade e medidas de controle (risco de surto na creche)",
-      "Não avaliar a acuidade visual (pode perder diagnósticos graves como ceratite ou uveíte associada)",
-      "Liberar a paciente para trabalhar imediatamente sem orientar sobre período de afastamento",
-      "Não pesquisar uso de lente de contato (risco de ceratite associada — conduta diferente)",
-      "-"
+      'Prescrever corticoide ocular tópico sem confirmação diagnóstica (pode agravar infecção bacteriana/viral e causar glaucoma corticosteróide-induzido)',
+      'Não orientar sobre contagiosidade e medidas de controle (risco de surto na creche)',
+      'Não avaliar a acuidade visual (pode perder diagnósticos graves como ceratite ou uveíte associada)',
+      'Liberar a paciente para trabalhar imediatamente sem orientar sobre período de afastamento',
+      'Não pesquisar uso de lente de contato (risco de ceratite associada — conduta diferente)'
     ]
   },
   instD: {
-    title: "",
+    title: 'CHECKLIST — OLHOS VERMELHOS E SECREÇÃO HÁ 3 DIAS',
     sections: [
-      {
-        h: "BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
-        items: [
-          {
-            item: "Apresentou-se pelo nome ao iniciar a consulta",
-            score: 0.5,
-            ref: "CFM Res. 2.232/2019 — Relação médico-paciente"
-          },
-          {
-            item: "Demonstrou escuta ativa, sem interromper a paciente durante a queixa inicial",
-            score: 0.5,
-            ref: "CFM Res. 2.232/2019"
-          },
-          {
-            item: "Acolheu a preocupação da paciente com o trabalho de forma empática",
-            score: 0.5,
-            ref: "Política Nacional de Humanização, MS, 2013"
-          }
-        ]
-      },
-      {
-        h: "BLOCO 2 — ANAMNESE",
-        items: [
-          {
-            item: "Investigou início, evolução e olho acometido primeiro",
-            score: 0.5,
-            ref: "Semiologia Oftalmológica — CBO, 2019"
-          },
-          {
-            item: "Caracterizou a secreção (cor, consistência, quantidade)",
-            score: 1,
-            ref: "CBO — Guia de Doenças Externas, 2019"
-          },
-          {
-            item: "Perguntou sobre prurido, dor, fotofobia e sensação de corpo estranho",
-            score: 0.5,
-            ref: "CBO, 2019"
-          },
-          {
-            item: "Investigou alteração visual (embaçamento, queda de acuidade)",
-            score: 1,
-            ref: "CBO, 2019"
-          },
-          {
-            item: "Perguntou sobre casos semelhantes em contatos (família/trabalho)",
-            score: 0.5,
-            ref: "Protocolo de Vigilância Epidemiológica — MS, 2022"
-          },
-          {
-            item: "Perguntou sobre uso de lentes de contato",
-            score: 0.5,
-            ref: "CBO — Conjuntivites, 2019"
-          },
-          {
-            item: "Investigou histórico alérgico (rinite, asma, dermatite)",
-            score: 0.5,
-            ref: "CBO, 2019"
-          }
-        ]
-      },
-      {
-        h: "BLOCO 3 — EXAME FÍSICO",
-        items: [
-          {
-            item: "Avaliou a acuidade visual (teste de Snellen ou leitura de texto)",
-            score: 1,
-            ref: "CBO — Semiologia Ocular, 2019"
-          },
-          {
-            item: "Inspecionou pálpebras, conjuntiva e córnea bilateralmente",
-            score: 0.5,
-            ref: "CBO, 2019"
-          },
-          {
-            item: "Pesquisou adenopatia pré-auricular por palpação",
-            score: 0.5,
-            ref: "CBO — Conjuntivites, 2019"
-          },
-          {
-            item: "Avaliou reflexo fotomotor direto e consensual",
-            score: 0.5,
-            ref: "Semiologia Médica — Porto, 2022"
-          }
-        ]
-      },
-      {
-        h: "BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
-        items: [
-          {
-            item: "Formulou hipótese de conjuntivite bacteriana como diagnóstico principal",
-            score: 1,
-            ref: "CBO — Conjuntivites Infecciosas, 2019"
-          },
-          {
-            item: "Citou ao menos um diagnóstico diferencial pertinente (viral ou alérgica)",
-            score: 0.5,
-            ref: "CBO, 2019"
-          },
-          {
-            item: "Justificou a não solicitação de exames complementares na APS (ou solicitou culturas apenas com justificativa adequada)",
-            score: 0.5,
-            ref: "Protocolo MS/APS — Olho Vermelho, 2021"
-          }
-        ]
-      },
-      {
-        h: "BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE",
-        items: [
-          {
-            item: "Prescreveu antibiótico tópico adequado (tobramicina, ciprofloxacino ou cloranfenicol colírio) com dose e duração corretas",
-            score: 1,
-            ref: "RENAME 2023; CBO, 2019"
-          },
-          {
-            item: "Orientou sobre limpeza dos olhos com soro fisiológico e não coçar os olhos",
-            score: 0.5,
-            ref: "CBO, 2019"
-          },
-          {
-            item: "Orientou sobre contagiosidade e necessidade de afastamento temporário do trabalho",
-            score: 1,
-            ref: "Protocolo de Vigilância — MS, 2022"
-          },
-          {
-            item: "Orientou sinais de alarme para retorno imediato (dor intensa, queda de visão, piora)",
-            score: 0.5,
-            ref: "CBO, 2019"
-          }
-        ]
-      }
+      { h: 'COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+        { item: 'Apresentou-se pelo nome ao iniciar a consulta', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+        { item: 'Demonstrou escuta ativa, sem interromper a paciente durante a queixa inicial', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+        { item: 'Acolheu a preocupação da paciente com o trabalho de forma empática', score: 0.5, ref: 'Política Nacional de Humanização, MS, 2013' }
+      ]},
+      { h: 'ANAMNESE', items: [
+        { item: 'Investigou início, evolução e olho acometido primeiro', score: 0.5, ref: 'Semiologia Oftalmológica — CBO, 2019' },
+        { item: 'Caracterizou a secreção (cor, consistência, quantidade)', score: 1.0, ref: 'CBO — Guia de Doenças Externas, 2019' },
+        { item: 'Perguntou sobre prurido, dor, fotofobia e sensação de corpo estranho', score: 0.5, ref: 'CBO, 2019' },
+        { item: 'Investigou alteração visual (embaçamento, queda de acuidade)', score: 1.0, ref: 'CBO, 2019' },
+        { item: 'Perguntou sobre casos semelhantes em contatos (família/trabalho)', score: 0.5, ref: 'Protocolo de Vigilância Epidemiológica — MS, 2022' },
+        { item: 'Perguntou sobre uso de lentes de contato', score: 0.5, ref: 'CBO — Conjuntivites, 2019' },
+        { item: 'Investigou histórico alérgico (rinite, asma, dermatite)', score: 0.5, ref: 'CBO, 2019' }
+      ]},
+      { h: 'EXAME FÍSICO', items: [
+        { item: 'Avaliou a acuidade visual (teste de Snellen ou leitura de texto)', score: 1.0, ref: 'CBO — Semiologia Ocular, 2019' },
+        { item: 'Inspecionou pálpebras, conjuntiva e córnea bilateralmente', score: 0.5, ref: 'CBO, 2019' },
+        { item: 'Pesquisou adenopatia pré-auricular por palpação', score: 0.5, ref: 'CBO — Conjuntivites, 2019' },
+        { item: 'Avaliou reflexo fotomotor direto e consensual', score: 0.5, ref: 'Semiologia Médica — Porto, 2022' }
+      ]},
+      { h: 'RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+        { item: 'Formulou hipótese de conjuntivite bacteriana como diagnóstico principal', score: 1.0, ref: 'CBO — Conjuntivites Infecciosas, 2019' },
+        { item: 'Citou ao menos um diagnóstico diferencial pertinente (viral ou alérgica)', score: 0.5, ref: 'CBO, 2019' },
+        { item: 'Justificou a não solicitação de exames complementares na APS (ou solicitou culturas apenas com justificativa adequada)', score: 0.5, ref: 'Protocolo MS/APS — Olho Vermelho, 2021' }
+      ]},
+      { h: 'CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+        { item: 'Prescreveu antibiótico tópico adequado (tobramicina, ciprofloxacino ou cloranfenicol colírio) com dose e duração corretas', score: 1.0, ref: 'RENAME 2023; CBO, 2019' },
+        { item: 'Orientou sobre limpeza dos olhos com soro fisiológico e não coçar os olhos', score: 0.5, ref: 'CBO, 2019' },
+        { item: 'Orientou sobre contagiosidade e necessidade de afastamento temporário do trabalho', score: 1.0, ref: 'Protocolo de Vigilância — MS, 2022' },
+        { item: 'Orientou sinais de alarme para retorno imediato (dor intensa, queda de visão, piora)', score: 0.5, ref: 'CBO, 2019' }
+      ]}
     ]
   }
 },
