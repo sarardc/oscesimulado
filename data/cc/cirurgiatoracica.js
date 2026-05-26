@@ -1158,6 +1158,614 @@ const ctoracica = [
   }
 },
 
+{
+  id: 10,
+  title: "Dor abdominal intensa em barra após refeição gordurosa",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "pancreatite aguda",
+  level: "moderado",
+  cardAccent: "#F39C12",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno noturno. Caso clínico escrito — sem ator.",
+    patient: "G.B., 44 anos, masculino, comerciante, etilista crônico, sem comorbidades conhecidas.",
+    complaint: "Dor abdominal intensa no alto do abdome, com irradiação para as costas, iniciada 4 horas após refeição gordurosa e uso de bebida alcoólica.",
+    tasks: [
+      "Analise o quadro clínico e formule hipóteses diagnósticas justificadas.",
+      "Solicite e interprete os exames complementares necessários para confirmar o diagnóstico.",
+      "Classifique a gravidade da pancreatite aguda utilizando os critérios validados (Ranson e/ou BISAP).",
+      "Proponha a conduta terapêutica inicial baseada na classificação de gravidade.",
+      "Identifique as complicações precoces e os critérios de internação em UTI."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "100/60 mmHg",
+      FC: "118 bpm",
+      FR: "22 irpm",
+      Tax: "38,2°C",
+      Peso: "82 kg",
+      Altura: "1,70 m",
+      IMC: "28,4 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular a mau estado geral, consciente, orientado, sudoreico, com dor intensa (EVA 9/10). Mucosas secas (2+/4+), anictérico, ligeiramente pálido. Posição antálgica (genupeitoral).",
+    physicalSeg: "ABDOME: Distendido. Dor intensa e difusa à palpação, com maior intensidade no epigástrio e mesogástrio. Defesa muscular leve no epigástrio. Sinal de Blumberg negativo. Ausência de sinal de Cullen (equimose periumbilical) e de Grey-Turner (equimose em flancos). Ruídos hidroaéreos hipoativos. | CARDIOVASCULAR: Taquicárdico, bulhas rítmicas, sem sopros. PA 100/60 mmHg — hipotensão. | TÓRAX: Discreto velamento à percussão na base esquerda (derrame pleural leve associado). Murmúrio vesicular reduzido na base esquerda.",
+    labs: [
+      { test: "Amilase sérica", val: "1.840 U/L", ref: "< 100 U/L", alt: true },
+      { test: "Lipase sérica", val: "3.420 U/L", ref: "< 60 U/L", alt: true },
+      { test: "Hemoglobina", val: "14,2 g/dL", ref: "13,5–17,5 g/dL", alt: false },
+      { test: "Hematócrito", val: "48%", ref: "40–54%", alt: false },
+      { test: "Leucócitos", val: "16.400/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Glicemia", val: "186 mg/dL", ref: "70–99 mg/dL", alt: true },
+      { test: "Ureia", val: "68 mg/dL", ref: "15–45 mg/dL", alt: true },
+      { test: "Creatinina", val: "1,8 mg/dL", ref: "0,7–1,2 mg/dL", alt: true },
+      { test: "Cálcio sérico", val: "7,8 mg/dL", ref: "8,5–10,5 mg/dL", alt: true },
+      { test: "DHL", val: "740 UI/L", ref: "140–280 UI/L", alt: true },
+      { test: "AST (TGO)", val: "88 U/L", ref: "< 40 U/L", alt: true },
+      { test: "ALT (TGP)", val: "72 U/L", ref: "< 41 U/L", alt: true },
+      { test: "Bilirrubina total", val: "1,8 mg/dL", ref: "< 1,2 mg/dL", alt: true },
+      { test: "Triglicérides", val: "320 mg/dL", ref: "< 150 mg/dL", alt: true },
+      { test: "PCR (12h após início)", val: "210 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Gasometria arterial — pH", val: "7,32", ref: "7,35–7,45", alt: true },
+      { test: "Gasometria arterial — pO₂", val: "68 mmHg", ref: "> 80 mmHg", alt: true },
+      { test: "Gasometria arterial — HCO₃", val: "18 mEq/L", ref: "22–26 mEq/L", alt: true }
+    ],
+    image: "ULTRASSONOGRAFIA DE ABDOME TOTAL: Pâncreas com contornos irregulares e ecogenicidade heterogênea, aumentado de volume, sugestivo de pancreatite aguda. Vesícula biliar com múltiplos cálculos (o maior medindo 1,2 cm), paredes espessadas (5 mm). Líquido livre peripancreático em pequena quantidade. Sem dilatação das vias biliares intra ou extra-hepáticas. | TOMOGRAFIA DE ABDOME COM CONTRASTE (ÍNDICE DE BALTHAZAR): Pâncreas com necrose de aproximadamente 30% do parênquima pancreático (terço distal). Coleção peripancreática aguda no espaço pararrenal anterior esquerdo. Infiltração gordurosa peripancreática extensa. Derrame pleural esquerdo de pequeno volume. Balthazar D — escore CT de gravidade (CTSI) = 6 (moderadamente grave).",
+    note: "Estação sem ator. Entregar dados clínicos, sinais vitais e exame físico ao início. Entregar exames laboratoriais quando solicitados. Entregar USG quando solicitada. Entregar TC somente se o candidato indicar e justificar (critérios de TC na pancreatite: < 48h sem melhora clínica ou dúvida diagnóstica). Atentar se o candidato aplica escores de gravidade (Ranson e/ou BISAP).",
+    patientProfile: "G.B., 44 anos, masculino. Comerciante, casado. Etilismo crônico (8–10 doses de cachaça/dia há 15 anos). Tabagismo (15 anos-maço). Sem medicamentos de uso contínuo. Sem cirurgias prévias. Refere episódios anteriores de 'dor de estômago forte' após álcool, sem diagnóstico formal.",
+    script: [],
+    hiddenInfo: "Etilismo pesado diário (8–10 doses/dia há 15 anos) — principal fator etiológico; só quantifica se o candidato perguntar especificamente sobre a quantidade e frequência do consumo de álcool. | Episódios anteriores semelhantes de dor epigástrica intensa após álcool — sugere pancreatite alcoólica recorrente; só menciona se o candidato perguntar sobre histórico de episódios similares.",
+    actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
+  },
+  instC: {
+    diagnosis: "Pancreatite aguda moderadamente grave — etiologia alcoólica (etilismo crônico) com colelitíase associada. Escore de Balthazar D, CTSI 6. Ranson ≥ 3 (gravidade). Complicação: necrose pancreática (30%) com coleção peripancreática aguda e derrame pleural esquerdo.",
+    differentials: [
+      "Pancreatite biliar (litiásica) — diferencial principal: colelitíase presente na USG; porém o etilismo crônico pesado e a ausência de dilatação de via biliar tornam a etiologia alcoólica mais provável; pode coexistir",
+      "Úlcera péptica perfurada — excluída pela ausência de pneumoperitônio e pelo padrão de amilase/lipase extremamente elevados",
+      "Isquemia mesentérica — excluída pela ausência de achados vasculares na TC e pelo padrão enzimático típico de pancreatite",
+      "Pancreatite por hipertrigliceridemia — diferencial relevante: triglicérides de 320 mg/dL (limítrofe para etiologia — geralmente > 1.000 mg/dL); menos provável como causa isolada neste caso"
+    ],
+    context: "Paciente masculino, 44 anos, etilista crônico pesado com pancreatite aguda moderadamente grave — necrose pancreática de 30%, coleção peripancreática e derrame pleural esquerdo. Hipotensão, taquicardia, hipoxemia e hiperglicemia na admissão. Internação em UTI indicada.",
+    justify: "Diagnóstico de pancreatite aguda por dois dos três critérios de Atlanta: dor abdominal típica + amilase e lipase > 3x o limite superior. Critérios de Ranson na admissão: idade > 55 anos (não) + leucócitos > 16.000 (sim) + glicemia > 200 (não) + DHL > 350 (sim) + AST > 250 (não) = 2 critérios na admissão. TC Balthazar D + necrose 30% = CTSI 6 (moderadamente grave). Hipotensão, taquicardia e hipoxemia indicam disfunção orgânica = pancreatite moderadamente grave (Atlanta 2012).",
+    expectedAnamnesis: "Caracterizar a dor: localização epigástrica, irradiação em faixa para as costas, relação com alimentação e álcool | Etilismo: frequência, quantidade, tipo de bebida, duração | Colelitíase prévia conhecida | Episódios anteriores de pancreatite | Uso de medicamentos (estatinas, diuréticos tiazídicos, azatioprina — podem causar pancreatite) | Triglicérides elevados prévios | Cirurgias biliares prévias | Histórico familiar de pancreatite",
+    expectedPhysical: "Sinais vitais: hipotensão, taquicardia, febre, taquipneia — identificar sinais de gravidade | Posição antálgica (genupeitoral) | Abdome: distensão, dor epigástrica intensa, defesa, ausência de peristaltismo | Pesquisar Cullen e Grey-Turner (equimoses — necrose hemorrágica) | Tórax: avaliar derrame pleural (frequente na pancreatite grave) | Icterícia: pancreatite biliar com obstrução",
+    expectedExams: [
+      { exam: "Amilase e lipase sérica", justify: "Diagnóstico de pancreatite aguda — lipase tem maior sensibilidade e especificidade que amilase", expected: "Elevação > 3x o limite superior confirma diagnóstico" },
+      { exam: "Hemograma, ureia, creatinina, glicemia, cálcio, DHL, AST", justify: "Calcular escore de Ranson na admissão e avaliar disfunção orgânica", expected: "Leucocitose, hiperglicemia, hipocalcemia, DHL elevado, TGO elevado" },
+      { exam: "Gasometria arterial", justify: "Avaliar hipoxemia (síndrome do desconforto respiratório agudo — SARA) e acidose", expected: "Hipoxemia (pO₂ < 60 mmHg) e acidose metabólica em pancreatite grave" },
+      { exam: "Ultrassonografia de abdome", justify: "Investigar etiologia biliar (colelitíase), dilatação de via biliar, visualizar pâncreas", expected: "Colelitíase, pâncreas edemaciado, líquido peripancreático" },
+      { exam: "TC de abdome com contraste (protocolo pancreático)", justify: "Indicada em < 48–72h se dúvida diagnóstica, piora clínica ou para estadiamento de necrose (Balthazar)", expected: "Necrose, coleções, Balthazar C-E — orienta prognóstico e conduta" },
+      { exam: "Triglicérides sérico", justify: "Excluir hipertrigliceridemia como etiologia — causa relevante de pancreatite aguda", expected: "320 mg/dL — limítrofe; pancreatite por TG geralmente exige > 1.000 mg/dL" }
+    ],
+    expectedConduct: "Farmacológica: Hidratação venosa agressiva precoce — SF 0,9% ou Ringer Lactato 250–500 mL/h nas primeiras 12–24h (Ringer Lactato é preferido por reduzir mortalidade — ⚠️ ACG 2013 endossado pela SBCP); analgesia: dipirona 1g IV a cada 6h + tramadol 100 mg IV se dor intensa (evitar morfina em excesso — espasmo do esfíncter de Oddi é controverso ⚠️); antiemético: metoclopramida 10 mg IV; insulina regular IV para controle glicêmico (alvo 140–180 mg/dL); NÃO usar antibiótico profilático em pancreatite sem infecção confirmada (SBCP/MS); NÃO usar inibidores de protease (somatostatina) de rotina | Não farmacológica: Jejum inicial (primeiras 24–48h) com progressão precoce para dieta por via enteral se tolerado (nutrição enteral precoce reduz complicações infecciosas — preferível à parenteral); cateter vesical para monitorar diurese (alvo > 0,5 mL/kg/h); oxigenoterapia para manter SpO₂ > 94%; monitorização contínua em UTI | Encaminhamento: UTI para pancreatite moderadamente grave/grave com disfunção orgânica; Cirurgia para complicações tardias (pseudocisto infectado, necrose infectada — debridamento cirúrgico ou drenagem percutânea); Gastroenterologia para colangiopancreatografia retrógrada endoscópica (CPRE) se pancreatite biliar com coledocolitíase | Orientações ao paciente/familiar: Explicar a gravidade do quadro e a necessidade de internação em UTI; abordar etilismo como fator causal; iniciar abordagem de dependência alcoólica após estabilização | Seguimento: Colecistectomia laparoscópica eletiva após resolução da pancreatite aguda biliar (4–6 semanas); acompanhamento ambulatorial para cessação do etilismo e rastreio de pancreatite crônica",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente diante da urgência | Comunicação do diagnóstico: Explicar que o pâncreas está inflamado de forma grave e que o paciente precisa de internação em UTI; abordar o álcool como causa sem julgamento | Escuta ativa: Envolver familiar; validar a dor e o sofrimento; não minimizar a gravidade nem alarmar de forma desproporcional",
+    criticalErrors: [
+      "Não iniciar hidratação venosa agressiva precoce em pancreatite aguda grave — principal medida terapêutica, sua omissão aumenta a mortalidade",
+      "Prescrever antibiótico profilático sem infecção confirmada — conduta incorreta que favorece resistência bacteriana",
+      "Não aplicar escore de gravidade (Ranson ou BISAP) para estratificar o risco e definir a necessidade de UTI",
+      "Não indicar internação em UTI em pancreatite com disfunção orgânica (hipotensão, hipoxemia, oligúria)",
+      "Não investigar etiologia biliar com USG de abdome — omissão que pode indicar necessidade de CPRE",
+      "Não abordar o etilismo como fator causal e não encaminhar para tratamento de dependência"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — PANCREATITE AGUDA: DIAGNÓSTICO, GRAVIDADE E CONDUTA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Abordou o etilismo como fator causal de forma empática e sem julgamento moral", score: 0.5, ref: "CFM Res. 2232/2019; MS — Política Nacional sobre Álcool, 2010" },
+          { item: "Comunicou a gravidade do quadro e a necessidade de UTI ao paciente e/ou familiar de forma clara", score: 0.5, ref: "CFM Res. 2232/2019" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou a dor epigástrica em faixa com irradiação para as costas como apresentação típica de pancreatite", score: 0.5, ref: "SBCP — Consenso em Pancreatite Aguda, 2022" },
+          { item: "Quantificou o etilismo (8–10 doses/dia há 15 anos) como principal fator etiológico", score: 1.0, ref: "SBCP, 2022; MS — Política Nacional sobre Álcool" },
+          { item: "Investigou episódios anteriores semelhantes para rastrear pancreatite recorrente ou crônica", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou hipotensão e taquicardia como sinais de instabilidade hemodinâmica na admissão", score: 1.0, ref: "SBCP, 2022; SSC ⚠️" },
+          { item: "Pesquisou sinais de Cullen e Grey-Turner (equimoses periumbilical e em flancos) — indicadores de necrose hemorrágica", score: 0.5, ref: "Semiologia Médica — Porto, 8ª ed., 2019; SBCP, 2022" },
+          { item: "Identificou derrame pleural à esquerda (velamento à percussão na base esquerda) como complicação da pancreatite", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Confirmou o diagnóstico pelos critérios de Atlanta: dor típica + lipase/amilase > 3x o limite superior", score: 1.0, ref: "SBCP — Consenso em Pancreatite Aguda, 2022; Classificação de Atlanta 2012 ⚠️" },
+          { item: "Aplicou escore de Ranson e/ou BISAP para estratificação de gravidade e indicação de UTI", score: 1.0, ref: "SBCP, 2022; Ranson JH ⚠️" },
+          { item: "Indicou TC de abdome para estadiamento da necrose (Balthazar) em pancreatite grave", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Iniciou hidratação venosa agressiva precoce (250–500 mL/h) como primeira medida terapêutica", score: 1.0, ref: "SBCP, 2022; ACG Guidelines 2013 ⚠️; RENAME 2022" },
+          { item: "Não prescreveu antibiótico profilático sem infecção confirmada", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Indicou internação em UTI pela presença de disfunção orgânica (hipotensão, hipoxemia)", score: 0.5, ref: "SBCP, 2022; Classificação de Atlanta 2012 ⚠️" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 11,
+  title: "Dor súbita no peito e falta de ar em jovem sem doenças pulmonares",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "pneumotórax",
+  level: "moderado",
+  cardAccent: "#2980B9",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno vespertino. Caso clínico escrito — sem ator.",
+    patient: "B.S., 22 anos, masculino, estudante universitário, alto, magro, tabagista leve, sem doenças pulmonares conhecidas.",
+    complaint: "Dor súbita em pontada no lado direito do peito e falta de ar iniciadas há 2 horas, em repouso.",
+    tasks: [
+      "Analise o quadro clínico e formule hipóteses diagnósticas para a dor torácica aguda.",
+      "Interprete os achados do exame físico e identifique os sinais compatíveis com a hipótese principal.",
+      "Solicite e interprete os exames complementares necessários para confirmar o diagnóstico.",
+      "Classifique o pneumotórax quanto ao tamanho e à presença de comprometimento hemodinâmico.",
+      "Proponha a conduta adequada conforme a classificação e as diretrizes brasileiras."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "124/80 mmHg",
+      FC: "102 bpm",
+      FR: "22 irpm",
+      Tax: "36,5°C",
+      Peso: "70 kg",
+      Altura: "1,88 m",
+      IMC: "19,8 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular estado geral, consciente, orientado, ansioso, com discreta dispneia e dor ao inspirar. Mucosas normocoradas, anictérico, acianótico. Saturação de O₂ de 94% em ar ambiente. Biotipo longilíneo.",
+    physicalSeg: "TÓRAX: Expansibilidade reduzida à direita. Frêmito toracovocal abolido no hemitórax direito. Percussão com timpanismo em todo o hemitórax direito. Ausculta: murmúrio vesicular abolido em todo o hemitórax direito. Traqueia e mediastino sem desvio ao exame clínico. | CARDIOVASCULAR: Taquicárdico, bulhas rítmicas normofonéticas, sem sopros. | ABDOME: Flácido, indolor, sem alterações.",
+    labs: [
+      { test: "Hemograma completo", val: "Dentro dos limites normais", ref: "—", alt: false },
+      { test: "Gasometria arterial — pH", val: "7,42", ref: "7,35–7,45", alt: false },
+      { test: "Gasometria arterial — pO₂", val: "78 mmHg", ref: "> 80 mmHg", alt: true },
+      { test: "Gasometria arterial — pCO₂", val: "36 mmHg", ref: "35–45 mmHg", alt: false }
+    ],
+    image: "RADIOGRAFIA DE TÓRAX PA (inspiração): Linha pleural visível no hemitórax direito, paralela à parede torácica, com hipertransparência sem trama vascular entre a linha e a parede. Colapso pulmonar estimado em 40–50% do volume do hemitórax direito. Sem desvio mediastinal. Sem derrame pleural. Hemitórax esquerdo sem alterações.",
+    note: "Estação sem ator. Entregar dados clínicos, sinais vitais e exame físico ao início. Entregar gasometria arterial quando solicitada. Entregar laudo da radiografia quando solicitado. Atentar se o candidato classifica o tamanho do pneumotórax (BTS: < 2 cm vs. ≥ 2 cm entre a parede e o pulmão) e escolhe a conduta adequada.",
+    patientProfile: "B.S., 22 anos, masculino. Estudante de engenharia. Alto (1,88 m) e magro (IMC 19,8) — biotipo longilíneo de risco para pneumotórax espontâneo primário. Tabagista leve (5 cigarros/dia há 3 anos). Sem doenças pulmonares conhecidas. Sem cirurgias prévias. Nega trauma torácico.",
+    script: [],
+    hiddenInfo: "Episódio semelhante há 1 ano, que resolveu espontaneamente sem que o paciente procurou atendimento — segunda ocorrência de pneumotórax espontâneo; dado relevante pois segunda ocorrência é indicação de pleurodese; só menciona se o candidato perguntar sobre episódios anteriores semelhantes. | O início foi em repouso, assistindo TV — não houve esforço físico ou trauma; só menciona se o candidato perguntar sobre a circunstância do início dos sintomas.",
+    actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
+  },
+  instC: {
+    diagnosis: "Pneumotórax espontâneo primário à direita de grande volume (colapso 40–50%). Segunda ocorrência — indicação de pleurodese após resolução. Hemodinamicamente estável.",
+    differentials: [
+      "Pneumotórax traumático — excluído pela ausência de trauma e pelo contexto de início espontâneo em repouso",
+      "Pneumotórax hipertensivo — excluído pela ausência de desvio mediastinal, hipotensão, distensão de jugulares e deterioração hemodinâmica rápida",
+      "Tromboembolismo pulmonar — diferencial de dor torácica aguda e hipoxemia em jovem; excluído pelo timpanismo e abolição do MV (padrão de pneumotórax) e pela radiografia confirmatória",
+      "Pleurite aguda viral — diferencial de dor pleurítica; excluída pelo timpanismo e pela radiografia com linha pleural visível"
+    ],
+    context: "Paciente masculino jovem, 22 anos, com biotipo longilíneo, tabagista leve e segunda ocorrência de pneumotórax espontâneo primário à direita, com colapso de 40–50%. Hemodinamicamente estável. A segunda ocorrência justifica drenagem e pleurodese após resolução.",
+    justify: "O pneumotórax espontâneo primário ocorre em jovens longilíneos por ruptura de bolhas subpleurais (blebs), sem doença pulmonar subjacente. O tabagismo aumenta o risco em até 22 vezes. Timpanismo + abolição do MV + expansibilidade reduzida no hemitórax direito são a tríade clínica. A radiografia confirma. Pneumotórax > 20% do hemitórax (ou > 2 cm entre pulmão e parede — critério BTS) é considerado grande volume e exige drenagem torácica.",
+    expectedAnamnesis: "Caracterizar a dor: início súbito, pleurítica, localização | Dispneia: início, progressão | Circunstância do início: repouso, esforço, trauma | Episódios anteriores semelhantes — segunda ocorrência muda a conduta | Tabagismo: carga | Doenças pulmonares prévias (DPOC, asma, fibrose) — diferenciaria primário de secundário | Biotipo: alto, magro | Uso de drogas inalatórias (crack, cocaína)",
+    expectedPhysical: "Sinais vitais: taquicardia, queda de saturação, PA (excluir pneumotórax hipertensivo) | Inspeção: expansibilidade assimétrica, biotipo longilíneo | Palpação: frêmito abolido, traqueia central | Percussão: timpanismo no hemitórax afetado — diferencia de derrame (macicez) | Ausculta: MV abolido | Avaliação de jugulares (distensão = pneumotórax hipertensivo) | Avaliação do desvio mediastinal",
+    expectedExams: [
+      { exam: "Radiografia de tórax PA em inspiração máxima", justify: "Primeiro exame para confirmar pneumotórax, estimar volume e avaliar desvio mediastinal", expected: "Linha pleural com hipertransparência, sem trama vascular" },
+      { exam: "Gasometria arterial", justify: "Avaliar grau de hipoxemia e necessidade de oxigenoterapia", expected: "Hipoxemia leve-moderada (pO₂ 78 mmHg)" },
+      { exam: "Ultrassonografia de tórax à beira leito (FAST-extended)", justify: "Diagnóstico rápido de pneumotórax à beira leito — ausência do sinal do deslizamento pleural", expected: "Ausência do lung sliding no hemitórax direito" }
+    ],
+    expectedConduct: "Farmacológica: Oxigenoterapia com máscara facial a 10 L/min — acelera a reabsorção do pneumotórax (O₂ a 100% aumenta taxa de reabsorção de 1,25% para 6% ao dia); analgesia: dipirona 1g IV a cada 6h; ansiolítico se necessário | Não farmacológica: Drenagem torácica com dreno fino (14–16 Fr) em selo d'água no 2º espaço intercostal, linha hemiclavicular (ou 4º–5º EIC, linha axilar anterior) — indicada pelo grande volume (> 20%); aspiração manual com cateter de pequeno calibre (Heimlich) pode ser usada como alternativa em PS para pneumotórax grande em paciente estável; NÃO indicar watchful waiting em pneumotórax > 20% sintomático; segunda ocorrência — indicação formal de pleurodese (cirúrgica por VATS ou química) após resolução do episódio agudo | Encaminhamento: Internação para drenagem e monitorização; Cirurgia Torácica para avaliação de pleurodese (segunda ocorrência) | Orientações ao paciente: Explicar o que é o pneumotórax; orientar sobre o risco de recorrência (30% após primeiro episódio) e a necessidade de parar de fumar; orientar sobre restrição de viagens aéreas até resolução completa | Seguimento: Radiografia de controle após drenagem; radiografia na alta para confirmar resolução; pleurodese em 4–6 semanas se segunda ocorrência",
+    expectedCommunication: "Apresentação: Identificar-se, acolher o paciente ansioso | Comunicação do diagnóstico: Explicar que o ar entrou entre o pulmão e a parede do tórax causando o colapso parcial do pulmão; explicar o procedimento de drenagem de forma clara | Escuta ativa: Validar a ansiedade do jovem; abordar o tabagismo como fator de risco sem julgamento; esclarecer dúvidas sobre retorno às atividades",
+    criticalErrors: [
+      "Não diagnosticar pneumotórax hipertensivo se houver desvio mediastinal, hipotensão e distensão jugular — emergência com descompressão imediata indicada",
+      "Indicar watchful waiting em pneumotórax de grande volume (> 20%) sintomático — conduta inadequada que retarda a resolução",
+      "Não investigar episódios anteriores — segunda ocorrência muda a conduta (indicação de pleurodese)",
+      "Não orientar cessação do tabagismo — tabagismo aumenta o risco de recorrência em até 22 vezes",
+      "Confundir o timpanismo do pneumotórax com a macicez do derrame pleural — erro de raciocínio semiológico"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — PNEUMOTÓRAX ESPONTÂNEO PRIMÁRIO",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Acolheu o paciente jovem ansioso e explicou o diagnóstico e o procedimento de forma clara", score: 0.5, ref: "CFM Res. 2232/2019" },
+          { item: "Abordou o tabagismo como fator de risco para recorrência sem julgamento", score: 0.5, ref: "INCA/MS — Tabagismo, 2023; SBPT, 2021" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou o início súbito em repouso como característico de pneumotórax espontâneo primário", score: 0.5, ref: "SBPT — Diretrizes em Pneumotórax, 2021" },
+          { item: "Investigou episódios anteriores semelhantes e identificou tratar-se da segunda ocorrência — muda a conduta", score: 1.0, ref: "SBPT, 2021; BTS Guidelines ⚠️" },
+          { item: "Identificou o biotipo longilíneo como fator de risco para pneumotórax espontâneo primário", score: 0.5, ref: "SBPT, 2021" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou a tríade clássica: expansibilidade reduzida + frêmito abolido + timpanismo à percussão no hemitórax direito", score: 1.0, ref: "Semiologia Médica — Porto, 8ª ed., 2019; SBPT, 2021" },
+          { item: "Avaliou presença de desvio traqueal e distensão jugular para excluir pneumotórax hipertensivo", score: 1.0, ref: "SBPT, 2021" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou radiografia de tórax PA em inspiração e identificou a linha pleural com hipertransparência sem trama", score: 0.5, ref: "SBPT, 2021" },
+          { item: "Classificou o pneumotórax como grande volume (colapso > 20% / > 2 cm pela BTS) justificando a drenagem", score: 1.0, ref: "SBPT, 2021; BTS Guidelines ⚠️" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Indicou drenagem torácica (dreno fino ou aspiração com cateter) para pneumotórax grande volume sintomático", score: 1.0, ref: "SBPT, 2021; BTS Guidelines ⚠️" },
+          { item: "Indicou pleurodese (cirúrgica por VATS ou química) por tratar-se da segunda ocorrência", score: 1.0, ref: "SBPT, 2021" },
+          { item: "Orientou cessação do tabagismo e restrição de viagens aéreas até resolução completa", score: 0.5, ref: "SBPT, 2021; INCA/MS, 2023" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 12,
+  title: "Queda brusca da saturação e hipotensão em paciente ventilado após trauma",
+  sub: "PS — Pronto-Socorro / Sala de Emergência",
+  tema: "Cirurgia",
+  topic: "pneumotórax hipertensivo",
+  level: "moderado",
+  cardAccent: "#2980B9",
+  instA: {
+    scenario: "Sala de emergência de hospital geral. Turno noturno. Caso clínico escrito — sem ator. Paciente chegou após acidente de motocicleta.",
+    patient: "T.A., 28 anos, masculino, motociclista, sem comorbidades, vítima de trauma torácico fechado.",
+    complaint: "Piora súbita da saturação (queda de 98% para 72%) e hipotensão após intubação orotraqueal no PS. Paciente sedado e em ventilação mecânica.",
+    tasks: [
+      "Analise o quadro clínico e identifique o diagnóstico de emergência.",
+      "Interprete os achados clínicos e diferencie pneumotórax hipertensivo de outras causas de instabilidade hemodinâmica pós-intubação.",
+      "Proponha a conduta imediata — sem aguardar confirmação radiológica.",
+      "Realize a descompressão imediata e descreva a técnica correta.",
+      "Identifique os critérios para drenagem torácica definitiva após a descompressão."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "70/40 mmHg",
+      FC: "136 bpm",
+      FR: "Ventilação mecânica — volume corrente 500 mL, FR 14 irpm",
+      Tax: "36,8°C",
+      Peso: "75 kg",
+      Altura: "1,76 m",
+      IMC: "24,2 kg/m²"
+    },
+    physicalGeneral: "Paciente sedado (midazolam + fentanil), intubado e em ventilação mecânica. Instabilidade hemodinâmica grave: PA 70/40 mmHg, FC 136 bpm. Saturação de O₂ caiu de 98% para 72% de forma súbita após intubação. Cianose perioral.",
+    physicalSeg: "TÓRAX: Expansibilidade completamente ausente à direita. Frêmito toracovocal abolido à direita. Percussão com timpanismo em todo o hemitórax direito. Ausculta: murmúrio vesicular ausente à direita — presente apenas à esquerda. Desvio da traqueia para a esquerda (palpável). | CARDIOVASCULAR: Taquicardia sinusal grave (136 bpm). PA 70/40 mmHg — choque. Veias jugulares distendidas bilateralmente. | ABDOME: Flácido, sem alterações relevantes ao exame imediato.",
+    labs: [
+      { test: "Gasometria arterial — pH", val: "7,18", ref: "7,35–7,45", alt: true },
+      { test: "Gasometria arterial — pO₂", val: "42 mmHg", ref: "> 80 mmHg", alt: true },
+      { test: "Gasometria arterial — pCO₂", val: "58 mmHg", ref: "35–45 mmHg", alt: true },
+      { test: "Lactato sérico", val: "6,2 mmol/L", ref: "0,5–2,0 mmol/L", alt: true }
+    ],
+    image: "NÃO REALIZAR RADIOGRAFIA — Pneumotórax hipertensivo é diagnóstico CLÍNICO. A radiografia deve ser realizada APÓS a descompressão de urgência, nunca antes. | APÓS DESCOMPRESSÃO — Radiografia de tórax AP (portátil): Hemitórax direito com colapso pulmonar total. Dreno torácico em posição, com reexpansão pulmonar parcial. Sem desvio mediastinal residual. Fratura de arcos costais direitos (4º, 5º e 6º arcos) compatível com trauma.",
+    note: "Estação sem ator. Entregar dados clínicos, sinais vitais e exame físico ao início (paciente em ventilação mecânica com colapso hemodinâmico). Os resultados de gasometria devem ser entregues se solicitados, mas atentar que a conduta NÃO deve aguardar exames laboratoriais — é emergência clínica. Atentar se o candidato age imediatamente com a descompressão sem aguardar radiografia.",
+    patientProfile: "T.A., 28 anos, masculino. Motociclista, solteiro. Sem comorbidades. Trauma torácico fechado após colisão em alta velocidade. Intubado na cena pelo SAMU. Sedado com midazolam e fentanil. Não há informantes disponíveis.",
+    script: [],
+    hiddenInfo: "A pressão nas vias aéreas no ventilador mecânico aumentou abruptamente após a intubação (pressão de pico subiu de 20 para 42 cmH₂O) — sinal de pneumotórax em ventilado; dado disponível no monitor do ventilador mecânico; só identificado se o candidato solicitar a avaliação dos parâmetros do ventilador.",
+    actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
+  },
+  instC: {
+    diagnosis: "Pneumotórax hipertensivo à direita em paciente traumatizado, ventilado mecanicamente. Emergência cirúrgica com indicação de descompressão imediata por agulha (2º EIC, linha hemiclavicular direita) seguida de drenagem torácica definitiva.",
+    differentials: [
+      "Tamponamento cardíaco — diferencial de choque com distensão jugular; excluído pelo timpanismo e pela abolição do MV unilateral; no tamponamento: bulhas abafadas, sem diferença na ausculta pulmonar",
+      "Intubação seletiva do brônquio direito — causa de abolição do MV à esquerda; excluída pela abolição do MV à DIREITA e pelo timpanismo (intubação seletiva causaria ausência de MV no lado oposto, não timpanismo)",
+      "Hemotórax maciço — diferencial de choque pós-trauma; excluído pelo timpanismo (hemotórax causa macicez) e pela distensão jugular (hemotórax causa veias colabadas)",
+      "Embolia pulmonar maciça — diferencial de hipoxemia e choque; excluída pelo timpanismo unilateral e pelo desvio traqueal"
+    ],
+    context: "Paciente traumatizado em ventilação mecânica com tríade clássica de pneumotórax hipertensivo: timpanismo unilateral + desvio traqueal contralateral + choque (hipotensão + taquicardia + distensão jugular). Emergência cirúrgica — cada minuto sem descompressão aumenta a mortalidade.",
+    justify: "O pneumotórax hipertensivo ocorre quando ar entra no espaço pleural sem saída — mecanismo valvular — causando colapso pulmonar, desvio do mediastino, compressão cardíaca e colapso do retorno venoso. A tríade (timpanismo + desvio traqueal + choque) é patognomônica. Em ventilado, o diagnóstico se impõe pela piora súbita após intubação com aumento da pressão de pico no ventilador. NÃO aguardar radiografia — tratar imediatamente.",
+    expectedAnamnesis: "Mecanismo do trauma: tipo, velocidade, ponto de impacto | Tempo de intubação e piora após o procedimento | Parâmetros ventilatórios: aumento da pressão de pico é sinal de pneumotórax em ventilado | Alterações hemodinâmicas: quando iniciou a hipotensão | Histórico médico relevante: coagulopatia, uso de anticoagulantes (trauma) | Informações do SAMU sobre achados na cena",
+    expectedPhysical: "Sinais vitais: choque (hipotensão + taquicardia) — avaliar imediatamente | Traqueia: desvio para o lado oposto ao pneumotórax — sinal fundamental | Jugulares: distensão (compressão do retorno venoso) | Tórax: timpanismo unilateral + ausência de MV — confirma pneumotórax hipertensivo | Ausculta cardíaca: bulhas presentes (diferencia de tamponamento) | Saturação: queda súbita após intubação",
+    expectedExams: [
+      { exam: "NÃO aguardar exames — descompressão imediata", justify: "Pneumotórax hipertensivo é diagnóstico CLÍNICO — o atraso para exames é fatal", expected: "Tratamento imediato sem confirmação radiológica" },
+      { exam: "Radiografia de tórax AP portátil (APÓS descompressão)", justify: "Confirmar posição do dreno e reexpansão pulmonar após a descompressão", expected: "Reexpansão pulmonar, sem desvio mediastinal residual, fraturas costais" },
+      { exam: "Gasometria arterial", justify: "Monitorizar oxigenação e ventilação após intervenção", expected: "Melhora progressiva após descompressão" },
+      { exam: "FAST (ultrassonografia à beira leito)", justify: "Avaliar hemopericárdio, hemoperitônio e hemotórax associados ao trauma", expected: "Líquido peripancreático ou pericárdico em politrauma" }
+    ],
+    expectedConduct: "Farmacológica: Manter sedoanalgesia adequada; expansão volêmica: SF 0,9% 500 mL IV rápido; vasopressor se hipotensão refratária após descompressão (noradrenalina 0,1–0,3 mcg/kg/min); ajustar ventilador após drenagem: reduzir pressão de pico | Não farmacológica: DESCOMPRESSÃO IMEDIATA por agulha — toracocentese de alívio: cateter de grosso calibre (14G) no 2º espaço intercostal, linha hemiclavicular, na borda superior do arco costal (evitar feixe vasculonervoso); saída de ar confirma o diagnóstico; SEGUIDA de drenagem torácica definitiva: dreno torácico 28–32 Fr no 4º–5º EIC, linha axilar anterior, em selo d'água; monitorização contínua após a descompressão | Encaminhamento: Cirurgia torácica se pneumotórax persistente após drenagem ou hemotórax associado; UTI para monitorização pós-trauma | Orientações ao familiar: Informar sobre a gravidade do quadro e os procedimentos realizados | Seguimento: Radiografia de controle após drenagem; avaliação de lesões associadas (fraturas costais, contusão pulmonar, hemotórax)",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente à equipe e ao familiar | Comunicação do diagnóstico (ao familiar): Explicar que o pulmão direito colapsou após o acidente e que uma intervenção urgente foi necessária; evitar termos técnicos | Escuta ativa: Acolher o familiar em situação de crise; dar informações progressivas conforme a evolução",
+    criticalErrors: [
+      "Aguardar radiografia antes de descomprimir pneumotórax hipertensivo — atraso fatal em emergência clínica",
+      "Não reconhecer a tríade clínica de pneumotórax hipertensivo: timpanismo + desvio traqueal + choque",
+      "Realizar descompressão no lado errado (contralateral) — erro técnico grave que agrava o quadro",
+      "Não realizar drenagem torácica definitiva após a descompressão com agulha — a agulha é medida temporária",
+      "Aumentar o volume corrente do ventilador ao invés de descomprimir — piora o pneumotórax hipertensivo"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — PNEUMOTÓRAX HIPERTENSIVO: EMERGÊNCIA CIRÚRGICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Comunicou ao familiar a gravidade do quadro e os procedimentos realizados de forma clara e empática", score: 0.5, ref: "CFM Res. 2232/2019" },
+          { item: "Coordenou a equipe de forma eficiente na emergência, comunicando o diagnóstico e o plano de ação", score: 0.5, ref: "ABEM — Competências em emergência, 2022" }
+        ]
+      },
+      {
+        h: "RECONHECIMENTO CLÍNICO",
+        items: [
+          { item: "Identificou a tríade clínica de pneumotórax hipertensivo: timpanismo unilateral + desvio traqueal contralateral + choque", score: 1.0, ref: "ATLS — Advanced Trauma Life Support ⚠️; SBCM, 2022" },
+          { item: "Identificou a distensão jugular como sinal de compressão do retorno venoso pelo pneumotórax hipertensivo", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Diferenciou pneumotórax hipertensivo de tamponamento cardíaco (bulhas abafadas ausentes, timpanismo presente)", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Não aguardou radiografia — reconheceu que pneumotórax hipertensivo é diagnóstico clínico que exige ação imediata", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022; SBPT, 2021" },
+          { item: "Identificou o aumento da pressão de pico no ventilador como sinal de pneumotórax em paciente ventilado", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E TÉCNICA",
+        items: [
+          { item: "Realizou descompressão imediata com agulha 14G no 2º EIC, linha hemiclavicular, borda superior do arco costal", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Realizou ou indicou drenagem torácica definitiva com dreno 28–32 Fr no 4º–5º EIC linha axilar anterior após a descompressão", score: 1.0, ref: "ATLS ⚠️; SBPT, 2021" },
+          { item: "Não aumentou parâmetros do ventilador mecânico como resposta à queda da saturação — descomprimiu primeiro", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Ajustou os parâmetros do ventilador após a descompressão para reduzir pressão de pico nas vias aéreas", score: 0.5, ref: "SBCM, 2022; AMIB — Ventilação mecânica, 2023" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 13,
+  title: "Dor no lado esquerdo da barriga com febre há dois dias",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "diverticulite aguda",
+  level: "moderado",
+  cardAccent: "#8E44AD",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno diurno. Caso clínico escrito — sem ator.",
+    patient: "N.C., 60 anos, feminino, aposentada, com constipação crônica e histórico de diverticulose conhecida.",
+    complaint: "Dor contínua na fossa ilíaca esquerda com febre há 2 dias, acompanhada de náuseas e piora ao movimento.",
+    tasks: [
+      "Analise o quadro clínico e formule hipóteses diagnósticas para a dor em fossa ilíaca esquerda.",
+      "Solicite e interprete os exames complementares necessários para confirmar o diagnóstico.",
+      "Classifique a gravidade da diverticulite pela classificação de Hinchey (modificada).",
+      "Proponha a conduta terapêutica adequada à classificação de gravidade.",
+      "Identifique as complicações possíveis e os critérios para intervenção cirúrgica."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "130/82 mmHg",
+      FC: "100 bpm",
+      FR: "18 irpm",
+      Tax: "38,4°C",
+      Peso: "74 kg",
+      Altura: "1,60 m",
+      IMC: "28,9 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular estado geral, consciente, orientada, com dor moderada (EVA 6/10). Mucosas normocoradas, anictérica, afebril na aferição anterior, febre agora (38,4°C). Fácies de dor.",
+    physicalSeg: "ABDOME: Plano, com hipoatividade de ruídos hidroaéreos. Dor à palpação profunda na fossa ilíaca esquerda (FIE) com defesa muscular localizada. Sinal de Blumberg positivo localizado em FIE. Sem pneumoperitônio (sem rigidez em tábua, sem Blumberg difuso). Sem massas palpáveis. | TOQUE RETAL: Dor à palpação do fundo de saco posterior à esquerda. Sem massas palpáveis intrarretais. Fezes presentes, sem sangue. | CARDIOVASCULAR: Taquicardia leve, bulhas rítmicas, sem sopros.",
+    labs: [
+      { test: "Hemoglobina", val: "12,6 g/dL", ref: "12,0–16,0 g/dL", alt: false },
+      { test: "Leucócitos", val: "17.800/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "86% (desvio à esquerda)", ref: "50–70%", alt: true },
+      { test: "PCR", val: "164 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Ureia", val: "32 mg/dL", ref: "15–45 mg/dL", alt: false },
+      { test: "Creatinina", val: "0,9 mg/dL", ref: "0,7–1,2 mg/dL", alt: false },
+      { test: "Glicemia", val: "102 mg/dL", ref: "70–99 mg/dL", alt: false }
+    ],
+    image: "TOMOGRAFIA DE ABDOME E PELVE COM CONTRASTE: Espessamento parietal do sigmóide com múltiplos divertículos e inflamação da gordura pericólica adjacente (densificação da gordura pericólica). Pequena coleção pericólica de 2,5 cm sem comunicação aérea. Sem pneumoperitônio. Sem líquido livre intraperitoneal em quantidade significativa fora da região. Classificação de Hinchey modificada: Estágio Ib (abscesso pericólico < 4 cm).",
+    note: "Estação sem ator. Entregar dados clínicos, sinais vitais e exame físico ao início. Entregar resultados laboratoriais quando solicitados. Entregar laudo da TC quando o candidato solicitar e justificar. Atentar se o candidato aplica a classificação de Hinchey e escolhe a conduta correta para o estágio identificado.",
+    patientProfile: "N.C., 60 anos, feminino. Aposentada (ex-costureira). Constipação crônica há 20 anos — uso habitual de laxativos. Diagnóstico de diverticulose em colonoscopia há 5 anos. Sem outros antecedentes relevantes. HAS leve controlada com losartana 25 mg/dia. Nega alergias medicamentosas.",
+    script: [],
+    hiddenInfo: "Primeiro episódio de diverticulite — dado relevante pois o manejo do primeiro episódio não complicado pode ser ambulatorial, mas neste caso há abscesso pericólico que muda a conduta; só menciona se o candidato perguntar sobre episódios anteriores semelhantes. | Diminuição do calibre das fezes nas últimas semanas antes do episódio — pode indicar estenose por inflamação crônica do cólon; só menciona se o candidato perguntar sobre o hábito intestinal recente.",
+    actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
+  },
+  instC: {
+    diagnosis: "Diverticulite aguda do sigmóide, complicada com abscesso pericólico de 2,5 cm — Hinchey modificado Ib. Indicação de internação, antibioticoterapia parenteral e avaliação de drenagem percutânea.",
+    differentials: [
+      "Câncer colorretal do sigmóide — diferencial obrigatório na fossa ilíaca esquerda em paciente > 50 anos; a colonoscopia deve ser realizada 6–8 semanas após resolução do episódio agudo para excluir malignidade",
+      "Doença inflamatória intestinal (DII) — colite ulcerativa ou Crohn do cólon descendente; excluída provisoriamente pela TC (divertículos sem espessamento transmural difuso); colonoscopia após o episódio agudo",
+      "Apendicite do apêndice em posição pélvica — diferencial de dor em FIE; excluída pela TC (apêndice normal visualizado, diverticulite do sigmóide confirmada)",
+      "Torção ovariana ou cisto ovariano roto — diferencial em mulher com dor em FIE; excluída pela TC (ovários sem alterações)"
+    ],
+    context: "Paciente feminina, 60 anos, com diverticulose conhecida evoluindo com diverticulite aguda complicada (Hinchey Ib) — abscesso pericólico de 2,5 cm. Leucocitose com desvio à esquerda e PCR elevado confirmam processo inflamatório/infeccioso ativo. Internação e antibioticoterapia parenteral são obrigatórias.",
+    justify: "Dor em FIE + febre + leucocitose em paciente com diverticulose conhecida é altamente sugestivo de diverticulite. A TC confirma: espessamento parietal do sigmóide com divertículos + densificação da gordura pericólica + abscesso < 4 cm = Hinchey Ib. O abscesso pericólico < 4 cm pode ser manejado conservadoramente com antibioticoterapia (drenagem percutânea reservada para abscessos > 4 cm ou falha clínica em 48–72h).",
+    expectedAnamnesis: "Localização e caracterização da dor: FIE, início, intensidade, irradiação | Febre: duração, padrão | Hábito intestinal: constipação crônica, episódios de diarreia, diminuição do calibre das fezes | Episódios anteriores de diverticulite | Diagnóstico de diverticulose prévio | Náuseas, vômitos, parada de gases | Sangramento retal | Medicamentos: AINEs, corticoides (pioram diverticulite) | Comorbidades",
+    expectedPhysical: "Sinais vitais: febre, taquicardia, PA | Inspeção: abdome plano ou distendido | Palpação: dor em FIE com defesa muscular localizada — 'apendicite do lado esquerdo' | Sinal de Blumberg localizado em FIE | Avaliar Blumberg difuso (peritonite generalizada = Hinchey III/IV) | Toque retal: dor no fundo de saco posterior esquerdo, excluir massa intraretal (câncer)",
+    expectedExams: [
+      { exam: "TC de abdome e pelve com contraste", justify: "Exame de escolha para confirmar diverticulite, classificar (Hinchey), avaliar abscesso, excluir perfuração livre e diagnósticos diferenciais", expected: "Espessamento do sigmóide com divertículos, densificação pericólica, abscesso pericólico — Hinchey Ib" },
+      { exam: "Hemograma e PCR", justify: "Avaliar leucocitose e resposta inflamatória; monitorar evolução", expected: "Leucocitose com desvio à esquerda, PCR elevado" },
+      { exam: "Colonoscopia (eletiva, 6–8 semanas após resolução)", justify: "Excluir câncer colorretal como diagnóstico diferencial ou fator precipitante", expected: "Diverticulose; excluir neoplasia" }
+    ],
+    expectedConduct: "Farmacológica: Antibioticoterapia parenteral para Hinchey Ib — cobertura para gram-negativos e anaeróbios: ciprofloxacino 400 mg IV a cada 12h + metronidazol 500 mg IV a cada 8h (RENAME 2022) OU ampicilina-sulbactam 3g IV a cada 6h; analgesia: dipirona 1g IV a cada 6h + morfina se dor intensa; antieméticos se náuseas | Não farmacológica: Internação hospitalar (Hinchey Ib — abscesso pericólico); jejum inicial com hidratação venosa; drenagem percutânea guiada por TC se abscesso > 4 cm ou falha da antibioticoterapia em 48–72h; cirurgia (sigmoidectomia de Hartmann) reservada para Hinchey III/IV (peritonite generalizada com fecal ou pus livre) ou falha do tratamento conservador | Encaminhamento: Colonoscopia eletiva em 6–8 semanas para excluir câncer colorretal; Cirurgia para avaliação de colectomia eletiva após 2º episódio ou em pacientes jovens (< 50 anos) com doença complicada | Orientações ao paciente: Explicar o diagnóstico e o tratamento; orientar sobre dieta rica em fibras e ingestão hídrica adequada para prevenir novos episódios; alertar para sinais de alarme (piora da dor, febre alta, rigidez abdominal = emergência) | Seguimento: Reavaliação clínica em 48–72h; colonoscopia eletiva após 6–8 semanas",
+    expectedCommunication: "Apresentação: Identificar-se e acolher a paciente | Comunicação do diagnóstico: Explicar que um dos pequeníssimos sacos (divertículos) do intestino grosso inflamou e formou uma pequena coleção de pus que será tratada com antibiótico | Escuta ativa: Validar a dor e a ansiedade; explicar a necessidade de internação; abordar mudanças de hábito alimentar de forma positiva",
+    criticalErrors: [
+      "Não solicitar TC de abdome — indicada na diverticulite para classificação e exclusão de perfuração livre",
+      "Não aplicar a classificação de Hinchey — fundamental para definir conduta conservadora vs. cirúrgica",
+      "Indicar cirurgia de urgência em Hinchey Ib sem falha do tratamento conservador — conduta excessiva",
+      "Não orientar colonoscopia eletiva após resolução do episódio agudo — omissão de rastreio de câncer colorretal",
+      "Não cobrir anaeróbios na antibioticoterapia da diverticulite — o cólon é rico em flora anaeróbia"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — DIVERTICULITE AGUDA DO SIGMÓIDE",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Explicou o diagnóstico de forma acessível e orientou mudanças de hábito alimentar preventivas sem julgamento", score: 0.5, ref: "CFM Res. 2232/2019; SBCP — Consenso em Doença Diverticular, 2022" },
+          { item: "Explicou a necessidade de colonoscopia eletiva após a recuperação para excluir câncer de cólon", score: 0.5, ref: "SBCP, 2022; INCA/MS — Rastreamento câncer colorretal, 2022" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou dor em FIE com febre e leucocitose como tríade clínica da diverticulite ('apendicite do lado esquerdo')", score: 0.5, ref: "SBCP — Consenso em Doença Diverticular, 2022" },
+          { item: "Investigou episódios anteriores e confirmou primeiro episódio de diverticulite", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Investigou sangramento retal e diminuição do calibre das fezes como sinais de alarme para câncer colorretal", score: 1.0, ref: "SBCP, 2022; INCA/MS, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou dor com defesa muscular localizada em FIE e Blumberg positivo localizado", score: 0.5, ref: "SBCP, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Realizou toque retal para excluir massa intraretal e avaliar fundo de saco", score: 1.0, ref: "SBCP, 2022; INCA/MS, 2022" },
+          { item: "Avaliou rigidez abdominal difusa para excluir peritonite generalizada (Hinchey III/IV)", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou TC de abdome e pelve com contraste como exame de escolha para diagnóstico e classificação", score: 1.0, ref: "SBCP — Consenso em Doença Diverticular, 2022" },
+          { item: "Classificou corretamente como Hinchey modificado Ib (abscesso pericólico < 4 cm) e escolheu conduta conservadora", score: 1.0, ref: "SBCP, 2022; Hinchey EJ, 1978 ⚠️" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Prescreveu antibioticoterapia parenteral com cobertura para gram-negativos e anaeróbios", score: 1.0, ref: "SBCP, 2022; RENAME 2022" },
+          { item: "Não indicou cirurgia de urgência em Hinchey Ib sem falha do tratamento conservador", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Indicou colonoscopia eletiva em 6–8 semanas após resolução do episódio agudo", score: 0.5, ref: "SBCP, 2022; INCA/MS, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 14,
+  title: "Sangramento ao defecar e desconforto anal há três meses",
+  sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "doença hemorroidária",
+  level: "moderado",
+  cardAccent: "#C0392B",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Geral de hospital geral. Turno matutino. Caso clínico escrito — sem ator.",
+    patient: "K.O., 38 anos, feminino, advogada, sedentária, com constipação crônica.",
+    complaint: "Sangramento retal vivo ao defecar, sem misturar com as fezes, e sensação de peso no ânus há 3 meses.",
+    tasks: [
+      "Analise o quadro clínico e formule hipóteses diagnósticas para o sangramento retal.",
+      "Identifique os sinais de alarme que exigem investigação endoscópica.",
+      "Realize a interpretação dos achados do exame físico anorretal e classifique a doença.",
+      "Proponha a conduta terapêutica baseada na classificação e na gravidade dos sintomas.",
+      "Oriente a paciente sobre mudanças de hábito e sinais de alarme para retorno."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "120/78 mmHg",
+      FC: "74 bpm",
+      FR: "16 irpm",
+      Tax: "36,3°C",
+      Peso: "72 kg",
+      Altura: "1,65 m",
+      IMC: "26,4 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica, afebril. Mucosas normocoradas, anictérica, acianótica. Sem alterações ao exame geral.",
+    physicalSeg: "INSPEÇÃO ANAL: Às 7 horas (posição ginecológica), visualização de mamilos hemorroidários externos redundantes, sem sinais flogísticos. Às 11 horas, presença de mamilo hemorroidário interno prolapsado parcialmente visível. Sem fissuras anais. Sem fístulas ou abscessos perianais. | TOQUE RETAL: Sem massas intrarretais palpáveis. Tônus do esfíncter anal normal. Hemorroidas internas palpáveis (distendidas) no canal anal. Sem dor intensa ao toque (ausência de fissura aguda). | ANUSCOPIA (impresso entregue): Hemorroidas internas nas posições 3, 7 e 11 horas. Hemorroidas internas às 3 e 7h grau II (prolapsam ao esforço e reduzem espontaneamente). Hemorroida às 11h grau III (prolapsa ao esforço, necessita de redução manual). Mucosa anal íntegra. Sem sangramento ativo no momento.",
+    labs: [
+      { test: "Hemoglobina", val: "12,2 g/dL", ref: "12,0–16,0 g/dL", alt: false },
+      { test: "VCM", val: "80 fL", ref: "80–100 fL", alt: false },
+      { test: "Ferro sérico", val: "58 µg/dL", ref: "60–170 µg/dL", alt: true },
+      { test: "Ferritina", val: "11 ng/mL", ref: "12–300 ng/mL", alt: true },
+      { test: "Hemoglobina fecal (pesquisa de sangue oculto)", val: "Positiva", ref: "Negativa", alt: true }
+    ],
+    image: null,
+    note: "Estação sem ator. Entregar dados clínicos, sinais vitais e exame físico ao início (incluindo achados da inspeção anal e toque retal). Entregar resultado da anuscopia quando o candidato solicitar o exame. Entregar resultados laboratoriais quando solicitados. Atentar se o candidato classifica corretamente as hemorroidas internas por grau.",
+    patientProfile: "K.O., 38 anos, feminino. Advogada — trabalho predominantemente sentada (8–10h/dia). Sedentária. Constipação crônica há 10 anos (evacuações a cada 3–4 dias, fezes ressecadas). Dieta pobre em fibras. Dois partos normais. Sem medicamentos de uso contínuo. Nega sangramento em outros locais.",
+    script: [],
+    hiddenInfo: "Sangramento com volume maior nas últimas 2 semanas — piora recente que pode indicar trombose ou progressão do grau; só menciona se o candidato perguntar sobre a evolução do sangramento ou se houve piora recente. | Sensação de massa que sai pelo ânus ao defecar e precisa ser empurrada de volta com a mão — relato de prolapso grau III que já vinha ocorrendo; só menciona com detalhes se o candidato perguntar especificamente sobre prolapsamento e como a paciente o resolve.",
+    actorBehavior: "Estação sem ator — não há paciente simulado. Raciocínio baseado nos dados clínicos e exames fornecidos nos impressos."
+  },
+  instC: {
+    diagnosis: "Doença hemorroidária interna grau II (posições 3h e 7h) e grau III (posição 11h) com sangramento retal crônico. Anemia ferropriva leve associada. Hemorroidas externas redundantes sem complicação aguda.",
+    differentials: [
+      "Câncer colorretal — diferencial obrigatório de sangramento retal em qualquer faixa etária; 38 anos está na faixa de rastreio e o sangue retal vivo com posição ao defecar é mais típico de hemorroida, mas colonoscopia é necessária se sangramento persistir ou houver fatores de risco",
+      "Fissura anal — diferencial de sangramento retal vivo + dor ao defecar; excluída pela ausência de dor intensa ao toque retal e pela anuscopia sem fissura",
+      "Pólipo retal — diferencial de sangramento sem dor; excluído provisoriamente pela anuscopia (sem pólipos visíveis) — colonoscopia após 40 anos para rastreio",
+      "Retite inflamatória (DII) — diferencial de sangramento com muco; excluído pela ausência de diarreia, muco nas fezes e pela anuscopia sem alterações da mucosa"
+    ],
+    context: "Paciente feminina, 38 anos, sedentária, com constipação crônica e dieta pobre em fibras. Doença hemorroidária interna grau II e III com sangramento crônico e anemia ferropriva leve associada. A hemorroida grau III é indicação de tratamento intervencionista (ligadura elástica ou cirurgia).",
+    justify: "Sangramento vivo ao defecar, sem mistura com as fezes, associado a prolapso ao esforço com necessidade de redução manual caracteriza hemorroida interna grau III pela classificação de Goligher. A constipação crônica e o sedentarismo são fatores de risco modificáveis. A anemia ferropriva leve com ferritina baixa indica depleção dos estoques de ferro pelo sangramento crônico. Hemorroida grau III tem indicação de ligadura elástica ou hemorroidectomia.",
+    expectedAnamnesis: "Caracterizar o sangramento: cor (vivo/escuro), relação com a evacuação (ao defecar ou independente), volume, duração | Prolapso: prolapsamento de massa pelo ânus, necessidade de redução manual | Dor anal: intensa ao defecar (fissura?) ou dor contínua (trombose?) | Prurido anal | Constipação: frequência evacuatória, consistência das fezes, esforço evacuatório | Hábitos alimentares: fibras, hidratação | Atividade física | Histórico obstétrico | Partos (fator de risco em mulheres) | Uso de laxativos | Sangramento em outros locais | Perda de peso (sinal de alarme)",
+    expectedPhysical: "Inspeção anal: avaliar hemorroidas externas, fissuras, fístulas, abscessos | Pedir que a paciente faça esforço (Valsalva) para evidenciar prolapso | Toque retal: avaliar tônus, massas, dor | Anuscopia: exame essencial para classificar as hemorroidas internas por grau e localização | Pesquisar sinais de anemia (palidez de mucosas)",
+    expectedExams: [
+      { exam: "Anuscopia", justify: "Exame essencial para visualizar e classificar hemorroidas internas — não visíveis à inspeção simples", expected: "Hemorroidas grau II (3h e 7h) e grau III (11h)" },
+      { exam: "Hemograma e perfil de ferro", justify: "Avaliar anemia ferropriva associada ao sangramento crônico", expected: "Hemoglobina levemente reduzida, ferro e ferritina baixos" },
+      { exam: "Pesquisa de sangue oculto nas fezes", justify: "Rastreio de sangramento gastrointestinal mais proximal — complementar ao exame físico", expected: "Positivo — sangramento ativo, ainda que de origem anorretal" },
+      { exam: "Colonoscopia (indicada em > 40 anos ou com fatores de risco, ou se sangramento persistir após tratamento)", justify: "Excluir pólipo, câncer colorretal ou DII — diferencial obrigatório mesmo com hemorroida confirmada", expected: "Sem lesões colorretais em paciente de 38 anos sem fatores de risco — avaliar custo-benefício" }
+    ],
+    expectedConduct: "Farmacológica: Fibras solúveis (psílio/plantago ovata) 5–10 g/dia VO com bastante água — principal medida conservadora (nível de evidência A); sulfato ferroso 300 mg VO 2x/dia para anemia ferropriva (RENAME 2022); flebotônicos (diosmina + hesperidina 900/100 mg) podem ser usados como adjuvantes para alívio sintomático — ANVISA aprovado; evitar uso de cremes anestésicos locais como tratamento principal | Não farmacológica: Dieta rica em fibras e hidratação adequada (1,5–2L/dia); cessação do sedentarismo; evitar esforço evacuatório prolongado; evitar papel higiênico com atrito excessivo; banhos de assento com água morna para alívio sintomático; LIGADURA ELÁSTICA — indicada para hemorroidas grau II e III sintomáticas refratárias ao tratamento conservador; HEMORROIDECTOMIA — indicada para grau IV ou grau III refratária à ligadura elástica | Encaminhamento: Proctologia/Cirurgia Geral para ligadura elástica — hemorroida grau III com sangramento persistente | Orientações ao paciente: Explicar o diagnóstico e os fatores de risco; enfatizar dieta e hidratação; orientar sobre os sinais de alarme (sangramento com muco, escuro, com febre, perda de peso) que exigem retorno imediato | Seguimento: Retorno em 30 dias para reavaliação; se sem melhora com conservador em 4–6 semanas — indicar ligadura elástica",
+    expectedCommunication: "Apresentação: Identificar-se e criar um ambiente acolhedor — o tema causa constrangimento para muitos pacientes | Comunicação do diagnóstico: Explicar que as hemorroidas são veias dilatadas na região do ânus que estão causando o sangramento; usar linguagem clara e sem eufemismos excessivos | Escuta ativa: Perguntar sobre o impacto dos sintomas na qualidade de vida; abordar constrangimento e evitar julgamentos sobre hábitos de vida",
+    criticalErrors: [
+      "Não realizar ou não indicar anuscopia — exame essencial para classificar as hemorroidas internas",
+      "Não investigar sangramento retal como possível sinal de câncer colorretal — mesmo com hemorroida confirmada, o diagnóstico diferencial é obrigatório",
+      "Não identificar e tratar a anemia ferropriva associada ao sangramento crônico",
+      "Indicar hemorroidectomia imediata sem tentativa prévia de tratamento conservador ou ligadura elástica para grau II/III",
+      "Não orientar medidas de mudança de hábito (fibras, hidratação, atividade física) como parte do tratamento — são a base do tratamento conservador"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — DOENÇA HEMORROIDÁRIA: DIAGNÓSTICO E CONDUTA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Criou ambiente acolhedor para abordar tema constrangedor (sangramento e região anorretal), sem julgamentos", score: 0.5, ref: "CFM Res. 2232/2019" },
+          { item: "Orientou mudanças de hábito (fibras, hidratação, atividade física) de forma positiva e motivacional", score: 0.5, ref: "SBCP — Consenso em Doença Hemorroidária, 2022" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Caracterizou o sangramento retal: cor vivo, ao defecar, sem mistura com fezes — padrão de hemorroida interna", score: 0.5, ref: "SBCP, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Investigou prolapso: prolapsamento de massa pelo ânus e necessidade de redução manual — grau III", score: 1.0, ref: "SBCP — Consenso em Doença Hemorroidária, 2022" },
+          { item: "Investigou sinais de alarme: sangramento com muco ou escuro, perda de peso, mudança do hábito intestinal", score: 1.0, ref: "SBCP, 2022; INCA/MS — Câncer colorretal, 2022" },
+          { item: "Investigou constipação crônica e hábitos alimentares como fatores de risco modificáveis", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Realizou inspeção anal com avaliação de hemorroidas externas, fissuras e abscessos", score: 0.5, ref: "SBCP, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Realizou toque retal para avaliar massas intrarretais e tônus do esfíncter", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Solicitou e interpretou anuscopia para classificar as hemorroidas internas por grau (Goligher)", score: 1.0, ref: "SBCP — Consenso em Doença Hemorroidária, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou corretamente as hemorroidas internas: grau II (3h e 7h) e grau III (11h) pela escala de Goligher", score: 0.5, ref: "SBCP, 2022; Goligher JC ⚠️" },
+          { item: "Identificou anemia ferropriva leve (ferro e ferritina baixos) associada ao sangramento hemorroidário crônico", score: 0.5, ref: "SBCP, 2022; SBH — Anemia ferropriva, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Prescreveu fibras solúveis (psílio) e orientou dieta rica em fibras como medida conservadora de primeira linha", score: 0.5, ref: "SBCP, 2022; RENAME 2022" },
+          { item: "Prescreveu sulfato ferroso para tratamento da anemia ferropriva associada", score: 0.5, ref: "SBH, 2022; RENAME 2022" },
+          { item: "Indicou ligadura elástica para hemorroida grau III sintomática (após falha do conservador)", score: 1.0, ref: "SBCP — Consenso em Doença Hemorroidária, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
 ]
 
 export default ctoracica;
