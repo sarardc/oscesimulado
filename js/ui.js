@@ -1,5 +1,13 @@
 let activeFilter = 'all';
 
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function toList(val) {
   if (!val) return [];
   if (Array.isArray(val)) return val;
@@ -36,11 +44,11 @@ function renderCards() {
     card.style.setProperty('--card-accent', st.cardAccent);
     card.innerHTML = `
       <div class="card-num">ESTAÇÃO ${st.id}</div>
-      <div class="card-title">${st.title}</div>
-      <div class="card-sub">${st.sub}</div>
+      <div class="card-title">${esc(st.title)}</div>
+      <div class="card-sub">${esc(st.sub)}</div>
       <div class="card-meta">
-        <span class="pill ${temaClass}">${st.tema}</span>
-        <span class="pill ${levelClass}">${st.level}</span>
+        <span class="pill ${temaClass}">${esc(st.tema)}</span>
+        <span class="pill ${levelClass}">${esc(st.level)}</span>
       </div>`;
     card.onclick = () => openStation(st.id);
     grid.appendChild(card);
@@ -90,20 +98,20 @@ function renderTabA(st) {
   return `
     <div class="section-block">
       <h3>Cenário de Atendimento</h3>
-      <p>${a.scenario}</p>
+      <p>${esc(a.scenario)}</p>
     </div>
     <div class="section-block">
       <h3>Identificação do Paciente</h3>
-      <p>${a.patient}</p>
+      <p>${esc(a.patient)}</p>
     </div>
     <div class="section-block">
       <h3>Queixa Principal</h3>
-      <p style="font-size:15px;color:var(--text)">${a.complaint}</p>
+      <p style="font-size:15px;color:var(--text)">${esc(a.complaint)}</p>
     </div>
     <div class="section-block">
       <h3>Tarefas a Executar</h3>
       <ul class="task-list">
-        ${a.tasks.map((t, i) => `<li><span class="task-num">${i + 1}</span>${t}</li>`).join('')}
+        ${a.tasks.map((t, i) => `<li><span class="task-num">${i + 1}</span>${esc(t)}</li>`).join('')}
       </ul>
     </div>
     <div class="alert alert-info">
@@ -120,21 +128,21 @@ function renderExamsBlock(b) {
   let html = `<div class="impression-box">
     <h4>Impresso — Sinais Vitais e Exame Físico</h4>
     <div class="vt">
-      <div class="vt-item"><span class="vt-label">PA:</span><span class="vt-val">${b.vitals.PA}</span></div>
-      <div class="vt-item"><span class="vt-label">FC:</span><span class="vt-val">${b.vitals.FC}</span></div>
-      <div class="vt-item"><span class="vt-label">FR:</span><span class="vt-val">${b.vitals.FR}</span></div>
-      <div class="vt-item"><span class="vt-label">Tax:</span><span class="vt-val">${b.vitals.Tax}</span></div>
-      <div class="vt-item"><span class="vt-label">Peso:</span><span class="vt-val">${b.vitals.Peso}</span></div>
-      <div class="vt-item"><span class="vt-label">Altura:</span><span class="vt-val">${b.vitals.Altura}</span></div>
-      <div class="vt-item"><span class="vt-label">IMC:</span><span class="vt-val">${b.vitals.IMC}</span></div>
+      <div class="vt-item"><span class="vt-label">PA:</span><span class="vt-val">${esc(b.vitals.PA)}</span></div>
+      <div class="vt-item"><span class="vt-label">FC:</span><span class="vt-val">${esc(b.vitals.FC)}</span></div>
+      <div class="vt-item"><span class="vt-label">FR:</span><span class="vt-val">${esc(b.vitals.FR)}</span></div>
+      <div class="vt-item"><span class="vt-label">Tax:</span><span class="vt-val">${esc(b.vitals.Tax)}</span></div>
+      <div class="vt-item"><span class="vt-label">Peso:</span><span class="vt-val">${esc(b.vitals.Peso)}</span></div>
+      <div class="vt-item"><span class="vt-label">Altura:</span><span class="vt-val">${esc(b.vitals.Altura)}</span></div>
+      <div class="vt-item"><span class="vt-label">IMC:</span><span class="vt-val">${esc(b.vitals.IMC)}</span></div>
     </div>
     <div style="margin-top:16px">
       <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME FÍSICO GERAL</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.7">${b.physicalGeneral}</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.7">${esc(b.physicalGeneral)}</div>
     </div>
     <div style="margin-top:14px">
       <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME SEGMENTAR</div>
-      ${toList(b.physicalSeg).map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${s}</div>`).join('')}
+      ${toList(b.physicalSeg).map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${esc(s)}</div>`).join('')}
     </div>
   </div>`;
 
@@ -145,9 +153,9 @@ function renderExamsBlock(b) {
       <table class="lab-table">
         <tr><th>Exame</th><th>Resultado</th><th>Valor de Referência</th></tr>
         ${b.labs.map(l => `<tr>
-          <td>${l.test}</td>
-          <td class="${l.alt ? 'altered' : ''}">${l.val}</td>
-          <td class="ref">${l.ref}</td>
+          <td>${esc(l.test)}</td>
+          <td class="${l.alt ? 'altered' : ''}">${esc(l.val)}</td>
+          <td class="ref">${esc(l.ref)}</td>
         </tr>`).join('')}
       </table>
       </div>
@@ -157,16 +165,16 @@ function renderExamsBlock(b) {
   if (b.image) {
     if (typeof b.image === 'object' && b.image.title) {
       html += `<div class="impression-box">
-        <h4>Impresso — ${b.image.title}</h4>
-        <pre style="font-size:12px;color:var(--text2);white-space:pre-wrap;line-height:1.8;font-family:var(--mono)">${b.image.report}</pre>
+        <h4>Impresso — ${esc(b.image.title)}</h4>
+        <pre style="font-size:12px;color:var(--text2);white-space:pre-wrap;line-height:1.8;font-family:var(--mono)">${esc(b.image.report)}</pre>
       </div>`;
     } else if (typeof b.image === 'string') {
-      html += `<div class="alert alert-info">🔬 <strong>Imagem:</strong> ${b.image}</div>`;
+      html += `<div class="alert alert-info">🔬 <strong>Imagem:</strong> ${esc(b.image)}</div>`;
     }
   }
 
   if (b.note) {
-    html += `<div class="alert alert-info" style="margin-top:8px">ℹ ${b.note}</div>`;
+    html += `<div class="alert alert-info" style="margin-top:8px">ℹ ${esc(b.note)}</div>`;
   }
 
   return html;
@@ -181,8 +189,8 @@ function renderTabB(st) {
     html += `<div class="section-block">
       <h3>Script do Paciente Simulado</h3>
       ${b.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${s.trigger}</div>
-        <div class="script-speech">"${s.speech}"</div>
+        <div class="script-trigger">${esc(s.trigger)}</div>
+        <div class="script-speech">"${esc(s.speech)}"</div>
       </div>`).join('')}
     </div>`;
   }
@@ -191,13 +199,13 @@ function renderTabB(st) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${esc(h)}</div>`).join('')}
       </div>
     </div>`;
   }
 
   if (b.actorBehavior) {
-    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${b.actorBehavior}</div>`;
+    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
   }
 
   return html;
@@ -217,8 +225,8 @@ function renderTabB1Script(st) {
     html += `<div class="section-block">
       <h3>Script do Paciente Simulado</h3>
       ${b.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${s.trigger}</div>
-        <div class="script-speech">"${s.speech}"</div>
+        <div class="script-trigger">${esc(s.trigger)}</div>
+        <div class="script-speech">"${esc(s.speech)}"</div>
       </div>`).join('')}
     </div>`;
   }
@@ -227,13 +235,13 @@ function renderTabB1Script(st) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
       <div style="display:flex;flex-direction:column;gap:6px">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${h}</div>`).join('')}
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${esc(h)}</div>`).join('')}
       </div>
     </div>`;
   }
 
   if (b.actorBehavior) {
-    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${b.actorBehavior}</div>`;
+    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
   }
 
   if (!html) {
@@ -254,10 +262,10 @@ function renderPepTable(sections, startIndex) {
   }
   sections.forEach(sec => {
     const heading = sec.section || sec.h;
-    if (heading) rows += `<tr><td colspan="3" class="pep-section">${heading}</td></tr>`;
+    if (heading) rows += `<tr><td colspan="3" class="pep-section">${esc(heading)}</td></tr>`;
     sec.items.forEach(item => {
       rows += `<tr>
-        <td>${item.item}</td>
+        <td>${esc(item.item)}</td>
         <td class="pep-score" id="score-${idx}">${item.score.toFixed(1)}</td>
         <td class="pep-checkbox-cell">
           <input type="checkbox" id="checkbox-${idx}" aria-label="Marcar item da PEP"
@@ -276,9 +284,9 @@ function renderTabC(st) {
   let html = `<div class="alert alert-warn">⚠ Esta aba é restrita ao avaliador. Não abrir antes do término da estação.</div>
     <div class="section-block">
       <h3>Diagnóstico</h3>
-      <p style="font-size:15px;font-weight:600;color:var(--accent2)">${c.diagnosis}</p>
-      <p style="margin-top:10px">${c.context}</p>
-      <p style="margin-top:8px;font-size:13px;color:var(--text3)">${c.justify}</p>
+      <p style="font-size:15px;font-weight:600;color:var(--accent2)">${esc(c.diagnosis)}</p>
+      <p style="margin-top:10px">${esc(c.context)}</p>
+      <p style="margin-top:8px;font-size:13px;color:var(--text3)">${esc(c.justify)}</p>
     </div>`;
 
   // Diagnósticos diferenciais (novo schema)
@@ -296,7 +304,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Anamnese Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${toList(c.expectedAnamnesis).map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedAnamnesis).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -306,7 +314,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Exame Físico Esperado</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${toList(c.expectedPhysical).map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedPhysical).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -318,7 +326,7 @@ function renderTabC(st) {
       <div class="table-scroll">
       <table class="lab-table">
         <tr><th>Exame</th><th>Justificativa</th><th>Resultado Esperado</th></tr>
-        ${c.expectedExams.map(e => `<tr><td>${e.exam}</td><td>${e.justify}</td><td>${e.expected}</td></tr>`).join('')}
+        ${c.expectedExams.map(e => `<tr><td>${esc(e.exam)}</td><td>${esc(e.justify)}</td><td>${esc(e.expected)}</td></tr>`).join('')}
       </table>
       </div>
     </div>`;
@@ -329,7 +337,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Conduta Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${toList(c.expectedConduct).map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedConduct).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -339,7 +347,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Comunicação Esperada</h3>
       <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
-        ${toList(c.expectedCommunication).map(i => `<li>${i}</li>`).join('')}
+        ${toList(c.expectedCommunication).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -349,8 +357,8 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Script do Paciente Simulado</h3>
       ${c.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${s.trigger}</div>
-        <div class="script-speech">"${s.speech}"</div>
+        <div class="script-trigger">${esc(s.trigger)}</div>
+        <div class="script-speech">"${esc(s.speech)}"</div>
       </div>`).join('')}
     </div>`;
   }
@@ -376,7 +384,7 @@ function renderTabC(st) {
 
   html += `<div class="section-block" style="border-left:3px solid var(--danger)">
     <h3>Erros Críticos</h3>
-    ${c.criticalErrors.map(e => `<div class="critical-error">${e}</div>`).join('')}
+    ${c.criticalErrors.map(e => `<div class="critical-error">${esc(e)}</div>`).join('')}
   </div>`;
 
   return html;
@@ -399,7 +407,7 @@ function renderTabD(st) {
     return `
       <div style="margin-bottom:20px">
         <div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Checklist Avaliativo</div>
-        <div style="font-size:20px;font-weight:600;color:var(--text)">${d.title}</div>
+        <div style="font-size:20px;font-weight:600;color:var(--text)">${esc(d.title)}</div>
       </div>
       <div class="section-block">
         <div class="table-scroll">
@@ -420,11 +428,11 @@ function renderTabD(st) {
   return `
     <div style="margin-bottom:20px">
       <div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Material de Estudo</div>
-      <div style="font-size:20px;font-weight:600;color:var(--text)">${d.title}</div>
+      <div style="font-size:20px;font-weight:600;color:var(--text)">${esc(d.title)}</div>
     </div>
     ${d.sections.map(sec => `
       <div class="study-section">
-        <h3>${sec.h}</h3>
+        <h3>${esc(sec.h)}</h3>
         ${sec.body}
       </div>
     `).join('')}`;

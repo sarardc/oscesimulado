@@ -44,21 +44,22 @@ const allStations = [
 
 const app = express();
 
-// Block direct access to data files
-app.use('/data', (_req, res) => res.status(403).end());
+// Block sensitive server-side paths
+app.use(['/data', '/.git', '/backend', '/node_modules'], (_req, res) => res.status(403).end());
 
 // API
 app.get('/api/stations', (_req, res) => {
   res.json(allStations);
 });
 
-// Serve static files (css, js, cards, questoes, etc.)
-app.use(express.static(ROOT));
+// Serve only the directories the browser needs
+app.use('/css',      express.static(path.join(ROOT, 'css')));
+app.use('/js',       express.static(path.join(ROOT, 'js')));
+app.use('/cards',    express.static(path.join(ROOT, 'cards')));
+app.use('/questoes', express.static(path.join(ROOT, 'questoes')));
 
-// Fallback to index.html
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(ROOT, 'index.html'));
-});
+// Root and SPA fallback
+app.get('*', (_req, res) => res.sendFile(path.join(ROOT, 'index.html')));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

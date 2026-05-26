@@ -1,0 +1,50 @@
+Como adicionar novos casos
+1. Criar o arquivo de dados
+Crie data/novoarquivo.js com o padrão:
+
+
+const nomeVariavel = [
+  {
+    title: "Título do caso",
+    sub: "Contexto — Nível",
+    tema: "nometema",          // minúsculo, sem acento
+    topic: "topico-especifico",
+    level: "simples",          // simples | intermediário | avançado
+    cardAccent: "#4f9cf9",     // cor do card
+
+    instA: { scenario, patient, complaint, tasks: [] },
+    instB: { vitals: {}, physicalGeneral, physicalSeg: [], labs: [], script: [] },
+    instC: { diagnosis, context, justify, pep: [], criticalErrors: [] },
+    instD: { title, sections: [] }
+  }
+];
+
+export default nomeVariavel;
+2. Registrar no servidor
+Em backend/server.js, adicionar o import e incluir no array:
+
+
+// linha dos imports
+import nomeVariavel from '../data/novoarquivo.js';
+
+// dentro de allStations = [...]
+...nomeVariavel,
+3. Adicionar filtro (se tema novo)
+Em index.html, dentro do <aside class="filter-sidebar">, adicionar o botão:
+
+
+<button class="filter-btn tema-nometema" data-tema="nometema" onclick="setFilter('nometema')">Nome Exibido</button>
+Em css/style.css, adicionar a cor do tema (procure os outros .pill- e .tema- para seguir o padrão):
+
+
+.pill-nometema            { background: #sua-cor; color: #fff; }
+.filter-btn.tema-nometema { border-color: #sua-cor; }
+.filter-btn.tema-nometema.active { background: #sua-cor; color: #fff; }
+Resumo rápido:
+
+Passo	Arquivo
+Criar dados	data/novoarquivo.js
+Registrar import + spread	backend/server.js
+Botão de filtro	index.html (aside)
+Cor do tema	css/style.css
+Quer que eu mostre um caso de exemplo completo preenchido?
