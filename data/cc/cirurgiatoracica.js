@@ -1765,6 +1765,2338 @@ const ctoracica = [
   }
 },
 
+{
+  id: 15,
+  title: "Dor abdominal após colisão de veículo em alta velocidade",
+  sub: "PS — Pronto-Socorro / Sala de Emergência",
+  tema: "Cirurgia",
+  topic: "trauma abdominal fechado",
+  level: "moderado",
+  cardAccent: "#922B21",
+  instA: {
+    scenario: "Sala de emergência de hospital geral. Turno noturno. Paciente padronizado (ator).",
+    patient: "R.M., 35 anos, masculino, motorista, sem comorbidades conhecidas.",
+    complaint: "Dor abdominal intensa após colisão frontal de automóvel há 1 hora. Trazido pelo SAMU com colar cervical.",
+    tasks: [
+      "Realize a avaliação primária do paciente traumatizado seguindo o protocolo ABCDE.",
+      "Identifique os achados do exame físico compatíveis com lesão abdominal.",
+      "Solicite e interprete os exames complementares necessários para guiar a conduta.",
+      "Proponha a conduta terapêutica inicial e identifique a necessidade de intervenção cirúrgica de urgência.",
+      "Identifique os sinais de instabilidade hemodinâmica e seus critérios para laparotomia exploradora de emergência."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "90/60 mmHg",
+      FC: "128 bpm",
+      FR: "24 irpm",
+      Tax: "36,2°C",
+      Peso: "80 kg",
+      Altura: "1,78 m",
+      IMC: "25,2 kg/m²"
+    },
+    physicalGeneral: "Paciente em mau estado geral, consciente, orientado, ansioso e agitado, com dor abdominal intensa (EVA 9/10). Mucosas pálidas 2+/4+, diaforético, acianótico. Saturação de O₂ de 96% com máscara de O₂ a 10 L/min.",
+    physicalSeg: "ABDOME: Distendido, rígido à palpação (defesa muscular difusa), com dor intensa em todos os quadrantes, maior em hipocôndrio esquerdo e epigástrio. Sinal de Blumberg positivo difuso. Ruídos hidroaéreos ausentes. Equimose em cinto de segurança visível (sinal do cinto). | TÓRAX: Expansibilidade simétrica. Murmúrio vesicular presente bilateralmente. Sem crepitações. | CARDIOVASCULAR: Taquicárdico, bulhas rítmicas, sem sopros. Pulsos periféricos finos e rápidos. | NEUROLÓGICO: Glasgow 15, pupilas isocóricas e fotorreativas. Colar cervical mantido. | PELVE: Estável à compressão. | MMII: Sem deformidades.",
+    labs: [
+      { test: "Hemoglobina", val: "8,4 g/dL", ref: "13,5–17,5 g/dL", alt: true },
+      { test: "Hematócrito", val: "26%", ref: "40–54%", alt: true },
+      { test: "Leucócitos", val: "14.200/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Plaquetas", val: "210.000/mm³", ref: "150.000–400.000/mm³", alt: false },
+      { test: "TP (INR)", val: "1,3", ref: "0,8–1,2", alt: true },
+      { test: "Lactato sérico", val: "5,8 mmol/L", ref: "0,5–2,0 mmol/L", alt: true },
+      { test: "Amilase sérica", val: "420 U/L", ref: "< 100 U/L", alt: true },
+      { test: "Creatinina", val: "1,2 mg/dL", ref: "0,7–1,2 mg/dL", alt: false },
+      { test: "Tipagem sanguínea", val: "A positivo", ref: "—", alt: false }
+    ],
+    image: "FAST (Focused Assessment with Sonography for Trauma) À BEIRA LEITO: Líquido livre em espaço de Morrison (hepatorrenal) — quantidade moderada. Líquido livre perisplênico — quantidade importante. Janela pericárdica: sem derrame. Janela suprapúbica: líquido livre em fundo de saco de Douglas. | RADIOGRAFIA DE TÓRAX AP: Sem pneumotórax. Sem alargamento mediastinal. Arcos costais sem fraturas evidentes. | TOMOGRAFIA DE ABDOME COM CONTRASTE (realizada após estabilização hemodinâmica relativa): Laceração esplênica grau III (laceração > 3 cm de profundidade com envolvimento dos vasos hilares). Hemoperitônio moderado a volumoso. Fígado sem lacerações evidentes. Sem pneumoperitônio. Rins sem alterações.",
+    note: "Caso com ator. O ator deve entrar deitado na maca com colar cervical, aparentando dor intensa e ansiedade. Imprimir e entregar ao candidato os dados dos sinais vitais ao início. Entregar resultados do FAST quando o candidato solicitar ou realizar. Entregar laboratório quando solicitado. Entregar TC somente se o candidato a solicitar após estabilização hemodinâmica relativa. Atentar se o candidato segue o protocolo ABCDE antes de focar no abdome.",
+    patientProfile: "R.M., 35 anos, masculino. Motorista de aplicativo, solteiro. Sem comorbidades. Sem medicamentos. Nega alergias. Não usava cinto de segurança corretamente (cinto abdominal apenas). Colisão frontal em alta velocidade — airbag acionou.",
+    script: [
+      {
+        trigger: "Queixa principal / ao entrar em contato",
+        speech: "Doutor, minha barriga tá doendo muito, muito mesmo... eu tava dirigindo e bati o carro. O airbag abriu na minha cara e o cinto me cortou a barriga. Tô sentindo que tá piorando."
+      },
+      {
+        trigger: "Sobre como aconteceu o acidente",
+        speech: "Eu tava na avenida, aí um carro entrou de repente no meu caminho e eu bati de frente. Não deu tempo de frear. Deve ter sido uns 60 km/h pelo menos. O carro amassou bastante."
+      },
+      {
+        trigger: "Sobre onde dói mais",
+        speech: "Aqui do lado esquerdo, perto do estômago... mas tá doendo tudo, qualquer movimento que eu faço piora. Parece que tem alguma coisa errada lá dentro."
+      },
+      {
+        trigger: "Sobre sintomas associados",
+        speech: "Tô tonto, sinto que vou desmaiar... e tô suando muito sem precisar. Tô com muita sede também."
+      },
+      {
+        trigger: "Sobre problemas de saúde anteriores",
+        speech: "Não, nunca tive nada de saúde não. Nunca operei, nunca fiquei internado. Sou saudável."
+      },
+      {
+        trigger: "Sobre medicamentos e alergias",
+        speech: "Não tomo nenhum remédio. Alergia também não sei de nada não, nunca tive reação."
+      },
+      {
+        trigger: "Sobre uso de álcool ou drogas antes do acidente",
+        speech: "Não, eu não bebo não doutor, tava trabalhando. E não uso droga nenhuma."
+      },
+      {
+        trigger: "Sobre dor no pescoço ou coluna",
+        speech: "O pescoço ficou um pouco dolorido quando o carro bateu, mas não tô sentindo dormência nos braços nem nas pernas não."
+      },
+      {
+        trigger: "Sobre dificuldade para respirar",
+        speech: "Tô com um pouquinho de falta de ar sim, mas acho que é de dor mesmo, porque a barriga tá muito ruim."
+      },
+      {
+        trigger: "Pergunta ativa — O que tô sofrendo doutor?",
+        speech: "Doutor, é grave o que eu tenho? Vou precisar operar? Tô com muito medo..."
+      },
+      {
+        trigger: "Pergunta ativa — Posso ligar pra minha família?",
+        speech: "Doutor, posso ligar pra minha mãe? Ela não sabe que eu me acidentei."
+      }
+    ],
+    hiddenInfo: "Nega uso do cinto de segurança corretamente — usava apenas o cinto abdominal sem o torácico, o que explica o padrão de lesão abdominal pela compressão do cinto. Só menciona se o candidato perguntar especificamente sobre o uso do cinto. | Fez uso de bebida energética antes de dirigir mas nega álcool ou drogas — dado irrelevante clinicamente mas revelado se o candidato perguntar sobre substâncias de forma aberta.",
+    actorBehavior: "Paciente ansioso, com dor intensa e real (EVA 9). Deitado na maca, com colar cervical. Responde com dificuldade pela dor. Fica mais agitado se demorar muito para ser atendido. Colabora com o exame físico mas geme à palpação abdominal. Reage com medo quando se fala em cirurgia."
+  },
+  instC: {
+    diagnosis: "Trauma abdominal fechado com laceração esplênica grau III e hemoperitônio volumoso. Choque hemorrágico classe III (FC > 120, PA < 90, lactato elevado, anemia aguda). Indicação de laparotomia exploradora de urgência.",
+    differentials: [
+      "Hemotórax — excluído pela radiografia de tórax sem velamento e pelo FAST com janela torácica negativa",
+      "Tamponamento cardíaco — excluído pelo FAST com janela pericárdica negativa e pela ausência de distensão jugular e bulhas abafadas",
+      "Lesão hepática isolada — diferencial de hemoperitônio em trauma; TC mostrou laceração esplênica como fonte principal",
+      "Lesão de víscera oca (intestino, bexiga) — diferencial em trauma com cinto de segurança; amilase elevada sugere lesão pancreática ou intestinal associada — avaliar na exploração cirúrgica"
+    ],
+    context: "Paciente masculino, 35 anos, vítima de trauma fechado de alta energia com instabilidade hemodinâmica (choque hemorrágico classe III), FAST positivo e laceração esplênica grau III na TC. Laparotomia exploradora de urgência é a conduta mandatória.",
+    justify: "FAST positivo (líquido em Morrison, perisplênico e Douglas) em paciente hemodinamicamente instável é indicação absoluta de laparotomia exploradora — sem necessidade de TC para definir a conduta cirúrgica. A TC foi realizada após estabilização relativa e confirmou laceração esplênica grau III. Choque hemorrágico classe III: PA < 90, FC > 120, lactato > 4, anemia aguda (Hb 8,4). Amilase elevada alerta para lesão pancreática ou intestinal associada.",
+    expectedAnamnesis: "Mecanismo do trauma: tipo (fechado/penetrante), velocidade, cinto de segurança, airbag | Localização e intensidade da dor abdominal | Sintomas de choque: tontura, sudorese, sede intensa | Uso de álcool ou drogas | Comorbidades e medicamentos em uso | Alergias (especialmente a contraste) | Última refeição (anestesia) | Histórico de cirurgias abdominais",
+    expectedPhysical: "ABCDE: Vias aéreas — perviedade + colar cervical; Respiração — MV bilateral; Circulação — PA, FC, pulsos, sangramento visível; Déficit neurológico — Glasgow; Exposição — desvestir e examinar | Abdome: distensão, rigidez, Blumberg, sinal do cinto, ruídos hidroaéreos | FAST à beira leito: janelas hepática, esplênica, pericárdica e pélvica | Pelve: estabilidade | Extremidades: fraturas, pulsos",
+    expectedExams: [
+      { exam: "FAST (ultrassonografia à beira leito)", justify: "Triagem rápida para líquido livre intraperitoneal e hemopericárdio em trauma instável", expected: "Líquido livre em Morrison, perisplênico e Douglas" },
+      { exam: "Hemograma, coagulograma, tipagem sanguínea", justify: "Avaliar anemia hemorrágica, coagulopatia e preparar hemotransfusão", expected: "Anemia aguda, INR levemente alargado" },
+      { exam: "Lactato sérico", justify: "Marcador de hipoperfusão tecidual e gravidade do choque", expected: "Elevado (5,8 mmol/L) — choque hemorrágico classe III" },
+      { exam: "TC de abdome com contraste", justify: "Estadiamento das lesões em paciente hemodinamicamente estável ou estabilizado — NÃO realizar em instável", expected: "Laceração esplênica grau III, hemoperitônio" },
+      { exam: "Amilase sérica", justify: "Rastrear lesão pancreática ou intestinal associada ao trauma", expected: "Elevada — alertar para lesão de víscera oca ou pâncreas" }
+    ],
+    expectedConduct: "Farmacológica: Controle do choque hemorrágico: 2 acessos venosos calibrosos (14G) + SF 0,9% ou Ringer Lactato 1.000 mL IV rápido; transfusão de concentrado de hemácias (CHM) 2 unidades IV urgente (protocolo de transfusão maciça se necessário: CHM:PFC:Plaquetas 1:1:1); ácido tranexâmico 1g IV em 10 min se < 3h do trauma (RENAME 2022); analgesia cuidadosa (morfina 2–4 mg IV titulado) após avaliação neurológica; manter colar cervical até liberação de coluna | Não farmacológica: Laparotomia exploradora de urgência indicada — FAST positivo + instabilidade hemodinâmica; splenorrafia ou esplenectomia conforme achado intraoperatório (grau III — tentar preservação esplênica; se falha, esplenectomia); cateter vesical para monitorar diurese; SNG; oxigenoterapia | Encaminhamento: Bloco cirúrgico imediatamente; UTI pós-operatória; vacinação pós-esplenectomia (pneumococo, meningococo, H. influenzae) se esplenectomia realizada | Orientações ao familiar: Comunicar gravidade, necessidade de cirurgia urgente e risco de vida | Seguimento: UTI pós-operatória; reavaliação de lesões associadas; vacinação em 2 semanas se esplenectomia",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente na emergência | Comunicação ao paciente: Explicar brevemente o que foi encontrado e a necessidade de cirurgia urgente; usar linguagem simples e tranquilizadora sem minimizar a gravidade | Comunicação ao familiar: Usar protocolo de comunicação de más notícias em urgência; atualizar progressivamente",
+    criticalErrors: [
+      "Realizar TC de abdome em paciente hemodinamicamente instável — atraso fatal; FAST positivo + instabilidade = laparotomia imediata",
+      "Não reconhecer e tratar o choque hemorrágico (classe III) com hidratação e transfusão precoces",
+      "Não realizar FAST à beira leito como triagem inicial no trauma abdominal",
+      "Não solicitar tipagem sanguínea e reserva de hemácias em paciente com trauma grave e anemia aguda",
+      "Omitir a avaliação da coluna cervical (manter colar até liberação radiológica) em politrauma",
+      "Não administrar ácido tranexâmico nas primeiras 3 horas do trauma em paciente com hemorragia ativa"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — TRAUMA ABDOMINAL FECHADO COM INSTABILIDADE HEMODINÂMICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Identificou-se rapidamente ao paciente e ao familiar, mantendo comunicação clara durante a emergência", score: 0.5, ref: "CFM Res. 2232/2019; ABEM, 2022" },
+          { item: "Orientou o familiar sobre a gravidade do quadro e a necessidade de cirurgia urgente de forma empática", score: 0.5, ref: "CFM Res. 2232/2019" }
+        ]
+      },
+      {
+        h: "AVALIAÇÃO PRIMÁRIA E ANAMNESE",
+        items: [
+          { item: "Realizou avaliação primária seguindo a sequência ABCDE antes de focar no abdome", score: 1.0, ref: "ATLS — Advanced Trauma Life Support ⚠️; SBCM, 2022" },
+          { item: "Identificou o mecanismo de trauma (colisão frontal alta energia, uso inadequado do cinto) como dado relevante", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Identificou os sinais de choque hemorrágico: hipotensão, taquicardia, palidez, diaforese, lactato elevado", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Realizou FAST à beira leito e identificou líquido livre em Morrison, espaço perisplênico e Douglas", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Identificou abdome rígido com Blumberg difuso e sinal do cinto de segurança", score: 0.5, ref: "ATLS ⚠️; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Manteve o colar cervical durante toda a avaliação até liberação da coluna cervical", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Não indicou TC de abdome em paciente hemodinamicamente instável com FAST positivo", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Solicitou tipagem sanguínea e hemotransfusão de urgência para choque hemorrágico classe III", score: 0.5, ref: "ATLS ⚠️; SBHH, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Indicou laparotomia exploradora de urgência — FAST positivo com instabilidade hemodinâmica", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022; CBC, 2022" },
+          { item: "Administrou ou indicou ácido tranexâmico 1g IV nas primeiras 3 horas do trauma", score: 0.5, ref: "CRASH-2 Trial ⚠️; RENAME 2022; MS/SVS" },
+          { item: "Iniciou expansão volêmica com SF/Ringer Lactato e solicitou transfusão de concentrado de hemácias", score: 0.5, ref: "ATLS ⚠️; RENAME 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 16,
+  title: "Nódulo no pescoço descoberto em exame de rotina",
+  sub: "Ambulatório de Cirurgia de Cabeça e Pescoço — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "nódulo tireoidiano",
+  level: "moderado",
+  cardAccent: "#1A5276",
+  instA: {
+    scenario: "Ambulatório de Cirurgia de Cabeça e Pescoço de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "F.A., 42 anos, feminino, professora, sem comorbidades conhecidas.",
+    complaint: "Nódulo na tireoide de 2,1 cm identificado em ultrassonografia cervical de rotina há 2 semanas. Assintomática.",
+    tasks: [
+      "Realize a anamnese dirigida ao nódulo tireoidiano e identifique os fatores de risco para malignidade.",
+      "Realize o exame físico cervical pertinente e descreva os achados.",
+      "Solicite os exames complementares necessários para investigação do nódulo.",
+      "Classifique o nódulo conforme o sistema TI-RADS e proponha conduta baseada na classificação.",
+      "Oriente a paciente sobre o diagnóstico, o plano investigativo e o prognóstico."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "118/76 mmHg",
+      FC: "72 bpm",
+      FR: "16 irpm",
+      Tax: "36,4°C",
+      Peso: "64 kg",
+      Altura: "1,63 m",
+      IMC: "24,1 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica, afebril. Mucosas normocoradas, anictérica. Sem alterações ao exame geral. Sem fácies de hiper ou hipotireoidismo.",
+    physicalSeg: "PESCOÇO: Tireoide palpável, sem bócio difuso. Nódulo palpável no lobo direito da tireoide, de consistência firme, superfície lisa, contornos bem definidos, móvel à deglutição, não doloroso à palpação, medindo aproximadamente 2 cm. Sem nódulos contralaterais palpáveis. | LINFONODOS: Sem linfadenopatia cervical palpável. Cadeia jugular interna, submandibular e posterior do pescoço livres. | TÓRAX: Sem alterações. | CARDIOVASCULAR: Ritmo cardíaco regular, sem sopros.",
+    labs: [
+      { test: "TSH", val: "2,1 mUI/L", ref: "0,4–4,0 mUI/L", alt: false },
+      { test: "T4 livre", val: "1,2 ng/dL", ref: "0,8–1,8 ng/dL", alt: false },
+      { test: "T3 total", val: "1,1 ng/mL", ref: "0,8–2,0 ng/mL", alt: false },
+      { test: "Calcitonina", val: "8 pg/mL", ref: "< 10 pg/mL", alt: false },
+      { test: "CEA", val: "2,4 ng/mL", ref: "< 5,0 ng/mL", alt: false },
+      { test: "Anticorpos anti-TPO", val: "12 UI/mL", ref: "< 35 UI/mL", alt: false }
+    ],
+    image: "ULTRASSONOGRAFIA CERVICAL (USG) — laudo do exame que motivou o encaminhamento: Lobo direito da tireoide com nódulo sólido, hipoecoico, de contornos irregulares com espiculação, medindo 2,1 x 1,8 x 1,6 cm. Presença de microcalcificações no interior. Sem halo periférico. Vascularização aumentada ao Doppler intranodular. Lobo esquerdo sem nódulos. Istmo normal. Ausência de linfonodomegalia cervical ao exame ultrassonográfico. Classificação ACR TI-RADS: TR5 (altamente suspeito).",
+    note: "Caso com ator. O ator representa uma paciente calma mas ansiosa pelo achado incidental. Entregar laudo da ultrassonografia ao início da consulta (é o exame que motivou o encaminhamento). Entregar resultados laboratoriais quando solicitados pelo candidato. Atentar se o candidato aplica a classificação TI-RADS ao nódulo e indica a PAAF de forma adequada.",
+    patientProfile: "F.A., 42 anos, feminino. Professora do ensino fundamental, casada, dois filhos. Sem comorbidades. Sem medicamentos de uso contínuo. Nega radioterapia prévia em cabeça e pescoço. Mãe com histórico de bócio multinodular benigno operada aos 55 anos. Pai com câncer de próstata. Sem história familiar de câncer de tireoide ou NEM (neoplasia endócrina múltipla).",
+    script: [
+      {
+        trigger: "Queixa principal / motivo da consulta",
+        speech: "Boa tarde, doutor. Eu vim porque fiz uma ultrassom do pescoço há duas semanas, de rotina mesmo, e apareceu um nódulo na tireoide. O médico me encaminhou aqui. Eu nem sentia nada, não sabia que tinha isso."
+      },
+      {
+        trigger: "Sobre sintomas no pescoço",
+        speech: "Não, não sinto dor no pescoço, não. Não fico rouca, não tenho dificuldade pra engolir nada. Só o nódulo que vocês estão sentindo aí, mas eu nunca tinha percebido."
+      },
+      {
+        trigger: "Sobre sintomas de hipertireoidismo",
+        speech: "Não, não fico nervosa demais não, não fico com coração acelerado. Não emagreci sem querer. Não estou com calor excessivo. Tô bem, normal."
+      },
+      {
+        trigger: "Sobre sintomas de hipotireoidismo",
+        speech: "Olha, às vezes fico um pouco cansada, mas é o trabalho mesmo, muito estresse. Não acho que engordei ultimamente. O cabelo não tá caindo mais que o normal."
+      },
+      {
+        trigger: "Sobre histórico familiar de tireoide ou câncer",
+        speech: "Minha mãe operou o papo, mas foi benigno, ela disse que era bócio. Pai teve câncer de próstata, mas tá bem. Não sei de mais ninguém da família com problema na tireoide, não."
+      },
+      {
+        trigger: "Sobre radioterapia ou exposição à radiação",
+        speech: "Não, nunca fiz radioterapia. Nunca tive exposição a radiação também que eu saiba. Trabalho em escola, não tenho exposição."
+      },
+      {
+        trigger: "Sobre crescimento rápido do nódulo",
+        speech: "Olha, eu não sei dizer se cresceu rápido porque eu não sabia que tinha. Descobri agora com o exame de rotina. Nunca tinha sentido nem percebido antes."
+      },
+      {
+        trigger: "Sobre dificuldade para respirar ou engolir",
+        speech: "Não, respiro normal, engulo normal. Não tenho nenhuma dificuldade nisso não."
+      },
+      {
+        trigger: "Sobre uso de medicamentos",
+        speech: "Não tomo nenhum remédio, nem hormônio da tireoide. Já fiz exame de sangue da tireoide há dois anos e estava normal."
+      },
+      {
+        trigger: "Pergunta ativa — Pode ser câncer, doutor?",
+        speech: "Doutor, eu fui pesquisar na internet e fiquei com medo de ser câncer. Pode ser? Eu preciso operar?"
+      },
+      {
+        trigger: "Pergunta ativa — O que vai acontecer agora?",
+        speech: "Quais são os próximos passos? Que exame eu preciso fazer? Demora muito pra saber o resultado?"
+      }
+    ],
+    hiddenInfo: "Reside em região do interior de Minas Gerais historicamente com deficiência de iodo — fator de risco para bócio; só menciona se o candidato perguntar sobre local de residência e procedência. | Refere uso ocasional de suplemento de algas marinhas (kelp) com alto teor de iodo — pode interferir na função tireoidiana; só menciona se o candidato perguntar sobre suplementos ou vitaminas.",
+    actorBehavior: "Paciente calma e educada, mas visivelmente ansiosa com o achado. Pesquisou na internet e está com medo de câncer. Coopera totalmente com o exame. Fica mais tranquila quando o médico explica de forma clara e sem alarmismo. Faz perguntas diretas sobre o diagnóstico e o prognóstico."
+  },
+  instC: {
+    diagnosis: "Nódulo tireoidiano sólido hipoecoico de 2,1 cm com microcalcificações e contornos irregulares — ACR TI-RADS 5 (altamente suspeito). Indicação formal de punção aspirativa com agulha fina (PAAF) guiada por ultrassonografia.",
+    differentials: [
+      "Carcinoma papilífero de tireoide — principal hipótese: nódulo sólido hipoecoico com microcalcificações e contornos irregulares (TI-RADS 5); é o subtipo mais comum (80% dos cânceres de tireoide) e tem excelente prognóstico quando tratado precocemente",
+      "Adenoma folicular — diferencial benigno: nódulo sólido com halo periférico e vascularização periférica; menos provável pelos achados ultrassonográficos de alta suspeição",
+      "Carcinoma folicular — diferencial maligno: não distinguível do adenoma folicular pela citologia da PAAF — diagnóstico histológico pela invasão capsular ou vascular na peça cirúrgica",
+      "Nódulo coloide benigno — muito comum; excluído pelos achados de alta suspeição (microcalcificações, contornos irregulares, hipoecoicidade) no TI-RADS 5"
+    ],
+    context: "Paciente feminina, 42 anos, assintomática, com nódulo tireoidiano TI-RADS 5 de 2,1 cm — achado incidental em ultrassonografia de rotina. TSH normal exclui nódulo hiperfuncionante autônomo. Sem linfadenopatia. PAAF guiada por USG é o próximo passo diagnóstico obrigatório.",
+    justify: "Nódulo TI-RADS 5 (sólido hipoecoico + microcalcificações + contornos irregulares) tem probabilidade de malignidade > 20% pelas diretrizes da ACR. As diretrizes da SBE/SBMN indicam PAAF para nódulos TI-RADS 4 e 5 ≥ 1 cm e TI-RADS 3 ≥ 2,5 cm. TSH normal afasta hiperfunção — nódulo quente (hiperfuncionante) tem baixo risco de malignidade. Calcitonina normal afasta carcinoma medular.",
+    expectedAnamnesis: "Sintomas compressivos: disfagia, disfonia, dispneia | Sintomas de hipo/hipertireoidismo | Crescimento rápido do nódulo | Exposição prévia à radiação ionizante em cabeça e pescoço (infância ou radioterapia) | Histórico familiar de câncer de tireoide, NEM tipo 2, síndrome de Cowden | Procedência de área de deficiência de iodo | Sexo masculino (fator de risco independente para malignidade) | Uso de amiodarona, lítio, interferon (afetam tireoide) | Diagnóstico prévio de doença tireoidiana",
+    expectedPhysical: "Inspeção do pescoço: desvio traqueal, bócio visível | Palpação da tireoide: tamanho, consistência (firme = suspeita), mobilidade à deglutição, dor | Palpação de linfonodos: cadeia jugular, submandibular, supraclavicular, posterior | Sinais de hipotireoidismo: bradicardia, mixedema, reflexos lentos | Sinais de hipertireoidismo: tremor, taquicardia, exoftalmia | Presença de rouquidão (paralisia de corda vocal = comprometimento do nervo laríngeo recorrente por invasão)",
+    expectedExams: [
+      { exam: "TSH, T4 livre, T3", justify: "Avaliar função tireoidiana — nódulo hiperfuncionante (TSH suprimido) tem baixíssimo risco de malignidade e não precisa de PAAF", expected: "TSH normal — nódulo não hiperfuncionante, indicação de PAAF mantida" },
+      { exam: "Calcitonina sérica", justify: "Rastrear carcinoma medular de tireoide — produzido pelas células parafoliculares C", expected: "Normal — afasta carcinoma medular" },
+      { exam: "PAAF guiada por ultrassonografia", justify: "Exame citológico obrigatório para nódulos TI-RADS 4 e 5 ≥ 1 cm — define conduta cirúrgica", expected: "Bethesda I a VI — classificação citológica que orienta conduta" },
+      { exam: "Cintilografia tireoidiana com Tc-99m", justify: "Indicada apenas se TSH suprimido (nódulo quente não precisa de PAAF); não indicada neste caso com TSH normal", expected: "Não indicada neste caso" }
+    ],
+    expectedConduct: "Farmacológica: Não há indicação de supressão com levotiroxina para nódulos tireoidianos sem hipotireoidismo — não é conduta recomendada (SBE/SBMN 2023); após confirmação de carcinoma papilífero pela PAAF — levotiroxina pós-tireoidectomia em dose supressiva conforme estadiamento | Não farmacológica: PAAF guiada por ultrassonografia — encaminhar para endocrinologia ou cirurgia de cabeça e pescoço com experiência no procedimento; se PAAF Bethesda V ou VI (maligno ou suspeito para malignidade) — tireoidectomia total; se Bethesda III ou IV — decisão individualizada (lobectomia diagnóstica ou repetição de PAAF); se Bethesda I ou II — vigilância com USG | Encaminhamento: Endocrinologia para interpretação da PAAF e planejamento; Cirurgia de Cabeça e Pescoço se indicação cirúrgica; Medicina Nuclear se radioiodoterapia após cirurgia | Orientações ao paciente: Explicar que o nódulo precisa de uma biópsia por agulha fina para saber a natureza; que a maioria dos nódulos é benigna; que mesmo se for câncer, o carcinoma papilífero tem excelente prognóstico | Seguimento: PAAF em até 4 semanas após indicação; resultado da PAAF em 10–14 dias; se benigno, USG de controle em 1 ano",
+    expectedCommunication: "Apresentação: Identificar-se e criar vínculo — paciente ansiosa com pesquisa na internet | Comunicação do diagnóstico: Explicar que foi encontrado um nódulo com características que precisam ser investigadas com uma biópsia de agulha fina, que é um procedimento rápido e ambulatorial; não confirmar câncer antes da PAAF | Escuta ativa: Validar o medo da paciente; desmistificar as informações incorretas da internet; explicar que mesmo se for câncer de tireoide, a maioria tem excelente prognóstico",
+    criticalErrors: [
+      "Não indicar PAAF em nódulo TI-RADS 5 ≥ 1 cm — omissão diagnóstica grave",
+      "Indicar cintilografia tireoidiana em paciente com TSH normal — não muda a conduta e atrasa o diagnóstico",
+      "Confirmar diagnóstico de câncer ao paciente sem confirmação histológica/citológica",
+      "Prescrever levotiroxina para 'reduzir o nódulo' — não há evidência e pode causar iatrogenia (hipertireoidismo exógeno)",
+      "Não pesquisar linfonodos cervicais ao exame físico — metástase ganglionar muda o estadiamento e a conduta cirúrgica"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — NÓDULO TIREOIDIANO: INVESTIGAÇÃO E CONDUTA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Acolheu a paciente ansiosa e desmistificou informações incorretas sobre câncer de tireoide obtidas na internet", score: 0.5, ref: "CFM Res. 2232/2019; SBE, 2023" },
+          { item: "Não confirmou diagnóstico de câncer antes da PAAF — comunicou como 'nódulo suspeito que precisa de biópsia'", score: 0.5, ref: "CFM — Bioética; SBE/SBMN, 2023" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Investigou exposição prévia à radiação ionizante em cabeça e pescoço como principal fator de risco para carcinoma tireoidiano", score: 1.0, ref: "SBE/SBMN — Consenso Brasileiro em Nódulo Tireoidiano, 2023" },
+          { item: "Investigou histórico familiar de câncer de tireoide, NEM tipo 2 e síndromes genéticas associadas", score: 0.5, ref: "SBE/SBMN, 2023" },
+          { item: "Investigou sintomas compressivos (disfagia, disfonia, dispneia) e sintomas de disfunção tireoidiana", score: 0.5, ref: "SBE/SBMN, 2023" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Palpou a tireoide avaliando tamanho, consistência, mobilidade à deglutição e dor do nódulo", score: 0.5, ref: "SBE/SBMN, 2023; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Pesquisou linfadenopatia cervical (jugular, submandibular, supraclavicular) para rastreio de metástases", score: 1.0, ref: "SBE/SBMN, 2023" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou o nódulo como TI-RADS 5 (alta suspeição) com base nos achados ultrassonográficos: hipoecoico + microcalcificações + contornos irregulares", score: 1.0, ref: "SBE/SBMN, 2023; ACR TI-RADS ⚠️" },
+          { item: "Solicitou TSH para avaliar função tireoidiana e calcitonina para rastreio de carcinoma medular", score: 0.5, ref: "SBE/SBMN, 2023" },
+          { item: "Indicou PAAF guiada por ultrassonografia como próximo passo obrigatório para nódulo TI-RADS 5 ≥ 1 cm", score: 1.0, ref: "SBE/SBMN — Consenso Brasileiro em Nódulo Tireoidiano, 2023" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Não prescreveu levotiroxina supressiva para o nódulo sem hipotireoidismo confirmado", score: 0.5, ref: "SBE/SBMN, 2023" },
+          { item: "Encaminhou para Endocrinologia e/ou Cirurgia de Cabeça e Pescoço para realização da PAAF e seguimento", score: 0.5, ref: "SBE/SBMN, 2023; CFM" },
+          { item: "Orientou a paciente sobre o procedimento de PAAF, o prazo para resultado e as possibilidades diagnósticas com seus respectivos prognósticos", score: 0.5, ref: "SBE/SBMN, 2023; CFM Res. 2232/2019" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 17,
+  title: "Dor intensa no peito e dificuldade para respirar após queda de motocicleta",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "trauma torácico fechado",
+  level: "moderado",
+  cardAccent: "#784212",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno noturno. Paciente padronizado (ator).",
+    patient: "J.P., 40 anos, masculino, motociclista, sem comorbidades conhecidas.",
+    complaint: "Dor intensa no lado direito do peito, piora com a respiração e tosse com sangue após queda de motocicleta há 30 minutos.",
+    tasks: [
+      "Realize a avaliação primária do paciente traumatizado seguindo o protocolo ABCDE.",
+      "Identifique e interprete os achados do exame físico compatíveis com as lesões torácicas.",
+      "Solicite e interprete os exames complementares prioritários para o trauma torácico.",
+      "Identifique as lesões com risco de morte imediata e proponha a conduta de urgência adequada a cada uma.",
+      "Diferencie as lesões que exigem intervenção imediata das que permitem investigação adicional."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "102/68 mmHg",
+      FC: "114 bpm",
+      FR: "28 irpm",
+      Tax: "36,6°C",
+      Peso: "78 kg",
+      Altura: "1,74 m",
+      IMC: "25,8 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular a mau estado geral, consciente, orientado, agitado, com dor intensa ao respirar (EVA 8/10). Mucosas pálidas 1+/4+, diaforético, discreta cianose perioral. Saturação de O₂ de 89% em ar ambiente.",
+    physicalSeg: "TÓRAX: Escoriações e equimoses na grade costal direita. Expansibilidade reduzida e assimétrica — paradoxal no segmento anterolateral direito (3 arcos costais em movimento paradoxal: 4º, 5º e 6º arcos costais direitos fraturados em dois pontos cada — tórax instável/flail chest). Crepitação à palpação dos arcos costais direitos. Frêmito toracovocal abolido no hemitórax direito inferior. Percussão com macicez no terço inferior direito e timpanismo no terço médio direito. Ausculta: murmúrio vesicular abolido no hemitórax direito. Ausência de desvio traqueal. Jugulares sem distensão. | CARDIOVASCULAR: Taquicárdico, bulhas rítmicas e normofonéticas, sem sopros. | ABDOME: Flácido, indolor, sem distensão. | NEUROLÓGICO: Glasgow 14 (desorientado no tempo). Pupilas isocóricas.",
+    labs: [
+      { test: "Hemoglobina", val: "9,8 g/dL", ref: "13,5–17,5 g/dL", alt: true },
+      { test: "Hematócrito", val: "30%", ref: "40–54%", alt: true },
+      { test: "Leucócitos", val: "13.400/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "TP (INR)", val: "1,1", ref: "0,8–1,2", alt: false },
+      { test: "Lactato sérico", val: "3,2 mmol/L", ref: "0,5–2,0 mmol/L", alt: true },
+      { test: "Gasometria — pH", val: "7,30", ref: "7,35–7,45", alt: true },
+      { test: "Gasometria — pO₂", val: "58 mmHg", ref: "> 80 mmHg", alt: true },
+      { test: "Gasometria — pCO₂", val: "48 mmHg", ref: "35–45 mmHg", alt: true }
+    ],
+    image: "RADIOGRAFIA DE TÓRAX AP (portátil): Fraturas de arcos costais direitos (4º ao 6º) em dois pontos, com pneumotórax direito de pequeno volume (< 20%) e hemotórax direito de moderado volume (velamento do seio costofrênico até o terço médio). Contusão pulmonar direita (opacidade alveolar heterogênea no lobo inferior direito). Mediastino central, sem alargamento. Sem pneumoperitônio.",
+    note: "Caso com ator. O ator deve estar deitado na maca, com dor intensa ao respirar, tosse ocasional com sangue. Entregar dados de sinais vitais ao início. Entregar gasometria e laboratório quando solicitados. Entregar laudo da radiografia quando solicitado. Atentar se o candidato reconhece o flail chest e a necessidade de analgesia adequada e ventilação de suporte.",
+    patientProfile: "J.P., 40 anos, masculino. Motociclista — caiu da moto ao desviar de um buraco, impacto no gradil costal direito no asfalto. Velocidade baixa a moderada. Sem capacete (cabeça não atingida). Sem comorbidades. Sem medicamentos. Nega alergias.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, eu caí da moto... tô com uma dor absurda aqui no lado direito do peito. Toda vez que eu respiro fundo parece que me estouram. Tô com dificuldade pra respirar direito."
+      },
+      {
+        trigger: "Sobre como foi o acidente",
+        speech: "Eu tava na rua, desviei de um buraco e a moto tombou. Caí no chão com o lado direito do peito primeiro. Não bati a cabeça, não tava de capacete mas a cabeça não atingiu o chão."
+      },
+      {
+        trigger: "Sobre tosse com sangue",
+        speech: "É, tô tossindo e saindo um pouco de sangue. Não é muito, mas tá saindo. Isso me assustou muito."
+      },
+      {
+        trigger: "Sobre a respiração",
+        speech: "Tô com muita dificuldade, cada respiração é uma dor. Parece que alguma coisa tá grudando aqui dentro quando eu inspiro."
+      },
+      {
+        trigger: "Sobre dor no pescoço ou costas",
+        speech: "O pescoço não dói não. As costas também não. A dor é toda aqui na frente, do lado direito."
+      },
+      {
+        trigger: "Sobre tonteira ou desmaio",
+        speech: "Tô me sentindo meio tonto sim, parece que vou desmaiar. Tô suando muito sem calor."
+      },
+      {
+        trigger: "Sobre problemas de saúde anteriores",
+        speech: "Sou saudável, não tenho nada não. Não faço uso de nenhum remédio. Nunca operei."
+      },
+      {
+        trigger: "Sobre alergias",
+        speech: "Não tenho alergia a nada que eu saiba não, doutor."
+      },
+      {
+        trigger: "Sobre o abdome",
+        speech: "A barriga não tá doendo não, só o peito mesmo."
+      },
+      {
+        trigger: "Pergunta ativa — Meu pulmão furou doutor?",
+        speech: "Doutor, meu pulmão furou? Preciso de cirurgia? Tenho muito medo de operar."
+      },
+      {
+        trigger: "Pergunta ativa — Quanto tempo eu fico internado?",
+        speech: "Se eu precisar ficar internado, quanto tempo vai ser? Tenho família que precisa de mim."
+      }
+    ],
+    hiddenInfo: "Nega uso de anticoagulantes — relevante para planejamento de drenagem torácica; só menciona se o candidato perguntar diretamente sobre uso de anticoagulantes ou aspirina. | Refere que caiu em velocidade baixa mas depois admite que estava a aproximadamente 50 km/h ao desviar do buraco — subestimou a velocidade inicialmente; dado que muda a avaliação de energia do trauma.",
+    actorBehavior: "Paciente com dor real e intensa, visivelmente dispneico. Tossindo ocasionalmente durante a consulta (tosse leve, com sangue simulado). Agitado mas colaborativo. Responde com frases curtas por causa da dor e da dispneia. Fica mais ansioso quando se fala em cirurgia ou dreno."
+  },
+  instC: {
+    diagnosis: "Trauma torácico fechado com: (1) Tórax instável (flail chest) — fraturas de 4º ao 6º arcos costais direitos em dois pontos com movimento paradoxal; (2) Hemopneumotórax direito — hemotórax moderado + pneumotórax pequeno; (3) Contusão pulmonar direita. Insuficiência respiratória aguda hipoxêmica e hipercápnica. Choque hemorrágico classe II.",
+    differentials: [
+      "Pneumotórax hipertensivo — excluído pela ausência de desvio traqueal, jugulares sem distensão e PA preservada (embora baixa)",
+      "Tamponamento cardíaco — excluído pelo mediastino central na radiografia, bulhas normofonéticas e ausência de jugulares distendidas",
+      "Ruptura de aorta — excluída pelo mediastino sem alargamento na radiografia AP; TC angiográfica indicada se mecanismo de alta velocidade",
+      "Contusão miocárdica — diferencial em trauma torácico por impacto direto; investigar com ECG e troponina — pode causar arritmias"
+    ],
+    context: "Paciente masculino, 40 anos, com trauma torácico fechado grave: flail chest com insuficiência respiratória hipoxêmica, hemopneumotórax direito moderado e contusão pulmonar. Hipoxemia severa (pO₂ 58 mmHg) e movimento paradoxal indicam necessidade de suporte ventilatório e drenagem torácica urgente.",
+    justify: "Flail chest = ≥ 3 arcos costais fraturados em ≥ 2 pontos com movimento paradoxal. A insuficiência respiratória no flail chest é causada pela contusão pulmonar subjacente (principal fator) e pelo movimento paradoxal. Hemotórax moderado (macicez + MV abolido + velamento na RX) com anemia aguda indica hemotórax com perda sanguínea significativa. Drenagem torácica com dreno grosso é mandatória.",
+    expectedAnamnesis: "Mecanismo: queda, impacto direto no tórax, velocidade, proteções | Dor torácica: localização, piora com respiração (pleurítica) | Hemoptise: volume, frequência | Dispneia: progressão | Perda de consciência | Dor abdominal associada | Comorbidades, medicamentos, anticoagulantes | Alergias",
+    expectedPhysical: "ABCDE: Vias aéreas — permeabilidade; Respiração — expansibilidade, simetria, MV, movimento paradoxal, SpO₂; Circulação — PA, FC, pulsos, sangramento; Déficit neurológico — Glasgow; Exposição — desvestir tórax completamente | Tórax: crepitação costal, equimoses, escoriações | Movimento paradoxal: inspiração = retração do segmento instável (confirmação visual) | Ausência de desvio traqueal (pneumotórax hipertensivo excluído) | Jugulares: sem distensão",
+    expectedExams: [
+      { exam: "Radiografia de tórax AP portátil", justify: "Primeiro exame em trauma torácico — fraturas costais, pneumotórax, hemotórax, mediastino", expected: "Fraturas costais múltiplas, hemopneumotórax, contusão pulmonar" },
+      { exam: "Gasometria arterial", justify: "Avaliar gravidade da hipoxemia e hipercapnia — orienta necessidade de ventilação mecânica", expected: "Hipoxemia grave (pO₂ 58), hipercapnia, acidose respiratória" },
+      { exam: "ECG e troponina", justify: "Rastrear contusão miocárdica — causa de arritmias em trauma torácico direto", expected: "Alterações de ST ou arritmias em contusão miocárdica" },
+      { exam: "Hemograma e tipagem sanguínea", justify: "Avaliar anemia hemorrágica e reserva para hemotransfusão", expected: "Anemia aguda — Hb 9,8, Ht 30%" },
+      { exam: "TC de tórax com contraste", justify: "Melhor avaliação de fraturas, contusão pulmonar, hemotórax e grandes vasos — após estabilização", expected: "Definir extensão das lesões e planejar conduta definitiva" }
+    ],
+    expectedConduct: "Farmacológica: Analgesia multimodal — PRIORIDADE no flail chest: dipirona 1g IV + cetamina em subdose (0,3 mg/kg IV) + bloqueio intercostal com bupivacaína 0,25% nos nervos dos arcos fraturados e dois adjacentes; evitar opioides em excesso (depressão respiratória); considerar analgesia peridural torácica se disponível — reduz necessidade de ventilação mecânica; hidratação criteriosa (contusão pulmonar — evitar excesso de fluido); hemotransfusão se Hb < 7 ou instabilidade | Não farmacológica: Oxigenoterapia com máscara de alto fluxo (10–15 L/min); se hipoxemia refratária (SpO₂ < 90% com O₂ máximo) → ventilação mecânica invasiva; drenagem torácica com dreno grosso (28–32 Fr) no 4º–5º EIC, linha axilar anterior direita para hemopneumotórax; NÃO realizar fixação externa do flail chest (obsoleto) — tratar a contusão pulmonar com analgesia e fisioterapia | Encaminhamento: UTI para monitorização e suporte ventilatório; Cirurgia Torácica se hemotórax coagulado ou persistente após drenagem | Orientações ao familiar: Comunicar gravidade, necessidade de internação em UTI e procedimentos",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente e transmitir segurança | Comunicação do diagnóstico: Explicar que várias costelas fraturadas estão causando dificuldade para respirar e que o sangue dentro do pulmão precisa ser drenado | Escuta ativa: Validar o medo do paciente; explicar cada procedimento antes de realizá-lo",
+    criticalErrors: [
+      "Não reconhecer o movimento paradoxal como flail chest e não priorizar a analgesia e o suporte ventilatório",
+      "Não realizar drenagem torácica em hemopneumotórax confirmado — atraso causa hipoxemia progressiva e choque",
+      "Hiperhidratar paciente com contusão pulmonar — agrava o edema pulmonar e a insuficiência respiratória",
+      "Não solicitar ECG e troponina para rastrear contusão miocárdica em impacto torácico direto",
+      "Não controlar a dor adequadamente no flail chest — a dor é o principal fator de restrição ventilatória e causa hipoventilação"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — TRAUMA TORÁCICO FECHADO: FLAIL CHEST E HEMOPNEUMOTÓRAX",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Comunicou ao paciente os procedimentos necessários (drenagem, oxigenoterapia) de forma clara antes de realizá-los", score: 0.5, ref: "CFM Res. 2232/2019" },
+          { item: "Atualizou o familiar sobre a gravidade e os procedimentos de forma empática", score: 0.5, ref: "CFM Res. 2232/2019; ABEM, 2022" }
+        ]
+      },
+      {
+        h: "AVALIAÇÃO PRIMÁRIA E ANAMNESE",
+        items: [
+          { item: "Realizou avaliação primária seguindo ABCDE, identificando comprometimento respiratório como prioridade", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Identificou o mecanismo de impacto direto no tórax e a velocidade do trauma como dados de gravidade", score: 0.5, ref: "ATLS ⚠️" },
+          { item: "Identificou hemoptise como sinal de lesão pulmonar ativa", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou o movimento paradoxal do segmento torácico (flail chest) à inspeção durante a respiração", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Identificou macicez no hemitórax direito inferior (hemotórax) e timpanismo no médio (pneumotórax)", score: 1.0, ref: "ATLS ⚠️; Semiologia — Porto, 8ª ed., 2019" },
+          { item: "Excluiu pneumotórax hipertensivo pela ausência de desvio traqueal e jugulares sem distensão", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou gasometria arterial e identificou hipoxemia grave com hipercapnia — indicação de suporte ventilatório", score: 0.5, ref: "SBCM, 2022; ATLS ⚠️" },
+          { item: "Solicitou ECG e troponina para rastrear contusão miocárdica em impacto torácico direto", score: 0.5, ref: "ATLS ⚠️; SBC, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Priorizou analgesia eficaz (multimodal, incluindo bloqueio intercostal) como principal medida no flail chest", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022; SBAD — Analgesia em trauma, 2022" },
+          { item: "Indicou drenagem torácica com dreno grosso no 4º–5º EIC linha axilar anterior para o hemopneumotórax", score: 1.0, ref: "ATLS ⚠️; SBCM, 2022" },
+          { item: "Não realizou hiperhidratação no paciente com contusão pulmonar", score: 0.5, ref: "ATLS ⚠️; SBCM, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 18,
+  title: "Dor abdominal intensa desproporcional ao exame em idoso cardiopata",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "isquemia mesentérica aguda",
+  level: "moderado",
+  cardAccent: "#6E2F2F",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno noturno. Paciente padronizado (ator).",
+    patient: "A.C., 72 anos, masculino, aposentado, cardiopata, com fibrilação atrial crônica.",
+    complaint: "Dor abdominal em cólica muito intensa, de início súbito há 3 horas, com náuseas e vômitos, em idoso com arritmia cardíaca conhecida.",
+    tasks: [
+      "Realize a anamnese dirigida ao quadro de dor abdominal aguda e identifique os sinais de alarme.",
+      "Interprete os achados do exame físico e identifique a dissociação clínica característica desta condição.",
+      "Solicite os exames complementares e identifique os achados laboratoriais e de imagem compatíveis.",
+      "Formule o diagnóstico e os diagnósticos diferenciais com justificativa.",
+      "Proponha a conduta terapêutica de urgência e identifique o momento cirúrgico."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "100/64 mmHg",
+      FC: "118 bpm (irregular)",
+      FR: "22 irpm",
+      Tax: "37,8°C",
+      Peso: "68 kg",
+      Altura: "1,68 m",
+      IMC: "24,1 kg/m²"
+    },
+    physicalGeneral: "Paciente em mau estado geral, consciente, orientado, com dor abdominal intensa (EVA 9/10), prostrado, sudoreico. Mucosas pálidas 1+/4+, levemente ictérico. Diaforético.",
+    physicalSeg: "ABDOME: Plano, levemente distendido. Ruídos hidroaéreos hipoativos. Dor à palpação difusa, com INTENSIDADE DESPROPORCIONALMENTE MENOR que a relatada pelo paciente (abdome relativamente flácido apesar da dor intensa subjetiva — dissociação clínica característica). Sem defesa ou Blumberg no momento. Dor periumbilical à palpação profunda. Sem visceromegalias. | CARDIOVASCULAR: Arritmia irregular (FA), taquicárdico, bulhas hipofonéticas. Sem sopros audíveis. | NEUROLÓGICO: Orientado, Glasgow 15.",
+    labs: [
+      { test: "Hemoglobina", val: "13,2 g/dL", ref: "13,5–17,5 g/dL", alt: false },
+      { test: "Leucócitos", val: "22.400/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "92%", ref: "50–70%", alt: true },
+      { test: "PCR", val: "210 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Lactato sérico", val: "7,2 mmol/L", ref: "0,5–2,0 mmol/L", alt: true },
+      { test: "Creatinina", val: "2,1 mg/dL", ref: "0,7–1,2 mg/dL", alt: true },
+      { test: "Ureia", val: "88 mg/dL", ref: "15–45 mg/dL", alt: true },
+      { test: "Amilase", val: "280 U/L", ref: "< 100 U/L", alt: true },
+      { test: "DHL", val: "980 UI/L", ref: "140–280 UI/L", alt: true },
+      { test: "TP (INR)", val: "2,8 (em uso de warfarina)", ref: "0,8–1,2", alt: true },
+      { test: "Gasometria — pH", val: "7,22", ref: "7,35–7,45", alt: true },
+      { test: "Gasometria — HCO₃", val: "14 mEq/L", ref: "22–26 mEq/L", alt: true },
+      { test: "Gasometria — Lactato", val: "7,2 mmol/L", ref: "0,5–2,0 mmol/L", alt: true }
+    ],
+    image: "TOMOGRAFIA DE ABDOME COM CONTRASTE (angioTC): Tromboembolismo da artéria mesentérica superior (AMS) — falha de enchimento no tronco da AMS a 2 cm de sua origem, com extensão para os ramos jejunoileais. Pneumatose intestinal nas alças do jejuno médio e íleo proximal. Edema transmural e espessamento das alças acometidas. Líquido livre peritoneal em pequena quantidade. Sem pneumoperitônio franco.",
+    note: "Caso com ator. O ator deve representar um idoso com dor intensa, prostrado. O dado-chave é a dissociação clínica: dor intensa subjetiva com abdome relativamente flácido ao exame no início. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar AngioTC quando o candidato solicitar e justificar. Atentar se o candidato reconhece a dissociação clínica como sinal característico de isquemia mesentérica.",
+    patientProfile: "A.C., 72 anos, masculino. Aposentado (ex-contador). Fibrilação atrial crônica em uso de warfarina 5 mg/dia. Hipertensão arterial em uso de enalapril 10 mg/dia e atenolol 25 mg/dia. Insuficiência cardíaca leve (NYHA II). Sem diabete. INR atual 2,8 (anticoagulação terapêutica, mas embolia ocorreu mesmo assim).",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, eu tô com uma dor de barriga que nunca senti na minha vida. Começou do nada, de repente, há umas três horas. É uma dor horrível, em cólica, aqui no meio da barriga. Nunca doeu assim antes."
+      },
+      {
+        trigger: "Sobre o início da dor",
+        speech: "Foi de repente mesmo, sem aviso. Tava assistindo televisão, aí começou essa dor fortíssima. Fui pro banheiro achando que era intestino mas não ajudou nada. A dor não passa."
+      },
+      {
+        trigger: "Sobre a localização e irradiação",
+        speech: "É aqui no meio, ao redor do umbigo. Não vai pra nenhum lugar específico, é a barriga toda, mas principalmente aqui no centro. E vai e vem em cólica."
+      },
+      {
+        trigger: "Sobre vômitos e náuseas",
+        speech: "Tô com muito enjoo, já vomitei três vezes. Vomitei um líquido escuro, meio amarelado. Não tinha sangue."
+      },
+      {
+        trigger: "Sobre o hábito intestinal",
+        speech: "Ainda não fui ao banheiro hoje. Tô sem gases desde que a dor começou."
+      },
+      {
+        trigger: "Sobre o problema do coração",
+        speech: "Tenho fibrilação atrial faz uns 5 anos. Tomo varfarina pra não fazer coágulo. Também tenho pressão alta e problema no coração fraco."
+      },
+      {
+        trigger: "Sobre os medicamentos",
+        speech: "Tomo varfarina, enalapril e atenolol. Todo dia certinho. Faço controle do INR todo mês, mês passado tava no alvo certinho."
+      },
+      {
+        trigger: "Sobre episódios anteriores semelhantes",
+        speech: "Nunca tive essa dor antes, não. Tenho às vezes dor de estômago normal, mas nunca assim. Isso é diferente de qualquer coisa que já senti."
+      },
+      {
+        trigger: "Sobre cirurgias anteriores no abdome",
+        speech: "Nunca operei o abdome não. Só operei de catarata."
+      },
+      {
+        trigger: "Pergunta ativa — O que tá acontecendo doutor?",
+        speech: "Doutor, o que tá acontecendo comigo? É do coração? É o intestino? Eu tô com medo muito grande."
+      },
+      {
+        trigger: "Pergunta ativa — Vou precisar operar?",
+        speech: "Vou precisar de cirurgia? Tenho 72 anos, será que aguentaria uma cirurgia?"
+      }
+    ],
+    hiddenInfo: "Diarreia sanguinolenta há 1 hora antes de chegar ao PS — sinal de isquemia intestinal avançada com necrose; só menciona se o candidato perguntar diretamente sobre sangue nas fezes ou evacuações recentes. | Refere que há 2 dias sentiu uma dor leve semelhante que passou — possível 'angina mesentérica' premonitória; só menciona se o candidato perguntar sobre episódios anteriores de dor abdominal.",
+    actorBehavior: "Idoso prostrado, com dor intensa mas abdome surpreendentemente flácido ao exame. Fica agitado com a dor. Responde às perguntas mas está debilitado. Demonstra medo pela idade e pela cirurgia. Família (cônjuge) pode estar presente se o candidato solicitar."
+  },
+  instC: {
+    diagnosis: "Isquemia mesentérica aguda por embolia da artéria mesentérica superior (AMS) — pneumatose intestinal e tromboembolismo confirmados pela angioTC. Fonte emboligênica: fibrilação atrial crônica com anticoagulação insuficiente. Acidose lática grave (lactato 7,2), choque séptico/distributivo incipiente. Cirurgia de urgência indicada.",
+    differentials: [
+      "Pancreatite aguda grave — excluída pelo padrão típico de isquemia mesentérica na angioTC, pela pneumatose intestinal e pela dissociação clínica",
+      "Obstrução intestinal — diferencial de dor abdominal aguda com parada de gases; excluída pela angioTC (ausência de distensão de alças a montante de um ponto de transição claro) e pelo padrão de isquemia",
+      "Trombose venosa mesentérica — diferencial de isquemia mesentérica; excluída pela angioTC que mostra oclusão arterial e não venosa",
+      "Dissecção de aorta com comprometimento da AMS — diferencial de isquemia mesentérica aguda; excluída pela angioTC sem dissecção aórtica"
+    ],
+    context: "Idoso com FA crônica e início súbito de dor abdominal intensa com dissociação clínica (dor intensa + abdome flácido) — apresentação clássica de isquemia mesentérica aguda por embolia. Lactato de 7,2 e pneumatose confirmam isquemia com necrose intestinal. Mortalidade > 60% — emergência cirúrgica.",
+    justify: "A tríade clássica da isquemia mesentérica aguda: dor abdominal súbita + dissociação clínica (dor desproporcional ao exame) + FA como fonte emboligênica. Lactato > 2 mmol/L indica hipoperfusão; lactato > 6 = isquemia grave com necrose. Pneumatose intestinal na angioTC confirma necrose da parede intestinal — cirurgia imediata. A dissociação clínica é o principal sinal que distingue isquemia das outras causas de abdome agudo.",
+    expectedAnamnesis: "Início e caráter da dor: súbita, em cólica, periumbilical | Dissociação clínica: dor muito intensa com abdome relativamente flácido | Histórico de FA e anticoagulação | Outros fatores de risco para embolia: IAM recente, valvopatia, IC | Episódios anteriores de 'angina mesentérica' (dor pós-prandial crônica) | Vômitos: conteúdo, frequência | Hábito intestinal: parada de gases, diarreia sanguinolenta | Uso de anticoagulantes: adesão, última dose, INR atual",
+    expectedPhysical: "Sinais vitais: taquicardia irregular (FA), hipotensão, febre | Abdome: dissociação — dor subjetiva intensa vs. abdome relativamente flácido ao toque | Ruídos hidroaéreos: hipoativos ou ausentes | Blumberg: pode estar presente tardiamente (peritonite por necrose) | Cardiovascular: FA ao ECG, avaliar sopros (valvopatia) | Avaliar sinais de choque",
+    expectedExams: [
+      { exam: "AngioTC de abdome com contraste", justify: "Exame de escolha para diagnóstico de isquemia mesentérica — visualiza a AMS e seus ramos, identifica pneumatose", expected: "Falha de enchimento na AMS, pneumatose intestinal, líquido livre" },
+      { exam: "Lactato sérico", justify: "Marcador de isquemia tecidual e gravidade do quadro", expected: "Muito elevado (7,2 mmol/L) — isquemia grave com necrose" },
+      { exam: "Hemograma, gasometria, eletrólitos", justify: "Avaliar leucocitose, acidose metabólica, hipóxia e distúrbios eletrolíticos", expected: "Leucocitose importante, acidose lática grave" },
+      { exam: "ECG", justify: "Confirmar FA e avaliar cardiopatia isquêmica associada", expected: "FA com resposta ventricular elevada" },
+      { exam: "INR", justify: "Avaliar nível de anticoagulação — pode orientar reversão se cirurgia urgente necessária", expected: "INR 2,8 — em anticoagulação mas embolia ocorreu mesmo assim" }
+    ],
+    expectedConduct: "Farmacológica: Ressuscitação hemodinâmica: Ringer Lactato 1.000 mL IV em 30 min; antibioticoterapia empírica imediata: piperacilina-tazobactam 4,5g IV a cada 6h (cobertura para gram-negativos e anaeróbios — translocação bacteriana por necrose intestinal; RENAME 2022); reversão do anticoagulante se cirurgia urgente: vitamina K 10 mg IV + plasma fresco congelado se INR > 2; heparina não fracionada IV pode ser mantida após tromboembolectomia para evitar retrombose | Não farmacológica: Laparotomia exploradora de urgência — tromboembolectomia da AMS + ressecção do intestino necrótico; 'second-look' em 24–48h para avaliar viabilidade das alças preservadas; cateter vesical; SNG | Encaminhamento: Bloco cirúrgico imediatamente; UTI pós-operatória; Cardiologia para otimização da anticoagulação da FA no pós-operatório | Orientações ao familiar: Comunicar a gravidade extrema do quadro e o risco de vida mesmo com cirurgia (mortalidade > 60%) | Seguimento: UTI; second-look; anticoagulação definitiva no pós-operatório",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente | Comunicação ao paciente e familiar: Explicar gravidade em linguagem acessível; comunicar necessidade de cirurgia imediata; não omitir o risco de vida | Escuta ativa: Validar o medo do idoso; envolver familiar nas decisões; respeitar diretivas antecipadas de vontade se existirem",
+    criticalErrors: [
+      "Não reconhecer a dissociação clínica (dor intensa + abdome flácido) como sinal patognomônico de isquemia mesentérica",
+      "Não solicitar angioTC — exame de escolha e diagnóstico, não substituível por USG ou RX simples",
+      "Não iniciar antibioticoterapia imediata — translocação bacteriana por necrose intestinal causa sepse rapidamente",
+      "Atrasar a cirurgia aguardando exames adicionais — isquemia mesentérica com necrose exige laparotomia imediata",
+      "Não reverter o anticoagulante adequadamente antes da cirurgia urgente — risco de sangramento intraoperatório grave"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — ISQUEMIA MESENTÉRICA AGUDA POR EMBOLIA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Comunicou a gravidade extrema do quadro ao paciente e ao familiar, incluindo o risco de vida, de forma respeitosa e empática", score: 0.5, ref: "CFM Res. 2232/2019; CFM — Bioética em urgência, 2020" },
+          { item: "Envolveu o familiar na tomada de decisão sobre a cirurgia de urgência, respeitando a autonomia do paciente idoso", score: 0.5, ref: "CFM Res. 2232/2019; Código de Ética Médica" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou o início súbito da dor como característica essencial da isquemia mesentérica por embolia", score: 0.5, ref: "SBC/SBACV — Isquemia Mesentérica, 2022" },
+          { item: "Identificou FA crônica e anticoagulação como contexto de risco emboligênico — principal etiologia da isquemia mesentérica aguda", score: 1.0, ref: "SBC/SBACV, 2022; AHA Guidelines ⚠️" },
+          { item: "Investigou diarreia sanguinolenta como sinal de necrose intestinal avançada", score: 0.5, ref: "SBC/SBACV, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou a dissociação clínica: dor subjetiva intensa desproporcional ao abdome relativamente flácido ao toque — sinal patognomônico de isquemia mesentérica", score: 1.0, ref: "SBC/SBACV, 2022; Sabiston ⚠️" },
+          { item: "Confirmou FA pela irregularidade do pulso e pela ausculta cardíaca", score: 0.5, ref: "SBC, 2022; Semiologia Médica — Porto, 8ª ed., 2019" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou angioTC de abdome como exame de escolha para diagnóstico e localização da oclusão", score: 1.0, ref: "SBC/SBACV, 2022; SBCV — Isquemia Mesentérica, 2022" },
+          { item: "Valorizou o lactato sérico muito elevado (7,2 mmol/L) como marcador de necrose intestinal e gravidade extrema", score: 1.0, ref: "SBC/SBACV, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Iniciou ressuscitação hemodinâmica e antibioticoterapia empírica de amplo espectro imediatamente", score: 0.5, ref: "SBC/SBACV, 2022; RENAME 2022" },
+          { item: "Indicou laparotomia exploradora de urgência sem aguardar melhora clínica", score: 1.0, ref: "SBC/SBACV, 2022; CBC, 2022" },
+          { item: "Planejou reversão do anticoagulante (vitamina K + PFC) para cirurgia urgente com INR 2,8", score: 0.5, ref: "SBC, 2022; SBHH, 2022; RENAME 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 19,
+  title: "Dor intensa ao defecar e sangramento vivo há seis semanas",
+  sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "fissura anal",
+  level: "moderado",
+  cardAccent: "#6C3483",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Geral de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "C.M., 28 anos, feminino, nutricionista, com constipação crônica e histórico de parto normal há 4 meses.",
+    complaint: "Dor intensa ao defecar, como uma facada no ânus, com sangramento vivo e sensação de queimação que dura horas após a evacuação, há 6 semanas.",
+    tasks: [
+      "Realize a anamnese dirigida ao quadro de dor anal e sangramento e identifique o diagnóstico provável.",
+      "Realize o exame físico anorretal pertinente e descreva os achados.",
+      "Formule o diagnóstico, classifique a fissura e proponha diagnósticos diferenciais.",
+      "Proponha a conduta terapêutica inicial baseada nas diretrizes e na classificação da fissura.",
+      "Oriente a paciente sobre medidas de mudança de hábito e sinais de alarme para retorno."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "112/72 mmHg",
+      FC: "76 bpm",
+      FR: "16 irpm",
+      Tax: "36,3°C",
+      Peso: "62 kg",
+      Altura: "1,65 m",
+      IMC: "22,8 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica, afebril. Mucosas normocoradas. Sem alterações ao exame geral. Visivelmente constrangida e apreensiva com o exame.",
+    physicalSeg: "INSPEÇÃO ANAL (com afastamento delicado das nádegas): Fissura linear em posição posterior (6 horas em posição ginecológica), de bordas endurecidas e edemaciadas, com fibras do esfíncter interno visíveis no leito da fissura — aspecto de fissura crônica. Sentinela hemorroidária (plicoma sentinela) visível na borda inferior da fissura. Sem abscessos ou fístulas perianais. Sem hemorroidas externas trombosadas. | TOQUE RETAL: NÃO REALIZADO — paciente apresentou espasmo esfincteriano intenso à tentativa, com dor insuportável referida (10/10). Avaliação interrompida. Ausência de massas palpadas antes da interrupção. | ANUSCOPIA: NÃO REALIZADA no momento — contraindicada pelo espasmo e dor intensos. Programada para retorno após início do tratamento.",
+    labs: [
+      { test: "Hemograma completo", val: "Dentro dos limites normais", ref: "—", alt: false },
+      { test: "Pesquisa de sangue oculto nas fezes", val: "Positiva (fraca)", ref: "Negativa", alt: true }
+    ],
+    image: null,
+    note: "Caso com ator. A atriz deve demonstrar constrangimento e dor ao relatar os sintomas. Durante o exame físico: ao iniciar a inspeção anal, a atriz geme de dor simulada e avisa que a região está muito sensível. NÃO realizar toque retal real — indicar a impossibilidade clínica. Entregar laboratório quando solicitado. Atentar se o candidato respeita a limitação do exame e programa anuscopia posterior ao início do tratamento.",
+    patientProfile: "C.M., 28 anos, feminino. Nutricionista, casada, um filho de 4 meses (parto normal). Constipação crônica há anos — evacuações a cada 3–4 dias, com esforço e fezes ressecadas. Amamentação exclusiva — faz dieta restritiva por alergia à proteína do leite de vaca do bebê. Sem medicamentos de uso contínuo. Nega alergias. Sem doenças inflamatórias intestinais conhecidas.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Boa tarde, doutor. Eu tô com muita vergonha de falar isso mas... eu tô com uma dor horrível quando vou ao banheiro. Parece uma facada no ânus. Eu fico com medo de ir ao banheiro de tanta dor. E sangra também."
+      },
+      {
+        trigger: "Sobre a dor",
+        speech: "A dor começa exatamente quando as fezes passam pelo ânus. É uma dor cortante, fortíssima. E depois continua por horas, como uma queimação, uma cólica no ânus. Às vezes dura 3, 4 horas. É insuportável."
+      },
+      {
+        trigger: "Sobre o sangramento",
+        speech: "Tem sangue no papel higiênico, às vezes no vaso também. É vermelho vivo, bem vermelho. Não mistura com as fezes, fica por fora. Não é muito, mas assustou."
+      },
+      {
+        trigger: "Sobre o medo de evacuar",
+        speech: "Eu fico segurando o máximo que posso porque sei que vai doer muito. Aí as fezes ficam mais ressecadas ainda e quando sai piora a dor. É um ciclo ruim."
+      },
+      {
+        trigger: "Sobre o hábito intestinal",
+        speech: "Sou constipada há anos, vai no banheiro a cada 3 ou 4 dias. Mas piorou depois que comecei a fazer dieta sem leite por causa do bebê. Tô comendo menos fibra."
+      },
+      {
+        trigger: "Sobre o parto",
+        speech: "Fiz parto normal há 4 meses. Foi difícil, forçei muito. Não tive episiotomia mas forçei bastante. Será que foi isso que causou?"
+      },
+      {
+        trigger: "Sobre sintomas associados febre ou corrimento",
+        speech: "Não, não tenho febre não. Não sai nada além de sangue. Não sinto nada saindo pelo ânus entre as evacuações."
+      },
+      {
+        trigger: "Sobre doenças intestinais",
+        speech: "Nunca me disseram que tenho Crohn nem colite. Nunca tive diarreia por muito tempo, nunca tive muco nas fezes. Só esse problema que começou agora."
+      },
+      {
+        trigger: "Sobre medicamentos",
+        speech: "Não tomo nada. Só vitaminas e ferro porque tô amamentando. Evito laxante porque vi que pode passar pro bebê pelo leite."
+      },
+      {
+        trigger: "Pergunta ativa — Por que aconteceu isso comigo doutor?",
+        speech: "Por que aconteceu isso comigo? Tem alguma coisa mais grave? Pode ser câncer?"
+      },
+      {
+        trigger: "Pergunta ativa — Tem como tratar sem cirurgia?",
+        speech: "Tem algum remédio pra passar? Tem como tratar sem precisar operar? Tenho bebê pequeno em casa."
+      }
+    ],
+    hiddenInfo: "Está evitando evacuar propositalmente, passando até 5 dias sem ir ao banheiro — piora o ciclo da fissura crônica; só menciona se o candidato perguntar sobre com que frequência vai ao banheiro atualmente. | Já tentou usar creme anestésico (lidocaína em gel) comprado sem receita mas sente que não está melhorando — dado relevante para avaliar resposta ao tratamento prévio; só menciona se o candidato perguntar sobre tentativas de tratamento anteriores.",
+    actorBehavior: "Paciente constrangida e tensa. Fala com dificuldade sobre o assunto. Alivia quando percebe que o médico está acolhendo sem julgamento. Fica muito apreensiva ao ouvir que será examinada na região anal. Reage com dor real simulada ao toque. Fica tranquila quando o candidato respeita os limites do exame e explica a abordagem."
+  },
+  instC: {
+    diagnosis: "Fissura anal crônica posterior (> 6 semanas) com plicoma sentinela e hipertonia do esfíncter interno. Fatores contribuintes: constipação crônica, parto normal recente (forço evacuatório intenso), dieta restritiva pós-parto com redução de fibras.",
+    differentials: [
+      "Hemorroida interna sangrante — excluída pela localização linear da lesão à inspeção (fissura) e pelo padrão de dor cortante ao defecar (hemorroida geralmente não causa essa dor intensa)",
+      "Doença de Crohn anal — diferencial importante em fissura atípica (lateral, múltipla, profunda, de difícil cicatrização); excluída provisoriamente pela localização posterior clássica e ausência de história intestinal prévia; avaliar se refratária ao tratamento",
+      "Abscesso perianal — excluído pela ausência de edema flutuante, eritema intenso e dor contínua sem relação com evacuação",
+      "Carcinoma espinocelular anal — diferencial de ulceração anal em adulto; excluído pelo padrão clínico típico de fissura e pela ausência de massa; biópsia indicada em fissuras atípicas refratárias ao tratamento"
+    ],
+    context: "Paciente feminina jovem, 28 anos, pós-parto recente com constipação crônica agravada pela dieta restritiva. Fissura anal crônica posterior com plicoma sentinela — evolução > 6 semanas sem cicatrização espontânea. Espasmo esfincteriano intenso impede exame completo. Tratamento clínico de primeira linha indicado.",
+    justify: "Fissura crônica: evolução > 6 semanas, bordas endurecidas, fibras do esfíncter interno expostas, plicoma sentinela. A dor em facada seguida de queimação por horas é patognomônica de fissura anal com hipertonia esfincteriana — o espasmo mantém a isquemia local impedindo a cicatrização. O ciclo constipação → fezes ressecadas → trauma do canal anal → dor → retenção fecal → piora da constipação é o mecanismo fisiopatológico central.",
+    expectedAnamnesis: "Caracterizar a dor: início ao defecar, tipo cortante/facada, queimação prolongada pós-evacuação | Sangramento: cor, volume, relação com evacuação | Medo de evacuar e retenção fecal | Constipação: duração, frequência, consistência das fezes | Parto recente: esforço evacuatório intenso | Dieta atual (restrição de fibras) | Tentativas de tratamento prévio | DII prévia (Crohn — fissuras atípicas) | Imunocomprometimento (HIV — fissuras múltiplas ou atípicas) | Uso de medicamentos (opioides causam constipação)",
+    expectedPhysical: "Inspeção anal com afastamento delicado das nádegas — visualização da fissura sem necessidade de toque | Localização: posterior (6h) é a mais comum; anterior (12h) mais comum em mulheres pós-parto | Plicoma sentinela: pele redundante na borda inferior da fissura crônica | Fibras do esfíncter interno visíveis no leito: fissura crônica | Toque retal: realizar com cuidado — se espasmo intenso, adiar para após início do tratamento | Anuscopia: contraindicada no momento — programar para retorno",
+    expectedExams: [
+      { exam: "Nenhum exame complementar é obrigatório para o diagnóstico de fissura anal típica — diagnóstico é clínico", justify: "Fissura típica (posterior, linear, com plicoma sentinela) é diagnóstico clínico pela inspeção", expected: "Hemograma normal; pesquisa de sangue oculto positiva fraca pelo sangramento da fissura" },
+      { exam: "Anuscopia (programada para retorno)", justify: "Complementar para avaliar canal anal completo e excluir hemorroida interna ou lesão associada — realizar após início do tratamento quando o espasmo diminuir", expected: "Visualização da fissura e canal anal completo sem outras lesões" },
+      { exam: "Colonoscopia (indicada se atipias: fissura lateral, múltipla, refratária)", justify: "Excluir DII (Crohn) em fissuras atípicas ou refratárias ao tratamento convencional", expected: "Não indicada neste caso típico — reservar para fissura refratária ou atípica" }
+    ],
+    expectedConduct: "Farmacológica: Primeira linha — nitroglicerina tópica 0,2–0,4% (pomada, 2x/dia por 6–8 semanas) — relaxante da musculatura lisa esfincteriana, aumenta perfusão local — ANVISA aprovada para esta indicação; OU diltiazem gel 2% tópico 2x/dia (melhor tolerância local que nitroglicerina) — ambos com eficácia semelhante; analgesia: dipirona 500 mg VO a cada 6h nas primeiras semanas; pomada anestésica local (lidocaína 2%) antes das evacuações para alívio | Não farmacológica: Amolecedores de fezes: lactulose 10 mL VO 1–2x/dia ou macrogol 4000 (seguro na amamentação — MS, 2022); dieta rica em fibras: acréscimo de 25–30g/dia (psílio, frutas, legumes); hidratação: 1,5–2L/dia; banho de assento morno 15 min após evacuação — relaxa o esfíncter e alivia a dor; NÃO forçar a evacuação — orientar a paciente; segunda linha se falha clínica em 8 semanas: toxina botulínica injetável no esfíncter interno | Encaminhamento: Proctologia para esfincterotomia lateral interna (ELI) cirúrgica se falha das medidas clínicas — taxa de cura de 95% mas risco de incontinência leve (< 5%) | Orientações ao paciente: Explicar o mecanismo da fissura e o ciclo constipação-dor-retenção; orientar que o tratamento clínico leva 6–8 semanas; orientar sobre segurança dos medicamentos na amamentação | Seguimento: Retorno em 4 semanas para reavaliação e realização de anuscopia se melhora do espasmo",
+    expectedCommunication: "Apresentação: Identificar-se com acolhimento especial — tema constrangedor para muitos pacientes | Comunicação do diagnóstico: Explicar em linguagem clara e sem julgamento que a lesão é uma fissura, uma rachadura na entrada do ânus, causada pelo esforço evacuatório e fezes ressecadas; desmistificar o câncer como causa | Escuta ativa: Agradecer a confiança da paciente em falar sobre o assunto; validar a dor e o constrangimento; perguntar sobre o impacto na vida diária e na amamentação; discutir a segurança dos medicamentos para o bebê",
+    criticalErrors: [
+      "Não realizar inspeção anal por constrangimento ou omissão — o diagnóstico de fissura é feito pela inspeção",
+      "Forçar o toque retal em presença de espasmo esfincteriano intenso com dor 10/10 — causa mais dor e trauma sem acréscimo diagnóstico",
+      "Prescrever medicamentos contraindicados na amamentação sem verificar a segurança (ex.: certos relaxantes musculares sistêmicos)",
+      "Não orientar amolecedores de fezes — o ciclo constipação-fissura não se rompe sem abordagem do hábito intestinal",
+      "Não suspeitar de DII (Crohn) em fissura lateral ou múltipla — fissura atípica exige investigação adicional"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — FISSURA ANAL CRÔNICA: DIAGNÓSTICO E CONDUTA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Criou ambiente acolhedor e sem julgamento para a paciente abordar queixa anal constrangedora", score: 0.5, ref: "CFM Res. 2232/2019; SBCP, 2022" },
+          { item: "Verificou a segurança dos medicamentos prescritos na amamentação antes de prescrevê-los", score: 0.5, ref: "MS — Medicamentos e amamentação, 2022; RENAME 2022" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou o padrão clínico típico: dor cortante ao defecar seguida de queimação prolongada pós-evacuação", score: 1.0, ref: "SBCP — Consenso em Fissura Anal, 2022" },
+          { item: "Identificou constipação crônica e parto normal recente como fatores etiológicos da fissura", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Investigou medo de evacuar e retenção fecal voluntária como fatores de perpetuação do ciclo", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Investigou características atípicas (localização, multiplicidade) para excluir DII ou outros diagnósticos", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Realizou inspeção anal com afastamento delicado das nádegas e identificou a fissura posterior com plicoma sentinela", score: 1.0, ref: "SBCP, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Não forçou o toque retal em presença de espasmo esfincteriano intenso — interrompeu e programou para retorno", score: 1.0, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou corretamente como fissura crônica (> 6 semanas, bordas endurecidas, fibras do esfíncter visíveis, plicoma)", score: 0.5, ref: "SBCP, 2022" },
+          { item: "Programou anuscopia para retorno após início do tratamento e melhora do espasmo", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Prescreveu nitroglicerina tópica 0,2% ou diltiazem gel 2% como primeira linha para fissura crônica", score: 1.0, ref: "SBCP — Consenso em Fissura Anal, 2022; RENAME 2022" },
+          { item: "Prescreveu amolecedor de fezes (lactulose ou macrogol) seguro para amamentação", score: 0.5, ref: "SBCP, 2022; MS — Medicamentos e amamentação, 2022; RENAME 2022" },
+          { item: "Orientou banho de assento morno, dieta rica em fibras e hidratação adequada", score: 0.5, ref: "SBCP, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 20,
+  title: "Pernas pesadas, varizes e ferida na perna que não cicatriza",
+  sub: "Ambulatório de Cirurgia Vascular — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "insuficiência venosa crônica",
+  level: "moderado",
+  cardAccent: "#1F618D",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Vascular de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "M.S., 58 anos, feminino, caixa de supermercado, obesa, com varizes há 20 anos.",
+    complaint: "Pernas pesadas, edema no fim do dia e úlcera na perna esquerda que não cicatriza há 3 meses.",
+    tasks: [
+      "Realize a anamnese dirigida ao quadro de insuficiência venosa crônica e identifique os fatores de risco.",
+      "Realize o exame físico vascular dos membros inferiores e descreva os achados.",
+      "Classifique a insuficiência venosa pela classificação CEAP.",
+      "Proponha a conduta terapêutica clínica e cirúrgica baseada na classificação.",
+      "Diferencie a úlcera venosa de outras etiologias (arterial, neuropática) e oriente a paciente sobre os cuidados."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "142/88 mmHg",
+      FC: "78 bpm",
+      FR: "16 irpm",
+      Tax: "36,5°C",
+      Peso: "96 kg",
+      Altura: "1,62 m",
+      IMC: "36,6 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica. Mucosas normocoradas, anictérica. Obesa. Sem alterações ao exame geral.",
+    physicalSeg: "MMII: Varizes tronculares e reticulares bilaterais, predominando em MMII esquerdo. Edema mole 2+/4+ em tornozelos e 1/3 inferior das pernas bilateralmente, maior à esquerda. Hiperpigmentação cutânea em área maleolar medial esquerda (lipodermatosclerose). Úlcera ativa na face medial do 1/3 inferior da perna esquerda, medindo 4 x 3 cm, com bordas irregulares, fundo limpo com tecido de granulação, exsudato seroso moderado, sem necrose, sem sinais de infecção (sem eritema, calor, edema local excessivo ou odor). Ausência de úlcera contralateral. Pulsos pediosos e tibiais posteriores presentes e simétricos bilateralmente. ITB (índice tornozelo-braquial) calculado: 1,0 à esquerda. Ausência de dedos em garra ou amiotrofia. Sinal de Trendelenburg positivo à esquerda (avaliar insuficiência da veia safena magna). | CARDIOVASCULAR: Bulhas rítmicas, sem sopros.",
+    labs: [
+      { test: "Hemograma completo", val: "Dentro dos limites normais", ref: "—", alt: false },
+      { test: "Glicemia de jejum", val: "94 mg/dL", ref: "70–99 mg/dL", alt: false },
+      { test: "HbA1c", val: "5,6%", ref: "< 5,7%", alt: false },
+      { test: "Albumina sérica", val: "3,6 g/dL", ref: "3,5–5,0 g/dL", alt: false },
+      { test: "PCR", val: "18 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Swab da úlcera (cultura)", val: "Staphylococcus aureus sensível à oxacilina (OSSA) — colonização sem infecção ativa", ref: "—", alt: false }
+    ],
+    image: "DUPLEX SCAN DE MMII (ultrassonografia vascular com Doppler): Sistema venoso superficial: insuficiência da veia safena magna esquerda em toda a extensão, com refluxo ao Doppler (> 0,5 segundos) confirmado. Varizes colaterais tributárias extensas à esquerda. Sistema venoso profundo: veias femoral comum, femoral superficial, poplítea e tibiais permeáveis bilateralmente, sem sinais de trombose. Refluxo venoso profundo ausente.",
+    note: "Caso com ator. A atriz deve mostrar a perna esquerda com maquiagem simulando a úlcera e varizes. Entregar os sinais vitais ao início. Entregar laboratório quando solicitado. Entregar resultado do duplex scan quando o candidato solicitar. Atentar se o candidato calcula o ITB para diferenciar úlcera venosa de arterial e se classifica pela CEAP.",
+    patientProfile: "M.S., 58 anos, feminino. Caixa de supermercado — trabalha em pé 8 horas por dia há 25 anos. Dois partos normais. Obesidade grau II (IMC 36,6). Hipertensa em uso de losartana 50 mg/dia. Tabagismo leve (10 cigarros/dia há 20 anos). Varizes diagnosticadas há 20 anos, sem tratamento. Sem DM (glicemia e HbA1c normais).",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, eu tô com essa ferida na perna há três meses e não cicatriza de jeito nenhum. Tô usando curativo em casa mas não tá melhorando. E as pernas ficam muito pesadas no fim do dia, incham bastante."
+      },
+      {
+        trigger: "Sobre a úlcera",
+        speech: "Começou com uma machucada pequena que eu nem lembro bem como foi. Aí foi crescendo, não fechou mais. Não tá infeccionando, não tem pus, mas o curativo fica molhado de um líquido amarelado claro. Não dói muito, só uma ardência às vezes."
+      },
+      {
+        trigger: "Sobre a dor nas pernas",
+        speech: "As pernas ficam pesadas, cansadas, doem um pouco no fim do dia. Melhora quando eu coloco os pés pra cima, quando fico deitada. Piora quando fico muito tempo em pé no serviço."
+      },
+      {
+        trigger: "Sobre as varizes",
+        speech: "Tenho varizes há muito tempo, desde que minha filha mais velha nasceu, há uns 20 anos. Fui numa consulta uma vez mas nunca fiz nada porque fiquei com medo e o dinheiro não dava."
+      },
+      {
+        trigger: "Sobre o trabalho",
+        speech: "Trabalho de caixa de supermercado, fico em pé o dia todo, umas 8 horas. Há 25 anos nisso. Acho que prejudicou muito as minhas pernas."
+      },
+      {
+        trigger: "Sobre o inchaço",
+        speech: "Incha bastante no fim do dia, principalmente aqui no tornozelo e na parte baixa da perna. De manhã quando acordo tá melhor. Uso meia calça de compressão às vezes mas é difícil de colocar por causa do peso."
+      },
+      {
+        trigger: "Sobre doenças como diabetes",
+        speech: "Não, não tenho diabetes não. Faço exame de sangue todo ano, o açúcar sempre normal. Tenho pressão alta, tomo losartana."
+      },
+      {
+        trigger: "Sobre tabagismo",
+        speech: "Fumo umas 10 cigarros por dia há uns 20 anos. Já tentei parar mas é difícil."
+      },
+      {
+        trigger: "Sobre tratamentos anteriores",
+        speech: "Só faço curativo em casa com gaze e pomada que comprei na farmácia. Nunca fui a um especialista de veias antes. Achei que ia cicatrizar sozinha mas não foi."
+      },
+      {
+        trigger: "Pergunta ativa — Vai precisar amputar a perna doutor?",
+        speech: "Doutor, isso pode virar uma coisa séria? Vai precisar amputar? Fiquei com medo por causa da ferida que não fecha."
+      },
+      {
+        trigger: "Pergunta ativa — Tem cirurgia pra isso?",
+        speech: "As varizes podem ser operadas? E essa ferida, tem como fechar mais rápido com algum tratamento?"
+      }
+    ],
+    hiddenInfo: "Já usou meia de compressão por 2 semanas com melhora parcial da úlcera, mas parou de usar porque achava difícil de calçar pelo peso — dado relevante pois confirma o benefício e a indicação da meiaelástica; só menciona se o candidato perguntar sobre uso prévio de meia elástica. | Histórico de TVP no pós-parto do primeiro filho — trombose venosa profunda como fator contribuinte para a insuficiência venosa; só menciona se o candidato perguntar sobre trombose ou eventos vasculares anteriores.",
+    actorBehavior: "Paciente simpática e extrovertida, mas claramente preocupada com a ferida e com o medo de amputação. Colaborativa no exame. Mostra a perna com naturalidade. Fica aliviada quando o médico explica que úlcera venosa não leva à amputação como a diabética. Interessada nas opções de tratamento."
+  },
+  instC: {
+    diagnosis: "Insuficiência venosa crônica CEAP C6s (úlcera venosa ativa, sintomática) — insuficiência da veia safena magna esquerda confirmada pelo duplex scan. Úlcera venosa ativa de 4 x 3 cm na face medial do 1/3 inferior da perna esquerda, sem infecção ativa. Fatores contribuintes: obesidade, tabagismo, trabalho prolongado em ortostase, TVP prévia.",
+    differentials: [
+      "Úlcera arterial — excluída pelo ITB de 1,0 (normal), pela localização medial (arterial é geralmente lateral ou em ponta dos dedos), pela ausência de dor em repouso e pela presença de pulsos preservados",
+      "Úlcera neuropática — excluída pela ausência de DM (glicemia e HbA1c normais) e pela preservação da sensibilidade",
+      "Úlcera mista (venosa + arterial) — excluída pelo ITB normal; mas sempre avaliar em tabagistas",
+      "Pioderma gangrenoso — diferencial de úlcera de difícil cicatrização; excluído pela ausência de bordas violáceas, dor intensa e doença inflamatória sistêmica subjacente"
+    ],
+    context: "Paciente feminina, 58 anos, com insuficiência venosa crônica avançada (CEAP C6s), úlcera ativa de 3 meses, obesa, tabagista, com insuficiência da safena magna esquerda confirmada por duplex scan. ITB normal exclui componente arterial. Tratamento multimodal: curativo compressivo + terapia compressiva + cirurgia das varizes após cicatrização.",
+    justify: "Úlcera venosa: localização medial, bordas irregulares, fundo com granulação, exsudato seroso, edema associado, piora com ortostase, melhora com elevação — padrão clássico. ITB de 1,0 confirma circulação arterial preservada, permitindo a terapia compressiva (contraindicada se ITB < 0,6). CEAP C6 = úlcera ativa; 's' = sintomático. Duplex scan confirma insuficiência da safena magna — etiologia tratável cirurgicamente (ablação endovenosa ou stripping).",
+    expectedAnamnesis: "Caracterizar a úlcera: localização, tamanho, início, evolução, dor, exsudato | Edema: horário (vespertino = venoso), localização, simetria | Varizes: tempo, extensão, tratamentos anteriores | Sensação de peso e alívio com elevação dos MMII | Trabalho em ortostase | Fatores de risco: obesidade, gravidez, tabagismo, TVP prévia | Comorbidades: DM (úlcera neuropática), DAP (úlcera arterial) | Tratamentos prévios: compressão, curativo, cirurgia de varizes",
+    expectedPhysical: "Inspeção: varizes, hiperpigmentação, lipodermatosclerose, úlcera | Avaliação da úlcera: localização (medial = venosa), tamanho, fundo, bordas, exsudato, sinais de infecção | Palpação: edema (cacifo), temperatura, pulsos | ITB: obrigatório para diferenciar úlcera venosa de arterial antes de prescrever compressão | Sinal de Trendelenburg: insuficiência da safena magna | Doppler portátil: avaliar pulsos periféricos e refluxo venoso",
+    expectedExams: [
+      { exam: "ITB (índice tornozelo-braquial)", justify: "Obrigatório para excluir doença arterial periférica antes de prescrever terapia compressiva — compressão em DAP pode causar isquemia", expected: "ITB 1,0 = normal, terapia compressiva liberada" },
+      { exam: "Duplex scan (ultrassonografia vascular com Doppler) de MMII", justify: "Avaliar sistema venoso superficial e profundo, localizar refluxo, excluir TVP — orienta o planejamento cirúrgico", expected: "Insuficiência da safena magna com refluxo, sistema profundo pérvio" },
+      { exam: "Swab da úlcera para cultura", justify: "Identificar infecção bacteriana ativa — colonização não exige antibiótico sistêmico", expected: "S. aureus — colonização sem infecção ativa, antibiótico não indicado" },
+      { exam: "Glicemia e HbA1c", justify: "Excluir DM como causa de úlcera neuropática associada", expected: "Normais — DM excluído" }
+    ],
+    expectedConduct: "Farmacológica: Diosmina + hesperidina 900/100 mg VO 1x/dia (flebotônico — adjuvante no tratamento da IVC e cicatrização da úlcera venosa — ANVISA aprovado); NÃO indicar antibiótico sistêmico em úlcera venosa colonizada sem infecção ativa (S. aureus = colonização); analgesia se dor: dipirona 500 mg VO a cada 6h | Não farmacológica: Curativo compressivo com bota de Unna (curativo de zinco com bandagem compressiva) OU curativo com espuma de poliuretano + bandagem de compressão de 4 camadas — cicatriza > 70% em 12 semanas; meia elástica de compressão classe II (20–30 mmHg) após cicatrização e definitivamente para prevenir recidiva; elevação dos MMII; redução de peso; cessação do tabagismo; cirurgia de varizes (ablação endovenosa da safena magna por laser ou radiofrequência, ou stripping) após cicatrização da úlcera — previne recidiva | Encaminhamento: Cirurgia Vascular para planejamento da ablação da safena magna após cicatrização | Orientações ao paciente: Explicar que a ferida é venosa (não é das artérias, não vai amputar); explicar o mecanismo; orientar sobre a compressão, o curativo e a cirurgia de varizes como prevenção de recidiva | Seguimento: Retorno em 2 semanas para avaliação da úlcera; meia elástica definitiva após cicatrização; cirurgia de varizes em 3–6 meses",
+    expectedCommunication: "Apresentação: Identificar-se e tranquilizar a paciente sobre o medo de amputação | Comunicação do diagnóstico: Explicar que a ferida é causada pelo mau funcionamento das veias da perna, não das artérias, e que isso não leva à amputação; é tratável | Escuta ativa: Perguntar sobre o impacto no trabalho e na qualidade de vida; abordar tabagismo e peso sem julgamento",
+    criticalErrors: [
+      "Não calcular o ITB antes de prescrever terapia compressiva — compressão em DAP com ITB < 0,6 causa isquemia grave",
+      "Prescrever antibiótico sistêmico em úlcera venosa com colonização sem sinais de infecção ativa — uso inapropriado de antibiótico",
+      "Não indicar duplex scan para avaliar o sistema venoso e planejar a cirurgia de varizes",
+      "Não orientar meia elástica de compressão como medida principal do tratamento conservador",
+      "Confundir úlcera venosa com úlcera arterial sem realizar o ITB — condutas opostas"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — INSUFICIÊNCIA VENOSA CRÔNICA E ÚLCERA VENOSA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Tranquilizou a paciente sobre o medo de amputação, explicando a diferença entre úlcera venosa e arterial", score: 0.5, ref: "CFM Res. 2232/2019; SBACV, 2022" },
+          { item: "Abordou tabagismo e obesidade como fatores de risco sem julgamento moral", score: 0.5, ref: "CFM Res. 2232/2019; INCA/MS, 2023" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Caracterizou a úlcera: localização medial, exsudato seroso, fundo com granulação, piora com ortostase e melhora com elevação — padrão venoso", score: 1.0, ref: "SBACV — Consenso em IVC, 2022" },
+          { item: "Investigou TVP prévia (pós-parto do primeiro filho) como fator etiológico para IVC pós-trombótica", score: 0.5, ref: "SBACV, 2022" },
+          { item: "Investigou trabalho prolongado em ortostase (25 anos) como fator de risco primário para IVC", score: 0.5, ref: "SBACV, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Calculou o ITB (1,0) para excluir doença arterial periférica antes de prescrever terapia compressiva", score: 1.0, ref: "SBACV, 2022; ABI measurement guidelines ⚠️" },
+          { item: "Identificou lipodermatosclerose, hiperpigmentação e varizes como achados de IVC avançada (CEAP C4–C6)", score: 0.5, ref: "SBACV, 2022" },
+          { item: "Realizou ou indicou sinal de Trendelenburg para avaliar insuficiência da veia safena magna", score: 0.5, ref: "SBACV, 2022; Semiologia Médica — Porto, 8ª ed., 2019" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou corretamente como CEAP C6s (úlcera venosa ativa sintomática)", score: 0.5, ref: "SBACV, 2022; Classificação CEAP ⚠️" },
+          { item: "Solicitou duplex scan para confirmar insuficiência venosa e planejar intervenção cirúrgica", score: 1.0, ref: "SBACV, 2022" },
+          { item: "Não indicou antibiótico sistêmico para colonização por S. aureus sem infecção ativa — conduta correta", score: 0.5, ref: "SBACV, 2022; CFM — Uso racional de antibióticos" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Prescreveu curativo compressivo (bota de Unna ou 4 camadas) como principal medida para cicatrização da úlcera venosa", score: 1.0, ref: "SBACV — Consenso em IVC, 2022" },
+          { item: "Orientou meia elástica de compressão classe II definitiva após cicatrização para prevenção de recidiva", score: 0.5, ref: "SBACV, 2022" },
+          { item: "Indicou ablação endovenosa da safena magna após cicatrização para prevenção de recidiva", score: 0.5, ref: "SBACV, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 21,
+  title: "Dor na panturrilha ao caminhar que melhora com o repouso",
+  sub: "Ambulatório de Cirurgia Vascular — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "doença arterial periférica",
+  level: "moderado",
+  cardAccent: "#B03A2E",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Vascular de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "O.R., 66 anos, masculino, aposentado, tabagista, diabético e hipertenso.",
+    complaint: "Dor nas panturrilhas ao caminhar cerca de 200 metros que alivia completamente com o repouso, há 8 meses, progressivamente piorando.",
+    tasks: [
+      "Realize a anamnese e caracterize a claudicação intermitente quanto à distância, progressão e impacto funcional.",
+      "Realize o exame físico vascular dos membros inferiores e identifique os achados de isquemia periférica.",
+      "Calcule ou solicite o índice tornozelo-braquial (ITB) e interprete o resultado.",
+      "Classifique a gravidade da DAP pela classificação de Fontaine e proponha a conduta adequada.",
+      "Identifique os fatores de risco cardiovascular modificáveis e proponha o tratamento clínico otimizado."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "158/96 mmHg",
+      FC: "76 bpm",
+      FR: "16 irpm",
+      Tax: "36,4°C",
+      Peso: "82 kg",
+      Altura: "1,68 m",
+      IMC: "29,0 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientado, eupneico, afebril. Mucosas normocoradas. Sem alterações ao exame geral. Fácies de preocupação.",
+    physicalSeg: "MMII: Ausência de pelos no dorso dos pés bilateralmente (rarefação pilosa). Pele fria e seca nos 1/3 inferiores das pernas e pés bilateralmente. Palidez à elevação de 45° e rubor à dependência em MMII esquerdo (sinal de Buerger positivo à esquerda). Sem úlceras ou gangrena. Pulsos: femoral presente bilateralmente; poplíteo diminuído à esquerda e ausente à direita; tibial posterior ausente bilateralmente; pedioso ausente bilateralmente. ITB calculado: 0,52 à esquerda e 0,48 à direita. | CARDIOVASCULAR: Bulhas rítmicas, sopro sistólico audível em região ilíaca esquerda à ausculta abdominal. | ABDOME: Flácido, sem visceromegalias. Sopro sistólico em epigástrio e região ilíaca.",
+    labs: [
+      { test: "Hemoglobina", val: "13,8 g/dL", ref: "13,5–17,5 g/dL", alt: false },
+      { test: "Leucócitos", val: "9.200/mm³", ref: "4.000–11.000/mm³", alt: false },
+      { test: "Glicemia de jejum", val: "188 mg/dL", ref: "70–99 mg/dL", alt: true },
+      { test: "HbA1c", val: "9,2%", ref: "< 7,0%", alt: true },
+      { test: "LDL-colesterol", val: "142 mg/dL", ref: "< 70 mg/dL (alto risco CV)", alt: true },
+      { test: "HDL-colesterol", val: "32 mg/dL", ref: "> 40 mg/dL", alt: true },
+      { test: "Triglicérides", val: "268 mg/dL", ref: "< 150 mg/dL", alt: true },
+      { test: "Creatinina", val: "1,3 mg/dL", ref: "0,7–1,2 mg/dL", alt: true },
+      { test: "PCR de alta sensibilidade", val: "4,8 mg/L", ref: "< 1,0 mg/L (baixo risco CV)", alt: true }
+    ],
+    image: "ANGIOTOMOGRAFIA DE AORTA E MMII: Oclusão da artéria ilíaca externa direita em sua totalidade com circulação colateral desenvolvida. Estenose crítica (> 80%) da artéria ilíaca externa esquerda no terço médio. Artérias femorais comuns e superficiais com calcificações parietais difusas e irregulares, com estenoses segmentares de 40–60% em femoral superficial bilateral. Artérias poplíteas de calibre reduzido. Artérias tibiais e fibulares com calcificações difusas.",
+    note: "Caso com ator. O ator deve demonstrar a limitação funcional pela claudicação ao relatar que para ao caminhar pela dor. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar angioTC quando o candidato solicitar. Atentar se o candidato calcula o ITB corretamente e classifica pela Fontaine.",
+    patientProfile: "O.R., 66 anos, masculino. Aposentado (ex-pedreiro). Tabagista ativo (40 anos-maço). Diabetes tipo 2 há 12 anos — uso de metformina 850 mg 2x/dia e glibenclamida 5 mg/dia, sem controle adequado (HbA1c 9,2%). HAS há 15 anos — uso de amlodipina 5 mg/dia e enalapril 10 mg/dia. Dislipidemia sem tratamento. Nega doença coronariana ou AVC prévios, mas refere 'angina estável' leve ao esforço moderado — não investigada.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, faz uns 8 meses que quando eu ando muito, a panturrilha doi. Começo a andar bem, mas depois de uns 200 metros começa uma dor forte na batata da perna. Aí tenho que parar. Quando paro, em uns 2 a 3 minutos a dor passa. Daí começo de novo."
+      },
+      {
+        trigger: "Sobre a progressão",
+        speech: "Tá piorando. Quando começou dava pra andar umas 4 quadras antes de doer. Hoje em dia não passo de 2 quadras. Às vezes menos. Tô tendo que parar cada vez mais."
+      },
+      {
+        trigger: "Sobre dor em repouso",
+        speech: "Em repouso não doi não. A dor passa quando paro de andar, umas 2 ou 3 minutinhos e some. Mas quando ando de novo, volta."
+      },
+      {
+        trigger: "Sobre os pés",
+        speech: "Os pés ficam frios, sabe? E às vezes ficam roxos quando eu fico muito tempo sentado, daí quando levanto ficam vermelhos por um tempo. Achei esquisito isso."
+      },
+      {
+        trigger: "Sobre tabagismo",
+        speech: "Fumo faz 40 anos. Umas 20 cigarras por dia. Já tentei parar mas não consegui. Sei que faz mal, mas é muito difícil."
+      },
+      {
+        trigger: "Sobre o diabetes",
+        speech: "Tenho diabetes há 12 anos. Tomo metformina e aquela pílula amarela... glibenclamida. Mas confesso que não me cuido muito na alimentação não. Sei que o açúcar tá alto."
+      },
+      {
+        trigger: "Sobre o coração",
+        speech: "O cardiologista falou que tenho um probleminha no coração, que fico com dor no peito quando ando muito rápido ou subo ladeira. Mas disse que era leve. Faz 2 anos que não vou lá."
+      },
+      {
+        trigger: "Sobre problemas anteriores nas pernas",
+        speech: "Nunca tive problema de veias, nunca tive TVP. Mas já senti dor nas pernas há muito tempo, sabe? Sempre achei que era cansaço do trabalho de pedreiro."
+      },
+      {
+        trigger: "Sobre histórico familiar",
+        speech: "Meu pai morreu de infarto com 62 anos. Meu irmão também teve infarto. Na família todo mundo tem pressão alta e diabetes."
+      },
+      {
+        trigger: "Pergunta ativa — Vou precisar amputar doutor?",
+        speech: "Doutor, tô com medo de perder a perna. Já vi muita gente diabética que amputou. Isso tá indo pra esse caminho?"
+      },
+      {
+        trigger: "Pergunta ativa — Tem cirurgia pra melhorar?",
+        speech: "Tem como operar pra melhorar? Ou só com remédio?"
+      }
+    ],
+    hiddenInfo: "Relata que às vezes sente formigamento nos pés à noite mas atribui ao diabetes — neuropatia diabética associada pode mascarar a dor isquêmica; só menciona se o candidato perguntar sobre sintomas noturnos ou parestesias nos pés. | Etilismo moderado (4–5 doses diárias) que não menciona espontaneamente — fator de risco adicional para DAP e dificuldade no controle do DM; só menciona se o candidato perguntar diretamente sobre uso de álcool de forma aberta.",
+    actorBehavior: "Paciente preocupado com a possibilidade de amputação. Relata a claudicação de forma clara. Demonstra dificuldade para aceitar a mudança de hábitos (tabagismo, alimentação). Fica aliviado quando o candidato explica que há tratamento. Tende a minimizar o uso de álcool."
+  },
+  instC: {
+    diagnosis: "Doença arterial periférica bilateral — Fontaine IIb (claudicação limitante, < 200 metros). ITB 0,48–0,52 (isquemia moderada a grave). Estenose crítica ilíaca esquerda e oclusão ilíaca direita confirmadas pela angioTC. Fatores de risco múltiplos não controlados: DM descompensado (HbA1c 9,2%), tabagismo pesado, dislipidemia, HAS. Alto risco cardiovascular.",
+    differentials: [
+      "Estenose espinhal (claudicação neurogênica) — diferencial de dor em MMII ao caminhar; excluída pelo ITB baixo, pelos pulsos abolidos e pelo sinal de Buerger positivo — claudicação neurogênica melhora com flexão da coluna, não apenas com repouso",
+      "Síndrome compartimental crônica — diferencial de dor em panturrilha ao esforço em jovens atletas; excluída pela faixa etária, pelos fatores de risco e pelo ITB baixo",
+      "Tromboangeíte obliterante (doença de Buerger) — diferencial em tabagista jovem; menos provável pela idade (66 anos) e pela associação com DM e dislipidemia",
+      "Insuficiência venosa crônica — diferencial de dor em MMII; excluída pela ausência de varizes, edema vespertino, úlcera medial e pela presença de pulsos abolidos"
+    ],
+    context: "Paciente idoso masculino com múltiplos fatores de risco cardiovascular não controlados (tabagismo, DM descompensado, dislipidemia, HAS) e DAP bilateral Fontaine IIb. ITB < 0,5 indica isquemia grave com risco de progressão para isquemia crítica. Tratamento clínico otimizado obrigatório; revascularização indicada se claudicação limitante.",
+    justify: "ITB < 0,9 confirma DAP; ITB < 0,5 indica isquemia grave. Fontaine IIb = claudicação intermitente limitante (< 200 metros). Sinal de Buerger positivo (palidez à elevação + rubor à dependência) indica insuficiência arterial grave. Sopro ilíaco à ausculta sugere doença proximal — confirmada pela angioTC. DM + tabagismo + dislipidemia = maior risco de progressão para isquemia crítica e amputação.",
+    expectedAnamnesis: "Caracterizar claudicação: distância de início, bilateralidade, evolução, alívio com repouso | Dor em repouso (Fontaine III) — noturna, aliviada com dependência | Úlceras ou gangrena (Fontaine IV) | Tabagismo: carga em anos-maço | DM: controle, complicações, HbA1c | Dislipidemia: colesterol e triglicérides | HAS: controle, medicamentos | Histórico de DAC, AVC, cirurgia vascular | Histórico familiar cardiovascular | Medicamentos: antiagregantes, estatinas",
+    expectedPhysical: "Inspeção: rarefação pilosa, pele seca e fria, cianose, úlceras, gangrena | Sinal de Buerger: palidez à elevação de 45° + rubor postural à dependência | Palpação de pulsos: femoral, poplíteo, tibial posterior, pedioso — bilateral e comparativa | Ausculta: sopros em aorta abdominal e ilíacas | ITB: medir com Doppler portátil ou derivar | Temperatura dos pés: comparativa",
+    expectedExams: [
+      { exam: "ITB (índice tornozelo-braquial)", justify: "Confirmar e quantificar a DAP — exame não invasivo de triagem", expected: "< 0,5 em ambos os lados — isquemia grave" },
+      { exam: "Angiotomografia de aorta e MMII", justify: "Anatomia das lesões arteriais para planejamento da revascularização", expected: "Oclusão ilíaca direita e estenose crítica ilíaca esquerda" },
+      { exam: "ECG e avaliação cardíaca", justify: "Paciente com sintomas de angina estável — risco cardiovascular global elevado, cardiopatia isquêmica deve ser avaliada", expected: "Avaliar isquemia miocárdica associada" },
+      { exam: "Perfil lipídico completo, glicemia e HbA1c", justify: "Avaliar e otimizar os fatores de risco modificáveis", expected: "LDL elevado, HbA1c 9,2% — DM descompensado" },
+      { exam: "Doppler vascular de MMII (duplex scan)", justify: "Avaliação hemodinâmica e anatômica das estenoses; complementar à angioTC", expected: "Confirmar oclusões e estenoses identificadas" }
+    ],
+    expectedConduct: "Farmacológica: Antiagregação: AAS 100 mg/dia VO (RENAME 2022) — reduz eventos cardiovasculares em DAP; estatina de alta intensidade: atorvastatina 40–80 mg/dia VO (meta LDL < 70 mg/dL — alto risco CV; RENAME 2022); otimização do DM: ajuste da medicação hipoglicemiante (considerar inibidor de SGLT-2 ou GLP-1 agonista com benefício cardiovascular comprovado — SBD 2023; atenção à RENAME 2022 para disponibilidade no SUS); cilostazol 100 mg VO 2x/dia — melhora a distância de claudicação (ANVISA aprovado para claudicação — contraindicado em IC); anti-hipertensivo: manter e otimizar (meta < 130/80 mmHg no diabético — SBC/SBD 2023) | Não farmacológica: Cessação do tabagismo — intervenção mais eficaz para reduzir progressão da DAP (encaminhar para grupo de cessação + vareniclina/bupropiona conforme disponibilidade); programa de exercício supervisionado (caminhada até o limiar de dor, 30–60 min, 3x/semana) — aumenta a distância de claudicação em 50–150%; cuidado rigoroso dos pés (DM + DAP = alto risco de úlcera e amputação); controle dietético; revascularização: angioplastia transluminal percutânea (ATP) com stent para lesão ilíaca estenótica/oclusiva — primeira escolha para lesões ilíacas (menor morbidade que cirurgia); cirurgia de bypass aorto-bifemoral para lesões extensas | Encaminhamento: Cirurgia Vascular para planejamento de revascularização; Cardiologia para investigação de DAC (angina estável não investigada); Endocrinologia para otimização do DM | Orientações ao paciente: Explicar que as artérias das pernas estão estreitadas; enfatizar a urgência da cessação do tabagismo; ensinar o cuidado dos pés; informar sinais de isquemia crítica (dor em repouso, úlcera = urgência vascular) | Seguimento: Retorno em 4 semanas para reavaliação clínica e laboratorial; ITB de controle após 3 meses",
+    expectedCommunication: "Apresentação: Identificar-se e acolher o medo de amputação | Comunicação do diagnóstico: Explicar que as artérias das pernas estão entupidas pela gordura e pelo cigarro; que a situação é séria mas tratável; que a cessação do tabagismo é a medida mais importante | Escuta ativa: Abordar o tabagismo com técnicas motivacionais; validar a dificuldade de parar; não julgar",
+    criticalErrors: [
+      "Não calcular ou não solicitar o ITB — exame essencial para confirmar e quantificar a DAP",
+      "Não prescrever AAS e estatina de alta intensidade em paciente com DAP e alto risco cardiovascular — omissão de terapia modificadora de doença",
+      "Não investigar a angina estável referida — paciente com DAP tem alta prevalência de DAC simultânea",
+      "Não abordar a cessação do tabagismo — é a intervenção mais eficaz para reduzir a progressão da DAP",
+      "Não orientar sobre sinais de isquemia crítica (dor em repouso, úlcera) que exigem atendimento de urgência"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — DOENÇA ARTERIAL PERIFÉRICA: DIAGNÓSTICO E CONDUTA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Tranquilizou o paciente sobre o medo de amputação e explicou as opções de tratamento disponíveis", score: 0.5, ref: "CFM Res. 2232/2019; SBACV, 2022" },
+          { item: "Abordou o tabagismo com técnica motivacional, sem julgamento, e ofereceu apoio para cessação", score: 0.5, ref: "INCA/MS — Tabagismo, 2023; SBACV, 2022" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Caracterizou a claudicação intermitente: distância de início (200m), alívio com repouso, bilateral, progressiva", score: 1.0, ref: "SBACV — Consenso em DAP, 2022" },
+          { item: "Investigou dor em repouso e úlceras para excluir Fontaine III e IV (isquemia crítica)", score: 0.5, ref: "SBACV, 2022" },
+          { item: "Identificou todos os fatores de risco cardiovascular: tabagismo pesado, DM descompensado, dislipidemia, HAS, histórico familiar", score: 1.0, ref: "SBACV, 2022; SBC — Risco cardiovascular, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Avaliou pulsos de forma comparativa e bilateral (femoral, poplíteo, tibial posterior, pedioso)", score: 0.5, ref: "SBACV, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Realizou sinal de Buerger (palidez à elevação + rubor à dependência) e identificou positividade à esquerda", score: 0.5, ref: "SBACV, 2022" },
+          { item: "Calculou ou indicou o ITB e interpretou corretamente (< 0,5 = isquemia grave)", score: 1.0, ref: "SBACV, 2022; ABI measurement ⚠️" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou a DAP como Fontaine IIb (claudicação limitante < 200m) e indicou conduta adequada ao estágio", score: 0.5, ref: "SBACV, 2022; Classificação de Fontaine ⚠️" },
+          { item: "Solicitou angioTC de aorta e MMII para planejamento de revascularização", score: 0.5, ref: "SBACV, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Prescreveu AAS 100 mg/dia e estatina de alta intensidade (atorvastatina 40–80 mg) — terapia antiaterosclerótica obrigatória na DAP", score: 1.0, ref: "SBACV, 2022; SBC, 2022; RENAME 2022" },
+          { item: "Prescreveu cilostazol 100 mg 2x/dia para melhora da claudicação — contraindicações verificadas", score: 0.5, ref: "SBACV, 2022; RENAME 2022" },
+          { item: "Indicou encaminhamento para Cirurgia Vascular (revascularização) e Cardiologia (angina não investigada)", score: 0.5, ref: "SBACV, 2022; SBC, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 22,
+  title: "Dor que começou no umbigo e foi para o lado direito da barriga",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "apendicite aguda",
+  level: "moderado",
+  cardAccent: "#117A65",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno noturno. Paciente padronizado (ator).",
+    patient: "L.S., 19 anos, masculino, estudante, sem comorbidades.",
+    complaint: "Dor que começou no umbigo ontem à noite, foi para o lado direito da barriga ao longo do dia, com febre, náuseas e vômitos.",
+    tasks: [
+      "Realize a anamnese completa e caracterize a migração da dor como dado diagnóstico.",
+      "Realize o exame físico abdominal pertinente e identifique os sinais clínicos de apendicite.",
+      "Aplique um escore clínico validado (Alvarado ou AIR) e calcule o risco de apendicite.",
+      "Solicite e interprete os exames complementares e proponha o diagnóstico.",
+      "Proponha a conduta cirúrgica e explique o procedimento ao paciente."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "118/74 mmHg",
+      FC: "98 bpm",
+      FR: "18 irpm",
+      Tax: "38,2°C",
+      Peso: "72 kg",
+      Altura: "1,76 m",
+      IMC: "23,2 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular estado geral, consciente, orientado, com dor abdominal moderada a intensa (EVA 7/10). Mucosas normocoradas, anictérico, levemente sudoreico. Posição antálgica com quadril direito semifletido.",
+    physicalSeg: "ABDOME: Plano. Dor à palpação localizada em fossa ilíaca direita (FID), com ponto de McBurney positivo. Sinal de Blumberg positivo em FID (descompressão dolorosa localizada). Sinal de Rovsing positivo (palpação da FIE provoca dor na FID). Sinal do psoas positivo (extensão da coxa direita provoca dor). Ruídos hidroaéreos presentes e normais. Sem rigidez abdominal generalizada. Sem distensão. | TOQUE RETAL: Dor à palpação do fundo de saco de Douglas à direita (Douglas doloroso à direita). | CARDIOVASCULAR: Taquicárdico, bulhas rítmicas.",
+    labs: [
+      { test: "Hemoglobina", val: "14,8 g/dL", ref: "13,5–17,5 g/dL", alt: false },
+      { test: "Leucócitos", val: "16.200/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "84% (com desvio à esquerda)", ref: "50–70%", alt: true },
+      { test: "PCR", val: "88 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Ureia", val: "28 mg/dL", ref: "15–45 mg/dL", alt: false },
+      { test: "Creatinina", val: "0,8 mg/dL", ref: "0,7–1,2 mg/dL", alt: false },
+      { test: "Beta-hCG", val: "Não aplicável (masculino)", ref: "—", alt: false }
+    ],
+    image: "ULTRASSONOGRAFIA DE ABDOME (FID): Apêndice vermiforme visualizado na FID, com diâmetro de 11 mm (> 6 mm = anormal), paredes espessadas, incompressível, sem peristalse. Ausência de fecalito. Pequena quantidade de líquido livre peripendicular. Ausência de perfuração identificada. Achados compatíveis com apendicite aguda sem perfuração. | TOMOGRAFIA DE ABDOME COM CONTRASTE (solicitada pela US inconclusiva inicialmente): Apêndice vermiforme com 11 mm de diâmetro, paredes espessadas com realce pelo contraste, gordura pericecal com densificação inflamatória. Sem pneumoperitônio. Sem abscesso.",
+    note: "Caso com ator. O ator deve entrar curvado, com dor em FID, posição antálgica com coxa direita semifletida. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar USG quando solicitada. Entregar TC somente se o candidato solicitar após a USG. Atentar se o candidato aplica o escore de Alvarado e se indica a apendicectomia de forma adequada.",
+    patientProfile: "L.S., 19 anos, masculino. Estudante universitário, solteiro. Sem comorbidades. Sem medicamentos. Nega alergias. Sem cirurgias prévias. Última refeição há 6 horas (jantar leve).",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, eu tô com uma dor de barriga que começou ontem à noite. Começou aqui no umbigo, uma dor difusa. Aí fui dormir achando que passava, mas quando acordei hoje a dor tinha ido pra esse lado aqui, direito, e ficou muito mais intensa. Tô com febre e já vomitei duas vezes."
+      },
+      {
+        trigger: "Sobre a migração da dor",
+        speech: "É, começou de madrugada, aqui no meio, no umbigo. Achei que era cólica. Só que foi piorando e foi descendo pra esse lado direito, aqui embaixo. Agora tá bem localizada aqui. Qualquer movimento piora."
+      },
+      {
+        trigger: "Sobre a intensidade e o que piora",
+        speech: "Tô dando um 7 de 0 a 10. Piora muito quando me movo, quando respiro fundo, quando o carro passa num buraco. Minha mãe acelerou o carro pra ver se eu reagia e eu gritei de dor."
+      },
+      {
+        trigger: "Sobre febre e outros sintomas",
+        speech: "Medi em casa, 38 e pouco. Vomitei duas vezes desde hoje de manhã. Tô sem apetite, não consigo comer nada. Não tenho diarreia."
+      },
+      {
+        trigger: "Sobre o hábito intestinal",
+        speech: "Não fui ao banheiro desde ontem à tarde. Não soltei gases também desde que a dor piorou. Antes dessa dor estava normal."
+      },
+      {
+        trigger: "Sobre doenças anteriores",
+        speech: "Nunca tive nada de saúde. Nunca operei. Nunca fiquei internado. Sou saudável."
+      },
+      {
+        trigger: "Sobre medicamentos e alergias",
+        speech: "Não tomo nenhum remédio. Não tenho alergia nenhuma que eu saiba."
+      },
+      {
+        trigger: "Sobre o apetite antes da dor começar",
+        speech: "Jantei normal ontem à noite, antes de começar a dor. Comi arroz, feijão e frango. Mas agora não consigo pensar em comida de jeito nenhum."
+      },
+      {
+        trigger: "Sobre tentativas de tratamento em casa",
+        speech: "Tomei dipirona em casa, melhorou um pouco mas voltou. Não tomei nenhum outro remédio."
+      },
+      {
+        trigger: "Pergunta ativa — É o apêndice doutor?",
+        speech: "Doutor, é o apêndice? Minha mãe disse que parece o apêndice. Eu vou ter que operar?"
+      },
+      {
+        trigger: "Pergunta ativa — A cirurgia é perigosa?",
+        speech: "Essa cirurgia é perigosa? Demora muito? Vou ficar muito tempo internado?"
+      }
+    ],
+    hiddenInfo: "A mãe acelerou o carro propositalmente ao passar num solavanco e o paciente gritou de dor — sinal de Dunphy positivo (piora com solavancos) — dado que sugere peritonização; só menciona se o candidato perguntar sobre fatores que pioram a dor durante o deslocamento. | Refere que 2 horas antes de procurar o PS a dor melhorou um pouco — pode indicar perfuração (melhora transitória seguida de piora) ou simplesmente flutuação; só menciona se o candidato perguntar sobre a evolução da dor nas últimas horas.",
+    actorBehavior: "Jovem visivelmente com dor, inclinado para o lado direito, andando com dificuldade. Cooperativo mas expressa dor ao exame, especialmente à palpação da FID. Fica aliviado quando o candidato explica o diagnóstico com clareza. Preocupado com a cirurgia mas confiante no médico."
+  },
+  instC: {
+    diagnosis: "Apendicite aguda não perfurada — escore de Alvarado 9/10 (migração da dor + anorexia + náuseas/vômitos + dor em FID + Blumberg em FID + febre + leucocitose + desvio à esquerda = 9 pontos). USG e TC confirmam apendicite sem perfuração. Indicação de apendicectomia laparoscópica de urgência.",
+    differentials: [
+      "Adenite mesentérica — diferencial em jovem com dor em FID e febre; excluída pela USG e TC com apêndice comprometido e pelo escore de Alvarado alto",
+      "Hérnia inguinal encarcerada direita — diferencial de dor em FID; excluída pela USG e TC sem hérnia identificada",
+      "Gastroenterite aguda — diferencial de dor abdominal e vômitos; excluída pela localização específica em FID, pela migração da dor e pelos sinais peritoneais",
+      "Neoplasia cecal ou ileal (em adultos) — diferencial de obstrução ou massa em FID; menos provável na faixa etária e pelo quadro agudo típico; excluída pela TC"
+    ],
+    context: "Paciente masculino jovem, 19 anos, com apresentação típica de apendicite aguda: migração periumbilical para FID, anorexia, febre, leucocitose com desvio à esquerda e sinais peritoneais em FID. Escore de Alvarado 9 — alta probabilidade de apendicite. USG e TC confirmam. Apendicectomia laparoscópica de urgência.",
+    justify: "Escore de Alvarado: migração da dor (1) + anorexia (1) + náusea/vômito (1) + dor em FID (2) + Blumberg em FID (1) + febre (1) + leucocitose (2) = 9 pontos. Escore ≥ 7: apendicite provável, indicação cirúrgica sem necessidade de TC adicional. A TC foi usada para confirmação pois a USG foi inicialmente inconclusiva. Apendicite não perfurada — cirurgia de urgência (<24h) com taxa de complicação baixa.",
+    expectedAnamnesis: "Migração da dor: periumbilical → FID (dado mais específico de apendicite) | Anorexia: perda de apetite | Náuseas e vômitos: frequência, conteúdo | Febre: temperatura | Hábito intestinal: parada de gases e fezes | Última refeição (preparo para cirurgia) | Comorbidades, medicamentos, alergias | Cirurgias abdominais prévias | Episódios anteriores semelhantes (apendicite recorrente?)",
+    expectedPhysical: "Posição antálgica: coxa direita semifletida | Inspeção: abdome plano sem distensão | Palpação: ponto de McBurney (2/3 da linha espinhoumbilical), Blumberg em FID, Rovsing (FIE → dor em FID), psoas (extensão da coxa direita), obturador (rotação interna do quadril direito) | Toque retal: Douglas doloroso à direita | Temperatura: febre",
+    expectedExams: [
+      { exam: "Escore de Alvarado", justify: "Escore clínico validado para triagem de apendicite — ≥ 7 indica alta probabilidade", expected: "9/10 — alta probabilidade de apendicite" },
+      { exam: "Hemograma com diferencial", justify: "Leucocitose com desvio à esquerda é dado do escore de Alvarado e confirma processo inflamatório", expected: "Leucocitose 16.200, neutrófilos 84% com desvio" },
+      { exam: "Ultrassonografia de abdome (FID)", justify: "Primeiro exame de imagem — sem radiação, identifica apêndice comprometido e diagnósticos diferenciais ginecológicos", expected: "Apêndice > 6 mm, incompressível, com líquido peripendicular" },
+      { exam: "TC de abdome com contraste", justify: "Indicada quando USG inconclusiva — maior sensibilidade e especificidade que USG", expected: "Apêndice espessado com densificação pericecal — sem perfuração" }
+    ],
+    expectedConduct: "Farmacológica: Antibioticoterapia profilática/perioperatória: cefazolina 2g IV + metronidazol 500 mg IV 30–60 min antes da cirurgia (CCIH/MS; RENAME 2022); analgesia: dipirona 1g IV a cada 6h (NÃO contraindicada na suspeita de apendicite — a analgesia não mascara o quadro e é direito do paciente) | Não farmacológica: Jejum imediato; hidratação venosa: SF 0,9% 1.000 mL IV; apendicectomia laparoscópica de urgência — padrão ouro: menor taxa de infecção de sítio cirúrgico, menor dor pós-operatória, retorno mais rápido às atividades; via aberta (McBurney) se não disponível videolaparoscopia | Encaminhamento: Bloco cirúrgico de urgência | Orientações ao paciente: Explicar que o apêndice está inflamado e precisa ser retirado por cirurgia; que é uma cirurgia segura com boa recuperação; que o jejum é necessário para a anestesia | Seguimento: Alta em 24–48h em apendicite não perfurada; retorno em 7 dias para avaliação da ferida",
+    expectedCommunication: "Apresentação: Identificar-se e tranquilizar o jovem | Comunicação do diagnóstico: Explicar que o apêndice está inflamado e que a cirurgia é necessária e segura; comparar o apêndice a um 'saco sem saída no intestino que entupiu e inflamou' | Escuta ativa: Responder às dúvidas sobre a cirurgia; incluir a mãe na conversa se o paciente desejar",
+    criticalErrors: [
+      "Contraindicar analgesia em suspeita de apendicite — conduta desatualizada e antiética; analgesia é direito do paciente e não mascara o diagnóstico cirúrgico",
+      "Atrasar a cirurgia para 'observação' em escore de Alvarado ≥ 7 sem justificativa — aumenta o risco de perfuração",
+      "Não aplicar escore de Alvarado — perda de ferramenta validada de triagem clínica",
+      "Não realizar o toque retal — Douglas doloroso à direita é sinal clínico relevante de apendicite",
+      "Não solicitar USG antes de TC — USG deve ser o primeiro exame de imagem (sem radiação) em jovem"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — APENDICITE AGUDA: DIAGNÓSTICO E CONDUTA CIRÚRGICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Explicou o diagnóstico e a cirurgia de forma clara e acessível ao jovem paciente", score: 0.5, ref: "CFM Res. 2232/2019" },
+          { item: "Não negou analgesia ao paciente com dor — forneceu alívio adequado antes da cirurgia", score: 0.5, ref: "CFM — Direito à analgesia; SBCD, 2022" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou e valorizou a migração da dor periumbilical para a FID como dado mais específico de apendicite", score: 1.0, ref: "CBC — Consenso Brasileiro em Apendicite, 2022" },
+          { item: "Investigou anorexia, náuseas, vômitos e febre como critérios do escore de Alvarado", score: 0.5, ref: "CBC, 2022; Alvarado A, 1986 ⚠️" },
+          { item: "Registrou a última refeição para preparo da anestesia", score: 0.5, ref: "CFM — Anestesia e jejum; SBCA, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Pesquisou e identificou os sinais clínicos: ponto de McBurney, Blumberg em FID, Rovsing e sinal do psoas", score: 1.0, ref: "CBC, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Realizou toque retal e identificou Douglas doloroso à direita", score: 0.5, ref: "CBC, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Aplicou e calculou o escore de Alvarado (9/10) e interpretou como alta probabilidade de apendicite", score: 1.0, ref: "CBC, 2022; Alvarado A, 1986 ⚠️" },
+          { item: "Solicitou USG de abdome como primeiro exame de imagem antes da TC", score: 0.5, ref: "CBC, 2022" },
+          { item: "Solicitou TC de abdome somente após USG inconclusiva — sequência correta de investigação", score: 0.5, ref: "CBC, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Indicou apendicectomia laparoscópica de urgência com antibioticoterapia perioperatória adequada", score: 1.0, ref: "CBC, 2022; CCIH/MS; RENAME 2022" },
+          { item: "Prescreveu jejum e hidratação venosa no pré-operatório", score: 0.5, ref: "CBC, 2022; SBCA, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 23,
+  title: "Idosa com dor abdominal difusa, febre alta e confusão há dois dias",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "apendicite aguda perfurada",
+  level: "moderado",
+  cardAccent: "#117A65",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno diurno. Paciente padronizado (ator/familiar).",
+    patient: "I.F., 78 anos, feminino, aposentada, diabética e hipertensa, trazida pelo filho.",
+    complaint: "Dor abdominal difusa, febre alta e confusão mental há dois dias. Filho relata que a mãe 'não estava bem' desde 3 dias atrás.",
+    tasks: [
+      "Realize a anamnese com o familiar (filho) e obtenha os dados necessários para a hipótese diagnóstica.",
+      "Realize o exame físico abdominal completo e identifique os sinais de peritonite.",
+      "Solicite e interprete os exames complementares necessários para elucidação diagnóstica.",
+      "Formule o diagnóstico de apendicite perfurada e diferencie de outras causas de abdome agudo na idosa.",
+      "Proponha a conduta cirúrgica e informe o familiar sobre a gravidade e o risco cirúrgico."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "94/58 mmHg",
+      FC: "118 bpm",
+      FR: "22 irpm",
+      Tax: "39,2°C",
+      Peso: "58 kg",
+      Altura: "1,55 m",
+      IMC: "24,1 kg/m²"
+    },
+    physicalGeneral: "Paciente em mau estado geral, confusa, desorientada (desorientação no tempo e espaço — Glasgow 13: OA3 V4 M6). Mucosas desidratadas 2+/4+, ictérica leve, febril. Prostrada.",
+    physicalSeg: "ABDOME: Distendido, com rigidez muscular difusa (abdome em tábua). Dor à palpação em todos os quadrantes, mais intensa em FID e fossa ilíaca direita. Sinal de Blumberg difuso positivo (peritonite generalizada). Ruídos hidroaéreos ausentes (ileo paralítico). Sem visceromegalias palpáveis pela rigidez. | CARDIOVASCULAR: Taquicárdica, bulhas hipofonéticas, sem sopros. Hipotensão: PA 94/58. | NEUROLÓGICO: Glasgow 13, confusa, responde perguntas simples com dificuldade. | TOQUE RETAL: Douglas doloroso difusamente. Sem massas palpáveis.",
+    labs: [
+      { test: "Hemoglobina", val: "10,4 g/dL", ref: "12,0–16,0 g/dL", alt: true },
+      { test: "Leucócitos", val: "24.800/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "91% (com desvio à esquerda e metamielócitos)", ref: "50–70%", alt: true },
+      { test: "PCR", val: "320 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Lactato sérico", val: "4,8 mmol/L", ref: "0,5–2,0 mmol/L", alt: true },
+      { test: "Glicemia", val: "248 mg/dL", ref: "70–99 mg/dL", alt: true },
+      { test: "Creatinina", val: "2,2 mg/dL", ref: "0,7–1,2 mg/dL", alt: true },
+      { test: "Ureia", val: "96 mg/dL", ref: "15–45 mg/dL", alt: true },
+      { test: "Bilirrubina total", val: "2,1 mg/dL", ref: "< 1,2 mg/dL", alt: true },
+      { test: "Coagulograma (INR)", val: "1,6", ref: "0,8–1,2", alt: true }
+    ],
+    image: "TOMOGRAFIA DE ABDOME E PELVE COM CONTRASTE: Apêndice vermiforme com paredes espessadas, diâmetro de 14 mm, com fecalito central calcificado e descontinuidade da parede (perfuração). Abscesso periapendicular de 4,5 x 3,2 cm na FID com ar no interior. Pneumoperitônio discreto (bolhas de ar livres subdiafragmáticas e peritoneo). Peritonite difusa com líquido livre em todos os quadrantes. Densificação da gordura mesentérica generalizada.",
+    note: "Caso com ator e familiar (filho). A idosa deve estar confusa, prostrada, com dor difusa. O filho é quem fornece a maior parte da história. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar TC quando o candidato a solicitar. Atentar se o candidato identifica a gravidade (sepse + peritonite) e se comunica adequadamente com o familiar sobre o risco cirúrgico elevado na idosa.",
+    patientProfile: "I.F., 78 anos, feminino. Aposentada, viúva, mora com o filho. Diabética tipo 2 há 20 anos — insulina NPH 20 UI 2x/dia. HAS há 25 anos — uso de enalapril 10 mg/dia e hidroclorotiazida 25 mg/dia. Hipotireoidismo em uso de levotiroxina 75 mcg/dia. Sem anticoagulantes. Alergia a penicilina (referida pelo filho — reação não documentada).",
+    script: [
+      {
+        trigger: "Queixa principal (filho fala)",
+        speech: "Doutor, minha mãe tá mal há uns 3 dias. Ela começou com uma dorzinha de barriga que foi piorando. Ontem ela ficou com febre alta, 39, 40 graus. Hoje de manhã ela tava confusa, não sabia nem onde estava. Eu fiquei muito preocupado e trouxe ela aqui."
+      },
+      {
+        trigger: "Sobre o início da dor (filho fala)",
+        speech: "Ela falou que doeu primeiro aqui no meio, no umbigo, há uns 3 dias. Mas ela não me falou logo. Só quando ficou muito ruim que me chamou. Aí eu vi que a dor tinha espalhado pra barriga toda."
+      },
+      {
+        trigger: "Sobre febre (filho fala)",
+        speech: "A febre alta começou ontem. Medimos em casa, 39 e pouco. E ela ficou com essa confusão só hoje, de manhã. Antes ela tava consciente mas sem força, sem apetite."
+      },
+      {
+        trigger: "Sobre vômitos e hábito intestinal (filho fala)",
+        speech: "Ela vomitou ontem duas vezes. Hoje não comeu nada. Não foi ao banheiro desde ontem cedo. Não soltou gases também."
+      },
+      {
+        trigger: "Sobre as doenças e medicamentos (filho fala)",
+        speech: "Ela tem diabetes, pressão alta e problema na tireoide. Toma insulina, enalapril, hidroclorotiazida e levotiroxina. E ela tem alergia a penicilina, me lembro que uma vez ela teve reação mas não sei exatamente como foi."
+      },
+      {
+        trigger: "Paciente responde diretamente quando questionada sobre dor",
+        speech: "Dói tudo... tudo tá doendo... (paciente geme ao toque no abdome)"
+      },
+      {
+        trigger: "Sobre cirurgias anteriores (filho fala)",
+        speech: "Ela nunca operou não. A única internação foi por conta do diabetes mesmo."
+      },
+      {
+        trigger: "Sobre o estado cognitivo basal (filho fala)",
+        speech: "Não, ela era lúcida, normal. Essa confusão de hoje é coisa nova. Nunca ficou assim."
+      },
+      {
+        trigger: "Pergunta ativa do filho — Ela vai ficar bem doutor?",
+        speech: "Doutor, ela vai ficar bem? É grave? Ela vai precisar operar com 78 anos? Ela vai aguentar a cirurgia?"
+      },
+      {
+        trigger: "Pergunta ativa do filho — Por que ela demorou a procurar o médico?",
+        speech: "Eu precisaria ter trazido antes? Ela falou que não queria incomodar, que ia passar sozinha..."
+      }
+    ],
+    hiddenInfo: "A paciente ficou 3 dias em casa sem procurar atendimento porque 'não queria incomodar o filho' — atraso no diagnóstico que contribuiu para a perfuração; confirmado pelo filho se o candidato perguntar sobre por que demorou a procurar atendimento. | O filho relata que ela ficou levando dipirona em casa nas primeiras 48h sem melhora — uso de antipirético não tratou o processo cirúrgico; só menciona se perguntado sobre medicamentos usados em casa.",
+    actorBehavior: "Idosa confusa, prostrada, geme à palpação do abdome. Responde apenas a perguntas simples com 'dói tudo'. O filho é colaborativo, ansioso e demonstra culpa por não ter trazido a mãe antes. O candidato deve conduzir a anamnese principalmente com o filho."
+  },
+  instC: {
+    diagnosis: "Apendicite aguda perfurada com peritonite generalizada e abscesso periapendicular — sepse abdominal. Critérios de SOFA alterados: confusão (SNC), hipotensão, lactato > 2, creatinina elevada. Laparotomia exploradora de urgência.",
+    differentials: [
+      "Diverticulite perfurada do cólon sigmoide — diferencial de peritonite generalizada na idosa; excluída pela TC com foco apendicular e abscesso periapendicular na FID",
+      "Colecistite aguda perfurada — diferencial de abdome agudo na idosa com febre; excluída pela TC sem alterações na vesícula biliar",
+      "Isquemia mesentérica — diferencial de abdome agudo com leucocitose e lactato elevado; excluída pela TC sem oclusão arterial ou pneumatose intestinal de distribuição vascular",
+      "Abscesso periapendicular sem perfuração franca — diagnóstico alternativo incluído pela TC; a perfuração com pneumoperitônio confirm a laparotomia sobre a drenagem percutânea isolada"
+    ],
+    context: "Idosa de 78 anos com apendicite perfurada e peritonite generalizada, apresentação atípica e tardia (3 dias). Sepse estabelecida: hipotensão, febre 39,2°C, lactato 4,8, confusão mental, leucocitose grave. Alto risco cirúrgico pela idade e comorbidades. Laparotomia de urgência é a única conduta definitiva.",
+    justify: "Na idosa, a apendicite tem apresentação atípica: dor menos intensa, localização menos definida, ausência de migração clássica, diagnóstico tardio. A imunossupressão do DM atenua os sinais inflamatórios. Perfuração ocorre em > 50% dos idosos versus < 20% nos jovens. Pneumoperitônio + abscesso + peritonite generalizada na TC confirmam perfuração — laparotomia urgente.",
+    expectedAnamnesis: "Colher com o familiar — início e evolução da dor (3 dias, atípica) | Febre: quando iniciou e intensidade | Confusão mental: início, caráter novo | Vômitos, parada de gases | Comorbidades: DM, HAS, hipotireoidismo | Medicamentos: insulina, anti-hipertensivos | Alergias: penicilina | Cirurgias prévias | Por que demorou a procurar atendimento",
+    expectedPhysical: "Neurológico: Glasgow, orientação (sepse com acometimento do SNC) | Sinais vitais: febre alta, hipotensão, taquicardia — critérios de sepse (qSOFA) | Abdome: rigidez em tábua (peritonite generalizada), Blumberg difuso, ausência de ruídos hidroaéreos | Toque retal: Douglas doloroso | Hidratação: mucosas secas, avaliação de TEC",
+    expectedExams: [
+      { exam: "TC de abdome e pelve com contraste", justify: "Exame de escolha em idosa com abdome agudo — identifica causa, localiza perfuração e abscesso", expected: "Apendicite perfurada com abscesso e pneumoperitônio" },
+      { exam: "Hemograma, PCR, lactato, creatinina, coagulograma", justify: "Estadiamento da sepse e avaliação de disfunção orgânica (SOFA)", expected: "Leucocitose grave, lactato elevado, IRA, coagulopatia" },
+      { exam: "Glicemia e gasometria", justify: "Avaliar controle glicêmico na diabética séptica e acidose metabólica", expected: "Hiperglicemia 248, possível acidose metabólica" },
+      { exam: "ECG e troponina", justify: "Avaliação cardíaca pré-operatória na idosa com hipotensão e taquicardia", expected: "Avaliar isquemia miocárdica de demanda associada à sepse" }
+    ],
+    expectedConduct: "Farmacológica: Ressuscitação hemodinâmica: Ringer Lactato 30 mL/kg IV em 1h (protocolo Surviving Sepsis Campaign ⚠️); noradrenalina 0,1–0,5 mcg/kg/min se hipotensão refratária após 1.000 mL; antibioticoterapia empírica de amplo espectro — alergia a penicilina: usar ciprofloxacino 400 mg IV a cada 12h + metronidazol 500 mg IV a cada 8h (RENAME 2022); controle glicêmico: insulina regular IV; suspender metformina (não faz uso) — atenção à insulina NPH; corrigir coagulopatia se INR > 1,5 antes da cirurgia | Não farmacológica: Laparotomia exploradora de urgência: apendicectomia + lavagem e drenagem do peritônio; UTI pós-operatória; cateter vesical; SNG; oxigenoterapia; monitorização contínua | Encaminhamento: Bloco cirúrgico urgente; UTI pós-operatória; comunicar Anestesiologia sobre o alto risco (ASA IV) | Orientações ao familiar: Comunicar a gravidade extrema, o alto risco cirúrgico na idosa com sepse, e a necessidade de cirurgia imediata; não omitir o risco de mortalidade | Seguimento: UTI pós-operatória; monitorar disfunção orgânica; Endocrinologia para controle do DM pós-operatório",
+    expectedCommunication: "Apresentação: Identificar-se ao filho e à paciente (mesmo confusa) | Comunicação ao familiar: Usar protocolo de comunicação de más notícias; explicar que o apêndice perfurou e que há uma infecção generalizada grave; que a cirurgia é necessária mesmo com o alto risco; obter consentimento informado do filho | Escuta ativa: Acolher a culpa do filho; explicar que a demora não foi culpa dele e que o importante é o tratamento agora",
+    criticalErrors: [
+      "Não reconhecer os critérios de sepse (hipotensão + lactato elevado + confusão) e não iniciar ressuscitação hemodinâmica imediatamente",
+      "Atrasar a cirurgia em peritonite generalizada por pneumoperitônio — indicação absoluta de laparotomia de urgência",
+      "Prescrever antibiótico da classe das penicilinas (ampicilina-sulbactam) em paciente com alergia referida sem investigação adequada",
+      "Não comunicar adequadamente ao familiar a gravidade e o risco de mortalidade — obrigação ética e legal",
+      "Não controlar a glicemia no perioperatório da diabética séptica — hiperglicemia aumenta morbimortalidade cirúrgica"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — APENDICITE AGUDA PERFURADA COM PERITONITE: IDOSA DE ALTO RISCO",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Colheu a anamnese predominantemente com o familiar (filho) dado o rebaixamento do nível de consciência da idosa", score: 0.5, ref: "CFM Res. 2232/2019; Código de Ética Médica" },
+          { item: "Comunicou ao filho a gravidade do quadro, o risco de mortalidade e a necessidade de cirurgia urgente de forma clara e empática", score: 0.5, ref: "CFM Res. 2232/2019; CREMESP — Comunicação em urgência, 2020" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou a apresentação atípica em idosa (dor difusa, evolução arrastada de 3 dias, sem migração clássica)", score: 1.0, ref: "CBC — Consenso Brasileiro em Apendicite, 2022" },
+          { item: "Investigou alergias medicamentosas (penicilina) antes de prescrever antibiótico — adequou o esquema", score: 1.0, ref: "CFM; RENAME 2022" },
+          { item: "Identificou todas as comorbidades (DM, HAS, hipotireoidismo) e medicamentos relevantes para o perioperatório", score: 0.5, ref: "CBC, 2022; CFM — Avaliação pré-operatória" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou peritonite generalizada: abdome em tábua, Blumberg difuso, ausência de ruídos hidroaéreos", score: 1.0, ref: "CBC, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Reconheceu os critérios de sepse: hipotensão + taquicardia + febre 39,2°C + confusão mental (qSOFA ≥ 2)", score: 0.5, ref: "SSC — Surviving Sepsis Campaign ⚠️; SBCM, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou TC de abdome para confirmar perfuração, abscesso e extensão da peritonite antes da cirurgia", score: 0.5, ref: "CBC, 2022" },
+          { item: "Valorizou o lactato elevado (4,8 mmol/L) como marcador de gravidade da sepse e iniciou ressuscitação imediata", score: 0.5, ref: "SSC ⚠️; CBC, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Iniciou ressuscitação hemodinâmica com Ringer Lactato 30 mL/kg em 1h — bundle de sepse", score: 1.0, ref: "SSC ⚠️; SBCM, 2022; RENAME 2022" },
+          { item: "Prescreveu antibioticoterapia sem penicilina (ciprofloxacino + metronidazol) respeitando a alergia referida", score: 0.5, ref: "CBC, 2022; RENAME 2022" },
+          { item: "Indicou laparotomia exploradora de urgência com lavagem peritoneal para peritonite generalizada confirmada", score: 1.0, ref: "CBC, 2022; SSC ⚠️" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 24,
+  title: "Paciente obesa solicitando informações sobre cirurgia para emagrecer",
+  sub: "Ambulatório de Cirurgia Bariátrica — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "cirurgia bariátrica",
+  level: "moderado",
+  cardAccent: "#1D6A96",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Bariátrica de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "P.O., 38 anos, feminino, professora, com obesidade grau III e comorbidades associadas.",
+    complaint: "Paciente com IMC de 41 kg/m² busca avaliação para cirurgia bariátrica após falha do tratamento clínico por 2 anos.",
+    tasks: [
+      "Realize a anamnese para avaliação da indicação cirúrgica, investigando critérios do CFM e do Ministério da Saúde.",
+      "Interprete os dados clínicos e laboratoriais e avalie as comorbidades associadas à obesidade.",
+      "Determine se a paciente preenche os critérios de indicação e contraindica ou indica a cirurgia com justificativa.",
+      "Explique as opções técnicas disponíveis com seus benefícios e riscos em linguagem acessível.",
+      "Oriente sobre o processo de avaliação multidisciplinar obrigatório e os cuidados pós-operatórios."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "148/92 mmHg",
+      FC: "82 bpm",
+      FR: "16 irpm",
+      Tax: "36,5°C",
+      Peso: "108 kg",
+      Altura: "1,62 m",
+      IMC: "41,2 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica em repouso. Mucosas normocoradas, anictérica. Obesa centralmente, com distribuição adiposa centrípeta. Sem edema.",
+    physicalSeg: "ABDOME: Obeso, globoso, flácido. Ruídos hidroaéreos normais. Sem massas, sem visceromegalias. Estrias violáceas no abdome inferior e flancos. | CARDIOVASCULAR: Bulhas rítmicas normofonéticas, sem sopros. PA 148/92 mmHg. | PESCOÇO: Acantose nigricans na nuca. | MMII: Sem edemas. | TÓRAX: MV presente bilateralmente, sem ruídos adventícios.",
+    labs: [
+      { test: "Glicemia de jejum", val: "128 mg/dL", ref: "70–99 mg/dL", alt: true },
+      { test: "HbA1c", val: "7,4%", ref: "< 5,7%", alt: true },
+      { test: "Insulina de jejum", val: "24 µUI/mL", ref: "2–25 µUI/mL", alt: false },
+      { test: "HOMA-IR", val: "7,6", ref: "< 2,5", alt: true },
+      { test: "LDL-colesterol", val: "138 mg/dL", ref: "< 100 mg/dL", alt: true },
+      { test: "HDL-colesterol", val: "38 mg/dL", ref: "> 50 mg/dL (mulher)", alt: true },
+      { test: "Triglicérides", val: "242 mg/dL", ref: "< 150 mg/dL", alt: true },
+      { test: "TSH", val: "3,2 mUI/L", ref: "0,4–4,0 mUI/L", alt: false },
+      { test: "PCR de alta sensibilidade", val: "6,8 mg/L", ref: "< 1,0 mg/L", alt: true },
+      { test: "TGO (AST)", val: "52 U/L", ref: "< 40 U/L", alt: true },
+      { test: "TGP (ALT)", val: "68 U/L", ref: "< 41 U/L", alt: true },
+      { test: "USG de abdome (laudo)", val: "Esteatose hepática grau II. Vesícula biliar sem cálculos. Demais órgãos sem alterações.", ref: "—", alt: true },
+      { test: "Polissonografia (laudo)", val: "IAH = 22 eventos/hora — SAHOS moderada confirmada.", ref: "IAH < 5 = normal", alt: true }
+    ],
+    image: null,
+    note: "Caso com ator. A paciente deve ser representada como motivada, bem informada mas com dúvidas sobre os critérios e opções cirúrgicas. Entregar sinais vitais ao início. Entregar laudos laboratoriais e de polissonografia quando solicitados. Atentar se o candidato verifica todos os critérios do CFM/MS para indicação da cirurgia bariátrica e se orienta sobre a equipe multidisciplinar obrigatória.",
+    patientProfile: "P.O., 38 anos, feminino. Professora do ensino médio, casada, uma filha. Obesidade desde a adolescência. DM tipo 2 há 2 anos — metformina 850 mg 2x/dia e liraglutida 1,2 mg SC 1x/dia. HAS há 3 anos — enalapril 10 mg/dia. SAHOS moderada — CPAP noturno em uso regular. Esteatose hepática grau II. Tentativas não cirúrgicas: acompanhamento nutricional por 2 anos + atividade física por 18 meses — perda total de 5 kg sem manutenção.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutora, estou aqui para saber se posso fazer a cirurgia bariátrica. Tenho tentado emagrecer há anos mas não consigo. Fiz dieta com nutricionista, fiz academia, tomei remédio... emagreci 5 kg mas voltei tudo. Preciso de uma solução definitiva."
+      },
+      {
+        trigger: "Sobre o histórico de obesidade",
+        speech: "Sou gorda desde criança, desde os 12 anos mais ou menos. Sempre fui a mais gordinha da turma. Já tentei de tudo: dieta da proteína, jejum intermitente, remédio de farmácia... nada funcionou de verdade. O meu máximo foi emagrecer uns 8 kg uma vez, mas logo voltou tudo."
+      },
+      {
+        trigger: "Sobre as tentativas de tratamento clínico",
+        speech: "Fiquei 2 anos com nutricionista e 18 meses fazendo academia 3 vezes por semana. Perdi 5 kg no total nesse período. O médico disse que não foi resultado suficiente para o tamanho do meu problema. Aí ele me encaminhou aqui."
+      },
+      {
+        trigger: "Sobre as doenças associadas",
+        speech: "Tenho diabetes há 2 anos, tomo metformina e aquela injeção semanal. Tenho pressão alta, tomo enalapril. E descobriram que eu paro de respirar durante o sono, uso o aparelho CPAP toda noite. O médico falou que tenho gordura no fígado também."
+      },
+      {
+        trigger: "Sobre sintomas atuais",
+        speech: "Me canso com facilidade. Subir uma escada já é difícil. Tenho dor no joelho por causa do peso. Fico com sono durante o dia mesmo usando o CPAP. E minha pressão tá difícil de controlar."
+      },
+      {
+        trigger: "Sobre transtornos alimentares ou saúde mental",
+        speech: "Não tenho bulimia nem anorexia, nunca tive. Mas confesso que como muito nos momentos de estresse. Compulsão alimentar, o psicólogo disse que é assim. Estou em acompanhamento psicológico há 4 meses."
+      },
+      {
+        trigger: "Sobre uso de álcool e drogas",
+        speech: "Não bebo álcool, nunca bebi. Não uso drogas. Não fumo."
+      },
+      {
+        trigger: "Sobre o desejo de engravidar",
+        speech: "Minha filha tem 8 anos. Não planejo engravidar novamente. O médico me disse que preciso esperar pelo menos 18 meses após a cirurgia antes de tentar caso eu mude de ideia."
+      },
+      {
+        trigger: "Sobre as expectativas com a cirurgia",
+        speech: "Quero emagrecer, mas quero mesmo é melhorar a saúde. Tô com medo de ter um derrame ou infarto por causa da pressão e do diabetes. Quero poder brincar com minha filha sem me cansar."
+      },
+      {
+        trigger: "Pergunta ativa — Eu preencho os critérios doutor?",
+        speech: "Eu tenho direito a fazer essa cirurgia? Meu IMC é suficiente? Tenho diabetes e pressão alta, isso ajuda na indicação?"
+      },
+      {
+        trigger: "Pergunta ativa — Qual cirurgia é melhor pra mim?",
+        speech: "Qual é a melhor cirurgia pra mim, doutora? O bypass ou a manga gástrica? Qual tem menos risco? Qual emagrece mais?"
+      }
+    ],
+    hiddenInfo: "Relata episódios de compulsão alimentar — come grandes quantidades de forma incontrolável especialmente à noite, 2 a 3 vezes por semana; só detalha a frequência e o padrão se o candidato perguntar especificamente sobre compulsão ou transtorno alimentar compulsivo. | Relata medo de não ser capaz de seguir as orientações pós-operatórias a longo prazo — insegurança real que precisa ser acolhida e endereçada pela equipe multidisciplinar; só verbaliza se o candidato perguntar sobre medos em relação à cirurgia.",
+    actorBehavior: "Paciente motivada, articulada, bem informada. Pesquisou sobre a cirurgia na internet. Faz perguntas diretas e pertinentes. Fica emocionada ao falar do impacto da obesidade na qualidade de vida. Demonstra ansiedade em relação ao procedimento mas também esperança. Cooperativa e aberta ao diálogo."
+  },
+  instC: {
+    diagnosis: "Indicação formal de cirurgia bariátrica: IMC 41,2 kg/m² (obesidade grau III) + DM tipo 2 + HAS + SAHOS moderada + esteatose hepática grau II + falha do tratamento clínico por ≥ 2 anos. Critérios do CFM (Resolução CFM 2.131/2015) e do MS (Portaria MS 424/2013) preenchidos. Técnica sugerida: bypass gástrico em Y de Roux (BGYR) pelo DM tipo 2 — maior taxa de remissão.",
+    differentials: [
+      "Hipotireoidismo como causa secundária de obesidade — excluído pelo TSH normal (3,2 mUI/L) — hipotireoidismo raramente causa obesidade grau III isoladamente",
+      "Síndrome de Cushing — diferencial em obesidade centrípeta com estrias violáceas e HAS; deve ser investigada com cortisol urinário de 24h ou teste de supressão com dexametasona se suspeita clínica forte — menos provável neste caso pelo quadro clínico global",
+      "Contraindicações à cirurgia (a verificar): transtorno alimentar ativo não tratado, doença psiquiátrica grave não controlada, uso de substâncias psicoativas, gravidez — nenhuma identificada neste caso",
+      "Indicação de tratamento apenas com liraglutida em dose máxima (3 mg/dia) — alternativa medicamentosa não cirúrgica — menos eficaz para IMC > 40 com comorbidades múltiplas"
+    ],
+    context: "Paciente feminina, 38 anos, com obesidade grau III (IMC 41,2), DM tipo 2 parcialmente controlado, HAS, SAHOS moderada e esteatose hepática. Falha documentada do tratamento clínico por 2 anos. Preenche todos os critérios do CFM e do MS para cirurgia bariátrica. Compulsão alimentar noturna — necessita avaliação psiquiátrica/psicológica pré-operatória rigorosa.",
+    justify: "Critérios CFM Res. 2.131/2015: IMC ≥ 40 (com ou sem comorbidades) OU IMC 35–40 com comorbidades graves (DM tipo 2, HAS, SAHOS, esteatose hepática) + falha do tratamento clínico por ≥ 2 anos + idade entre 16 e 65 anos + ausência de contraindicações absolutas. Bypass gástrico em Y de Roux tem maior taxa de remissão do DM tipo 2 (70–80%) em relação ao sleeve (60%) — preferencial quando DM é comorbidade relevante.",
+    expectedAnamnesis: "Verificar critérios de indicação: IMC atual, evolução histórica do peso | Tentativas de tratamento clínico: duração, tipo, resultados | Comorbidades: DM (tempo, tratamento, controle), HAS, SAHOS, dislipidemia, osteoartrose, esteatose | Saúde mental: transtorno alimentar, depressão, ansiedade, psicose — contraindica se ativo e descontrolado | Uso de álcool e drogas (contraindicação relativa/absoluta) | Tabagismo | Gravidez: planejamento reprodutivo | Suporte familiar e social | Expectativas realistas com a cirurgia",
+    expectedPhysical: "IMC: calcular e classificar (≥ 40 = grau III) | PA: verificar controle da HAS | Distribuição da gordura: centrípeta (risco metabólico) | Acantose nigricans: resistência à insulina | Pesquisar hérnias abdominais (frequentes em obesos) | Varizes e insuficiência venosa | Articulações: artropatia por sobrepeso | Ausculta: sopros cardíacos",
+    expectedExams: [
+      { exam: "Glicemia, HbA1c, HOMA-IR", justify: "Avaliar controle do DM e resistência à insulina — comorbidade relevante para escolha da técnica", expected: "DM tipo 2 descompensado (HbA1c 7,4%)" },
+      { exam: "Perfil lipídico completo", justify: "Avaliar dislipidemia como comorbidade e risco cardiovascular", expected: "LDL elevado, HDL baixo, triglicérides elevados" },
+      { exam: "TSH", justify: "Excluir hipotireoidismo como causa secundária de obesidade", expected: "Normal — hipotireoidismo excluído" },
+      { exam: "Enzimas hepáticas e USG de abdome", justify: "Avaliar esteatose hepática — comorbidade e fator de risco cirúrgico (fígado volumoso dificulta a laparoscopia)", expected: "Esteatose grau II, vesícula sem cálculos" },
+      { exam: "Polissonografia", justify: "Diagnóstico e classificação da SAHOS — impacta o risco anestésico", expected: "SAHOS moderada (IAH 22) — exige CPAP perioperatório" },
+      { exam: "Avaliação psiquiátrica e psicológica", justify: "Obrigatória pelo CFM — identificar contraindicações psiquiátricas, avaliar compulsão alimentar e expectativas", expected: "Compulsão alimentar noturna — necessita tratamento pré-operatório" },
+      { exam: "Endoscopia digestiva alta", justify: "Obrigatória no pré-operatório de bariátrica — avaliar H. pylori, gastrite, úlcera, DRGE", expected: "Avaliar necessidade de tratamento pré-operatório" }
+    ],
+    expectedConduct: "Farmacológica: Manter metformina e liraglutida até a cirurgia; otimizar controle do DM (meta HbA1c < 7% no pré-operatório); otimizar HAS (meta PA < 130/80); profilaxia de TVP pós-operatória: enoxaparina 40 mg SC 1x/dia a partir de 6h após a cirurgia por 10 dias (RENAME 2022); suplementação vitamínica obrigatória no pós-operatório: polivitamínico + ferro elementar + vitamina B12 + cálcio + vitamina D (SBCBM 2023) | Não farmacológica: Avaliação multidisciplinar obrigatória pré-operatória: cirurgião bariátrico + nutricionista + psicólogo/psiquiatra + cardiologista + pneumologista (SAHOS) + endocrinologista; técnica cirúrgica indicada: bypass gástrico em Y de Roux (BGYR) laparoscópico — pelo DM tipo 2 (maior remissão) e pelo IMC 41; alternativa: sleeve gástrico (gastrectomia vertical) — menor risco técnico, sem déficit absortivo, mas menor remissão do DM; dieta pré-operatória: hipocalórica por 4–8 semanas para reduzir volume hepático; manutenção do CPAP no perioperatório | Encaminhamento: Equipe multidisciplinar de bariátrica; endoscopia digestiva alta pré-operatória; avaliação cardiológica | Orientações ao paciente: Explicar os critérios que ela preenche; apresentar as opções cirúrgicas com benefícios e riscos; esclarecer que a cirurgia não é o fim do tratamento mas o início; orientar sobre a suplementação vitalícia; contraindicar gravidez por 18 meses; orientar sobre expectativas realistas de perda de peso | Seguimento: Acompanhamento multidisciplinar pós-operatório em 1, 3, 6 e 12 meses; suplementação vitalícia; colonoscopia em 5 anos",
+    expectedCommunication: "Apresentação: Identificar-se e criar vínculo — paciente carrega anos de frustração e estigma | Comunicação do diagnóstico: Confirmar a indicação cirúrgica de forma positiva; apresentar as opções com clareza; validar a trajetória difícil da paciente sem julgamento | Escuta ativa: Perguntar sobre medos e expectativas; abordar a compulsão alimentar com delicadeza; reforçar que a cirurgia é uma ferramenta, não uma cura mágica",
+    criticalErrors: [
+      "Não verificar todos os critérios do CFM (Res. 2.131/2015) antes de indicar ou contraindicar a cirurgia",
+      "Não encaminhar para avaliação psicológica/psiquiátrica obrigatória — transtorno alimentar compulsivo não tratado compromete o resultado pós-operatório",
+      "Não orientar sobre a suplementação vitamínica vitalícia obrigatória após a cirurgia",
+      "Não contraindicar gravidez por pelo menos 18 meses após a cirurgia bariátrica",
+      "Indicar sleeve gástrico sem mencionar que o bypass tem maior taxa de remissão do DM tipo 2 — omissão que prejudica a tomada de decisão informada"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — AVALIAÇÃO PRÉ-OPERATÓRIA DE CIRURGIA BARIÁTRICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Abordou a trajetória de obesidade da paciente sem julgamento, reconhecendo o esforço prévio com o tratamento clínico", score: 0.5, ref: "CFM Res. 2232/2019; ABESO — Obesidade e estigma, 2022" },
+          { item: "Apresentou as opções cirúrgicas com linguagem acessível, benefícios, riscos e diferenças entre bypass e sleeve", score: 0.5, ref: "SBCBM — Consenso Brasileiro em Cirurgia Bariátrica, 2023; CFM Res. 2.131/2015" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Verificou os critérios de indicação do CFM: IMC ≥ 40 + comorbidades + falha do tratamento clínico ≥ 2 anos", score: 1.0, ref: "CFM Res. 2.131/2015; MS Portaria 424/2013" },
+          { item: "Investigou transtornos alimentares (compulsão alimentar noturna identificada) e saúde mental como possíveis contraindica-ções", score: 1.0, ref: "SBCBM, 2023; CFM Res. 2.131/2015" },
+          { item: "Investigou planejamento reprodutivo e orientou contraindicação de gravidez por 18 meses pós-operatório", score: 0.5, ref: "SBCBM, 2023; FEBRASGO, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Calculou e confirmou o IMC (41,2 kg/m²) e identificou distribuição centrípeta com acantose nigricans", score: 0.5, ref: "ABESO, 2022; SBCBM, 2023" },
+          { item: "Aferiu e valorizou a PA elevada (148/92) como comorbidade relevante no contexto pré-bariátrico", score: 0.5, ref: "SBCBM, 2023; SBC, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Indicou avaliação multidisciplinar obrigatória pré-operatória: cirurgião + nutricionista + psicólogo + cardiologista + pneumologista", score: 1.0, ref: "CFM Res. 2.131/2015; SBCBM, 2023" },
+          { item: "Indicou endoscopia digestiva alta obrigatória no pré-operatório de cirurgia bariátrica", score: 0.5, ref: "SBCBM, 2023" },
+          { item: "Justificou a preferência pelo bypass gástrico pela maior taxa de remissão do DM tipo 2 em relação ao sleeve", score: 0.5, ref: "SBCBM, 2023; SBD, 2023" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Orientou sobre a suplementação vitamínica vitalícia obrigatória após a cirurgia bariátrica", score: 1.0, ref: "SBCBM, 2023; RENAME 2022" },
+          { item: "Orientou sobre a necessidade de manutenção do CPAP no perioperatório pela SAHOS moderada", score: 0.5, ref: "SBCBM, 2023; SBPT, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 25,
+  title: "Suor excessivo nas mãos que atrapalha o trabalho e a vida social",
+  sub: "Ambulatório de Cirurgia Torácica — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "hiperidrose primária",
+  level: "moderado",
+  cardAccent: "#2E86C1",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Torácica de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "T.N., 26 anos, masculino, analista de TI, sem comorbidades.",
+    complaint: "Suor excessivo nas mãos desde a adolescência, que piora com nervosismo e calor, causando grande impacto social e profissional.",
+    tasks: [
+      "Realize a anamnese e caracterize a hiperidrose quanto à localização, intensidade e impacto funcional.",
+      "Identifique se a hiperidrose é primária ou secundária e os critérios diagnósticos.",
+      "Solicite os exames complementares pertinentes para excluir causas secundárias.",
+      "Apresente as opções de tratamento clínico e cirúrgico em ordem de evidência.",
+      "Informe o paciente sobre a simpaticotomia torácica videoscópica, seus benefícios e a compensação sudorípara."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "118/74 mmHg",
+      FC: "74 bpm",
+      FR: "16 irpm",
+      Tax: "36,3°C",
+      Peso: "74 kg",
+      Altura: "1,78 m",
+      IMC: "23,4 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientado, eupneico, afebril. Mucosas normocoradas. Mãos visivelmente úmidas ao aperto de mão. Sem alterações ao exame geral.",
+    physicalSeg: "MÃOS: Palmas úmidas, com gotejamento visível de suor. Sem sinais de infecção fúngica ou bacteriana secundária. Sem eritema ou maceração entre os dedos. | AXILAS: Discreta umidade. Sem odor fétido intenso. | PÉS: Planta dos pés levemente úmida à inspeção. | TÓRAX: Expansibilidade normal e simétrica. MV presente bilateralmente. | CARDIOVASCULAR: Bulhas rítmicas, sem sopros. | TIREÓIDE: Não palpável, sem nódulos. | NEUROLÓGICO: Sem tremores, sem sinais de hiperatividade autonômica.",
+    labs: [
+      { test: "TSH", val: "1,8 mUI/L", ref: "0,4–4,0 mUI/L", alt: false },
+      { test: "T4 livre", val: "1,1 ng/dL", ref: "0,8–1,8 ng/dL", alt: false },
+      { test: "Glicemia de jejum", val: "88 mg/dL", ref: "70–99 mg/dL", alt: false },
+      { test: "Hemograma completo", val: "Dentro dos limites normais", ref: "—", alt: false },
+      { test: "Catecolaminas urinárias de 24h", val: "Dentro dos limites normais", ref: "—", alt: false }
+    ],
+    image: null,
+    note: "Caso com ator. O ator deve demonstrar mãos visivelmente úmidas ao cumprimentar (simulado com glicerina no dorso das mãos). Demonstrar constrangimento ao falar sobre o problema. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Atentar se o candidato aborda a compensação sudorípara como principal efeito adverso da simpaticotomia.",
+    patientProfile: "T.N., 26 anos, masculino. Analista de TI, solteiro. Hiperidrose palmar desde os 14 anos. Sem comorbidades. Sem medicamentos. Sem tabagismo, sem etilismo. Histórico familiar: mãe com hiperidrose palmar leve — provável componente genético. Escala HDSS (Hyperhidrosis Disease Severity Scale): grau 4 — o suor é intolerável e interfere sempre nas atividades diárias.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, desde os 14 anos eu sudo muito das mãos. É absurdo. Quando vou cumprimentar alguém, a mão fica completamente molhada. Fica constrangedor demais. No trabalho é péssimo, o teclado fica molhado, os documentos ficam úmidos. Já afetou relacionamentos também. Preciso muito de uma solução."
+      },
+      {
+        trigger: "Sobre quando e como piora",
+        speech: "Piora muito quando fico nervoso ou ansioso, em situações sociais, em reuniões de trabalho. Mas também suda muito mesmo quando estou em repouso, sem nervosismo. Calor piora também. Não tem dia que não acontece."
+      },
+      {
+        trigger: "Sobre outros locais do corpo",
+        speech: "Nas mãos é o pior. Mas também suo um pouco nas axilas e nas plantas dos pés. A face não. O corpo em geral não transpiração excessiva. É mais focado nas mãos mesmo."
+      },
+      {
+        trigger: "Sobre o impacto na vida",
+        speech: "É terrível. Já recusei trabalhos que exigiam apresentação presencial por causa disso. Evito apertar a mão de pessoas. Em relacionamentos é muito difícil, a pessoa pega minha mão e fica toda molhada. Eu me isolo por causa disso."
+      },
+      {
+        trigger: "Sobre suor noturno",
+        speech: "À noite não. Quando estou dormindo não suo das mãos. Isso é engraçado, só acontece quando estou acordado."
+      },
+      {
+        trigger: "Sobre histórico familiar",
+        speech: "Minha mãe também tem um pouco isso, mas não tão grave como eu. Ela sua um pouco das mãos mas não tanto. Parece que é hereditário."
+      },
+      {
+        trigger: "Sobre tratamentos anteriores",
+        speech: "Já tentei cloreto de alumínio em gel que comprei na farmácia, mas irritou muito a pele e não resolveu. Nunca fui a um especialista antes. Pesquisei sobre iontoforese e sobre a cirurgia na internet."
+      },
+      {
+        trigger: "Sobre doenças ou medicamentos",
+        speech: "Não tenho nada de saúde, nunca tive. Não tomo remédio nenhum. Nunca operei."
+      },
+      {
+        trigger: "Sobre febre, perda de peso ou suores noturnos",
+        speech: "Não, nunca tive febre sem motivo. Não perdi peso. Suor noturno também não. Só esse das mãos de dia."
+      },
+      {
+        trigger: "Pergunta ativa — A cirurgia resolve de vez?",
+        speech: "A cirurgia resolve de vez, doutor? Não tem chance de voltar? Tem algum risco de ficar pior em outro lugar?"
+      },
+      {
+        trigger: "Pergunta ativa — O que é essa compensação que vi na internet?",
+        speech: "Vi na internet que depois da cirurgia você passa a suar em outro lugar do corpo. Isso é verdade? É pior do que a hiperidrose das mãos?"
+      }
+    ],
+    hiddenInfo: "Já tentou iontoforese caseira com aparelhos comprados pela internet por 3 meses mas abandonou pela dificuldade de manutenção e resultado parcial — relevante para sequência do tratamento; só menciona se o candidato perguntar sobre todas as tentativas de tratamento realizadas. | Refere que a hiperidrose melhorou muito durante uma cirurgia que fez no dente com anestesia local — nunca entendeu por quê; esse dado pode abrir discussão sobre o mecanismo simpático da hiperidrose; só menciona se o candidato perguntar sobre situações que melhoram o suor.",
+    actorBehavior: "Paciente jovem, visivelmente constrangido ao falar do assunto. Demonstra alívio ao perceber que o médico trata com naturalidade. Muito motivado para a cirurgia. Faz perguntas inteligentes sobre a compensação sudorípara. Demonstra sofrimento real pelo impacto social."
+  },
+  instC: {
+    diagnosis: "Hiperidrose primária palmoplantar e axilar — HDSS grau 4 (intolerável, interfere sempre nas atividades). Sem causa secundária identificada (TSH normal, glicemia normal, catecolaminas normais, sem febre, sem perda de peso). Indicação de tratamento cirúrgico: simpaticotomia torácica videoscópica (STV) no nível R3–R4 para hiperidrose palmar.",
+    differentials: [
+      "Hiperidrose secundária ao hipertireoidismo — excluída pelo TSH e T4 livre normais",
+      "Hiperidrose secundária ao feocromocitoma — excluída pelas catecolaminas urinárias normais e pela ausência de HAS, cefaleia episódica e taquicardia paroxística",
+      "Hiperidrose secundária a linfoma (sudorese noturna de B) — excluída pela ausência de suor noturno, febre e perda de peso e pelo hemograma normal",
+      "Ansiedade generalizada com sudorese — diferencial; a hiperidrose primária ocorre mesmo em repouso e sem ansiedade — este dado diferencia clinicamente"
+    ],
+    context: "Paciente masculino jovem, 26 anos, com hiperidrose primária palmoplantar HDSS grau 4, impacto severo na qualidade de vida, componente familiar sugestivo. Causas secundárias excluídas laboratorialmente. Falha de tratamento clínico (cloreto de alumínio). Candidato a simpaticotomia torácica videoscópica.",
+    justify: "Hiperidrose primária: início na adolescência, bilateral e simétrica, foco palmoplantar, ausência de suor noturno (suor noturno = causa secundária), histórico familiar, sem causa orgânica identificável. HDSS ≥ 3 = indicação de tratamento ativo. A simpaticotomia torácica videoscópica (STV) no nível R3 tem taxa de sucesso > 95% para hiperidrose palmar com compensação sudorípara em 30–80% dos casos.",
+    expectedAnamnesis: "Localização: palmas, axilas, pés, face | Bilateralidade e simetria | Início: adolescência (hiperidrose primária) | Piora com emoções mas presente em repouso | Ausência de suor noturno (diferencia de causa secundária) | Histórico familiar | Impacto funcional: HDSS | Tentativas de tratamento prévias | Investigar causas secundárias: febre recorrente (linfoma), perda de peso, palpitações e HAS (feocromocitoma), tremor e taquicardia (hipertireoidismo) | Uso de medicamentos que causam hiperidrose (opioides, antidepressivos, insulina)",
+    expectedPhysical: "Mãos: umidade visível e gotejamento | Axilas: umidade e odor | Pés: umidade plantar | Excluir hipertireoidismo: tremor, taquicardia, exoftalmia, bócio | Excluir feocromocitoma: HAS, taquicardia | Excluir linfoma: linfonodomegalia | Neurológico: sem neuropatia autonômica",
+    expectedExams: [
+      { exam: "TSH e T4 livre", justify: "Excluir hipertireoidismo como causa secundária de hiperidrose", expected: "Normais — hipertireoidismo excluído" },
+      { exam: "Glicemia de jejum e hemograma", justify: "Excluir diabetes (neuropatia autonômica) e linfoma (sudorese B)", expected: "Normais" },
+      { exam: "Catecolaminas urinárias de 24h ou metanefrinas urinárias", justify: "Excluir feocromocitoma — causa de hiperidrose paroxística com HAS", expected: "Normais — feocromocitoma excluído" }
+    ],
+    expectedConduct: "Farmacológica: Cloreto de alumínio hexahidratado 20% — primeira linha para formas leves a moderadas (HDSS 1–2); já falhou neste caso | Não farmacológica — linha progressiva: (1) Iontoforese: corrente elétrica de baixa intensidade aplicada às mãos — eficaz em 80% dos casos de hiperidrose palmar leve a moderada, necessita manutenção semanal; (2) Toxina botulínica tipo A (onabotulinumtoxinA): injeções intradérmicas nas palmas — altamente eficaz (90%), duração de 4–6 meses, procedimento doloroso, custo elevado, precisa repetição; (3) Simpaticotomia torácica videoscópica (STV) — tratamento definitivo, taxa de cura > 95% para hiperidrose palmar; nível de ablação: R3 para palmar (preserva R2 para reduzir compensação facial); efeito colateral principal: compensação sudorípara — sudorese aumentada no tronco, abdome e coxas em 30–80% dos casos; em graus graves de compensação pode ser pior que a hiperidrose original; informar antes da cirurgia | Encaminhamento: Cirurgia Torácica para STV por videolaparoscopia | Orientações ao paciente: Explicar a progressão do tratamento; explicar em detalhes a compensação sudorípara antes da cirurgia — é essencial que o paciente compreenda e aceite o risco; explicar que não há reversão da simpaticotomia | Seguimento: Avaliação pós-operatória em 30 dias; reavaliação da compensação",
+    expectedCommunication: "Apresentação: Identificar-se e normalizar a queixa sem minimizá-la | Comunicação do diagnóstico: Explicar que é uma condição chamada hiperidrose primária, causada por hiperatividade dos nervos simpáticos que controlam o suor; que não é ansiedade nem falta de higiene | Escuta ativa: Validar o impacto severo na qualidade de vida; abordar a compensação sudorípara com clareza e sem minimizar — é o efeito adverso mais relevante da cirurgia",
+    criticalErrors: [
+      "Não investigar causas secundárias de hiperidrose antes de indicar tratamento cirúrgico",
+      "Não informar o paciente sobre a compensação sudorípara antes da simpaticotomia — é o efeito adverso mais relevante e pode ser mais incapacitante que a hiperidrose original",
+      "Indicar simpaticotomia como primeira linha sem tentativa prévia de tratamento clínico (iontoforese ou toxina botulínica)",
+      "Não aplicar a escala HDSS para quantificar a gravidade e documentar a indicação cirúrgica",
+      "Não esclarecer que a simpaticotomia é irreversível — consentimento informado inadequado"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — HIPERIDROSE PRIMÁRIA: DIAGNÓSTICO E INDICAÇÃO CIRÚRGICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Normalizou a queixa de hiperidrose sem minimizar o impacto severo na qualidade de vida do paciente", score: 0.5, ref: "CFM Res. 2232/2019; SBCT — Consenso em Hiperidrose, 2022" },
+          { item: "Explicou a compensação sudorípara de forma clara e completa antes de qualquer indicação cirúrgica", score: 1.0, ref: "SBCT, 2022; CFM — Consentimento informado" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Caracterizou a hiperidrose como primária: início na adolescência, bilateral, sem suor noturno, com histórico familiar", score: 1.0, ref: "SBCT — Consenso em Hiperidrose, 2022" },
+          { item: "Aplicou ou avaliou o HDSS (grau 4 — intolerável, sempre interfere nas atividades) para quantificar a gravidade", score: 0.5, ref: "SBCT, 2022; Hornberger et al. ⚠️" },
+          { item: "Investigou sintomas de causas secundárias: febre, perda de peso, palpitações, tremor, HAS (feocromocitoma, linfoma, hipertireoidismo)", score: 0.5, ref: "SBCT, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou mãos visivelmente úmidas como achado objetivo de hiperidrose palmar", score: 0.5, ref: "SBCT, 2022" },
+          { item: "Excluiu sinais de hipertireoidismo (tremor, taquicardia, bócio) e feocromocitoma (HAS, taquicardia) ao exame", score: 0.5, ref: "SBE, 2022; SBCT, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Solicitou TSH, glicemia e catecolaminas urinárias para excluir causas secundárias antes de indicar cirurgia", score: 0.5, ref: "SBCT, 2022" },
+          { item: "Apresentou a progressão correta do tratamento: cloreto de alumínio → iontoforese → toxina botulínica → simpaticotomia", score: 1.0, ref: "SBCT, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Indicou simpaticotomia torácica videoscópica no nível R3 para hiperidrose palmar, justificando a escolha do nível de ablação", score: 1.0, ref: "SBCT — Consenso em Hiperidrose, 2022" },
+          { item: "Esclareceu que a simpaticotomia é irreversível e que o paciente deve aceitar o risco de compensação sudorípara antes de operar", score: 0.5, ref: "SBCT, 2022; CFM — Consentimento informado" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 26,
+  title: "Dor forte no lado direito da barriga com febre após refeição gordurosa",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "colecistite aguda",
+  level: "moderado",
+  cardAccent: "#D4AC0D",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno noturno. Paciente padronizado (ator).",
+    patient: "A.R., 48 anos, feminino, contadora, obesa, com histórico de cólica biliar prévia.",
+    complaint: "Dor intensa em hipocôndrio direito irradiando para o ombro direito, febre e vômitos há 10 horas, após jantar com churrasco.",
+    tasks: [
+      "Realize a anamnese dirigida ao quadro de dor em hipocôndrio direito e identifique o diagnóstico provável.",
+      "Realize o exame físico abdominal pertinente e identifique os sinais clínicos de colecistite aguda.",
+      "Solicite e interprete os exames complementares para confirmação diagnóstica e avaliação de complicações.",
+      "Proponha a conduta terapêutica inicial e o momento adequado para a colecistectomia.",
+      "Identifique os critérios de gravidade da colecistite (Tokyo Guidelines) e diferencie de colangite aguda."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "128/82 mmHg",
+      FC: "104 bpm",
+      FR: "18 irpm",
+      Tax: "38,6°C",
+      Peso: "86 kg",
+      Altura: "1,60 m",
+      IMC: "33,6 kg/m²"
+    },
+    physicalGeneral: "Paciente em regular estado geral, consciente, orientada, com dor moderada a intensa (EVA 7/10). Mucosas normocoradas, anictérica, diaforética. Agitada pela dor.",
+    physicalSeg: "ABDOME: Flácido com exceção de discreta defesa em hipocôndrio direito. Dor intensa à palpação profunda em hipocôndrio direito com irradiação para região epigástrica. Sinal de Murphy positivo (interrupção da inspiração à palpação do ponto colecístico). Sem Blumberg difuso. Ruídos hidroaéreos presentes e normais. Sem icterícia ou colúria. | CARDIOVASCULAR: Taquicárdica, bulhas rítmicas, sem sopros. | TÓRAX: MV presente bilateralmente.",
+    labs: [
+      { test: "Hemoglobina", val: "13,4 g/dL", ref: "12,0–16,0 g/dL", alt: false },
+      { test: "Leucócitos", val: "16.800/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "85% (desvio à esquerda)", ref: "50–70%", alt: true },
+      { test: "PCR", val: "142 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Bilirrubina total", val: "1,0 mg/dL", ref: "< 1,2 mg/dL", alt: false },
+      { test: "Bilirrubina direta", val: "0,3 mg/dL", ref: "< 0,4 mg/dL", alt: false },
+      { test: "TGO (AST)", val: "48 U/L", ref: "< 40 U/L", alt: true },
+      { test: "TGP (ALT)", val: "62 U/L", ref: "< 41 U/L", alt: true },
+      { test: "GGT", val: "88 U/L", ref: "< 50 U/L", alt: true },
+      { test: "Fosfatase alcalina", val: "110 U/L", ref: "44–147 U/L", alt: false },
+      { test: "Amilase", val: "68 U/L", ref: "< 100 U/L", alt: false },
+      { test: "Creatinina", val: "0,9 mg/dL", ref: "0,7–1,2 mg/dL", alt: false }
+    ],
+    image: "ULTRASSONOGRAFIA DE ABDOME TOTAL: Vesícula biliar distendida (10 x 4,5 cm), com paredes espessadas (6 mm — normal < 3 mm), edema perivesicular e líquido ao redor da vesícula. Múltiplos cálculos no interior, o maior medindo 1,8 cm, com sombra acústica posterior. Sinal ultrassonográfico de Murphy positivo (dor máxima com a sonda sobre a vesícula). Ducto biliar comum (colédoco) com calibre de 5 mm — dentro dos limites normais. Fígado com textura homogênea. Pâncreas sem alterações.",
+    note: "Caso com ator. A atriz deve demonstrar dor ao movimento e especialmente ao inspirar fundo quando o candidato palpa o hipocôndrio direito (Murphy positivo). Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar USG quando solicitada. Atentar se o candidato aplica os critérios de Tokyo para classificar a gravidade da colecistite e indica o momento correto da colecistectomia.",
+    patientProfile: "A.R., 48 anos, feminino. Contadora, casada, dois filhos. Obesidade grau I (IMC 33,6). Cólicas biliares episódicas há 2 anos — nunca tratadas. Sem medicamentos contínuos. Nega alergias. Diagnóstico de colelitíase há 1 ano em USG de rotina — sem seguimento.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutora, tô com uma dor horrível aqui do lado direito da barriga, logo embaixo das costelas. Começou depois do jantar de ontem, comemos churrasco e depois veio essa dor que não para. Estou com febre e vomitei umas três vezes."
+      },
+      {
+        trigger: "Sobre o início e a evolução da dor",
+        speech: "Começou umas 2 horas depois que jantei. No começo era uma cólica, ia e voltava. Mas depois foi ficando uma dor constante, que não alivia mais. Vai pro ombro direito também, essa irradiação."
+      },
+      {
+        trigger: "Sobre episódios anteriores semelhantes",
+        speech: "Sim, tive umas cólicas parecidas antes, mais fracas. Principalmente depois de comer gordura. Mas passava depois de algumas horas. Já me disseram que tenho pedra na vesícula há um ano, mas não fiz nada."
+      },
+      {
+        trigger: "Sobre febre e vômitos",
+        speech: "Tô com febre sim, medi em casa antes de vir, estava 38 e pouco. Vomitei três vezes, um líquido amarelado. Tô sem apetite."
+      },
+      {
+        trigger: "Sobre icterícia ou urina escura",
+        speech: "Não, minha pele não ficou amarela não. A urina tá normal também, não escureceu. Os olhos também não amarelaram."
+      },
+      {
+        trigger: "Sobre doenças e medicamentos",
+        speech: "Sou saudável, não tomo remédio nenhum. Só tenho esse excesso de peso mesmo. Não tenho diabetes nem pressão alta."
+      },
+      {
+        trigger: "Sobre alergias",
+        speech: "Não tenho alergia a nada que eu saiba."
+      },
+      {
+        trigger: "Sobre o hábito intestinal",
+        speech: "Normal. Fui ao banheiro hoje cedo, normal. Não tenho diarreia, não tenho prisão de ventre."
+      },
+      {
+        trigger: "Sobre o que alivia a dor",
+        speech: "Nada alivia muito. Já tomei dipirona em casa, melhorou um pouco mas voltou. Ficar deitada e não se mover ajuda um pouco. Respirar fundo piora muito."
+      },
+      {
+        trigger: "Pergunta ativa — É a vesícula doutor?",
+        speech: "É a vesícula, não é? Eu sabia que ia dar problema um dia. Vou ter que operar agora? Posso fazer a cirurgia?"
+      },
+      {
+        trigger: "Pergunta ativa — Tenho medo de cirurgia, tem outro jeito?",
+        speech: "Tem como tratar só com remédio e não operar? Tenho muito medo de cirurgia."
+      }
+    ],
+    hiddenInfo: "Já teve um episódio mais intenso há 3 meses que passou espontaneamente após 6 horas — provavelmente colecistite aguda autolimitada; só menciona se o candidato perguntar sobre episódios anteriores mais intensos ou prolongados de cólica. | Refere que o marido também tem pedra na vesícula — dado epidemiológico sem impacto clínico imediato; menciona se a conversa fluir naturalmente.",
+    actorBehavior: "Paciente em dor moderada, inquieta, incapaz de encontrar posição confortável. Demonstra Murphy positivo ao ser examinada. Teme a cirurgia mas está aberta à orientação. Fica aliviada quando o médico explica o diagnóstico com clareza e propõe um plano."
+  },
+  instC: {
+    diagnosis: "Colecistite aguda calculosa grau II (moderada — Tokyo Guidelines 2018): leucocitose > 18.000 (não atingida, mas PCR > 96, febre, Murphy positivo, espessamento parietal > 4 mm). Sem icterícia, colúria ou colédoco dilatado — afasta coledocolitíase. Sem critérios de falência orgânica — afasta grau III.",
+    differentials: [
+      "Colangite aguda — excluída pela ausência da tríade de Charcot (febre + icterícia + dor em HCD): bilirrubinas normais, colédoco de calibre normal na USG",
+      "Pancreatite aguda biliar — excluída pela amilase normal (68 U/L) e pela ausência de dor em faixa com irradiação dorsal",
+      "Úlcera péptica em crise — diferencial de dor epigástrica e em HCD; excluída pela USG com colecistite e pelo sinal de Murphy positivo",
+      "Pneumonia de lobo inferior direito — diferencial incomum de dor em HCD; excluída pela ausência de tosse, expectoração e alterações à ausculta pulmonar"
+    ],
+    context: "Paciente feminina, 48 anos, obesa, com colelitíase conhecida e colecistite aguda grau II (Tokyo). Sem icterícia nem coledocolitíase. Colecistectomia laparoscópica precoce (< 72h) é a conduta de escolha — reduz complicações e internação.",
+    justify: "Critérios de Tokyo 2018 para colecistite aguda grau II: PCR > 96 mg/L + leucocitose > 18.000 OU parede > 4 mm + Murphy ultrassonográfico positivo — grau II (moderado). Colecistectomia laparoscópica precoce (< 72h) é superior à abordagem tardia (> 6 semanas) em termos de complicações, taxa de conversão e qualidade de vida. Colédoco normal e bilirrubinas normais afastam coledocolitíase.",
+    expectedAnamnesis: "Caracterizar dor: localização HCD, irradiação para ombro direito (frénico), relação com alimentação gordurosa | Febre: início e intensidade | Vômitos: frequência e conteúdo | Icterícia, colúria, acolia — afastar coledocolitíase e colangite | Episódios anteriores de cólica biliar | Diagnóstico prévio de colelitíase | Comorbidades, medicamentos, alergias | Última refeição (pré-operatório)",
+    expectedPhysical: "Sinais vitais: febre, taquicardia | Icterícia: avaliar esclera e pele | Abdome: dor em HCD, defesa localizada, Murphy positivo (dor à inspiração com palpação do ponto colecístico) | Avaliar Blumberg difuso (peritonite generalizada) | Avaliar massa palpável em HCD (plastrão ou abscesso pericistístico)",
+    expectedExams: [
+      { exam: "Ultrassonografia de abdome total", justify: "Exame de escolha para diagnóstico de colecistite aguda — visualiza cálculos, parede vesicular, líquido pericistístico, colédoco", expected: "Parede espessada > 3 mm, cálculos, líquido perivesicular, Murphy ultrassonográfico positivo" },
+      { exam: "Hemograma e PCR", justify: "Leucocitose e PCR elevado confirmam processo inflamatório e compõem os critérios de Tokyo", expected: "Leucocitose 16.800, PCR 142 — grau II de Tokyo" },
+      { exam: "Bilirrubinas, TGO, TGP, GGT, FA, amilase", justify: "Avaliação de coledocolitíase (bilirrubinas elevadas), hepatite (transaminases) e pancreatite biliar (amilase)", expected: "Bilirrubinas normais (afasta coledocolitíase); amilase normal (afasta pancreatite)" }
+    ],
+    expectedConduct: "Farmacológica: Jejum; hidratação venosa: SF 0,9% 1.000 mL IV; analgesia: dipirona 1g IV a cada 6h + cetoprofeno 100 mg IV a cada 8h; antieméticos: metoclopramida 10 mg IV a cada 8h; antibioticoterapia: ampicilina-sulbactam 3g IV a cada 6h OU cefazolina 2g IV + metronidazol 500 mg IV a cada 8h (CCIH/MS; RENAME 2022) | Não farmacológica: Colecistectomia laparoscópica precoce (< 72h) — padrão ouro para colecistite aguda grau I e II — reduz internação, complicações e custo; NÃO indicar colecistectomia tardia eletiva de rotina em grau II sem contraindicação cirúrgica | Encaminhamento: Bloco cirúrgico de urgência para colecistectomia laparoscópica precoce | Orientações à paciente: Explicar que a vesícula está inflamada com cálculo impactado e que a cirurgia é o tratamento definitivo e seguro; esclarecer que a cirurgia por vídeo é menos dolorosa e tem recuperação rápida | Seguimento: Alta em 24–48h após colecistectomia sem complicações",
+    expectedCommunication: "Apresentação: Identificar-se e acolher a paciente com dor | Comunicação do diagnóstico: Explicar que a pedra está bloqueando a saída da vesícula causando inflamação; que a cirurgia por vídeo é segura e tem rápida recuperação | Escuta ativa: Acolher o medo da cirurgia; desmistificar a laparoscopia; esclarecer que sem cirurgia o risco de complicações graves aumenta",
+    criticalErrors: [
+      "Não aplicar os critérios de Tokyo para classificar a gravidade da colecistite — fundamental para decidir o momento cirúrgico",
+      "Indicar colecistectomia tardia (em 6 semanas) em colecistite aguda grau II sem contraindicação cirúrgica — conduta ultrapassada com maior risco de complicações",
+      "Não investigar coledocolitíase (bilirrubinas, colédoco na USG) — omissão que pode levar a colangite pós-operatória",
+      "Não prescrever antibioticoterapia em colecistite aguda grau II — colecistite infectada exige cobertura antimicrobiana",
+      "Confundir colecistite com colangite — a tríade de Charcot (febre + icterícia + dor) está ausente, mas deve ser ativamente pesquisada"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — COLECISTITE AGUDA: DIAGNÓSTICO E COLECISTECTOMIA PRECOCE",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Acolheu o medo da paciente em relação à cirurgia e desmistificou a colecistectomia laparoscópica de forma clara", score: 0.5, ref: "CFM Res. 2232/2019; SBAD, 2022" },
+          { item: "Explicou o diagnóstico e o plano cirúrgico em linguagem acessível, sem jargões técnicos", score: 0.5, ref: "CFM Res. 2232/2019" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Caracterizou a dor em HCD com irradiação para ombro direito após refeição gordurosa como apresentação típica de colecistite", score: 0.5, ref: "SBAD — Consenso em Colecistite, 2022" },
+          { item: "Investigou ativamente icterícia, colúria e acolia para excluir coledocolitíase e colangite", score: 1.0, ref: "SBAD, 2022; Tokyo Guidelines 2018 ⚠️" },
+          { item: "Identificou histórico de colelitíase conhecida e cólicas biliares prévias sem tratamento como contexto clínico relevante", score: 0.5, ref: "SBAD, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Realizou e identificou o sinal de Murphy positivo (interrupção da inspiração à palpação do ponto colecístico) como sinal clínico de colecistite", score: 1.0, ref: "SBAD, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Avaliou icterícia escleral e cutânea para excluir comprometimento do colédoco", score: 0.5, ref: "SBAD, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Aplicou os critérios de Tokyo Guidelines 2018 e classificou a colecistite como grau II (moderada)", score: 1.0, ref: "Tokyo Guidelines 2018 ⚠️; SBAD, 2022" },
+          { item: "Solicitou ultrassonografia de abdome como primeiro exame e interpretou: parede espessada, cálculos, líquido pericistístico, colédoco normal", score: 0.5, ref: "SBAD, 2022" },
+          { item: "Solicitou amilase para excluir pancreatite biliar associada", score: 0.5, ref: "SBAD, 2022; SBCP, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Indicou colecistectomia laparoscópica precoce (< 72h) como tratamento de escolha para colecistite grau II", score: 1.0, ref: "Tokyo Guidelines 2018 ⚠️; SBAD, 2022" },
+          { item: "Prescreveu antibioticoterapia, analgesia e antieméticos no pré-operatório", score: 0.5, ref: "SBAD, 2022; RENAME 2022; CCIH/MS" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 27,
+  title: "Febre, icterícia e dor no lado direito da barriga em paciente com cálculos biliares",
+  sub: "PS — Pronto-Socorro",
+  tema: "Cirurgia",
+  topic: "coledocolitíase e colangite aguda",
+  level: "moderado",
+  cardAccent: "#D4AC0D",
+  instA: {
+    scenario: "Pronto-Socorro de hospital geral. Turno diurno. Paciente padronizado (ator).",
+    patient: "S.B., 55 anos, feminino, secretária, com histórico de colelitíase, apresentando febre alta, olhos amarelos e dor no lado direito da barriga.",
+    complaint: "Dor em hipocôndrio direito, febre de 39°C e icterícia há 2 dias, com piora progressiva e confusão mental nas últimas horas.",
+    tasks: [
+      "Realize a anamnese e identifique a tríade de Charcot e a pêntade de Reynolds.",
+      "Realize o exame físico e classifique a gravidade da colangite pelos critérios de Tokyo.",
+      "Solicite e interprete os exames complementares prioritários.",
+      "Proponha a conduta de urgência incluindo drenagem biliar e antibioticoterapia.",
+      "Diferencie colangite aguda de colecistite aguda e de outras causas de icterícia obstrutiva."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "88/56 mmHg",
+      FC: "122 bpm",
+      FR: "22 irpm",
+      Tax: "39,4°C",
+      Peso: "72 kg",
+      Altura: "1,62 m",
+      IMC: "27,4 kg/m²"
+    },
+    physicalGeneral: "Paciente em mau estado geral, confusa (desorientada no tempo e espaço), com dor em HCD (EVA 6/10). Mucosas ictéricas. Escleróticas ictéricas. Febril. Sudoreica. Hipotensa.",
+    physicalSeg: "ABDOME: Flácido. Dor à palpação profunda em hipocôndrio direito e epigástrio. Murphy negativo (sem inflamação vesicular franca — colédoco obstruído sem colecistite). Fígado palpável a 2 cm do rebordo costal direito, de superfície lisa, doloroso à palpação (colestase). Ruídos hidroaéreos normais. | PELE E MUCOSAS: Icterícia 2+/4+ na pele e escleras. Urina visivelmente escura (colúria) relatada pelo familiar. | CARDIOVASCULAR: Taquicárdica, hipotensa, pulsos periféricos finos. | NEUROLÓGICO: Confusa, desorientada — Glasgow 13.",
+    labs: [
+      { test: "Hemoglobina", val: "11,8 g/dL", ref: "12,0–16,0 g/dL", alt: true },
+      { test: "Leucócitos", val: "22.400/mm³", ref: "4.000–11.000/mm³", alt: true },
+      { test: "Neutrófilos", val: "90% (desvio à esquerda)", ref: "50–70%", alt: true },
+      { test: "PCR", val: "284 mg/L", ref: "< 5 mg/L", alt: true },
+      { test: "Bilirrubina total", val: "8,4 mg/dL", ref: "< 1,2 mg/dL", alt: true },
+      { test: "Bilirrubina direta", val: "7,1 mg/dL", ref: "< 0,4 mg/dL", alt: true },
+      { test: "TGO (AST)", val: "188 U/L", ref: "< 40 U/L", alt: true },
+      { test: "TGP (ALT)", val: "214 U/L", ref: "< 41 U/L", alt: true },
+      { test: "GGT", val: "420 U/L", ref: "< 50 U/L", alt: true },
+      { test: "Fosfatase alcalina", val: "380 U/L", ref: "44–147 U/L", alt: true },
+      { test: "Amilase", val: "320 U/L", ref: "< 100 U/L", alt: true },
+      { test: "Lactato sérico", val: "3,8 mmol/L", ref: "0,5–2,0 mmol/L", alt: true },
+      { test: "Creatinina", val: "1,8 mg/dL", ref: "0,7–1,2 mg/dL", alt: true },
+      { test: "TP (INR)", val: "1,8", ref: "0,8–1,2", alt: true }
+    ],
+    image: "ULTRASSONOGRAFIA DE ABDOME TOTAL: Vesícula biliar com múltiplos cálculos, paredes de espessura normal (2 mm). Ducto biliar comum (colédoco) dilatado — calibre de 13 mm (normal < 7 mm) — com imagem hiperecogênica de 1,2 cm no colédoco distal compatível com cálculo impactado, com sombra acústica. Via biliar intra-hepática com dilatação moderada. Fígado com textura preservada, sem abscesso identificado. | COLANGIOPANCREATOGRAFIA POR RESSONÂNCIA MAGNÉTICA (CPRM): Cálculo de 1,2 cm impactado no colédoco distal, a 1 cm da papila. Dilatação da via biliar principal (colédoco 14 mm) e das vias intra-hepáticas. Sem estenose. Sem massa pancreática ou periampular visível.",
+    note: "Caso com ator. A atriz deve estar com icterícia simulada (maquiagem amarela nas escleras e pele). Confusa, prostrada. Familiar presente fornece parte da história. Entregar sinais vitais ao início. Entregar laboratório quando solicitado. Entregar USG quando solicitada. Entregar CPRM quando o candidato solicitar. Atentar se o candidato reconhece a pêntade de Reynolds e indica CPRE de urgência.",
+    patientProfile: "S.B., 55 anos, feminino. Secretária, casada, dois filhos adultos. Colelitíase conhecida há 3 anos sem tratamento. Sem medicamentos contínuos. Nega alergias. DM tipo 2 leve em uso de metformina 500 mg 1x/dia — suspender antes de contraste iodado.",
+    script: [
+      {
+        trigger: "Familiar fala pela paciente (confusa)",
+        speech: "Doutor, minha mãe tá com dor na barriga, febre e os olhos amarelos há dois dias. Hoje ela ficou confusa, não tá respondendo direito. Ela tem pedra na vesícula há anos mas nunca quis operar."
+      },
+      {
+        trigger: "Paciente responde diretamente quando perguntada sobre dor",
+        speech: "Dói aqui... (aponta para HCD) ...tô com calor... (confusa, responde de forma fragmentada)"
+      },
+      {
+        trigger: "Familiar sobre a evolução (quando perguntado)",
+        speech: "Começou com dor no lado direito e febre há 2 dias. Aí ontem notamos que os olhos ficaram amarelos. A urina ficou bem escura também, marrom quase. Hoje de manhã ela ficou assim, confusa."
+      },
+      {
+        trigger: "Familiar sobre doenças e medicamentos (quando perguntado)",
+        speech: "Ela tem diabetes leve, toma metformina. Nunca teve problema de fígado. A única coisa era essa pedra na vesícula que ela sabia mas não queria operar."
+      },
+      {
+        trigger: "Familiar sobre alergias (quando perguntado)",
+        speech: "Não tem alergia nenhuma que eu saiba. Nunca teve reação a remédio."
+      },
+      {
+        trigger: "Familiar sobre calafrios (quando perguntado)",
+        speech: "Sim! Ficou com muito tremor ontem à noite, tipo um calafrio forte, ficou tremendo muito por uns 10 minutos. Depois passou, mas aí a febre subiu mais."
+      },
+      {
+        trigger: "Familiar sobre fezes (quando perguntado)",
+        speech: "Agora que você fala, as fezes dela ficaram bem claras, esbranquiçadas nos últimos 2 dias. Achamos estranho mas não ligamos. Isso é importante?"
+      },
+      {
+        trigger: "Pergunta ativa do familiar — O que está acontecendo com ela doutor?",
+        speech: "O que está acontecendo? É grave? Ela vai precisar operar?"
+      },
+      {
+        trigger: "Pergunta ativa do familiar — Por que ela ficou confusa?",
+        speech: "Por que ela ficou assim, confusa? Isso é do fígado? Do remédio? É perigoso?"
+      }
+    ],
+    hiddenInfo: "Calafrios intensos na noite anterior — sinal de bacteremia por colangite grave; confirmado pelo familiar se o candidato perguntar sobre calafrios ou tremores. | Fezes acólicas (esbranquiçadas) confirmadas pelo familiar — sinal de colestase obstrutiva completa; só menciona se o candidato perguntar sobre a cor das fezes.",
+    actorBehavior: "Paciente confusa, prostrada, responde apenas a perguntas simples. Familiar ansioso e assustado, colaborativo. Fornece todas as informações quando questionado adequadamente pelo candidato."
+  },
+  instC: {
+    diagnosis: "Colangite aguda grave (grau III — Tokyo Guidelines 2018): pêntade de Reynolds completa — dor em HCD + febre + icterícia (tríade de Charcot) + hipotensão + confusão mental. Coledocolitíase confirmada pela USG e CPRM (cálculo 1,2 cm no colédoco distal). Sepse biliar com disfunção orgânica. CPRE de urgência (<24h) com papiloesfincterotomia e extração do cálculo.",
+    differentials: [
+      "Colecistite aguda — excluída pela presença de icterícia, colúria, colédoco dilatado e tríade de Charcot positiva; Murphy negativo reforça que a inflamação é no colédoco e não na vesícula",
+      "Hepatite aguda viral — diferencial de icterícia com transaminases elevadas; excluída pelo colédoco dilatado com cálculo na USG/CPRM e pelo padrão colestático (FA e GGT muito elevadas)",
+      "Neoplasia de cabeça de pâncreas ou periampular — diferencial de icterícia obstrutiva; excluída pela CPRM sem massa pancreática e pela presença de cálculo impactado como causa da obstrução",
+      "Abscesso hepático — diferencial de febre e icterícia em paciente com sepse; excluído pela USG sem coleções hepáticas"
+    ],
+    context: "Paciente feminina, 55 anos, com coledocolitíase e colangite aguda grau III (Tokyo) — pêntade de Reynolds completa com sepse biliar e disfunção orgânica (hipotensão, confusão, IRA). CPRE de urgência é a única intervenção que resolve a obstrução e controla a sepse. Mortalidade da colangite grau III sem drenagem: > 50%.",
+    justify: "Tokyo Guidelines grau III: disfunção orgânica em ≥ 1 órgão (cardiovascular: hipotensão; neurológico: confusão; renal: creatinina 1,8). Pêntade de Reynolds = tríade de Charcot + hipotensão + confusão — indica colangite supurativa grave. CPRE com papiloesfincterotomia e extração do cálculo é o tratamento de escolha — drenagem biliar urgente (<24h) resolve a obstrução e a sepse.",
+    expectedAnamnesis: "Tríade de Charcot: febre + icterícia + dor em HCD — quando iniciou cada um | Pêntade de Reynolds: + hipotensão + confusão mental | Colúria e acolia (fezes esbranquiçadas) | Calafrios: bacteremia | Histórico de colelitíase e colecistites prévias | Diabetes: suspender metformina antes de contraste | Alergias a contraste iodado (CPRE) | Último episódio semelhante",
+    expectedPhysical: "Sinais vitais: hipotensão + taquicardia + febre — sepse | Neurológico: Glasgow, confusão | Icterícia: pele e escleras | Abdome: Murphy negativo (diferencia de colecistite), hepatomegalia dolorosa | Colúria: observar cor da urina | Avaliar signs de peritonite",
+    expectedExams: [
+      { exam: "Ultrassonografia de abdome", justify: "Primeiro exame — confirmar coledocolitíase, avaliar calibre do colédoco e via biliar", expected: "Colédoco 13 mm com cálculo impactado" },
+      { exam: "Bilirrubinas, enzimas colestáticas (FA, GGT), transaminases", justify: "Confirmar padrão colestático e disfunção hepática", expected: "Bilirrubina total 8,4, padrão colestático dominante" },
+      { exam: "Lactato, creatinina, coagulograma", justify: "Avaliar gravidade da sepse e disfunção orgânica", expected: "Lactato 3,8, creatinina 1,8, INR 1,8 — disfunção orgânica múltipla" },
+      { exam: "CPRM (colangiopancreatografia por ressonância)", justify: "Confirmar localização do cálculo e excluir neoplasia antes da CPRE", expected: "Cálculo 1,2 cm no colédoco distal, sem massa" },
+      { exam: "CPRE (colangiopancreatografia retrógrada endoscópica) — TERAPÊUTICA", justify: "Drenagem biliar urgente — papiloesfincterotomia e extração do cálculo", expected: "Resolução da obstrução biliar e controle da sepse" }
+    ],
+    expectedConduct: "Farmacológica: Ressuscitação hemodinâmica: Ringer Lactato 30 mL/kg em 1h (bundle de sepse — SSC); noradrenalina se hipotensão refratária; antibioticoterapia empírica de amplo espectro: piperacilina-tazobactam 4,5g IV a cada 6h OU imipeném-cilastatina 500 mg IV a cada 6h (RENAME 2022 — colangite grave com sepse) — cobertura para Enterococcus, gram-negativos entéricos e anaeróbios; suspender metformina imediatamente (contraste iodado na CPRE); vitamina K 10 mg IV + plasma fresco se INR > 1,5 antes da CPRE | Não farmacológica: CPRE urgente (< 24h) com papiloesfincterotomia e extração do cálculo — única intervenção que resolve a obstrução; colecistectomia laparoscópica eletiva 4–6 semanas após resolução da colangite; cateter vesical; SNG se vômitos; UTI após CPRE | Encaminhamento: Endoscopia de urgência para CPRE; UTI pós-procedimento; Gastroenterologia/Cirurgia para colecistectomia eletiva posterior | Orientações ao familiar: Comunicar gravidade, risco de vida, necessidade de procedimento urgente | Seguimento: UTI; colecistectomia eletiva em 4–6 semanas",
+    expectedCommunication: "Apresentação: Identificar-se rapidamente ao familiar | Comunicação ao familiar: Explicar que a pedra está bloqueando a saída da bile causando infecção grave no fígado e nas vias biliares; que um procedimento urgente pela boca (endoscopia) é necessário para retirar a pedra | Escuta ativa: Acolher o medo do familiar; comunicar a gravidade sem omitir o risco de vida",
+    criticalErrors: [
+      "Não reconhecer a pêntade de Reynolds — não identificar a colangite grau III e não indicar CPRE de urgência",
+      "Indicar colecistectomia de urgência sem drenagem biliar prévia pela CPRE — a cirurgia sem drenagem não resolve a obstrução e aumenta a mortalidade",
+      "Não iniciar ressuscitação hemodinâmica imediata em paciente com sepse biliar e choque",
+      "Não suspender metformina antes de contraste iodado (CPRE) — risco de acidose lática",
+      "Confundir colangite com colecistite aguda — condutas e urgências diferentes; erro pode atrasar a CPRE"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — COLANGITE AGUDA GRAVE: PÊNTADE DE REYNOLDS E CPRE URGENTE",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Colheu a anamnese com o familiar dado o rebaixamento do nível de consciência da paciente", score: 0.5, ref: "CFM Res. 2232/2019; Código de Ética Médica" },
+          { item: "Comunicou ao familiar a gravidade do quadro e a necessidade de procedimento urgente (CPRE) de forma clara e empática", score: 0.5, ref: "CFM Res. 2232/2019" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Identificou a tríade de Charcot completa: febre + icterícia + dor em HCD", score: 1.0, ref: "SBAD — Consenso em Colangite, 2022; Tokyo Guidelines 2018 ⚠️" },
+          { item: "Identificou a pêntade de Reynolds: tríade de Charcot + hipotensão + confusão mental — colangite grau III", score: 1.0, ref: "Tokyo Guidelines 2018 ⚠️; SBAD, 2022" },
+          { item: "Investigou colúria, acolia e calafrios como dados diagnósticos de obstrução biliar e bacteremia", score: 0.5, ref: "SBAD, 2022" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou icterícia escleral e cutânea e colédoco dilatado como achados de obstrução biliar", score: 0.5, ref: "SBAD, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Diferenciou Murphy negativo (colangite) de Murphy positivo (colecistite) — distinção diagnóstica fundamental", score: 1.0, ref: "SBAD, 2022; Tokyo Guidelines 2018 ⚠️" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Classificou a colangite como grau III (Tokyo) pela presença de disfunção orgânica — cardiovascular + neurológico + renal", score: 0.5, ref: "Tokyo Guidelines 2018 ⚠️; SBAD, 2022" },
+          { item: "Indicou CPRE urgente (< 24h) como procedimento de drenagem biliar de escolha na colangite grau III", score: 1.0, ref: "Tokyo Guidelines 2018 ⚠️; SBAD, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Iniciou ressuscitação hemodinâmica (30 mL/kg de Ringer Lactato) e antibioticoterapia de amplo espectro imediatamente", score: 0.5, ref: "SSC ⚠️; SBAD, 2022; RENAME 2022" },
+          { item: "Suspendeu a metformina antes do contraste iodado da CPRE para prevenir acidose lática", score: 0.5, ref: "SBD, 2022; SBAD, 2022; bula metformina" }
+        ]
+      }
+    ]
+  }
+},
+
+{
+  id: 28,
+  title: "Pedra na vesícula descoberta em exame de rotina — paciente sem sintomas",
+  sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
+  tema: "Cirurgia",
+  topic: "colelitíase e cólica biliar",
+  level: "moderado",
+  cardAccent: "#D4AC0D",
+  instA: {
+    scenario: "Ambulatório de Cirurgia Geral de hospital geral. Turno matutino. Paciente padronizado (ator).",
+    patient: "E.V., 45 anos, feminino, enfermeira, com colelitíase descoberta em exame de rotina há 1 mês.",
+    complaint: "Pedra na vesícula descoberta em ultrassonografia de rotina. Paciente refere episódios ocasionais de desconforto após refeições gordurosas, mas sem crise de dor intensa.",
+    tasks: [
+      "Realize a anamnese e classifique a colelitíase como sintomática ou assintomática com base nos critérios clínicos.",
+      "Realize o exame físico pertinente e interprete os achados laboratoriais e de imagem.",
+      "Determine se há indicação de colecistectomia profilática ou apenas vigilância, com justificativa baseada em diretrizes.",
+      "Oriente a paciente sobre os riscos e benefícios da colecistectomia laparoscópica versus conduta expectante.",
+      "Identifique as situações em que a colecistectomia profilática é indicada mesmo em pacientes assintomáticos."
+    ]
+  },
+  instB: {
+    vitals: {
+      PA: "122/78 mmHg",
+      FC: "72 bpm",
+      FR: "16 irpm",
+      Tax: "36,4°C",
+      Peso: "74 kg",
+      Altura: "1,64 m",
+      IMC: "27,5 kg/m²"
+    },
+    physicalGeneral: "Paciente em bom estado geral, consciente, orientada, eupneica, afebril. Mucosas normocoradas, anictérica, acianótica. Sobrepeso leve.",
+    physicalSeg: "ABDOME: Flácido, ruídos hidroaéreos presentes e normais. Dor leve à palpação profunda em hipocôndrio direito. Murphy negativo. Sem massas, sem visceromegalias. Sem icterícia. | CARDIOVASCULAR: Bulhas rítmicas normofonéticas, sem sopros. | TÓRAX: MV presente bilateralmente, sem ruídos adventícios.",
+    labs: [
+      { test: "Hemograma completo", val: "Dentro dos limites normais", ref: "—", alt: false },
+      { test: "Bilirrubina total", val: "0,8 mg/dL", ref: "< 1,2 mg/dL", alt: false },
+      { test: "TGO (AST)", val: "28 U/L", ref: "< 40 U/L", alt: false },
+      { test: "TGP (ALT)", val: "32 U/L", ref: "< 41 U/L", alt: false },
+      { test: "GGT", val: "38 U/L", ref: "< 50 U/L", alt: false },
+      { test: "Fosfatase alcalina", val: "82 U/L", ref: "44–147 U/L", alt: false },
+      { test: "Amilase", val: "52 U/L", ref: "< 100 U/L", alt: false },
+      { test: "Glicemia de jejum", val: "96 mg/dL", ref: "70–99 mg/dL", alt: false }
+    ],
+    image: "ULTRASSONOGRAFIA DE ABDOME TOTAL (exame de rotina há 1 mês): Vesícula biliar de dimensões normais, com paredes finas (2 mm). Presença de um cálculo único medindo 1,4 cm, com sombra acústica posterior. Ausência de espessamento parietal, líquido pericistístico ou sinais inflamatórios. Ducto biliar comum (colédoco) com calibre normal (5 mm). Fígado, pâncreas e rins sem alterações.",
+    note: "Caso com ator. A paciente deve ser representada como calma, bem informada (enfermeira) e com dúvidas específicas sobre a indicação cirúrgica. Entregar sinais vitais e laudo da USG ao início (é o exame que motivou o encaminhamento). Entregar laboratório quando solicitado. Atentar se o candidato distingue colelitíase sintomática de assintomática e se indica ou não a cirurgia com base em critérios.",
+    patientProfile: "E.V., 45 anos, feminino. Enfermeira de UTI, casada, dois filhos. Sobrepeso (IMC 27,5). Sem comorbidades relevantes. Sem medicamentos contínuos. Sem tabagismo. Etilismo social leve. Sem histórico familiar de câncer de vesícula. Sem anemia hemolítica. Sem imunossupressão. Dieta com refeições gordurosas frequentes pelo trabalho noturno.",
+    script: [
+      {
+        trigger: "Queixa principal / ao iniciar o contato",
+        speech: "Doutor, descobri uma pedra na vesícula há um mês, num exame de rotina. Não tive nenhuma crise daquelas horríveis que as pacientes da UTI relatam. Mas às vezes, depois de comer gordura, sinto um desconforto aqui do lado direito, não é dor forte, passa em menos de uma hora. Vim saber se preciso operar."
+      },
+      {
+        trigger: "Sobre o desconforto pós-prandial",
+        speech: "É uma pressão, um incômodo, às vezes uma leve cólica aqui embaixo das costelas direitas. Acontece depois de refeições mais pesadas, churrasco, feijoada. Passa sozinho, em menos de uma hora. Nunca precisei de remédio por causa disso."
+      },
+      {
+        trigger: "Sobre crise de dor intensa",
+        speech: "Não, nunca tive aquela crise que fala em cólica biliar intensa, que vai para o ombro, com vômito, que dura horas. Isso nunca aconteceu. É só esse desconfortinho mesmo."
+      },
+      {
+        trigger: "Sobre icterícia ou urina escura",
+        speech: "Nunca fiquei amarela, nunca a urina ficou escura. Os exames do fígado vieram todos normais."
+      },
+      {
+        trigger: "Sobre histórico familiar",
+        speech: "Minha mãe também tem pedra na vesícula, mas vive bem, nunca operou. Não tem caso de câncer na família. Meu pai morreu de infarto, mas não tinha problema de vesícula."
+      },
+      {
+        trigger: "Sobre diabetes ou outras doenças",
+        speech: "Não tenho diabetes, não tenho anemia. Nunca tive problema de saúde sério. Só esse sobrepeso que tô tentando controlar."
+      },
+      {
+        trigger: "Sobre viagens ou trabalho",
+        speech: "Trabalho muito, planto noturno na UTI. Viajo às vezes, já fui pra lugares com atendimento médico limitado. Isso influencia na decisão de operar?"
+      },
+      {
+        trigger: "Sobre o medo da cirurgia",
+        speech: "Trabalho em UTI, sou enfermeira. Já vi muita cirurgia, sei que a laparoscópica é mais tranquila. Mas mesmo assim tenho aquela resistência de passar pela mesa. Prefiro evitar se puder."
+      },
+      {
+        trigger: "Sobre expectativa com a consulta",
+        speech: "Quero saber se preciso operar agora, se posso esperar, ou se nunca vou precisar. Como enfermeira, entendo que tem paciente que tem pedra na vesícula a vida toda sem sintoma. Mas quero a orientação do especialista."
+      },
+      {
+        trigger: "Pergunta ativa — Vou ter complicação se não operar?",
+        speech: "Se eu decidir não operar agora, qual a chance de ter uma complicação grave tipo colecistite ou icterícia? Isso é previsível?"
+      },
+      {
+        trigger: "Pergunta ativa — O desconforto que sinto é da pedra?",
+        speech: "Esse incômodo que sinto depois de comer gordura é da pedra? Isso conta como sintoma para indicar a cirurgia?"
+      }
+    ],
+    hiddenInfo: "Viaja frequentemente para regiões do interior com acesso limitado a serviços de saúde de urgência — fator que pode inclinar para cirurgia profilática pelo risco de complicação sem atendimento adequado; só menciona se o candidato perguntar sobre estilo de vida, trabalho ou viagens. | Planeja uma viagem longa de 3 meses para zona rural em 6 meses — dado que reforça a discussão sobre cirurgia profilática antes de áreas remotas; só menciona se o candidato perguntar sobre planos futuros.",
+    actorBehavior: "Paciente articulada, calma, bem informada pela profissão. Faz perguntas técnicas pertinentes. Demonstra resistência natural à cirurgia mas está aberta à orientação especializada. Fica satisfeita com explicações baseadas em evidências."
+  },
+  instC: {
+    diagnosis: "Colelitíase sintomática leve (cólica biliar atípica — desconforto pós-prandial < 1h sem crise típica). Cálculo único de 1,4 cm. Sem complicações (sem colecistite, coledocolitíase ou colangite). Indicação relativa de colecistectomia laparoscópica eletiva pela sintomatologia — discutir risco-benefício com a paciente.",
+    differentials: [
+      "Colelitíase assintomática — diferencial: o desconforto pós-prandial relatado pode ser inespecífico (dispepsia funcional) ou representar cólica biliar atípica; a distinção impacta a indicação cirúrgica",
+      "Dispepsia funcional — diferencial de desconforto epigástrico e em HCD pós-prandial; pode coexistir com colelitíase; H. pylori deve ser investigado",
+      "DRGE — diferencial de desconforto pós-prandial; excluído pela localização em HCD e pela ausência de pirose típica",
+      "Colelitíase assintomática com indicação profilática por risco específico — considerar: viagem a zona rural, profissão de risco (impossibilidade de acesso a cuidados de urgência)"
+    ],
+    context: "Paciente feminina, 45 anos, com colelitíase sintomática leve (cólica biliar atípica). Sem complicações. Cálculo único 1,4 cm. Sem fatores de risco para câncer de vesícula. Indicação cirúrgica relativa — decisão compartilhada com a paciente. Viagem a zona rural em 6 meses pode ser fator favorável à cirurgia eletiva preventiva.",
+    justify: "Diretrizes SBAD/CBC 2022: colelitíase sintomática (cólica biliar típica ou atípica) = indicação de colecistectomia eletiva. Colelitíase assintomática em paciente sem fatores de risco específicos = conduta expectante (15–25% evoluem com complicação em 20 anos). Indicações profiláticas em assintomáticos: cálculo > 3 cm, vesícula em porcelana, anomalia de junção bilioptancreática, anemia hemolítica, imunossuprimidos, transplantados, viajantes a zonas remotas. Neste caso: sintomática leve + viagem a zona rural = indicação relativa com decisão compartilhada.",
+    expectedAnamnesis: "Caracterizar os sintomas: cólica biliar típica (dor em HCD > 30 min, irradiação para ombro, vômitos) vs. atípica (desconforto < 1h pós-prandial) | Episódios anteriores de complicação: colecistite, icterícia, pancreatite | Fatores de risco para câncer de vesícula: cálculo > 3 cm, vesícula em porcelana, índio americano (étnico) | Anemia hemolítica, imunossupressão, transplante | Viagens a regiões remotas | Histórico familiar de câncer de vesícula | Gravidez atual ou planejada (colelitíase piora na gravidez)",
+    expectedPhysical: "Murphy negativo (sem colecistite) | Palpação de HCD: sensibilidade leve | Icterícia: ausente | Avaliação do peso e IMC | Sem sinais de complicação",
+    expectedExams: [
+      { exam: "Ultrassonografia de abdome (já disponível)", justify: "Caracterizar o cálculo: tamanho, número, parede vesicular, colédoco", expected: "Cálculo único 1,4 cm, parede normal, colédoco normal" },
+      { exam: "Bilirrubinas e enzimas hepáticas", justify: "Excluir coledocolitíase silenciosa e disfunção hepática", expected: "Normais — sem obstrução biliar" },
+      { exam: "Pesquisa de H. pylori (se dispepsia associada)", justify: "Excluir dispepsia por H. pylori como causa do desconforto pós-prandial", expected: "Avaliar e tratar se positivo" }
+    ],
+    expectedConduct: "Farmacológica: Não há dissolução química eficaz para cálculos de colesterol em vesícula biliar funcionante — ácido ursodesoxicólico tem indicação limitada e taxa de recidiva alta após suspensão; não indicar como tratamento definitivo; analgesia durante cólicas: dipirona 1g VO a cada 6h + buscapina 10 mg VO se necessário | Não farmacológica: Colecistectomia laparoscópica eletiva — indicada pela sintomatologia (cólica atípica); taxa de sucesso > 95% em laparoscopia eletiva; mortalidade < 0,1% em elétiva; discutir os riscos reais (lesão de via biliar 0,2–0,5%, conversão para laparotomia) | Conduta expectante — alternativa em colelitíase verdadeiramente assintomática; orientar sinais de alarme para retorno imediato: dor intensa > 30 min em HCD + febre + icterícia = ir ao PS | Encaminhamento: Cirurgia Geral/Digestiva para colecistectomia laparoscópica eletiva | Orientações à paciente: Explicar a diferença entre assintomática e sintomática leve; apresentar risco-benefício da cirurgia eletiva versus expectante; discutir o contexto da viagem a zona rural como fator favorável à cirurgia preventiva; orientar sinais de alarme | Seguimento: Se optar por expectante: USG em 1 ano; orientar retorno imediato se cólica intensa, febre ou icterícia",
+    expectedCommunication: "Apresentação: Identificar-se e reconhecer o conhecimento técnico da paciente como profissional de saúde | Comunicação do diagnóstico: Explicar a diferença entre colelitíase assintomática e sintomática; apresentar dados de risco-benefício de forma clara e baseada em evidências | Escuta ativa: Perguntar sobre expectativas, medos e planos futuros (viagem); tomar decisão compartilhada respeitando a autonomia da paciente",
+    criticalErrors: [
+      "Indicar colecistectomia de urgência em colelitíase sintomática leve sem complicação — conduta excessiva; cirurgia eletiva é adequada",
+      "Não orientar sobre os sinais de alarme que exigem ida ao PS (cólica intensa + febre + icterícia) — omissão de informação crítica de segurança",
+      "Indicar ácido ursodesoxicólico como tratamento definitivo para colelitíase — sem eficácia a longo prazo, alta taxa de recidiva",
+      "Não considerar o contexto da viagem a zona rural como fator favorável à colecistectomia profilática eletiva",
+      "Não discutir a decisão com a paciente de forma compartilhada — colelitíase sintomática leve é uma indicação relativa que admite decisão conjunta"
+    ]
+  },
+  instD: {
+    title: "CHECKLIST — COLELITÍASE: AVALIAÇÃO E INDICAÇÃO CIRÚRGICA",
+    sections: [
+      {
+        h: "COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE",
+        items: [
+          { item: "Reconheceu o conhecimento técnico da paciente (enfermeira) e utilizou linguagem adequada ao nível de compreensão dela", score: 0.5, ref: "CFM Res. 2232/2019; ABEM, 2022" },
+          { item: "Tomou decisão compartilhada sobre cirurgia eletiva versus expectante, respeitando a autonomia da paciente", score: 0.5, ref: "CFM Res. 2232/2019; Código de Ética Médica — autonomia" }
+        ]
+      },
+      {
+        h: "ANAMNESE E HISTÓRICO CLÍNICO",
+        items: [
+          { item: "Classificou corretamente como colelitíase sintomática leve (cólica atípica: desconforto < 1h pós-prandial) e não como assintomática", score: 1.0, ref: "SBAD — Consenso em Colelitíase, 2022; CBC, 2022" },
+          { item: "Investigou indicações profiláticas de cirurgia em assintomáticos: cálculo > 3 cm, vesícula em porcelana, anemia hemolítica, imunossupressão", score: 0.5, ref: "SBAD, 2022" },
+          { item: "Identificou a viagem planejada a zona rural como fator favorável à colecistectomia eletiva preventiva", score: 0.5, ref: "SBAD, 2022; CBM — Cirurgia em viajantes" }
+        ]
+      },
+      {
+        h: "EXAME FÍSICO",
+        items: [
+          { item: "Identificou Murphy negativo, confirmando ausência de colecistite aguda no momento", score: 0.5, ref: "SBAD, 2022; Semiologia Médica — Porto, 8ª ed., 2019" },
+          { item: "Avaliou icterícia e confirmou ausência de obstrução biliar ao exame clínico", score: 0.5, ref: "SBAD, 2022" }
+        ]
+      },
+      {
+        h: "RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO",
+        items: [
+          { item: "Interpretou a USG: cálculo único 1,4 cm, parede normal, colédoco normal — sem complicações", score: 0.5, ref: "SBAD, 2022" },
+          { item: "Não indicou ácido ursodesoxicólico como tratamento definitivo — reconheceu a ineficácia a longo prazo", score: 0.5, ref: "SBAD, 2022" },
+          { item: "Indicou colecistectomia laparoscópica eletiva com base na sintomatologia, discutindo o risco-benefício", score: 1.0, ref: "SBAD, 2022; CBC, 2022" }
+        ]
+      },
+      {
+        h: "CONDUTA E ORIENTAÇÃO",
+        items: [
+          { item: "Orientou os sinais de alarme que exigem ida imediata ao PS: cólica intensa + febre + icterícia", score: 1.0, ref: "SBAD, 2022; CFM — Segurança do paciente" },
+          { item: "Orientou sobre o contexto da viagem a zona rural como fator favorável à cirurgia eletiva preventiva antes da viagem", score: 0.5, ref: "SBAD, 2022" }
+        ]
+      }
+    ]
+  }
+},
+
 ]
 
 export default ctoracica;
