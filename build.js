@@ -13,6 +13,7 @@ import ped3 from './data/ped3.js';
 import oftalmo from './data/oftalmo.js';
 import ctoracica from './data/cc/cirurgiatoracica.js';
 import pneumoGastro from './data/pneumo_gastro.js';
+import especialidades2 from './data/especialidades2.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -35,6 +36,7 @@ const allStations = [
   ...oftalmo,
   ...ctoracica,
   ...pneumoGastro,
+  ...especialidades2,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,

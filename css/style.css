@@ -224,7 +224,16 @@
   .pill-otorrinolaringologia{ border-color: #fb923c; color: #fb923c; }
   .pill-cirurgia            { border-color: #f43f5e; color: #f43f5e; }
   .pill-pneumologia         { border-color: #5B9BD5; color: #5B9BD5; }
-  .pill-gastroenterologia   { border-color: #27AE60; color: #27AE60; }
+  .pill-gastroenterologia        { border-color: #27AE60; color: #27AE60; }
+  .pill-dermatologia             { border-color: #EC407A; color: #EC407A; }
+  .pill-infectologia             { border-color: #43A047; color: #43A047; }
+  .pill-hematologia              { border-color: #E53935; color: #E53935; }
+  .pill-emergencias-neurologicas { border-color: #FF7043; color: #FF7043; }
+  .pill-ortopedia                { border-color: #607D8B; color: #607D8B; }
+  .pill-medicina-intensiva       { border-color: #E65100; color: #E65100; }
+  .pill-geriatria                { border-color: #8D6E63; color: #8D6E63; }
+  .pill-vascular                 { border-color: #C62828; color: #C62828; }
+  .pill-medicina-legal           { border-color: #546E7A; color: #546E7A; }
   .pill-level-simples  { border-color: #69db7c; color: #69db7c; }
   .pill-level-moderado { border-color: #ffd43b; color: #ffd43b; }
   .pill-level-complexo { border-color: #ff6b6b; color: #ff6b6b; }
@@ -624,7 +633,16 @@
   .filter-btn.tema-otorrinolaringologia.active { border-color: #fb923c; color: #fb923c; }
   .filter-btn.tema-cirurgia.active             { border-color: #f43f5e; color: #f43f5e; }
   .filter-btn.tema-pneumologia.active          { border-color: #5B9BD5; color: #5B9BD5; }
-  .filter-btn.tema-gastroenterologia.active    { border-color: #27AE60; color: #27AE60; }
+  .filter-btn.tema-gastroenterologia.active         { border-color: #27AE60; color: #27AE60; }
+  .filter-btn.tema-dermatologia.active              { border-color: #EC407A; color: #EC407A; }
+  .filter-btn.tema-infectologia.active              { border-color: #43A047; color: #43A047; }
+  .filter-btn.tema-hematologia.active               { border-color: #E53935; color: #E53935; }
+  .filter-btn.tema-emergencias-neurologicas.active  { border-color: #FF7043; color: #FF7043; }
+  .filter-btn.tema-ortopedia.active                 { border-color: #607D8B; color: #607D8B; }
+  .filter-btn.tema-medicina-intensiva.active        { border-color: #E65100; color: #E65100; }
+  .filter-btn.tema-geriatria.active                 { border-color: #8D6E63; color: #8D6E63; }
+  .filter-btn.tema-vascular.active                  { border-color: #C62828; color: #C62828; }
+  .filter-btn.tema-medicina-legal.active            { border-color: #546E7A; color: #546E7A; }
 
   .filter-btn.tema-nefrologia:hover           { border-color: #38d9a9; color: #38d9a9; }
   .filter-btn.tema-urologia:hover             { border-color: #4f9cf9; color: #4f9cf9; }
@@ -636,7 +654,16 @@
   .filter-btn.tema-otorrinolaringologia:hover { border-color: #fb923c; color: #fb923c; }
   .filter-btn.tema-cirurgia:hover             { border-color: #f43f5e; color: #f43f5e; }
   .filter-btn.tema-pneumologia:hover          { border-color: #5B9BD5; color: #5B9BD5; }
-  .filter-btn.tema-gastroenterologia:hover    { border-color: #27AE60; color: #27AE60; }
+  .filter-btn.tema-gastroenterologia:hover         { border-color: #27AE60; color: #27AE60; }
+  .filter-btn.tema-dermatologia:hover              { border-color: #EC407A; color: #EC407A; }
+  .filter-btn.tema-infectologia:hover              { border-color: #43A047; color: #43A047; }
+  .filter-btn.tema-hematologia:hover               { border-color: #E53935; color: #E53935; }
+  .filter-btn.tema-emergencias-neurologicas:hover  { border-color: #FF7043; color: #FF7043; }
+  .filter-btn.tema-ortopedia:hover                 { border-color: #607D8B; color: #607D8B; }
+  .filter-btn.tema-medicina-intensiva:hover        { border-color: #E65100; color: #E65100; }
+  .filter-btn.tema-geriatria:hover                 { border-color: #8D6E63; color: #8D6E63; }
+  .filter-btn.tema-vascular:hover                  { border-color: #C62828; color: #C62828; }
+  .filter-btn.tema-medicina-legal:hover            { border-color: #546E7A; color: #546E7A; }
 
   .home-main { flex: 1; min-width: 0; }
 

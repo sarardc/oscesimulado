@@ -1347,7 +1347,9 @@ const orl = [
       ]}
     ]
   }
-}
+},
+
+];
 
 const casosDermatologia = [
   {
@@ -2133,5 +2135,6 @@ const casosDermatologia = [
     }
   }
 
-]
-export default orl;
+];
+
+export default [...orl, ...casosDermatologia];
