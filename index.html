@@ -38,26 +38,46 @@
       <aside class="filter-sidebar">
         <p class="filter-label">Filtrar por tema</p>
         <button class="filter-btn active" data-tema="all" onclick="setFilter('all')">Todas</button>
-        <button class="filter-btn tema-nefrologia" data-tema="nefrologia" onclick="setFilter('nefrologia')">Nefrologia</button>
-        <button class="filter-btn tema-urologia" data-tema="urologia" onclick="setFilter('urologia')">Urologia</button>
-        <button class="filter-btn tema-endocrinologia" data-tema="endocrinologia" onclick="setFilter('endocrinologia')">Endocrinologia</button>
+
+        <!-- CLÍNICA MÉDICA -->
+        <div class="fgrp open" id="fg-clinica">
+          <button class="fgrp-hdr" onclick="toggleFGroup('fg-clinica')" title="Expandir / Recolher">
+            <span>Clínica Médica</span><span class="fgrp-arr">▾</span>
+          </button>
+          <div class="fgrp-body">
+            <button class="filter-btn tema-dermatologia"         data-tema="dermatologia"        onclick="setFilter('dermatologia')">Dermatologia</button>
+            <button class="filter-btn tema-infectologia"         data-tema="infectologia"        onclick="setFilter('infectologia')">Infectologia</button>
+            <button class="filter-btn tema-geriatria"            data-tema="geriatria"           onclick="setFilter('geriatria')">Geriatria</button>
+            <button class="filter-btn tema-hematologia"          data-tema="hematologia"         onclick="setFilter('hematologia')">Hematologia</button>
+            <button class="filter-btn tema-endocrinologia"       data-tema="endocrinologia"      onclick="setFilter('endocrinologia')">Endocrinologia</button>
+            <button class="filter-btn tema-nefrologia"           data-tema="nefrologia"          onclick="setFilter('nefrologia')">Nefrologia</button>
+            <button class="filter-btn tema-pneumologia"          data-tema="pneumologia"         onclick="setFilter('pneumologia')">Pneumologia</button>
+            <button class="filter-btn tema-gastroenterologia"    data-tema="gastroenterologia"   onclick="setFilter('gastroenterologia')">Gastroenterologia</button>
+            <button class="filter-btn tema-psiquiatria"          data-tema="psiquiatria"         onclick="setFilter('psiquiatria')">Psiquiatria</button>
+            <button class="filter-btn tema-otorrinolaringologia" data-tema="otorrinolaringologia" onclick="setFilter('otorrinolaringologia')">Otorrinolaringologia</button>
+            <button class="filter-btn tema-oftalmologia"         data-tema="oftalmologia"        onclick="setFilter('oftalmologia')">Oftalmologia</button>
+            <button class="filter-btn tema-neurologia"           data-tema="neurologia"          onclick="setFilter('neurologia')">Neurologia</button>
+          </div>
+        </div>
+
         <button class="filter-btn tema-pediatria" data-tema="pediatria" onclick="setFilter('pediatria')">Pediatria</button>
-        <button class="filter-btn tema-psiquiatria" data-tema="psiquiatria" onclick="setFilter('psiquiatria')">Psiquiatria</button>
-        <button class="filter-btn tema-neurologia" data-tema="neurologia" onclick="setFilter('neurologia')">Neurologia</button>
-        <button class="filter-btn tema-otorrinolaringologia" data-tema="otorrinolaringologia" onclick="setFilter('otorrinolaringologia')">Otorrinolaringologia</button>
-        <button class="filter-btn tema-oftalmologia" data-tema="oftalmologia" onclick="setFilter('oftalmologia')">Oftalmologia</button>
-        <button class="filter-btn tema-cirurgia" data-tema="cirurgia" onclick="setFilter('cirurgia')">Cirurgia</button>
-        <button class="filter-btn tema-pneumologia" data-tema="pneumologia" onclick="setFilter('pneumologia')">Pneumologia</button>
-        <button class="filter-btn tema-gastroenterologia" data-tema="gastroenterologia" onclick="setFilter('gastroenterologia')">Gastroenterologia</button>
-        <button class="filter-btn tema-dermatologia" data-tema="dermatologia" onclick="setFilter('dermatologia')">Dermatologia</button>
-        <button class="filter-btn tema-infectologia" data-tema="infectologia" onclick="setFilter('infectologia')">Infectologia</button>
-        <button class="filter-btn tema-hematologia" data-tema="hematologia" onclick="setFilter('hematologia')">Hematologia</button>
-        <button class="filter-btn tema-emergencias-neurologicas" data-tema="Emergencias Neurologicas" onclick="setFilter('Emergencias Neurologicas')">Emergências Neurológicas</button>
-        <button class="filter-btn tema-ortopedia" data-tema="ortopedia" onclick="setFilter('ortopedia')">Ortopedia</button>
-        <button class="filter-btn tema-medicina-intensiva" data-tema="Medicina Intensiva" onclick="setFilter('Medicina Intensiva')">Medicina Intensiva</button>
-        <button class="filter-btn tema-geriatria" data-tema="geriatria" onclick="setFilter('geriatria')">Geriatria</button>
-        <button class="filter-btn tema-vascular" data-tema="vascular" onclick="setFilter('vascular')">Vascular</button>
-        <button class="filter-btn tema-medicina-legal" data-tema="Medicina Legal" onclick="setFilter('Medicina Legal')">Medicina Legal</button>
+
+        <!-- CIRURGIA -->
+        <div class="fgrp open" id="fg-cirurgia">
+          <button class="fgrp-hdr" onclick="toggleFGroup('fg-cirurgia')" title="Expandir / Recolher">
+            <span>Cirurgia</span><span class="fgrp-arr">▾</span>
+          </button>
+          <div class="fgrp-body">
+            <button class="filter-btn tema-cirurgia" data-tema="cirurgia" onclick="setFilter('cirurgia')">Cirurgia Torácica</button>
+            <button class="filter-btn tema-vascular"  data-tema="vascular"  onclick="setFilter('vascular')">Vascular</button>
+          </div>
+        </div>
+
+        <button class="filter-btn tema-medicina-intensiva"       data-tema="medicina intensiva"       onclick="setFilter('medicina intensiva')">Medicina Intensiva</button>
+        <button class="filter-btn tema-emergencias-neurologicas" data-tema="emergencias neurologicas" onclick="setFilter('emergencias neurologicas')">Emergência Neurológica</button>
+        <button class="filter-btn tema-urologia"                 data-tema="urologia"                 onclick="setFilter('urologia')">Urologia</button>
+        <button class="filter-btn tema-ortopedia"                data-tema="ortopedia"                onclick="setFilter('ortopedia')">Ortopedia</button>
+        <button class="filter-btn tema-medicina-legal"           data-tema="medicina legal"           onclick="setFilter('medicina legal')">Medicina Legal</button>
       </aside>
       <div class="home-main">
         <p class="section-label">Estações disponíveis <span id="filter-count"></span></p>
@@ -116,6 +136,11 @@
     document.getElementById('theme-icon').textContent  = isLight ? '☽' : '☀';
     document.getElementById('theme-label').textContent = isLight ? 'Escuro' : 'Claro';
   });
+
+  function toggleFGroup(id) {
+    const grp = document.getElementById(id);
+    grp.classList.toggle('open');
+  }
 </script>
 
 <!-- APP -->

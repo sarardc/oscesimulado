@@ -590,13 +590,13 @@
   }
 
   .filter-sidebar {
-    width: 160px;
+    width: 186px;
     flex-shrink: 0;
     position: sticky;
     top: 24px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
   }
 
   .filter-label {
@@ -622,6 +622,56 @@
   }
   .filter-btn:hover { border-color: var(--accent); color: var(--text); }
   .filter-btn.active { background: var(--surface2); color: var(--text); font-weight: 600; }
+
+  /* ── Filter groups (accordion) ─────────────────────────────────────── */
+  .fgrp {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 4px;
+  }
+
+  .fgrp-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text3);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 2px 5px;
+    cursor: pointer;
+    transition: color 0.15s;
+    gap: 4px;
+  }
+  .fgrp-hdr:hover { color: var(--text2); }
+  .fgrp-hdr span:first-child { flex: 1; text-align: left; }
+
+  .fgrp-arr {
+    font-size: 11px;
+    display: inline-block;
+    transition: transform 0.2s ease;
+    transform: rotate(0deg);
+  }
+  .fgrp:not(.open) .fgrp-arr { transform: rotate(-90deg); }
+
+  .fgrp-body {
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    padding: 5px 0 6px 8px;
+  }
+  .fgrp.open .fgrp-body { display: flex; }
+
+  .fgrp-body .filter-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
 
   .filter-btn.tema-nefrologia.active           { border-color: #38d9a9; color: #38d9a9; }
   .filter-btn.tema-urologia.active             { border-color: #4f9cf9; color: #4f9cf9; }
@@ -690,7 +740,7 @@
     .header-sub { font-size: 16px; }
     .header-iframe-wrap { width: min(300px, 45%); }
     .grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .filter-sidebar { width: 140px; }
+    .filter-sidebar { width: 160px; }
     .tab-content { max-width: 700px; }
   }
 
@@ -720,6 +770,11 @@
     }
     .filter-label { width: 100%; margin-bottom: 0; }
     .filter-btn { font-size: 13px; padding: 7px 12px; }
+    /* groups flat on mobile — hide headers, always show body */
+    .fgrp { display: contents; }
+    .fgrp-hdr { display: none; }
+    .fgrp-body { display: contents; }
+    .fgrp-body .filter-btn { font-size: 13px; padding: 7px 12px; }
 
     .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
     .card { padding: 16px; }

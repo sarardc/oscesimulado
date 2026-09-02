@@ -16,8 +16,9 @@ function toList(val) {
 
 function setFilter(tema) {
   activeFilter = tema;
+  const normTema = tema.toLowerCase();
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.tema === tema);
+    btn.classList.toggle('active', (btn.dataset.tema || '').toLowerCase() === normTema);
   });
   renderCards();
 }
