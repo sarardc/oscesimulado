@@ -205,9 +205,10 @@
 <script src="js/app.js"></script>
 
 <!-- SCRIPT DA IA IA-->
-<script type="module">
-    import { CreateMLCEngine } from "https://esm.sh/@mlc.ai/web-llm";
 
+<!-- Motor de IA e Simulação por Voz (Versão Estável com Dynamic Import) -->
+<script type="module">
+    // 1. Mapeamento dos botões (A Interface)
     const btnAbrirIa = document.getElementById("btn-abrir-ia");
     const btnFecharIa = document.getElementById("btn-fechar-ia");
     const drawer = document.getElementById("ia-drawer");
@@ -231,79 +232,81 @@
     const modeloSelecionado = "Phi-3-mini-4k-instruct-q4f16_1-MLC";
     let historicoConsulta = [];
 
-    // Abrir e fechar o painel lateral
+    // ==========================================
+    // PARTE 1: GARANTIR QUE A ABA ABRE SEMPRE
+    // ==========================================
     if (btnAbrirIa) {
         btnAbrirIa.addEventListener("click", () => {
-            drawer.classList.add("aberto");
-            overlay.classList.add("ativo");
-            const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
-            if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
+            if (drawer && overlay) {
+                drawer.classList.add("aberto");
+                overlay.classList.add("ativo");
+                
+                // Tenta capturar o título do caso
+                const elementoTitulo = document.getElementById("sv-title");
+                if (elementoTitulo && tituloDrawer) {
+                    tituloDrawer.innerText = elementoTitulo.innerText;
+                }
+            }
         });
     }
 
     function fecharPainel() {
-        drawer.classList.remove("aberto");
-        overlay.classList.remove("ativo");
+        if (drawer) drawer.classList.remove("aberto");
+        if (overlay) overlay.classList.remove("ativo");
     }
+    
     if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
     if (overlay) overlay.addEventListener("click", fecharPainel);
 
-    // Verificação de compatibilidade WebGPU
-    async function checarWebGPU() {
-        if (!navigator.gpu) return false;
-        try {
-            const adapter = await navigator.gpu.requestAdapter();
-            return !!adapter;
-        } catch {
-            return false;
-        }
+    // ==========================================
+    // PARTE 2: A INTELIGÊNCIA ARTIFICIAL (LAZY LOAD)
+    // ==========================================
+    if (btnIniciar) {
+        btnIniciar.addEventListener("click", async () => {
+            btnIniciar.disabled = true;
+            statusIa.innerText = "Conectando ao servidor da IA...";
+
+            try {
+                // IMPORTAÇÃO DINÂMICA: Só baixa a biblioteca se o aluno clicar aqui!
+                // Usando o CDN oficial recomendado pelo projeto WebLLM
+                const webllm = await import("https://esm.run/@mlc.ai/web-llm");
+                
+                statusIa.innerText = "A descarregar modelo de IA (apenas na 1ª vez)...";
+
+                engine = await webllm.CreateMLCEngine(modeloSelecionado, {
+                    initProgressCallback: (report) => {
+                        statusIa.innerText = `A carregar IA: ${Math.round(report.progress * 100)}%`;
+                    }
+                });
+
+                statusIa.innerText = "Paciente pronto! Prima o botão para falar.";
+                btnIniciar.style.display = "none";
+                btnFalar.style.display = "block";
+                btnFinalizar.style.display = "block";
+
+                historicoConsulta = [
+                    {
+                        role: "system",
+                        content: "Você é um paciente de 55 anos numa consulta de urgência. Queixa-se de dor no peito em aperto iniciada há 1 hora, que irradia para o braço esquerdo. É hipertenso e fumador. Responda apenas ao que for perguntado, de forma curta (máximo 2 frases) e com vocabulário leigo."
+                    }
+                ];
+                window.speechSynthesis.getVoices(); // Prepara a voz
+                
+            } catch (erro) {
+                console.error("Erro fatal na IA:", erro);
+                statusIa.innerHTML = `<span style="color: red;">Erro ao conectar. O servidor da IA pode estar bloqueado pela sua rede ou fora do ar.</span>`;
+                btnIniciar.disabled = false;
+            }
+        });
     }
 
-    checarWebGPU().then((suporta) => {
-        if (!suporta) {
-            btnIniciar.style.display = "none";
-            avisoHardware.innerHTML = `<div style="background:#f8d7da; color:#842029; padding:10px; border-radius:5px; margin-bottom:10px; font-size:0.85rem;">
-                ⚠️ <strong>Dispositivo incompatível:</strong> O seu navegador não suporta aceleração gráfica WebGPU. Utilize o Google Chrome ou Edge atualizado num computador.
-            </div>`;
-        }
-    });
-
-    // Descarregar e inicializar o modelo
-    btnIniciar.addEventListener("click", async () => {
-        btnIniciar.disabled = true;
-        statusIa.innerText = "A descarregar IA (apenas na 1ª vez)...";
-
-        try {
-            engine = await CreateMLCEngine(modeloSelecionado, {
-                initProgressCallback: (report) => {
-                    statusIa.innerText = `A carregar: ${Math.round(report.progress * 100)}%`;
-                }
-            });
-
-            statusIa.innerText = "Paciente pronto! Prima o botão para falar.";
-            btnIniciar.style.display = "none";
-            btnFalar.style.display = "block";
-            btnFinalizar.style.display = "block";
-
-            historicoConsulta = [
-                {
-                    role: "system",
-                    content: "Você é um paciente de 55 anos numa consulta de urgência. Queixa-se de dor no peito em aperto iniciada há 1 hora, que irradia para o braço esquerdo. É hipertenso e fumador. Responda apenas ao que for perguntado, de forma curta (máximo 2 frases) e com vocabulário leigo."
-                }
-            ];
-            window.speechSynthesis.getVoices();
-        } catch (erro) {
-            console.error(erro);
-            statusIa.innerText = "Erro ao carregar o modelo de IA.";
-            btnIniciar.disabled = false;
-        }
-    });
-
-    // Reconhecimento de Voz (Microfone)
+    // ==========================================
+    // PARTE 3: MICROFONE E CHAT
+    // ==========================================
     const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
     let microfone = null;
 
-    if (ReconhecimentoVoz) {
+    if (ReconhecimentoVoz && btnFalar) {
         microfone = new ReconhecimentoVoz();
         microfone.lang = "pt-BR";
         microfone.interimResults = false;
@@ -339,43 +342,18 @@
         } catch (e) {
             console.error(e);
         } finally {
-            btnFalar.innerText = "🎤 Segure para Falar";
+            if (btnFalar) btnFalar.innerText = "🎤 Segure para Falar";
         }
     }
 
     function adicionarMensagem(texto, tipo) {
+        if (!chatBox) return;
         const msg = document.createElement("div");
         msg.className = `mensagem ${tipo}`;
         msg.innerText = texto;
         chatBox.appendChild(msg);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
-
-    // Avaliação final (Debriefing)
-    btnFinalizar.addEventListener("click", async () => {
-        btnFalar.style.display = "none";
-        btnFinalizar.style.display = "none";
-        statusIa.innerText = "A avaliar a consulta...";
-
-        const transcricao = historicoConsulta
-            .filter(m => m.role !== "system")
-            .map(m => `${m.role === "user" ? "MÉDICO" : "PACIENTE"}: ${m.content}`)
-            .join("\n");
-
-        const avaliacao = await engine.chat.completions.create({
-            messages: [
-                {
-                    role: "system",
-                    content: "Você é um avaliador de prova prática de residência médica. Analise a transcrição e aponte os acertos, omissões na anamnese de dor torácica e forneça nota final de 0 a 10."
-                },
-                { role: "user", content: transcricao }
-            ]
-        });
-
-        resultadoAvaliacao.innerHTML = avaliacao.choices[0].message.content.replace(/\n/g, "<br>");
-        areaDebriefing.style.display = "block";
-        statusIa.innerText = "Estação concluída.";
-    });
 </script>
 
 </body>
