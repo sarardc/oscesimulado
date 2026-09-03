@@ -92,6 +92,11 @@
 
 <!-- STATION VIEW -->
 <div id="station-view">
+  <!-- Botão flutuante para abrir a IA (Pode colocar junto ao caso clínico) -->
+  <button id="btn-abrir-ia" class="btn-flutuante-ia">
+    🤖 Simular este caso com IA
+  </button>
+
   <div class="sv-header">
     <button class="back-btn" onclick="goHome()"><span class="back-arrow">←</span><span class="back-label"> Voltar</span></button>
     <div style="flex:1">
@@ -119,6 +124,53 @@
     <div id="tab4" class="tab-content"></div>
   </div>
 </div>
+
+<!-- Fundo escuro (Overlay) opcional quando o painel abre -->
+<div id="ia-overlay" class="ia-overlay"></div>
+
+<!-- Painel Lateral Retrátil -->
+<aside id="ia-drawer" class="ia-drawer">
+    <div class="ia-drawer-header">
+        <div>
+            <h2 id="titulo-ia-drawer">Paciente Simulado</h2>
+            <small>Estação Interativa</small>
+        </div>
+        <button id="btn-fechar-ia" class="btn-fechar-drawer">&times;</button>
+    </div>
+
+    <div class="ia-drawer-content">
+        <!-- Status e Trava de Hardware -->
+        <div id="aviso-hardware-ia"></div>
+        <div class="status-bar" id="status-ia">Pronto para iniciar o download da IA.</div>
+        
+        <!-- Área do Chat -->
+        <div class="chat-box" id="chat-box">
+            <div class="mensagem paciente">
+                Clique no botão abaixo para baixar o modelo e iniciar a simulação.
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="controles-ia">
+            <button id="btn-iniciar" class="btn-ia primario">📥 Baixar e Iniciar</button>
+            <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Segure para Falar</button>
+            <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
+        </div>
+
+        <!-- Área de Avaliação (Escondida por padrão) -->
+        <div id="area-debriefing" class="area-debriefing" style="display: none;">
+            <h3>📋 Avaliação</h3>
+            <div id="resultado-avaliacao" class="resultado-avaliacao"></div>
+            
+            <div class="botoes-estudo">
+                <button id="btn-quiz" class="btn-ia roxo">📝 Gerar Quiz</button>
+                <button id="btn-resumo" class="btn-ia verde">📚 Resumo Rápido</button>
+            </div>
+            <div id="conteudo-estudo" class="conteudo-estudo"></div>
+        </div>
+    </div>
+</aside>
+<!-- final do painel lateral-->
 
 <!-- THEME -->
 <script>
@@ -151,6 +203,180 @@
 <script src="js/timer.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/app.js"></script>
+
+<!-- SCRIPT DA IA IA-->
+<<script type="module">
+    import { CreateMLCEngine } from "https://esm.run/@mlc.ai/web-llm";
+
+    const btnAbrirIa = document.getElementById("btn-abrir-ia");
+    const btnFecharIa = document.getElementById("btn-fechar-ia");
+    const drawer = document.getElementById("ia-drawer");
+    const overlay = document.getElementById("ia-overlay");
+    const tituloDrawer = document.getElementById("titulo-ia-drawer");
+
+    const btnIniciar = document.getElementById("btn-iniciar");
+    const btnFalar = document.getElementById("btn-falar");
+    const btnFinalizar = document.getElementById("btn-finalizar");
+    const statusIa = document.getElementById("status-ia");
+    const chatBox = document.getElementById("chat-box");
+    const avisoHardware = document.getElementById("aviso-hardware-ia");
+
+    const areaDebriefing = document.getElementById("area-debriefing");
+    const resultadoAvaliacao = document.getElementById("resultado-avaliacao");
+    const btnQuiz = document.getElementById("btn-quiz");
+    const btnResumo = document.getElementById("btn-resumo");
+    const conteudoEstudo = document.getElementById("conteudo-estudo");
+
+    let engine = null;
+    const modeloSelecionado = "Phi-3-mini-4k-instruct-q4f16_1-MLC";
+    let historicoConsulta = [];
+
+    // Abrir e fechar o painel lateral
+    if (btnAbrirIa) {
+        btnAbrirIa.addEventListener("click", () => {
+            drawer.classList.add("aberto");
+            overlay.classList.add("ativo");
+            const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
+            if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
+        });
+    }
+
+    function fecharPainel() {
+        drawer.classList.remove("aberto");
+        overlay.classList.remove("ativo");
+    }
+    if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
+    if (overlay) overlay.addEventListener("click", fecharPainel);
+
+    // Verificação de compatibilidade WebGPU
+    async function checarWebGPU() {
+        if (!navigator.gpu) return false;
+        try {
+            const adapter = await navigator.gpu.requestAdapter();
+            return !!adapter;
+        } catch {
+            return false;
+        }
+    }
+
+    checarWebGPU().then((suporta) => {
+        if (!suporta) {
+            btnIniciar.style.display = "none";
+            avisoHardware.innerHTML = `<div style="background:#f8d7da; color:#842029; padding:10px; border-radius:5px; margin-bottom:10px; font-size:0.85rem;">
+                ⚠️ <strong>Dispositivo incompatível:</strong> O seu navegador não suporta aceleração gráfica WebGPU. Utilize o Google Chrome ou Edge atualizado num computador.
+            </div>`;
+        }
+    });
+
+    // Descarregar e inicializar o modelo
+    btnIniciar.addEventListener("click", async () => {
+        btnIniciar.disabled = true;
+        statusIa.innerText = "A descarregar IA (apenas na 1ª vez)...";
+
+        try {
+            engine = await CreateMLCEngine(modeloSelecionado, {
+                initProgressCallback: (report) => {
+                    statusIa.innerText = `A carregar: ${Math.round(report.progress * 100)}%`;
+                }
+            });
+
+            statusIa.innerText = "Paciente pronto! Prima o botão para falar.";
+            btnIniciar.style.display = "none";
+            btnFalar.style.display = "block";
+            btnFinalizar.style.display = "block";
+
+            historicoConsulta = [
+                {
+                    role: "system",
+                    content: "Você é um paciente de 55 anos numa consulta de urgência. Queixa-se de dor no peito em aperto iniciada há 1 hora, que irradia para o braço esquerdo. É hipertenso e fumador. Responda apenas ao que for perguntado, de forma curta (máximo 2 frases) e com vocabulário leigo."
+                }
+            ];
+            window.speechSynthesis.getVoices();
+        } catch (erro) {
+            console.error(erro);
+            statusIa.innerText = "Erro ao carregar o modelo de IA.";
+            btnIniciar.disabled = false;
+        }
+    });
+
+    // Reconhecimento de Voz (Microfone)
+    const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
+    let microfone = null;
+
+    if (ReconhecimentoVoz) {
+        microfone = new ReconhecimentoVoz();
+        microfone.lang = "pt-BR";
+        microfone.interimResults = false;
+
+        btnFalar.addEventListener("mousedown", () => {
+            microfone.start();
+            btnFalar.innerText = "🎤 A ouvir... (solte para enviar)";
+        });
+
+        btnFalar.addEventListener("mouseup", () => {
+            microfone.stop();
+            btnFalar.innerText = "⏳ A processar...";
+        });
+
+        microfone.onresult = async (event) => {
+            const texto = event.results[0][0].transcript;
+            adicionarMensagem(texto, "medico");
+            await responderPaciente(texto);
+        };
+    }
+
+    async function responderPaciente(texto) {
+        historicoConsulta.push({ role: "user", content: texto });
+        try {
+            const resposta = await engine.chat.completions.create({ messages: historicoConsulta });
+            const fala = resposta.choices[0].message.content;
+            historicoConsulta.push({ role: "assistant", content: fala });
+            adicionarMensagem(fala, "paciente");
+
+            const voz = new SpeechSynthesisUtterance(fala);
+            voz.lang = "pt-BR";
+            window.speechSynthesis.speak(voz);
+        } catch (e) {
+            console.error(e);
+        } finally {
+            btnFalar.innerText = "🎤 Segure para Falar";
+        }
+    }
+
+    function adicionarMensagem(texto, tipo) {
+        const msg = document.createElement("div");
+        msg.className = `mensagem ${tipo}`;
+        msg.innerText = texto;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Avaliação final (Debriefing)
+    btnFinalizar.addEventListener("click", async () => {
+        btnFalar.style.display = "none";
+        btnFinalizar.style.display = "none";
+        statusIa.innerText = "A avaliar a consulta...";
+
+        const transcricao = historicoConsulta
+            .filter(m => m.role !== "system")
+            .map(m => `${m.role === "user" ? "MÉDICO" : "PACIENTE"}: ${m.content}`)
+            .join("\n");
+
+        const avaliacao = await engine.chat.completions.create({
+            messages: [
+                {
+                    role: "system",
+                    content: "Você é um avaliador de prova prática de residência médica. Analise a transcrição e aponte os acertos, omissões na anamnese de dor torácica e forneça nota final de 0 a 10."
+                },
+                { role: "user", content: transcricao }
+            ]
+        });
+
+        resultadoAvaliacao.innerHTML = avaliacao.choices[0].message.content.replace(/\n/g, "<br>");
+        areaDebriefing.style.display = "block";
+        statusIa.innerText = "Estação concluída.";
+    });
+</script>
 
 </body>
 </html>

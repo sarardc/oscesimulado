@@ -906,3 +906,106 @@
     .filter-btn { flex: 1 1 calc(50% - 6px); text-align: center; font-size: 12px; }
     .filter-label { font-size: 10px; }
   }
+
+  /* Botão Flutuante (Você pode adaptar para colocar dentro do card do seu caso) */
+.btn-flutuante-ia {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: transform 0.2s;
+}
+.btn-flutuante-ia:hover { transform: scale(1.05); }
+
+/* Fundo escuro quando a aba abre */
+.ia-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+.ia-overlay.ativo {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* O Painel Retrátil (Drawer) */
+.ia-drawer {
+    position: fixed;
+    top: 0;
+    right: -450px; /* Fica 450px fora da tela (escondido) */
+    width: 450px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 1001;
+    transition: right 0.3s ease-in-out; /* Animação de deslizar */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Classe que será adicionada pelo JavaScript para abrir a aba */
+.ia-drawer.aberto {
+    right: 0; 
+}
+
+/* Layout interno do painel */
+.ia-drawer-header {
+    background-color: #0d6efd;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ia-drawer-header h2 { margin: 0; font-size: 1.2rem; }
+.btn-fechar-drawer {
+    background: none; border: none; color: white;
+    font-size: 2rem; cursor: pointer; line-height: 1;
+}
+
+.ia-drawer-content {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Elementos do chat (ajustados para a largura da aba lateral) */
+.chat-box {
+    height: 35vh; /* Altura responsiva */
+    overflow-y: auto;
+    background: white; border: 1px solid #dee2e6;
+    border-radius: 8px; padding: 15px; margin: 15px 0;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.mensagem { padding: 8px 12px; border-radius: 12px; max-width: 85%; word-wrap: break-word; font-size: 0.95rem; }
+.medico { background-color: #d1e7dd; align-self: flex-end; border-bottom-right-radius: 0; }
+.paciente { background-color: #e2e3e5; align-self: flex-start; border-bottom-left-radius: 0; }
+
+/* Botões do Painel */
+.controles-ia { display: flex; flex-direction: column; gap: 10px; }
+.btn-ia { padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; transition: opacity 0.2s;}
+.btn-ia:hover { opacity: 0.8; }
+.primario { background: #0d6efd; color: white; }
+.sucesso { background: #198754; color: white; }
+.alerta { background: #ffc107; color: black; }
+.roxo { background: #6f42c1; color: white; }
+.verde { background: #20c997; color: white; }
+.botoes-estudo { display: flex; gap: 10px; margin-top: 15px; }
+
+/* Celulares: a aba ocupa a tela toda */
+@media (max-width: 500px) {
+    .ia-drawer { width: 100vw; right: -100vw; }
+}
