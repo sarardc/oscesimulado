@@ -595,10 +595,18 @@
     flex-shrink: 0;
     position: sticky;
     top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
     display: flex;
     flex-direction: column;
     gap: 4px;
+    padding-right: 4px;
   }
+  .filter-sidebar::-webkit-scrollbar { width: 4px; }
+  .filter-sidebar::-webkit-scrollbar-track { background: transparent; }
+  .filter-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
 
   .filter-label {
     font-family: var(--mono);
