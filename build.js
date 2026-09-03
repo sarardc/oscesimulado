@@ -16,6 +16,7 @@ import pneumoGastro from './data/pneumo_gastro.js';
 import especialidades2 from './data/especialidades2.js';
 import hematologia from './data/hematologia.js';
 import cardiologia from './data/cardiologia.js';
+import ortopedia from './data/ortopedia.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -41,6 +42,7 @@ const allStations = [
   ...especialidades2,
   ...hematologia,
   ...cardiologia,
+  ...ortopedia,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,
