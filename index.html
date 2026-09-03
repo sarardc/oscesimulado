@@ -30,10 +30,12 @@
     <p>Desenvolvido por Ana Sara © 2026</p>
   </div>
   <div class="home-body">
+    <!--
     <div class="home-intro">
       <h2>Como usar</h2>
       <p>Atenção! Ainda estamos checando os checklists. Leia o resumo do caso na Aba A, veja todos os resultados dos exames disponíveis na aba B, caso clinico ou informacoes da anamnese em B1, veja o gabarito na aba C e o checklist na aba D.</p>
     </div>
+    -->
     <div class="home-layout">
       <aside class="filter-sidebar">
         <p class="filter-label">Filtrar por tema</p>
@@ -58,6 +60,8 @@
             <button class="filter-btn tema-oftalmologia"         data-tema="oftalmologia"        onclick="setFilter('oftalmologia')">Oftalmologia</button>
             <button class="filter-btn tema-neurologia"           data-tema="neurologia"          onclick="setFilter('neurologia')">Neurologia</button>
             <button class="filter-btn tema-cardiologia"          data-tema="cardiologia"         onclick="setFilter('cardiologia')">Cardiologia</button>
+            <button class="filter-btn tema-urologia"             data-tema="urologia"            onclick="setFilter('urologia')">Urologia</button>
+            <button class="filter-btn tema-ortopedia"            data-tema="ortopedia"           onclick="setFilter('ortopedia')">Ortopedia</button>
           </div>
         </div>
 
@@ -69,15 +73,13 @@
             <span>Cirurgia</span><span class="fgrp-arr">▾</span>
           </button>
           <div class="fgrp-body">
-            <button class="filter-btn tema-cirurgia" data-tema="cirurgia" onclick="setFilter('cirurgia')">Cirurgia Torácica</button>
+            <button class="filter-btn tema-cirurgia" data-tema="cirurgia" onclick="setFilter('cirurgia')">Cirurgia Geral</button>
             <button class="filter-btn tema-vascular"  data-tema="vascular"  onclick="setFilter('vascular')">Vascular</button>
           </div>
         </div>
 
         <button class="filter-btn tema-medicina-intensiva"       data-tema="medicina intensiva"       onclick="setFilter('medicina intensiva')">Medicina Intensiva</button>
         <button class="filter-btn tema-emergencias-neurologicas" data-tema="emergencias neurologicas" onclick="setFilter('emergencias neurologicas')">Emergência Neurológica</button>
-        <button class="filter-btn tema-urologia"                 data-tema="urologia"                 onclick="setFilter('urologia')">Urologia</button>
-        <button class="filter-btn tema-ortopedia"                data-tema="ortopedia"                onclick="setFilter('ortopedia')">Ortopedia</button>
         <button class="filter-btn tema-medicina-legal"           data-tema="medicina legal"           onclick="setFilter('medicina legal')">Medicina Legal</button>
       </aside>
       <div class="home-main">
