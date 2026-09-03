@@ -652,9 +652,298 @@ const hematologia = [
     }
   },
 
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 5 — LEUCEMIA MIELOIDE AGUDA (LMA) NO ADULTO
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 5,
+    title: 'Adulto de 55 anos com fadiga súbita, equimoses e sangramento gengival',
+    sub: 'Pronto-Socorro — Emergência',
+    tema: 'Hematologia',
+    topic: 'Leucemia Mieloide Aguda — LMA',
+    level: 'difícil',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'Pronto-Socorro adulto. Sala de atendimento. Paciente chega acompanhado da esposa, referindo sintomas com evolução rápida em 3 semanas.',
+      patient: 'R.B.C., 55 anos, masculino, engenheiro civil, ex-tabagista (20 anos-maço, parou há 5 anos), sem comorbidades conhecidas.',
+      complaint: 'Fadiga intensa de início relativamente rápido (3 semanas), sangramento gengival espontâneo, múltiplas equimoses e febre baixa.',
+      tasks: [
+        'Realize a anamnese dirigida, investigando os sintomas e possíveis causas.',
+        'Realize o exame físico completo e dirigido.',
+        'Formule a hipótese diagnóstica principal e os principais diferenciais.',
+        'Solicite os exames complementares adequados e urgentes.',
+        'Decida a conduta e o encaminhamento correto.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '122/76 mmHg',
+        FC: '104 bpm',
+        FR: '20 irpm',
+        Tax: '38,4 °C',
+        Peso: '78 kg',
+        Altura: '1,78 m',
+        SpO2: '97% (ar ambiente)'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientado, hipocorado (2+/4+), febril (38,4°C), acianótico, sem edema. Sangramento gengival discreto ativo ao exame da cavidade oral.',
+      physicalSeg: 'CAVIDADE ORAL: hipertrofia gengival bilateral (gengivas espessadas e avermelhadas) com sangramento espontâneo discreto; petéquias no palato mole; sem lesões ulcerosas. | PELE: 6–8 equimoses em diferentes estágios distribuídas por braços, antebraços e coxas; 2 equimoses extensas no flanco direito; sem exantema. | CABEÇA E PESCOÇO: adenomegalias cervicais anteriores bilaterais (~1–1,5 cm), indolores, firmes; sem adenopatia supraclavicular. | CARDIOVASCULAR: taquicardia (FC 104 bpm); sopro sistólico funcional 2+/6+; bulhas normofonéticas. | PULMONAR: murmúrio vesicular presente, sem adventícios. | ABDOME: fígado 3 cm abaixo do RCD (hepatomegalia leve); baço palpável (esplenomegalia leve 2 cm abaixo do RCE); sem dor. | NEUROLÓGICO: sem déficits focais; sem cefaleia; sem rigidez de nuca.',
+      labs: [
+        { test: 'Hemoglobina', val: '8,4 g/dL', ref: '13–17 g/dL', alt: true },
+        { test: 'VCM', val: '92 fL', ref: '80–100 fL', alt: false },
+        { test: 'Leucócitos', val: '68.000/mm³', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Blastos mieloides no sangue periférico', val: '72%', ref: 'Ausentes', alt: true },
+        { test: 'Bastonetes de Auer', val: 'Presentes no esfregaço', ref: 'Ausentes', alt: true },
+        { test: 'Neutrófilos maduros', val: '600/mm³ (neutropenia grave)', ref: '> 1.500/mm³', alt: true },
+        { test: 'Plaquetas', val: '18.000/mm³', ref: '150.000–400.000/mm³', alt: true },
+        { test: 'LDH', val: '2.240 UI/L', ref: '140–280 UI/L', alt: true },
+        { test: 'TP/INR', val: '1,8 (INR) — TAP 42%', ref: 'INR 1,0–1,2', alt: true },
+        { test: 'TTPA', val: '52 segundos (controle: 30s)', ref: 'Até 38 segundos', alt: true },
+        { test: 'Fibrinogênio', val: '0,9 g/L', ref: '2,0–4,0 g/L', alt: true },
+        { test: 'D-dímero', val: '12.800 ng/mL', ref: '< 500 ng/mL', alt: true },
+        { test: 'Creatinina', val: '1,1 mg/dL', ref: '0,7–1,2 mg/dL', alt: false },
+        { test: 'Ácido úrico', val: '10,2 mg/dL', ref: '3,5–7,2 mg/dL', alt: true }
+      ],
+      image: 'Esfregaço de sangue periférico (a entregar se solicitado): blastos mieloides com citoplasma abundante, nucléolos proeminentes e BASTONETES DE AUER (inclusões eosinofílicas em bastão no citoplasma) — achado patognomônico de LMA.',
+      note: 'Entregar sinais vitais ao início. Hemograma + LDH + coagulograma (TP, TTPA, fibrinogênio, D-dímero) + ácido úrico: entregar em conjunto. Esfregaço: entregar se candidato solicitar — bastonetes de Auer são achado chave. ATENÇÃO: coagulograma alterado com fibrinogênio baixo e D-dímero muito elevado sugerem CIVD — candidato deve reconhecer. Caso trate como simples infecção e não solicite hemograma completo, informar que os antibióticos "não fizeram efeito" e a febre continua.',
+      patientProfile: 'R.B.C., 55 anos, engenheiro civil, casado, 2 filhos adultos. Ex-tabagista (20 maços-ano). Nega etilismo. Não usa medicamentos de uso contínuo. Nunca exposto a benzeno ou radiação (mas candidato pode investigar). Sem historia familiar de neoplasias hematológicas. Era ativo — jogava tênis 2x/semana — mas parou há 3 semanas pelo cansaço.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, tô muito cansado, sem energia. Minha gengiva tá sangrando sozinha faz uns 10 dias e apareceram essas manchas roxas pelo corpo todo sem eu bater em nada. Tô com febre também.' },
+        { trigger: 'Sobre a evolução', speech: 'Tudo começou faz umas 3 semanas. Achei que era gripe, mas foi piorando. O cansaço foi aumentando rápido, tive que parar o tênis.' },
+        { trigger: 'Sobre o sangramento gengival', speech: 'Sangra todo dia ao escovar o dente. Às vezes sangra sem nem escovar. Nunca tive isso antes.' },
+        { trigger: 'Sobre febre', speech: 'Febre baixa, umas vezes 38 e pouco. Tomo dipirona e passa, mas volta.' },
+        { trigger: 'Sobre exposição química ou ocupacional', speech: 'Trabalho na área de construção civil, mas fico mais no escritório. Nunca trabalhei em fábrica com produtos químicos. Por que está perguntando isso?' },
+        { trigger: 'Sobre histórico médico e familiar', speech: 'Nunca tive nada sério. Meu pai morreu de infarto, minha mãe de diabetes. Ninguém na família com doença no sangue.' },
+        { trigger: 'Sobre medicamentos', speech: 'Não tomo remédio nenhum de rotina. Só dipirona quando fico com febre.' },
+        { trigger: 'Sobre perda de peso', speech: 'Perdi uns 4 quilos nessas 3 semanas, acho. Sem fazer dieta.' },
+        { trigger: 'Sobre as gengivas inchadas', speech: '(ao exame) Não tinha reparado que tavam tão inchadas. Fui ao dentista mês passado e ele não falou nada.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutor? A minha esposa tá muito preocupada. Pode ser algo no sangue?' }
+      ],
+      hiddenInfo: 'Perda de 4 kg em 3 semanas sem dieta — só revela se candidato perguntar sobre perda de peso | Parou de praticar esportes há 3 semanas pela fadiga — só revela se perguntar sobre atividade física habitual | Não foi ao médico antes porque achava que era gripe — só revela se candidato perguntar sobre consultas anteriores | A esposa note que ele está "diferente, lento" há 2 semanas — só revela se perguntar sobre alterações comportamentais ou cognitivas',
+      actorBehavior: 'Paciente cooperativo, aparentemente tentando manter a calma. Esposa ao lado, mais visivelmente preocupada. Ao ouvir palavras como "leucemia" ou "câncer no sangue", ambos ficam tensos — candidato deve manejar com empatia. Paciente pode minimizar: "deve ser uma infecção forte, né doutor?"'
+    },
+    instC: {
+      diagnosis: 'Leucemia Mieloide Aguda (LMA) com coagulação intravascular disseminada (CIVD) — provável LMA M3 (leucemia promielocítica aguda) dado o padrão de CIVD grave com fibrinogênio baixo e D-dímero altíssimo, além de hipertrofia gengival. Urgência oncológica.',
+      differentials: [
+        'Leucemia Linfocítica Crônica (LLC) — curso indolente, linfocitose madura sem blastos; não causa CIVD nem hipertrofia gengival; em idosos mais velhos',
+        'Linfoma com fase leucêmica — pode mimetizar leucemia aguda; imunofenotipagem diferencia',
+        'Leucemia Mieloide Crônica (LMC) em crise blástica — LMC tem fase crônica anterior com esplenomegalia massiva e leucocitose com série mieloide completa; Philadelphia positivo',
+        'Sepse grave com CIVD — pode causar leucocitose e coagulopatia; mas blastos no esfregaço e hipertrofia gengival não são explicados por infecção',
+        'Hepatopatia com pancitopenia — não causa blastos circulantes'
+      ],
+      context: 'LMA é a leucemia aguda mais comum em adultos (> 60% das leucemias agudas do adulto). Pico de incidência: 65–70 anos. Apresentação com pancitopenia + blastos mieloides + coagulopatia sugere LMA M3 (LPA — leucemia promielocítica aguda), subtipo especial com translocação t(15;17) e muito alto risco de CIVD. A LPA tem achados clínicos característicos: CIVD grave (D-dímero > 10.000, fibrinogênio < 1 g/L, TP alargado) e hipertrofia gengival. Bastonetes de Auer no esfregaço são patognomônicos de LMA. Urgência onco-hematológica — mortalidade precoce alta sem tratamento imediato.',
+      justify: 'Blastos mieloides 72% + bastonetes de Auer no esfregaço = LMA até prova em contrário. CIVD documentada (TP alargado, fibrinogênio baixo 0,9 g/L, D-dímero 12.800) com sangramento ativo (gengival) — padrão clássico de LMA M3 (LPA). Hipertrofia gengival: infiltração leucêmica das gengivas, clássica da LMA com monócitos (M4/M5), também observada na LPA. LDH altíssima (2.240) = alta carga tumoral. Neutropenia grave (600/mm³) = risco iminente de sepse. Ácido úrico elevado = risco de síndrome de lise tumoral.',
+      expectedAnamnesis: 'Caracterizar sintomas: fadiga (início, evolução rápida), sangramento (onde, frequência), febre (padrão, temperatura) | Investigar sangramento: nasal, urinário, intestinal, em pele, gengival | Investigar equimoses espontâneas vs. traumáticas | Pesquisar exposição a toxinas: benzeno, pesticidas, radiação ionizante, quimioterapia prévia (leucemia secundária) | Uso de medicamentos: metilfenidato, cloranfenicol, AINEs em excesso | Histórico de doença hematológica prévia (mielodisplasia, policitemia vera) | Perguntar sobre perda de peso, sudorese noturna, adenomegalias | Investigar sintomas de SNC: cefaleia intensa, alterações visuais',
+      expectedPhysical: 'Avaliar palidez (anemia grave) | Examinar cavidade oral: hipertrofia gengival (infiltração leucêmica), sangramento, petéquias no palato | Contar e localizar equimoses: distribuição, tamanho, tempo de evolução | Palpar cadeias ganglionares | Examinar pele: hematomas, petéquias, possíveis cloromas (sarcomas mieloides — nódulos subcutâneos) | Auscultar coração: sopro funcional | Palpar abdome: hepatoesplenomegalia | Exame neurológico: cefaleia ou sinais de sangramento intracraniano (CIVD pode causar AVC hemorrágico)',
+      expectedExams: [
+        { exam: 'Hemograma + esfregaço de sangue periférico', justify: 'Blastos e bastonetes de Auer confirmam LMA; define grau de pancitopenia', expected: 'Blastos 72% com bastonetes de Auer; plaquetas 18.000; neutropenia grave' },
+        { exam: 'Coagulograma completo: TP, TTPA, fibrinogênio, D-dímero', justify: 'CIVD é complicação devastadora da LMA (especialmente LPA) e emergência hemostática — causa principal de morte precoce na LPA', expected: 'INR 1,8; fibrinogênio 0,9 g/L; D-dímero 12.800 — CIVD grave' },
+        { exam: 'LDH e ácido úrico', justify: 'Alta carga tumoral e risco de síndrome de lise tumoral', expected: 'LDH 2.240 UI/L; ácido úrico 10,2 mg/dL' },
+        { exam: 'Função renal, eletrólitos', justify: 'Avaliar síndrome de lise tumoral espontânea e base para tratamento', expected: 'Creatinina normal — monitorar' },
+        { exam: 'Mielograma + imunofenotipagem + citogenética', justify: 'Confirma LMA, define subtipo (FAB), identifica t(15;17) da LPA — guia tratamento (ATRA + arsênio se LPA)', expected: 'A ser realizado urgentemente no serviço de referência' },
+        { exam: 'Hemocultura', justify: 'Neutropênico grave febril — risco de sepse por gram-negativos', expected: 'Coletar antes de antibiótico' },
+        { exam: 'TC de crânio (se disponível urgente)', justify: 'CIVD grave pode causar hemorragia intracraniana — especialmente em LPA', expected: 'Solicitar se cefaleia intensa ou alteração neurológica' }
+      ],
+      expectedConduct: 'EMERGÊNCIA — transferir imediatamente para UTI/hematologia: LMA com CIVD e neutropenia febril = emergência oncológica de alto risco de morte precoce | Manejo da CIVD: plasma fresco congelado (FFP) 10–15 mL/kg se sangramento ativo; crioprecipitado se fibrinogênio < 1 g/L (repor para ≥ 1,5 g/L); plaquetas se < 20.000 ou sangramento ativo | Neutropênico febril: antibioticoterapia empírica imediata — cefepima 2g IV 8/8h (ou piperacilina-tazobactam) + vancomicina se cateter ou mucosites | NUNCA usar AINEs ou anticoagulantes sem critério especializado | ATRA (ácido trans-retinóico todo) deve ser iniciado IMEDIATAMENTE se suspeita de LPA (antes da confirmação citogenética) — reduz mortalidade por CIVD dramaticamente | Hidratação vigorosa + alopurinol ou rasburicase (síndrome de lise tumoral) | Comunicar família com empatia: diagnóstico grave, mas LPA tem boa resposta ao ATRA',
+      expectedCommunication: 'Apresentar-se pelo nome | Criar ambiente de privacidade — incluir a esposa na conversa | Comunicar a gravidade do quadro com empatia: "Os exames mostram alterações graves no sangue que precisam de avaliação especializada com urgência. Vou encaminhá-los para um centro de hematologia imediatamente." | Se perguntado diretamente, ser honesto sobre a possibilidade de leucemia sem dar diagnóstico definitivo | Tranquilizar sobre as providências imediatas | Explicar que o tratamento será iniciado o mais rapidamente possível | Dar espaço para perguntas e choro',
+      criticalErrors: [
+        'Não reconhecer os bastonetes de Auer e não suspeitar de LMA — tratar como infecção simples',
+        'Não solicitar coagulograma e perder o diagnóstico de CIVD grave (causa de morte precoce na LPA)',
+        'Prescrever AINEs ou anticoagulação em paciente com CIVD e sangramento ativo — pode causar hemorragia fatal',
+        'Não iniciar ATRA se suspeita de LPA (LMA M3) — aguardar confirmação citogenética antes de tratar é erro grave neste subtipo',
+        'Não tratar neutropenia febril com antibioticoterapia empírica imediata',
+        'Tentar manejar ambulatorialmente sem transferência urgente para UTI/hematologia'
+      ]
+    },
+    instD: {
+      title: 'Leucemia Mieloide Aguda — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Classificação',
+          items: [
+            { item: 'LMA: proliferação clonal de blastos mieloides (mieloblastos, monoblastos, eritroblastos ou megacarioblastos) com ≥ 20% de blastos na medula óssea (OMS) ou sangue periférico.', score: 1, ref: 'Harrison' },
+            { item: 'Classificação FAB: M0–M7. LMA M3 (Leucemia Promielocítica Aguda — LPA): subtipo especial com t(15;17), CIVD grave, bastonetes de Auer abundantes em feixes (células de "faggot") — único subtipo com tratamento diferenciado (ATRA).', score: 2, ref: 'Harrison' },
+            { item: 'Fatores de risco: radiação ionizante, exposição a benzeno, quimioterapia/radioterapia prévia (leucemia secundária), síndrome mielodisplásica, síndrome de Down.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Achados Diagnósticos Chave',
+          items: [
+            { item: 'Bastonetes de Auer: inclusões eosinofílicas no citoplasma dos blastos — PATOGNOMÔNICOS de LMA (jamais vistos na LLA).', score: 2, ref: 'Harrison' },
+            { item: 'Hipertrofia gengival: infiltração leucêmica das gengivas — clássica da LMA M4/M5 (monocítica) e LPA.', score: 2, ref: 'Harrison' },
+            { item: 'CIVD: consumo de fatores de coagulação pelos grânulos leucêmicos — fibrinogênio baixo, D-dímero muito elevado, TP e TTPA alargados. Principal causa de morte precoce na LPA.', score: 2, ref: 'Harrison' },
+            { item: 'Pancitopenia + leucocitose (paradoxal): leucocitose por blastos imaturos + neutropenia por infiltração da medula (células maduras funcionais estão ausentes).', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'LMA geral: indução com citarabina (Ara-C) + antraciclina (daunorubicina ou idarubicina) — regime "7+3". Meta: < 5% de blastos na medula.', score: 1, ref: 'Harrison' },
+            { item: 'LPA (M3): ATRA (ácido trans-retinóico) + trióxido de arsênio — revolução no tratamento; ATRA deve ser iniciado imediatamente na suspeita clínica de LPA, antes de confirmar t(15;17).', score: 2, ref: 'Harrison' },
+            { item: 'Transplante de medula óssea: consolidação em pacientes de alto risco ou recidiva.', score: 1, ref: 'Harrison' },
+            { item: 'Síndrome de lise tumoral: hidratação vigorosa + alopurinol (ou rasburicase se ácido úrico muito elevado) ANTES e DURANTE o início da quimioterapia.', score: 1, ref: 'Harrison' },
+            { item: 'Neutropenia febril: antibiótico empírico de amplo espectro IMEDIATAMENTE (cefepima, piperacilina-tazobactam, meropenem se grave ou com Pseudomonas).', score: 2, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Prognóstico',
+          items: [
+            { item: 'LPA: melhor prognóstico entre as LMAs com ATRA — cura em > 80–90% dos casos quando tratada adequadamente.', score: 1, ref: 'Harrison' },
+            { item: 'LMA geral: remissão completa em 60–80% com quimioterapia, mas recidiva frequente; sobrevida global em 5 anos: 25–40%.', score: 1, ref: 'Harrison' },
+            { item: 'Fatores prognósticos: citogenética (favorável: t(8;21), t(15;17), inv(16); desfavorável: monossomia 5/7, cariótipo complexo), idade, leucometria ao diagnóstico.', score: 1, ref: 'Harrison' }
+          ]
+        }
+      ]
+    }
+  },
+
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 6 — LINFOMA DE HODGKIN
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 6,
+    title: 'Jovem com caroços no pescoço indolores e suor noturno há 2 meses',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Hematologia',
+    topic: 'Linfoma de Hodgkin',
+    level: 'moderado',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório de clínica geral. Jovem que chegou por conta própria, levemente preocupado.',
+      patient: 'P.A.M., 24 anos, masculino, estudante de direito, saudável, sem comorbidades, sem medicamentos.',
+      complaint: 'Aumento indolor de gânglios no pescoço há 2 meses, acompanhado de suor noturno intenso, perda de peso involuntária e febre vespertina intermitente.',
+      tasks: [
+        'Realize a anamnese dirigida, investigando as adenomegalias e os sintomas sistêmicos.',
+        'Realize o exame físico completo e dirigido.',
+        'Formule a hipótese diagnóstica principal e os principais diferenciais.',
+        'Solicite os exames complementares adequados.',
+        'Oriente o paciente sobre os próximos passos.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '118/72 mmHg',
+        FC: '80 bpm',
+        FR: '16 irpm',
+        Tax: '37,6 °C',
+        Peso: '68 kg',
+        Altura: '1,76 m',
+        IMC: '21,9 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, consciente, orientado, normocorado, anictérico, acianótico, sem edema. Levemente ansioso.',
+      physicalSeg: 'CABEÇA E PESCOÇO: adenomegalias cervicais anteriores e posteriores bilaterais, a maior medindo 3,5 × 2,5 cm no triângulo cervical posterior direito; gânglios firmes, elásticos ("borrachosos"), indolores, sem sinais flogísticos, sem aderência à pele. Ausência de amígdalas hipertróficas. Faringe normal. | AXILA E TÓRAX: linfonodo axilar direito palpável de ~1,5 cm, indolor. Sem sinais de síndrome de veia cava superior (sem edema facial, sem turgência jugular). | PULMÕES: murmúrio vesicular presente, sem adventícios. | ABDOME: fígado e baço sem alterações palpáveis. Sem adenomegalias inguinais. | PELE: sem exantema, sem petéquias. Sem prurido visível. | NEUROLÓGICO: sem déficits.',
+      labs: [
+        { test: 'Hemoglobina', val: '11,8 g/dL', ref: '13–17 g/dL', alt: true },
+        { test: 'VCM', val: '83 fL', ref: '80–100 fL', alt: false },
+        { test: 'Leucócitos', val: '10.400/mm³', ref: '4.000–11.000/mm³', alt: false },
+        { test: 'Eosinófilos', val: '800/mm³ (8%)', ref: '< 500/mm³', alt: true },
+        { test: 'Linfócitos', val: '900/mm³ (linfopenia)', ref: '1.000–4.800/mm³', alt: true },
+        { test: 'Plaquetas', val: '380.000/mm³', ref: '150.000–400.000/mm³', alt: false },
+        { test: 'VHS (velocidade de hemossedimentação)', val: '88 mm/h', ref: '< 15 mm/h (H)', alt: true },
+        { test: 'PCR', val: '28 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'LDH', val: '320 UI/L', ref: '140–280 UI/L', alt: true },
+        { test: 'Beta-2-microglobulina', val: '3,8 mg/L', ref: '< 2,4 mg/L', alt: true },
+        { test: 'Proteína total', val: '7,2 g/dL', ref: '6,0–8,0 g/dL', alt: false },
+        { test: 'Albumina', val: '3,2 g/dL', ref: '3,5–5,0 g/dL', alt: true },
+        { test: 'Sorologias (HIV, EBV, CMV, Toxoplasmose)', val: 'HIV negativo; EBV — IgG positivo (infecção passada), IgM negativo (sem infecção aguda); CMV negativo; Toxoplasmose IgG positivo, IgM negativo', ref: 'Negativos para infecção ativa', alt: false }
+      ],
+      image: 'TC de tórax, abdome e pelve (a entregar se candidato solicitar): massa mediastinal anterior de 8 × 6 cm, com múltiplas adenomegalias mediastinais. Sem derrame pleural. Sem lesões parenquimatosas pulmonares. Sem adenomegalias abdominais ou pélvicas visíveis. Baço de tamanho normal.',
+      note: 'Entregar sinais vitais ao início. Hemograma + VHS + PCR + LDH + beta-2-microglobulina + sorologias: entregar em conjunto se solicitado. TC de tórax/abdome/pelve: entregar se candidato solicitar. Informar que a biópsia excisional do linfonodo é o próximo passo obrigatório — não disponível na UBS, encaminhar para serviço de hematologia/oncologia.',
+      patientProfile: 'P.A.M., 24 anos, estudante de direito, solteiro, mora com os pais. Não fuma, bebe socialmente (uma vez por semana). Praticava futebol 3 vezes por semana até 6 semanas atrás, parou porque ficava muito cansado. Refere prurido generalizado sem lesão cutânea visível ("coça o corpo todo, principalmente após banho quente"). Perdeu 6 kg em 2 meses sem dieta. Suor noturno que encharça o pijama ("tenho que trocar a roupa de noite"). Febre vespertina de 37,8–38,5°C, sem calafrios.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, apareceram umas bolotas no meu pescoço há uns 2 meses. Achei que ia passar, mas só cresceram. Não doem. Aí vim porque a minha mãe ficou preocupada.' },
+        { trigger: 'Sobre a febre e o suor noturno', speech: 'Tenho uma febrinha toda tarde, umas 38 graus. E de madrugada acordo encharcado de suor, preciso trocar o pijama e a cama. Nunca tive isso antes.' },
+        { trigger: 'Sobre a perda de peso', speech: 'Perdi umas 6 quilos em 2 meses. Não fiz dieta, não me explico. Minha calça ficou larga.' },
+        { trigger: 'Sobre o prurido', speech: 'Tenho uma coceira generalizada, no corpo todo, mas não tem nada na pele. Fica pior depois do banho quente. Já usei creme, mas não passou.' },
+        { trigger: 'Sobre o cansaço', speech: 'Paro de jogar futebol porque fico exausto. Antes jogava tranquilo, agora em 20 minutos já não agüento mais. Tô produzindo menos na faculdade também.' },
+        { trigger: 'Sobre infecções recentes', speech: 'Não tive gripe, angina, nada assim recentemente. Não viajei para lugar nenhum diferente.' },
+        { trigger: 'Sobre HIV e comportamento sexual', speech: '(discretamente) Tenho vida sexual ativa. Uso preservativo na maioria das vezes. Fiz teste de HIV no ano passado, deu negativo.' },
+        { trigger: 'Sobre dor no pescoço ao beber álcool', speech: 'Você sabe... semana passada fui a uma festa e tomei cerveja. Estranhei, mas a região do pescoço doeu onde tem as bolotas quando eu bebi. É normal isso?' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'Pode ser câncer, doutor? Fiquei muito preocupado quando a minha mãe falou que pode ser algo sério.' }
+      ],
+      hiddenInfo: 'Prurido generalizado pior após banho quente (prurido "aquagênico" — sinal clássico de Linfoma de Hodgkin, presente em 30% dos casos) — só revela em detalhe se candidato perguntar sobre sintomas de pele | Dor nos linfonodos ao ingestão de álcool (sinal de Hoster — patognomônico de Linfoma de Hodgkin, presente em minoria mas altamente específico) — só revela se candidato perguntar sobre álcool ou dor nos gânglios | Perda de 6 kg em 2 meses — só revela em detalhes se candidato perguntar sobre peso | Parou de praticar esportes por fadiga há 6 semanas — só revela se candidato perguntar sobre atividade física',
+      actorBehavior: 'Jovem aparentemente tranquilo por fora, mas visivelmente ansioso ao falar sobre a possibilidade de câncer. Cooperativo. Pode fazer perguntas diretas sobre a gravidade ("é câncer?"). Fica muito surpreso quando o médico explica sobre o sinal do álcool.'
+    },
+    instC: {
+      diagnosis: 'Linfoma de Hodgkin, provável estádio II-A ou II-B (adenomegalias cervicais bilaterais + massa mediastinal anterior + sintomas B: febre, sudorese noturna, perda de peso > 10% em 6 meses) em jovem de 24 anos. Necessária biópsia excisional do linfonodo para confirmação histológica.',
+      differentials: [
+        'Linfoma não-Hodgkin (LNH) — também causa adenomegalias e sintomas B; tende a ter maior acometimento extranodal e evolução mais agressiva; distinção só pela biópsia (células de Reed-Sternberg = Hodgkin)',
+        'Mononucleose infecciosa (EBV aguda) — adenomegalias cervicais, febre, fadiga em jovens; EBV IgM negativo e ausência de esplenomegalia extensa afastam infecção aguda neste caso',
+        'Tuberculose ganglionar — adenopatia cervical, febre, sudorese noturna e perda de peso ("sintomas B" são comuns na TB também); PPD + BAAR + biópsia de linfonodo diferencia',
+        'Toxoplasmose — adenomegalias cervicais; sorologia IgM negativa afasta infecção aguda',
+        'Sarcoidose — adenomegalias hiliares e mediastinais; acomete mais adultos 20–40 anos; sem células de Reed-Sternberg; ECA elevada; biópsia com granulomas sem caseificação'
+      ],
+      context: 'Linfoma de Hodgkin é a neoplasia hematológica mais comum em jovens adultos (15–35 anos), com segundo pico em > 55 anos. Apresentação clínica clássica: adenomegalia cervical ou supraclavicular indolor, "borrachosa", sem sinais inflamatórios + sintomas B (febre vespertina ≥ 38°C, sudorese noturna que encharça roupas, perda > 10% do peso em 6 meses). Massa mediastinal anterior é muito sugestiva. Prurido aquagênico (pior após banho quente) e dor nos linfonodos com álcool (sinal de Hoster) são achados altamente específicos. Células de Reed-Sternberg (bicelulares, "olhos de coruja") confirmam o diagnóstico na biópsia.',
+      justify: 'Jovem de 24 anos com adenomegalias cervicais bilaterais firmes, elásticas, indolores, crescendo há 2 meses + massa mediastinal na TC + sintomas B completos (febre + sudorese noturna intensa + perda de 6 kg em 2 meses) + prurido aquagênico + dor nos gânglios com álcool (sinal de Hoster — altamente específico). Laboratorialmente: anemia leve (doença crônica), eosinofilia (liberada por células de Hodgkin), linfopenia, VHS muito elevado (88 mm/h), albumina baixa (fator prognóstico). Sorologias negativas para infecção aguda afastam causas infecciosas.',
+      expectedAnamnesis: 'Caracterizar as adenomegalias: tempo, localização, crescimento, simetria, consistência, dor | Pesquisar sintomas B: febre (temperatura, horário, padrão), sudorese noturna (quantidade — roupas úmidas ou encharcadas?), perda de peso (quantos kg, em quanto tempo, sem dieta) | Pesquisar prurido: localização, piora com calor/banho quente | Perguntar sobre dor nos linfonodos ao beber álcool (sinal de Hoster) | Investigar sintomas respiratórios (compressão mediastinal): tosse, dispneia, edema facial (síndrome de VCS) | Investigar fadiga e intolerância ao esforço | Pesquisar infecções recentes e viagens | Investigar comportamentos de risco: HIV | Histórico familiar de linfoma ou outras neoplasias',
+      expectedPhysical: 'Palpar sistematicamente TODAS as cadeias ganglionares (cervical, occipital, pré-auricular, submandibular, supraclavicular, axilar, inguinal) | Caracterizar linfonodos: tamanho, consistência, mobilidade, aderência, dor | Ausculta pulmonar e cardíaca (massa mediastinal pode causar compressão) | Avaliar sinais de síndrome de veia cava superior: edema facial, turgência jugular, cianose facial | Palpar abdome: esplenomegalia, hepatomegalia | Avaliar pele: prurido sem lesão primária | Temperatura axilar (febre vespertina)',
+      expectedExams: [
+        { exam: 'Hemograma + VHS + LDH + albumina + beta-2-microglobulina', justify: 'VHS muito elevado é forte marcador de atividade do Hodgkin e fator prognóstico; anemia + eosinofilia + linfopenia são padrão típico; LDH e albumina definem prognóstico pelo IPS (Escore Prognóstico Internacional)', expected: 'Hb 11,8; VHS 88; LDH 320; albumina 3,2 — perfil sugestivo' },
+        { exam: 'Sorologias (HIV, EBV, CMV, Toxoplasmose)', justify: 'Excluir causas infecciosas de adenomegalia — diagnóstico diferencial fundamental', expected: 'HIV negativo; EBV IgM negativo (infecção passada); CMV negativo' },
+        { exam: 'TC de tórax, abdome e pelve com contraste', justify: 'Estadiamento do linfoma: identificar massa mediastinal, adenomegalias abdominais, esplenomegalia, ósseas', expected: 'Massa mediastinal 8×6 cm + adenomegalias mediastinais; sem acometimento abdominal' },
+        { exam: 'Biópsia excisional do linfonodo + imunohistoquímica', justify: 'EXAME CONFIRMATÓRIO OBRIGATÓRIO — células de Reed-Sternberg (CD30+, CD15+) confirmam LH; nunca tratar sem diagnóstico histológico', expected: 'A ser realizada no serviço de hematologia/oncologia de referência' },
+        { exam: 'PET-CT (PET-FDG)', justify: 'Estadiamento mais preciso e avaliação de resposta ao tratamento — preferível à TC quando disponível', expected: 'A solicitar no serviço de referência' }
+      ],
+      expectedConduct: 'NÃO iniciar tratamento na UBS — encaminhar para oncologia/hematologia para biópsia excisional e estadiamento completo | Explicar ao paciente que o diagnóstico precisa ser confirmado por biópsia antes de qualquer tratamento | NÃO realizar biopsia aspirativa (PAAF) — não é suficiente para diagnóstico de linfoma; é necessária biópsia excisional (linfonodo inteiro) | Informar ao paciente que, SE confirmado Linfoma de Hodgkin, o tratamento tem alta taxa de cura (> 85%) — tranquilizar sem minimizar | Tratamento (no serviço de referência): ABVD (adriamicina, bleomicina, vimblastina, dacarbazina) ± radioterapia de campo envolvido conforme estádio | Seguimento após tratamento: PET-CT de avaliação de resposta',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar de forma empática que os gânglios e os exames mostram um padrão que precisa de investigação especializada | Comunicar que é necessária uma biópsia para confirmar o diagnóstico antes de qualquer conclusão | Informar que o encaminhamento é urgente mas que existem tratamentos muito eficazes para esse tipo de condição | Responder honestamente se perguntado sobre câncer: "Precisamos confirmar, mas existe essa possibilidade. O importante é que, confirmado, o tratamento costuma funcionar muito bem." | Dar suporte emocional e perguntar se tem dúvidas',
+      criticalErrors: [
+        'Realizar PAAF (biópsia aspirativa) em vez de biópsia excisional — PAAF é insuficiente para diagnóstico de linfoma',
+        'Tratar empiricamente com antibióticos por semanas sem encaminhar — retardar o diagnóstico pode mudar o estadiamento e o prognóstico',
+        'Não pesquisar sintomas B (febre, sudorese, perda de peso) — fundamentais para estadiamento',
+        'Não solicitar TC de tórax e perder a massa mediastinal',
+        'Não mencionar HIV no diagnóstico diferencial (linfoma associado ao HIV)',
+        'Dar diagnóstico definitivo de linfoma sem biópsia histológica'
+      ]
+    },
+    instD: {
+      title: 'Linfoma de Hodgkin — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'Linfoma de Hodgkin (LH): neoplasia do sistema linfático originada de linfócitos B do centro germinativo; caracterizada pelas células de Reed-Sternberg (RS) binucleadas com "olhos de coruja".', score: 1, ref: 'Harrison' },
+            { item: 'Distribuição bimodal: pico em 15–35 anos e > 55 anos. Mais comum em homens jovens. Associado ao EBV em 40–50% dos casos.', score: 1, ref: 'Harrison' },
+            { item: 'Tipo histológico mais comum: Esclerose Nodular (70–80% dos casos em jovens) — padrão mais relacionado ao LH mediastinal.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Apresentação Clínica — Sinais e Sintomas',
+          items: [
+            { item: 'Adenomegalias: cervicais/supraclaviculares indolores, firmes, elásticas ("borrachosas"), sem sinais inflamatórios — sinal de apresentação em > 80% dos casos.', score: 2, ref: 'Harrison' },
+            { item: 'Sintomas B (presença = mau prognóstico/estadiamento): febre inexplicada ≥ 38°C, sudorese noturna intensa (encharcar roupa), perda de peso ≥ 10% em 6 meses sem causa identificada.', score: 2, ref: 'Harrison' },
+            { item: 'Prurido aquagênico: prurido generalizado, pior após banho quente — presente em ~30% dos casos; altamente sugestivo de LH.', score: 2, ref: 'Harrison' },
+            { item: 'Sinal de Hoster: dor nos linfonodos acometidos ao ingestão de álcool — raro, mas altamente específico de LH.', score: 2, ref: 'Harrison' },
+            { item: 'Massa mediastinal anterior: presente em 60–70% dos LH — pode causar tosse, dispneia, síndrome de veia cava superior.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: 'Biópsia excisional do linfonodo: ÚNICO método diagnóstico adequado. PAAF (aspiração) é INSUFICIENTE — precisa de arquitetura tecidual.', score: 2, ref: 'Harrison' },
+            { item: 'Células de Reed-Sternberg: células binucleadas grandes com nucléolos proeminentes ("olhos de coruja") — patognomônicas do LH. Imunofenotipagem: CD30+ e CD15+ (maioria), CD20−.', score: 2, ref: 'Harrison' },
+            { item: 'Estadiamento (Lugano/Ann Arbor): I (1 região nodal), II (≥ 2 regiões no mesmo lado do diafragma), III (ambos os lados), IV (disseminado). Sufixo A (sem sintomas B) ou B (com sintomas B).', score: 1, ref: 'Harrison' },
+            { item: 'PET-CT com FDG: padrão ouro para estadiamento e avaliação de resposta — superior à TC.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Tratamento e Prognóstico',
+          items: [
+            { item: 'Estádio precoce (I–II sem fatores desfavoráveis): ABVD 2–4 ciclos + radioterapia de campo envolvido (ISRT).', score: 1, ref: 'Harrison' },
+            { item: 'Estádio avançado (III–IV ou II com sintomas B): ABVD 6 ciclos ou BEACOPPescalado.', score: 1, ref: 'Harrison' },
+            { item: 'Prognóstico excelente: sobrevida global em 5 anos > 85–90% em estádios precoces, 65–75% em estádios avançados.', score: 2, ref: 'Harrison' },
+            { item: 'Complicações tardias do tratamento: cardiotoxicidade (antraciclinas), toxicidade pulmonar (bleomicina), neoplasias secundárias (especialmente câncer de mama após radioterapia em jovens).', score: 1, ref: 'Harrison' }
+          ]
+        }
+      ]
+    }
+  },
+
 ];
 
 export default hematologia;
+
+
 
 
 
