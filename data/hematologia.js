@@ -939,9 +939,444 @@ const hematologia = [
     }
   },
 
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 7 — PTI — PÚRPURA TROMBOCITOPÊNICA IMUNE
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 7,
+    title: 'Criança com manchas roxas e pintinhas vermelhas após virose 2 semanas atrás',
+    sub: 'UBS Pediátrica — Atenção Primária',
+    tema: 'Hematologia',
+    topic: 'Púrpura Trombocitopênica Imune — PTI',
+    level: 'moderado',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'UBS Pediátrica. Mãe traz criança de 7 anos para consulta. A mãe está visivelmente preocupada.',
+      patient: 'G.O.L., 7 anos, masculino, estudante do 2º ano, sem comorbidades conhecidas.',
+      complaint: 'Aparecimento súbito de manchas roxas (equimoses) espontâneas e pontinhos vermelhos na pele (petéquias) há 4 dias, sem trauma. Havia tido infecção viral respiratória há 2 semanas.',
+      tasks: [
+        'Realize a anamnese dirigida com a mãe e com a criança.',
+        'Realize o exame físico pediátrico completo.',
+        'Formule a hipótese diagnóstica principal e os principais diferenciais.',
+        'Solicite os exames complementares adequados.',
+        'Decida a conduta e oriente a família.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '94/60 mmHg',
+        FC: '96 bpm',
+        FR: '22 irpm',
+        Tax: '36,8 °C',
+        Peso: '24 kg',
+        Altura: '1,22 m'
+      },
+      physicalGeneral: 'Bom estado geral, consciente, orientado, ativo e brincalhão. Normocorado, anictérico, sem febre. Sem sangramento ativo visível.',
+      physicalSeg: 'PELE: petéquias punctiformes abundantes (> 50) distribuídas em membros inferiores, tronco e face; 4 equimoses espontâneas em MMII (sem relação com trauma evidente) de 2–5 cm; sem hematomas profundos; sem exantema; sem lesões vesiculosas. | MUCOSAS: petéquias no palato mole e mucosa jugal bilateral; gengivas sem sangramento ativo. | CABEÇA E PESCOÇO: sem adenomegalias. | CARDIOVASCULAR: ritmo regular; sem sopros; bulhas normofonéticas. | PULMONAR: murmúrio vesicular presente, sem adventícios. | ABDOME: plano, indolor, sem hepatoesplenomegalia, RHA presentes. | NEUROLÓGICO: consciente, orientado, sem rigidez de nuca, sem déficits focais; pupilas isocóricas.',
+      labs: [
+        { test: 'Hemoglobina', val: '12,4 g/dL', ref: '11,5–15,5 g/dL', alt: false },
+        { test: 'VCM', val: '82 fL', ref: '75–87 fL', alt: false },
+        { test: 'Leucócitos', val: '7.200/mm³', ref: '4.500–13.500/mm³', alt: false },
+        { test: 'Diferencial', val: 'Normal (sem blastos, sem linfócitos atípicos)', ref: 'Normal', alt: false },
+        { test: 'Plaquetas', val: '8.000/mm³', ref: '150.000–400.000/mm³', alt: true },
+        { test: 'Esfregaço de sangue periférico', val: 'Plaquetas markadamente reduzidas; plaquetas gigantes (macroplaquetas) visíveis; hemácias e leucócitos morfologicamente normais; SEM blastos', ref: 'Normal', alt: true },
+        { test: 'TP e TTPA', val: 'Normais', ref: 'Normais', alt: false },
+        { test: 'Fibrinogênio', val: 'Normal', ref: 'Normal', alt: false },
+        { test: 'PCR', val: '4 mg/L', ref: '< 5 mg/L', alt: false },
+        { test: 'Sorologias virais', val: 'IgM para EBV, CMV, rubéola, parvovírus B19: negativos para infecção aguda; IgG positivo para EBV (infecção passada)', ref: '—', alt: false }
+      ],
+      image: 'Esfregaço detalhado (a entregar se solicitado): trombocitopenia grave com macroplaquetas; sem fragmentação de hemácias (afasta microangiopatia); série branca normal, sem blastos — morfologia compatível com PTI.',
+      note: 'Entregar sinais vitais ao início. Hemograma + esfregaço: entregar em conjunto se solicitado (enfatizar que o esfregaço NÃO tem blastos — chave para diferenciar de LLA). Coagulograma: normal — entregar se solicitado. Sorologias: entregar se solicitado. Informar que a criança está sem sangramento ativo e hemodinamicamente estável — a conduta depende do grau de sangramento, não só da contagem de plaquetas.',
+      patientProfile: 'G.O.L., 7 anos, menino ativo. Há 2 semanas teve quadro de febre + coriza + tosse por 4–5 dias, tratado em casa com antitérmico — pediatra diagnosticou infecção viral, sem antibiótico. Recuperou completamente. Quatro dias atrás, a mãe percebeu pontinhos vermelhos na pele e depois manchas roxas. A criança não se queixou de dor, não caiu nem se bateu. Sem sangramento nasal, gengival, urinário ou digestivo. Sem cefaleia. A família pergunta se é dengue. Sem viagem recente, sem contato com dengue. Sem histórico de doenças hematológicas na família.',
+      script: [
+        { trigger: 'Queixa principal (mãe)', speech: 'Doutora, apareceram essas pintinhas vermelhas e roxinhas no meu filho do nada. Ele não caiu, não se bateu em nada. Fiquei apavorada. Pode ser dengue?' },
+        { trigger: 'Sobre a infecção viral anterior', speech: '(mãe) Duas semanas atrás ele teve febre, coriza, tosse. O pediatra disse que era viral, passou sozinho em 5 dias. Fiquei aliviada. Aí agora apareceu isso.' },
+        { trigger: 'Sobre sangramento ativo', speech: '(mãe) Não sangrou do nariz, nem da gengiva, nem fez xixi ou cocô com sangue. Só as manchas na pele mesmo.' },
+        { trigger: 'Sobre cefaleia ou alterações neurológicas', speech: '(criança) Não tô com dor de cabeça não. Tô bem, só ficou feio o braço.' },
+        { trigger: 'Sobre dengue ou viagem', speech: '(mãe) A gente não viajou, ficou aqui na cidade. Não sei se tem dengue no bairro, pode ser?' },
+        { trigger: 'Sobre histórico familiar', speech: '(mãe) Ninguém na família tem problema no sangue, não. Meu marido e eu somos saudáveis.' },
+        { trigger: 'Sobre medicamentos', speech: '(mãe) Só tomou dipirona durante a virose. Mais nada. Nunca tomou remédio de uso contínuo.' },
+        { trigger: 'Sobre escola e contato com outras crianças', speech: '(mãe) Na semana da virose, algumas crianças na escola também ficaram doentes. Foi viral mesmo.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: '(mãe) O que ele tem, doutora? É grave? Precisa internar? Tenho muito medo.' }
+      ],
+      hiddenInfo: 'Infecção viral há exatamente 2 semanas — só revela a temporalidade precisa se candidato perguntar sobre quando foi o quadro viral | Sem nenhum sangramento além de lesões cutâneas — só confirma em detalhes se candidato perguntar ativamente sobre epistaxe, hematúria, melena, sangramento gengival | Criança sem cefaleia ou sintomas neurológicos — só confirma se candidato perguntar especificamente (cefaleia em trombocitopênico grave = alarme para hemorragia intracraniana) | Usou dipirona — só revela se candidato perguntar sobre medicamentos (AINEs/dipirona podem agravar plaquetopenia)',
+      actorBehavior: 'Mãe muito ansiosa, com choro fácil. Criança bem-humorada e ativa, não parece doente. Mãe pergunta várias vezes se é dengue e se precisa internar. Fica mais calma quando o médico explica o diagnóstico de forma clara e tranquilizadora.'
+    },
+    instC: {
+      diagnosis: 'Púrpura Trombocitopênica Imune (PTI) aguda pediátrica — trombocitopenia isolada grave (plaquetas 8.000/mm³) por destruição imunomediada de plaquetas, pós-infecção viral respiratória há 2 semanas. Série branca e vermelha normais, sem blastos — afasta LLA.',
+      differentials: [
+        'Leucemia Linfoblástica Aguda (LLA) — PRINCIPAL DIFERENCIAL: também causa trombocitopenia grave em criança; MAS na LLA há pancitopenia (anemia + neutropenia) + blastos no esfregaço + hepatoesplenomegalia + dor óssea; esfregaço sem blastos e hemograma bicelular normal afastam LLA aqui',
+        'Dengue com trombocitopenia — trombocitopenia por dengue é comum; mas requer febre atual, contexto epidemiológico, sorologia positiva (NS1/IgM); criança afebril, sem epidemiologia, sorologias negativas afastam',
+        'Síndrome Hemolítico-Urêmica (SHU) — trombocitopenia + anemia hemolítica microangiopática + insuficiência renal; hemácias normais no esfregaço (sem esquizócitos), função renal normal afastam',
+        'Púrpura de Henoch-Schönlein (vasculite IgA) — púrpura palpável (não petéquias planas) em MMII + artralgia + dor abdominal + hematúria; plaquetas NORMAIS — diferença fundamental',
+        'Aplasia medular — pancitopenia com medula hipocelular; não há trombocitopenia isolada; série branca e vermelha afetadas'
+      ],
+      context: 'PTI é a causa mais comum de trombocitopenia isolada em crianças previamente saudáveis. Fisiopatologia: anticorpos anti-plaquetários IgG (gerados após infecção viral) se ligam às plaquetas → destruição pelo baço. Apresentação clínica clássica: criança saudável + infecção viral 1–4 semanas antes + aparecimento súbito de petéquias e equimoses espontâneas + plaquetas muito baixas + hemograma dos outros parâmetros NORMAL (sem anemia, sem leucopenia, sem blastos). A criança geralmente parece "bem demais" para o nível de trombocitopenia.',
+      justify: 'Trombocitopenia grave isolada (8.000) em criança de 7 anos previamente saudável, 2 semanas após infecção viral respiratória. Hemoglobina e leucócitos normais, sem blastos no esfregaço (afasta LLA), sem hepatoesplenomegalia, sem adenomegalias, coagulograma normal (afasta CIVD). Macroplaquetas no esfregaço = produção reacional intensa pela medula (medula tentando compensar a destruição periférica). Criança em bom estado geral, sem sangramento ativo além de lesões cutâneas — condição favorável.',
+      expectedAnamnesis: 'Caracterizar as lesões: petéquias vs. equimoses — tamanho, distribuição, aparecimento súbito ou gradual, espontâneas ou por trauma | Investigar infecção recente: quando, qual tipo, febre, tratamento | Perguntar sobre sangramento ativo: epistaxe, gengival, hematúria, melena, sangramento vaginal (se aplicável) | Pesquisar cefaleia, alterações visuais, alteração de consciência (sinais de hemorragia intracraniana — emergência) | Histórico de episódios semelhantes anteriores | Uso de medicamentos (AINEs, ácido valproico, heparina — podem causar trombocitopenia) | Vacinas recentes (vacina MMR pode precipitar PTI) | Contexto epidemiológico para dengue | História familiar de trombocitopenia ou doença autoimune',
+      expectedPhysical: 'Avaliar estado geral: criança activa vs. prostrada — PTI a criança geralmente parece bem | Contar e mapear petéquias e equimoses: distribuição, tipo (planas vs. palpáveis), relação com trauma | Examinar mucosas: petéquias em palato, sangramento gengival | Pesquisar linfonodos: sem adenomegalias (afasta LLA, linfoma) | Auscultar coração e pulmões | Palpar abdome: hepatoesplenomegalia afastaria PTI (sugere LLA ou outra causa) | Exame neurológico completo: cefaleia, sinais meníngeos, déficits focais (hemorragia intracraniana)',
+      expectedExams: [
+        { exam: 'Hemograma completo + esfregaço', justify: 'EXAME CENTRAL: trombocitopenia isolada + hemoglobina e leucócitos normais + SEM blastos = padrão de PTI; exclui LLA', expected: 'Plaquetas 8.000; Hb e leucócitos normais; sem blastos; macroplaquetas' },
+        { exam: 'Coagulograma (TP, TTPA, fibrinogênio)', justify: 'Normal na PTI — afasta CIVD, hepatopatia, coagulopatias congênitas', expected: 'Todos normais' },
+        { exam: 'Sorologias (EBV, CMV, parvovírus B19, dengue NS1/IgM, HIV)', justify: 'Pesquisar causa infecciosa associada; dengue é diagnóstico diferencial importante no Brasil', expected: 'Sem infecção aguda identificada' },
+        { exam: 'Mielograma', justify: 'NÃO indicado de rotina na PTI típica pediátrica (diagnóstico clínico + laboratorial); indicado se atípico (esplenomegalia, linfadenopatia, anemia) ou antes de tratamento com corticoide para afastar LLA', expected: 'Não indicado neste caso típico' }
+      ],
+      expectedConduct: 'DEPENDE DO GRAU DE SANGRAMENTO, não apenas da contagem de plaquetas | Plaquetas < 20.000 sem sangramento significativo: observação + restrição de atividades físicas de risco + evitar AINEs e injeções intramusculares — a maioria das PTI pediátricas resolve espontaneamente em semanas a meses | Plaquetas < 20.000 COM sangramento de mucosas ou risco aumentado: imunoglobulina humana IV (IVIG) 1 g/kg/dia × 1–2 dias (elevação rápida de plaquetas em 24–48h) OU prednisona 1–2 mg/kg/dia por 2–4 semanas | EMERGÊNCIA (plaquetas < 20.000 + cefaleia intensa ou suspeita de hemorragia intracraniana): IVIG + corticoide IV + transfusão de plaquetas imediata | EVITAR: ácido acetilsalicílico, AINEs, injeções IM | Orientações à família: reconhecer sinais de hemorragia intracraniana (cefaleia súbita intensa, alteração de consciência, vômitos em jato) — retornar imediatamente; evitar esportes de contato e atividades de risco de trauma enquanto plaquetopênico; retorno em 48–72h para novo hemograma',
+      expectedCommunication: 'Apresentar-se pelo nome | Tranquilizar a mãe: explicar que a criança está em bom estado geral e sem sangramento ativo, o que é favorável | Explicar o mecanismo: "O organismo do seu filho fez uma reação ao vírus de 2 semanas atrás que destruiu as plaquetas (células que ajudam a coagular o sangue)" | Explicar que na maioria das crianças se resolve sozinho em semanas a meses | Orientar sobre sinais de alarme: cefaleia forte, vômito, alteração no comportamento = retornar imediatamente | Orientar sobre restrições: sem esportes de contato, sem AINEs | Agendar retorno em 48–72h',
+      criticalErrors: [
+        'Não solicitar esfregaço de sangue periférico e perder a ausência de blastos — erro diagnóstico que pode levar a não afastar LLA',
+        'Prescrever ácido acetilsalicílico ou AINEs em criança com trombocitopenia grave (potencial de agravar sangramento)',
+        'Não investigar cefaleia e sinais neurológicos — perder hemorragia intracraniana (complicação rara mas fatal da PTI grave)',
+        'Transfundir plaquetas empiricamente sem sangramento ativo (não indicado na PTI sem emergência)',
+        'Não orientar a família sobre os sinais de alarme e quando retornar ao pronto-socorro'
+      ]
+    },
+    instD: {
+      title: 'Púrpura Trombocitopênica Imune (PTI) — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Fisiopatologia',
+          items: [
+            { item: 'PTI: trombocitopenia adquirida por mecanismo imunológico — anticorpos IgG anti-plaquetários ligam-se à superfície das plaquetas → destruição pelo sistema reticuloendotelial (principalmente baço).', score: 1, ref: 'Harrison' },
+            { item: 'Forma aguda pediátrica: pós-infecção viral (1–4 semanas antes); autolimitada — 70–80% resolvem em 6 meses sem tratamento específico.', score: 2, ref: 'Harrison' },
+            { item: 'Forma crônica: > 12 meses; mais comum em adultas jovens e associada a doenças autoimunes (LES, tireoidite). Pode necessitar esplenectomia ou rituximabe.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Diagnóstico — Critérios',
+          items: [
+            { item: 'PTI é diagnóstico de EXCLUSÃO: trombocitopenia isolada (< 100.000/mm³) sem causa identificável + hemograma com as outras séries normais + ausência de esplenomegalia, hepatomegalia e adenomegalias + SEM blastos.', score: 2, ref: 'Harrison' },
+            { item: 'Esfregaço de sangue periférico: macroplaquetas (plaquetas gigantes = produção medular aumentada para compensar), ausência de esquizócitos (afasta microangiopatia), sem blastos (afasta LLA).', score: 2, ref: 'Harrison' },
+            { item: 'Coagulograma normal: afasta CIVD, doença de von Willebrand e coagulopatias.', score: 1, ref: 'Harrison' },
+            { item: 'Mielograma: não indicado de rotina na PTI típica; indicado se apresentação atípica (esplenomegalia, pancitopenia) ou antes de corticoide para afastar LLA formalmente.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Tratamento — Baseado na Clínica, não só na Contagem',
+          items: [
+            { item: 'Plaquetas < 20.000 sem sangramento clínico significativo: observação + restrição de atividades + evitar AINEs. Maioria resolve espontaneamente.', score: 2, ref: 'Harrison / PEBMED' },
+            { item: 'Plaquetas < 20.000 com sangramento de mucosas ou risco aumentado: prednisona 1–2 mg/kg/dia por 2–4 semanas OU IVIG 1 g/kg/dia × 1–2 dias (eleva plaquetas mais rápido que corticoide — preferida se necessidade urgente).', score: 2, ref: 'Harrison' },
+            { item: 'EMERGÊNCIA (hemorragia intracraniana): IVIG + metilprednisolona IV + transfusão de plaquetas + neurocirurgia de emergência.', score: 2, ref: 'Harrison' },
+            { item: 'CONTRAINDICADOS: ácido acetilsalicílico, AINEs, injeções intramusculares (risco de hematomas profundos).', score: 2, ref: 'Harrison' },
+            { item: 'PTI crônica refratária: rituximabe, eltrombopague (agonista do receptor de trombopoietina), esplenectomia (última linha).', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Sinais de Alarme — Quando Retornar Imediatamente',
+          items: [
+            { item: 'Cefaleia intensa e de início súbito — possível hemorragia intracraniana (rara, < 1% das PTI, mas fatal se não tratada).', score: 2, ref: 'Harrison' },
+            { item: 'Sangramento digestivo (melena, hematoquezia), hematúria macroscópica, epistaxe incoercível.', score: 1, ref: 'Harrison' },
+            { item: 'Alteração do nível de consciência, vômitos em jato, déficits neurológicos focais.', score: 2, ref: 'Harrison' }
+          ]
+        }
+      ]
+    }
+  },
+
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 8 — MIELOMA MÚLTIPLO
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 8,
+    title: 'Idoso com dor lombar persistente, fraqueza e sede excessiva',
+    sub: 'UBS → Ambulatório de Clínica Médica',
+    tema: 'Hematologia',
+    topic: 'Mieloma Múltiplo',
+    level: 'difícil',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'Ambulatório de Clínica Médica. Consulta agendada. Idoso trazido pela filha, com queixas há 4 meses.',
+      patient: 'O.F.M., 68 anos, masculino, aposentado (ex-professor), ex-tabagista leve, com osteoartrite de joelhos diagnosticada há 2 anos.',
+      complaint: 'Dor lombar progressiva e persistente há 4 meses, sem relação com trauma ou esforço, associada a fraqueza generalizada, sede excessiva e piora do estado geral.',
+      tasks: [
+        'Realize a anamnese dirigida, investigando a dor lombar e os sintomas sistêmicos.',
+        'Realize o exame físico geral e dirigido.',
+        'Formule a hipótese diagnóstica principal e os principais diferenciais.',
+        'Solicite os exames complementares adequados.',
+        'Oriente o paciente e proponha o encaminhamento correto.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '138/84 mmHg',
+        FC: '84 bpm',
+        FR: '17 irpm',
+        Tax: '36,7 °C',
+        Peso: '70 kg',
+        Altura: '1,70 m',
+        IMC: '24,2 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientado (lentificado), hipocorado (1+/4+), anictérico, acianótico, sem edema. Aparência de emagrecimento.',
+      physicalSeg: 'CABEÇA E PESCOÇO: mucosa oral pálida; sem adenomegalias; sem ingurgitamento jugular. | COLUNA VERTEBRAL: dor à palpação de processos espinhosos de T12–L2; sem irradiação; sem déficit neurológico em MMII; coluna com mobilidade reduzida pela dor. | CARDIOVASCULAR: ritmo regular, 2 tempos, bulhas normofonéticas. | PULMONAR: murmúrio vesicular presente, sem adventícios. | ABDOME: plano, indolor, sem visceromegalias palpáveis. | MUSCULOESQUELÉTICO: força muscular preservada (4+/5+ globalmente), ligeiramente reduzida. | NEUROLÓGICO: consciente, orientado, sem déficits focais, sem radiculopatia (Lasègue negativo); reflexos presentes.',
+      labs: [
+        { test: 'Hemoglobina', val: '9,6 g/dL', ref: '13–17 g/dL', alt: true },
+        { test: 'VCM', val: '94 fL', ref: '80–100 fL', alt: false },
+        { test: 'Leucócitos', val: '5.600/mm³', ref: '4.000–11.000/mm³', alt: false },
+        { test: 'Plaquetas', val: '148.000/mm³', ref: '150.000–400.000/mm³', alt: false },
+        { test: 'VHS', val: '112 mm/h', ref: '< 15 mm/h (H)', alt: true },
+        { test: 'Proteína total', val: '10,8 g/dL', ref: '6,0–8,0 g/dL', alt: true },
+        { test: 'Albumina', val: '2,8 g/dL', ref: '3,5–5,0 g/dL', alt: true },
+        { test: 'Globulinas', val: '8,0 g/dL (proteína total − albumina)', ref: '2,0–3,5 g/dL', alt: true },
+        { test: 'Eletroforese de proteínas', val: 'Pico monoclonal (pico M) na região gama — IgG kappa', ref: 'Sem pico monoclonal', alt: true },
+        { test: 'Cálcio total', val: '12,8 mg/dL', ref: '8,5–10,5 mg/dL', alt: true },
+        { test: 'Creatinina', val: '2,1 mg/dL', ref: '0,7–1,2 mg/dL', alt: true },
+        { test: 'Ureia', val: '68 mg/dL', ref: '15–40 mg/dL', alt: true },
+        { test: 'LDH', val: '280 UI/L', ref: '140–280 UI/L', alt: false },
+        { test: 'Beta-2-microglobulina', val: '6,2 mg/L', ref: '< 2,4 mg/L', alt: true },
+        { test: 'Proteína de Bence Jones (urina)', val: 'Positiva (cadeias leves kappa)', ref: 'Negativa', alt: true }
+      ],
+      image: 'Raio-X de coluna lombar e pelve (a entregar se candidato solicitar): lesões líticas em "saca-bocado" em vértebras L1–L3, arco posterior de L2 com fratura patológica; lesão lítica em ilíaco direito. Raio-X de crânio: lesões líticas em "chuva de balas" no crânio.',
+      note: 'Entregar sinais vitais ao início. Hemograma + proteínas + albumina + cálcio + creatinina + VHS: entregar em conjunto se solicitado. Eletroforese de proteínas e proteína de Bence Jones: entregar se candidato solicitar especificamente. RX de coluna/crânio/pelve: entregar se candidato solicitar. Informar que encaminhamento para hematologia é urgente — paciente com hipercalcemia (12,8) e IRA (creatinina 2,1) requer avaliação especializada rápida.',
+      patientProfile: 'O.F.M., 68 anos, ex-professor universitário de física, aposentado. Casado, mora com a esposa. Dois filhos adultos. Ex-tabagista (5 cigarros/dia por 15 anos, parou há 20 anos). Nega etilismo. Tinha diagnóstico de "osteoartrite de joelhos" e estava usando anti-inflamatório intermitente. Dor lombar foi inicialmente atribuída pelo clínico anterior a "lombalgia mecânica" com receita de fisioterapia — sem melhora. Perdeu 5 kg em 4 meses. Refere que fica com a boca seca e bebe muita água, além de episódios de náusea.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, tenho uma dor nas costas que não passa de jeito nenhum. Faz 4 meses. Tomei anti-inflamatório, fiz fisioterapia, nada resolve. Tô ficando sem força, sem pique. Minha filha insistiu pra eu vir.' },
+        { trigger: 'Sobre a característica da dor', speech: 'Dói o tempo todo, não melhora com repouso. Às vezes acorda de madrugada. Não tive nenhum trauma, não carreguei peso. É diferente das dores do joelho que tenho, essas são piores.' },
+        { trigger: 'Sobre fraqueza', speech: 'Tô muito fraco, cansado. Antes caminhava 40 minutos todo dia, agora mal consigo 10 minutos.' },
+        { trigger: 'Sobre sede e boca seca', speech: 'Tô com muita sede, bebo litros de água por dia. A boca fica seca. Acho que é do calor, mas nunca tive isso antes.' },
+        { trigger: 'Sobre náuseas e apetite', speech: 'Tenho enjoo às vezes, sem vomitar. Tô sem apetite, perdi uns 5 quilos em 4 meses.' },
+        { trigger: 'Sobre infecções recentes', speech: 'Tive pneumonia faz uns 6 meses. Tratei com antibiótico e melhorei. Mas antes disso também tive uma sinusite. Tô adoecendo mais que antes.' },
+        { trigger: 'Sobre histórico médico', speech: 'Tenho osteoartrite no joelho faz 2 anos. Pressão normal. Nunca tive tumor, câncer, nada assim. Pai morreu de infarto, mãe de diabetes.' },
+        { trigger: 'Sobre confusão ou lentidão mental', speech: 'Minha filha fala que tô mais lento, demoro mais pra responder as coisas. Eu mesmo percebi que tô mais esquecido. Pensei que era a idade.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'Minha filha pesquisou na internet e ficou com medo de ser câncer nos ossos. Pode ser isso, doutor?' }
+      ],
+      hiddenInfo: 'Pneumonia há 6 meses + sinusite repetida (imunoparesia por supressão das imunoglobulinas normais pelo clone maligno) — só revela em detalhe se candidato perguntar sobre infecções recorrentes | Dor que acorda à noite e não melhora com repouso (dor inflamatória/neoplásica, não mecânica) — só revela a característica nocturna se candidato perguntar especificamente | Lentificação mental e confusão (encefalopatia hipercalcêmica) — só revela detalhes se candidato perguntar sobre cognição | Emagrecimento de 5 kg em 4 meses — só revela quantidade exata se candidato perguntar sobre peso',
+      actorBehavior: 'Paciente calmo, intelectualizado, levemente lento nas respostas (hipercalcemia). A filha (pode ser representada fora da cena) está muito ansiosa. Paciente cooperativo no exame físico. Fica surpreso se o diagnóstico apontar para "mieloma" — nunca ouviu falar. Aceita bem explicações detalhadas (ex-professor).'
+    },
+    instC: {
+      diagnosis: 'Mieloma Múltiplo com critérios CRAB presentes: hipercalCemia (Ca 12,8), insuficiência Renal (creatinina 2,1), Anemia (Hb 9,6), lesões ósseas (Bone — lesões líticas em coluna, pelve, crânio). Pico monoclonal IgG kappa + proteína de Bence Jones positiva. Estadiamento R-ISS: a determinar com beta-2-microglobulina 6,2 (estádio III).',
+      differentials: [
+        'Gamapatia Monoclonal de Significado Indeterminado (MGUS) — pico M presente mas < 3 g/dL, plasmócitos na medula < 10%, SEM critérios CRAB; este caso tem hipercalcemia, IRA e lesões ósseas — não é MGUS',
+        'Metástases ósseas de neoplasia sólida — lesões líticas podem ser metástases (próstata, mama, pulmão, rim); mas pico monoclonal e proteína de Bence Jones apontam para gamapatia; biópsia óssea diferencia',
+        'Plasmocitoma solitário — lesão óssea plasmocítica única sem outros critérios CRAB; aqui há múltiplas lesões e critérios CRAB',
+        'Hiperparatireoidismo primário — hipercalcemia + sintomas sistêmicos; mas PTH elevado, sem pico monoclonal, lesões ósseas diferentes',
+        'Linfoma com envolvimento ósseo — adenomegalias, pode causar lesões ósseas; biópsia diferencia'
+      ],
+      context: 'Mieloma Múltiplo é a segunda neoplasia hematológica mais comum em adultos, com pico em 65–70 anos. Resultado da proliferação clonal de plasmócitos na medula óssea → produção de imunoglobulina monoclonal (pico M) + destruição óssea por ativação de osteoclastos + imunoparesia (infecções recorrentes) + insuficiência renal (cadeias leves — néfron do mieloma). A "tétrade CRAB" (Cálcio↑, Renal, Anemia, Bone) é o marcador diagnóstico de órgão-alvo. Dor lombar em idoso que não melhora com repouso e não tem história de trauma deve sempre levantar suspeita de neoplasia.',
+      justify: 'Idoso de 68 anos com dor lombar persistente, noturna, sem trauma + anemia normocítica + VHS muito elevado (112 mm/h) + hipercalcemia (12,8) + IRA (creatinina 2,1) + hiperproteinemia com hipogamaglobulinemia relativa + pico monoclonal IgG kappa na eletroforese + proteína de Bence Jones positiva + lesões líticas em punção na coluna e crânio ao RX + beta-2-microglobulina 6,2 (estádio ISS III) + infecções recorrentes (imunoparesia). Todos os critérios CRAB presentes. Diagnóstico confirmatório: mielograma (≥ 10% de plasmócitos clonais) + imunofenotipagem.',
+      expectedAnamnesis: 'Caracterizar a dor lombar: início, evolução, melhora ou piora com repouso (dor noturna = alarme), irradiação, relação com trauma | Investigar sintomas de hipercalcemia: sede excessiva (polidipsia), poliúria, náusea, constipação, confusão mental, fraqueza | Pesquisar sintomas anêmicos: fadiga, dispneia, palpitações | Perguntar sobre infecções recorrentes: pneumonias, sinusites, herpes zoster repetido (imunoparesia) | Investigar perda de peso | Sintomas neurológicos: parestesias, fraqueza em MMII, incontinência (compressão medular por fratura patológica = emergência) | Perguntar sobre outros focos de dor óssea (ossos longos, costelas, crânio) | Investigar histórico familiar de neoplasia hematológica',
+      expectedPhysical: 'Avaliar palidez (anemia) | Pesquisar dor à palpação de toda a coluna vertebral — identificar vértebras comprometidas | Avaliar mobilidade da coluna | Exame neurológico OBRIGATÓRIO: força em MMII, sensibilidade, reflexos, controle de esfíncteres (compressão medular por fratura patológica de vértebra é emergência neurocirúrgica) | Palpar ossos longos (úmero, fêmur) — dor = lesão lítica | Auscultar pulmões (infecções recorrentes) | Avaliar hidratação (polidipsia/poliúria por hipercalcemia)',
+      expectedExams: [
+        { exam: 'Hemograma + VHS + proteínas totais + albumina', justify: 'Anemia normocítica, VHS muito elevado (por pico M) e hiperproteinemia são achados clássicos do mieloma', expected: 'Hb 9,6; VHS 112; proteínas 10,8 com albumina baixa' },
+        { exam: 'Cálcio total + creatinina + ureia', justify: 'Critérios CRAB: hipercalcemia e insuficiência renal definem órgão-alvo e urgência do tratamento', expected: 'Ca 12,8 mg/dL; creatinina 2,1 mg/dL' },
+        { exam: 'Eletroforese de proteínas séricas', justify: 'Identifica pico monoclonal (pico M) — componente central do diagnóstico de gamapatia monoclonal', expected: 'Pico monoclonal IgG kappa na região gama' },
+        { exam: 'Proteína de Bence Jones (urina de 24h)', justify: 'Cadeias leves livres na urina — causa nefropatia do mieloma; presente em ~50% dos casos', expected: 'Positiva (kappa)' },
+        { exam: 'Beta-2-microglobulina e albumina', justify: 'Estadiamento R-ISS: B2M + albumina + LDH + citogenética', expected: 'B2M 6,2 → ISS III (pior prognóstico)' },
+        { exam: 'Raio-X esquelético (crânio, coluna, pelve, costelas, úmero, fêmur)', justify: 'Lesões líticas em "saca-bocado" são clássicas do mieloma; identificar fraturas patológicas', expected: 'Lesões líticas em L1–L3 + crânio ("chuva de balas") + ilíaco' },
+        { exam: 'Mielograma + imunofenotipagem (no serviço de referência)', justify: 'Confirmação diagnóstica: ≥ 10% de plasmócitos clonais na medula (criterio OMS)', expected: 'A ser realizado na hematologia' }
+      ],
+      expectedConduct: 'ENCAMINHAR urgentemente para hematologia — paciente tem critérios CRAB com hipercalcemia sintomática e IRA | Hipercalcemia (Ca 12,8): hidratação venosa agressiva SF 0,9% (200–300 mL/h) + bisfosfonato IV (ácido zoledrónico 4 mg ou pamidronato 60–90 mg) + calcitonina se Ca > 14 ou sintomático grave | IRA: hidratação + evitar nefrotóxicos (AINEs, contraste não indicado sem preparo); monitorar diurese | Analgesia: opioides para dor intensa; EVITAR AINEs (piora IRA e Ca) | NÃO mobilizar sem avaliação de fratura por ortopedia/neurocirurgia (risco de fratura patológica) | Tratamento de base (no serviço de referência): quimioterapia (bortezomibe + lenalidomida + dexametasona — VRd) + bisfosfonato mensal + considerar transplante de células-tronco autólogo em elegíveis | Comunicação com família: diagnóstico grave, mas com tratamento disponível; explicar próximos passos',
+      expectedCommunication: 'Apresentar-se pelo nome | Criar ambiente privado — filha presente é benéfico | Comunicar que os exames mostraram alterações graves que indicam uma doença séria no sangue (mieloma múltiplo) e que o encaminhamento urgente ao especialista é necessário | Explicar o que é o mieloma de forma acessível: "um tipo de câncer das células de defesa que fica na medula óssea, dentro dos ossos" | Validar as preocupações da família | Explicar que existem tratamentos e que serão iniciados após avaliação especializada | Dar espaço para perguntas; oferecer suporte emocional',
+      criticalErrors: [
+        'Tratar como lombalgia mecânica e não investigar causas neoplásicas em idoso com dor noturna que não melhora',
+        'Não solicitar cálcio em paciente com polidipsia, náusea e confusão (perder hipercalcemia)',
+        'Prescrever AINEs em paciente com IRA e hipercalcemia (agrava ambas as condições)',
+        'Não solicitar eletroforese de proteínas em idoso com VHS muito elevado e hiperproteinemia',
+        'Não avaliar déficit neurológico em MMII (compressão medular por fratura patológica é emergência — paraplegia irreversível se não tratada)'
+      ]
+    },
+    instD: {
+      title: 'Mieloma Múltiplo — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'Mieloma Múltiplo (MM): neoplasia de plasmócitos clonais na medula óssea que produzem imunoglobulina monoclonal (IgG > IgA > IgD). Segunda neoplasia hematológica mais comum.', score: 1, ref: 'Harrison' },
+            { item: 'Incidência aumenta com a idade: mediana de diagnóstico aos 65–70 anos. Mais comum em homens e negros.', score: 1, ref: 'Harrison' },
+            { item: 'Espectro: MGUS → Mieloma Latente (smoldering) → Mieloma Múltiplo sintomático.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Critérios Diagnósticos — CRAB',
+          items: [
+            { item: 'Hipercalcemia (C — Calcium): Ca > 11 mg/dL por destruição óssea → polidipsia, confusão, náusea, constipação, fraqueza.', score: 2, ref: 'Harrison' },
+            { item: 'Insuficiência Renal (R — Renal): por cadeias leves livres (néfron do mieloma), hipercalcemia, desidratação, nefrotóxicos.', score: 2, ref: 'Harrison' },
+            { item: 'Anemia (A): normocítica normocômica por infiltração medular e citocinas inflamatórias.', score: 1, ref: 'Harrison' },
+            { item: 'Lesões Ósseas (B — Bone): lesões líticas em "saca-bocado" por ativação de osteoclastos → dor óssea, fraturas patológicas. Locais mais comuns: coluna, crânio, costelas, pelve.', score: 2, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Achados Laboratoriais Chave',
+          items: [
+            { item: 'VHS muito elevado: proteína monoclonal aumenta a sedimentação eritrocitária — VHS > 100 em idoso com dor óssea = alarme para mieloma.', score: 2, ref: 'Harrison' },
+            { item: 'Eletroforese de proteínas: pico M (pico monoclonal) na região gama ou beta — quantidade varia com subtipo.', score: 2, ref: 'Harrison' },
+            { item: 'Proteína de Bence Jones (urina): cadeias leves kappa ou lambda livres — causa nefropatia por depósito tubular.', score: 2, ref: 'Harrison' },
+            { item: 'Beta-2-microglobulina: marcador de carga tumoral — componente do estadiamento R-ISS (I: < 3,5; II: 3,5–5,4; III: ≥ 5,5 mg/L).', score: 1, ref: 'Harrison' },
+            { item: 'Imunoparesia: supressão das imunoglobulinas normais pelo clone maligno → infecções recorrentes (pneumonia, herpes zoster, sinusite).', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'Hipercalcemia: hidratação IV vigorosa (SF 0,9%) + bisfosfonato IV (ácido zoledrónico, pamidronato) + calcitonina em casos graves.', score: 2, ref: 'Harrison' },
+            { item: 'Quimioterapia: bortezomibe (inibidor de proteassoma) + lenalidomida + dexametasona (VRd) — padrão ouro atual.', score: 1, ref: 'Harrison' },
+            { item: 'Transplante autólogo de células-tronco: consolidação em pacientes elegíveis (< 70 anos, bom performance status).', score: 1, ref: 'Harrison' },
+            { item: 'Bisfosfonato mensal: ácido zoledrónico — reduz eventos ósseos (fraturas), dor e hipercalcemia recorrente.', score: 1, ref: 'Harrison' },
+            { item: 'Radioterapia: lesões ósseas dolorosas localizadas + compressão medular.', score: 1, ref: 'Harrison' },
+            { item: 'Prognóstico: mediana de sobrevida 5–7 anos com terapia moderna; incurável na maioria dos casos, mas controle prolongado possível.', score: 1, ref: 'Harrison' }
+          ]
+        }
+      ]
+    }
+  },
+
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 9 — NEUTROPENIA FEBRIL
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 9,
+    title: 'Febre em paciente em quimioterapia para câncer de mama',
+    sub: 'Pronto-Socorro — Emergência',
+    tema: 'Hematologia',
+    topic: 'Neutropenia Febril',
+    level: 'difícil',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'Pronto-Socorro adulto. Urgência médica. Paciente chega acompanhada do marido, com febre alta e prostração. Tem câncer de mama e está em quimioterapia.',
+      patient: 'C.R.V., 48 anos, feminina, professora, com diagnóstico de câncer de mama HER2+ (estádio III), em quimioterapia com AC-T (doxorrubicina + ciclofosfamida, ciclo 3 de 4). Última quimioterapia há 10 dias.',
+      complaint: 'Febre de 39,2 °C de início há 6 horas, calafrios, prostração intensa. Sem foco infeccioso identificado pela paciente.',
+      tasks: [
+        'Realize a anamnese dirigida, caracterizando o quadro febril e a situação oncológica.',
+        'Realize o exame físico completo e sistemático em busca de foco infeccioso.',
+        'Defina a hipótese diagnóstica e a estratificação de risco (MASCC).',
+        'Solicite os exames complementares urgentes.',
+        'Inicie o tratamento imediato — não retardar o antibiótico.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '96/60 mmHg',
+        FC: '118 bpm',
+        FR: '24 irpm',
+        Tax: '39,2 °C',
+        SpO2: '96% (ar ambiente)',
+        Peso: '62 kg',
+        Altura: '1,62 m'
+      },
+      physicalGeneral: 'Mau estado geral, consciente, orientada, prostrada, febril (39,2 °C), taquicárdica (118 bpm), levemente hipocorada. Fácies de sofrimento. Sudorese.',
+      physicalSeg: 'CAVIDADE ORAL: mucosita grau 2 (eritema + úlceras pequenas em mucosa jugal bilateral, dolorosas, sem exsudato); sem sangramento. Sem candidíase oral evidente. | CATETER VENOSO CENTRAL (CVC): cateter de duplo lúmen em subclávia direita, inserido há 3 meses; curativo íntegro, sem eritema ou secreção no orifício de inserção. | CARDIOVASCULAR: taquicardia (FC 118 bpm); sem sopros; bulhas normofonéticas; pressão arterial 96/60 mmHg (hipotensão). | PULMONAR: murmúrio vesicular presente bilateralmente, diminuído em base direita; sem sibilos; crepitações finas em base direita (a verificar). | ABDOME: plano, doloroso à palpação em quadrante inferior direito (fossa ilíaca direita), sem sinais de peritonite, RHA diminuídos. | PELE: sem lesões cutâneas, sem petéquias, sem exantema. | NEUROLÓGICO: consciente, orientada; sem rigidez de nuca; sem déficits focais. | MEMBROS INFERIORES: sem sinais flogísticos, sem edema.',
+      labs: [
+        { test: 'Hemoglobina', val: '9,2 g/dL', ref: '12–16 g/dL', alt: true },
+        { test: 'Leucócitos', val: '1.100/mm³', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Neutrófilos absolutos', val: '200/mm³ (neutropenia grave)', ref: '1.500–7.000/mm³', alt: true },
+        { test: 'Plaquetas', val: '68.000/mm³', ref: '150.000–400.000/mm³', alt: true },
+        { test: 'PCR', val: '182 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'Procalcitonina', val: '4,8 ng/mL', ref: '< 0,5 ng/mL', alt: true },
+        { test: 'Creatinina', val: '1,4 mg/dL', ref: '0,6–1,1 mg/dL', alt: true },
+        { test: 'Ureia', val: '52 mg/dL', ref: '15–40 mg/dL', alt: true },
+        { test: 'Lactato', val: '3,2 mmol/L', ref: '< 2,0 mmol/L', alt: true },
+        { test: 'AST/ALT', val: 'AST 48 / ALT 52 UI/L', ref: '< 40 / < 41 UI/L', alt: true },
+        { test: 'Bilirrubinas', val: 'Total 1,2 mg/dL (normal)', ref: '< 1,2 mg/dL', alt: false },
+        { test: 'Hemocultura (2 pares — periférico + CVC)', val: 'Coletada — aguardando resultado', ref: '—', alt: false }
+      ],
+      image: 'Raio-X de tórax (a entregar se candidato solicitar): opacidade em base direita, compatível com consolidação pneumônica — possível pneumonia em paciente imunossuprimida. Sem derrame pleural.',
+      note: 'Entregar sinais vitais ao início — ressaltar PA 96/60 e FC 118 (sinais de instabilidade). Hemograma + PCR + procalcitonina + lactato + creatinina: entregar em conjunto se solicitado. RX de tórax: entregar se candidato solicitar — consolidação em base direita é foco provável. Hemocultura: informar que foi coletada, aguardando. ATENÇÃO: lactato 3,2 + hipotensão + taquicardia = critérios para sepse/choque séptico incipiente — candidato deve reconhecer e agir IMEDIATAMENTE. O antibiótico NÃO pode ser atrasado.',
+      patientProfile: 'C.R.V., 48 anos, professora de matemática. Casada, 2 filhos adolescentes. Diagnóstico de Ca de mama HER2+ estádio III há 5 meses. Em quimioterapia AC-T (4 ciclos); último ciclo (3º) há 10 dias. Fez hematologia antes da quimio: neutrófilos limítrofes, oncologista liberou. Não usa G-CSF profilático. Tem CVC de duplo lúmen subclávia direita. Nas últimas 24 horas: febre progressiva, piora de mucosite (já sabia que poderia surgir), calafrios, dificuldade para engolir. Marido muito assustado.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutora, tô com febre muito alta desde hoje cedo, 39 e pouco. Tô me sentindo muito mal, com calafrio, sem força. Sei que isso pode ser perigoso quando se está fazendo quimioterapia.' },
+        { trigger: 'Sobre a quimioterapia', speech: 'Tô no terceiro ciclo do quimio. A última foi há 10 dias. Tenho câncer de mama e tô fazendo o tratamento no onco.' },
+        { trigger: 'Sobre o foco infeccioso', speech: 'Não sei de onde vem a febre. A boca tá dolorida (mucosite), dificulta engolir. Não tô com tosse, não tô com dor para urinar. Tô com dor de barriga do lado direito, mas achei que podia ser do intestino do remédio.' },
+        { trigger: 'Sobre o cateter', speech: 'Tenho o cateterinho no peito (aponta para o CVC). Colocaram faz 3 meses, quando comecei a quimio. O curativo tá intacto, não sinto nada no local.' },
+        { trigger: 'Sobre medicamentos em uso', speech: 'Tomo os remédios do onco — antiemético, omeprazol. Não tomei antibiótico. O oncologista não deixou eu tomar nada sem falar com ele.' },
+        { trigger: 'Sobre tonteira e pressão baixa', speech: 'Tô me sentindo fraca, um pouquinho tonta quando levanto. Acho que é pela febre mesmo.' },
+        { trigger: 'Sobre a dor abdominal em FID', speech: 'Dói aqui (aponta para FID). Começou ontem. Não está piorando muito. Meu intestino sempre fica embolado na quimio.' },
+        { trigger: 'Sobre orientação prévia do oncologista', speech: 'Ele me disse que se tivesse febre acima de 38 graus durante a quimio eu deveria ir imediatamente ao pronto-socorro. Por isso vim.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'É grave, doutora? Vai precisar internar? Meu marido tá muito preocupado. Vai atrasar meu tratamento do câncer?' }
+      ],
+      hiddenInfo: 'Dor em fossa ilíaca direita iniciada há 24h — pode ser tiflite (neutropenic enterocolitis) — só revela localização precisa e início se candidato perguntar sobre dor abdominal | CVC há 3 meses — risco de infecção relacionada ao cateter — só revela o tempo de cateter se candidato perguntar | Não usa G-CSF profilático — só revela se candidato perguntar sobre uso de filgrastim/G-CSF | Já foi orientada pelo oncologista a vir ao PS se febre — só revela se candidato perguntar sobre orientações prévias',
+      actorBehavior: 'Paciente prostrada mas colaborativa, consciente da gravidade (sabe que neutropenia + febre é emergência). Marido ao fundo, muito ansioso, pode fazer perguntas. A paciente valoriza muito o tratamento do câncer e tem medo de atrasar a quimioterapia.'
+    },
+    instC: {
+      diagnosis: 'Neutropenia Febril grave com critérios de sepse incipiente — neutrófilos absolutos 200/mm³ + febre 39,2°C + hipotensão (PA 96/60) + taquicardia + lactato 3,2 mmol/L + foco provável em pulmão (consolidação à base direita no RX). Emergência médica — antibiótico imediato é obrigatório.',
+      differentials: [
+        'Pneumonia bacteriana (gram-negativo ou gram-positivo) — consolidação em base direita ao RX; foco mais provável neste caso; tratamento empírico de amplo espectro cobre',
+        'Infecção relacionada ao cateter venoso central (IRCVC) — possível mesmo sem sinais locais; hemocultura central x periférica pode identificar; exige antifúngico se candidemia suspeita',
+        'Tiflite (enterocolite neutropênica) — dor em FID em neutropênico grave + quimioterapia; importante diagnóstico diferencial da dor abdominal; TC de abdome identifica espessamento de parede do ceco',
+        'Infecção fúngica invasiva (Aspergillus, Candida) — neutropenia prolongada > 7 dias aumenta risco; sem febre que respondeu a antibacteriano após 4–7 dias: pensar em fungo; antifúngico empírico nesse cenário',
+        'Mucosite grave com bacteremia translacional — barreira mucosa rompida permite translocação bacteriana; mucosite grau 2 presente aqui, pode ser portal de entrada'
+      ],
+      context: 'Neutropenia Febril (NF) é definida como febre ≥ 38,3°C (ou ≥ 38°C por > 1 hora) em paciente com neutrófilos absolutos < 500/mm³ (ou < 1.000/mm³ com tendência de queda). É emergência oncológica com mortalidade de 5–10% (> 30% se choque séptico). Risco máximo em quimioterapia com esquemas mielossupressores (AC = alta toxicidade medular), 7–14 dias após o ciclo. A regra de ouro: antibiótico empírico de amplo espectro deve ser administrado na primeira HORA (idealmente 30–60 min após apresentação). Atrasar para aguardar culturas é erro grave e pode ser fatal.',
+      justify: 'Critérios de NF presentes: neutrófilos 200/mm³ + febre 39,2°C em paciente em quimioterapia (AC, alta mielossupressão, ciclo há 10 dias = nadir esperado). Critérios adicionais de gravidade: hipotensão 96/60 + taquicardia 118 + lactato 3,2 mmol/L (sepse/choque séptico) + PCR 182 + procalcitonina 4,8 (infecção bacteriana grave). Escore MASCC: doença de base grave (CA), sintomas graves (hipotensão, taquicardia), paciente internada → alto risco (MASCC < 21). Foco provável: pneumonia (consolidação à base direita) + possível IRCVC.',
+      expectedAnamnesis: 'Confirmar: temperatura, hora do início, calafrios | Identificar foco: tosse, dispneia, dor torácica (pneumonia); disúria, polaciúria (ITU); dor abdominal (tiflite); dor/eritema no CVC (IRCVC); mucosite; lesões de pele | Detalhar a quimioterapia: esquema, último ciclo (há quantos dias), uso de G-CSF profilático | Verificar orientações do oncologista e medicamentos em uso | Perguntar sobre episódios anteriores de neutropenia febril | Antecedentes de infecções fúngicas ou bacterianas no tratamento | Alergias a antibióticos (essencial antes de prescrever)',
+      expectedPhysical: 'Avaliar sinais vitais COM ATENÇÃO a PA, FC, FR, SpO2 e temperatura — reconhecer critérios de sepse | Examinar cavidade oral: mucosite, candidíase, abscesso dentário | Inspecionar e palpar CVC: eritema, calor, secreção, dor à palpação do trajeto | Auscultar pulmões detalhadamente: crepitações, diminuição de MV | Palpar abdome: dor, rigidez, foco (FID — tiflite?) | Examinar pele integralmente: lesões por Pseudomonas (ectima gangrenoso = lesão necrótica com halo eritematoso), petéquias, herpes zoster | Examinar região perianal (paciente de quimio): abscesso periretal | Exame neurológico rápido: meningite',
+      expectedExams: [
+        { exam: 'Hemograma completo com diferencial — URGENTE', justify: 'Confirmar neutropenia grave (NAb < 500/mm³) — define NF + avalia plaquetopenia', expected: 'NAb 200/mm³; Hb 9,2; plaquetas 68.000' },
+        { exam: 'PCR + Procalcitonina + Lactato', justify: 'Marcadores de infecção bacteriana grave e hipoperfusão tecidual; lactato ≥ 2 mmol/L define sepse', expected: 'PCR 182; PCT 4,8; lactato 3,2 — sepse confirmada' },
+        { exam: 'Hemocultura — 2 pares (1 periférico + 1 pelo CVC)', justify: 'Identificar agente etiológico e diferenciar bacteremia de IRCVC (se CVC positivo e periférico negativo = IRCVC). COLETAR ANTES DO ANTIBIÓTICO mas NÃO aguardar resultado para iniciar', expected: 'Coletada, aguardando' },
+        { exam: 'Raio-X de tórax', justify: 'Foco pneumônico — primeira imagem para avaliar pulmão em neutropênico febril', expected: 'Consolidação em base direita — pneumonia provável' },
+        { exam: 'Urina tipo 1 + urocultura', justify: 'ITU é causa frequente de NF, especialmente em mulheres', expected: 'A colher' },
+        { exam: 'TC de abdome (se dor abdominal persistente)', justify: 'Rastreio de tiflite (enterocolite neutropênica) — espessamento de parede do ceco e íleon terminal em neutropênico com dor em FID', expected: 'Solicitar se dor abdominal não se resolver com tratamento empírico' },
+        { exam: 'Função renal, eletrólitos, glicemia, gasometria', justify: 'Base para monitorização e ajuste de dose dos antibióticos; gasometria se SpO2 < 95% ou lactato elevado', expected: 'Creatinina 1,4 — monitorar' }
+      ],
+      expectedConduct: 'EMERGÊNCIA — antibiótico na primeira hora (idealmente 30–60 min após chegada): | Esquema empírico anti-Pseudomonas: cefepima 2g IV 8/8h OU piperacilina-tazobactam 4,5g IV 6/6h OU meropeném 1g IV 8/8h (se grave ou em unidade com alta resistência) | Adicionar vancomicina 15–20 mg/kg IV 12/12h SE: suspeita de IRCVC, hipotensão refratária, mucosite grave, cobertura para MRSA | Antifúngico empírico (fluconazol ou equinocandina): NÃO indicado de início; considerar se febre persistir > 4–7 dias sem resposta ao antibacteriano | Ressuscitação hemodinâmica: SF 0,9% 30 mL/kg nas primeiras 3h (sepse) + monitorização contínua da PA e diurese; se sem resposta → UTI + vasopressor | Internação obrigatória em quarto individual (isolamento de contato/gotículas) | Monitorar hemograma diariamente | G-CSF (filgrastim): pode encurtar duração da neutropenia — avaliar com oncologista | Notificar oncologista responsável imediatamente | Comunicar à paciente: tranquilizar, explicar que o tratamento do câncer será retomado após recuperação',
+      expectedCommunication: 'Apresentar-se pelo nome | Demonstrar urgência sem gerar pânico | Explicar que a febre em paciente em quimioterapia com poucos leucócitos (neutropenia) é uma emergência que exige antibiótico imediato | Informar que haverá internação e tratamento agressivo | Tranquilizar que o atraso na quimioterapia pode ser necessário mas não compromete o resultado do tratamento de base | Dar espaço para o marido fazer perguntas | Manter comunicação clara durante toda a internação',
+      criticalErrors: [
+        'Atrasar o antibiótico empírico para aguardar resultados de cultura (cada hora de atraso aumenta mortalidade em 7–10%)',
+        'Não reconhecer os critérios de sepse (hipotensão + taquicardia + lactato elevado) e não iniciar ressuscitação hemodinâmica',
+        'Não cobrir Pseudomonas aeruginosa no esquema empírico (gram-negativo mais temido em neutropênico)',
+        'Não coletar hemoculturas ANTES do antibiótico (perde a janela diagnóstica microbiológica)',
+        'Liberar a paciente para casa sem internar (NF de alto risco = internação obrigatória)',
+        'Não investigar dor abdominal em FID (tiflite pode perfurar e causar peritonite fecal em neutropênico)'
+      ]
+    },
+    instD: {
+      title: 'Neutropenia Febril — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Fisiopatologia',
+          items: [
+            { item: 'Neutropenia Febril (NF): temperatura ≥ 38,3°C (ou ≥ 38°C por > 1h) + neutrófilos absolutos < 500/mm³ (ou < 1.000 com queda prevista para < 500).', score: 2, ref: 'IDSA / Harrison' },
+            { item: 'Emergência oncológica: mortalidade 5–10% nos baixo risco; > 30% se choque séptico. A demora do antibiótico é o principal fator de morte prevenível.', score: 2, ref: 'IDSA' },
+            { item: 'Nadir da neutropenia: geralmente 7–14 dias após a quimioterapia (pico de risco). AC (doxorrubicina + ciclofosfamida) é esquema de alto risco de NF.', score: 1, ref: 'Harrison' }
+          ]
+        },
+        {
+          h: 'Estratificação de Risco — Escore MASCC',
+          items: [
+            { item: 'MASCC ≥ 21 = baixo risco: pode ser tratado com antibiótico oral e acompanhamento ambulatorial (ciprofloxacino + amoxicilina-clavulanato).', score: 1, ref: 'IDSA' },
+            { item: 'MASCC < 21 = alto risco: internação hospitalar + antibiótico IV + vigilância intensiva. Fatores de alto risco: hipotensão, dispneia, pneumonia, doença de base grave, neutropenia esperada > 7 dias.', score: 2, ref: 'IDSA' },
+            { item: 'Sepse/Choque séptico associado: lactato ≥ 2 mmol/L + hipotensão = emergência máxima → UTI.', score: 2, ref: 'Surviving Sepsis Campaign' }
+          ]
+        },
+        {
+          h: 'Tratamento Antibiótico Empírico',
+          items: [
+            { item: 'INICIAR em até 60 minutos da chegada — regra inviolável.', score: 2, ref: 'IDSA' },
+            { item: 'Esquema de primeira linha (anti-Pseudomonas): cefepima 2g IV 8/8h OU piperacilina-tazobactam 4,5g IV 6/6h OU imipeném/meropeném (reservar para suspeita de ESBL ou situação grave).', score: 2, ref: 'IDSA / Harrison' },
+            { item: 'Adicionar vancomicina SE: IRCVC suspeita, hipotensão sem resposta, mucosite grave, infecção de pele, cobertura para MRSA. NÃO usar vancomicina rotineiramente — aumenta resistência.', score: 1, ref: 'IDSA' },
+            { item: 'Antifúngico empírico (fluconazol ou equinocandina): iniciar se febre persistir > 4–7 dias sem foco identificado ou sem resposta ao antibacteriano.', score: 1, ref: 'IDSA' },
+            { item: 'G-CSF (filgrastim): pode encurtar a duração da neutropenia; decidir com oncologista; não substitui o antibiótico.', score: 1, ref: 'IDSA' }
+          ]
+        },
+        {
+          h: 'Focos Infecciosos — O que Pesquisar',
+          items: [
+            { item: 'Pneumonia: causa mais comum identificável; RX e TC de tórax de alta resolução se suspeita de aspergilose.', score: 1, ref: 'IDSA' },
+            { item: 'Infecção relacionada ao cateter (IRCVC): bacteremia com crescimento diferencial nas hemoculturas central > periférica de > 2 horas.', score: 1, ref: 'IDSA' },
+            { item: 'Tiflite (enterocolite neutropênica): dor em FID + espessamento de parede do ceco na TC — risco de perfuração; tratamento conservador ± cirurgia.', score: 2, ref: 'Harrison' },
+            { item: 'Ectima gangrenoso (Pseudomonas): lesão cutânea necrótica com halo eritematoso — sinal de bacteremia grave por gram-negativo.', score: 1, ref: 'Harrison' },
+            { item: 'Candidemia: suspeitar em NF prolongada sem resposta ao antibacteriano, especialmente com CVC ou mucosite grave.', score: 1, ref: 'IDSA' }
+          ]
+        },
+        {
+          h: 'Profilaxia da Neutropenia Febril',
+          items: [
+            { item: 'G-CSF profilático primário (filgrastim 5 mcg/kg/dia SC): indicado se risco de NF > 20% com o esquema quimioterápico (AC é > 20%); inicia 24–48h após a quimio, até recuperação do nadir.', score: 2, ref: 'ASCO / Harrison' },
+            { item: 'Antibiótico profilático oral (ciprofloxacino): em pacientes de alto risco com neutropenia esperada prolongada — decisão do oncologista.', score: 1, ref: 'IDSA' }
+          ]
+        }
+      ]
+    }
+  },
+
 ];
 
 export default hematologia;
+
+
+
 
 
 
