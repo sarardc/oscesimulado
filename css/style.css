@@ -228,6 +228,7 @@
   .pill-dermatologia             { border-color: #EC407A; color: #EC407A; }
   .pill-infectologia             { border-color: #43A047; color: #43A047; }
   .pill-hematologia              { border-color: #E53935; color: #E53935; }
+  .pill-cardiologia              { border-color: #E91E63; color: #E91E63; }
   .pill-emergencias-neurologicas { border-color: #FF7043; color: #FF7043; }
   .pill-ortopedia                { border-color: #607D8B; color: #607D8B; }
   .pill-medicina-intensiva       { border-color: #E65100; color: #E65100; }
@@ -687,6 +688,7 @@
   .filter-btn.tema-dermatologia.active              { border-color: #EC407A; color: #EC407A; }
   .filter-btn.tema-infectologia.active              { border-color: #43A047; color: #43A047; }
   .filter-btn.tema-hematologia.active               { border-color: #E53935; color: #E53935; }
+  .filter-btn.tema-cardiologia.active               { border-color: #E91E63; color: #E91E63; }
   .filter-btn.tema-emergencias-neurologicas.active  { border-color: #FF7043; color: #FF7043; }
   .filter-btn.tema-ortopedia.active                 { border-color: #607D8B; color: #607D8B; }
   .filter-btn.tema-medicina-intensiva.active        { border-color: #E65100; color: #E65100; }
@@ -708,6 +710,7 @@
   .filter-btn.tema-dermatologia:hover              { border-color: #EC407A; color: #EC407A; }
   .filter-btn.tema-infectologia:hover              { border-color: #43A047; color: #43A047; }
   .filter-btn.tema-hematologia:hover               { border-color: #E53935; color: #E53935; }
+  .filter-btn.tema-cardiologia:hover               { border-color: #E91E63; color: #E91E63; }
   .filter-btn.tema-emergencias-neurologicas:hover  { border-color: #FF7043; color: #FF7043; }
   .filter-btn.tema-ortopedia:hover                 { border-color: #607D8B; color: #607D8B; }
   .filter-btn.tema-medicina-intensiva:hover        { border-color: #E65100; color: #E65100; }
