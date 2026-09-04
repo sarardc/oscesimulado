@@ -2,3 +2,14 @@ node_modules/
 .env
 .env.local
 *.log
+
+# Configurações locais do Claude Code (específicas da máquina, não devem
+# ser públicas — podem conter caminhos de pasta e nome do usuário)
+settings.local.json
+.claude/settings.local.json
+
+# Material bruto de autoria dos casos (markdown antes de virar JS) — fica
+# só localmente, não precisa estar no repositório público
+/data/Markdown files/
+/MDtoJS/
+/docs/
