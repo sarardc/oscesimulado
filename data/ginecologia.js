@@ -692,6 +692,624 @@ const ginecologia = [
         }
       ]
     }
+  },
+
+  // CASO 6 — ENDOMETRIOSE
+  {
+    id: 6,
+    title: 'Dor pélvica cíclica intensa há 3 anos',
+    sub: 'Ambulatório — Ginecologia',
+    tema: 'Ginecologia',
+    topic: 'Endometriose',
+    level: 'difícil',
+    cardAccent: '#AD1457',
+
+    instA: {
+      scenario: 'Consulta ambulatorial especializada, paciente encaminhada da UBS por dor pélvica refratária a analgésicos comuns.',
+      patient: 'Fernanda Costa Almeida, 29 anos, sexo feminino, fisioterapeuta, nuligesta.',
+      complaint: 'Dor pélvica cíclica intensa que piora durante a menstruação, há cerca de 3 anos, associada a dificuldade para engravidar.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico ginecológico dirigido.',
+        'Formule a hipótese diagnóstica principal e os diferenciais.',
+        'Solicite os exames complementares adequados.',
+        'Proponha a conduta terapêutica e explique as opções à paciente.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '110/70 mmHg',
+        FC: '78 bpm',
+        FR: '16 irpm',
+        Tax: '36,3 °C',
+        Peso: '60 kg',
+        Altura: '1,68 m',
+        IMC: '21,3 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, corada, hidratada, sem alterações relevantes fora do período menstrual.',
+      physicalSeg: 'ABDOME: plano, indolor à palpação no momento do exame (paciente fora do período menstrual), sem massas palpáveis. | EXAME ESPECULAR: colo uterino de aspecto normal; presença de nódulo azulado visível em fundo de saco vaginal posterior. | TOQUE VAGINAL: útero em retroversão fixa, dor importante à mobilização, nodulações dolorosas palpáveis em ligamentos uterossacros, anexo direito discretamente aumentado e doloroso à palpação.',
+      labs: [
+        { test: 'CA-125', val: '58 U/mL', ref: '< 35 U/mL (marcador inespecífico, não confirma diagnóstico isoladamente)', alt: true },
+        { test: 'Beta-hCG', val: 'Negativo', ref: 'Negativo', alt: false },
+        { test: 'Hemograma completo', val: 'Normal', ref: 'Normal', alt: false }
+      ],
+      image: 'Ultrassonografia transvaginal com preparo intestinal: endometrioma em ovário direito medindo 3,5 cm, com conteúdo em "vidro fosco" característico; sinais indiretos de aderências pélvicas (sliding sign negativo entre útero e reto).',
+      note: 'O CA-125 não deve ser usado como exame confirmatório isolado — se o candidato solicitar, entregar o valor e reforçar (se perguntado) que ele apenas apoia o quadro, não fecha diagnóstico. A USG com preparo intestinal só deve ser entregue se o candidato mencionar essa indicação específica (maior acurácia para endometriose profunda).',
+      patientProfile: 'Fisioterapeuta, casada há 3 anos, tentando engravidar há cerca de 1 ano sem sucesso. Refere dismenorreia progressiva desde a adolescência, cada vez mais intensa e incapacitante, chegando a faltar ao trabalho nos primeiros dias do ciclo.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor(a), tenho uma cólica menstrual muito forte há anos, mas está cada vez pior. Nos primeiros dias da menstruação eu praticamente não consigo trabalhar.' },
+        { trigger: 'Sobre evolução da dor', speech: 'Desde adolescente eu já tinha cólica, mas era suportável com remédio. Nos últimos 3 anos foi piorando muito, e agora nem remédio forte resolve direito.' },
+        { trigger: 'Sobre dor durante relação sexual', speech: '(hesitante) É... às vezes sinto uma dor forte, bem "no fundo", durante a relação com meu marido. Isso também piorou.' },
+        { trigger: 'Sobre sintomas intestinais/urinários', speech: 'Agora que o(a) senhor(a) perguntou, sim, durante a menstruação eu sinto dor para evacuar também, e às vezes uma sensação estranha na bexiga.' },
+        { trigger: 'Sobre tentativa de engravidar', speech: 'Estamos tentando engravidar há quase um ano e nada. Isso está me deixando muito ansiosa.' },
+        { trigger: 'Sobre história familiar', speech: 'Minha mãe também tinha muita cólica e fez uma cirurgia há anos, acho que era isso também.' },
+        { trigger: 'Sobre tratamentos prévios', speech: 'Já tomei vários anti-inflamatórios e até tentei pílula anticoncepcional contínua, que ajudou um pouco, mas não resolveu de vez.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'Doutor(a), o que eu tenho? Isso está afetando minha chance de engravidar?' }
+      ],
+      hiddenInfo: 'Sente dor ao evacuar durante o período menstrual (disquezia cíclica) — só revela se perguntada especificamente sobre sintomas intestinais | Tem dispareunia de longa data, mas tem vergonha de falar sobre isso espontaneamente — só revela se o candidato perguntar diretamente e de forma acolhedora | A mãe foi operada de "cisto no ovário" há anos, possivelmente endometriose não diagnosticada como tal — só revela se perguntada sobre história familiar ginecológica | Está com muito medo de ser infértil, evita comentar isso abertamente até ser questionada — só revela se o candidato explorar preocupações/expectativas',
+      actorBehavior: 'Postura de dor crônica (leve rigidez ao se movimentar durante o exame). Hesitante e constrangida ao mencionar dispareunia — pausar e falar mais baixo nesse trecho. Ansiosa em relação à fertilidade, repetir a pergunta se não for abordada.'
+    },
+
+    instC: {
+      diagnosis: 'Endometriose pélvica profunda, com endometrioma ovariano associado, cursando com infertilidade.',
+      differentials: [
+        'Doença Inflamatória Pélvica crônica — entra pela dor pélvica crônica; sai pela ausência de história de infecção aguda prévia, febre ou corrimento purulento, e pelo achado de imagem característico de endometrioma.',
+        'Adenomiose — entra pela dismenorreia progressiva; sai pelo achado ultrassonográfico específico de endometrioma ovariano e nodulações em ligamentos uterossacros, não descritos como aumento difuso do miométrio.',
+        'Síndrome do Intestino Irritável — entra pelos sintomas intestinais cíclicos (disquezia); sai pela ciclicidade estrita relacionada à menstruação e pelos demais achados ginecológicos (dismenorreia progressiva, dispareunia, infertilidade, imagem sugestiva).',
+        'Neoplasia ovariana — entra pela massa anexial e CA-125 elevado; sai pelo aspecto característico em "vidro fosco" à USG (típico de endometrioma) e pela idade e contexto clínico compatíveis com doença benigna.'
+      ],
+      context: 'A endometriose é definida pela presença de tecido endometrial (glândulas e estroma) fora da cavidade uterina, mais comumente nos ovários, ligamentos uterossacros e fundo de saco de Douglas. Acomete cerca de 10% das mulheres em idade reprodutiva e é uma das principais causas de dor pélvica crônica e infertilidade, como observado nesta paciente com dismenorreia progressiva desde a adolescência, dispareunia profunda e dificuldade para engravidar.',
+      justify: 'O diagnóstico é sustentado pela tríade clássica de dor pélvica cíclica progressiva, dispareunia profunda e infertilidade, associada aos achados de exame físico (nodulações dolorosas em ligamentos uterossacros, útero fixo em retroversão) e de imagem (endometrioma ovariano em "vidro fosco"), compatíveis com os critérios de suspeição clínica e de imagem para endometriose, sem necessidade obrigatória de laparoscopia para o diagnóstico inicial.',
+      expectedAnamnesis: 'Caracterização da dismenorreia (intensidade, progressão, resposta a analgésicos) | Presença de dispareunia profunda | Sintomas intestinais e urinários cíclicos (disquezia, disúria cíclica) | História reprodutiva e tentativa de gestação | Impacto na qualidade de vida e absenteísmo | História familiar de endometriose | Tratamentos previamente tentados',
+      expectedPhysical: 'Palpação abdominal | Exame especular buscando nódulos em fundo de saco vaginal posterior | Toque vaginal bimanual avaliando mobilidade uterina, dor à mobilização e nodulações em ligamentos uterossacros',
+      expectedExams: [
+        { exam: 'Ultrassonografia transvaginal com preparo intestinal', justify: 'Exame de imagem de primeira linha com maior acurácia para identificar endometriomas e endometriose profunda infiltrativa', expected: 'Endometrioma ovariano e/ou sinais de aderências pélvicas' },
+        { exam: 'Ressonância magnética de pelve', justify: 'Considerar em casos de dúvida diagnóstica ou planejamento cirúrgico de doença profunda infiltrativa', expected: 'Confirmação de lesões profundas e mapeamento pré-operatório' },
+        { exam: 'CA-125', justify: 'Pode estar elevado em endometriose, mas não é exame diagnóstico isolado nem obrigatório', expected: 'Frequentemente elevado, porém inespecífico' },
+        { exam: 'Beta-hCG', justify: 'Excluir gestação antes de qualquer conduta terapêutica hormonal', expected: 'Negativo' }
+      ],
+      expectedConduct: 'Farmacológica: analgesia com AINEs para crises; anticoncepcionais hormonais combinados contínuos ou progestagênios (ex.: dienogeste) como primeira linha para controle da dor em quem não deseja engravidar imediatamente | Não farmacológica: encaminhamento para avaliação de laparoscopia diagnóstica/terapêutica em casos refratários ao tratamento clínico ou quando há infertilidade associada; discutir encaminhamento à reprodução assistida diante da dificuldade para engravidar e possível fator tuboperitoneal | Orientações ao paciente: explicar a natureza crônica da doença e necessidade de acompanhamento a longo prazo; esclarecer que a relação entre endometriose e infertilidade é individual e que existem opções de tratamento, incluindo cirurgia e reprodução assistida; acolher a ansiedade relacionada à fertilidade',
+      expectedCommunication: 'Criar ambiente acolhedor para abordar sintomas sensíveis (dispareunia, disquezia) | Validar a dor crônica da paciente, historicamente subvalorizada nesse tipo de queixa | Explicar de forma clara a relação entre o diagnóstico e a dificuldade para engravidar, sem gerar falsas expectativas nem desesperança | Verificar compreensão do plano terapêutico proposto',
+      criticalErrors: [
+        'Não investigar ativamente dispareunia e sintomas intestinais/urinários cíclicos, atribuindo a dor apenas à dismenorreia primária',
+        'Minimizar a queixa de dor crônica como "cólica normal" sem investigação adequada',
+        'Não considerar a infertilidade associada ao propor o plano terapêutico',
+        'Basear o diagnóstico definitivo apenas no CA-125 isoladamente elevado',
+        'Não encaminhar para avaliação especializada/cirúrgica em caso de dor refratária ao tratamento clínico inicial'
+      ]
+    },
+
+    instD: {
+      title: 'Endometriose — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'Endometriose é a presença de tecido endometrial funcional fora da cavidade uterina, mais comum em ovários, ligamentos uterossacros e fundo de saco de Douglas.', score: 1, ref: 'FEBRASGO' },
+            { item: 'Acomete cerca de 10% das mulheres em idade reprodutiva, sendo uma das principais causas de dor pélvica crônica e infertilidade.', score: 1, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Quadro Clínico',
+          items: [
+            { item: 'Dismenorreia progressiva, dispareunia profunda, dor pélvica crônica acíclica e infertilidade compõem o quadro clássico.', score: 2, ref: 'FEBRASGO' },
+            { item: 'Sintomas intestinais e urinários cíclicos (disquezia, disúria) ocorrem quando há acometimento de órgãos adjacentes (endometriose profunda infiltrativa).', score: 1, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: 'Diagnóstico é clínico e de imagem (USG transvaginal com preparo intestinal ou RM de pelve); laparoscopia com biópsia é padrão-ouro, mas não obrigatória para início do tratamento clínico.', score: 2, ref: 'FEBRASGO' },
+            { item: 'CA-125 pode estar elevado, mas não é exame diagnóstico confirmatório isolado.', score: 1, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'Tratamento clínico de primeira linha: anticoncepcionais hormonais combinados contínuos ou progestagênios (dienogeste) para controle da dor.', score: 2, ref: 'FEBRASGO' },
+            { item: 'Tratamento cirúrgico (laparoscopia) indicado em casos refratários ao tratamento clínico, endometriomas volumosos ou infertilidade associada.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Endometriose e Infertilidade',
+          items: [
+            { item: 'A endometriose é uma causa importante de infertilidade, por distorção anatômica, processo inflamatório pélvico e comprometimento da qualidade oocitária.', score: 2, ref: 'FEBRASGO' },
+            { item: 'Reprodução assistida deve ser discutida em casos de infertilidade associada, especialmente após falha de tratamento cirúrgico ou em doença avançada.', score: 1, ref: 'FEBRASGO' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // CASO 7 — GESTAÇÃO ECTÓPICA
+  {
+    id: 7,
+    title: 'Dor abdominal súbita e atraso menstrual',
+    sub: 'PS — Pronto-Socorro',
+    tema: 'Ginecologia',
+    topic: 'Gestação Ectópica',
+    level: 'difícil',
+    cardAccent: '#AD1457',
+
+    instA: {
+      scenario: 'Atendimento de urgência no Pronto-Socorro, paciente trazida pelo companheiro, apresentando dor importante e palidez.',
+      patient: 'Larissa Nunes Costa, 26 anos, sexo feminino, cabeleireira, G1P0A0 (uma gestação prévia sem intercorrências).',
+      complaint: 'Dor abdominal súbita e intensa em fossa ilíaca direita, associada a atraso menstrual de cerca de 7 semanas.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso, com agilidade compatível com a gravidade.',
+        'Realize o exame físico geral, abdominal e ginecológico dirigido.',
+        'Formule a hipótese diagnóstica principal e os diferenciais.',
+        'Solicite os exames complementares adequados de forma prioritária.',
+        'Reconheça a gravidade do caso e proponha a conduta imediata.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '90/60 mmHg',
+        FC: '118 bpm',
+        FR: '24 irpm',
+        Tax: '36,2 °C',
+        Peso: '64 kg',
+        Altura: '1,64 m',
+        IMC: '23,8 kg/m²',
+        SpO2: '96%'
+      },
+      physicalGeneral: 'Regular/mau estado geral, palidez cutâneo-mucosa importante, sudorese fria, taquicárdica, hipotensa, ansiosa, fácies de dor intensa.',
+      physicalSeg: 'ABDOME: doloroso à palpação difusa, mais intenso em fossa ilíaca direita, com defesa muscular e sinais de irritação peritoneal (descompressão brusca positiva), discreta distensão. | EXAME ESPECULAR: sangramento vaginal discreto, escurecido, colo uterino sem lesões visíveis. | TOQUE VAGINAL: dor importante à mobilização do colo uterino, útero de tamanho discretamente aumentado, abaulamento e dor intensa em fundo de saco de Douglas (grito de Douglas positivo).',
+      labs: [
+        { test: 'Beta-hCG quantitativo', val: '1.480 mUI/mL', ref: 'Valor baixo para idade gestacional esperada (~7 semanas), sugerindo gestação não evolutiva/ectópica', alt: true },
+        { test: 'Hemoglobina', val: '8,9 g/dL', ref: '12,0 – 15,5 g/dL', alt: true },
+        { test: 'Tipagem sanguínea e fator Rh', val: 'O negativo', ref: 'Relevante para profilaxia anti-D se Rh negativo', alt: true }
+      ],
+      image: 'Ultrassonografia transvaginal de urgência: útero sem saco gestacional intrauterino visível; massa anexial direita heterogênea de aproximadamente 3 cm; presença de líquido livre em moderada quantidade em fundo de saco de Douglas e goteira parietocólica, compatível com hemoperitônio.',
+      note: 'Este é um caso de emergência — priorizar reconhecimento rápido de instabilidade hemodinâmica. Entregar o beta-hCG e a USG assim que solicitados, sem demora, dado o contexto de urgência. Reforçar ao candidato, se perguntado, que a paciente está piorando clinicamente (queda de PA, aumento de FC) se a conduta demorar muito para ser definida.',
+      patientProfile: 'Cabeleireira, união estável, um filho de 3 anos (parto normal, sem intercorrências). Não usa método contraceptivo regular há cerca de 3 meses. Refere início súbito da dor há cerca de 2 horas, com piora progressiva.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor(a)... dói muito, começou do nada, uma dor forte do lado direito da barriga, e agora estou tonta.' },
+        { trigger: 'Sobre menstruação', speech: 'Minha última menstruação foi há quase 2 meses, achei que fosse atraso normal, não tinha feito teste de gravidez.' },
+        { trigger: 'Sobre sangramento vaginal', speech: 'Notei um sangramento escuro, pouco, nos últimos dias, bem diferente da minha menstruação normal.' },
+        { trigger: 'Sobre início e evolução da dor', speech: 'A dor começou de repente, há umas 2 horas, e está cada vez pior. Agora sinto que vou desmaiar.' },
+        { trigger: 'Sobre tontura/desmaio', speech: 'Sim, estou muito tonta, e sinto que o quarto está rodando. Está piorando.' },
+        { trigger: 'Sobre método contraceptivo', speech: 'Não estou usando nada no momento, paramos de usar preservativo há uns meses, não estávamos planejando engravidar agora mas também não nos cuidamos direito.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: '(voz fraca) Doutor(a)... isso é grave? O que está acontecendo comigo?' }
+      ],
+      hiddenInfo: 'Teve um episódio de infecção pélvica tratada há 2 anos, mas não foi acompanhada adequadamente depois — só revela se perguntada sobre antecedentes de infecções ginecológicas | Sente uma dor referida no ombro direito, sinal indireto de irritação diafragmática por hemoperitônio — só revela se perguntada especificamente sobre dor em outros locais | Está com muito medo de estar perdendo uma gravidez e ao mesmo tempo preocupada com a própria vida — verbaliza isso apenas se o candidato demonstrar acolhimento | Não tem parceiro presente na sala no momento do exame — informação de contexto, não precisa ser extraída ativamente',
+      actorBehavior: 'Comportamento de deterioração clínica progressiva: fala mais fraca, pede para "abrir os olhos com dificuldade" a cada minuto que a simulação avança sem conduta definida. Demonstrar medo genuíno e dor intensa durante o exame abdominal e toque vaginal.'
+    },
+
+    instC: {
+      diagnosis: 'Gestação ectópica tubária rota, com hemoperitônio e sinais de instabilidade hemodinâmica (choque hipovolêmico inicial).',
+      differentials: [
+        'Abortamento incompleto/inevitável — entra pelo atraso menstrual e sangramento vaginal; sai pela presença de massa anexial e líquido livre volumoso à USG, além dos sinais de irritação peritoneal e choque, incompatíveis com abortamento uterino simples.',
+        'Cisto ovariano roto (corpo lúteo hemorrágico) — entra pela dor pélvica aguda e hemoperitônio; sai pelo beta-hCG positivo com ausência de saco gestacional intrauterino, tornando a gestação ectópica o diagnóstico mais provável e prioritário a excluir.',
+        'Torção anexial — entra pela dor pélvica aguda unilateral; sai pela presença de beta-hCG positivo e sinais de sangramento ativo (hemoperitônio, queda de hemoglobina), mais compatíveis com rotura de gestação ectópica.',
+        'Apendicite aguda — entra pela dor em fossa ilíaca direita; sai pelo beta-hCG positivo, que torna obrigatória a investigação ginecológica prioritária em mulher em idade fértil com dor abdominal aguda.'
+      ],
+      context: 'A gestação ectópica ocorre quando a implantação do embrião se dá fora da cavidade endometrial, mais comumente na tuba uterina. É uma emergência obstétrica/ginecológica potencialmente fatal quando rota, sendo a principal causa de morte materna no primeiro trimestre. Fatores de risco incluem antecedente de DIP, cirurgia tubária prévia e uso inconsistente de métodos contraceptivos, como observado nesta paciente.',
+      justify: 'O diagnóstico é confirmado pela combinação de beta-hCG positivo com ausência de saco gestacional intrauterino à ultrassonografia transvaginal, presença de massa anexial e líquido livre em cavidade abdominal (hemoperitônio), associados a sinais clínicos de instabilidade hemodinâmica (hipotensão, taquicardia, palidez) e sinais de irritação peritoneal, caracterizando quadro de gestação ectópica rota.',
+      expectedAnamnesis: 'Data da última menstruação e atraso menstrual | Características do sangramento vaginal atual | Início, localização e evolução da dor abdominal | Sintomas de instabilidade (tontura, síncope, sudorese) | Método contraceptivo em uso | Antecedentes de DIP, cirurgia tubária ou gestação ectópica prévia | Dor referida em ombro (sinal de irritação diafragmática por hemoperitônio)',
+      expectedPhysical: 'Avaliação imediata de sinais vitais e sinais de choque | Palpação abdominal buscando sinais de irritação peritoneal | Exame especular avaliando origem e características do sangramento | Toque vaginal avaliando dor à mobilização do colo e abaulamento/dor em fundo de saco (grito de Douglas)',
+      expectedExams: [
+        { exam: 'Beta-hCG quantitativo', justify: 'Confirmar gestação e correlacionar com achados de imagem', expected: 'Positivo, frequentemente com valor abaixo do esperado para a idade gestacional' },
+        { exam: 'Ultrassonografia transvaginal de urgência', justify: 'Localizar a gestação e identificar sinais de rotura/hemoperitônio', expected: 'Ausência de saco gestacional intrauterino, massa anexial, líquido livre' },
+        { exam: 'Hemograma completo', justify: 'Avaliar repercussão hemodinâmica da perda sanguínea', expected: 'Queda de hemoglobina/hematócrito' },
+        { exam: 'Tipagem sanguínea e fator Rh', justify: 'Necessário para profilaxia com imunoglobulina anti-D se paciente Rh negativo', expected: 'Determinar necessidade de profilaxia' },
+        { exam: 'Prova cruzada/reserva de hemocomponentes', justify: 'Preparo para eventual necessidade de transfusão em cirurgia de urgência', expected: 'Disponibilização de sangue compatível' }
+      ],
+      expectedConduct: 'Farmacológica: estabilização hemodinâmica imediata com acesso venoso calibroso e reposição volêmica; profilaxia com imunoglobulina anti-D se paciente Rh negativo | Não farmacológica: encaminhamento cirúrgico de urgência (laparoscopia ou laparotomia, conforme estabilidade) para salpingectomia ou salpingostomia, dada a instabilidade hemodinâmica já presente — tratamento clínico com metotrexato NÃO é apropriado neste momento por já haver rotura e hemoperitônio | Orientações ao paciente/família: comunicar a gravidade e a necessidade de cirurgia imediata de forma clara e acolhedora; explicar que se trata de uma gestação que não poderia evoluir e que o procedimento visa preservar a vida da paciente; abordar o luto pela perda gestacional com sensibilidade',
+      expectedCommunication: 'Agir com agilidade e clareza compatível com emergência, sem gerar pânico desnecessário | Comunicar a gravidade do quadro de forma direta, mas acolhedora | Explicar a necessidade de cirurgia imediata e obter anuência para o procedimento | Abordar o aspecto emocional da perda gestacional associado ao diagnóstico',
+      criticalErrors: [
+        'Não reconhecer sinais de choque hipovolêmico e retardar a estabilização hemodinâmica',
+        'Não considerar gestação ectópica como diagnóstico prioritário em mulher em idade fértil com dor abdominal aguda e atraso menstrual',
+        'Propor tratamento clínico (metotrexato) em paciente já com sinais de rotura e instabilidade hemodinâmica',
+        'Não verificar tipagem sanguínea/fator Rh e não considerar profilaxia anti-D quando indicada',
+        'Retardar o encaminhamento cirúrgico de urgência diante de sinais claros de abdome agudo hemorrágico'
+      ]
+    },
+
+    instD: {
+      title: 'Gestação Ectópica — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'Gestação ectópica é a implantação do embrião fora da cavidade endometrial, mais comumente na tuba uterina (>95% dos casos).', score: 1, ref: 'FEBRASGO' },
+            { item: 'É a principal causa de morte materna no primeiro trimestre da gestação quando não diagnosticada e tratada a tempo.', score: 1, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Fatores de Risco',
+          items: [
+            { item: 'Antecedente de doença inflamatória pélvica, cirurgia tubária prévia, gestação ectópica anterior, uso de DIU e tabagismo são os principais fatores de risco.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Quadro Clínico',
+          items: [
+            { item: 'Tríade clássica: atraso menstrual, dor pélvica e sangramento vaginal anormal; a rotura tubária cursa com dor súbita intensa, sinais de irritação peritoneal e instabilidade hemodinâmica.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: 'Beta-hCG quantitativo associado à ultrassonografia transvaginal são a base diagnóstica; ausência de saco gestacional intrauterino com beta-hCG positivo levanta forte suspeita.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'Tratamento clínico (metotrexato) é reservado para casos estáveis, sem rotura, com critérios específicos (beta-hCG baixo, massa pequena, sem hemoperitônio significativo).', score: 2, ref: 'FEBRASGO' },
+            { item: 'Tratamento cirúrgico (salpingostomia ou salpingectomia, por laparoscopia ou laparotomia conforme estabilidade) é indicado em casos de rotura, instabilidade hemodinâmica ou falha do tratamento clínico.', score: 2, ref: 'FEBRASGO' },
+            { item: 'Profilaxia com imunoglobulina anti-D deve ser administrada em gestantes Rh negativo.', score: 1, ref: 'FEBRASGO' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // CASO 8 — CANDIDÍASE VULVOVAGINAL
+  {
+    id: 8,
+    title: 'Prurido vulvar intenso e corrimento espesso há 4 dias',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Ginecologia',
+    topic: 'Candidíase Vulvovaginal',
+    level: 'fácil',
+    cardAccent: '#AD1457',
+
+    instA: {
+      scenario: 'Consulta de demanda espontânea na UBS, período da manhã.',
+      patient: 'Patrícia Gomes Ribeiro, 33 anos, sexo feminino, professora, G1P1A0.',
+      complaint: 'Prurido vulvar intenso e corrimento vaginal espesso e esbranquiçado há cerca de 4 dias.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico ginecológico dirigido.',
+        'Formule a hipótese diagnóstica principal e os diferenciais.',
+        'Solicite os exames complementares adequados (quando pertinente).',
+        'Proponha o tratamento e oriente a paciente.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '116/76 mmHg',
+        FC: '74 bpm',
+        FR: '16 irpm',
+        Tax: '36,4 °C',
+        Peso: '66 kg',
+        Altura: '1,64 m',
+        IMC: '24,5 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, corada, hidratada, visivelmente incomodada pelo prurido durante a consulta.',
+      physicalSeg: 'GENITAIS EXTERNOS: vulva hiperemiada e edemaciada, com escoriações discretas por coçadura. | EXAME ESPECULAR: paredes vaginais hiperemiadas, corrimento branco, espesso, grumoso, em aspecto de "leite coalhado", aderido às paredes vaginais; colo uterino sem lesões visíveis. | TOQUE VAGINAL: útero e anexos sem alterações, sem dor à mobilização do colo.',
+      labs: [
+        { test: 'pH vaginal', val: '4,2', ref: '< 4,5', alt: false },
+        { test: 'Teste das aminas (whiff test)', val: 'Negativo', ref: 'Negativo', alt: false },
+        { test: 'Bacterioscopia/exame a fresco com KOH 10%', val: 'Presença de hifas e pseudo-hifas', ref: 'Ausência de elementos fúngicos', alt: true },
+        { test: 'Glicemia de jejum', val: '94 mg/dL', ref: '70 – 99 mg/dL', alt: false }
+      ],
+      note: 'A bacterioscopia com KOH só deve ser entregue se o candidato realizar a coleta durante o exame especular. A glicemia de jejum só deve ser entregue se solicitada — reforçar sua relevância apenas se o candidato questionar fatores predisponentes (diabetes é fator de risco para candidíase de repetição).',
+      patientProfile: 'Professora do ensino fundamental, casada, um filho. Refere ter feito uso de antibiótico (amoxicilina) há cerca de 10 dias para tratar uma infecção de garganta, com início dos sintomas vaginais logo após o término do tratamento.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor(a), estou com uma coceira horrível na vagina, e um corrimento branco, grosso, parece leite talhado.' },
+        { trigger: 'Sobre características do corrimento', speech: 'É bem grosso mesmo, tipo nata, sem cheiro forte, mas a coceira é o que mais incomoda, quase não consigo dormir de tanto coçar.' },
+        { trigger: 'Sobre uso recente de medicações', speech: 'Ah, sim! Tomei um antibiótico há umas 2 semanas para dor de garganta. Os sintomas começaram bem depois que terminei o remédio.' },
+        { trigger: 'Sobre episódios anteriores', speech: 'Já tive isso umas duas vezes antes, mas fazia tempo. Uma vez até usei um creme que comprei na farmácia e melhorou.' },
+        { trigger: 'Sobre vida sexual', speech: 'Tenho relações com meu marido normalmente, não notei nada diferente nele.' },
+        { trigger: 'Sobre sintomas urinários', speech: 'Ardência para urinar, um pouco, mas acho que é porque a região está toda irritada de tanto coçar.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'Doutor(a), isso é grave? Por que ficou assim justo depois do antibiótico?' }
+      ],
+      hiddenInfo: 'Tem episódios recorrentes de candidíase, cerca de 4 vezes no último ano, mas nunca investigou a causa — só revela se perguntada sobre frequência de episódios anteriores | Usa calcinhas de tecido sintético e roupas justas com frequência para o trabalho — só revela se perguntada sobre hábitos de vestuário | Não tem diagnóstico prévio de diabetes, mas tem obesidade na família — só revela se perguntada sobre história familiar/fatores de risco | Sente vergonha de ter "pegado" algo do marido, mesmo sem sintomas nele — só revela se o candidato explorar preocupações',
+      actorBehavior: 'Demonstrar desconforto físico visível (se remexer na cadeira, coçar-se discretamente). Colaborativa durante o exame, mas verbaliza desconforto durante a inspeção da vulva. Curiosa sobre a causa relacionada ao antibiótico.'
+    },
+
+    instC: {
+      diagnosis: 'Candidíase vulvovaginal aguda, provavelmente desencadeada pelo uso recente de antibioticoterapia sistêmica.',
+      differentials: [
+        'Vaginose bacteriana — entra pelo corrimento vaginal como queixa comum; sai pela ausência de odor fétido, pH vaginal normal (< 4,5) e whiff test negativo, além do aspecto grumoso característico e prurido intenso, mais típicos de candidíase.',
+        'Tricomoníase — entra como causa de vulvovaginite; sai pela ausência de corrimento amarelo-esverdeado espumoso e pela bacterioscopia sem protozoários móveis.',
+        'Dermatite de contato/alérgica vulvar — entra pelo prurido vulvar intenso; sai pela presença de corrimento vaginal característico e confirmação micológica de hifas/pseudo-hifas.',
+        'Líquen simples crônico — entra em casos de prurido vulvar recorrente; sai pela apresentação aguda associada a corrimento típico e fator desencadeante identificável (uso de antibiótico).'
+      ],
+      context: 'A candidíase vulvovaginal é causada mais comumente por Candida albicans, fazendo parte da microbiota vaginal normal em pequenas quantidades. Fatores como uso de antibióticos de amplo espectro, gestação, diabetes mellitus descompensado e imunossupressão favorecem o crescimento excessivo do fungo, como observado nesta paciente após curso recente de antibioticoterapia.',
+      justify: 'O diagnóstico é sustentado pelo quadro clínico típico (prurido vulvar intenso, corrimento branco grumoso em "leite coalhado", hiperemia vulvovaginal), pH vaginal normal (diferente da vaginose bacteriana), whiff test negativo, e confirmado pela identificação de hifas e pseudo-hifas no exame a fresco com KOH 10%.',
+      expectedAnamnesis: 'Características do corrimento e do prurido | Fatores desencadeantes recentes (uso de antibióticos, gestação) | Frequência de episódios anteriores (candidíase recorrente ≥ 4 episódios/ano) | Sintomas urinários associados | Hábitos de vestuário e higiene íntima | Fatores de risco para diabetes (história familiar, sintomas sugestivos) | Vida sexual e sintomas no parceiro',
+      expectedPhysical: 'Inspeção da vulva buscando hiperemia, edema e escoriações | Exame especular avaliando aspecto do corrimento e das paredes vaginais | Coleta de conteúdo vaginal para pH e exame a fresco com KOH',
+      expectedExams: [
+        { exam: 'pH vaginal', justify: 'Auxilia na diferenciação com vaginose bacteriana e tricomoníase (permanece normal na candidíase)', expected: 'Normal (< 4,5)' },
+        { exam: 'Exame a fresco com KOH 10%', justify: 'Identificar hifas e pseudo-hifas, confirmando o diagnóstico de candidíase', expected: 'Presença de hifas/pseudo-hifas' },
+        { exam: 'Glicemia de jejum', justify: 'Investigar diabetes mellitus como fator predisponente, especialmente em casos recorrentes', expected: 'Avaliar normalidade ou alteração compatível com hiperglicemia' }
+      ],
+      expectedConduct: 'Farmacológica: antifúngico tópico (miconazol ou nistatina creme vaginal) ou fluconazol oral em dose única para episódio agudo não complicado | Não farmacológica: orientar uso de roupas íntimas de algodão, evitar roupas muito justas e umidade prolongada na região genital | Orientações ao paciente: explicar a relação entre o uso do antibiótico e o desequilíbrio da microbiota vaginal, tranquilizando quanto à origem não sexualmente transmissível; orientar que tratamento do parceiro não é rotineiramente necessário, exceto em caso de sintomas nele; orientar investigação adicional (ex.: glicemia) se os episódios forem recorrentes',
+      expectedCommunication: 'Acolher o desconforto físico e o incômodo relatado pela paciente | Explicar de forma didática a relação entre antibiótico e candidíase | Esclarecer que não se trata de uma IST, aliviando eventual preocupação nesse sentido | Verificar compreensão do tratamento e orientações de prevenção',
+      criticalErrors: [
+        'Prescrever tratamento empírico sem exame especular/coleta em paciente com primeira consulta para esse quadro',
+        'Não investigar frequência de episódios prévios, deixando de identificar candidíase recorrente que merece investigação adicional',
+        'Afirmar incorretamente que se trata de uma IST',
+        'Não orientar sobre fatores predisponentes (uso de antibiótico, hábitos de vestuário) e medidas preventivas',
+        'Não considerar investigação de diabetes em caso de episódios recorrentes de candidíase'
+      ]
+    },
+
+    instD: {
+      title: 'Candidíase Vulvovaginal — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'Infecção fúngica vaginal causada mais comumente por Candida albicans, presente normalmente na microbiota vaginal em pequena quantidade.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
+          ]
+        },
+        {
+          h: 'Fatores Predisponentes',
+          items: [
+            { item: 'Uso de antibióticos de amplo espectro, gestação, diabetes mellitus descompensado, imunossupressão e uso de roupas íntimas sintéticas/justas favorecem o crescimento fúngico.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Quadro Clínico',
+          items: [
+            { item: 'Prurido vulvar intenso, corrimento branco espesso em "leite coalhado" (grumoso), hiperemia e edema vulvovaginal, sem odor fétido característico.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: 'Diagnóstico clínico corroborado por pH vaginal normal (< 4,5) e visualização de hifas/pseudo-hifas no exame a fresco com KOH 10%.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'Episódio agudo não complicado: antifúngico tópico (miconazol, nistatina) ou fluconazol oral em dose única.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Candidíase recorrente (≥ 4 episódios/ano) requer investigação de fatores predisponentes e tratamento supressivo prolongado.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Orientações',
+          items: [
+            { item: 'Não é uma IST; tratamento do parceiro não é rotineiramente indicado, salvo presença de sintomas nele (balanite).', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // CASO 9 — LESÃO INTRAEPITELIAL CERVICAL (NIC) / PAPANICOLAU ALTERADO
+  {
+    id: 9,
+    title: 'Retorno para resultado de exame preventivo alterado',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Ginecologia',
+    topic: 'Lesão Intraepitelial Cervical (NIC)',
+    level: 'moderado',
+    cardAccent: '#AD1457',
+
+    instA: {
+      scenario: 'Consulta de retorno agendada na UBS para entrega de resultado de exame citopatológico (Papanicolau).',
+      patient: 'Adriana Silva Barbosa, 35 anos, sexo feminino, cozinheira, G2P2A0.',
+      complaint: 'Retorna assintomática para receber o resultado do exame preventivo de câncer de colo do útero realizado há 2 semanas.',
+      tasks: [
+        'Realize a anamnese dirigida, incluindo história de rastreamento prévio e fatores de risco.',
+        'Comunique o resultado do exame de forma clara e apropriada.',
+        'Formule a conduta adequada diante do resultado apresentado.',
+        'Solicite ou explique os próximos exames necessários.',
+        'Oriente a paciente sobre o seguimento e esclareça dúvidas.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '114/72 mmHg',
+        FC: '76 bpm',
+        FR: '16 irpm',
+        Tax: '36,3 °C',
+        Peso: '70 kg',
+        Altura: '1,63 m',
+        IMC: '26,3 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, corada, hidratada, ansiosa ao entrar na sala de consulta.',
+      physicalSeg: 'EXAME GINECOLÓGICO (referente à coleta prévia, não repetido nesta consulta): à época da coleta, colo uterino sem lesões macroscópicas visíveis, sem sangramento ao toque da espátula.',
+      labs: [
+        { test: 'Citologia oncótica (Papanicolau)', val: 'Lesão intraepitelial escamosa de alto grau (HSIL/NIC II-III)', ref: 'Resultado normal esperado: dentro dos limites da normalidade', alt: true },
+        { test: 'Teste de DNA-HPV (se realizado na unidade)', val: 'Positivo para HPV de alto risco oncogênico', ref: 'Negativo', alt: true }
+      ],
+      note: 'O resultado da citologia é a informação central deste caso e deve ser entregue à paciente pelo candidato de forma clara já no início da consulta (é o motivo do retorno). O teste de HPV só deve ser mencionado se disponível na unidade simulada e se o candidato perguntar sobre coteste.',
+      patientProfile: 'Cozinheira em restaurante, casada, dois filhos. Realizou o último Papanicolau há 3 anos (rastreamento em atraso). Tabagista (10 cigarros/dia há 15 anos). Refere não ter percebido nenhum sintoma diferente.',
+      script: [
+        { trigger: 'Ao ser informada do resultado', speech: '(assustada) Doutor(a)... isso é câncer? Eu vou morrer?' },
+        { trigger: 'Sobre sintomas', speech: 'Não senti nada diferente, doutor(a), nenhum sangramento, nenhuma dor. Por isso fiquei tão assustada com a notícia.' },
+        { trigger: 'Sobre histórico de rastreamento', speech: 'Meu último preventivo foi acho que uns 3 anos atrás, sei que atrasei um pouco por causa da correria do trabalho e dos filhos.' },
+        { trigger: 'Sobre tabagismo', speech: 'Sim, eu fumo, mais ou menos uns 10 cigarros por dia, já fumo desde jovem.' },
+        { trigger: 'Sobre vida sexual/HPV', speech: 'Eu não sabia que isso tinha relação com uma infecção sexual... isso quer dizer que peguei alguma DST?' },
+        { trigger: 'Sobre próximos passos', speech: 'E agora, doutor(a)? O que eu preciso fazer? Vou precisar de cirurgia?' },
+        { trigger: 'Pergunta ativa — prognóstico', speech: 'Isso tem cura? Minha vida corre risco?' }
+      ],
+      hiddenInfo: 'Tem muito medo de exames ginecológicos desde uma experiência desconfortável em uma coleta anterior, o que contribuiu para o atraso no rastreamento — só revela se o candidato perguntar sobre motivos do atraso ou explorar receios | Não é vacinada contra HPV (a vacina não estava disponível em sua época) — só revela se perguntada sobre vacinação | Tem parceiro único há mais de 10 anos e fica confusa sobre como "pegou" HPV — só revela se o candidato não explicar bem a transmissão e ela questionar | Sente vergonha e medo de ser julgada por ter atrasado o exame — só revela essa preocupação se o profissional demonstrar acolhimento',
+      actorBehavior: 'Muito ansiosa e assustada ao ouvir "lesão" e associar à palavra câncer — chorar discretamente se a notícia não for comunicada com cuidado. Fazer perguntas repetidas sobre gravidade e prognóstico até sentir-se esclarecida. Colaborativa quando acolhida adequadamente.'
+    },
+
+    instC: {
+      diagnosis: 'Lesão intraepitelial escamosa de alto grau (HSIL, compatível com NIC II/III), associada à infecção por HPV de alto risco oncogênico — lesão precursora do câncer de colo do útero, ainda não caracterizando neoplasia invasiva.',
+      differentials: [
+        'Lesão intraepitelial de baixo grau (LSIL/NIC I) — entra como possibilidade de resultado de citologia alterada; sai porque o resultado apresentado neste caso já é especificamente de alto grau (HSIL), com conduta diferente (encaminhamento para colposcopia é comum a ambos, mas o seguimento e a probabilidade de progressão diferem).',
+        'Carcinoma invasor de colo do útero — entra como diagnóstico a ser excluído diante de citologia alterada; sai pela ausência de lesão macroscópica visível ao exame especular prévio e pela citologia classificada como lesão intraepitelial (pré-invasiva), não como carcinoma.',
+        'Cervicite inespecífica — entra como causa de alterações inflamatórias na citologia; sai pela classificação citológica específica de HSIL, que não se confunde com alterações inflamatórias benignas.'
+      ],
+      context: 'O câncer de colo do útero é precedido, na grande maioria dos casos, por lesões intraepiteliais escamosas causadas pela infecção persistente por HPV oncogênico. O rastreamento citológico regular permite identificar essas lesões precursoras antes da progressão para câncer invasivo. Esta paciente, com rastreamento em atraso e tabagista (fator de risco independente para progressão da lesão), apresenta resultado de HSIL, exigindo encaminhamento propedêutico adequado.',
+      justify: 'O diagnóstico citológico de HSIL (compatível com NIC II/III) indica lesão precursora de alto grau, com risco significativo de progressão para carcinoma invasor se não investigada e tratada adequadamente, justificando encaminhamento para colposcopia com biópsia dirigida para confirmação histológica e definição terapêutica.',
+      expectedAnamnesis: 'História de rastreamento citológico prévio (regularidade, resultados anteriores) | Fatores de risco (tabagismo, imunossupressão, múltiplos parceiros, idade de início da vida sexual) | Sintomas ginecológicos atuais (sangramento, corrimento, dor) | História vacinal para HPV | Motivos de eventual atraso no rastreamento, com abordagem não julgadora',
+      expectedPhysical: 'Não é necessário repetir exame ginecológico nesta consulta de entrega de resultado, mas deve-se reforçar a necessidade de exame especular na próxima etapa propedêutica (colposcopia)',
+      expectedExams: [
+        { exam: 'Colposcopia com biópsia dirigida', justify: 'Confirmação histológica da lesão identificada na citologia e definição do grau real de acometimento', expected: 'Identificação de área acetobranca sugestiva de NIC II/III, com biópsia confirmando o grau da lesão' },
+        { exam: 'Teste de DNA-HPV (coteste, quando disponível)', justify: 'Auxiliar na triagem e estratificação de risco, sobretudo em determinados contextos e faixas etárias', expected: 'Frequentemente positivo para HPV de alto risco oncogênico em casos de HSIL' }
+      ],
+      expectedConduct: 'Farmacológica: não há tratamento farmacológico específico para a lesão neste momento; a decisão terapêutica (crioterapia, exérese da zona de transformação - EZT, ou conização) depende da confirmação histológica pela colposcopia/biópsia | Não farmacológica: encaminhamento para colposcopia com biópsia dirigida em serviço de referência; orientar sobre cessação do tabagismo, fator de risco para progressão da lesão | Orientações ao paciente: explicar que HSIL é uma lesão pré-cancerosa, tratável na grande maioria dos casos quando identificada e conduzida adequadamente, e não um câncer já estabelecido; explicar a relação entre HPV e transmissão sexual de forma didática e sem julgamento, esclarecendo que a infecção pode ser assintomática por longos períodos mesmo em relacionamentos estáveis; reforçar a importância de manter o seguimento e retornar para todos os exames agendados',
+      expectedCommunication: 'Comunicar o resultado com clareza, mas de forma acolhedora, evitando a palavra "câncer" de forma alarmista quando ainda se trata de lesão precursora | Validar o medo e a ansiedade da paciente diante da notícia | Explicar a transmissão do HPV sem gerar culpa ou suspeita sobre fidelidade do parceiro | Verificar a compreensão do plano de seguimento antes de encerrar a consulta | Reforçar a importância de não faltar às próximas consultas',
+      criticalErrors: [
+        'Comunicar o resultado de forma alarmista, afirmando categoricamente que a paciente "tem câncer"',
+        'Não encaminhar para colposcopia/biópsia diante de resultado de HSIL',
+        'Não abordar de forma didática e não estigmatizante a relação entre HPV e transmissão sexual',
+        'Ignorar o tabagismo como fator de risco modificável relevante para progressão da lesão',
+        'Não acolher a ansiedade da paciente, encerrando a consulta sem espaço para dúvidas'
+      ]
+    },
+
+    instD: {
+      title: 'Lesão Intraepitelial Cervical (NIC) — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            { item: 'NIC (Neoplasia Intraepitelial Cervical) é uma lesão precursora do câncer de colo do útero, causada pela infecção persistente por HPV oncogênico.', score: 1, ref: 'Ministério da Saúde — Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero' }
+          ]
+        },
+        {
+          h: 'Rastreamento',
+          items: [
+            { item: 'No Brasil, o rastreamento citológico (Papanicolau) é recomendado a cada 3 anos, após dois exames anuais consecutivos normais, em mulheres de 25 a 64 anos que já tiveram atividade sexual.', score: 2, ref: 'Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Classificação Citológica e Conduta',
+          items: [
+            { item: 'LSIL (lesão de baixo grau/NIC I): geralmente regressão espontânea; conduta variável conforme idade (repetição citológica ou colposcopia).', score: 1, ref: 'Ministério da Saúde' },
+            { item: 'HSIL (lesão de alto grau/NIC II-III): encaminhamento obrigatório para colposcopia com biópsia dirigida, devido ao maior risco de progressão para carcinoma invasor.', score: 2, ref: 'Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Diagnóstico e Tratamento',
+          items: [
+            { item: 'Colposcopia com biópsia dirigida confirma o diagnóstico histológico; tratamento inclui métodos excisionais (EZT/conização) ou destrutivos (crioterapia), conforme o caso.', score: 2, ref: 'Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Prevenção',
+          items: [
+            { item: 'Vacinação contra HPV (disponível no calendário do SUS para adolescentes) e cessação do tabagismo são medidas importantes de prevenção primária e de redução de progressão de lesões.', score: 1, ref: 'Ministério da Saúde' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // CASO 10 — PLANEJAMENTO FAMILIAR / ESCOLHA DE MÉTODO CONTRACEPTIVO
+  {
+    id: 10,
+    title: 'Consulta para orientação sobre método contraceptivo',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Ginecologia',
+    topic: 'Planejamento Familiar',
+    level: 'fácil',
+    cardAccent: '#AD1457',
+
+    instA: {
+      scenario: 'Consulta agendada de planejamento familiar na UBS, período da tarde.',
+      patient: 'Vanessa Lima Teixeira, 22 anos, sexo feminino, estudante de pedagogia, nuligesta.',
+      complaint: 'Busca orientação para iniciar o uso de um método contraceptivo, pois vai começar a vida sexual com o namorado atual.',
+      tasks: [
+        'Realize a anamnese dirigida, incluindo história clínica relevante para escolha do método.',
+        'Realize o exame físico geral pertinente (aferição de PA, IMC).',
+        'Discuta com a paciente as opções de métodos contraceptivos disponíveis.',
+        'Considere contraindicações e critérios de elegibilidade antes de indicar um método.',
+        'Oriente a paciente sobre o método escolhido e sobre prevenção de ISTs.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '112/70 mmHg',
+        FC: '72 bpm',
+        FR: '16 irpm',
+        Tax: '36,3 °C',
+        Peso: '58 kg',
+        Altura: '1,66 m',
+        IMC: '21,0 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, corada, hidratada, sem alterações relevantes ao exame geral.',
+      physicalSeg: 'Exame ginecológico não realizado nesta consulta por não ser estritamente necessário para início de contracepção em paciente assintomática (conforme critérios de elegibilidade da OMS); mamas sem alterações à inspeção.',
+      labs: [
+        { test: 'Pressão arterial', val: '112/70 mmHg', ref: '< 140/90 mmHg (ausência de contraindicação a estrogênios por hipertensão)', alt: false },
+        { test: 'IMC', val: '21,0 kg/m²', ref: '18,5 – 24,9 kg/m²', alt: false }
+      ],
+      note: 'Não há exames laboratoriais obrigatórios prévios ao início da maioria dos métodos contraceptivos em mulher jovem hígida — se o candidato insistir em solicitar múltiplos exames antes de qualquer indicação, informar que a paciente não tem outras queixas ou fatores de risco que justifiquem investigação laboratorial extensa neste momento.',
+      patientProfile: 'Estudante de pedagogia, namoro recente de 4 meses, ainda não iniciou vida sexual com o parceiro atual, mas planeja iniciar em breve. Não fumante. Nega comorbidades. Não deseja engravidar nos próximos anos, pretende terminar a faculdade primeiro.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor(a), eu vou começar a namorar... quer dizer, a ter relações com meu namorado, e queria saber qual método contraceptivo é melhor para mim.' },
+        { trigger: 'Sobre desejo reprodutivo', speech: 'Não quero engravidar de jeito nenhum agora, quero terminar a faculdade primeiro, isso é bem importante para mim.' },
+        { trigger: 'Sobre história de saúde', speech: 'Não tenho nenhuma doença, não fumo, não tomo nenhum remédio contínuo.' },
+        { trigger: 'Sobre história familiar', speech: 'Minha mãe teve uma trombose na perna há uns anos, fiquei sabendo por ela outro dia.' },
+        { trigger: 'Sobre preferências pessoais', speech: 'Tenho um pouco de medo de engordar com hormônio, uma amiga minha ganhou peso tomando pílula. E também tenho medo de esquecer de tomar todos os dias.' },
+        { trigger: 'Sobre proteção contra ISTs', speech: 'Ah, sobre isso eu nem tinha pensado direito, achei que só a pílula já resolvia tudo.' },
+        { trigger: 'Pergunta ativa — dúvida', speech: 'Doutor(a), qual método o(a) senhor(a) indicaria para mim, que seja seguro e prático?' }
+      ],
+      hiddenInfo: 'A mãe teve trombose venosa profunda confirmada aos 45 anos, sem causa aparente identificada — só revela espontaneamente de forma vaga ("problema na perna"), mas se perguntada diretamente sobre "trombose" ou "coágulo" confirma o termo | Tem enxaqueca ocasional sem aura, cerca de 1 vez por mês — só revela se perguntada sobre cefaleias | Nunca usou nenhum método contraceptivo hormonal antes — só revela se perguntada sobre uso prévio | Tem receio de conversar sobre o assunto com a mãe, por isso veio sozinha à consulta — só revela se o candidato perguntar sobre rede de apoio/rede familiar',
+      actorBehavior: 'Levemente tímida ao falar sobre início da vida sexual, mas se mostra mais à vontade conforme a consulta avança de forma acolhedora. Demonstra interesse genuíno em entender as opções, faz perguntas de esclarecimento se o candidato usar termos muito técnicos.'
+    },
+
+    instC: {
+      diagnosis: 'Paciente jovem, saudável, em busca de orientação para início de método contraceptivo — necessidade de avaliação individualizada de critérios de elegibilidade antes da indicação, com atenção à história familiar de trombose venosa profunda.',
+      differentials: [
+        'Não se aplica um diagnóstico diferencial clássico neste caso de aconselhamento contraceptivo; a "hipótese a ser trabalhada" pelo candidato é a escolha do método mais adequado dentre as opções elegíveis, contrapondo métodos hormonais combinados, métodos apenas com progestagênio e métodos não hormonais/de longa duração.'
+      ],
+      context: 'O aconselhamento contraceptivo deve ser individualizado, considerando desejo reprodutivo, comorbidades, contraindicações e preferências pessoais da paciente. Nesta consulta, a paciente jovem e nuligesta busca orientação para iniciar a vida sexual de forma protegida, apresentando um fator de atenção relevante (história familiar de trombose venosa profunda em parente de primeiro grau) que deve ser ativamente investigado antes da indicação de métodos com estrogênio.',
+      justify: 'A investigação de história pessoal e familiar de eventos tromboembólicos é etapa obrigatória do aconselhamento contraceptivo, pois contraindica ou exige cautela na indicação de métodos contendo estrogênio (conforme critérios de elegibilidade da OMS). A presença de enxaqueca sem aura não contraindica métodos combinados, mas deve ser monitorada. A ausência de outras comorbidades permite ampla gama de opções contraceptivas seguras para esta paciente.',
+      expectedAnamnesis: 'Desejo reprodutivo atual e planejamento futuro | História pessoal de tromboembolismo, enxaqueca, hipertensão ou outras comorbidades | História familiar de trombose venosa profunda/tromboembolismo em parentes de primeiro grau | Tabagismo | Preferências pessoais quanto à praticidade e efeitos adversos percebidos | Conhecimento prévio sobre prevenção de ISTs | Vida sexual pregressa e planejamento do início da atividade sexual atual',
+      expectedPhysical: 'Aferição de pressão arterial | Cálculo do IMC | Exame físico geral; exame ginecológico não é pré-requisito obrigatório para início da maioria dos métodos contraceptivos em mulher jovem assintomática',
+      expectedExams: [
+        { exam: 'Pressão arterial', justify: 'Rastrear hipertensão, contraindicação relativa/absoluta a métodos com estrogênio conforme critérios de elegibilidade da OMS', expected: 'Normal, permitindo ampla escolha de métodos' },
+        { exam: 'Avaliação clínica de fatores de risco tromboembólico (sem necessidade de exames laboratoriais de rotina em paciente hígida)', justify: 'A história familiar de trombose exige avaliação cuidadosa antes de indicar estrogênio, podendo justificar avaliação hematológica especializada em casos selecionados', expected: 'Definir se há indicação de investigação de trombofilia ou se a história familiar isolada não contraindica o uso' }
+      ],
+      expectedConduct: 'Farmacológica: diante da história familiar de trombose venosa profunda em parente de primeiro grau, priorizar métodos sem estrogênio — como pílula de progestagênio isolado, implante subdérmico, sistema intrauterino de levonorgestrel (SIU-LNG) ou DIU de cobre — evitando indicação inicial de anticoncepcional combinado até avaliação mais aprofundada, se necessário; dispositivos de longa duração (LARC) devem ser apresentados como opção eficaz e prática, considerando a preferência da paciente por métodos que não dependam de adesão diária | Não farmacológica: apresentar todas as opções disponíveis (hormonais e não hormonais, reversíveis e de longa duração), explicando eficácia, forma de uso e efeitos adversos de cada uma, permitindo escolha compartilhada e informada | Orientações ao paciente: reforçar que nenhum método hormonal ou DIU protege contra infecções sexualmente transmissíveis, sendo o preservativo (masculino ou feminino) essencial para essa proteção, podendo ser associado a outro método para dupla proteção; esclarecer mitos sobre ganho de peso e outros efeitos adversos com informação baseada em evidências',
+      expectedCommunication: 'Criar ambiente de confiança e não julgamento para discutir início da vida sexual | Utilizar linguagem acessível e adaptada à idade e ao contexto da paciente | Investigar ativamente contraindicações antes de qualquer indicação, sem pular etapas | Respeitar a autonomia da paciente na escolha final entre as opções elegíveis apresentadas | Verificar compreensão sobre uso correto do método escolhido e sobre prevenção de ISTs',
+      criticalErrors: [
+        'Não investigar história familiar de trombose antes de indicar método contraceptivo com estrogênio',
+        'Indicar anticoncepcional combinado sem investigar contraindicações (tabagismo, enxaqueca com aura, hipertensão, história tromboembólica)',
+        'Não mencionar a necessidade de proteção contra ISTs, mesmo com uso de método contraceptivo eficaz para gravidez',
+        'Impor um único método sem apresentar alternativas ou sem considerar as preferências da paciente',
+        'Solicitar exames laboratoriais extensos e desnecessários que podem atrasar o início da contracepção sem justificativa clínica'
+      ]
+    },
+
+    instD: {
+      title: 'Planejamento Familiar e Contracepção — Material de Estudo',
+      sections: [
+        {
+          h: 'Princípios do Aconselhamento Contraceptivo',
+          items: [
+            { item: 'A escolha do método deve ser individualizada, compartilhada e baseada nos critérios de elegibilidade médica da OMS, que classificam condições clínicas em categorias de risco para cada método.', score: 2, ref: 'OMS — Critérios de Elegibilidade Médica para Uso de Contraceptivos / Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Métodos Hormonais Combinados',
+          items: [
+            { item: 'Contraindicados (categoria 4 da OMS) em mulheres com história pessoal de tromboembolismo venoso, enxaqueca com aura, tabagismo após os 35 anos e hipertensão não controlada.', score: 2, ref: 'OMS / FEBRASGO' },
+            { item: 'História familiar de trombose em parente de primeiro grau antes dos 50 anos merece avaliação cuidadosa antes da indicação de estrogênio.', score: 2, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'Métodos com Progestagênio Isolado e LARCs',
+          items: [
+            { item: 'Pílula de progestagênio isolado, implante subdérmico e SIU-LNG são opções seguras mesmo em contraindicações a estrogênio.', score: 1, ref: 'FEBRASGO' },
+            { item: 'Métodos de longa duração reversível (LARC — implante, DIU de cobre, SIU-LNG) têm as maiores taxas de eficácia e adesão, sendo recomendados como primeira linha para adolescentes e adultas jovens.', score: 2, ref: 'FEBRASGO / OMS' }
+          ]
+        },
+        {
+          h: 'Dupla Proteção',
+          items: [
+            { item: 'Nenhum método hormonal ou DIU protege contra ISTs — o preservativo deve ser sempre recomendado para essa finalidade, podendo ser associado a outro método contraceptivo (dupla proteção).', score: 2, ref: 'Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Mitos e Educação em Saúde',
+          items: [
+            { item: 'Ganho de peso significativo não é consistentemente associado à maioria dos anticoncepcionais hormonais combinados modernos nos estudos disponíveis; abordar esse mito com informação baseada em evidências.', score: 1, ref: 'FEBRASGO' }
+          ]
+        }
+      ]
+    }
   }
 ];
 
