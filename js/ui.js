@@ -71,21 +71,24 @@ function renderCards() {
   });
 }
 
+// Os botões abaixo não levam onclick="" inline (bloqueado pela CSP sem
+// 'unsafe-inline'); um único listener delegado em .tabs-nav (ligado uma vez
+// em app.js) lê o atributo data-tab-idx de cada botão.
 function buildTabsNav(st) {
   const nav = document.querySelector('.tabs-nav');
   if (st.id >= 30) {
     nav.innerHTML = `
-      <button class="tab-btn active" onclick="showTab(0)"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" onclick="showTab(1)"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" onclick="showTab(2)"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
-      <button class="tab-btn" onclick="showTab(3)"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" onclick="showTab(4)"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
+      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
+      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+      <button class="tab-btn" data-tab-idx="4"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
   } else {
     nav.innerHTML = `
-      <button class="tab-btn active" onclick="showTab(0)"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" onclick="showTab(1)"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" onclick="showTab(2)"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" onclick="showTab(3)"><span class="tab-key">D</span><span class="tab-desc">Material de Estudo</span></button>`;
+      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">D</span><span class="tab-desc">Material de Estudo</span></button>`;
   }
 }
 
@@ -122,7 +125,7 @@ function renderTabA(st) {
     </div>
     <div class="section-block">
       <h3>Queixa Principal</h3>
-      <p style="font-size:15px;color:var(--text)">${esc(a.complaint)}</p>
+      <p class="complaint-text">${esc(a.complaint)}</p>
     </div>
     <div class="section-block">
       <h3>Tarefas a Executar</h3>
@@ -152,13 +155,13 @@ function renderExamsBlock(b) {
       <div class="vt-item"><span class="vt-label">Altura:</span><span class="vt-val">${esc(b.vitals.Altura)}</span></div>
       <div class="vt-item"><span class="vt-label">IMC:</span><span class="vt-val">${esc(b.vitals.IMC)}</span></div>
     </div>
-    <div style="margin-top:16px">
-      <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME FÍSICO GERAL</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.7">${esc(b.physicalGeneral)}</div>
+    <div class="mt-16">
+      <div class="field-label">EXAME FÍSICO GERAL</div>
+      <div class="field-value">${esc(b.physicalGeneral)}</div>
     </div>
-    <div style="margin-top:14px">
-      <div style="font-size:12px;color:var(--text3);margin-bottom:6px;font-family:var(--mono)">EXAME SEGMENTAR</div>
-      ${toList(b.physicalSeg).map(s => `<div style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:4px">${esc(s)}</div>`).join('')}
+    <div class="mt-14">
+      <div class="field-label">EXAME SEGMENTAR</div>
+      ${toList(b.physicalSeg).map(s => `<div class="seg-item">${esc(s)}</div>`).join('')}
     </div>
   </div>`;
 
@@ -182,7 +185,7 @@ function renderExamsBlock(b) {
     if (typeof b.image === 'object' && b.image.title) {
       html += `<div class="impression-box">
         <h4>Impresso — ${esc(b.image.title)}</h4>
-        <pre style="font-size:12px;color:var(--text2);white-space:pre-wrap;line-height:1.8;font-family:var(--mono)">${esc(b.image.report)}</pre>
+        <pre class="report-pre">${esc(b.image.report)}</pre>
       </div>`;
     } else if (typeof b.image === 'string') {
       html += `<div class="alert alert-info">🔬 <strong>Imagem:</strong> ${esc(b.image)}</div>`;
@@ -190,7 +193,7 @@ function renderExamsBlock(b) {
   }
 
   if (b.note) {
-    html += `<div class="alert alert-info" style="margin-top:8px">ℹ ${esc(b.note)}</div>`;
+    html += `<div class="alert alert-info mt-8">ℹ ${esc(b.note)}</div>`;
   }
 
   return html;
@@ -214,14 +217,14 @@ function renderTabB(st) {
   if (b.hiddenInfo && b.hiddenInfo.length) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${esc(h)}</div>`).join('')}
+      <div class="hidden-info-list">
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn m-0">🔒 ${esc(h)}</div>`).join('')}
       </div>
     </div>`;
   }
 
   if (b.actorBehavior) {
-    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
+    html += `<div class="alert alert-info mt-8">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
   }
 
   return html;
@@ -250,18 +253,18 @@ function renderTabB1Script(st) {
   if (b.hiddenInfo && b.hiddenInfo.length) {
     html += `<div class="section-block">
       <h3>Informações Escondidas</h3>
-      <div style="display:flex;flex-direction:column;gap:6px">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn" style="margin:0">🔒 ${esc(h)}</div>`).join('')}
+      <div class="hidden-info-list">
+        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn m-0">🔒 ${esc(h)}</div>`).join('')}
       </div>
     </div>`;
   }
 
   if (b.actorBehavior) {
-    html += `<div class="alert alert-info" style="margin-top:8px">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
+    html += `<div class="alert alert-info mt-8">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
   }
 
   if (!html) {
-    html = `<div style="padding:40px;text-align:center;color:var(--text3)">Nenhum script disponível para esta estação.</div>`;
+    html = `<div class="empty-state">Nenhum script disponível para esta estação.</div>`;
   }
 
   return html;
@@ -284,8 +287,8 @@ function renderPepTable(sections, startIndex) {
         <td>${esc(item.item)}</td>
         <td class="pep-score" id="score-${idx}">${item.score.toFixed(1)}</td>
         <td class="pep-checkbox-cell">
-          <input type="checkbox" id="checkbox-${idx}" aria-label="Marcar item da PEP"
-            onchange="updatePepScore(${idx}, ${item.score})">
+          <input type="checkbox" id="checkbox-${idx}" class="pep-checkbox" aria-label="Marcar item da PEP"
+            data-idx="${idx}" data-score="${item.score}">
         </td>
       </tr>`;
       idx++;
@@ -300,16 +303,16 @@ function renderTabC(st) {
   let html = `<div class="alert alert-warn">⚠ Esta aba é restrita ao avaliador. Não abrir antes do término da estação.</div>
     <div class="section-block">
       <h3>Diagnóstico</h3>
-      <p style="font-size:15px;font-weight:600;color:var(--accent2)">${esc(c.diagnosis)}</p>
-      <p style="margin-top:10px">${esc(c.context)}</p>
-      <p style="margin-top:8px;font-size:13px;color:var(--text3)">${esc(c.justify)}</p>
+      <p class="diagnosis-text">${esc(c.diagnosis)}</p>
+      <p class="mt-10">${esc(c.context)}</p>
+      <p class="justify-text">${esc(c.justify)}</p>
     </div>`;
 
   // Diagnósticos diferenciais (novo schema)
   if (c.differentials && c.differentials.length) {
     html += `<div class="section-block">
       <h3>Diagnósticos Diferenciais</h3>
-      <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
+      <ul class="expected-list">
         ${c.differentials.map(d => `<li>${d}</li>`).join('')}
       </ul>
     </div>`;
@@ -319,7 +322,7 @@ function renderTabC(st) {
   if (c.expectedAnamnesis && c.expectedAnamnesis.length) {
     html += `<div class="section-block">
       <h3>Anamnese Esperada</h3>
-      <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
+      <ul class="expected-list">
         ${toList(c.expectedAnamnesis).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
@@ -329,7 +332,7 @@ function renderTabC(st) {
   if (c.expectedPhysical && c.expectedPhysical.length) {
     html += `<div class="section-block">
       <h3>Exame Físico Esperado</h3>
-      <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
+      <ul class="expected-list">
         ${toList(c.expectedPhysical).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
@@ -352,7 +355,7 @@ function renderTabC(st) {
   if (c.expectedConduct && c.expectedConduct.length) {
     html += `<div class="section-block">
       <h3>Conduta Esperada</h3>
-      <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
+      <ul class="expected-list">
         ${toList(c.expectedConduct).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
@@ -362,7 +365,7 @@ function renderTabC(st) {
   if (c.expectedCommunication && c.expectedCommunication.length) {
     html += `<div class="section-block">
       <h3>Comunicação Esperada</h3>
-      <ul style="margin:0;padding-left:20px;color:var(--text2);font-size:13px;line-height:1.9">
+      <ul class="expected-list">
         ${toList(c.expectedCommunication).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
@@ -386,10 +389,10 @@ function renderTabC(st) {
       <h3>PEP — Padrão Esperado de Procedimentos</h3>
       <div class="table-scroll">
       <table class="pep-table">
-        <tr><th>Item Avaliado</th><th style="width:80px">Pontos</th><th class="checkbox-header"></th></tr>
+        <tr><th>Item Avaliado</th><th class="col-points">Pontos</th><th class="checkbox-header"></th></tr>
         ${rows}
-        <tr style="border-top:2px solid var(--border)">
-          <td style="font-weight:600;color:var(--text)">TOTAL</td>
+        <tr class="row-total">
+          <td class="cell-total-label">TOTAL</td>
           <td class="pep-total" id="pep-total">0.0</td>
           <td></td>
         </tr>
@@ -398,7 +401,7 @@ function renderTabC(st) {
     </div>`;
   }
 
-  html += `<div class="section-block" style="border-left:3px solid var(--danger)">
+  html += `<div class="section-block section-critical">
     <h3>Erros Críticos</h3>
     ${c.criticalErrors.map(e => `<div class="critical-error">${esc(e)}</div>`).join('')}
   </div>`;
@@ -412,7 +415,7 @@ function renderTabD(st) {
   const d = st.instD;
 
   if (!d || !d.sections || !d.sections.length) {
-    return `<div style="padding:40px;text-align:center;color:var(--text3)">Nenhum material disponível para esta estação.</div>`;
+    return `<div class="empty-state">Nenhum material disponível para esta estação.</div>`;
   }
 
   // Detecta schema pelo primeiro section: novo tem .items, antigo tem .body
@@ -421,17 +424,17 @@ function renderTabD(st) {
   if (isChecklist) {
     const rows = renderPepTable(d.sections, 0);
     return `
-      <div style="margin-bottom:20px">
-        <div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Checklist Avaliativo</div>
-        <div style="font-size:20px;font-weight:600;color:var(--text)">${esc(d.title)}</div>
+      <div class="tab-d-header">
+        <div class="tab-d-kicker">Checklist Avaliativo</div>
+        <div class="tab-d-title">${esc(d.title)}</div>
       </div>
       <div class="section-block">
         <div class="table-scroll">
         <table class="pep-table">
-          <tr><th>Item Avaliado</th><th style="width:80px">Pontos</th><th class="checkbox-header"></th></tr>
+          <tr><th>Item Avaliado</th><th class="col-points">Pontos</th><th class="checkbox-header"></th></tr>
           ${rows}
-          <tr style="border-top:2px solid var(--border)">
-            <td style="font-weight:600;color:var(--text)">TOTAL</td>
+          <tr class="row-total">
+            <td class="cell-total-label">TOTAL</td>
             <td class="pep-total" id="pep-total">0.0</td>
             <td></td>
           </tr>
@@ -442,9 +445,9 @@ function renderTabD(st) {
 
   // Schema antigo: seções educacionais com HTML no .body
   return `
-    <div style="margin-bottom:20px">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:6px">Material de Estudo</div>
-      <div style="font-size:20px;font-weight:600;color:var(--text)">${esc(d.title)}</div>
+    <div class="tab-d-header">
+      <div class="tab-d-kicker">Material de Estudo</div>
+      <div class="tab-d-title">${esc(d.title)}</div>
     </div>
     ${d.sections.map(sec => `
       <div class="study-section">

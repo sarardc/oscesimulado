@@ -3,6 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  Content-Security-Policy: GitHub Pages não permite configurar headers HTTP
+  customizados, então a política é aplicada via <meta> (funciona igual para
+  o navegador, exceto por frame-ancestors/report-uri/sandbox, que só existem
+  como header — não há como restringir aqui se este site pode ser embutido
+  em <iframe> de terceiros). Nenhum script/estilo inline é necessário: os
+  antigos onclick="" e style="" foram todos removidos do HTML/JS gerado.
+-->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self';
+  style-src 'self' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src 'self';
+  connect-src 'self';
+  frame-src https://www.youtube.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+">
 <title>OSCE</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -21,7 +41,7 @@
         <iframe class="iframe_responsivo" src="https://www.youtube.com/embed/CFGLoQIhmow?list=RDCFGLoQIhmow" title="lofi hip hop mix 📚 beats to relax/study to (Part 1)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div> 
       
-      <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Alternar tema">
+      <button class="theme-toggle" id="theme-toggle-btn" title="Alternar tema">
         <span id="theme-icon">☀</span>
         <span id="theme-label">Claro</span>
       </button>
@@ -38,77 +58,77 @@
     -->
     <div class="home-layout">
       <aside class="filter-sidebar" id="filter-sidebar">
-        <button class="filter-toggle" id="filter-toggle-btn" onclick="toggleFilterSidebar()">
+        <button class="filter-toggle" id="filter-toggle-btn">
           <span class="filter-toggle-label">Filtrar por tema</span>
           <span class="filter-toggle-current" id="filter-toggle-current">Todas</span>
           <span class="filter-toggle-arr" id="filter-toggle-arr">▾</span>
         </button>
         <p class="filter-label">Filtrar por tema</p>
         <div class="filter-list" id="filter-list">
-        <button class="filter-btn active" data-tema="all" onclick="setFilter('all')">Todas</button>
+        <button class="filter-btn active" data-tema="all">Todas</button>
 
         <!-- CLÍNICA MÉDICA -->
         <div class="fgrp" id="fg-clinica">
-          <button class="fgrp-hdr" onclick="toggleFGroup('fg-clinica')" title="Expandir / Recolher">
+          <button class="fgrp-hdr" title="Expandir / Recolher">
             <span>Clínica Médica</span><span class="fgrp-arr">▾</span>
           </button>
           <div class="fgrp-body">
-            <button class="filter-btn tema-dermatologia"         data-tema="dermatologia"        onclick="setFilter('dermatologia')">Dermatologia</button>
-            <button class="filter-btn tema-infectologia"         data-tema="infectologia"        onclick="setFilter('infectologia')">Infectologia</button>
-            <button class="filter-btn tema-geriatria"            data-tema="geriatria"           onclick="setFilter('geriatria')">Geriatria</button>
-            <button class="filter-btn tema-hematologia"          data-tema="hematologia"         onclick="setFilter('hematologia')">Hematologia</button>
-            <button class="filter-btn tema-endocrinologia"       data-tema="endocrinologia"      onclick="setFilter('endocrinologia')">Endocrinologia</button>
-            <button class="filter-btn tema-nefrologia"           data-tema="nefrologia"          onclick="setFilter('nefrologia')">Nefrologia</button>
-            <button class="filter-btn tema-pneumologia"          data-tema="pneumologia"         onclick="setFilter('pneumologia')">Pneumologia</button>
-            <button class="filter-btn tema-gastroenterologia"    data-tema="gastroenterologia"   onclick="setFilter('gastroenterologia')">Gastroenterologia</button>
-            <button class="filter-btn tema-psiquiatria"          data-tema="psiquiatria"         onclick="setFilter('psiquiatria')">Psiquiatria</button>
-            <button class="filter-btn tema-otorrinolaringologia" data-tema="otorrinolaringologia" onclick="setFilter('otorrinolaringologia')">Otorrinolaringologia</button>
-            <button class="filter-btn tema-oftalmologia"         data-tema="oftalmologia"        onclick="setFilter('oftalmologia')">Oftalmologia</button>
-            <button class="filter-btn tema-neurologia"           data-tema="neurologia"          onclick="setFilter('neurologia')">Neurologia</button>
-            <button class="filter-btn tema-cardiologia"          data-tema="cardiologia"         onclick="setFilter('cardiologia')">Cardiologia</button>
-            <button class="filter-btn tema-urologia"             data-tema="urologia"            onclick="setFilter('urologia')">Urologia</button>
-            <button class="filter-btn tema-ortopedia"            data-tema="ortopedia"           onclick="setFilter('ortopedia')">Ortopedia</button>
+            <button class="filter-btn tema-dermatologia"         data-tema="dermatologia">Dermatologia</button>
+            <button class="filter-btn tema-infectologia"         data-tema="infectologia">Infectologia</button>
+            <button class="filter-btn tema-geriatria"            data-tema="geriatria">Geriatria</button>
+            <button class="filter-btn tema-hematologia"          data-tema="hematologia">Hematologia</button>
+            <button class="filter-btn tema-endocrinologia"       data-tema="endocrinologia">Endocrinologia</button>
+            <button class="filter-btn tema-nefrologia"           data-tema="nefrologia">Nefrologia</button>
+            <button class="filter-btn tema-pneumologia"          data-tema="pneumologia">Pneumologia</button>
+            <button class="filter-btn tema-gastroenterologia"    data-tema="gastroenterologia">Gastroenterologia</button>
+            <button class="filter-btn tema-psiquiatria"          data-tema="psiquiatria">Psiquiatria</button>
+            <button class="filter-btn tema-otorrinolaringologia" data-tema="otorrinolaringologia">Otorrinolaringologia</button>
+            <button class="filter-btn tema-oftalmologia"         data-tema="oftalmologia">Oftalmologia</button>
+            <button class="filter-btn tema-neurologia"           data-tema="neurologia">Neurologia</button>
+            <button class="filter-btn tema-cardiologia"          data-tema="cardiologia">Cardiologia</button>
+            <button class="filter-btn tema-urologia"             data-tema="urologia">Urologia</button>
+            <button class="filter-btn tema-ortopedia"            data-tema="ortopedia">Ortopedia</button>
           </div>
         </div>
 
         <!-- GO (GINECOLOGIA E OBSTETRÍCIA) -->
         <div class="fgrp" id="fg-go">
-          <button class="fgrp-hdr" onclick="toggleFGroup('fg-go')" title="Expandir / Recolher">
+          <button class="fgrp-hdr" title="Expandir / Recolher">
             <span>GO</span><span class="fgrp-arr">▾</span>
           </button>
           <div class="fgrp-body">
-            <button class="filter-btn tema-ginecologia" data-tema="ginecologia" onclick="setFilter('ginecologia')">Ginecologia</button>
-            <button class="filter-btn tema-obstetricia" data-tema="obstetricia" onclick="setFilter('obstetricia')">Obstetrícia</button>
+            <button class="filter-btn tema-ginecologia" data-tema="ginecologia">Ginecologia</button>
+            <button class="filter-btn tema-obstetricia" data-tema="obstetricia">Obstetrícia</button>
           </div>
         </div>
 
         <!-- PEDIATRIA -->
         <div class="fgrp" id="fg-pediatria">
-          <button class="fgrp-hdr" onclick="toggleFGroup('fg-pediatria')" title="Expandir / Recolher">
+          <button class="fgrp-hdr" title="Expandir / Recolher">
             <span>Pediatria</span><span class="fgrp-arr">▾</span>
           </button>
           <div class="fgrp-body">
-            <button class="filter-btn tema-neonatologia"    data-tema="neonatologia"       onclick="setFilter('neonatologia')">Neonatologia</button>
-            <button class="filter-btn tema-puericultura"    data-tema="puericultura"       onclick="setFilter('puericultura')">Puericultura</button>
-            <button class="filter-btn tema-cirurgia-ped"   data-tema="cirurgia pediatrica" onclick="setFilter('cirurgia pediatrica')">Cirurgia Pediátrica</button>
-            <button class="filter-btn tema-pediatria-geral" data-tema="pediatria geral"    onclick="setFilter('pediatria geral')">Pediatria Geral</button>
+            <button class="filter-btn tema-neonatologia"    data-tema="neonatologia">Neonatologia</button>
+            <button class="filter-btn tema-puericultura"    data-tema="puericultura">Puericultura</button>
+            <button class="filter-btn tema-cirurgia-ped"   data-tema="cirurgia pediatrica">Cirurgia Pediátrica</button>
+            <button class="filter-btn tema-pediatria-geral" data-tema="pediatria geral">Pediatria Geral</button>
           </div>
         </div>
 
         <!-- CIRURGIA -->
         <div class="fgrp" id="fg-cirurgia">
-          <button class="fgrp-hdr" onclick="toggleFGroup('fg-cirurgia')" title="Expandir / Recolher">
+          <button class="fgrp-hdr" title="Expandir / Recolher">
             <span>Cirurgia</span><span class="fgrp-arr">▾</span>
           </button>
           <div class="fgrp-body">
-            <button class="filter-btn tema-cirurgia" data-tema="cirurgia" onclick="setFilter('cirurgia')">Cirurgia Geral</button>
-            <button class="filter-btn tema-vascular"  data-tema="vascular"  onclick="setFilter('vascular')">Vascular</button>
+            <button class="filter-btn tema-cirurgia" data-tema="cirurgia">Cirurgia Geral</button>
+            <button class="filter-btn tema-vascular"  data-tema="vascular">Vascular</button>
           </div>
         </div>
 
-        <button class="filter-btn tema-medicina-intensiva"       data-tema="medicina intensiva"       onclick="setFilter('medicina intensiva')">Medicina Intensiva</button>
-        <button class="filter-btn tema-emergencias-neurologicas" data-tema="emergencias neurologicas" onclick="setFilter('emergencias neurologicas')">Emergência Neurológica</button>
-        <button class="filter-btn tema-medicina-legal"           data-tema="medicina legal"           onclick="setFilter('medicina legal')">Medicina Legal</button>
+        <button class="filter-btn tema-medicina-intensiva"       data-tema="medicina intensiva">Medicina Intensiva</button>
+        <button class="filter-btn tema-emergencias-neurologicas" data-tema="emergencias neurologicas">Emergência Neurológica</button>
+        <button class="filter-btn tema-medicina-legal"           data-tema="medicina legal">Medicina Legal</button>
         </div>
       </aside>
       <div class="home-main">
@@ -127,23 +147,23 @@
   </button>
 
   <div class="sv-header">
-    <button class="back-btn" onclick="goHome()"><span class="back-arrow">←</span><span class="back-label"> Voltar</span></button>
-    <div style="flex:1">
+    <button class="back-btn"><span class="back-arrow">←</span><span class="back-label"> Voltar</span></button>
+    <div class="sv-header-info">
       <div class="sv-title" id="sv-title"></div>
       <div class="sv-sub" id="sv-sub"></div>
     </div>
     <div class="timer-wrap">
       <span class="timer-label">TEMPO</span>
       <div id="timer-display">10:00</div>
-      <button class="timer-btn" id="timer-toggle-btn" onclick="toggleTimer()" title="Iniciar/Pausar">▶</button>
-      <button class="timer-btn" onclick="resetTimer()" title="Reiniciar">↺</button>
+      <button class="timer-btn" id="timer-toggle-btn" title="Iniciar/Pausar">▶</button>
+      <button class="timer-btn" id="timer-reset-btn" title="Reiniciar">↺</button>
     </div>
   </div>
   <div class="tabs-nav">
-    <button class="tab-btn active" onclick="showTab(0)">A — Instruções ao Candidato</button>
-    <button class="tab-btn" onclick="showTab(1)">B — Impressos</button>
-    <button class="tab-btn" onclick="showTab(2)">C — Gabarito do Avaliador</button>
-    <button class="tab-btn" onclick="showTab(3)">D — Material de Estudo</button>
+    <button class="tab-btn active" data-tab-idx="0">A — Instruções ao Candidato</button>
+    <button class="tab-btn" data-tab-idx="1">B — Impressos</button>
+    <button class="tab-btn" data-tab-idx="2">C — Gabarito do Avaliador</button>
+    <button class="tab-btn" data-tab-idx="3">D — Material de Estudo</button>
   </div>
   <div class="sv-main">
     <div id="tab0" class="tab-content active"></div>
@@ -171,11 +191,11 @@
         <!-- Exportar prompt para usar em outra IA: o projeto não se comunica com
              nenhuma API de IA — o aluno copia/baixa o texto e usa por conta
              própria em uma ferramenta externa de chat/voz. -->
-        <div id="secao-exportar-prompt" style="background: #eef6f8; border: 1px solid #cfe3e8; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-            <p style="font-size: 0.9rem; margin: 0 0 10px; color: #333;">
+        <div id="secao-exportar-prompt" class="export-prompt-box">
+            <p class="export-prompt-intro">
                 Como simular:
             </p>
-            <ol style="font-size: 0.85rem; color: #444; margin: 0 0 12px 18px; line-height: 1.6;">
+            <ol class="export-prompt-steps">
                 <li>Copie o texto do prompt desta estação (botão abaixo)</li>
                 <li>Ative o modo voz e cole o texto</li>
                 <li>A IA vai simular o paciente</li>
@@ -183,15 +203,15 @@
                 <li>Avaliação: após comando "finalizar atendimento"</li>
                 <li> "Resumo do caso" </li>
             </ol>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <button id="btn-copiar-prompt" class="btn-ia primario" type="button" style="width: auto; flex: 1;">📋 Copiar texto do prompt</button>
-                <button id="btn-exportar-prompt" class="btn-ia primario" type="button" style="width: auto; flex: 1;">📄 Baixar arquivo (.md)</button>
+            <div class="export-prompt-actions">
+                <button id="btn-copiar-prompt" class="btn-ia primario btn-auto" type="button">📋 Copiar texto do prompt</button>
+                <button id="btn-exportar-prompt" class="btn-ia primario btn-auto" type="button">📄 Baixar arquivo (.md)</button>
             </div>
-            <p style="font-size: 0.8rem; margin: 10px 0 4px; color: #555;">Abrir uma IA de chat/voz:</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                <a href="https://claude.ai" target="_blank" rel="noopener" style="font-size: 0.8rem; color: #0d6efd; text-decoration: underline;">claude.ai</a>
-                <a href="https://chatgpt.com" target="_blank" rel="noopener" style="font-size: 0.8rem; color: #0d6efd; text-decoration: underline;">chatgpt.com</a>
-                <a href="https://gemini.google.com/app?hl=pt-BR" target="_blank" rel="noopener" style="font-size: 0.8rem; color: #0d6efd; text-decoration: underline;">gemini.google.com</a>
+            <p class="export-prompt-note">Abrir uma IA de chat/voz:</p>
+            <div class="export-prompt-actions">
+                <a href="https://claude.ai" target="_blank" rel="noopener" class="export-prompt-link">claude.ai</a>
+                <a href="https://chatgpt.com" target="_blank" rel="noopener" class="export-prompt-link">chatgpt.com</a>
+                <a href="https://gemini.google.com/app?hl=pt-BR" target="_blank" rel="noopener" class="export-prompt-link">gemini.google.com</a>
             </div>
         </div>
     </div>
@@ -200,37 +220,7 @@
 <!-- final do painel lateral-->
 
 <!-- THEME -->
-<script>
-  (function () {
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') document.documentElement.classList.add('light');
-  })();
-
-  function toggleTheme() {
-    const isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    document.getElementById('theme-icon').textContent  = isLight ? '☽' : '☀';
-    document.getElementById('theme-label').textContent = isLight ? 'Escuro' : 'Claro';
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const isLight = document.documentElement.classList.contains('light');
-    document.getElementById('theme-icon').textContent  = isLight ? '☽' : '☀';
-    document.getElementById('theme-label').textContent = isLight ? 'Escuro' : 'Claro';
-  });
-
-  function toggleFGroup(id) {
-    const grp = document.getElementById(id);
-    grp.classList.toggle('open');
-  }
-
-  function toggleFilterSidebar() {
-    const sidebar = document.getElementById('filter-sidebar');
-    const arr = document.getElementById('filter-toggle-arr');
-    const expanded = sidebar.classList.toggle('expanded');
-    arr.textContent = expanded ? '▴' : '▾';
-  }
-</script>
+<script src="js/theme.js"></script>
 
 <!-- APP -->
 <script src="js/api.js"></script>
@@ -242,110 +232,7 @@
 <script src="js/promptExport.js"></script>
 
 <!-- SCRIPT DA IA: liga a UI do painel lateral ao PromptExport (js/promptExport.js) -->
-
-<script>
-    // O projeto não se comunica com nenhuma API de IA. O painel lateral só
-    // monta o prompt localmente (a partir dos dados da estação) para o aluno
-    // copiar ou baixar como .md e usar por conta própria em uma ferramenta
-    // externa de chat/voz.
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const btnAbrirIa = document.getElementById("btn-abrir-ia");
-        const btnFecharIa = document.getElementById("btn-fechar-ia");
-        const drawer = document.getElementById("ia-drawer");
-        const overlay = document.getElementById("ia-overlay");
-        const tituloDrawer = document.getElementById("titulo-ia-drawer");
-
-        const btnExportarPrompt = document.getElementById("btn-exportar-prompt");
-        const btnCopiarPrompt = document.getElementById("btn-copiar-prompt");
-
-        function estacaoAtual() {
-            return window.currentStation || null;
-        }
-
-        // Exportar prompt "para levar": monta o arquivo localmente a partir
-        // dos dados da estação e dispara o download no navegador.
-        function baixarArquivoTexto(nomeArquivo, conteudo) {
-            // BOM UTF-8 no início: sem ele, alguns editores/uploads (comum no
-            // Windows) adivinham a codificação errada e trocam os acentos por
-            // caracteres estranhos ao abrir o arquivo.
-            const blob = new Blob(["﻿" + conteudo], { type: "text/markdown;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = nomeArquivo;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
-
-        // Copia o texto do prompt para a área de transferência, com fallback
-        // manual (textarea + execCommand) para navegadores/contextos onde a
-        // Clipboard API não está disponível (ex.: página aberta sem HTTPS).
-        async function copiarTexto(texto) {
-            if (navigator.clipboard && window.isSecureContext) {
-                await navigator.clipboard.writeText(texto);
-                return;
-            }
-            const area = document.createElement("textarea");
-            area.value = texto;
-            area.style.position = "fixed";
-            area.style.opacity = "0";
-            document.body.appendChild(area);
-            area.focus();
-            area.select();
-            document.execCommand("copy");
-            document.body.removeChild(area);
-        }
-
-        if (btnCopiarPrompt) {
-            btnCopiarPrompt.addEventListener("click", async () => {
-                const estacao = estacaoAtual();
-                if (!estacao) return;
-                const conteudo = PromptExport.gerarPromptOffline(estacao);
-                const textoOriginal = btnCopiarPrompt.textContent;
-                try {
-                    await copiarTexto(conteudo);
-                    btnCopiarPrompt.textContent = "✅ Copiado!";
-                } catch (erro) {
-                    console.error("Erro ao copiar prompt:", erro);
-                    btnCopiarPrompt.textContent = "❌ Não foi possível copiar";
-                } finally {
-                    setTimeout(() => { btnCopiarPrompt.textContent = textoOriginal; }, 2000);
-                }
-            });
-        }
-
-        if (btnExportarPrompt) {
-            btnExportarPrompt.addEventListener("click", () => {
-                const estacao = estacaoAtual();
-                if (!estacao) return;
-                const conteudo = PromptExport.gerarPromptOffline(estacao);
-                baixarArquivoTexto(`estacao-${estacao.id}-prompt-ia.md`, conteudo);
-            });
-        }
-
-        // Controle da aba lateral
-        if (btnAbrirIa) {
-            btnAbrirIa.addEventListener("click", () => {
-                drawer.classList.add("aberto");
-                overlay.classList.add("ativo");
-                document.body.classList.add("ia-panel-aberto");
-                const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
-                if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
-            });
-        }
-
-        function fecharPainel() {
-            drawer.classList.remove("aberto");
-            overlay.classList.remove("ativo");
-            document.body.classList.remove("ia-panel-aberto");
-        }
-        if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
-        if (overlay) overlay.addEventListener("click", fecharPainel);
-    });
-</script>
+<script src="js/drawer.js"></script>
 
 </body>
 </html>
