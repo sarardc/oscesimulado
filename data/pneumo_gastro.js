@@ -65,7 +65,7 @@ const pneumoGastroStations = [
         'Anafilaxia respiratória — menos provável pela ausência de urticária, angioedema ou exposição a alérgeno sistêmico'
       ],
       context: 'Mulher jovem, asmática conhecida, em crise moderada desencadeada por exposição a poeira domiciliar, com abandono de corticoide inalatório de manutenção há 2 meses. SatO2 de 91% e peak flow em 44% do previsto confirmam crise moderada. Histórico de 3 visitas ao PS por crise.',
-      justify: 'Critérios de crise moderada presentes: dispneia ao repouso com fala em frases curtas, FR 24 irpm, FC 102 bpm, SatO2 91%, uso de musculatura acessória, sibilos difusos e peak flow 44% do previsto (<60%). Asma persistente moderada confirmada pelo histórico de crises frequentes, uso diário de resgate e abandono do corticoide inalatório.',
+      justify: 'Critérios de crise moderada presentes: dispneia ao repouso com fala em frases curtas, FR 24 irpm, FC 102 bpm, SatO2 91%, uso de musculatura acessória, sibilos difusos e peak flow 44% do previsto (<60%). Asma persistente moderada confirmada pelo histórico de crises frequentes, uso diário de resgate e abandono do corticoide inalatório. Atualização de diretriz (GINA, versões vigentes): SABA (salbutamol) em monoterapia como medicação de resgate não é mais recomendado em nenhum degrau do tratamento — a estratégia atual preferencial (track 1) usa corticoide inalatório associado a formoterol (ex.: budesonida-formoterol) como resgate, isoladamente nos degraus 1-2 ou como manutenção-e-resgate (MART) nos degraus 3-4, reduzindo o risco de crise grave e óbito associado ao uso excessivo de SABA isolado — mudança de conduta relevante para o plano de manutenção desta paciente.',
       expectedAnamnesis: 'Investigar início, duração e evolução da dispneia | Quantificar uso do broncodilatador de resgate nas últimas 24h | Identificar fator desencadeante (poeira, animal, infecção) | Investigar uso de medicamentos de manutenção e adesão | Perguntar sobre internações e intubações anteriores | Investigar alergias medicamentosas (especialmente AAS/AINE) | Questionar sobre tabagismo, gestação, comorbidades | Avaliar história familiar de atopia/asma',
       expectedPhysical: 'Avaliar estado geral, uso de musculatura acessória, capacidade de falar em frases | Sinais vitais completos com ênfase em FR, FC e SatO2 | Ausculta pulmonar: presença/localização de sibilos, tempo expiratório, MV | Expansibilidade e percussão torácica | Ausculta cardíaca para afastar ICC | Pesquisar sinais de anafilaxia (urticária, angioedema) | Realizar peak flow se disponível',
       expectedExams: [
@@ -73,7 +73,7 @@ const pneumoGastroStations = [
         { exam: 'Peak Flow (fluxo expiratório máximo)', justify: 'Objetivar obstrução e classificar gravidade da crise', expected: '185 L/min — 44% do previsto — crise moderada (<60%)' },
         { exam: 'Radiografia de tórax (se dúvida diagnóstica ou suspeita de pneumotórax)', justify: 'Afastar pneumotórax, pneumonia ou outra causa de dispneia aguda', expected: 'Hiperinsuflação; afastar complicações' }
       ],
-      expectedConduct: 'Farmacológica: Broncodilatador de curta ação inalatório — Salbutamol spray 400 mcg (4 jatos de 100 mcg com espaçador) a cada 20 min nas 1ª hora; se resposta parcial ou má resposta, corticoide sistêmico — Prednisona 40 mg VO dose única ou Metilprednisolona 125 mg IV se impossibilidade via oral; O2 suplementar se SatO2 <92% (máscara ou cateter nasal 2–4 L/min); Após estabilização: retomada de corticoide inalatório — Budesonida 400 mcg/dia + formoterol ou beclometasona conforme GINA/PCDT-MS | Não farmacológica: Posição sentada; monitorar SatO2 seriada; reavaliação em 1h | Encaminhamento: SE/UPA se ausência de resposta em 1h, SatO2 persistentemente <92% ou piora clínica | Orientações ao paciente: Retomar corticoide inalatório diariamente; técnica correta do dispositivo inalatório; plano de ação por escrito; evitar desencadeantes; não usar AAS/AINE; sinais de alarme para buscar emergência | Seguimento: retorno em 7 dias para reavaliação e ajuste de manutenção',
+      expectedConduct: 'Farmacológica: Broncodilatador de curta ação inalatório — Salbutamol spray 400 mcg (4 jatos de 100 mcg com espaçador) a cada 20 min na 1ª hora (ou budesonida-formoterol em altas doses repetidas, se disponível, conforme GINA); se resposta parcial ou má resposta, corticoide sistêmico — Prednisona 40-50 mg VO dose única (ou equivalente) por 5-7 dias, sem necessidade de desmame, ou Metilprednisolona IV se impossibilidade via oral; O2 suplementar se SatO2 <92% (máscara ou cateter nasal 2–4 L/min), com alvo de saturação 93-95%; Após estabilização — NÃO retomar apenas o corticoide inalatório isolado: a GINA (desde 2019, reforçada nas versões vigentes) não recomenda mais SABA isolado como resgate em nenhum degrau de tratamento pelo risco de crises graves e óbito por uso excessivo de SABA — a paciente deve ser transferida para budesonida-formoterol em dose baixa como manutenção E resgate (estratégia MART/track 1 preferencial), substituindo tanto o "spray marrom" isolado quanto o salbutamol de resgate isolado | Não farmacológica: Posição sentada; monitorar SatO2 seriada; reavaliação em 1h | Encaminhamento: SE/UPA se ausência de resposta em 1h, SatO2 persistentemente <92% ou piora clínica | Orientações ao paciente: Explicar a mudança da estratégia terapêutica (de "duas bombinhas separadas" para uma única — corticoide+formoterol — usada tanto todo dia quanto nas crises); técnica correta do dispositivo inalatório; plano de ação por escrito; evitar desencadeantes; não usar AAS/AINE (histórico de alergia); sinais de alarme para buscar emergência | Seguimento: retorno em 7 dias para reavaliação e ajuste de manutenção',
       expectedCommunication: 'Apresentar-se pelo nome e função | Explicar o diagnóstico de crise asmática em linguagem acessível ("o tubo que leva o ar para o pulmão está fechando") | Esclarecer que o abandono do spray marrom (corticoide) favoreceu a crise | Demonstrar técnica correta do inalador com espaçador | Perguntar se tem dúvidas | Escuta ativa: validar preocupação da paciente sem gerar pânico',
       criticalErrors: [
         'Prescrever AAS ou AINE sem perguntar sobre alergias (risco de broncoespasmo grave por AAS)',
@@ -97,36 +97,36 @@ const pneumoGastroStations = [
         {
           h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Investigou início, duração e evolução da dispneia', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
-            { item: 'Quantificou o uso do broncodilatador de resgate nas últimas 24h', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
+            { item: 'Investigou início, duração e evolução da dispneia', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Quantificou o uso do broncodilatador de resgate nas últimas 24h', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
             { item: 'Identificou o fator desencadeante da crise (exposição a poeira)', score: 0.5, ref: 'PCDT Asma MS, 2021' },
-            { item: 'Investigou uso e adesão ao corticoide inalatório de manutenção', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
-            { item: 'Perguntou sobre internações e visitas ao PS anteriores por asma', score: 0, ref: 'GINA 2023' },
-            { item: 'Perguntou sobre alergias medicamentosas (especialmente AAS/AINE)', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2023' }
+            { item: 'Investigou uso e adesão ao corticoide inalatório de manutenção', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Perguntou sobre internações e visitas ao PS anteriores por asma', score: 0, ref: 'GINA 2024' },
+            { item: 'Perguntou sobre alergias medicamentosas (especialmente AAS/AINE)', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2024' }
           ]
         },
         {
           h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Avaliou sinais vitais incluindo frequência respiratória e cardíaca', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
-            { item: 'Realizou oximetria de pulso e identificou SatO2 < 95%', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
-            { item: 'Realizou ausculta pulmonar e identificou sibilos expiratórios difusos', score: 0.5, ref: 'GINA 2023' },
-            { item: 'Avaliou uso de musculatura acessória e capacidade de falar em frases', score: 0.5, ref: 'GINA 2023' }
+            { item: 'Avaliou sinais vitais incluindo frequência respiratória e cardíaca', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Realizou oximetria de pulso e identificou SatO2 < 95%', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Realizou ausculta pulmonar e identificou sibilos expiratórios difusos', score: 0.5, ref: 'GINA 2024' },
+            { item: 'Avaliou uso de musculatura acessória e capacidade de falar em frases', score: 0.5, ref: 'GINA 2024' }
           ]
         },
         {
           h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Classificou a crise como moderada (FR elevada, SatO2 91%, sibilos, fala em frases curtas)', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' },
-            { item: 'Solicitou ou realizou peak flow para objetivar a obstrução', score: 0.5, ref: 'GINA 2023; PCDT Asma MS, 2021' }
+            { item: 'Classificou a crise como moderada (FR elevada, SatO2 91%, sibilos, fala em frases curtas)', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Solicitou ou realizou peak flow para objetivar a obstrução', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' }
           ]
         },
         {
           h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Prescreveu salbutamol inalatório 400 mcg (4 jatos) imediatamente na consulta', score: 1.0, ref: 'PCDT Asma MS, 2021; GINA 2023' },
-            { item: 'Prescreveu corticoide sistêmico (prednisona VO ou equivalente) na crise moderada', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2023' },
-            { item: 'Orientou retomada do corticoide inalatório de manutenção', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2023' },
+            { item: 'Prescreveu salbutamol inalatório 400 mcg (4 jatos) imediatamente na consulta', score: 1.0, ref: 'PCDT Asma MS, 2021; GINA 2024' },
+            { item: 'Prescreveu corticoide sistêmico (prednisona VO ou equivalente) na crise moderada', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2024' },
+            { item: 'Orientou transição para corticoide inalatório associado a formoterol como manutenção-e-resgate (MART), evitando recomendar SABA isolado como resgate', score: 0.5, ref: 'GINA 2024 (estratégia track 1 preferencial)' },
             { item: 'Orientou sobre sinais de alarme e quando buscar emergência', score: 0.5, ref: 'PCDT Asma MS, 2021' },
             { item: 'Perguntou se a paciente tinha dúvidas ao final da consulta', score: 0.5, ref: 'CFM Res. 2.232/2019' }
           ]
@@ -359,7 +359,7 @@ const pneumoGastroStations = [
         'Dissecção aórtica — dor torácica intensa de início súbito; afastada pelo padrão clínico, contexto e AngioTC'
       ],
       context: 'Mulher de 52 anos, oito dias após artroplastia de joelho (cirurgia ortopédica de alto risco tromboembólico), com abandono da anticoagulação profilática e uso de ACO, apresentando dispneia súbita, taquicardia, hipoxemia grave (SatO2 89%, PaO2 58 mmHg), TVP em MMID e AngioTC confirmando TEP lobar com infarto pulmonar. Biomarcadores positivos indicam comprometimento do VD (risco intermediário-alto).',
-      justify: 'Escore de Wells: FC > 100 (1,5) + cirurgia nas últimas 4 semanas (1,5) + sinais clínicos de TVP (3,0) + diagnóstico alternativo menos provável que TEP (3,0) = 9,0 pontos — alta probabilidade (≥6). D-dímero > 4.000 ng/mL. AngioTC confirma trombo lobar direito. Troponina e BNP elevados indicam disfunção de VD. Gasometria com hipoxemia, hipocapnia e alcalose respiratória são achados clássicos de TEP.',
+      justify: 'Escore de Wells: FC > 100 (1,5) + cirurgia nas últimas 4 semanas (1,5) + sinais clínicos de TVP (3,0) + diagnóstico alternativo menos provável que TEP (3,0) = 9,0 pontos — alta probabilidade (≥6). D-dímero > 4.000 ng/mL. AngioTC confirma trombo lobar direito. Troponina e BNP elevados indicam disfunção de VD. Gasometria com hipoxemia, hipocapnia e alcalose respiratória são achados clássicos de TEP. Importante distinguir Wells (probabilidade pré-teste/necessidade de investigação) de PESI/sPESI (estratificação de risco de mortalidade após confirmação): sPESI ≥1 (idade >80, câncer, doença cardiopulmonar crônica, FC ≥110, PAS <100, SatO2 <90%) já é suficiente para excluir a paciente de alta precoce ambulatorial — associado à disfunção de VD (troponina/BNP elevados) sem hipotensão franca, classifica o caso como TEP de risco intermediário-alto conforme as diretrizes ESC/ERS vigentes, com necessidade de internação monitorizada e vigilância para eventual reperfusão de resgate.',
       expectedAnamnesis: 'Investigar início e características da dispneia (súbita) | Caracterizar a dor torácica (pleurítica, inspiratória, localização) | Perguntar sobre cirurgia recente (tipo, data) | Questionar mobilização/imobilização pós-operatória | Perguntar sobre anticoagulação profilática e adesão | Investigar TVP: dor, edema em MMII | Perguntar sobre uso de anticoncepcionais orais | Investigar antecedentes de TVP/TEP | Histórico de trombofilia ou doença neoplásica | Antecedentes cardiovasculares',
       expectedPhysical: 'Avaliar estado geral e nível de consciência | Sinais vitais completos (taquicardia, hipotensão, taquipneia são sinais de alerta) | Oximetria de pulso | Ausculta pulmonar (redução de MV em base direita) | Ausculta cardíaca (B2 hiperfonética) | Exame de MMII: edema, empastamento, sinal de Homans, temperatura local | Pesquisar sinais de cor pulmonale agudo',
       expectedExams: [
@@ -368,9 +368,10 @@ const pneumoGastroStations = [
         { exam: 'ECG de 12 derivações', justify: 'Afastar SCA, avaliar padrão S1Q3T3, bloqueio de ramo direito como sinais indiretos de sobrecarga de VD', expected: 'Padrão S1Q3T3, taquicardia sinusal, BRD incompleto' },
         { exam: 'Troponina I e BNP', justify: 'Estratificação de risco — elevação indica disfunção ventricular direita (risco intermediário-alto)', expected: 'Troponina 0,18 ng/mL e BNP 312 pg/mL — ambos elevados' },
         { exam: 'Gasometria arterial', justify: 'Avaliar hipoxemia e padrão respiratório', expected: 'Alcalose respiratória com hipoxemia (PaO2 58, PaCO2 28)' },
-        { exam: 'Hemograma e coagulograma', justify: 'Avaliação basal antes de anticoagulação plena', expected: 'Leucocitose leve, anemia leve; INR normal' }
+        { exam: 'Hemograma e coagulograma', justify: 'Avaliação basal antes de anticoagulação plena', expected: 'Leucocitose leve, anemia leve; INR normal' },
+        { exam: 'Escore sPESI (ou PESI completo)', justify: 'Estratificar risco de mortalidade em 30 dias, distinto do Wells (que mede apenas probabilidade pré-teste) — orienta necessidade de internação e nível de monitorização', expected: 'sPESI ≥1 neste caso, reforçando risco intermediário-alto e indicação de internação monitorizada' }
       ],
-      expectedConduct: 'Farmacológica: O2 suplementar para manter SatO2 ≥ 95% (máscara Venturi ou cateter nasal); Anticoagulação plena imediata — Heparina não fracionada (HNF) IV em bolus (80 UI/kg) + infusão contínua (18 UI/kg/h) ou Enoxaparina 1 mg/kg SC 12/12h (ajustar para função renal); Analgesia para dor pleurítica; Monitorização contínua de PA, FC, SatO2 e nível de consciência; Risco intermediário-alto: ponderar terapia de reperfusão (trombólise sistêmica) se deterioração hemodinâmica — decisão com especialista | Não farmacológica: Internação em leito monitorizado/UTI conforme estabilidade; repouso relativo no leito; cabeceira elevada; acesso venoso calibroso | Encaminhamento: Internação hospitalar imediata; avaliar necessidade de UTI (risco intermediário-alto); comunicar cirurgia ortopédica | Orientações ao paciente: Explicar diagnóstico de coágulo no pulmão e veia da perna em linguagem acessível; esclarecer relação com a cirurgia e a interrupção da anticoagulação; orientar sobre tratamento e monitorização | Seguimento: Após estabilização, transição para anticoagulante oral (rivaroxabana ou varfarina); duração mínima de 3–6 meses conforme fator de risco',
+      expectedConduct: 'Farmacológica: O2 suplementar para manter SatO2 ≥ 95% (máscara Venturi ou cateter nasal); Anticoagulação plena imediata — preferencialmente parenteral neste risco intermediário-alto (Heparina não fracionada IV em bolus 80 UI/kg + infusão contínua 18 UI/kg/h, ou Enoxaparina 1 mg/kg SC 12/12h ajustada à função renal), mantendo via parenteral por manter possibilidade de reperfusão de resgate; Analgesia para dor pleurítica; Monitorização contínua de PA, FC, SatO2 e nível de consciência; Risco intermediário-alto: NÃO trombolisar de rotina — reservar trombólise sistêmica (ou embolectomia/trombólise dirigida por cateter) para deterioração hemodinâmica evolutiva (evolução para risco alto/choque), com decisão em conjunto com especialista | Não farmacológica: Internação em leito monitorizado/UTI conforme estabilidade; repouso relativo no leito; cabeceira elevada; acesso venoso calibroso | Encaminhamento: Internação hospitalar imediata; avaliar necessidade de UTI (risco intermediário-alto); comunicar cirurgia ortopédica | Orientações ao paciente: Explicar diagnóstico de coágulo no pulmão e veia da perna em linguagem acessível; esclarecer relação com a cirurgia e a interrupção da anticoagulação; orientar sobre tratamento e monitorização | Seguimento: Após estabilização clínica (tipicamente após os primeiros dias de anticoagulação parenteral), transição para anticoagulante oral direto (DOAC — rivaroxabana ou apixabana), atualmente preferencial sobre varfarina para a maioria dos pacientes por não exigir monitorização de INR e ter menor risco de sangramento; duração mínima de 3–6 meses conforme fator de risco (provocado por cirurgia = risco transitório, permitindo considerar suspensão após esse período em reavaliação)',
       expectedCommunication: 'Apresentar-se pelo nome | Comunicar a gravidade de forma clara sem gerar pânico — explicar que é tratável | Esclarecer a relação com a cirurgia ortopédica e a importância da anticoagulação não interrompida | Demonstrar empatia com a ansiedade da paciente | Perguntar se tem dúvidas',
       criticalErrors: [
         'Não calcular ou não considerar o escore de Wells para estratificação clínica de TEP',
@@ -413,14 +414,15 @@ const pneumoGastroStations = [
           items: [
             { item: 'Calculou o escore de Wells para TEP e classificou como alta probabilidade (≥ 6 pontos)', score: 1.0, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
             { item: 'Solicitou AngioTC de tórax como exame confirmatório', score: 1.0, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
-            { item: 'Solicitou ECG e troponina para estratificação de risco', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' }
+            { item: 'Solicitou ECG e troponina para estratificação de risco', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Calculou ou considerou o escore PESI/sPESI para estratificação de risco de mortalidade (distinto do Wells)', score: 0.5, ref: 'ESC/ERS Guidelines on PE (vigente); Diretriz Brasileira de TEP SBC, 2022' }
           ]
         },
         {
           h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
             { item: 'Ofertou O2 suplementar imediatamente para corrigir SatO2 < 95%', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
-            { item: 'Iniciou anticoagulação plena imediata (heparina ou enoxaparina em dose terapêutica)', score: 1.0, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Iniciou anticoagulação plena imediata (heparina ou enoxaparina em dose terapêutica) e orientou transição futura para DOAC (rivaroxabana/apixabana), preferencial sobre varfarina', score: 1.0, ref: 'ESC/ERS Guidelines on PE (vigente); Diretriz Brasileira de TEP SBC, 2022' },
             { item: 'Indicou internação hospitalar e monitorização contínua', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
             { item: 'Perguntou se a paciente tinha dúvidas ao final do atendimento', score: 0.5, ref: 'CFM Res. 2.232/2019' }
           ]
