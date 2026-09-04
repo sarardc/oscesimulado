@@ -65,7 +65,18 @@
           </div>
         </div>
 
-        <button class="filter-btn tema-pediatria" data-tema="pediatria" onclick="setFilter('pediatria')">Pediatria</button>
+        <!-- PEDIATRIA -->
+        <div class="fgrp open" id="fg-pediatria">
+          <button class="fgrp-hdr" onclick="toggleFGroup('fg-pediatria')" title="Expandir / Recolher">
+            <span>Pediatria</span><span class="fgrp-arr">▾</span>
+          </button>
+          <div class="fgrp-body">
+            <button class="filter-btn tema-neonatologia"      data-tema="neonatologia"       onclick="setFilter('neonatologia')">Neonatologia</button>
+            <button class="filter-btn tema-puericultura"      data-tema="puericultura"       onclick="setFilter('puericultura')">Puericultura</button>
+            <button class="filter-btn tema-cirurgia-ped"      data-tema="cirurgia pediatrica" onclick="setFilter('cirurgia pediatrica')">Cirurgia Pediátrica</button>
+            <button class="filter-btn tema-pediatria-geral"   data-tema="pediatria geral"    onclick="setFilter('pediatria geral')">Pediatria Geral</button>
+          </div>
+        </div>
 
         <!-- CIRURGIA -->
         <div class="fgrp open" id="fg-cirurgia">
