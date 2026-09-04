@@ -333,7 +333,7 @@
 
         async function enviarParaGemini(textoUsuario) {
             const apiKey = localStorage.getItem("gemini_api_key");
-            const modelo = "gemini-2.5-flash";
+            const modelo = "gemini-3.6-flash";
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
 
             historicoConsulta.push({ role: "user", parts: [{ text: textoUsuario }] });
@@ -384,7 +384,7 @@
             statusIa.innerText = "A gerar avaliação do atendimento...";
 
             const apiKey = localStorage.getItem("gemini_api_key");
-            const modelo = "gemini-2.5-flash";
+            const modelo = "gemini-3.6-flash";
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
 
             const promptAvaliacao = `Analise a conversa desta simulação de OSCE e forneça um feedback estruturado para o estudante com: 1) Acertos na anamnese; 2) Omissões importantes; 3) Nota final de 0 a 10.`;
@@ -416,7 +416,7 @@
         btnQuiz.addEventListener("click", async () => {
             conteudoEstudo.innerText = "A gerar questões de estudo...";
             const apiKey = localStorage.getItem("gemini_api_key");
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
             
             const resposta = await fetch(url, {
                 method: "POST",
@@ -432,7 +432,7 @@
         btnResumo.addEventListener("click", async () => {
             conteudoEstudo.innerText = "A gerar resumo rápido...";
             const apiKey = localStorage.getItem("gemini_api_key");
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
             
             const resposta = await fetch(url, {
                 method: "POST",
