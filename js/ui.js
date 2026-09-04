@@ -17,9 +17,24 @@ function toList(val) {
 function setFilter(tema) {
   activeFilter = tema;
   const normTema = tema.toLowerCase();
+  let label = 'Todas';
   document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.classList.toggle('active', (btn.dataset.tema || '').toLowerCase() === normTema);
+    const isActive = (btn.dataset.tema || '').toLowerCase() === normTema;
+    btn.classList.toggle('active', isActive);
+    if (isActive) label = btn.textContent.trim();
   });
+
+  const currentEl = document.getElementById('filter-toggle-current');
+  if (currentEl) currentEl.textContent = label;
+
+  // No mobile, recolhe o painel de filtros após escolher um tema para liberar espaço para os cards
+  const sidebar = document.getElementById('filter-sidebar');
+  const arr = document.getElementById('filter-toggle-arr');
+  if (sidebar && sidebar.classList.contains('expanded')) {
+    sidebar.classList.remove('expanded');
+    if (arr) arr.textContent = '▾';
+  }
+
   renderCards();
 }
 
