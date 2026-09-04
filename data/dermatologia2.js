@@ -85,38 +85,45 @@ const dermatologia2 = [
     },
 
     instD: {
-      title: 'Psoríase em Placas — Material de Estudo',
+      title: 'CHECKLIST — PLACAS AVERMELHADAS NOS COTOVELOS E JOELHOS (PSORÍASE)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Doença inflamatória crônica, imunomediada, com base genética, acometendo cerca de 1-3% da população; psoríase em placas é a forma mais comum (~80-90% dos casos).', score: 1, ref: 'Sociedade Brasileira de Dermatologia — Consenso Brasileiro de Psoríase' }
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Esclareceu de forma clara e enfática que a psoríase não é contagiosa', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Placas eritematosas bem delimitadas com descamação prateada espessa, tipicamente em superfícies extensoras (cotovelos, joelhos) e couro cabeludo; sinal de Auspitz positivo à raspagem metódica.', score: 2, ref: 'Consenso Brasileiro de Psoríase' },
-            { item: 'Acometimento ungueal (pitting, onicólise) e fenômeno de Koebner (lesões em áreas de trauma) são achados característicos.', score: 1, ref: 'Consenso Brasileiro de Psoríase' }
+            { item: 'Investigou fatores desencadeantes/agravantes (estresse, clima, trauma)', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Investigou sintomas articulares e rigidez matinal (rastreio de artrite psoriásica)', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Perguntou sobre história familiar de psoríase', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Explorou o impacto psicossocial e na qualidade de vida', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         },
         {
-          h: 'Comorbidades Associadas',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Artrite psoriásica em até 30% dos pacientes; síndrome metabólica, obesidade, dislipidemia, doença cardiovascular e impacto psicológico (ansiedade, depressão) são comorbidades frequentes.', score: 2, ref: 'Consenso Brasileiro de Psoríase' }
+            { item: 'Realizou inspeção completa da pele, incluindo couro cabeludo e unhas', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Pesquisou o sinal de Auspitz', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Realizou exame articular sumário', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Doença leve a moderada localizada: corticoides tópicos, análogos da vitamina D, associações tópicas.', score: 2, ref: 'Consenso Brasileiro de Psoríase' },
-            { item: 'Doença moderada a grave/extensa ou com artrite associada: fototerapia, terapia sistêmica convencional (metotrexato, acitretina, ciclosporina) ou agentes biológicos, conforme avaliação especializada.', score: 2, ref: 'Consenso Brasileiro de Psoríase' }
+            { item: 'Reconheceu o diagnóstico como clínico, sem exigir biópsia de rotina', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Solicitou rastreio de síndrome metabólica (glicemia, perfil lipídico)', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         },
         {
-          h: 'Orientações',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Reforçar o caráter não contagioso da doença e a importância do acompanhamento multidisciplinar (dermatologia, reumatologia quando indicado, suporte psicológico).', score: 1, ref: 'Consenso Brasileiro de Psoríase' }
+            { item: 'Prescreveu corticoide tópico associado a análogo da vitamina D', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Encaminhou para avaliação reumatológica diante dos sintomas articulares', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Acolheu o impacto psicossocial relatado pelo paciente', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         }
       ]
@@ -206,36 +213,44 @@ const dermatologia2 = [
     },
 
     instD: {
-      title: 'Hanseníase — Material de Estudo',
+      title: 'CHECKLIST — MANCHAS NA PELE COM PERDA DE SENSIBILIDADE (HANSENÍASE)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Doença infecciosa crônica causada pelo Mycobacterium leprae, de transmissão respiratória; o Brasil é o segundo país em número absoluto de casos novos no mundo, doença de notificação compulsória.', score: 1, ref: 'Ministério da Saúde — Protocolo Clínico e Diretrizes Terapêuticas da Hanseníase' }
+            { item: 'Abordou o diagnóstico com sensibilidade, reconhecendo o estigma histórico da doença', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Desconstruiu ativamente crenças equivocadas sobre "lepra"', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
         },
         {
-          h: 'Classificação Operacional',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Paucibacilar (PB): até 5 lesões cutâneas, baciloscopia negativa quando realizada. Multibacilar (MB): mais de 5 lesões e/ou baciloscopia positiva.', score: 2, ref: 'Ministério da Saúde — PCDT Hanseníase' }
+            { item: 'Caracterizou as lesões cutâneas (tempo de evolução, número, distribuição)', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Investigou contato domiciliar ou próximo com pessoa com hanseníase', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Perguntou sobre sintomas neurológicos (formigamento, fraqueza)', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
         },
         {
-          h: 'Sinais Cardinais',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Lesão(ões) de pele com alteração de sensibilidade, espessamento de nervo periférico associado a alterações sensitivas/motoras, e/ou baciloscopia positiva — a presença de qualquer um confirma o diagnóstico.', score: 2, ref: 'Ministério da Saúde — PCDT Hanseníase' }
+            { item: 'Realizou teste de sensibilidade térmica/dolorosa nas lesões', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Palpou os troncos nervosos periféricos buscando espessamento', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Avaliou força motora nas mãos', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
         },
         {
-          h: 'Tratamento (PQT-U)',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Esquema paucibacilar: rifampicina + dapsona por 6 meses. Esquema multibacilar: rifampicina + dapsona + clofazimina por 12 meses. Tratamento gratuito pelo SUS.', score: 2, ref: 'Ministério da Saúde — PCDT Hanseníase (esquema PQT-U atualizado)' }
+            { item: 'Solicitou baciloscopia de raspado intradérmico', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Classificou corretamente o caso como multibacilar', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
         },
         {
-          h: 'Vigilância e Prevenção de Incapacidades',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Avaliação dermatoneurológica de todos os contatos domiciliares e vacinação BCG conforme protocolo; graduação do grau de incapacidade física no diagnóstico e na alta, com encaminhamento para prevenção/reabilitação quando indicado.', score: 2, ref: 'Ministério da Saúde — PCDT Hanseníase' }
+            { item: 'Prescreveu PQT-U esquema multibacilar (rifampicina + dapsona + clofazimina, 12 meses)', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Notificou compulsoriamente o caso', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Orientou avaliação dermatoneurológica dos contatos domiciliares e BCG', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
         }
       ]
@@ -322,39 +337,43 @@ const dermatologia2 = [
     },
 
     instD: {
-      title: 'Escabiose (Sarna) — Material de Estudo',
+      title: 'CHECKLIST — COCEIRA NOTURNA ACOMETENDO TODA A FAMÍLIA (ESCABIOSE)',
       sections: [
         {
-          h: 'Definição e Transmissão',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Dermatose parasitária causada pelo ácaro Sarcoptes scabiei, transmitida por contato pele a pele prolongado ou fômites (roupas, roupas de cama) compartilhados.', score: 1, ref: 'Sociedade Brasileira de Dermatologia' }
+            { item: 'Apresentou-se pelo nome à paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Desconstruiu ativamente o estigma associado a "falta de higiene"', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Prurido intenso de piora noturna, com pápulas escoriadas e túneis escabióticos em espaços interdigitais, punhos, região periumbilical, sulco interglúteo — poupa face e couro cabeludo em adultos.', score: 2, ref: 'Sociedade Brasileira de Dermatologia' },
-            { item: 'Frequentemente acomete múltiplos contactantes domiciliares simultaneamente, dado o período de incubação e a transmissibilidade.', score: 1, ref: 'Sociedade Brasileira de Dermatologia' }
+            { item: 'Caracterizou o prurido (localização, padrão de piora noturna)', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Investigou sintomas semelhantes em outros membros do domicílio', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Perguntou sobre condições de moradia e compartilhamento de roupas de cama', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Diagnóstico predominantemente clínico; dermatoscopia ou exame microscópico de raspado cutâneo confirmam em casos de dúvida.', score: 1, ref: 'Sociedade Brasileira de Dermatologia' }
+            { item: 'Inspecionou espaços interdigitais, punhos, região periumbilical e sulco interglúteo', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Pesquisou ativamente túneis escabióticos', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO',
           items: [
-            { item: 'Permetrina 5% tópica é o tratamento de primeira linha; ivermectina oral é alternativa em casos extensos/crostosos ou dificuldade de adesão ao tópico.', score: 2, ref: 'Sociedade Brasileira de Dermatologia / Ministério da Saúde' },
-            { item: 'Tratamento simultâneo de TODOS os contactantes domiciliares, mesmo assintomáticos, é essencial para evitar reinfestação.', score: 2, ref: 'Sociedade Brasileira de Dermatologia' }
+            { item: 'Reconheceu o diagnóstico como predominantemente clínico, sem exigir exame confirmatório para tratar', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
         {
-          h: 'Medidas Complementares',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Lavagem de roupas pessoais e de cama em água quente, com secagem ao sol; itens não laváveis podem ser armazenados em saco plástico fechado por alguns dias.', score: 1, ref: 'Sociedade Brasileira de Dermatologia' },
-            { item: 'Prurido residual por até 2-4 semanas após tratamento eficaz é esperado (reação de hipersensibilidade), não indicando necessariamente falha terapêutica.', score: 1, ref: 'Sociedade Brasileira de Dermatologia' }
+            { item: 'Prescreveu permetrina 5% com orientação correta de aplicação e repetição', score: 1.5, ref: 'Sociedade Brasileira de Dermatologia / Ministério da Saúde' },
+            { item: 'Orientou tratamento simultâneo de TODOS os contactantes domiciliares', score: 1.5, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Orientou lavagem de roupas de cama e roupas pessoais em água quente', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Orientou que prurido residual até 2-4 semanas não indica falha terapêutica', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         }
       ]
