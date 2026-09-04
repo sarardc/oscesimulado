@@ -269,8 +269,7 @@
             try {
                 // IMPORTAÇÃO DINÂMICA: Só baixa a biblioteca se o aluno clicar aqui!
                 // Usando o CDN oficial recomendado pelo projeto WebLLM
-                const webllm = await import("https://esm.run/@mlc.ai/web-llm");
-                
+                const webllm = await import("https://cdn.jsdelivr.net/npm/@mlc.ai/web-llm@0.2.73/+esm");
                 statusIa.innerText = "A descarregar modelo de IA (apenas na 1ª vez)...";
 
                 engine = await webllm.CreateMLCEngine(modeloSelecionado, {
