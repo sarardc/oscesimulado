@@ -259,18 +259,43 @@
     if (overlay) overlay.addEventListener("click", fecharPainel);
 
     // ==========================================
-    // PARTE 2: A INTELIGÊNCIA ARTIFICIAL (LAZY LOAD)
+    // PARTE 2: A INTELIGÊNCIA ARTIFICIAL (LAZY LOAD COM FALLBACK EXTREMO)
     // ==========================================
     if (btnIniciar) {
         btnIniciar.addEventListener("click", async () => {
             btnIniciar.disabled = true;
-            statusIa.innerText = "Conectando ao servidor da IA...";
+            statusIa.innerText = "Buscando rotas de conexão com a IA...";
 
             try {
-                // IMPORTAÇÃO DINÂMICA: Só baixa a biblioteca se o aluno clicar aqui!
-                // Usando o CDN oficial recomendado pelo projeto WebLLM
-                const webllm = await import("https://cdn.jsdelivr.net/npm/@mlc.ai/web-llm@0.2.73/+esm");
-                statusIa.innerText = "A descarregar modelo de IA (apenas na 1ª vez)...";
+                let webllm = null;
+                
+                // LISTA DE ROTAS (Tentaremos uma por uma)
+                // A ordem é importante: do mais rápido para o mais garantido
+                const servidoresCDN = [
+                    "https://unpkg.com/@mlc.ai/web-llm@0.2.74/lib/index.js", // Acesso direto ao ficheiro (geralmente não falha)
+                    "https://esm.run/@mlc.ai/web-llm", // Oficial (esm.run)
+                    "https://cdn.jsdelivr.net/npm/@mlc.ai/web-llm/+esm", // JSDelivr
+                    "https://esm.sh/@mlc.ai/web-llm?bundle" // ESM.sh em modo bundle
+                ];
+
+                // Tenta cada CDN da lista
+                for (const url of servidoresCDN) {
+                    try {
+                        console.log("A tentar conectar via:", url);
+                        webllm = await import(url);
+                        console.log("✅ Sucesso ao importar de:", url);
+                        break; // Se funcionou, sai do loop imediatamente
+                    } catch (err) {
+                        console.warn(`❌ Falha na rota ${url}:`, err.message);
+                    }
+                }
+
+                // Se testámos todos os links e o 'webllm' continua vazio, é porque todos falharam
+                if (!webllm) {
+                    throw new Error("Não foi possível conectar a nenhum servidor CDN.");
+                }
+
+                statusIa.innerText = "A descarregar o motor de IA (aguarde, pode demorar alguns minutos)...";
 
                 engine = await webllm.CreateMLCEngine(modeloSelecionado, {
                     initProgressCallback: (report) => {
@@ -289,11 +314,11 @@
                         content: "Você é um paciente de 55 anos numa consulta de urgência. Queixa-se de dor no peito em aperto iniciada há 1 hora, que irradia para o braço esquerdo. É hipertenso e fumador. Responda apenas ao que for perguntado, de forma curta (máximo 2 frases) e com vocabulário leigo."
                     }
                 ];
-                window.speechSynthesis.getVoices(); // Prepara a voz
+                window.speechSynthesis.getVoices(); 
                 
             } catch (erro) {
-                console.error("Erro fatal na IA:", erro);
-                statusIa.innerHTML = `<span style="color: red;">Erro ao conectar. O servidor da IA pode estar bloqueado pela sua rede ou fora do ar.</span>`;
+                console.error("Erro fatal e definitivo na IA:", erro);
+                statusIa.innerHTML = `<span style="color: red;">Erro ao conectar. Tente desativar extensões bloqueadoras (AdBlock) ou testar noutra rede.</span>`;
                 btnIniciar.disabled = false;
             }
         });
