@@ -21,6 +21,7 @@ import emergNeuro from './data/emergNeuro.js';
 import ginecologia from './data/ginecologia.js';
 import obstetricia from './data/obstetricia.js';
 import dermatologia2 from './data/dermatologia2.js';
+import infectologia2 from './data/infectologia2.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -51,6 +52,7 @@ const allStations = [
   ...ginecologia,
   ...obstetricia,
   ...dermatologia2,
+  ...infectologia2,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,
