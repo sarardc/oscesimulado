@@ -39,3 +39,27 @@ function openStation(id) {
   pepScores = {};
 }
 
+// Listeners abaixo substituem os antigos onclick=""/onchange="" inline —
+// bloqueados pela Content-Security-Policy (script-src) sem 'unsafe-inline'.
+// Estes elementos são estáticos no HTML (sempre existem quando este script
+// roda, já que é carregado ao final do <body>).
+document.querySelector('.back-btn').addEventListener('click', goHome);
+document.getElementById('timer-toggle-btn').addEventListener('click', toggleTimer);
+document.getElementById('timer-reset-btn').addEventListener('click', resetTimer);
+
+// Delegação de clique nas abas (A/B/C/D...): o container .tabs-nav é
+// reaproveitado entre estações (buildTabsNav só substitui o innerHTML dele,
+// em js/ui.js), então um único listener aqui cobre tanto os botões estáticos
+// do HTML quanto os gerados dinamicamente.
+document.querySelector('.tabs-nav').addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if (btn && btn.dataset.tabIdx !== undefined) showTab(Number(btn.dataset.tabIdx));
+});
+
+// Delegação para os checkboxes do checklist/PEP (gerados dinamicamente em
+// renderPepTable, js/ui.js, e recriados a cada estação aberta).
+document.addEventListener('change', (e) => {
+  const checkbox = e.target.closest('.pep-checkbox');
+  if (checkbox) updatePepScore(Number(checkbox.dataset.idx), Number(checkbox.dataset.score));
+});
+
