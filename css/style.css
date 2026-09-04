@@ -253,6 +253,7 @@
   .pill-vascular                 { border-color: #C62828; color: #C62828; }
   .pill-medicina-legal           { border-color: #546E7A; color: #546E7A; }
   .pill-ginecologia               { border-color: #AD1457; color: #AD1457; }
+  .pill-obstetricia               { border-color: #8E24AA; color: #8E24AA; }
   .pill-level-simples  { border-color: #69db7c; color: #69db7c; }
   .pill-level-moderado { border-color: #ffd43b; color: #ffd43b; }
   .pill-level-complexo { border-color: #ff6b6b; color: #ff6b6b; }
@@ -760,6 +761,7 @@
   .filter-btn.tema-vascular.active                  { border-color: #C62828; color: #C62828; }
   .filter-btn.tema-medicina-legal.active            { border-color: #546E7A; color: #546E7A; }
   .filter-btn.tema-ginecologia.active               { border-color: #AD1457; color: #AD1457; }
+  .filter-btn.tema-obstetricia.active               { border-color: #8E24AA; color: #8E24AA; }
 
   .filter-btn.tema-nefrologia:hover           { border-color: #38d9a9; color: #38d9a9; }
   .filter-btn.tema-urologia:hover             { border-color: #4f9cf9; color: #4f9cf9; }
@@ -787,6 +789,7 @@
   .filter-btn.tema-vascular:hover                  { border-color: #C62828; color: #C62828; }
   .filter-btn.tema-medicina-legal:hover            { border-color: #546E7A; color: #546E7A; }
   .filter-btn.tema-ginecologia:hover               { border-color: #AD1457; color: #AD1457; }
+  .filter-btn.tema-obstetricia:hover               { border-color: #8E24AA; color: #8E24AA; }
 
   .home-main { flex: 1; min-width: 0; }
 
