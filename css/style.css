@@ -942,14 +942,20 @@
     visibility: visible;
 }
 
-/* O Painel Retrátil (Drawer) */
+/* O Painel Retrátil (Drawer)
+   Cores fixas (não seguem o tema claro/escuro do resto do site): fundo
+   branco gelo e texto escuro, para garantir legibilidade sempre. */
 .ia-drawer {
     position: fixed;
     top: 0;
     right: calc(-1 * var(--ia-drawer-w)); /* Fica fora da tela (escondido) */
     width: var(--ia-drawer-w);
     height: 100vh;
-    background-color: #f8f9fa;
+    background-color: #eef6f8; /* branco gelo */
+    --text: #1a1a1a;
+    --text2: #333333;
+    --text3: #555555;
+    color: var(--text);
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     z-index: 1001;
     transition: right 0.3s ease-in-out; /* Animação de deslizar */
@@ -1022,8 +1028,8 @@
     display: flex; flex-direction: column; gap: 10px;
 }
 .mensagem { padding: 8px 12px; border-radius: 12px; max-width: 85%; word-wrap: break-word; font-size: 0.95rem; }
-.medico { background-color: #6d75cb; align-self: flex-end; border-bottom-right-radius: 0; }
-.paciente { background-color: #dc6ef2; align-self: flex-start; border-bottom-left-radius: 0; }
+.medico { background-color: #6d75cb; color: #ffffff; align-self: flex-end; border-bottom-right-radius: 0; }
+.paciente { background-color: #dc6ef2; color: #ffffff; align-self: flex-start; border-bottom-left-radius: 0; }
 .sistema {
     background-color: #f1f3f5; color: #333; align-self: center; max-width: 95%;
     border: 1px dashed #ced4da; font-size: 0.85rem; white-space: pre-wrap;
