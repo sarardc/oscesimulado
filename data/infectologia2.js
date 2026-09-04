@@ -84,31 +84,44 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Dengue — Material de Estudo',
+      title: 'CHECKLIST — FEBRE ALTA COM DOR ABDOMINAL E VÔMITOS (DENGUE COM SINAIS DE ALARME)',
       sections: [
         {
-          h: 'Classificação de Risco (Ministério da Saúde)',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Grupo A: sem sinais de alarme, sem comorbidades — manejo ambulatorial com hidratação oral. Grupo B: sangramento de pele espontâneo ou induzido, sem sinais de alarme — observação até resultado de exames.', score: 2, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
-            { item: 'Grupo C: presença de sinais de alarme — internação obrigatória para hidratação venosa e observação. Grupo D: sinais de choque, sangramento grave ou disfunção de órgãos — internação em leito de UTI.', score: 2, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Explicou por que a melhora da febre não significa melhora do quadro', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
           ]
         },
         {
-          h: 'Sinais de Alarme',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Dor abdominal intensa e contínua, vômitos persistentes, acúmulo de líquidos (derrame pleural, ascite), sangramento de mucosa, letargia/irritabilidade, hepatomegalia dolorosa, aumento progressivo do hematócrito com queda rápida de plaquetas.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Investigou dia de início e evolução da febre', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Pesquisou ativamente sinais de alarme (dor abdominal, vômitos persistentes, sangramentos)', score: 1.0, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Perguntou sobre uso de AINEs/AAS', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
           ]
         },
         {
-          h: 'Fase Crítica',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Coincide tipicamente com a defervescência (3º-7º dia de doença), período de maior risco de extravasamento plasmático e evolução para formas graves.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Aferiu sinais vitais com atenção à perfusão periférica', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Realizou a prova do laço', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Avaliou o nível de consciência (letargia)', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Hidratação (oral nos grupos A/B, venosa vigorosa nos grupos C/D conforme protocolo); paracetamol para febre/dor; AINEs e ácido acetilsalicílico são CONTRAINDICADOS pelo risco de sangramento.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou hemograma com hematócrito e plaquetas', score: 1.0, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Classificou corretamente como Grupo C (sinais de alarme)', score: 1.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Indicou internação para hidratação venosa vigorosa', score: 1.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Suspendeu/orientou não usar AINEs ou AAS', score: 1.0, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' },
+            { item: 'Orientou sinais de piora para dengue grave (Grupo D)', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Dengue' }
           ]
         }
       ]
@@ -197,31 +210,44 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Sífilis Adquirida — Material de Estudo',
+      title: 'CHECKLIST — FERIDA GENITAL INDOLOR (SÍFILIS ADQUIRIDA)',
       sections: [
         {
-          h: 'Estadiamento Clínico',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Primária: cancro duro (úlcera única, indolor, base endurecida) com linfadenopatia regional não dolorosa. Secundária: exantema (inclui palmas e plantas), lesões mucosas, condiloma plano. Latente: assintomática. Terciária: acometimento cardiovascular, neurológico (neurossífilis), gomas sifilíticas.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Conduziu a história sexual sem julgamento', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Esclareceu que a sífilis tem cura, desconstruindo associação com doença incurável', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Fluxograma com teste treponêmico (rápido ou FTA-ABS) e teste não treponêmico (VDRL/RPR); ambos reagentes confirmam o diagnóstico e a titulação do não treponêmico orienta seguimento.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Caracterizou a lesão genital (dor, número, tempo de evolução)', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Investigou história sexual detalhada (parceiros, uso de preservativo)', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Perguntou sobre episódios semelhantes anteriores', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Sífilis recente (primária, secundária, latente recente <1 ano): penicilina G benzatina 2,4 milhões UI IM, dose única. Sífilis tardia/duração ignorada: mesma dose semanal por 3 semanas.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'A penicilina é a única opção segura e eficaz na gestação; alergia confirmada exige dessensibilização nesse contexto.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Examinou a genitália caracterizando bordas e base da úlcera', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Palpou linfonodos inguinais', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Seguimento e Vigilância',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'VDRL de seguimento (queda de pelo menos 2 diluições) confirma resposta terapêutica adequada; notificação compulsória e tratamento de parceiros são obrigatórios.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Solicitou teste treponêmico e VDRL antes de tratar', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Ofereceu testagem para HIV, hepatites B e C', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Prescreveu penicilina G benzatina no esquema correto para sífilis recente', score: 1.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Notificou compulsoriamente o caso', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Orientou convocação e tratamento de parceiros sexuais', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Agendou VDRL de seguimento', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         }
       ]
@@ -309,36 +335,41 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Infecção pelo HIV — Material de Estudo',
+      title: 'CHECKLIST — RETORNO PARA RESULTADO DE TESTE RÁPIDO DE HIV REAGENTE',
       sections: [
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 1 — COMUNICAÇÃO DE MÁS NOTÍCIAS',
           items: [
-            { item: 'Fluxograma do Ministério da Saúde exige dois testes com metodologias diferentes (ex.: dois testes rápidos de fabricantes distintos, ou teste rápido + teste laboratorial) para confirmação diagnóstica.', score: 2, ref: 'Ministério da Saúde — PCDT Manejo da Infecção pelo HIV em Adultos' }
+            { item: 'Comunicou o diagnóstico em ambiente privado, com tempo adequado', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Desconstruiu concepções ultrapassadas sobre gravidade/mortalidade da doença', score: 1.0, ref: 'Ministério da Saúde — PCDT HIV' }
           ]
         },
         {
-          h: 'Estratégia "Testar e Tratar"',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Recomenda-se início imediato da TARV após confirmação diagnóstica, independentemente da contagem de CD4+ ou presença de sintomas, dado o benefício em morbimortalidade e na redução da transmissão.', score: 2, ref: 'Ministério da Saúde — PCDT HIV' }
+            { item: 'Investigou história de exposição de risco e parcerias sexuais atuais', score: 0.5, ref: 'Ministério da Saúde — PCDT HIV' },
+            { item: 'Perguntou sobre sintomas sugestivos de doenças oportunistas', score: 0.5, ref: 'Ministério da Saúde — PCDT HIV' }
           ]
         },
         {
-          h: 'Conceito "Indetectável = Intransmissível" (I=I)',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Pessoas em uso regular de TARV com carga viral indetectável sustentada não transmitem o HIV por via sexual — conceito fundamental para reduzir estigma e orientar prevenção.', score: 2, ref: 'Ministério da Saúde / consenso científico internacional' }
+            { item: 'Realizou exame geral buscando sinais de doenças oportunistas', score: 0.5, ref: 'Ministério da Saúde — PCDT HIV' }
           ]
         },
         {
-          h: 'Seguimento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Monitorização com carga viral e CD4+ periódicos após início da TARV; rastreio de coinfecções (sífilis, hepatites, tuberculose) e vacinação atualizada fazem parte do seguimento.', score: 1, ref: 'Ministério da Saúde — PCDT HIV' }
+            { item: 'Confirmou o diagnóstico com um 2º teste de metodologia diferente antes de comunicar definitivamente', score: 1.5, ref: 'Ministério da Saúde — PCDT HIV' },
+            { item: 'Solicitou CD4+, carga viral e rastreio de coinfecções (sífilis, hepatites)', score: 1.0, ref: 'Ministério da Saúde — PCDT HIV' }
           ]
         },
         {
-          h: 'Prevenção Combinada',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Inclui uso de preservativos, PrEP (profilaxia pré-exposição) para pessoas com risco aumentado, PEP (profilaxia pós-exposição) e testagem regular como estratégias complementares.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Iniciou TARV imediatamente, independente da contagem de CD4+ ("testar e tratar")', score: 1.5, ref: 'Ministério da Saúde — PCDT HIV' },
+            { item: 'Explicou o conceito "Indetectável = Intransmissível" (I=I)', score: 1.0, ref: 'Ministério da Saúde — PCDT HIV' },
+            { item: 'Abordou a testagem do parceiro fixo e ofereceu suporte psicológico', score: 1.0, ref: 'Ministério da Saúde — PCDT HIV' }
           ]
         }
       ]
@@ -432,36 +463,42 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Leptospirose — Material de Estudo',
+      title: 'CHECKLIST — FEBRE, MIALGIA E OLHOS AVERMELHADOS APÓS ENCHENTE (LEPTOSPIROSE)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Zoonose bacteriana causada por espécies de Leptospira, transmitida pelo contato com água/solo contaminados pela urina de roedores infectados; incidência aumenta em períodos de enchentes.', score: 1, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
+            { item: 'Explicou a relação entre a exposição ocupacional e a doença, sem culpabilizar o paciente', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Fase precoce: febre, mialgia (especialmente em panturrilhas), cefaleia, sufusão conjuntival. Fase tardia (forma grave/Síndrome de Weil): icterícia rubínica, insuficiência renal aguda, diátese hemorrágica.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Investigou exposição a água/lama de enchente', score: 1.0, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' },
+            { item: 'Perguntou ativamente sobre sangramentos e dispneia (sinais de gravidade)', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Investigou outros casos entre colegas de trabalho', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         },
         {
-          h: 'Complicações Graves',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Hemorragia pulmonar maciça é a principal causa de óbito; insuficiência renal aguda frequentemente não oligúrica na fase inicial.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Identificou sufusão conjuntival e mialgia em panturrilhas', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Avaliou icterícia e hepatomegalia', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Diagnóstico clínico-epidemiológico deve guiar o início do tratamento; sorologia IgM (ELISA) ou PCR confirmam, mas não devem atrasar a conduta em casos graves.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou função renal, CPK, bilirrubinas e plaquetas', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Reconheceu o quadro clínico-epidemiológico sem aguardar sorologia para agir', score: 1.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Formas leves: doxiciclina ou amoxicilina oral. Formas graves: penicilina cristalina ou ceftriaxona intravenosa, com internação e suporte hemodinâmico/renal.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Iniciou antibioticoterapia (penicilina cristalina/ceftriaxona) sem aguardar confirmação sorológica', score: 1.5, ref: 'Ministério da Saúde' },
+            { item: 'Indicou internação hospitalar diante dos sinais de gravidade', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Notificou compulsoriamente o caso', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         }
       ]
@@ -552,31 +589,42 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Chikungunya — Material de Estudo',
+      title: 'CHECKLIST — FEBRE E DOR ARTICULAR INCAPACITANTE (CHIKUNGUNYA)',
       sections: [
         {
-          h: 'Definição e Transmissão',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Arbovirose transmitida pelo Aedes aegypti e Aedes albopictus, com quadro clínico caracterizado por artralgia/artrite intensa e frequentemente incapacitante.', score: 1, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Chikungunya' }
+            { item: 'Explicou de forma didática a diferença entre chikungunya e dengue', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Chikungunya' },
+            { item: 'Acolheu a preocupação da paciente quanto ao impacto no trabalho manual', score: 0.5, ref: 'CFM Res. 2.217/2018' }
           ]
         },
         {
-          h: 'Fases Clínicas',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Fase aguda (até 14 dias): febre alta de início súbito e poliartralgia/artrite intensa, simétrica, predominando em pequenas articulações. Fase subaguda (até 3 meses) e crônica (>3 meses): persistência de dor articular em parcela significativa dos pacientes.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Caracterizou a artralgia (simetria, intensidade, impacto funcional)', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Chikungunya' },
+            { item: 'Investigou contexto epidemiológico (casos na vizinhança)', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Diagnóstico Diferencial com Dengue',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Artralgia intensa e incapacitante é mais típica de chikungunya; leucopenia e plaquetopenia acentuadas são mais características de dengue. Confirmação por sorologia/NS1 específicos é essencial dada a circulação simultânea das arboviroses.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Examinou as articulações avaliando edema e simetria', score: 0.5, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Chikungunya' },
+            { item: 'Inspecionou a pele buscando exantema', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Sintomático: analgésicos e AINEs (após exclusão razoável de dengue); paracetamol preferencial enquanto houver dúvida diagnóstica. Não há tratamento antiviral específico.', score: 2, ref: 'Ministério da Saúde' },
-            { item: 'Forma crônica com artrite persistente pode requerer avaliação reumatológica e fisioterapia.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou sorologia/teste específico para chikungunya', score: 1.0, ref: 'Ministério da Saúde — Guia de Manejo Clínico de Chikungunya' },
+            { item: 'Solicitou exames para diferenciar de dengue (NS1, hemograma)', score: 1.0, ref: 'Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Evitou AINEs até exclusão razoável de dengue, preferindo paracetamol', score: 1.5, ref: 'Ministério da Saúde' },
+            { item: 'Orientou sobre possível evolução para forma subaguda/crônica', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Orientou repouso articular na fase aguda', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         }
       ]
@@ -667,37 +715,41 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Malária — Material de Estudo',
+      title: 'CHECKLIST — FEBRE COM CALAFRIOS EM CICLOS APÓS VIAGEM À AMAZÔNIA (MALÁRIA)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Doença parasitária transmitida pela picada do mosquito Anopheles; no Brasil, é endêmica principalmente na região amazônica, sendo o Plasmodium vivax a espécie mais prevalente.', score: 1, ref: 'Ministério da Saúde — Guia de Tratamento da Malária no Brasil' }
+            { item: 'Explicou de forma didática o ciclo da doença e o padrão cíclico da febre', score: 0.5, ref: 'Ministério da Saúde — Guia de Tratamento da Malária' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Febre cíclica com calafrios seguidos de sudorese profusa (acesso malárico); periodicidade de 48h (febre terçã) para P. vivax e P. falciparum, e 72h (febre quartã) para P. malariae.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Investigou história de viagem recente a área endêmica', score: 1.0, ref: 'Ministério da Saúde — Guia de Tratamento da Malária' },
+            { item: 'Perguntou sobre uso de quimioprofilaxia antes da viagem', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Caracterizou o padrão cíclico da febre (calafrio-febre-sudorese)', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Gota espessa é o exame padrão-ouro, permitindo identificação da espécie; testes rápidos são complementares.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Palpou o abdome buscando esplenomegalia', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Avaliou icterícia/palidez', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'P. vivax: cloroquina associada a primaquina (cura radical, prevenindo recaídas por hipnozoítos hepáticos). P. falciparum: esquemas combinados com derivados de artemisinina (não cloroquina, dado o padrão de resistência).', score: 2, ref: 'Ministério da Saúde — Guia de Tratamento da Malária' },
-            { item: 'Investigar deficiência de G6PD antes do uso de primaquina, quando possível, pelo risco de hemólise.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou gota espessa com identificação da espécie', score: 1.5, ref: 'Ministério da Saúde — Guia de Tratamento da Malária' }
           ]
         },
         {
-          h: 'Prevenção',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Quimioprofilaxia para viajantes a áreas de alto risco, uso de repelentes e mosquiteiros; notificação compulsória de todos os casos.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Prescreveu cloroquina associada a primaquina para P. vivax (esquema completo)', score: 1.5, ref: 'Ministério da Saúde — Guia de Tratamento da Malária' },
+            { item: 'Considerou investigar deficiência de G6PD antes da primaquina', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Notificou compulsoriamente o caso e orientou prevenção para viagens futuras', score: 1.0, ref: 'Ministério da Saúde' }
           ]
         }
       ]
@@ -788,37 +840,41 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Doença de Chagas Aguda — Material de Estudo',
+      title: 'CHECKLIST — FEBRE PROLONGADA E INCHAÇO NO OLHO APÓS AÇAÍ (DOENÇA DE CHAGAS AGUDA)',
       sections: [
         {
-          h: 'Definição e Vias de Transmissão',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Doença causada pelo Trypanosoma cruzi; transmissão vetorial clássica (triatomíneo/"barbeiro") e transmissão oral por alimentos contaminados (surtos crescentes associados a açaí na região amazônica) são as principais vias no Brasil atualmente.', score: 2, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
+            { item: 'Explicou a relação entre o alimento consumido e a doença, desconstruindo a ideia de "alergia"', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         },
         {
-          h: 'Quadro Clínico da Fase Aguda',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Sinal de Romaña (edema bipalpebral unilateral, porta de entrada ocular) ou chagoma de inoculação cutânea; febre prolongada, linfadenopatia, hepatoesplenomegalia.', score: 2, ref: 'Ministério da Saúde' },
-            { item: 'Miocardite aguda e, mais raramente, meningoencefalite são complicações possíveis, especialmente em surtos de transmissão oral com maior carga parasitária.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Investigou história alimentar (consumo de açaí artesanal)', score: 1.0, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' },
+            { item: 'Perguntou sobre outros casos entre familiares que compartilharam o alimento', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Investigou sintomas cardíacos (palpitações, dispneia)', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Pesquisa direta do parasita no sangue (exame a fresco ou métodos de concentração) é o método de escolha na fase aguda, pela alta parasitemia circulante; sorologia tem maior utilidade na fase crônica.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Identificou o sinal de Romaña (edema bipalpebral unilateral)', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Realizou ausculta cardíaca cuidadosa', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Benznidazol é o tratamento de escolha, com maior eficácia quando iniciado precocemente na fase aguda.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou pesquisa direta do parasita no sangue (método de escolha na fase aguda)', score: 1.5, ref: 'Ministério da Saúde' },
+            { item: 'Solicitou ECG para rastrear miocardite aguda', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Vigilância e Prevenção',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Notificação compulsória obrigatória; surtos de transmissão oral exigem investigação e acompanhamento de todos os expositores ao mesmo alimento, e reforço de medidas de processamento seguro de polpas de frutas artesanais.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Iniciou benznidazol precocemente', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Notificou o surto e orientou avaliação dos demais familiares expostos', score: 1.0, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         }
       ]
@@ -907,36 +963,42 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Toxoplasmose Gestacional — Material de Estudo',
+      title: 'CHECKLIST — SOROLOGIA DE TOXOPLASMOSE COM IgM REAGENTE NO PRÉ-NATAL',
       sections: [
         {
-          h: 'Definição e Transmissão',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Infecção pelo protozoário Toxoplasma gondii, adquirida por consumo de carne crua/mal cozida, contato com fezes de gato (hospedeiro definitivo) ou manuseio de terra/água contaminadas.', score: 1, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Comunicou o resultado sem gerar pânico desproporcional', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Esclareceu que a interrupção da gestação não é indicada apenas pela sorologia materna', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico Sorológico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'IgM e IgG reagentes exigem teste de avidez de IgG: avidez alta exclui infecção nos últimos 3-4 meses; avidez baixa é compatível com infecção recente, reforçando risco gestacional.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Investigou contato com gatos/caixa de areia', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou consumo de carne crua/mal passada e manuseio de terra', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Perguntou sobre sintomas nas últimas semanas (linfadenopatia, mal-estar)', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Risco de Transmissão Vertical',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Risco de transmissão aumenta com a idade gestacional (maior no 3º trimestre), mas a gravidade das sequelas fetais é maior quanto mais precoce a infecção (maior risco no 1º trimestre).', score: 2, ref: 'FEBRASGO' }
+            { item: 'Avaliou linfonodos cervicais', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico de Infecção Fetal',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'PCR para Toxoplasma gondii no líquido amniótico (amniocentese, geralmente após 18 semanas) confirma ou exclui infecção fetal; USG seriada rastreia sinais sugestivos (calcificações cerebrais, ventriculomegalia).', score: 2, ref: 'FEBRASGO' }
+            { item: 'Solicitou teste de avidez de IgG para datar a infecção', score: 1.5, ref: 'FEBRASGO' },
+            { item: 'Solicitou USG obstétrica seriada para rastrear sinais de infecção fetal', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Espiramicina reduz risco de transmissão vertical na suspeita/confirmação de infecção materna sem confirmação de infecção fetal. Esquema combinado (sulfadiazina + pirimetamina + ácido folínico) indicado quando há infecção fetal confirmada ou fortemente suspeita.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Iniciou espiramicina prontamente diante da suspeita de infecção aguda', score: 1.5, ref: 'FEBRASGO / Ministério da Saúde' },
+            { item: 'Encaminhou para investigação de acometimento fetal (amniocentese/PCR)', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Orientou medidas preventivas (manuseio de caixa de areia, carnes, jardinagem)', score: 0.5, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -1028,37 +1090,42 @@ const infectologia2 = [
     },
 
     instD: {
-      title: 'Esquistossomose Mansônica — Material de Estudo',
+      title: 'CHECKLIST — DIARREIA CRÔNICA E BARRIGA D’ÁGUA (ESQUISTOSSOMOSE MANSÔNICA)',
       sections: [
         {
-          h: 'Definição e Ciclo de Transmissão',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Doença parasitária causada pelo Schistosoma mansoni, transmitida pelo contato com água doce contaminada por cercárias liberadas por caramujos do gênero Biomphalaria; endêmica em diversas regiões do Brasil.', score: 1, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
+            { item: 'Explicou a relação entre a exposição à água do rio e a doença hepática desenvolvida', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' },
+            { item: 'Desconstruiu o medo de câncer expresso pelo paciente', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Formas Clínicas',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Fase aguda (febre de Katayama): febre, diarreia, hepatoesplenomegalia dolorosa, eosinofilia, geralmente semanas após exposição intensa. Fase crônica: forma intestinal/hepatointestinal (mais comum) e forma hepatoesplênica (mais grave, com fibrose periportal e hipertensão portal).', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Investigou exposição prolongada a águas doces em área endêmica', score: 1.0, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' },
+            { item: 'Investigou episódios de hematêmese/sangramento digestivo', score: 1.0, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Complicações da Forma Hepatoesplênica',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Hipertensão portal pré-sinusoidal por fibrose periportal (fibrose de Symmers), levando a varizes esofágicas (risco de hemorragia digestiva alta grave), esplenomegalia e hiperesplenismo.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Avaliou ascite (macicez móvel) e circulação colateral', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Palpou hepatoesplenomegalia', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Exame parasitológico de fezes (Kato-Katz) é o método padrão; ultrassonografia abdominal avalia o grau de fibrose periportal; endoscopia digestiva alta rastreia varizes esofágicas na forma hepatoesplênica.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou exame parasitológico de fezes (Kato-Katz)', score: 1.5, ref: 'Ministério da Saúde' },
+            { item: 'Solicitou endoscopia digestiva alta para rastrear varizes esofágicas', score: 1.0, ref: 'Ministério da Saúde' }
           ]
         },
         {
-          h: 'Tratamento e Controle',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Praziquantel em dose única é o tratamento específico para todas as formas da doença; manejo especializado é necessário para complicações da hipertensão portal já instaladas.', score: 2, ref: 'Ministério da Saúde' },
-            { item: 'Vigilância epidemiológica e educação em saúde sobre exposição a águas contaminadas são pilares do controle em áreas endêmicas.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Prescreveu praziquantel em dose única', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Encaminhou para manejo especializado da hipertensão portal', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Considerou a dimensão comunitária do achado em área endêmica', score: 0.5, ref: 'Ministério da Saúde — Guia de Vigilância em Saúde' }
           ]
         }
       ]
