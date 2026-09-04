@@ -24,6 +24,7 @@ import dermatologia2 from './data/dermatologia2.js';
 import infectologia2 from './data/infectologia2.js';
 import pneumologia2 from './data/pneumologia2.js';
 import medicinaIntensiva from './data/medicinaintensiva.js';
+import medicinaLegal from './data/medicinalegal.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -57,6 +58,7 @@ const allStations = [
   ...infectologia2,
   ...pneumologia2,
   ...medicinaIntensiva,
+  ...medicinaLegal,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,
