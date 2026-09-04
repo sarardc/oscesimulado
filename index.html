@@ -159,11 +159,7 @@
         <div class="status-bar" id="status-ia">Insira sua chave acima para habilitar o paciente.</div>
 
         <!-- Área do Chat -->
-        <div class="chat-box" id="chat-box" style="display: none;">
-            <div class="mensagem paciente">
-                Olá, Doutor(a). Estou sentindo uma dor muito forte no peito. Pode me ajudar?
-            </div>
-        </div>
+        <div class="chat-box" id="chat-box" style="display: none;"></div>
 
         <!-- Controles de Texto e Voz -->
         <div class="controles-ia">
@@ -172,15 +168,36 @@
                 <button id="btn-enviar-texto" class="btn-enviar" title="Enviar mensagem">➤</button>
             </div>
             <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Falar</button>
-            <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
         </div>
+
+        <!-- Solicitação de Exames: devolve somente o que consta na aba B do caso -->
+        <div class="painel-secao" id="painel-exames" style="display: none;">
+            <button type="button" class="btn-toggle-secao" id="btn-toggle-exames">🧪 Solicitar Exames</button>
+            <div class="secao-corpo" id="secao-exames-corpo" hidden>
+                <p class="dica-secao">Descreva os exames físicos/complementares que deseja solicitar. Você recebe de volta apenas os achados cadastrados nesta estação.</p>
+                <textarea id="input-pedido-exames" class="textarea-ia" rows="2" placeholder="Ex: hemograma completo, glicemia, ausculta cardíaca..."></textarea>
+                <button id="btn-pedir-exames" class="btn-ia primario">Solicitar</button>
+                <div id="resultado-exames" class="resultado-secao"></div>
+            </div>
+        </div>
+
+        <!-- Conduta/tratamento também pode ser registrada em texto, além de falado ao paciente -->
+        <div class="painel-secao" id="painel-conduta" style="display: none;">
+            <button type="button" class="btn-toggle-secao" id="btn-toggle-conduta">💊 Registrar Conduta por Escrito</button>
+            <div class="secao-corpo" id="secao-conduta-corpo" hidden>
+                <p class="dica-secao">Prefere escrever a conduta/tratamento em vez de falar com o paciente? Descreva aqui — ela entra na conversa e na avaliação final.</p>
+                <textarea id="input-conduta-texto" class="textarea-ia" rows="2" placeholder="Ex: Vou solicitar internação, iniciar AAS 300mg e encaminhar para..."></textarea>
+                <button id="btn-enviar-conduta" class="btn-ia primario">Enviar Conduta</button>
+            </div>
+        </div>
+
+        <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
 
         <!-- Velocidade da voz do paciente -->
         <div class="controle-velocidade" id="controle-velocidade" style="display: none;">
             <label for="input-velocidade-voz">🔊 Velocidade da voz: <span id="valor-velocidade-voz">1.0x</span></label>
             <input type="range" id="input-velocidade-voz" min="1" max="2" step="0.1" value="1">
         </div>
-
 
         <!-- Área de Avaliação (Debriefing) -->
         <div id="area-debriefing" class="area-debriefing" style="display: none;">
@@ -230,7 +247,10 @@
 <script src="js/ui.js"></script>
 <script src="js/app.js"></script>
 
-<!-- SCRIPT DA IA IA-->
+<!-- CONFIGURAÇÃO E CHAMADAS À API GEMINI -->
+<script src="js/gemini.js"></script>
+
+<!-- SCRIPT DA IA: liga a UI do painel lateral ao GeminiOSCE (js/gemini.js) -->
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -244,7 +264,7 @@
         const inputApiKey = document.getElementById("input-api-key");
         const btnSalvarChave = document.getElementById("btn-salvar-chave");
         const statusChave = document.getElementById("status-chave");
-        
+
         const statusIa = document.getElementById("status-ia");
         const controleVelocidade = document.getElementById("controle-velocidade");
         const inputVelocidadeVoz = document.getElementById("input-velocidade-voz");
@@ -256,13 +276,32 @@
         const btnFalar = document.getElementById("btn-falar");
         const btnFinalizar = document.getElementById("btn-finalizar");
 
+        const painelExames = document.getElementById("painel-exames");
+        const btnToggleExames = document.getElementById("btn-toggle-exames");
+        const secaoExamesCorpo = document.getElementById("secao-exames-corpo");
+        const inputPedidoExames = document.getElementById("input-pedido-exames");
+        const btnPedirExames = document.getElementById("btn-pedir-exames");
+        const resultadoExames = document.getElementById("resultado-exames");
+
+        const painelConduta = document.getElementById("painel-conduta");
+        const btnToggleConduta = document.getElementById("btn-toggle-conduta");
+        const secaoCondutaCorpo = document.getElementById("secao-conduta-corpo");
+        const inputCondutaTexto = document.getElementById("input-conduta-texto");
+        const btnEnviarConduta = document.getElementById("btn-enviar-conduta");
+
         const areaDebriefing = document.getElementById("area-debriefing");
         const resultadoAvaliacao = document.getElementById("resultado-avaliacao");
         const btnQuiz = document.getElementById("btn-quiz");
         const btnResumo = document.getElementById("btn-resumo");
         const conteudoEstudo = document.getElementById("conteudo-estudo");
 
-        let historicoConsulta = [];
+        let historicoConsulta = [];   // contents trocados com o paciente simulado
+        let examesSolicitados = [];   // {pedido, resultado} feitos nesta consulta
+        let estacaoCarregadaId = null; // id da estação cujo histórico está carregado
+
+        function estacaoAtual() {
+            return window.currentStation || null;
+        }
 
         // Velocidade da voz do paciente (1x a 2x), lembrada entre sessões
         let velocidadeVoz = parseFloat(localStorage.getItem("velocidade_voz")) || 1;
@@ -296,25 +335,40 @@
         if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
         if (overlay) overlay.addEventListener("click", fecharPainel);
 
+        // Painéis retráteis (Solicitar Exames / Registrar Conduta)
+        function ligarToggle(botao, corpo) {
+            botao.addEventListener("click", () => {
+                corpo.hidden = !corpo.hidden;
+            });
+        }
+        ligarToggle(btnToggleExames, secaoExamesCorpo);
+        ligarToggle(btnToggleConduta, secaoCondutaCorpo);
+
         // 2. Gerenciamento da Chave do Aluno
         function checarChaveSalva() {
-            const chaveSalva = localStorage.getItem("gemini_api_key");
+            const chaveSalva = GeminiOSCE.getApiKey();
             if (chaveSalva) {
                 secaoConfig.style.display = "none";
-                statusIa.innerText = "Paciente pronto! Digite ou toque no microfone para falar.";
                 controleVelocidade.style.display = "block";
                 chatBox.style.display = "block";
                 inputRowTexto.style.display = "flex";
                 btnFalar.style.display = ReconhecimentoVoz ? "block" : "none";
                 btnFinalizar.style.display = "block";
+                painelExames.style.display = "block";
+                painelConduta.style.display = "block";
 
-                // Inicializa histórico do paciente virtual
-                historicoConsulta = [
-                    {
-                        role: "user",
-                        parts: [{ text: "Contexto do sistema: Você é um paciente de 55 anos numa consulta de urgência OSCE. Queixa-se de dor no peito em aperto iniciada há 1 hora. Responda de forma curta (máximo 2 frases), realista e com vocabulário leigo." }]
-                    }
-                ];
+                const estacao = estacaoAtual();
+                if (!estacao) {
+                    statusIa.innerText = "Abra uma estação para iniciar a simulação com o paciente.";
+                    return;
+                }
+
+                // Só reinicia a consulta se for uma estação diferente da última carregada
+                // (evita perder o histórico ao só reabrir/fechar o painel)
+                if (estacaoCarregadaId !== estacao.id) {
+                    estacaoCarregadaId = estacao.id;
+                    iniciarConsulta(estacao);
+                }
             } else {
                 secaoConfig.style.display = "block";
                 statusIa.innerText = "Insira sua chave acima para habilitar o paciente.";
@@ -323,13 +377,46 @@
                 inputRowTexto.style.display = "none";
                 btnFalar.style.display = "none";
                 btnFinalizar.style.display = "none";
+                painelExames.style.display = "none";
+                painelConduta.style.display = "none";
+            }
+        }
+
+        // Gera a fala inicial do paciente com base nos dados reais da estação aberta
+        async function iniciarConsulta(estacao) {
+            historicoConsulta = [];
+            examesSolicitados = [];
+            chatBox.innerHTML = "";
+            resultadoExames.textContent = "";
+            resultadoExames.style.display = "none";
+            inputCondutaTexto.value = "";
+            areaDebriefing.style.display = "none";
+            conteudoEstudo.innerHTML = "";
+            btnFinalizar.style.display = "block";
+            inputRowTexto.style.display = "flex";
+            btnFalar.style.display = ReconhecimentoVoz ? "block" : "none";
+
+            statusIa.innerText = "O paciente está entrando na sala...";
+            travarEntrada(true);
+            try {
+                const { texto, contents } = await GeminiOSCE.saudacaoInicial(estacao);
+                historicoConsulta = contents;
+                adicionarMensagem(texto, "paciente");
+                falarComVoz(texto);
+                statusIa.innerText = "Paciente pronto! Digite ou toque no microfone para falar.";
+            } catch (erro) {
+                console.error("Erro ao iniciar consulta:", erro);
+                statusIa.innerText = "Erro ao iniciar o paciente. Verifique sua chave da API.";
+                adicionarMensagem("Não foi possível carregar o paciente simulado: " + erro.message, "sistema");
+            } finally {
+                travarEntrada(false);
             }
         }
 
         btnSalvarChave.addEventListener("click", () => {
             const chave = inputApiKey.value.trim();
             if (chave.startsWith("AIza")) {
-                localStorage.setItem("gemini_api_key", chave);
+                GeminiOSCE.setApiKey(chave);
                 statusChave.style.color = "green";
                 statusChave.innerText = "Chave salva com sucesso!";
                 setTimeout(checarChaveSalva, 1000);
@@ -342,18 +429,31 @@
         // 3. Envio por Texto e Reconhecimento de Voz Contínuo
         let processandoMensagem = false;
 
+        function travarEntrada(travar) {
+            processandoMensagem = travar;
+            btnEnviarTexto.disabled = travar;
+            inputTextoMedico.disabled = travar;
+            btnPedirExames.disabled = travar;
+            btnEnviarConduta.disabled = travar;
+        }
+
         async function enviarMensagemUsuario(texto) {
             texto = (texto || "").trim();
-            if (!texto || processandoMensagem) return;
-            processandoMensagem = true;
-            btnEnviarTexto.disabled = true;
-            inputTextoMedico.disabled = true;
+            const estacao = estacaoAtual();
+            if (!texto || processandoMensagem || !estacao) return;
+            travarEntrada(true);
             adicionarMensagem(texto, "medico");
-            await enviarParaGemini(texto);
-            processandoMensagem = false;
-            btnEnviarTexto.disabled = false;
-            inputTextoMedico.disabled = false;
-            inputTextoMedico.focus();
+            try {
+                const falaPaciente = await GeminiOSCE.responderComoPaciente(estacao, historicoConsulta, texto);
+                adicionarMensagem(falaPaciente, "paciente");
+                falarComVoz(falaPaciente);
+            } catch (erro) {
+                console.error("Erro na API do Gemini:", erro);
+                adicionarMensagem("Erro ao comunicar com a IA: " + erro.message, "sistema");
+            } finally {
+                travarEntrada(false);
+                inputTextoMedico.focus();
+            }
         }
 
         btnEnviarTexto.addEventListener("click", () => {
@@ -368,6 +468,44 @@
                 btnEnviarTexto.click();
             }
         });
+
+        // Registrar conduta/tratamento por escrito (alternativa a falar com o paciente)
+        btnEnviarConduta.addEventListener("click", async () => {
+            const texto = inputCondutaTexto.value.trim();
+            if (!texto) return;
+            inputCondutaTexto.value = "";
+            await enviarMensagemUsuario(`[Conduta/tratamento comunicado ao paciente]: ${texto}`);
+        });
+
+        // Solicitar exames: devolve somente o que consta na aba B da estação
+        btnPedirExames.addEventListener("click", async () => {
+            const pedido = inputPedidoExames.value.trim();
+            const estacao = estacaoAtual();
+            if (!pedido || processandoMensagem || !estacao) return;
+            travarEntrada(true);
+            resultadoExames.style.display = "block";
+            resultadoExames.textContent = "Consultando exames...";
+            try {
+                const resultado = await GeminiOSCE.solicitarExames(estacao, pedido);
+                resultadoExames.textContent = resultado;
+                examesSolicitados.push({ pedido, resultado });
+                adicionarMensagem(`🧪 Exames solicitados: ${pedido}\n→ ${resultado}`, "sistema");
+                inputPedidoExames.value = "";
+            } catch (erro) {
+                console.error("Erro ao solicitar exames:", erro);
+                resultadoExames.textContent = "Erro ao solicitar exames: " + erro.message;
+            } finally {
+                travarEntrada(false);
+            }
+        });
+
+        function falarComVoz(texto) {
+            window.speechSynthesis.cancel(); // evita fila/atraso de falas anteriores
+            const voz = new SpeechSynthesisUtterance(texto);
+            voz.lang = "pt-BR";
+            voz.rate = velocidadeVoz; // escolhido pelo usuário no slider (1x a 2x)
+            window.speechSynthesis.speak(voz);
+        }
 
         const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
         let microfone = null;
@@ -448,44 +586,6 @@
             };
         }
 
-        async function enviarParaGemini(textoUsuario) {
-            const apiKey = localStorage.getItem("gemini_api_key");
-            const modelo = "gemini-3.6-flash";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
-
-            historicoConsulta.push({ role: "user", parts: [{ text: textoUsuario }] });
-
-            try {
-                const resposta = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ contents: historicoConsulta })
-                });
-
-                const dados = await resposta.json();
-                
-                if (dados.error) {
-                    throw new Error(dados.error.message);
-                }
-
-                const falaPaciente = dados.candidates[0].content.parts[0].text;
-                historicoConsulta.push({ role: "model", parts: [{ text: falaPaciente }] });
-
-                adicionarMensagem(falaPaciente, "paciente");
-
-                // Síntese de voz nativa do navegador
-                window.speechSynthesis.cancel(); // evita fila/atraso de falas anteriores
-                const voz = new SpeechSynthesisUtterance(falaPaciente);
-                voz.lang = "pt-BR";
-                voz.rate = velocidadeVoz; // escolhido pelo usuário no slider (1x a 2x)
-                window.speechSynthesis.speak(voz);
-
-            } catch (erro) {
-                console.error("Erro na API do Gemini:", erro);
-                adicionarMensagem("Erro ao comunicar com a IA. Verifique se a sua chave está correta.", "paciente");
-            }
-        }
-
         function adicionarMensagem(texto, tipo) {
             const msg = document.createElement("div");
             msg.className = `mensagem ${tipo}`;
@@ -494,74 +594,52 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // 4. Avaliação Final (Debriefing)
+        // 4. Avaliação Final (Debriefing) — fundamentada no gabarito real da estação
         btnFinalizar.addEventListener("click", async () => {
+            const estacao = estacaoAtual();
+            if (!estacao) return;
             if (escutando && microfone) microfone.stop();
             inputRowTexto.style.display = "none";
             btnFalar.style.display = "none";
             btnFinalizar.style.display = "none";
+            painelExames.style.display = "none";
+            painelConduta.style.display = "none";
             statusIa.innerText = "A gerar avaliação do atendimento...";
 
-            const apiKey = localStorage.getItem("gemini_api_key");
-            const modelo = "gemini-3.6-flash";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
-
-            const promptAvaliacao = `Analise a conversa desta simulação de OSCE e forneça um feedback estruturado para o estudante com: 1) Acertos na anamnese; 2) Omissões importantes; 3) Nota final de 0 a 10.`;
-
             try {
-                const resposta = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [
-                            ...historicoConsulta,
-                            { role: "user", parts: [{ text: promptAvaliacao }] }
-                        ]
-                    })
-                });
-
-                const dados = await resposta.json();
-                const avaliacao = dados.candidates[0].content.parts[0].text;
-
+                const avaliacao = await GeminiOSCE.gerarDebriefing(estacao, historicoConsulta, examesSolicitados);
                 resultadoAvaliacao.innerHTML = avaliacao.replace(/\n/g, "<br>");
                 areaDebriefing.style.display = "block";
                 statusIa.innerText = "Estação concluída.";
-            } catch (e) {
-                statusIa.innerText = "Erro ao gerar avaliação.";
+            } catch (erro) {
+                console.error("Erro ao gerar avaliação:", erro);
+                statusIa.innerText = "Erro ao gerar avaliação: " + erro.message;
             }
         });
 
-        // 5. Botões de Estudo Extra (Quiz e Resumo)
+        // 5. Botões de Estudo Extra (Quiz e Resumo) — usam os dados reais do caso
         btnQuiz.addEventListener("click", async () => {
+            const estacao = estacaoAtual();
+            if (!estacao) return;
             conteudoEstudo.innerText = "A gerar questões de estudo...";
-            const apiKey = localStorage.getItem("gemini_api_key");
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
-            
-            const resposta = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ role: "user", parts: [{ text: "Gere 2 questões estilo prova de residência médica baseadas no caso clínico atendido, com gabarito comentado." }] }]
-                })
-            });
-            const dados = await resposta.json();
-            conteudoEstudo.innerHTML = dados.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+            try {
+                const texto = await GeminiOSCE.gerarQuiz(estacao);
+                conteudoEstudo.innerHTML = texto.replace(/\n/g, "<br>");
+            } catch (erro) {
+                conteudoEstudo.innerText = "Erro ao gerar quiz: " + erro.message;
+            }
         });
 
         btnResumo.addEventListener("click", async () => {
+            const estacao = estacaoAtual();
+            if (!estacao) return;
             conteudoEstudo.innerText = "A gerar resumo rápido...";
-            const apiKey = localStorage.getItem("gemini_api_key");
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
-            
-            const resposta = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ role: "user", parts: [{ text: "Gere um resumo rápido e direto ao ponto com os pontos-chave de conduta e diagnóstico para este caso clínico." }] }]
-                })
-            });
-            const dados = await resposta.json();
-            conteudoEstudo.innerHTML = dados.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+            try {
+                const texto = await GeminiOSCE.gerarResumo(estacao);
+                conteudoEstudo.innerHTML = texto.replace(/\n/g, "<br>");
+            } catch (erro) {
+                conteudoEstudo.innerText = "Erro ao gerar resumo: " + erro.message;
+            }
         });
     });
 </script>

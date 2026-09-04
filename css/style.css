@@ -1024,6 +1024,32 @@
 .mensagem { padding: 8px 12px; border-radius: 12px; max-width: 85%; word-wrap: break-word; font-size: 0.95rem; }
 .medico { background-color: #6d75cb; align-self: flex-end; border-bottom-right-radius: 0; }
 .paciente { background-color: #dc6ef2; align-self: flex-start; border-bottom-left-radius: 0; }
+.sistema {
+    background-color: #f1f3f5; color: #333; align-self: center; max-width: 95%;
+    border: 1px dashed #ced4da; font-size: 0.85rem; white-space: pre-wrap;
+}
+
+/* Painéis retráteis: Solicitar Exames / Registrar Conduta */
+.painel-secao { margin-top: 10px; }
+.btn-toggle-secao {
+    width: 100%; text-align: left; padding: 10px 12px; border: 1px solid #dee2e6;
+    border-radius: 6px; background: white; font-weight: bold; cursor: pointer; font-size: 0.9rem;
+}
+.btn-toggle-secao:hover { background: #f1f3f5; }
+.secao-corpo {
+    border: 1px solid #dee2e6; border-top: none; border-radius: 0 0 6px 6px;
+    padding: 10px 12px; background: #fbfbfc;
+}
+.dica-secao { font-size: 0.8rem; color: #666; margin: 0 0 8px; }
+.textarea-ia {
+    width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px;
+    font-family: inherit; font-size: 0.9rem; resize: vertical; margin-bottom: 8px; box-sizing: border-box;
+}
+.resultado-secao {
+    margin-top: 10px; padding: 10px; background: white; border: 1px solid #dee2e6;
+    border-radius: 6px; font-size: 0.88rem; white-space: pre-wrap; display: none;
+}
+.resultado-secao:empty { display: none; }
 
 /* Botões do Painel */
 .controles-ia { display: flex; flex-direction: column; gap: 10px; }
