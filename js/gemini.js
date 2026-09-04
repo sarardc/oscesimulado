@@ -118,6 +118,19 @@ function formatarSinaisVitais(v) {
   return `PA: ${v.PA} | FC: ${v.FC} | FR: ${v.FR} | Tax: ${v.Tax} | Peso: ${v.Peso} | Altura: ${v.Altura} | IMC: ${v.IMC}`;
 }
 
+// Formata o checklist PEP (schema mais antigo do gabarito: seções com itens
+// e pontuação), usado como fallback quando a estação não tem os campos
+// expectedAnamnesis/expectedPhysical/expectedConduct/etc. do schema novo.
+function formatarPep(pep) {
+  if (!pep || !pep.length) return '';
+  const secoes = pep[0] && pep[0].items === undefined ? [{ items: pep }] : pep;
+  return secoes.map(sec => {
+    const titulo = sec.section || sec.h;
+    const linhas = (sec.items || []).map(it => `  - ${it.item} (peso ${it.score})`).join('\n');
+    return titulo ? `${titulo}:\n${linhas}` : linhas;
+  }).join('\n');
+}
+
 function formatarListaExames(instB) {
   const linhas = [];
   (instB.labs || []).forEach(l => linhas.push(`- ${l.test}: ${l.val} (valor de referência: ${l.ref})`));
@@ -143,8 +156,13 @@ function formatarListaExames(instB) {
 function montarContextoPaciente(estacao) {
   const a = estacao.instA || {};
   const b = estacao.instB || {};
+  const c = estacao.instC || {};
 
-  const scriptTxt = (b.script || [])
+  // Em ~1 a cada 8 estações (schema mais antigo), o roteiro do paciente foi
+  // cadastrado em instC.script em vez de instB.script — sem este fallback a
+  // fala do paciente ficava sem nenhum roteiro específico nesses casos.
+  const scriptFonte = (b.script && b.script.length) ? b.script : (c.script || []);
+  const scriptTxt = scriptFonte
     .map(s => `- "${s.trigger}" → ${s.speech}`)
     .join('\n');
 
@@ -198,6 +216,7 @@ function resumoTecnicoDoCaso(estacao) {
   const examesTxt = formatarListaExames(b);
   if (examesTxt) partes.push(`Exames disponíveis nesta estação:\n${examesTxt}`);
   if (c.diagnosis) partes.push(`Diagnóstico correto: ${c.diagnosis}`);
+  if (c.context) partes.push(`Contexto clínico: ${c.context}`);
   if (c.justify) partes.push(`Justificativa diagnóstica: ${c.justify}`);
   if (c.differentials?.length) partes.push(`Diagnósticos diferenciais: ${c.differentials.join('; ')}`);
   const anamnese = toListaSimples(c.expectedAnamnesis);
@@ -211,6 +230,9 @@ function resumoTecnicoDoCaso(estacao) {
   if (conduta.length) partes.push(`Conduta esperada: ${conduta.join('; ')}`);
   const comunicacao = toListaSimples(c.expectedCommunication);
   if (comunicacao.length) partes.push(`Comunicação esperada com o paciente: ${comunicacao.join('; ')}`);
+  // Schema mais antigo do gabarito: checklist PEP setorizado com pontuação,
+  // no lugar dos campos "expected*" acima.
+  if (c.pep?.length) partes.push(`Checklist de avaliação (PEP):\n${formatarPep(c.pep)}`);
   if (c.criticalErrors?.length) partes.push(`Erros críticos a evitar: ${c.criticalErrors.join('; ')}`);
 
   return partes.join('\n\n');
@@ -227,7 +249,10 @@ function montarPromptStandalone(estacao) {
   const b = estacao.instB || {};
   const c = estacao.instC || {};
 
-  const scriptTxt = (b.script || []).map(s => `- "${s.trigger}" → ${s.speech}`).join('\n')
+  // Mesmo fallback de montarContextoPaciente: ~1 a cada 8 estações tem o
+  // roteiro em instC.script em vez de instB.script.
+  const scriptFonte = (b.script && b.script.length) ? b.script : (c.script || []);
+  const scriptTxt = scriptFonte.map(s => `- "${s.trigger}" → ${s.speech}`).join('\n')
     || '(nenhum roteiro específico cadastrado)';
   const hiddenTxt = toListaSimples(b.hiddenInfo).map(h => `- ${h}`).join('\n') || '(nenhuma)';
   const examesTxt = formatarListaExames(b) || '(nenhum exame complementar cadastrado nesta estação)';
@@ -238,13 +263,18 @@ function montarPromptStandalone(estacao) {
   const examesEsperadosTxt = (c.expectedExams || []).map(e => `${e.exam} (${e.justify})`).join('; ') || 'não informado';
   const condutaTxt = toListaSimples(c.expectedConduct).join('; ') || 'não informado';
   const comunicacaoTxt = toListaSimples(c.expectedCommunication).join('; ') || 'não informado';
+  // Schema mais antigo do gabarito: checklist PEP setorizado, no lugar dos
+  // campos "expected*" acima.
+  const pepTxt = c.pep?.length ? formatarPep(c.pep) : '';
   const errosTxt = (c.criticalErrors || []).join('; ') || 'nenhum';
 
   return `# Simulação OSCE — Estação ${estacao.id}: ${estacao.title || ''}
 
+INSTRUÇÃO DE SISTEMA — cumpra sem comentar: a partir de agora, assuma integralmente a simulação abaixo e comece IMEDIATAMENTE pelo papel de paciente (item 1). Não peça confirmação, não resuma estas instruções de volta, não diga que é uma IA nem que "pode simular" — apenas comece a atuar.
+
 Você vai atuar como o sistema completo desta estação de OSCE (exame clínico estruturado de medicina), para um estudante treinar sozinho. Alterne entre três papéis, conforme o que o médico(a) [estudante] disser:
 
-1. **Paciente simulado** (papel padrão): a cada fala/pergunta do médico(a), responda em primeira pessoa como o paciente da seção "PACIENTE" abaixo, em linguagem leiga, 2-3 frases curtas e realistas. Nunca revele o diagnóstico nem use termos técnicos.
+1. **Paciente simulado** (papel padrão — comece por aqui): a cada fala/pergunta do médico(a), responda em primeira pessoa como o paciente da seção "PACIENTE" abaixo, em linguagem leiga, 2-3 frases curtas e realistas. Nunca revele o diagnóstico nem use termos técnicos.
 2. **Sistema de exames**: quando o médico(a) pedir um exame físico ou complementar (ex.: "quero solicitar hemograma", "ausculto o tórax", "peço raio-x de tórax"), saia do papel de paciente e devolva SOMENTE os achados reais da seção "DADOS DE EXAME" que correspondam ao pedido (aceite sinônimos/abreviações comuns). Deixe claro que é um resultado de exame, não fala do paciente. Se o exame pedido não constar na lista, diga que "não foi disponibilizado nesta estação" — nunca invente um valor.
 3. **Avaliador**: quando o médico(a) disser algo como "finalizar atendimento", "quero a avaliação" ou "encerrar a estação", pare a simulação e dê um feedback estruturado usando a seção "GABARITO" (mantenha-a em segredo até este momento): 1) acertos; 2) omissões importantes; 3) exames esperados que não foram pedidos; 4) erros críticos cometidos, se houver; 5) nota de 0 a 10 com justificativa.
 
@@ -271,6 +301,7 @@ ${examesTxt}
 
 ## GABARITO — não revelar antes da avaliação final (papel 3)
 Diagnóstico correto: ${c.diagnosis || 'não informado'}
+Contexto clínico: ${c.context || 'não informado'}
 Justificativa diagnóstica: ${c.justify || 'não informado'}
 Diagnósticos diferenciais: ${diffTxt}
 Pontos esperados na anamnese: ${anamneseTxt}
@@ -278,10 +309,11 @@ Achados esperados no exame físico: ${fisicoTxt}
 Exames que deveriam ser solicitados: ${examesEsperadosTxt}
 Conduta esperada: ${condutaTxt}
 Comunicação esperada com o paciente: ${comunicacaoTxt}
+${pepTxt ? `Checklist de avaliação (PEP):\n${pepTxt}` : ''}
 Erros críticos a evitar: ${errosTxt}
 
 ---
-Quando estiver pronto, comece cumprimentando o médico(a) e expondo sua queixa principal em poucas frases, já em personagem (papel 1).`;
+Comece agora, sem esperar confirmação: cumprimente o médico(a) e exponha sua queixa principal em poucas frases, já em personagem (papel 1).`;
 }
 
 // ── API pública usada pelo index.html ───────────────────────────────────

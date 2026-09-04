@@ -297,7 +297,10 @@
         // chave/tokens — monta o arquivo localmente a partir dos dados da
         // estação e dispara o download no navegador.
         function baixarArquivoTexto(nomeArquivo, conteudo) {
-            const blob = new Blob([conteudo], { type: "text/markdown;charset=utf-8" });
+            // BOM UTF-8 no início: sem ele, alguns editores/uploads (comum no
+            // Windows) adivinham a codificação errada e trocam os acentos por
+            // caracteres estranhos ao abrir o arquivo.
+            const blob = new Blob(["﻿" + conteudo], { type: "text/markdown;charset=utf-8" });
             const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
             link.href = url;
