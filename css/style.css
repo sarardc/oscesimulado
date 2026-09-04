@@ -912,7 +912,7 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #0d6efd;
+    background-color: #b386ef;
     color: white;
     padding: 12px 20px;
     border-radius: 50px;
@@ -963,8 +963,8 @@
 
 /* Layout interno do painel */
 .ia-drawer-header {
-    background-color: #0d6efd;
-    color: white;
+    background-color: #e49eef;
+    color: black;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -972,7 +972,7 @@
 }
 .ia-drawer-header h2 { margin: 0; font-size: 1.2rem; }
 .btn-fechar-drawer {
-    background: none; border: none; color: white;
+    background: none; border: none; color: rgb(0, 0, 0);
     font-size: 2rem; cursor: pointer; line-height: 1;
 }
 
@@ -991,8 +991,8 @@
     display: flex; flex-direction: column; gap: 10px;
 }
 .mensagem { padding: 8px 12px; border-radius: 12px; max-width: 85%; word-wrap: break-word; font-size: 0.95rem; }
-.medico { background-color: #d1e7dd; align-self: flex-end; border-bottom-right-radius: 0; }
-.paciente { background-color: #e2e3e5; align-self: flex-start; border-bottom-left-radius: 0; }
+.medico { background-color: #6d75cb; align-self: flex-end; border-bottom-right-radius: 0; }
+.paciente { background-color: #dc6ef2; align-self: flex-start; border-bottom-left-radius: 0; }
 
 /* Botões do Painel */
 .controles-ia { display: flex; flex-direction: column; gap: 10px; }
