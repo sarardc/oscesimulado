@@ -45,9 +45,21 @@
   html.light .pep-table td  { border-bottom-color: rgba(200,205,216,0.5); }
 
   html.light .task-num { color: #ffffffc5; }
-  html.light .filter-btn.tema-pediatria.active { border-color: #e91e8c; color: #e91e8c; }
-  html.light .filter-btn.tema-pediatria:hover  { border-color: #e91e8c; color: #e91e8c; }
-  html.light .pill-pediatria { border-color: #e91e8c; color: #e91e8c; }
+  html.light .filter-btn.tema-pediatria.active        { border-color: #e91e8c; color: #e91e8c; }
+  html.light .filter-btn.tema-pediatria:hover         { border-color: #e91e8c; color: #e91e8c; }
+  html.light .pill-pediatria                          { border-color: #e91e8c; color: #e91e8c; }
+  html.light .filter-btn.tema-neonatologia.active     { border-color: #1565C0; color: #1565C0; }
+  html.light .filter-btn.tema-neonatologia:hover      { border-color: #1565C0; color: #1565C0; }
+  html.light .pill-neonatologia                       { border-color: #1565C0; color: #1565C0; }
+  html.light .filter-btn.tema-puericultura.active     { border-color: #0d8f3e; color: #0d8f3e; }
+  html.light .filter-btn.tema-puericultura:hover      { border-color: #0d8f3e; color: #0d8f3e; }
+  html.light .pill-puericultura                       { border-color: #0d8f3e; color: #0d8f3e; }
+  html.light .filter-btn.tema-cirurgia-ped.active     { border-color: #6d28d9; color: #6d28d9; }
+  html.light .filter-btn.tema-cirurgia-ped:hover      { border-color: #6d28d9; color: #6d28d9; }
+  html.light .pill-cirurgia-pediatrica                { border-color: #6d28d9; color: #6d28d9; }
+  html.light .filter-btn.tema-pediatria-geral.active  { border-color: #d97706; color: #d97706; }
+  html.light .filter-btn.tema-pediatria-geral:hover   { border-color: #d97706; color: #d97706; }
+  html.light .pill-pediatria-geral                    { border-color: #d97706; color: #d97706; }
 
   /* Theme toggle button */
   .theme-toggle {
@@ -220,6 +232,10 @@
   .pill-endocrinologia      { border-color: #d98038; color: #d98038; }
   .pill-psiquiatria         { border-color: #a78bfa; color: #a78bfa; }
   .pill-pediatria           { border-color: #f783ac; color: #f783ac; }
+  .pill-neonatologia        { border-color: #42A5F5; color: #42A5F5; }
+  .pill-puericultura        { border-color: #66BB6A; color: #66BB6A; }
+  .pill-cirurgia-pediatrica { border-color: #9C27B0; color: #9C27B0; }
+  .pill-pediatria-geral     { border-color: #FFA726; color: #FFA726; }
   .pill-neurologia          { border-color: #6366f1; color: #6366f1; }
   .pill-oftalmologia        { border-color: #22d3ee; color: #22d3ee; }
   .pill-otorrinolaringologia{ border-color: #fb923c; color: #fb923c; }
@@ -688,6 +704,10 @@
   .filter-btn.tema-endocrinologia.active       { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria.active          { border-color: #a78bfa; color: #a78bfa; }
   .filter-btn.tema-pediatria.active            { border-color: #f783ac; color: #f783ac; }
+  .filter-btn.tema-neonatologia.active        { border-color: #42A5F5; color: #42A5F5; }
+  .filter-btn.tema-puericultura.active        { border-color: #66BB6A; color: #66BB6A; }
+  .filter-btn.tema-cirurgia-ped.active        { border-color: #9C27B0; color: #9C27B0; }
+  .filter-btn.tema-pediatria-geral.active     { border-color: #FFA726; color: #FFA726; }
   .filter-btn.tema-neurologia.active           { border-color: #6366f1; color: #6366f1; }
   .filter-btn.tema-oftalmologia.active         { border-color: #22d3ee; color: #22d3ee; }
   .filter-btn.tema-otorrinolaringologia.active { border-color: #fb923c; color: #fb923c; }
@@ -710,6 +730,10 @@
   .filter-btn.tema-endocrinologia:hover       { border-color: #d98038; color: #d98038; }
   .filter-btn.tema-psiquiatria:hover          { border-color: #a78bfa; color: #a78bfa; }
   .filter-btn.tema-pediatria:hover            { border-color: #f783ac; color: #f783ac; }
+  .filter-btn.tema-neonatologia:hover        { border-color: #42A5F5; color: #42A5F5; }
+  .filter-btn.tema-puericultura:hover        { border-color: #66BB6A; color: #66BB6A; }
+  .filter-btn.tema-cirurgia-ped:hover        { border-color: #9C27B0; color: #9C27B0; }
+  .filter-btn.tema-pediatria-geral:hover     { border-color: #FFA726; color: #FFA726; }
   .filter-btn.tema-neurologia:hover           { border-color: #6366f1; color: #6366f1; }
   .filter-btn.tema-oftalmologia:hover         { border-color: #22d3ee; color: #22d3ee; }
   .filter-btn.tema-otorrinolaringologia:hover { border-color: #fb923c; color: #fb923c; }
