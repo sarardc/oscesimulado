@@ -48,7 +48,7 @@
         <button class="filter-btn active" data-tema="all" onclick="setFilter('all')">Todas</button>
 
         <!-- CLÍNICA MÉDICA -->
-        <div class="fgrp open" id="fg-clinica">
+        <div class="fgrp" id="fg-clinica">
           <button class="fgrp-hdr" onclick="toggleFGroup('fg-clinica')" title="Expandir / Recolher">
             <span>Clínica Médica</span><span class="fgrp-arr">▾</span>
           </button>
@@ -67,13 +67,22 @@
             <button class="filter-btn tema-neurologia"           data-tema="neurologia"          onclick="setFilter('neurologia')">Neurologia</button>
             <button class="filter-btn tema-cardiologia"          data-tema="cardiologia"         onclick="setFilter('cardiologia')">Cardiologia</button>
             <button class="filter-btn tema-urologia"             data-tema="urologia"            onclick="setFilter('urologia')">Urologia</button>
-            <button class="filter-btn tema-ginecologia"          data-tema="ginecologia"         onclick="setFilter('ginecologia')">Ginecologia</button>
             <button class="filter-btn tema-ortopedia"            data-tema="ortopedia"           onclick="setFilter('ortopedia')">Ortopedia</button>
           </div>
         </div>
 
+        <!-- GINECOLOGIA -->
+        <div class="fgrp" id="fg-ginecologia">
+          <button class="fgrp-hdr" onclick="toggleFGroup('fg-ginecologia')" title="Expandir / Recolher">
+            <span>Ginecologia</span><span class="fgrp-arr">▾</span>
+          </button>
+          <div class="fgrp-body">
+            <button class="filter-btn tema-ginecologia" data-tema="ginecologia" onclick="setFilter('ginecologia')">Ginecologia</button>
+          </div>
+        </div>
+
         <!-- PEDIATRIA -->
-        <div class="fgrp open" id="fg-pediatria">
+        <div class="fgrp" id="fg-pediatria">
           <button class="fgrp-hdr" onclick="toggleFGroup('fg-pediatria')" title="Expandir / Recolher">
             <span>Pediatria</span><span class="fgrp-arr">▾</span>
           </button>
@@ -86,7 +95,7 @@
         </div>
 
         <!-- CIRURGIA -->
-        <div class="fgrp open" id="fg-cirurgia">
+        <div class="fgrp" id="fg-cirurgia">
           <button class="fgrp-hdr" onclick="toggleFGroup('fg-cirurgia')" title="Expandir / Recolher">
             <span>Cirurgia</span><span class="fgrp-arr">▾</span>
           </button>
