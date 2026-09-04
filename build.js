@@ -19,6 +19,7 @@ import cardiologia from './data/cardiologia.js';
 import ortopedia from './data/ortopedia.js';
 import emergNeuro from './data/emergNeuro.js';
 import ginecologia from './data/ginecologia.js';
+import obstetricia from './data/obstetricia.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -47,6 +48,7 @@ const allStations = [
   ...ortopedia,
   ...emergNeuro,
   ...ginecologia,
+  ...obstetricia,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,
