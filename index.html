@@ -139,6 +139,14 @@
     </div>
 
     <div class="ia-drawer-content">
+        <!-- Exportar prompt para usar em outra IA (não gasta tokens daqui; sempre disponível) -->
+        <div id="secao-exportar-prompt" style="background: #eef6f8; border: 1px solid #cfe3e8; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <p style="font-size: 0.85rem; margin: 0 0 8px; color: #333;">
+                🔋 <strong>Ficou sem tokens?</strong> Baixe o prompt deste caso e cole (ou anexe o arquivo) numa IA de chat/voz de sua preferência — ela vai simular o caso inteiro sem inventar nada.
+            </p>
+            <button id="btn-exportar-prompt" class="btn-ia primario" type="button">📄 Baixar prompt desta estação (.md)</button>
+        </div>
+
         <!-- Seção de Configuração da Chave (Aparece se não houver chave salva) -->
         <div id="secao-config-chave" style="background: #f1f3f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
             <p style="font-size: 0.9rem; margin-bottom: 8px; color: #333;">
@@ -203,12 +211,6 @@
         <div id="area-debriefing" class="area-debriefing" style="display: none;">
             <h3>📋 Avaliação do Atendimento</h3>
             <div id="resultado-avaliacao" class="resultado-avaliacao"></div>
-            
-            <div class="botoes-estudo" style="margin-top: 10px;">
-                <button id="btn-quiz" class="btn-ia roxo" style="background: #6f42c1; color: white; border:none; padding:8px; border-radius:4px; cursor:pointer;">📝 Gerar Quiz</button>
-                <button id="btn-resumo" class="btn-ia verde" style="background: #198754; color: white; border:none; padding:8px; border-radius:4px; cursor:pointer;">📚 Resumo Rápido</button>
-            </div>
-            <div id="conteudo-estudo" class="conteudo-estudo" style="margin-top: 10px; font-size: 0.9rem;"></div>
         </div>
     </div>
 
@@ -260,6 +262,8 @@
         const overlay = document.getElementById("ia-overlay");
         const tituloDrawer = document.getElementById("titulo-ia-drawer");
 
+        const btnExportarPrompt = document.getElementById("btn-exportar-prompt");
+
         const secaoConfig = document.getElementById("secao-config-chave");
         const inputApiKey = document.getElementById("input-api-key");
         const btnSalvarChave = document.getElementById("btn-salvar-chave");
@@ -291,9 +295,6 @@
 
         const areaDebriefing = document.getElementById("area-debriefing");
         const resultadoAvaliacao = document.getElementById("resultado-avaliacao");
-        const btnQuiz = document.getElementById("btn-quiz");
-        const btnResumo = document.getElementById("btn-resumo");
-        const conteudoEstudo = document.getElementById("conteudo-estudo");
 
         let historicoConsulta = [];   // contents trocados com o paciente simulado
         let examesSolicitados = [];   // {pedido, resultado} feitos nesta consulta
@@ -301,6 +302,30 @@
 
         function estacaoAtual() {
             return window.currentStation || null;
+        }
+
+        // Exportar prompt "para levar": não usa a API, funciona mesmo sem
+        // chave/tokens — monta o arquivo localmente a partir dos dados da
+        // estação e dispara o download no navegador.
+        function baixarArquivoTexto(nomeArquivo, conteudo) {
+            const blob = new Blob([conteudo], { type: "text/markdown;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = nomeArquivo;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        if (btnExportarPrompt) {
+            btnExportarPrompt.addEventListener("click", () => {
+                const estacao = estacaoAtual();
+                if (!estacao) return;
+                const conteudo = GeminiOSCE.gerarPromptOffline(estacao);
+                baixarArquivoTexto(`estacao-${estacao.id}-prompt-ia.md`, conteudo);
+            });
         }
 
         // Velocidade da voz do paciente (1x a 2x), lembrada entre sessões
@@ -391,7 +416,6 @@
             resultadoExames.style.display = "none";
             inputCondutaTexto.value = "";
             areaDebriefing.style.display = "none";
-            conteudoEstudo.innerHTML = "";
             btnFinalizar.style.display = "block";
             inputRowTexto.style.display = "flex";
             btnFalar.style.display = ReconhecimentoVoz ? "block" : "none";
@@ -636,31 +660,6 @@
             } catch (erro) {
                 console.error("Erro ao gerar avaliação:", erro);
                 statusIa.innerText = "Erro ao gerar avaliação: " + erro.message;
-            }
-        });
-
-        // 5. Botões de Estudo Extra (Quiz e Resumo) — usam os dados reais do caso
-        btnQuiz.addEventListener("click", async () => {
-            const estacao = estacaoAtual();
-            if (!estacao) return;
-            conteudoEstudo.innerText = "A gerar questões de estudo...";
-            try {
-                const texto = await GeminiOSCE.gerarQuiz(estacao);
-                conteudoEstudo.innerHTML = texto.replace(/\n/g, "<br>");
-            } catch (erro) {
-                conteudoEstudo.innerText = "Erro ao gerar quiz: " + erro.message;
-            }
-        });
-
-        btnResumo.addEventListener("click", async () => {
-            const estacao = estacaoAtual();
-            if (!estacao) return;
-            conteudoEstudo.innerText = "A gerar resumo rápido...";
-            try {
-                const texto = await GeminiOSCE.gerarResumo(estacao);
-                conteudoEstudo.innerHTML = texto.replace(/\n/g, "<br>");
-            } catch (erro) {
-                conteudoEstudo.innerText = "Erro ao gerar resumo: " + erro.message;
             }
         });
     });

@@ -19,9 +19,12 @@ const GEMINI_CONFIG = {
   model: 'gemini-3.6-flash',
   apiKeyStorageKey: 'gemini_api_key',
   // Quantas mensagens (médico+paciente) do histórico são reenviadas a cada
-  // chamada do chat. Mantém o prompt enxuto — e portanto mais rápido —
-  // mesmo em consultas longas, sem perder o contexto recente da conversa.
-  maxHistoryMensagens: 16,
+  // chamada do chat. O prompt de sistema (regras + dados do caso) é
+  // reenviado em TODA chamada — é o próprio funcionamento da API, que não
+  // guarda memória entre requisições — então mantê-lo curto e limitar essa
+  // janela é o que mais economiza tokens em consultas longas, já que as
+  // chaves gratuitas dos alunos têm cota de tokens limitada.
+  maxHistoryMensagens: 10,
   endpoint(model, apiKey) {
     return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   },
@@ -134,32 +137,28 @@ function formatarListaExames(instB) {
 // para simular corretamente a anamnese, e é instruída a não fornecer
 // resultados de exame — isso é papel do botão "Solicitar Exames".
 
+// Texto enxuto de propósito: este prompt inteiro é reenviado em TODA
+// mensagem do chat (a API não guarda contexto entre chamadas), então cada
+// palavra aqui é multiplicada pelo número de falas da consulta.
 function montarContextoPaciente(estacao) {
   const a = estacao.instA || {};
   const b = estacao.instB || {};
 
   const scriptTxt = (b.script || [])
-    .map(s => `- Se o médico(a) perguntar sobre "${s.trigger}", responda com base nesta ideia: "${s.speech}"`)
+    .map(s => `- "${s.trigger}" → ${s.speech}`)
     .join('\n');
 
   const hiddenTxt = toListaSimples(b.hiddenInfo).map(h => `- ${h}`).join('\n');
 
-  return `Você é um PACIENTE SIMULADO em uma estação de OSCE (exame clínico estruturado de medicina). Siga estas regras rigorosamente:
+  return `Você é um paciente simulado de OSCE. Regras: fale em 1ª pessoa, leigo, 2-3 frases curtas; use SÓ os dados abaixo, sem inventar nada; nunca revele o diagnóstico nem use termos técnicos; não dê resultado de exame físico/laboratorial (diga que isso é para o médico examinar/solicitar); só revele "informações escondidas" se perguntado diretamente sobre aquilo; se perguntarem algo fora daqui, responda de forma genérica e plausível, sem criar novos achados clínicos.
 
-1. Responda sempre em primeira pessoa, como o paciente descrito abaixo, em linguagem leiga (não técnica), de forma curta e realista — no máximo 2 a 3 frases por resposta.
-2. Baseie-se SOMENTE nas informações fornecidas abaixo. Nunca invente sintomas, doenças, histórico, medicações ou fatos que não constem aqui.
-3. Nunca revele o diagnóstico e nunca use termos médicos técnicos.
-4. Não forneça resultados de exame físico ou laboratorial durante a conversa: se perguntarem por eles, responda apenas algo como "isso é algo que o(a) senhor(a) doutor(a) precisa examinar/solicitar", pois esses dados são obtidos por outro canal.
-5. As "informações escondidas" listadas abaixo só devem ser reveladas se o médico(a) perguntar de forma direta e específica sobre aquele assunto — não as ofereça espontaneamente.
-6. Se perguntarem algo não descrito no seu caso, responda de forma plausível e genérica, sem contradizer os dados abaixo e sem criar novos achados clínicos relevantes.
-
-DADOS DO CASO (uso interno — não se refira a "estação" ou "caso" na conversa):
-- Identificação do paciente: ${a.patient || 'não informado'}
-- Queixa principal (a ser expressa com suas próprias palavras): ${a.complaint || 'não informado'}
-- Cenário do atendimento: ${a.scenario || 'não informado'}
-${scriptTxt ? `\nRoteiro de respostas a perguntas específicas:\n${scriptTxt}` : ''}
-${hiddenTxt ? `\nInformações a revelar somente se perguntado diretamente:\n${hiddenTxt}` : ''}
-${b.actorBehavior ? `\nComportamento/atitude a manter durante toda a simulação: ${b.actorBehavior}` : ''}`;
+CASO:
+Paciente: ${a.patient || 'não informado'}
+Queixa: ${a.complaint || 'não informado'}
+Cenário: ${a.scenario || 'não informado'}
+${scriptTxt ? `Respostas a perguntas específicas:\n${scriptTxt}` : ''}
+${hiddenTxt ? `Informações escondidas:\n${hiddenTxt}` : ''}
+${b.actorBehavior ? `Comportamento: ${b.actorBehavior}` : ''}`;
 }
 
 // ── Prompt de EXAMES (grounding com instB, sem inventar valores) ────────
@@ -168,24 +167,20 @@ function montarContextoExames(estacao) {
   const b = estacao.instB || {};
   const examesTxt = formatarListaExames(b);
 
-  return `Você é o sistema de resultados de exames de uma estação de OSCE. Você NUNCA inventa valores. Abaixo estão os ÚNICOS dados reais disponíveis nesta estação:
+  return `Sistema de resultados de exames de uma estação de OSCE. NUNCA invente valores — use só os dados reais abaixo.
 
-SINAIS VITAIS: ${formatarSinaisVitais(b.vitals)}
-EXAME FÍSICO GERAL: ${b.physicalGeneral || 'não informado'}
-EXAME SEGMENTAR: ${toListaSimples(b.physicalSeg).join('; ') || 'não informado'}
-EXAMES LABORATORIAIS/IMAGEM DISPONÍVEIS:
-${examesTxt || '(nenhum exame complementar cadastrado nesta estação)'}
+Sinais vitais: ${formatarSinaisVitais(b.vitals)}
+Exame físico geral: ${b.physicalGeneral || 'não informado'}
+Exame segmentar: ${toListaSimples(b.physicalSeg).join('; ') || 'não informado'}
+Exames laboratoriais/imagem disponíveis:
+${examesTxt || '(nenhum cadastrado nesta estação)'}
 
-TAREFA: o médico(a) vai pedir, em texto livre, um ou mais exames físicos ou complementares. Você deve:
-1. Identificar, entre os dados acima, quais correspondem ao pedido (aceite sinônimos e abreviações comuns: ex. "hemograma" = "hemograma completo", "Rx tórax" = radiografia de tórax).
-2. Devolver EXATAMENTE os valores/achados listados acima para os itens correspondentes — nunca altere, arredonde ou complemente um valor.
-3. Para qualquer item pedido que NÃO exista na lista acima, informe claramente algo como "Exame X não disponibilizado nesta estação" — nunca invente um resultado para ele.
-4. Não dê diagnóstico nem interpretação clínica: apenas devolva os achados/resultados, organizados em uma lista curta.`;
+Tarefa: o médico vai pedir exames em texto livre. Identifique quais itens acima correspondem ao pedido (aceite sinônimos/abreviações comuns), devolva EXATAMENTE os valores acima para eles, e para o que não constar na lista diga que "não foi disponibilizado nesta estação". Sem diagnóstico nem interpretação — só liste os achados.`;
 }
 
-// ── Resumo técnico completo (grounding para debriefing / quiz / resumo) ─
-// Aqui sim usamos o gabarito (instC), pois essas chamadas servem para
-// avaliar o estudante ou gerar material de estudo — não para o paciente.
+// ── Resumo técnico completo (grounding para o debriefing) ───────────────
+// Aqui sim usamos o gabarito (instC), pois esta chamada serve para avaliar
+// o estudante — não para o paciente.
 
 function resumoTecnicoDoCaso(estacao) {
   const a = estacao.instA || {};
@@ -221,11 +216,82 @@ function resumoTecnicoDoCaso(estacao) {
   return partes.join('\n\n');
 }
 
+// ── Prompt "para levar": um único texto autocontido para o aluno colar (ou
+// anexar como arquivo .md) em qualquer outra IA de chat/voz, quando os
+// tokens da chave própria acabarem. Não faz nenhuma chamada à API — é
+// montado 100% localmente a partir dos dados da estação, e junta os três
+// papéis que aqui são separados (paciente / exames / avaliador) numa única
+// instrução, já que do outro lado não existem os nossos botões dedicados.
+function montarPromptStandalone(estacao) {
+  const a = estacao.instA || {};
+  const b = estacao.instB || {};
+  const c = estacao.instC || {};
+
+  const scriptTxt = (b.script || []).map(s => `- "${s.trigger}" → ${s.speech}`).join('\n')
+    || '(nenhum roteiro específico cadastrado)';
+  const hiddenTxt = toListaSimples(b.hiddenInfo).map(h => `- ${h}`).join('\n') || '(nenhuma)';
+  const examesTxt = formatarListaExames(b) || '(nenhum exame complementar cadastrado nesta estação)';
+
+  const diffTxt = (c.differentials || []).join('; ') || 'não informado';
+  const anamneseTxt = toListaSimples(c.expectedAnamnesis).join('; ') || 'não informado';
+  const fisicoTxt = toListaSimples(c.expectedPhysical).join('; ') || 'não informado';
+  const examesEsperadosTxt = (c.expectedExams || []).map(e => `${e.exam} (${e.justify})`).join('; ') || 'não informado';
+  const condutaTxt = toListaSimples(c.expectedConduct).join('; ') || 'não informado';
+  const comunicacaoTxt = toListaSimples(c.expectedCommunication).join('; ') || 'não informado';
+  const errosTxt = (c.criticalErrors || []).join('; ') || 'nenhum';
+
+  return `# Simulação OSCE — Estação ${estacao.id}: ${estacao.title || ''}
+
+Você vai atuar como o sistema completo desta estação de OSCE (exame clínico estruturado de medicina), para um estudante treinar sozinho. Alterne entre três papéis, conforme o que o médico(a) [estudante] disser:
+
+1. **Paciente simulado** (papel padrão): a cada fala/pergunta do médico(a), responda em primeira pessoa como o paciente da seção "PACIENTE" abaixo, em linguagem leiga, 2-3 frases curtas e realistas. Nunca revele o diagnóstico nem use termos técnicos.
+2. **Sistema de exames**: quando o médico(a) pedir um exame físico ou complementar (ex.: "quero solicitar hemograma", "ausculto o tórax", "peço raio-x de tórax"), saia do papel de paciente e devolva SOMENTE os achados reais da seção "DADOS DE EXAME" que correspondam ao pedido (aceite sinônimos/abreviações comuns). Deixe claro que é um resultado de exame, não fala do paciente. Se o exame pedido não constar na lista, diga que "não foi disponibilizado nesta estação" — nunca invente um valor.
+3. **Avaliador**: quando o médico(a) disser algo como "finalizar atendimento", "quero a avaliação" ou "encerrar a estação", pare a simulação e dê um feedback estruturado usando a seção "GABARITO" (mantenha-a em segredo até este momento): 1) acertos; 2) omissões importantes; 3) exames esperados que não foram pedidos; 4) erros críticos cometidos, se houver; 5) nota de 0 a 10 com justificativa.
+
+REGRA MAIS IMPORTANTE: use SOMENTE as informações desta mensagem. Nunca invente sintomas, exames, valores ou condutas fora daqui. Se perguntarem algo não descrito, responda de forma plausível e genérica, sem contradizer os dados nem criar novos achados clínicos relevantes.
+
+---
+
+## PACIENTE (papel 1)
+Identificação: ${a.patient || 'não informado'}
+Queixa principal: ${a.complaint || 'não informado'}
+Cenário do atendimento: ${a.scenario || 'não informado'}
+Respostas a perguntas específicas:
+${scriptTxt}
+Informações escondidas (só revelar se perguntado diretamente sobre aquilo):
+${hiddenTxt}
+Comportamento do ator: ${b.actorBehavior || 'não informado'}
+
+## DADOS DE EXAME (papel 2)
+Sinais vitais: ${formatarSinaisVitais(b.vitals)}
+Exame físico geral: ${b.physicalGeneral || 'não informado'}
+Exame segmentar: ${toListaSimples(b.physicalSeg).join('; ') || 'não informado'}
+Exames laboratoriais/imagem disponíveis:
+${examesTxt}
+
+## GABARITO — não revelar antes da avaliação final (papel 3)
+Diagnóstico correto: ${c.diagnosis || 'não informado'}
+Justificativa diagnóstica: ${c.justify || 'não informado'}
+Diagnósticos diferenciais: ${diffTxt}
+Pontos esperados na anamnese: ${anamneseTxt}
+Achados esperados no exame físico: ${fisicoTxt}
+Exames que deveriam ser solicitados: ${examesEsperadosTxt}
+Conduta esperada: ${condutaTxt}
+Comunicação esperada com o paciente: ${comunicacaoTxt}
+Erros críticos a evitar: ${errosTxt}
+
+---
+Quando estiver pronto, comece cumprimentando o médico(a) e expondo sua queixa principal em poucas frases, já em personagem (papel 1).`;
+}
+
 // ── API pública usada pelo index.html ───────────────────────────────────
 
 window.GeminiOSCE = {
   getApiKey: getGeminiApiKey,
   setApiKey: setGeminiApiKey,
+
+  // Não chama a API — monta localmente o prompt "para levar" (ver acima).
+  gerarPromptOffline: montarPromptStandalone,
 
   // Gera a fala inicial do paciente (substitui a saudação fixa "dor no peito").
   // thinkingBudget:0 e maxOutputTokens baixo: é só uma fala curta em
@@ -236,7 +302,7 @@ window.GeminiOSCE = {
       role: 'user',
       parts: [{ text: 'Cumprimente o médico(a) que acabou de entrar e exponha sua queixa principal em poucas frases, como um paciente real faria ao ser chamado para a consulta.' }],
     }];
-    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 200, thinkingBudget: 0 });
+    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 150, thinkingBudget: 0 });
     contents.push({ role: 'model', parts: [{ text: texto }] });
     return { texto, contents };
   },
@@ -249,7 +315,7 @@ window.GeminiOSCE = {
     historico.push({ role: 'user', parts: [{ text: textoUsuario }] });
     const sistema = montarContextoPaciente(estacao);
     const contents = janelaHistorico(historico, GEMINI_CONFIG.maxHistoryMensagens);
-    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 200, thinkingBudget: 0 });
+    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 150, thinkingBudget: 0 });
     historico.push({ role: 'model', parts: [{ text: texto }] });
     return texto;
   },
@@ -260,7 +326,7 @@ window.GeminiOSCE = {
   async solicitarExames(estacao, pedidoTexto) {
     const sistema = montarContextoExames(estacao);
     const contents = [{ role: 'user', parts: [{ text: pedidoTexto }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0, maxOutputTokens: 400, thinkingBudget: 0 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0, maxOutputTokens: 300, thinkingBudget: 0 });
   },
 
   // Avaliação final, fundamentada no gabarito real (instC) + no que
@@ -289,18 +355,6 @@ Com base na conversa entre o médico(a) [estudante] e o paciente simulado (forne
     // Sem thinkingBudget aqui: avaliar o estudante contra o gabarito se
     // beneficia do raciocínio do modelo. Só limitamos o tamanho da resposta.
     const contents = [...historico, { role: 'user', parts: [{ text: 'Gere a avaliação final do meu atendimento com base em tudo que conversamos.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.3, maxOutputTokens: 900 });
-  },
-
-  async gerarQuiz(estacao) {
-    const sistema = `Use exclusivamente os dados reais do caso abaixo para criar as questões. Não invente informações fora deste contexto.\n\n${resumoTecnicoDoCaso(estacao)}`;
-    const contents = [{ role: 'user', parts: [{ text: 'Gere 2 questões estilo prova de residência médica baseadas neste caso clínico, com gabarito comentado.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4, maxOutputTokens: 700, thinkingBudget: 0 });
-  },
-
-  async gerarResumo(estacao) {
-    const sistema = `Use exclusivamente os dados reais do caso abaixo. Não invente informações fora deste contexto.\n\n${resumoTecnicoDoCaso(estacao)}`;
-    const contents = [{ role: 'user', parts: [{ text: 'Gere um resumo rápido e direto ao ponto com os pontos-chave de diagnóstico e conduta deste caso clínico.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4, maxOutputTokens: 500, thinkingBudget: 0 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.3, maxOutputTokens: 700 });
   },
 };
