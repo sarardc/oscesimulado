@@ -18,6 +18,10 @@
 const GEMINI_CONFIG = {
   model: 'gemini-3.6-flash',
   apiKeyStorageKey: 'gemini_api_key',
+  // Quantas mensagens (médico+paciente) do histórico são reenviadas a cada
+  // chamada do chat. Mantém o prompt enxuto — e portanto mais rápido —
+  // mesmo em consultas longas, sem perder o contexto recente da conversa.
+  maxHistoryMensagens: 16,
   endpoint(model, apiKey) {
     return `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
   },
@@ -36,26 +40,46 @@ function setGeminiApiKey(chave) {
 // API), separado do histórico da conversa — é isso que faz a IA obedecer
 // de forma consistente às regras e aos dados do caso.
 
-async function chamarGemini({ systemPrompt, contents, temperature }) {
+// `maxOutputTokens` limita o tamanho da resposta (respostas mais curtas saem
+// mais rápido). `thinkingBudget: 0` pede ao modelo para pular a etapa de
+// "raciocínio" antes de responder — útil para falas de paciente/exames, que
+// não exigem esse passo extra; não usamos isso no debriefing, que se
+// beneficia de mais raciocínio para avaliar corretamente o estudante.
+async function chamarGemini({ systemPrompt, contents, temperature, maxOutputTokens, thinkingBudget }) {
   const apiKey = getGeminiApiKey();
   if (!apiKey) throw new Error('Chave da API Gemini não configurada.');
 
   const url = GEMINI_CONFIG.endpoint(GEMINI_CONFIG.model, apiKey);
-  const body = { contents };
-  if (systemPrompt) {
-    body.systemInstruction = { parts: [{ text: systemPrompt }] };
-  }
-  if (temperature !== undefined) {
-    body.generationConfig = { temperature };
+
+  function montarCorpo(incluirThinking) {
+    const generationConfig = {};
+    if (temperature !== undefined) generationConfig.temperature = temperature;
+    if (maxOutputTokens !== undefined) generationConfig.maxOutputTokens = maxOutputTokens;
+    if (incluirThinking && thinkingBudget !== undefined) {
+      generationConfig.thinkingConfig = { thinkingBudget };
+    }
+    const body = { contents };
+    if (systemPrompt) body.systemInstruction = { parts: [{ text: systemPrompt }] };
+    if (Object.keys(generationConfig).length) body.generationConfig = generationConfig;
+    return body;
   }
 
-  const resposta = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
+  async function chamar(incluirThinking) {
+    const resposta = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(montarCorpo(incluirThinking)),
+    });
+    return resposta.json();
+  }
 
-  const dados = await resposta.json();
+  let dados = await chamar(true);
+
+  // Se esta conta/versão da API não aceitar thinkingConfig, repete sem ele
+  // em vez de falhar a conversa inteira.
+  if (dados.error && thinkingBudget !== undefined && /thinking/i.test(dados.error.message || '')) {
+    dados = await chamar(false);
+  }
 
   if (dados.error) {
     throw new Error(dados.error.message || 'Erro desconhecido na API Gemini.');
@@ -65,6 +89,17 @@ async function chamarGemini({ systemPrompt, contents, temperature }) {
   const texto = candidato?.content?.parts?.map(p => p.text || '').join('') || '';
   if (!texto) throw new Error('A IA não retornou nenhuma resposta.');
   return texto;
+}
+
+// Mantém só as últimas `maxMensagens` entradas do histórico (garantindo que
+// a janela sempre comece numa fala do médico, para não quebrar o contexto).
+function janelaHistorico(historico, maxMensagens) {
+  if (historico.length <= maxMensagens) return historico;
+  let inicio = historico.length - maxMensagens;
+  while (inicio < historico.length - 1 && historico[inicio].role !== 'user') {
+    inicio++;
+  }
+  return historico.slice(inicio);
 }
 
 // ── Helpers para ler os dados da estação (mesmo formato usado em ui.js) ──
@@ -193,33 +228,39 @@ window.GeminiOSCE = {
   setApiKey: setGeminiApiKey,
 
   // Gera a fala inicial do paciente (substitui a saudação fixa "dor no peito").
+  // thinkingBudget:0 e maxOutputTokens baixo: é só uma fala curta em
+  // personagem, não precisa de raciocínio extra — sai bem mais rápido.
   async saudacaoInicial(estacao) {
     const sistema = montarContextoPaciente(estacao);
     const contents = [{
       role: 'user',
       parts: [{ text: 'Cumprimente o médico(a) que acabou de entrar e exponha sua queixa principal em poucas frases, como um paciente real faria ao ser chamado para a consulta.' }],
     }];
-    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6 });
+    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 200, thinkingBudget: 0 });
     contents.push({ role: 'model', parts: [{ text: texto }] });
     return { texto, contents };
   },
 
   // Continua a conversa com o paciente simulado. `historico` é mutado
   // (recebe a fala do médico e a resposta do paciente) para manter o
-  // contexto entre as mensagens.
+  // contexto completo — mas só uma janela recente dele é enviada à API,
+  // para o prompt não crescer (e ficar mais lento) ao longo da consulta.
   async responderComoPaciente(estacao, historico, textoUsuario) {
     historico.push({ role: 'user', parts: [{ text: textoUsuario }] });
     const sistema = montarContextoPaciente(estacao);
-    const texto = await chamarGemini({ systemPrompt: sistema, contents: historico, temperature: 0.6 });
+    const contents = janelaHistorico(historico, GEMINI_CONFIG.maxHistoryMensagens);
+    const texto = await chamarGemini({ systemPrompt: sistema, contents, temperature: 0.6, maxOutputTokens: 200, thinkingBudget: 0 });
     historico.push({ role: 'model', parts: [{ text: texto }] });
     return texto;
   },
 
   // Botão "Solicitar Exames": devolve somente o que está cadastrado na aba B.
+  // É uma tarefa de busca/formatação simples — também não precisa de
+  // raciocínio extra.
   async solicitarExames(estacao, pedidoTexto) {
     const sistema = montarContextoExames(estacao);
     const contents = [{ role: 'user', parts: [{ text: pedidoTexto }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0, maxOutputTokens: 400, thinkingBudget: 0 });
   },
 
   // Avaliação final, fundamentada no gabarito real (instC) + no que
@@ -245,19 +286,21 @@ Com base na conversa entre o médico(a) [estudante] e o paciente simulado (forne
 4) Erros críticos cometidos, se houver;
 5) Nota final de 0 a 10, com breve justificativa.`;
 
+    // Sem thinkingBudget aqui: avaliar o estudante contra o gabarito se
+    // beneficia do raciocínio do modelo. Só limitamos o tamanho da resposta.
     const contents = [...historico, { role: 'user', parts: [{ text: 'Gere a avaliação final do meu atendimento com base em tudo que conversamos.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.3 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.3, maxOutputTokens: 900 });
   },
 
   async gerarQuiz(estacao) {
     const sistema = `Use exclusivamente os dados reais do caso abaixo para criar as questões. Não invente informações fora deste contexto.\n\n${resumoTecnicoDoCaso(estacao)}`;
     const contents = [{ role: 'user', parts: [{ text: 'Gere 2 questões estilo prova de residência médica baseadas neste caso clínico, com gabarito comentado.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4, maxOutputTokens: 700, thinkingBudget: 0 });
   },
 
   async gerarResumo(estacao) {
     const sistema = `Use exclusivamente os dados reais do caso abaixo. Não invente informações fora deste contexto.\n\n${resumoTecnicoDoCaso(estacao)}`;
     const contents = [{ role: 'user', parts: [{ text: 'Gere um resumo rápido e direto ao ponto com os pontos-chave de diagnóstico e conduta deste caso clínico.' }] }];
-    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4 });
+    return chamarGemini({ systemPrompt: sistema, contents, temperature: 0.4, maxOutputTokens: 500, thinkingBudget: 0 });
   },
 };
