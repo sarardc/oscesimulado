@@ -139,36 +139,51 @@
     </div>
 
     <div class="ia-drawer-content">
-        <!-- Status e Trava de Hardware -->
-        <div id="aviso-hardware-ia"></div>
-        <div class="status-bar" id="status-ia">Pronto para iniciar o download da IA.</div>
+        <!-- Seção de Configuração da Chave (Aparece se não houver chave salva) -->
+        <div id="secao-config-chave" style="background: #f1f3f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <p style="font-size: 0.9rem; margin-bottom: 8px; color: #333;">
+                🔑 <strong>Configuração Inicial:</strong> Para simular com a IA, insira sua chave gratuita do Google AI Studio.
+            </p>
+            <ol style="font-size: 0.8rem; color: #555; margin-left: 15px; margin-bottom: 10px;">
+                <li>Acesse <a href="https://aistudio.google.com/" target="_blank" style="color: #0d6efd;">Google AI Studio</a> e crie uma chave gratuita.</li>
+                <li>Cole a chave gerada no campo abaixo:</li>
+            </ol>
+            <div style="display: flex; gap: 5px;">
+                <input type="password" id="input-api-key" placeholder="Cole sua chave aqui (AIzaSy...)" style="flex: 1; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem;">
+                <button id="btn-salvar-chave" style="padding: 6px 12px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Salvar</button>
+            </div>
+            <p id="status-chave" style="font-size: 0.75rem; margin-top: 5px; color: #666;"></p>
+        </div>
+
+        <!-- Status do Paciente -->
+        <div class="status-bar" id="status-ia">Insira sua chave acima para habilitar o paciente.</div>
         
         <!-- Área do Chat -->
-        <div class="chat-box" id="chat-box">
+        <div class="chat-box" id="chat-box" style="display: none;">
             <div class="mensagem paciente">
-                Clique no botão abaixo para baixar o modelo e iniciar a simulação.
+                Olá, Doutor(a). Estou sentindo uma dor muito forte no peito. Pode me ajudar?
             </div>
         </div>
 
-        <!-- Controles -->
+        <!-- Controles de Voz -->
         <div class="controles-ia">
-            <button id="btn-iniciar" class="btn-ia primario">📥 Baixar e Iniciar</button>
             <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Segure para Falar</button>
             <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
         </div>
 
-        <!-- Área de Avaliação (Escondida por padrão) -->
+        <!-- Área de Avaliação (Debriefing) -->
         <div id="area-debriefing" class="area-debriefing" style="display: none;">
-            <h3>📋 Avaliação</h3>
+            <h3>📋 Avaliação do Atendimento</h3>
             <div id="resultado-avaliacao" class="resultado-avaliacao"></div>
             
-            <div class="botoes-estudo">
-                <button id="btn-quiz" class="btn-ia roxo">📝 Gerar Quiz</button>
-                <button id="btn-resumo" class="btn-ia verde">📚 Resumo Rápido</button>
+            <div class="botoes-estudo" style="margin-top: 10px;">
+                <button id="btn-quiz" class="btn-ia roxo" style="background: #6f42c1; color: white; border:none; padding:8px; border-radius:4px; cursor:pointer;">📝 Gerar Quiz</button>
+                <button id="btn-resumo" class="btn-ia verde" style="background: #198754; color: white; border:none; padding:8px; border-radius:4px; cursor:pointer;">📚 Resumo Rápido</button>
             </div>
-            <div id="conteudo-estudo" class="conteudo-estudo"></div>
+            <div id="conteudo-estudo" class="conteudo-estudo" style="margin-top: 10px; font-size: 0.9rem;"></div>
         </div>
     </div>
+
 </aside>
 <!-- final do painel lateral-->
 
@@ -206,178 +221,230 @@
 
 <!-- SCRIPT DA IA IA-->
 
-<!-- Motor de IA e Simulação por Voz (Versão Estável com Dynamic Import) -->
-<script type="module">
-    // 1. Mapeamento dos botões (A Interface)
-    const btnAbrirIa = document.getElementById("btn-abrir-ia");
-    const btnFecharIa = document.getElementById("btn-fechar-ia");
-    const drawer = document.getElementById("ia-drawer");
-    const overlay = document.getElementById("ia-overlay");
-    const tituloDrawer = document.getElementById("titulo-ia-drawer");
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnAbrirIa = document.getElementById("btn-abrir-ia");
+        const btnFecharIa = document.getElementById("btn-fechar-ia");
+        const drawer = document.getElementById("ia-drawer");
+        const overlay = document.getElementById("ia-overlay");
+        const tituloDrawer = document.getElementById("titulo-ia-drawer");
 
-    const btnIniciar = document.getElementById("btn-iniciar");
-    const btnFalar = document.getElementById("btn-falar");
-    const btnFinalizar = document.getElementById("btn-finalizar");
-    const statusIa = document.getElementById("status-ia");
-    const chatBox = document.getElementById("chat-box");
-    const avisoHardware = document.getElementById("aviso-hardware-ia");
+        const secaoConfig = document.getElementById("secao-config-chave");
+        const inputApiKey = document.getElementById("input-api-key");
+        const btnSalvarChave = document.getElementById("btn-salvar-chave");
+        const statusChave = document.getElementById("status-chave");
+        
+        const statusIa = document.getElementById("status-ia");
+        const chatBox = document.getElementById("chat-box");
+        const btnFalar = document.getElementById("btn-falar");
+        const btnFinalizar = document.getElementById("btn-finalizar");
 
-    const areaDebriefing = document.getElementById("area-debriefing");
-    const resultadoAvaliacao = document.getElementById("resultado-avaliacao");
-    const btnQuiz = document.getElementById("btn-quiz");
-    const btnResumo = document.getElementById("btn-resumo");
-    const conteudoEstudo = document.getElementById("conteudo-estudo");
+        const areaDebriefing = document.getElementById("area-debriefing");
+        const resultadoAvaliacao = document.getElementById("resultado-avaliacao");
+        const btnQuiz = document.getElementById("btn-quiz");
+        const btnResumo = document.getElementById("btn-resumo");
+        const conteudoEstudo = document.getElementById("conteudo-estudo");
 
-    let engine = null;
-    const modeloSelecionado = "Phi-3-mini-4k-instruct-q4f16_1-MLC";
-    let historicoConsulta = [];
+        let historicoConsulta = [];
 
-    // ==========================================
-    // PARTE 1: GARANTIR QUE A ABA ABRE SEMPRE
-    // ==========================================
-    if (btnAbrirIa) {
-        btnAbrirIa.addEventListener("click", () => {
-            if (drawer && overlay) {
+        // 1. Controle da Aba Lateral
+        if (btnAbrirIa) {
+            btnAbrirIa.addEventListener("click", () => {
                 drawer.classList.add("aberto");
                 overlay.classList.add("ativo");
+                const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
+                if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
                 
-                // Tenta capturar o título do caso
-                const elementoTitulo = document.getElementById("sv-title");
-                if (elementoTitulo && tituloDrawer) {
-                    tituloDrawer.innerText = elementoTitulo.innerText;
-                }
-            }
-        });
-    }
+                checarChaveSalva();
+            });
+        }
 
-    function fecharPainel() {
-        if (drawer) drawer.classList.remove("aberto");
-        if (overlay) overlay.classList.remove("ativo");
-    }
-    
-    if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
-    if (overlay) overlay.addEventListener("click", fecharPainel);
+        function fecharPainel() {
+            drawer.classList.remove("aberto");
+            overlay.classList.remove("ativo");
+        }
+        if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
+        if (overlay) overlay.addEventListener("click", fecharPainel);
 
-    // ==========================================
-    // PARTE 2: A INTELIGÊNCIA ARTIFICIAL (LAZY LOAD COM FALLBACK EXTREMO)
-    // ==========================================
-    if (btnIniciar) {
-        btnIniciar.addEventListener("click", async () => {
-            btnIniciar.disabled = true;
-            statusIa.innerText = "Buscando rotas de conexão com a IA...";
-
-            try {
-                let webllm = null;
-                
-                // LISTA DE ROTAS (Tentaremos uma por uma)
-                // A ordem é importante: do mais rápido para o mais garantido
-                const servidoresCDN = [
-                    "https://unpkg.com/@mlc.ai/web-llm@0.2.74/lib/index.js", // Acesso direto ao ficheiro (geralmente não falha)
-                    "https://esm.run/@mlc.ai/web-llm", // Oficial (esm.run)
-                    "https://cdn.jsdelivr.net/npm/@mlc.ai/web-llm/+esm", // JSDelivr
-                    "https://esm.sh/@mlc.ai/web-llm?bundle" // ESM.sh em modo bundle
-                ];
-
-                // Tenta cada CDN da lista
-                for (const url of servidoresCDN) {
-                    try {
-                        console.log("A tentar conectar via:", url);
-                        webllm = await import(url);
-                        console.log("✅ Sucesso ao importar de:", url);
-                        break; // Se funcionou, sai do loop imediatamente
-                    } catch (err) {
-                        console.warn(`❌ Falha na rota ${url}:`, err.message);
-                    }
-                }
-
-                // Se testámos todos os links e o 'webllm' continua vazio, é porque todos falharam
-                if (!webllm) {
-                    throw new Error("Não foi possível conectar a nenhum servidor CDN.");
-                }
-
-                statusIa.innerText = "A descarregar o motor de IA (aguarde, pode demorar alguns minutos)...";
-
-                engine = await webllm.CreateMLCEngine(modeloSelecionado, {
-                    initProgressCallback: (report) => {
-                        statusIa.innerText = `A carregar IA: ${Math.round(report.progress * 100)}%`;
-                    }
-                });
-
+        // 2. Gerenciamento da Chave do Aluno
+        function checarChaveSalva() {
+            const chaveSalva = localStorage.getItem("gemini_api_key");
+            if (chaveSalva) {
+                secaoConfig.style.display = "none";
                 statusIa.innerText = "Paciente pronto! Prima o botão para falar.";
-                btnIniciar.style.display = "none";
+                chatBox.style.display = "block";
                 btnFalar.style.display = "block";
                 btnFinalizar.style.display = "block";
-
+                
+                // Inicializa histórico do paciente virtual
                 historicoConsulta = [
                     {
-                        role: "system",
-                        content: "Você é um paciente de 55 anos numa consulta de urgência. Queixa-se de dor no peito em aperto iniciada há 1 hora, que irradia para o braço esquerdo. É hipertenso e fumador. Responda apenas ao que for perguntado, de forma curta (máximo 2 frases) e com vocabulário leigo."
+                        role: "user",
+                        parts: [{ text: "Contexto do sistema: Você é um paciente de 55 anos numa consulta de urgência OSCE. Queixa-se de dor no peito em aperto iniciada há 1 hora. Responda de forma curta (máximo 2 frases), realista e com vocabulário leigo." }]
                     }
                 ];
-                window.speechSynthesis.getVoices(); 
-                
-            } catch (erro) {
-                console.error("Erro fatal e definitivo na IA:", erro);
-                statusIa.innerHTML = `<span style="color: red;">Erro ao conectar. Tente desativar extensões bloqueadoras (AdBlock) ou testar noutra rede.</span>`;
-                btnIniciar.disabled = false;
+            } else {
+                secaoConfig.style.display = "block";
+                statusIa.innerText = "Insira sua chave acima para habilitar o paciente.";
+                chatBox.style.display = "none";
+                btnFalar.style.display = "none";
+                btnFinalizar.style.display = "none";
+            }
+        }
+
+        btnSalvarChave.addEventListener("click", () => {
+            const chave = inputApiKey.value.trim();
+            if (chave.startsWith("AIza")) {
+                localStorage.setItem("gemini_api_key", chave);
+                statusChave.style.color = "green";
+                statusChave.innerText = "Chave salva com sucesso!";
+                setTimeout(checarChaveSalva, 1000);
+            } else {
+                statusChave.style.color = "red";
+                statusChave.innerText = "Chave inválida. Deve começar com 'AIza'.";
             }
         });
-    }
 
-    // ==========================================
-    // PARTE 3: MICROFONE E CHAT
-    // ==========================================
-    const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
-    let microfone = null;
+        // 3. Reconhecimento de Voz e Comunicação com Gemini
+        const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
+        let microfone = null;
 
-    if (ReconhecimentoVoz && btnFalar) {
-        microfone = new ReconhecimentoVoz();
-        microfone.lang = "pt-BR";
-        microfone.interimResults = false;
+        if (ReconhecimentoVoz) {
+            microfone = new ReconhecimentoVoz();
+            microfone.lang = "pt-BR";
+            microfone.interimResults = false;
 
-        btnFalar.addEventListener("mousedown", () => {
-            microfone.start();
-            btnFalar.innerText = "🎤 A ouvir... (solte para enviar)";
-        });
+            btnFalar.addEventListener("mousedown", () => {
+                microfone.start();
+                btnFalar.innerText = "🎤 A ouvir... (solte para enviar)";
+            });
 
-        btnFalar.addEventListener("mouseup", () => {
-            microfone.stop();
-            btnFalar.innerText = "⏳ A processar...";
-        });
+            btnFalar.addEventListener("mouseup", () => {
+                microfone.stop();
+                btnFalar.innerText = "⏳ A processar...";
+            });
 
-        microfone.onresult = async (event) => {
-            const texto = event.results[0][0].transcript;
-            adicionarMensagem(texto, "medico");
-            await responderPaciente(texto);
-        };
-    }
-
-    async function responderPaciente(texto) {
-        historicoConsulta.push({ role: "user", content: texto });
-        try {
-            const resposta = await engine.chat.completions.create({ messages: historicoConsulta });
-            const fala = resposta.choices[0].message.content;
-            historicoConsulta.push({ role: "assistant", content: fala });
-            adicionarMensagem(fala, "paciente");
-
-            const voz = new SpeechSynthesisUtterance(fala);
-            voz.lang = "pt-BR";
-            window.speechSynthesis.speak(voz);
-        } catch (e) {
-            console.error(e);
-        } finally {
-            if (btnFalar) btnFalar.innerText = "🎤 Segure para Falar";
+            microfone.onresult = async (event) => {
+                const texto = event.results[0][0].transcript;
+                adicionarMensagem(texto, "medico");
+                await enviarParaGemini(texto);
+            };
         }
-    }
 
-    function adicionarMensagem(texto, tipo) {
-        if (!chatBox) return;
-        const msg = document.createElement("div");
-        msg.className = `mensagem ${tipo}`;
-        msg.innerText = texto;
-        chatBox.appendChild(msg);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
+        async function enviarParaGemini(textoUsuario) {
+            const apiKey = localStorage.getItem("gemini_api_key");
+            const modelo = "gemini-2.5-flash";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
+
+            historicoConsulta.push({ role: "user", parts: [{ text: textoUsuario }] });
+
+            try {
+                const resposta = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: historicoConsulta })
+                });
+
+                const dados = await resposta.json();
+                
+                if (dados.error) {
+                    throw new Error(dados.error.message);
+                }
+
+                const falaPaciente = dados.candidates[0].content.parts[0].text;
+                historicoConsulta.push({ role: "model", parts: [{ text: falaPaciente }] });
+
+                adicionarMensagem(falaPaciente, "paciente");
+
+                // Síntese de voz nativa do navegador
+                const voz = new SpeechSynthesisUtterance(falaPaciente);
+                voz.lang = "pt-BR";
+                window.speechSynthesis.speak(voz);
+
+            } catch (erro) {
+                console.error("Erro na API do Gemini:", erro);
+                adicionarMensagem("Erro ao comunicar com a IA. Verifique se a sua chave está correta.", "paciente");
+            } finally {
+                btnFalar.innerText = "🎤 Segure para Falar";
+            }
+        }
+
+        function adicionarMensagem(texto, tipo) {
+            const msg = document.createElement("div");
+            msg.className = `mensagem ${tipo}`;
+            msg.innerText = texto;
+            chatBox.appendChild(msg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // 4. Avaliação Final (Debriefing)
+        btnFinalizar.addEventListener("click", async () => {
+            btnFalar.style.display = "none";
+            btnFinalizar.style.display = "none";
+            statusIa.innerText = "A gerar avaliação do atendimento...";
+
+            const apiKey = localStorage.getItem("gemini_api_key");
+            const modelo = "gemini-2.5-flash";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
+
+            const promptAvaliacao = `Analise a conversa desta simulação de OSCE e forneça um feedback estruturado para o estudante com: 1) Acertos na anamnese; 2) Omissões importantes; 3) Nota final de 0 a 10.`;
+
+            try {
+                const resposta = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        contents: [
+                            ...historicoConsulta,
+                            { role: "user", parts: [{ text: promptAvaliacao }] }
+                        ]
+                    })
+                });
+
+                const dados = await resposta.json();
+                const avaliacao = dados.candidates[0].content.parts[0].text;
+
+                resultadoAvaliacao.innerHTML = avaliacao.replace(/\n/g, "<br>");
+                areaDebriefing.style.display = "block";
+                statusIa.innerText = "Estação concluída.";
+            } catch (e) {
+                statusIa.innerText = "Erro ao gerar avaliação.";
+            }
+        });
+
+        // 5. Botões de Estudo Extra (Quiz e Resumo)
+        btnQuiz.addEventListener("click", async () => {
+            conteudoEstudo.innerText = "A gerar questões de estudo...";
+            const apiKey = localStorage.getItem("gemini_api_key");
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            
+            const resposta = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ role: "user", parts: [{ text: "Gere 2 questões estilo prova de residência médica baseadas no caso clínico atendido, com gabarito comentado." }] }]
+                })
+            });
+            const dados = await resposta.json();
+            conteudoEstudo.innerHTML = dados.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+        });
+
+        btnResumo.addEventListener("click", async () => {
+            conteudoEstudo.innerText = "A gerar resumo rápido...";
+            const apiKey = localStorage.getItem("gemini_api_key");
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+            
+            const resposta = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ role: "user", parts: [{ text: "Gere um resumo rápido e direto ao ponto com os pontos-chave de conduta e diagnóstico para este caso clínico." }] }]
+                })
+            });
+            const dados = await resposta.json();
+            conteudoEstudo.innerHTML = dados.candidates[0].content.parts[0].text.replace(/\n/g, "<br>");
+        });
+    });
 </script>
 
 </body>
