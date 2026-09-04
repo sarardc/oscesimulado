@@ -93,51 +93,43 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Miomatose Uterina — Material de Estudo',
+      title: 'CHECKLIST — SANGRAMENTO MENSTRUAL INTENSO HÁ 6 MESES (MIOMATOSE)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Leiomiomas uterinos são tumores benignos monoclonais originados do músculo liso do miométrio, sendo a neoplasia pélvica mais comum em mulheres.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Prevalência de até 70-80% ao longo da vida reprodutiva; mais comuns e sintomáticos em mulheres negras.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Classificados pela localização segundo o sistema FIGO (submucoso, intramural, subseroso), o que orienta o impacto sobre o sangramento e a fertilidade.', score: 2, ref: 'FIGO' }
+            { item: 'Apresentou-se pelo nome à paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Abordou ativamente e com empatia o medo de câncer expresso pela paciente', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Sangramento uterino anormal (menorragia) é o sintoma mais frequente, especialmente em miomas submucosos que distorcem a cavidade endometrial.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Sintomas compressivos: dor pélvica, aumento da frequência urinária, constipação, dispareunia.', score: 1, ref: 'Williams Ginecologia' },
-            { item: 'Pode cursar com infertilidade ou complicações obstétricas quando distorce a cavidade uterina.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Caracterizou o sangramento (quantidade, duração, coágulos)', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou sintomas de anemia e sintomas compressivos', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Perguntou sobre desejo reprodutivo futuro', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Ultrassonografia transvaginal é o exame de primeira linha, com boa sensibilidade para localizar e medir os miomas.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Ressonância magnética é reservada para casos de dúvida diagnóstica ou planejamento cirúrgico complexo.', score: 1, ref: 'Williams Ginecologia' },
-            { item: 'Histeroscopia é útil para avaliação e tratamento de miomas submucosos.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Realizou palpação abdominal identificando massa/aumento uterino', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Realizou toque vaginal bimanual avaliando tamanho e contorno uterino', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico Diferencial',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Adenomiose, pólipos endometriais, hiperplasia/neoplasia endometrial e coagulopatias devem ser excluídos em toda paciente com SUA.', score: 2, ref: 'FIGO — sistema PALM-COEIN' }
+            { item: 'Solicitou beta-hCG antes de qualquer conduta', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Solicitou hemograma e ultrassonografia transvaginal', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Tratamento clínico: AINEs, ácido tranexâmico, SIU-LNG e anticoncepcionais hormonais para controle do sangramento em casos leves a moderados.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Tratamento cirúrgico: miomectomia (histeroscópica, laparoscópica ou abdominal) para preservar fertilidade; histerectomia como tratamento definitivo em mulheres sem desejo reprodutivo e sintomas refratários.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Embolização das artérias uterinas é alternativa não cirúrgica eficaz para redução volumétrica e controle do sangramento.', score: 1, ref: 'Williams Ginecologia' }
-          ]
-        },
-        {
-          h: 'Orientações e Seguimento',
-          items: [
-            { item: 'Reforçar a natureza benigna da doença e baixíssimo risco de malignização (leiomiossarcoma é raro).', score: 1, ref: 'FEBRASGO' },
-            { item: 'Manter rastreamento de câncer de colo do útero e seguimento ginecológico regular independentemente do tratamento escolhido.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Explicou a natureza benigna dos miomas', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Discutiu opções terapêuticas clínicas e cirúrgicas conforme desejo reprodutivo', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Prescreveu reposição de ferro para a anemia', score: 0.5, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -230,47 +222,41 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Vaginose Bacteriana — Material de Estudo',
+      title: 'CHECKLIST — CORRIMENTO VAGINAL COM ODOR FORTE (VAGINOSE BACTERIANA)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'É a causa mais comum de corrimento vaginal em mulheres em idade reprodutiva, resultante de disbiose vaginal com redução de lactobacilos.', score: 1, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Não é classificada como IST, mas associa-se a fatores como múltiplos parceiros, duchas vaginais e tabagismo.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Conduziu a anamnese sobre higiene e vida sexual sem julgamento', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Esclareceu que não se trata de uma IST clássica, aliviando a preocupação da paciente', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Corrimento vaginal acinzentado, homogêneo, de odor fétido característico ("odor de peixe"), mais perceptível após coito ou menstruação.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Geralmente pouco associado a prurido ou sinais inflamatórios intensos, diferentemente da candidíase.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Caracterizou o corrimento (cor, odor, relação com o coito)', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Investigou uso de duchas vaginais e produtos de higiene íntima', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Critérios de Amsel (necessários ao menos 3 de 4): corrimento homogêneo, pH > 4,5, whiff test positivo, presença de clue cells.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Escore de Nugent (coloração de Gram) é o padrão-ouro laboratorial, mas pouco utilizado na prática clínica de rotina.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Realizou exame especular com coleta de conteúdo vaginal', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Realizou toque vaginal para excluir dor à mobilização do colo (afastar DIP)', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Diagnóstico Diferencial',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Candidíase vulvovaginal, tricomoníase e cervicites devem ser sistematicamente excluídas.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Aplicou os critérios de Amsel (pH, whiff test, clue cells)', score: 1.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
           items: [
-            { item: 'Metronidazol oral 500 mg 12/12h por 7 dias é o tratamento de primeira linha; alternativa tópica com metronidazol gel vaginal.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Tratamento do parceiro não é recomendado rotineiramente, pois não altera a taxa de recorrência.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
-          ]
-        },
-        {
-          h: 'Orientações e Prevenção',
-          items: [
-            { item: 'Orientar suspensão de duchas vaginais e evitar produtos de higiene íntima perfumados, que alteram o pH vaginal.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Reforçar que não é uma IST, evitando estigmatização, mas manter orientação sobre prevenção de ISTs em geral.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Prescreveu metronidazol na dose e via corretas', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Orientou suspensão de duchas vaginais', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'NÃO orientou tratamento rotineiro do parceiro', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         }
       ]
@@ -372,42 +358,41 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Doença Inflamatória Pélvica (DIP) — Material de Estudo',
+      title: 'CHECKLIST — DOR PÉLVICA INTENSA E FEBRE (DOENÇA INFLAMATÓRIA PÉLVICA)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'DIP é a infecção do trato genital superior feminino, geralmente polimicrobiana, mais comum em mulheres jovens sexualmente ativas.', score: 1, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Principais agentes etiológicos: Neisseria gonorrhoeae e Chlamydia trachomatis, além de flora anaeróbia e aeróbia vaginal.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Agiu com agilidade compatível com a gravidade do quadro', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Abordou a preocupação da paciente sobre fertilidade com informação realista', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Quadro Clínico e Critérios Diagnósticos',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Critérios mínimos para diagnóstico clínico: dor à palpação do hipogástrio, dor à palpação anexial e dor à mobilização do colo uterino (sinal de Chandelier).', score: 2, ref: 'CDC / Ministério da Saúde' },
-            { item: 'Critérios adicionais que aumentam a especificidade: febre > 38,3°C, corrimento cervical/vaginal mucopurulento anormal, leucocitose, PCR/VHS elevados, confirmação laboratorial de infecção cervical por gonococo/clamídia.', score: 2, ref: 'CDC / Ministério da Saúde' }
+            { item: 'Investigou corrimento cervical recente e história sexual', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Investigou uso de DIU e data da última menstruação', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Diagnóstico é primariamente clínico; exames de imagem e laboratoriais auxiliam a confirmar e avaliar gravidade/complicações.', score: 1, ref: 'FEBRASGO' },
-            { item: 'USG transvaginal é útil para identificar abscesso tubo-ovariano, uma complicação grave que muda a conduta.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Realizou toque vaginal identificando dor à mobilização do colo (sinal de Chandelier)', score: 1.5, ref: 'CDC / Ministério da Saúde' },
+            { item: 'Realizou exame especular avaliando corrimento cervical', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Esquema ambulatorial: ceftriaxona IM dose única + doxiciclina oral por 14 dias, associando metronidazol se suspeita de anaeróbios.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Critérios de internação: abdome cirúrgico não excluído, gestação, ausência de resposta/intolerância ao tratamento oral, doença grave, presença de abscesso tubo-ovariano.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Tratamento e rastreio do(s) parceiro(s) sexual(is) é essencial para evitar reinfecção.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
+            { item: 'Solicitou beta-hCG para excluir gestação ectópica', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Solicitou hemograma, PCR e USG transvaginal (rastreio de abscesso)', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Complicações e Prognóstico',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Complicações incluem infertilidade por fator tubário, gravidez ectópica, dor pélvica crônica e síndrome de Fitz-Hugh-Curtis (perihepatite).', score: 2, ref: 'FEBRASGO' },
-            { item: 'O risco de sequelas aumenta com episódios repetidos e atraso no início do tratamento, reforçando a importância do diagnóstico precoce.', score: 1, ref: 'Williams Ginecologia' }
+            { item: 'Prescreveu antibioticoterapia cobrindo gonococo, clamídia e anaeróbios', score: 1.5, ref: 'Ministério da Saúde — PCDT IST' },
+            { item: 'Orientou tratamento do(s) parceiro(s) sexual(is)', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
           ]
         }
       ]
@@ -510,49 +495,31 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Síndrome dos Ovários Policísticos (SOP) — Material de Estudo',
+      title: 'CHECKLIST — CICLOS IRREGULARES, ACNE E HIRSUTISMO (SÍNDROME DOS OVÁRIOS POLICÍSTICOS)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'SOP é a endocrinopatia mais prevalente em mulheres em idade reprodutiva (8-13%), de etiologia multifatorial envolvendo resistência insulínica e fatores genéticos.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Diagnóstico — Critérios de Rotterdam',
-          items: [
-            { item: 'Diagnóstico requer 2 de 3 critérios: oligo/anovulação, hiperandrogenismo clínico ou laboratorial, e morfologia ovariana policística à USG, após exclusão de outras causas.', score: 2, ref: 'Consenso de Rotterdam / FEBRASGO' },
-            { item: 'Diagnósticos diferenciais obrigatórios: hiperplasia adrenal congênita não clássica, hiperprolactinemia, disfunção tireoidiana e, quando indicado, síndrome de Cushing e tumores secretores de andrógenos.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Quadro Clínico',
-          items: [
-            { item: 'Irregularidade menstrual (oligomenorreia/amenorreia), hirsutismo, acne e, com frequência, sobrepeso/obesidade e acantose nigricans (marcador de resistência insulínica).', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Comorbidades Associadas',
-          items: [
-            { item: 'Resistência insulínica, risco aumentado de diabetes mellitus tipo 2, dislipidemia, síndrome metabólica e maior risco cardiovascular a longo prazo.', score: 2, ref: 'FEBRASGO / ESHRE Guideline' },
-            { item: 'Maior risco de infertilidade anovulatória, hiperplasia endometrial (por anovulação crônica) e complicações obstétricas quando engravida.', score: 1, ref: 'ESHRE Guideline' }
-          ]
-        },
-        {
-          h: 'Tratamento',
-          items: [
-            { item: 'Mudança de estilo de vida (dieta e exercício) é a base do tratamento, especialmente em pacientes com sobrepeso/obesidade.', score: 2, ref: 'ESHRE Guideline' },
-            { item: 'Anticoncepcionais hormonais combinados são primeira linha para regularização menstrual e controle do hiperandrogenismo em mulheres sem desejo gestacional imediato.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Metformina indicada em casos de resistência insulínica/pré-diabetes; indutores de ovulação (como letrozol) são utilizados quando há desejo de gestação.', score: 1, ref: 'ESHRE Guideline' }
-          ]
-        },
-        {
-          h: 'Orientações e Seguimento',
-          items: [
-            { item: 'Abordar impacto psicológico da doença (autoestima, ansiedade, depressão são mais prevalentes nessas pacientes) e oferecer suporte adequado.', score: 1, ref: 'ESHRE Guideline' },
-            { item: 'Seguimento a longo prazo com rastreio metabólico periódico (glicemia, perfil lipídico) é recomendado.', score: 1, ref: 'FEBRASGO' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Atendeu a paciente sozinha, respeitando a confidencialidade da consulta', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+          { item: 'Acolheu o sofrimento emocional relacionado à acne e ao hirsutismo', score: 1.0, ref: 'ESHRE Guideline' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Caracterizou o padrão menstrual desde a menarca', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Investigou hirsutismo, acne e história de ganho de peso', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Perguntou sobre história familiar de diabetes/SOP', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Calculou o IMC e pesquisou acantose nigricans', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Avaliou sinais de hiperandrogenismo (escore de Ferriman-Gallwey, acne)', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Solicitou testosterona, LH/FSH e 17-OH-progesterona para excluir diferenciais', score: 1.5, ref: 'FEBRASGO' },
+          { item: 'Solicitou prolactina, TSH e USG transvaginal com justificativa clínica', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Solicitou glicemia de jejum e perfil lipídico para avaliação de risco cardiometabólico', score: 1.0, ref: 'ESHRE Guideline' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Aplicou corretamente os critérios de Rotterdam para o diagnóstico', score: 1.0, ref: 'Consenso de Rotterdam' },
+          { item: 'Orientou mudança de estilo de vida e propôs anticoncepcional hormonal combinado', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Respondeu de forma realista e sem alarmismo sobre fertilidade futura', score: 0.5, ref: 'ESHRE Guideline' }
+        ]}
       ]
     }
   },
@@ -646,50 +613,29 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Síndrome Climatérica — Material de Estudo',
+      title: 'CHECKLIST — FOGACHOS E INSÔNIA HÁ 8 MESES (SÍNDROME CLIMATÉRICA)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'Climatério é a transição entre a fase reprodutiva e não reprodutiva; menopausa é definida retrospectivamente após 12 meses consecutivos de amenorreia, ocorrendo em média entre 45-55 anos.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Quadro Clínico',
-          items: [
-            { item: 'Sintomas vasomotores (fogachos, sudorese noturna) são os mais característicos e frequentes, presentes em até 80% das mulheres no climatério.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Síndrome geniturinária da menopausa: atrofia vaginal, dispareunia, sintomas urinários (urgência, incontinência de esforço), decorrentes do hipoestrogenismo.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Alterações de humor (irritabilidade, ansiedade, labilidade emocional) e distúrbios do sono são comuns nessa fase.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Diagnóstico',
-          items: [
-            { item: 'Diagnóstico é predominantemente clínico, baseado na idade, padrão menstrual e sintomatologia; dosagens hormonais (FSH/estradiol) são reservadas para casos de dúvida diagnóstica.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Riscos Associados à Pós-Menopausa',
-          items: [
-            { item: 'Aumento do risco cardiovascular e de osteoporose após a menopausa, relacionados à perda do efeito protetor estrogênico.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Manutenção dos rastreamentos oncológicos (mamografia, citologia oncótica) é fundamental nesta fase da vida.', score: 1, ref: 'Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Tratamento',
-          items: [
-            { item: 'Terapia hormonal sistêmica é o tratamento mais eficaz para sintomas vasomotores moderados a intensos, devendo ser individualizada conforme risco-benefício (idade, tempo desde a menopausa, antecedentes pessoais/familiares de câncer de mama e eventos tromboembólicos).', score: 2, ref: 'FEBRASGO / Sociedade Norte-Americana de Menopausa' },
-            { item: 'Estrogênio vaginal em baixa dose é eficaz e seguro para atrofia genital isolada, mesmo em mulheres com contraindicação à TH sistêmica.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Medidas não farmacológicas (atividade física, dieta, exercícios de assoalho pélvico) e alternativas não hormonais devem ser consideradas conforme o perfil da paciente.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Orientações e Seguimento',
-          items: [
-            { item: 'Abordar ativamente sintomas geniturinários e sexuais, frequentemente subnotificados por constrangimento da paciente.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Reforçar rastreamento cardiovascular e oncológico regular no seguimento da mulher climatérica.', score: 1, ref: 'Ministério da Saúde' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Criou ambiente acolhedor para abordar sexualidade e sintomas urinários', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Validou os sintomas sem banalizá-los como "coisa da idade"', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Caracterizou a data da última menstruação e os fogachos', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Perguntou ativamente sobre sintomas geniturinários e urinários', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Investigou história familiar de câncer de mama e doença cardiovascular', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Examinou as mamas e realizou exame ginecológico avaliando atrofia vaginal', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Reconheceu o diagnóstico como eminentemente clínico, sem exigir FSH/estradiol', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Solicitou perfil lipídico/glicemia e verificou atualização da mamografia', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Discutiu terapia hormonal individualizando riscos frente ao histórico familiar de câncer de mama', score: 1.5, ref: 'FEBRASGO' },
+          { item: 'Propôs estrogênio vaginal tópico para atrofia genital', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Orientou mudanças de estilo de vida e exercícios de assoalho pélvico', score: 0.5, ref: 'FEBRASGO' }
+        ]}
       ]
     }
   },
@@ -781,43 +727,30 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Endometriose — Material de Estudo',
+      title: 'CHECKLIST — DOR PÉLVICA CÍCLICA INTENSA HÁ 3 ANOS (ENDOMETRIOSE)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'Endometriose é a presença de tecido endometrial funcional fora da cavidade uterina, mais comum em ovários, ligamentos uterossacros e fundo de saco de Douglas.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Acomete cerca de 10% das mulheres em idade reprodutiva, sendo uma das principais causas de dor pélvica crônica e infertilidade.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Quadro Clínico',
-          items: [
-            { item: 'Dismenorreia progressiva, dispareunia profunda, dor pélvica crônica acíclica e infertilidade compõem o quadro clássico.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Sintomas intestinais e urinários cíclicos (disquezia, disúria) ocorrem quando há acometimento de órgãos adjacentes (endometriose profunda infiltrativa).', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Diagnóstico',
-          items: [
-            { item: 'Diagnóstico é clínico e de imagem (USG transvaginal com preparo intestinal ou RM de pelve); laparoscopia com biópsia é padrão-ouro, mas não obrigatória para início do tratamento clínico.', score: 2, ref: 'FEBRASGO' },
-            { item: 'CA-125 pode estar elevado, mas não é exame diagnóstico confirmatório isolado.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Tratamento',
-          items: [
-            { item: 'Tratamento clínico de primeira linha: anticoncepcionais hormonais combinados contínuos ou progestagênios (dienogeste) para controle da dor.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Tratamento cirúrgico (laparoscopia) indicado em casos refratários ao tratamento clínico, endometriomas volumosos ou infertilidade associada.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Endometriose e Infertilidade',
-          items: [
-            { item: 'A endometriose é uma causa importante de infertilidade, por distorção anatômica, processo inflamatório pélvico e comprometimento da qualidade oocitária.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Reprodução assistida deve ser discutida em casos de infertilidade associada, especialmente após falha de tratamento cirúrgico ou em doença avançada.', score: 1, ref: 'FEBRASGO' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Validou a dor crônica da paciente sem minimizá-la como "cólica normal"', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Criou ambiente acolhedor para abordar dispareunia e disquezia', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Caracterizou a progressão da dismenorreia e a resposta a analgésicos', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Investigou ativamente dispareunia profunda e sintomas intestinais/urinários cíclicos', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Perguntou sobre tentativa de gestação e história familiar', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Realizou exame especular buscando nódulos em fundo de saco vaginal posterior', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Realizou toque vaginal avaliando mobilidade uterina e nodulações em ligamentos uterossacros', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Solicitou USG transvaginal com preparo intestinal e beta-hCG', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Reconheceu que o CA-125 não confirma o diagnóstico isoladamente', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Propôs anticoncepcional contínuo ou progestagênio como primeira linha para controle da dor', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Discutiu encaminhamento para laparoscopia e/ou reprodução assistida diante da infertilidade', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Explicou a cronicidade da doença sem gerar falsas expectativas sobre fertilidade', score: 0.5, ref: 'FEBRASGO' }
+        ]}
       ]
     }
   },
@@ -910,41 +843,29 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Gestação Ectópica — Material de Estudo',
+      title: 'CHECKLIST — DOR ABDOMINAL SÚBITA E ATRASO MENSTRUAL (GESTAÇÃO ECTÓPICA ROTA)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'Gestação ectópica é a implantação do embrião fora da cavidade endometrial, mais comumente na tuba uterina (>95% dos casos).', score: 1, ref: 'FEBRASGO' },
-            { item: 'É a principal causa de morte materna no primeiro trimestre da gestação quando não diagnosticada e tratada a tempo.', score: 1, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Fatores de Risco',
-          items: [
-            { item: 'Antecedente de doença inflamatória pélvica, cirurgia tubária prévia, gestação ectópica anterior, uso de DIU e tabagismo são os principais fatores de risco.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Quadro Clínico',
-          items: [
-            { item: 'Tríade clássica: atraso menstrual, dor pélvica e sangramento vaginal anormal; a rotura tubária cursa com dor súbita intensa, sinais de irritação peritoneal e instabilidade hemodinâmica.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Diagnóstico',
-          items: [
-            { item: 'Beta-hCG quantitativo associado à ultrassonografia transvaginal são a base diagnóstica; ausência de saco gestacional intrauterino com beta-hCG positivo levanta forte suspeita.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Tratamento',
-          items: [
-            { item: 'Tratamento clínico (metotrexato) é reservado para casos estáveis, sem rotura, com critérios específicos (beta-hCG baixo, massa pequena, sem hemoperitônio significativo).', score: 2, ref: 'FEBRASGO' },
-            { item: 'Tratamento cirúrgico (salpingostomia ou salpingectomia, por laparoscopia ou laparotomia conforme estabilidade) é indicado em casos de rotura, instabilidade hemodinâmica ou falha do tratamento clínico.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Profilaxia com imunoglobulina anti-D deve ser administrada em gestantes Rh negativo.', score: 1, ref: 'FEBRASGO' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Agiu com agilidade e clareza compatível com emergência, sem gerar pânico', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Comunicou a gravidade e a necessidade de cirurgia imediata de forma acolhedora', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Investigou data da última menstruação, sangramento vaginal e método contraceptivo', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Perguntou sobre dor referida em ombro e antecedente de DIP', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Reconheceu sinais vitais de choque hipovolêmico imediatamente', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Identificou sinais de irritação peritoneal e grito de Douglas ao toque vaginal', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Solicitou beta-hCG quantitativo e USG transvaginal de urgência sem demora', score: 1.5, ref: 'FEBRASGO' },
+          { item: 'Solicitou tipagem sanguínea/fator Rh e hemograma', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Iniciou estabilização hemodinâmica (acesso calibroso, reposição volêmica) e acionou cirurgia de urgência', score: 2.0, ref: 'FEBRASGO' },
+          { item: 'Não propôs metotrexato diante de sinais de rotura e instabilidade', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Indicou profilaxia anti-D por ser Rh negativo', score: 1.0, ref: 'FEBRASGO' }
+        ]}
       ]
     }
   },
@@ -1034,45 +955,29 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Candidíase Vulvovaginal — Material de Estudo',
+      title: 'CHECKLIST — PRURIDO VULVAR E CORRIMENTO ESPESSO (CANDIDÍASE VULVOVAGINAL)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'Infecção fúngica vaginal causada mais comumente por Candida albicans, presente normalmente na microbiota vaginal em pequena quantidade.', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
-          ]
-        },
-        {
-          h: 'Fatores Predisponentes',
-          items: [
-            { item: 'Uso de antibióticos de amplo espectro, gestação, diabetes mellitus descompensado, imunossupressão e uso de roupas íntimas sintéticas/justas favorecem o crescimento fúngico.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Quadro Clínico',
-          items: [
-            { item: 'Prurido vulvar intenso, corrimento branco espesso em "leite coalhado" (grumoso), hiperemia e edema vulvovaginal, sem odor fétido característico.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
-          ]
-        },
-        {
-          h: 'Diagnóstico',
-          items: [
-            { item: 'Diagnóstico clínico corroborado por pH vaginal normal (< 4,5) e visualização de hifas/pseudo-hifas no exame a fresco com KOH 10%.', score: 2, ref: 'Ministério da Saúde — PCDT IST' }
-          ]
-        },
-        {
-          h: 'Tratamento',
-          items: [
-            { item: 'Episódio agudo não complicado: antifúngico tópico (miconazol, nistatina) ou fluconazol oral em dose única.', score: 2, ref: 'Ministério da Saúde — PCDT IST' },
-            { item: 'Candidíase recorrente (≥ 4 episódios/ano) requer investigação de fatores predisponentes e tratamento supressivo prolongado.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Orientações',
-          items: [
-            { item: 'Não é uma IST; tratamento do parceiro não é rotineiramente indicado, salvo presença de sintomas nele (balanite).', score: 1, ref: 'Ministério da Saúde — PCDT IST' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Acolheu o desconforto físico relatado pela paciente', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Esclareceu que não se trata de uma IST, aliviando a preocupação da paciente', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Caracterizou o corrimento e investigou uso recente de antibiótico', score: 0.5, ref: 'FEBRASGO' },
+          { item: 'Perguntou sobre frequência de episódios anteriores (recorrência)', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Investigou hábitos de vestuário e sintomas no parceiro', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Realizou exame especular observando aspecto do corrimento e das paredes vaginais', score: 1.0, ref: 'Ministério da Saúde — PCDT IST' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Coletou pH vaginal e exame a fresco com KOH 10% antes de tratar empiricamente', score: 1.5, ref: 'Ministério da Saúde — PCDT IST' },
+          { item: 'Considerou glicemia de jejum diante de episódios recorrentes', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Prescreveu antifúngico tópico ou fluconazol oral em dose única', score: 1.5, ref: 'Ministério da Saúde — PCDT IST' },
+          { item: 'Orientou que o tratamento do parceiro não é rotineiramente necessário', score: 0.5, ref: 'Ministério da Saúde — PCDT IST' },
+          { item: 'Orientou medidas preventivas (roupas de algodão, evitar umidade prolongada)', score: 0.5, ref: 'FEBRASGO' }
+        ]}
       ]
     }
   },
@@ -1158,39 +1063,28 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Lesão Intraepitelial Cervical (NIC) — Material de Estudo',
+      title: 'CHECKLIST — RESULTADO DE HSIL NO PAPANICOLAU (LESÃO INTRAEPITELIAL CERVICAL)',
       sections: [
-        {
-          h: 'Definição e Epidemiologia',
-          items: [
-            { item: 'NIC (Neoplasia Intraepitelial Cervical) é uma lesão precursora do câncer de colo do útero, causada pela infecção persistente por HPV oncogênico.', score: 1, ref: 'Ministério da Saúde — Diretrizes Brasileiras para o Rastreamento do Câncer do Colo do Útero' }
-          ]
-        },
-        {
-          h: 'Rastreamento',
-          items: [
-            { item: 'No Brasil, o rastreamento citológico (Papanicolau) é recomendado a cada 3 anos, após dois exames anuais consecutivos normais, em mulheres de 25 a 64 anos que já tiveram atividade sexual.', score: 2, ref: 'Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Classificação Citológica e Conduta',
-          items: [
-            { item: 'LSIL (lesão de baixo grau/NIC I): geralmente regressão espontânea; conduta variável conforme idade (repetição citológica ou colposcopia).', score: 1, ref: 'Ministério da Saúde' },
-            { item: 'HSIL (lesão de alto grau/NIC II-III): encaminhamento obrigatório para colposcopia com biópsia dirigida, devido ao maior risco de progressão para carcinoma invasor.', score: 2, ref: 'Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Diagnóstico e Tratamento',
-          items: [
-            { item: 'Colposcopia com biópsia dirigida confirma o diagnóstico histológico; tratamento inclui métodos excisionais (EZT/conização) ou destrutivos (crioterapia), conforme o caso.', score: 2, ref: 'Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Prevenção',
-          items: [
-            { item: 'Vacinação contra HPV (disponível no calendário do SUS para adolescentes) e cessação do tabagismo são medidas importantes de prevenção primária e de redução de progressão de lesões.', score: 1, ref: 'Ministério da Saúde' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Comunicou o resultado com clareza, evitando a palavra "câncer" de forma alarmista', score: 1.0, ref: 'Ministério da Saúde' },
+          { item: 'Validou o medo e a ansiedade da paciente diante da notícia', score: 1.0, ref: 'Ministério da Saúde' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Investigou histórico de rastreamento prévio e motivo do atraso, sem julgamento', score: 0.5, ref: 'Ministério da Saúde' },
+          { item: 'Perguntou sobre tabagismo e vacinação para HPV', score: 0.5, ref: 'Ministério da Saúde' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Reconheceu que não é necessário repetir o exame ginecológico nesta consulta de entrega de resultado', score: 0.5, ref: 'Ministério da Saúde' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Reconheceu HSIL como indicação obrigatória de colposcopia com biópsia dirigida', score: 2.0, ref: 'Ministério da Saúde' },
+          { item: 'Explicou corretamente a relação entre HPV e transmissão sexual, sem gerar suspeita de infidelidade', score: 1.5, ref: 'Ministério da Saúde' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Encaminhou para colposcopia/biópsia em serviço de referência', score: 1.0, ref: 'Ministério da Saúde' },
+          { item: 'Orientou cessação do tabagismo como fator de risco modificável', score: 0.5, ref: 'Ministério da Saúde' },
+          { item: 'Reforçou a importância de manter o seguimento e verificou compreensão do plano', score: 0.5, ref: 'Ministério da Saúde' }
+        ]}
       ]
     }
   },
@@ -1274,40 +1168,29 @@ const ginecologia = [
     },
 
     instD: {
-      title: 'Planejamento Familiar e Contracepção — Material de Estudo',
+      title: 'CHECKLIST — ORIENTAÇÃO CONTRACEPTIVA EM PACIENTE JOVEM (PLANEJAMENTO FAMILIAR)',
       sections: [
-        {
-          h: 'Princípios do Aconselhamento Contraceptivo',
-          items: [
-            { item: 'A escolha do método deve ser individualizada, compartilhada e baseada nos critérios de elegibilidade médica da OMS, que classificam condições clínicas em categorias de risco para cada método.', score: 2, ref: 'OMS — Critérios de Elegibilidade Médica para Uso de Contraceptivos / Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Métodos Hormonais Combinados',
-          items: [
-            { item: 'Contraindicados (categoria 4 da OMS) em mulheres com história pessoal de tromboembolismo venoso, enxaqueca com aura, tabagismo após os 35 anos e hipertensão não controlada.', score: 2, ref: 'OMS / FEBRASGO' },
-            { item: 'História familiar de trombose em parente de primeiro grau antes dos 50 anos merece avaliação cuidadosa antes da indicação de estrogênio.', score: 2, ref: 'FEBRASGO' }
-          ]
-        },
-        {
-          h: 'Métodos com Progestagênio Isolado e LARCs',
-          items: [
-            { item: 'Pílula de progestagênio isolado, implante subdérmico e SIU-LNG são opções seguras mesmo em contraindicações a estrogênio.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Métodos de longa duração reversível (LARC — implante, DIU de cobre, SIU-LNG) têm as maiores taxas de eficácia e adesão, sendo recomendados como primeira linha para adolescentes e adultas jovens.', score: 2, ref: 'FEBRASGO / OMS' }
-          ]
-        },
-        {
-          h: 'Dupla Proteção',
-          items: [
-            { item: 'Nenhum método hormonal ou DIU protege contra ISTs — o preservativo deve ser sempre recomendado para essa finalidade, podendo ser associado a outro método contraceptivo (dupla proteção).', score: 2, ref: 'Ministério da Saúde' }
-          ]
-        },
-        {
-          h: 'Mitos e Educação em Saúde',
-          items: [
-            { item: 'Ganho de peso significativo não é consistentemente associado à maioria dos anticoncepcionais hormonais combinados modernos nos estudos disponíveis; abordar esse mito com informação baseada em evidências.', score: 1, ref: 'FEBRASGO' }
-          ]
-        }
+        { h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE', items: [
+          { item: 'Criou ambiente de confiança e não julgamento para discutir início da vida sexual', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Respeitou a autonomia da paciente na escolha final entre as opções elegíveis', score: 0.5, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 2 — ANAMNESE', items: [
+          { item: 'Investigou desejo reprodutivo, comorbidades e tabagismo', score: 0.5, ref: 'OMS — Critérios de Elegibilidade Médica' },
+          { item: 'Investigou ativamente história pessoal e familiar de trombose e enxaqueca com aura', score: 1.5, ref: 'OMS — Critérios de Elegibilidade Médica' }
+        ]},
+        { h: 'BLOCO 3 — EXAME FÍSICO', items: [
+          { item: 'Aferiu pressão arterial e calculou o IMC', score: 1.0, ref: 'FEBRASGO' }
+        ]},
+        { h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO', items: [
+          { item: 'Reconheceu que exame ginecológico não é pré-requisito para início da contracepção em paciente assintomática', score: 0.5, ref: 'OMS — Critérios de Elegibilidade Médica' },
+          { item: 'Não solicitou exames laboratoriais desnecessários que atrasassem o início da contracepção', score: 0.5, ref: 'OMS — Critérios de Elegibilidade Médica' }
+        ]},
+        { h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE', items: [
+          { item: 'Evitou indicar método combinado com estrogênio diante da história familiar de trombose', score: 1.5, ref: 'OMS — Critérios de Elegibilidade Médica' },
+          { item: 'Apresentou opções sem estrogênio (progestagênio isolado, implante, SIU-LNG, DIU de cobre)', score: 1.0, ref: 'FEBRASGO' },
+          { item: 'Orientou uso de preservativo para prevenção de ISTs (dupla proteção)', score: 1.0, ref: 'Ministério da Saúde' },
+          { item: 'Esclareceu o mito do ganho de peso com informação baseada em evidências', score: 0.5, ref: 'FEBRASGO' }
+        ]}
       ]
     }
   }
