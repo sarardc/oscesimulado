@@ -83,37 +83,44 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Pré-natal de Baixo Risco — Material de Estudo',
+      title: 'CHECKLIST — PRIMEIRA CONSULTA DE PRÉ-NATAL',
       sections: [
         {
-          h: 'Calendário de Consultas',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Mensal até 28 semanas, quinzenal entre 28-36 semanas e semanal a partir de 36 semanas até o parto, em gestação de risco habitual — mínimo de 6 consultas recomendado pelo Ministério da Saúde.', score: 2, ref: 'Ministério da Saúde — Caderno de Atenção Básica: Atenção ao Pré-natal de Baixo Risco' }
+            { item: 'Apresentou-se pelo nome e acolheu a gestante', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Explicou o calendário de consultas de forma didática', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' }
           ]
         },
         {
-          h: 'Exames de Rotina do Pré-natal',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: '1º trimestre: tipagem sanguínea/Rh, hemograma, glicemia de jejum, sorologias (HIV, sífilis, hepatites B/C, toxoplasmose), urina tipo I e urocultura, USG obstétrica precoce.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' },
-            { item: '2º e 3º trimestres: rastreio de diabetes gestacional (TOTG 75g entre 24-28 semanas), repetição de sorologias, USG morfológico e obstétrico, pesquisa de estreptococo do grupo B (35-37 semanas).', score: 2, ref: 'Ministério da Saúde / FEBRASGO' }
+            { item: 'Confirmou DUM e calculou idade gestacional/DPP', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' },
+            { item: 'Investigou antecedentes obstétricos, pessoais e familiares', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' },
+            { item: 'Investigou situação vacinal e exposições (animais, ocupacionais)', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' }
           ]
         },
         {
-          h: 'Suplementação',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Ácido fólico (idealmente iniciado antes da concepção) e sulfato ferroso profilático são recomendados rotineiramente pelo Ministério da Saúde.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Aferiu peso, altura, IMC e pressão arterial', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' },
+            { item: 'Examinou mamas e abdome', score: 0.5, ref: 'Ministério da Saúde — Atenção ao Pré-natal de Baixo Risco' }
           ]
         },
         {
-          h: 'Classificação de Risco Gestacional',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Fatores que indicam encaminhamento ao pré-natal de alto risco incluem comorbidades prévias (diabetes, hipertensão, cardiopatias), história obstétrica desfavorável, idade materna extrema, e intercorrências identificadas durante o acompanhamento.', score: 2, ref: 'Ministério da Saúde — Manual de Gestação de Alto Risco' }
+            { item: 'Solicitou os exames de rotina do 1º trimestre completos (tipagem, sorologias, hemograma, glicemia, urina)', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO' },
+            { item: 'Classificou corretamente o risco gestacional', score: 1.0, ref: 'Ministério da Saúde — Manual de Gestação de Alto Risco' }
           ]
         },
         {
-          h: 'Sinais de Alarme',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
           items: [
-            { item: 'Sangramento vaginal, dor abdominal intensa, perda de líquido, cefaleia intensa, edema súbito e redução de movimentos fetais exigem avaliação imediata.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Prescreveu ácido fólico e sulfato ferroso', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Atualizou/orientou a caderneta de vacinação', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Orientou sinais de alarme para procura imediata de atendimento', score: 1.0, ref: 'Ministério da Saúde' },
+            { item: 'Perguntou se a paciente tinha dúvidas ao final da consulta', score: 0.5, ref: 'CFM Res. 2.217/2018' }
           ]
         }
       ]
@@ -201,39 +208,42 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Diabetes Mellitus Gestacional — Material de Estudo',
+      title: 'CHECKLIST — RASTREIO DE DIABETES ALTERADO NA GESTAÇÃO (DMG)',
       sections: [
         {
-          h: 'Rastreio e Diagnóstico',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'TOTG 75g entre 24-28 semanas é o exame padrão; diagnóstico com qualquer valor alterado: jejum ≥ 92 mg/dL, 1h ≥ 180 mg/dL ou 2h ≥ 153 mg/dL (critérios IADPSG).', score: 2, ref: 'Ministério da Saúde / FEBRASGO-SBD' },
-            { item: 'Glicemia de jejum ≥ 126 mg/dL ou glicemia casual ≥ 200 mg/dL em qualquer momento da gestação sugere diabetes mellitus prévio (overt diabetes), não DMG.', score: 1, ref: 'FEBRASGO-SBD' }
+            { item: 'Comunicou o diagnóstico sem culpabilizar a paciente por hábitos alimentares', score: 0.5, ref: 'FEBRASGO-SBD' },
+            { item: 'Acolheu o medo relacionado ao uso de insulina', score: 0.5, ref: 'FEBRASGO-SBD' }
           ]
         },
         {
-          h: 'Fatores de Risco',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Sobrepeso/obesidade, idade materna avançada, história familiar de diabetes, DMG ou macrossomia em gestação prévia, síndrome dos ovários policísticos.', score: 1, ref: 'FEBRASGO-SBD' }
+            { item: 'Investigou fatores de risco (sobrepeso, história familiar, macrossomia prévia)', score: 0.5, ref: 'FEBRASGO-SBD' },
+            { item: 'Perguntou sobre hábitos alimentares e atividade física', score: 0.5, ref: 'FEBRASGO-SBD' }
           ]
         },
         {
-          h: 'Complicações Associadas',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Macrossomia fetal, distocia de ombro, polidrâmnio, pré-eclâmpsia, hipoglicemia neonatal e maior risco de diabetes tipo 2 futuro para mãe e filho.', score: 2, ref: 'FEBRASGO-SBD' }
+            { item: 'Avaliou peso atual e ganho de peso gestacional', score: 0.5, ref: 'FEBRASGO-SBD' },
+            { item: 'Auscultou batimentos cardiofetais e mediu altura uterina', score: 0.5, ref: 'FEBRASGO-SBD' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Primeira linha: terapia nutricional e atividade física, com monitorização glicêmica domiciliar.', score: 2, ref: 'Ministério da Saúde / FEBRASGO-SBD' },
-            { item: 'Insulinoterapia indicada quando metas glicêmicas não são atingidas com medidas não farmacológicas; é a droga de escolha na gestação.', score: 2, ref: 'FEBRASGO-SBD' }
+            { item: 'Confirmou o diagnóstico de DMG pelo TOTG alterado (critérios IADPSG)', score: 1.0, ref: 'Ministério da Saúde / FEBRASGO-SBD' },
+            { item: 'Solicitou USG para acompanhamento do crescimento fetal', score: 1.0, ref: 'FEBRASGO-SBD' }
           ]
         },
         {
-          h: 'Seguimento e Parto',
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
           items: [
-            { item: 'Monitorização seriada do crescimento fetal por USG; via de parto definida por critérios obstétricos, com atenção ao peso fetal estimado para prevenção de distocia de ombro.', score: 1, ref: 'FEBRASGO-SBD' },
-            { item: 'Reavaliação glicêmica materna no pós-parto (TOTG 75g em 6-12 semanas) para rastreio de diabetes persistente.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Orientou terapia nutricional e monitorização glicêmica domiciliar', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO-SBD' },
+            { item: 'Explicou a indicação de insulina em caso de falha do controle dietético', score: 1.0, ref: 'FEBRASGO-SBD' },
+            { item: 'Orientou reavaliação glicêmica materna no pós-parto', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         }
       ]
@@ -331,39 +341,41 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Pré-eclâmpsia — Material de Estudo',
+      title: 'CHECKLIST — PRESSÃO ALTA E INCHAÇO NA GESTAÇÃO (PRÉ-ECLÂMPSIA)',
       sections: [
         {
-          h: 'Definição e Classificação',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Hipertensão que surge após 20 semanas de gestação associada a proteinúria significativa ou disfunção de órgão-alvo, na ausência de proteinúria.', score: 2, ref: 'Ministério da Saúde — Manual de Gestação de Alto Risco / FEBRASGO' },
-            { item: 'Critérios de gravidade: PA ≥ 160/110 mmHg, plaquetopenia (<100.000/mm³), elevação de transaminases, creatinina elevada, edema pulmonar, sintomas cerebrais/visuais persistentes.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Comunicou a necessidade de internação de forma clara e acolhedora', score: 0.5, ref: 'FEBRASGO / Ministério da Saúde' },
+            { item: 'Explicou cada intervenção (sulfato de magnésio, anti-hipertensivo) antes de realizá-la', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Fatores de Risco',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Nuliparidade, história pessoal ou familiar de pré-eclâmpsia, obesidade, gestação múltipla, hipertensão crônica, diabetes prévio, doença renal crônica.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Investigou sintomas premonitórios de gravidade (cefaleia refratária, distúrbios visuais)', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Investigou dor em hipocôndrio direito/epigástrio', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico e Sinais de Gravidade',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Sintomas premonitórios de gravidade: cefaleia refratária, distúrbios visuais (escotomas, turvação), dor em hipocôndrio direito/epigástrio, hiperreflexia.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Confirmou a PA em duas medidas e avaliou edema', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Pesquisou hiperreflexia e avaliou vitalidade fetal', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Sulfato de magnésio é o fármaco de escolha para profilaxia e tratamento de eclâmpsia em pré-eclâmpsia grave.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' },
-            { item: 'Anti-hipertensivos de ação rápida (hidralazina, labetalol, nifedipina) para controle de crise hipertensiva; corticoide para maturação pulmonar fetal quando indicado antes de 34 semanas.', score: 2, ref: 'FEBRASGO' },
-            { item: 'A resolução da gestação (parto) é o tratamento definitivo da pré-eclâmpsia, com momento definido conforme gravidade materna e idade gestacional.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Solicitou proteinúria, plaquetas, transaminases e DHL', score: 1.0, ref: 'FEBRASGO / Ministério da Saúde' },
+            { item: 'Classificou corretamente como pré-eclâmpsia com critérios de gravidade', score: 1.5, ref: 'FEBRASGO / Ministério da Saúde' }
           ]
         },
         {
-          h: 'Prevenção',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Ácido acetilsalicílico em baixa dose, iniciado antes de 16 semanas, é recomendado para gestantes de alto risco para pré-eclâmpsia.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Indicou internação imediata e sulfato de magnésio', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO' },
+            { item: 'Prescreveu anti-hipertensivo de ação rápida e considerou corticoide para maturação pulmonar', score: 1.0, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -456,33 +468,42 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Trabalho de Parto Prematuro — Material de Estudo',
+      title: 'CHECKLIST — CONTRAÇÕES E CÓLICA COM 30 SEMANAS (TRABALHO DE PARTO PREMATURO)',
       sections: [
         {
-          h: 'Definição',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Presença de contrações uterinas regulares associadas a modificações cervicais progressivas entre 20 e 36 semanas e 6 dias de gestação.', score: 1, ref: 'FEBRASGO / Ministério da Saúde — Manual de Gestação de Alto Risco' }
+            { item: 'Acolheu o medo da paciente sem prometer certezas absolutas sobre o prognóstico', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Explicou o objetivo de cada intervenção (corticoide, tocólise, sulfato de magnésio)', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Fatores de Risco',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Parto prematuro prévio, infecções (urinárias, vaginais, periodontais), gestação múltipla, colo curto, sobrecarga física e estresse.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Caracterizou as contrações (frequência, duração)', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou fatores de risco (parto prematuro prévio, infecções)', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Diagnóstico clínico por toque vaginal (dilatação e esvaecimento); medida do colo por USG transvaginal e fibronectina fetal auxiliam na estratificação de risco de parto iminente.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Realizou toque vaginal avaliando dilatação e esvaecimento', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Auscultou batimentos cardiofetais', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Corticoide antenatal (betametasona/dexametasona) entre 24-34 semanas para maturação pulmonar fetal, reduzindo mortalidade e morbidade neonatal.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' },
-            { item: 'Sulfato de magnésio para neuroproteção fetal quando parto iminente antes de 32 semanas.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Tocolíticos (nifedipina, indometacina conforme idade gestacional) usados para postergar o parto por 48h, tempo suficiente para completar o corticoide.', score: 1, ref: 'FEBRASGO' },
-            { item: 'Profilaxia para estreptococo do grupo B deve ser considerada diante de trabalho de parto prematuro sem resultado de swab disponível.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou urina tipo I/urocultura para investigar fator desencadeante', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Solicitou cardiotocografia', score: 0.5, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA',
+          items: [
+            { item: 'Administrou corticoide antenatal para maturação pulmonar fetal', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO' },
+            { item: 'Considerou sulfato de magnésio para neuroproteção fetal (<32 semanas)', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Considerou profilaxia para estreptococo do grupo B', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         }
       ]
@@ -572,37 +593,40 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Hemorragia Pós-Parto — Material de Estudo',
+      title: 'CHECKLIST — SANGRAMENTO VAGINAL INTENSO APÓS O PARTO (HPP)',
       sections: [
         {
-          h: 'Definição e Epidemiologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E TRABALHO EM EQUIPE',
           items: [
-            { item: 'Perda sanguínea ≥ 500 mL após parto vaginal ou ≥ 1000 mL após cesárea, ou qualquer sangramento que cause instabilidade hemodinâmica — principal causa de morte materna evitável no Brasil.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' }
+            { item: 'Agiu com agilidade compatível com emergência obstétrica', score: 0.5, ref: 'AMIB / FEBRASGO' },
+            { item: 'Comunicou-se com a paciente mesmo durante a urgência do atendimento', score: 0.5, ref: 'CFM Res. 2.217/2018' }
           ]
         },
         {
-          h: 'Causas — Mnemônico dos 4 Ts',
+          h: 'BLOCO 2 — AVALIAÇÃO INICIAL',
           items: [
-            { item: 'Tônus (atonia uterina, ~70% dos casos), Trauma (lacerações, rotura uterina), Tecido (retenção de restos placentários), Trombina (coagulopatias).', score: 2, ref: 'FEBRASGO' }
+            { item: 'Reconheceu rapidamente sinais de choque hipovolêmico', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Fatores de Risco para Atonia',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Multiparidade, sobredistensão uterina (macrossomia, gestação múltipla, polidrâmnio), trabalho de parto prolongado ou uso prolongado de ocitocina, corioamnionite.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Palpou o fundo uterino identificando atonia (útero amolecido, mal contraído)', score: 1.5, ref: 'FEBRASGO' },
+            { item: 'Inspecionou o trajeto vaginal e a placenta buscando lacerações/retenção de restos', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Manejo Inicial',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Massagem uterina bimanual imediata associada a uterotônicos escalonados (ocitocina, metilergometrina, misoprostol) constitui a primeira linha de tratamento.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' },
-            { item: 'Reposição volêmica agressiva e preparo precoce para transfusão sanguínea são essenciais diante de sinais de instabilidade hemodinâmica.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Solicitou hemoglobina seriada, coagulograma e tipagem/prova cruzada', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Medidas Refratárias',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Tamponamento com balão intrauterino, suturas compressivas (B-Lynch), ligadura de artérias uterinas/hipogástricas e, em último caso, histerectomia, são indicadas em hemorragia refratária às medidas iniciais.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Realizou massagem uterina bimanual imediata e uterotônicos escalonados', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO' },
+            { item: 'Iniciou reposição volêmica agressiva e preparo para transfusão', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Considerou medidas refratárias (balão intrauterino, suturas compressivas) se sem resposta', score: 1.0, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -696,31 +720,40 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Descolamento Prematuro de Placenta (DPP) — Material de Estudo',
+      title: 'CHECKLIST — DOR ABDOMINAL SÚBITA E SANGRAMENTO ESCURO (DPP)',
       sections: [
         {
-          h: 'Definição e Fatores de Risco',
+          h: 'BLOCO 1 — COMUNICAÇÃO E TRABALHO EM EQUIPE',
           items: [
-            { item: 'Separação da placenta normalmente inserida antes do nascimento do feto; principal fator de risco é a hipertensão (crônica ou pré-eclâmpsia), seguido de trauma abdominal, uso de cocaína/tabagismo e rotura prematura de membranas.', score: 2, ref: 'FEBRASGO / Ministério da Saúde — Manual de Gestação de Alto Risco' }
+            { item: 'Comunicou a gravidade extrema do quadro de forma clara e ágil', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Acionou a equipe multiprofissional sem demora', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Quadro Clínico Clássico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Tríade: dor abdominal súbita e intensa, hipertonia uterina ("útero em tábua") e sangramento vaginal escuro (pode estar ausente em hemorragia oculta).', score: 2, ref: 'FEBRASGO' }
+            { item: 'Investigou hipertensão e adesão ao tratamento anti-hipertensivo', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou percepção de movimentos fetais', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Diagnóstico é clínico — não deve ser postergado à espera de confirmação por ultrassonografia, que tem sensibilidade limitada para o DPP.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Identificou hipertonia uterina ("útero em tábua")', score: 1.5, ref: 'FEBRASGO' },
+            { item: 'Avaliou batimentos cardiofetais e reconheceu sinais de sofrimento fetal', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Conduta',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO',
           items: [
-            { item: 'Interrupção imediata da gestação (cesariana de urgência na maioria dos casos com feto vivo e sofrimento fetal); parto vaginal pode ser considerado em óbito fetal já estabelecido, sem contraindicação, e com progresso rápido do trabalho de parto.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Correção agressiva de coagulopatia associada, complicação temida (coagulação intravascular disseminada).', score: 2, ref: 'FEBRASGO' }
+            { item: 'NÃO aguardou USG para confirmar o diagnóstico clínico de DPP', score: 1.5, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA',
+          items: [
+            { item: 'Indicou cesariana de urgência diante de sofrimento fetal com feto vivo', score: 1.5, ref: 'FEBRASGO' },
+            { item: 'Iniciou reposição volêmica e correção de coagulopatia', score: 1.0, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -813,37 +846,40 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Placenta Prévia — Material de Estudo',
+      title: 'CHECKLIST — SANGRAMENTO VERMELHO VIVO INDOLOR (PLACENTA PRÉVIA)',
       sections: [
         {
-          h: 'Definição e Classificação',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Inserção da placenta total ou parcialmente sobre o orifício interno do colo uterino; classificada em prévia centro-total, parcial ou marginal conforme o grau de recobrimento.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Explicou por que o toque vaginal não deve ser realizado antes da USG', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Acolheu a preocupação da paciente sobre nova cesárea', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Fatores de Risco',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Cesárea anterior, multiparidade, idade materna avançada, tabagismo, gestação múltipla e curetagens uterinas prévias.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Caracterizou o sangramento (indolor, vermelho vivo, fator desencadeante)', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou antecedente de cesárea/cirurgia uterina prévia', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Sangramento vaginal vermelho vivo, indolor, geralmente sem hipertonia uterina, no 2º-3º trimestre — diferencia-se do DPP pela ausência de dor.', score: 2, ref: 'FEBRASGO' }
+            { item: 'NÃO realizou toque vaginal digital antes da USG', score: 1.5, ref: 'FEBRASGO' },
+            { item: 'Avaliou tônus uterino e batimentos cardiofetais', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Ultrassonografia (transvaginal, quando necessária, é segura e mais precisa que a transabdominal) confirma o diagnóstico; toque vaginal digital é contraindicado até exclusão do diagnóstico.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Solicitou ultrassonografia para confirmar a localização placentária', score: 1.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Conduta',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Conduta expectante com internação/repouso em sangramento autolimitado e feto pré-termo estável; cesariana eletiva programada (36-37 semanas) na placenta prévia centro-total.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Cesariana de urgência indicada diante de sangramento volumoso ou instabilidade materno-fetal, independente da idade gestacional.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Indicou conduta conforme estabilidade (expectante x cesariana de urgência)', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Orientou cesariana eletiva programada para placenta prévia centro-total', score: 1.0, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -934,32 +970,40 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Abortamento — Material de Estudo',
+      title: 'CHECKLIST — SANGRAMENTO E CÓLICA COM 9 SEMANAS (ABORTAMENTO)',
       sections: [
         {
-          h: 'Definição e Classificação',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Interrupção da gestação antes de 20-22 semanas ou feto < 500g; classificação clínica: ameaça, inevitável/em curso, incompleto, completo, retido, infectado.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Acolheu o sofrimento emocional da paciente, sem minimizar', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Desconstruiu ativamente a culpa da paciente por atividades cotidianas', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Correlação entre exame especular/toque (permeabilidade do colo) e ultrassonografia transvaginal (viabilidade, conteúdo uterino) define o tipo de abortamento.', score: 2, ref: 'FEBRASGO' },
-            { item: 'Beta-hCG seriado auxilia no acompanhamento, especialmente quando há dúvida diagnóstica com gestação ectópica.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Caracterizou o sangramento e a cólica', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou tipagem sanguínea/fator Rh', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Conduta',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Conduta expectante, farmacológica (misoprostol) ou cirúrgica (AMIU/curetagem) conforme quadro clínico, idade gestacional e preferência da paciente, quando clinicamente estável para escolha compartilhada.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' },
-            { item: 'Profilaxia com imunoglobulina anti-D é indicada em toda gestante Rh negativo com abortamento, independente da idade gestacional.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Realizou exame especular avaliando permeabilidade do colo', score: 1.0, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Acolhimento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'O suporte emocional e a desconstrução de culpa são partes essenciais do atendimento, já que a maioria dos abortamentos decorre de alterações cromossômicas espontâneas, não de atividades cotidianas da gestante.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Solicitou beta-hCG e ultrassonografia transvaginal', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Classificou corretamente o tipo de abortamento', score: 1.0, ref: 'FEBRASGO' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA',
+          items: [
+            { item: 'Ofereceu as opções de conduta (expectante, farmacológica, cirúrgica)', score: 1.0, ref: 'FEBRASGO / Ministério da Saúde' },
+            { item: 'Indicou profilaxia com imunoglobulina anti-D (paciente Rh negativo)', score: 1.5, ref: 'FEBRASGO' }
           ]
         }
       ]
@@ -1051,37 +1095,41 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Pielonefrite na Gestação — Material de Estudo',
+      title: 'CHECKLIST — FEBRE, CALAFRIOS E DOR LOMBAR NA GESTAÇÃO (PIELONEFRITE)',
       sections: [
         {
-          h: 'Definição e Fisiopatologia',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Infecção do trato urinário alto, favorecida pela dilatação ureteral e estase urinária fisiológicas da gestação (efeito da progesterona e compressão mecânica pelo útero gravídico).', score: 1, ref: 'FEBRASGO / Ministério da Saúde' }
+            { item: 'Acolheu o medo da paciente em relação ao bebê diante da febre alta', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Abordou sem julgamento a interrupção do tratamento anterior de ITU', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Quadro Clínico',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Febre, calafrios, dor lombar com punho-percussão positiva, associados a sintomas urinários baixos (disúria, polaciúria) na maioria dos casos.', score: 2, ref: 'FEBRASGO' }
+            { item: 'Investigou sintomas urinários baixos associados', score: 0.5, ref: 'FEBRASGO' },
+            { item: 'Investigou episódio prévio de ITU e adesão ao tratamento', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Perguntou sobre contrações uterinas associadas ao quadro febril', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Diagnóstico',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Urina tipo I com leucocitúria e nitrito positivo, confirmação por urocultura com antibiograma, que deve sempre ser solicitada.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' }
+            { item: 'Realizou punho-percussão lombar (sinal de Giordano)', score: 1.0, ref: 'FEBRASGO' },
+            { item: 'Auscultou batimentos cardiofetais', score: 0.5, ref: 'FEBRASGO' }
           ]
         },
         {
-          h: 'Tratamento',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
           items: [
-            { item: 'Internação hospitalar com antibioticoterapia intravenosa é a conduta recomendada na pielonefrite aguda gestacional, dado o risco de complicações maternas e fetais.', score: 2, ref: 'FEBRASGO / Ministério da Saúde' },
-            { item: 'Após tratamento, urocultura de controle (teste de cura) e rastreio periódico de bacteriúria assintomática são recomendados ao longo do restante do pré-natal.', score: 2, ref: 'Ministério da Saúde' }
+            { item: 'Solicitou urina tipo I e urocultura com antibiograma', score: 1.0, ref: 'Ministério da Saúde / FEBRASGO' }
           ]
         },
         {
-          h: 'Complicações',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Risco aumentado de trabalho de parto prematuro, sepse materna e, mais raramente, síndrome do desconforto respiratório agudo materno.', score: 1, ref: 'FEBRASGO' }
+            { item: 'Indicou internação com antibioticoterapia intravenosa', score: 1.5, ref: 'FEBRASGO / Ministério da Saúde' },
+            { item: 'Orientou urocultura de controle após o tratamento', score: 0.5, ref: 'Ministério da Saúde' }
           ]
         }
       ]
@@ -1166,37 +1214,41 @@ const obstetricia = [
     },
 
     instD: {
-      title: 'Assistência ao Parto Normal — Material de Estudo',
+      title: 'CHECKLIST — GESTANTE EM TRABALHO DE PARTO ATIVO A TERMO',
       sections: [
         {
-          h: 'Fases do Trabalho de Parto',
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Fase latente: contrações irregulares com dilatação até cerca de 5-6 cm; fase ativa: dilatação progressiva mais rápida a partir de 6 cm até dilatação total (10 cm), conforme definição atualizada da OMS.', score: 2, ref: 'OMS / Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' }
+            { item: 'Incluiu a paciente ativamente nas decisões, respeitando o plano de parto', score: 1.0, ref: 'Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' },
+            { item: 'Garantiu e comunicou claramente o direito à presença do acompanhante', score: 0.5, ref: 'Lei do Acompanhante' }
           ]
         },
         {
-          h: 'Boas Práticas Baseadas em Evidências',
+          h: 'BLOCO 2 — ANAMNESE',
           items: [
-            { item: 'Uso do partograma para acompanhamento da evolução do trabalho de parto; liberdade de posição e movimentação; direito a acompanhante de escolha durante todo o trabalho de parto e parto (Lei do Acompanhante).', score: 2, ref: 'Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' },
-            { item: 'Episiotomia não deve ser realizada de rotina, apenas mediante indicação específica.', score: 2, ref: 'Ministério da Saúde / OMS' }
+            { item: 'Caracterizou as contrações e o momento da rotura de membranas', score: 0.5, ref: 'Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' },
+            { item: 'Revisou a caderneta da gestante, incluindo resultado do swab para estreptococo do grupo B', score: 1.0, ref: 'Ministério da Saúde / FEBRASGO' }
           ]
         },
         {
-          h: 'Profilaxia para Estreptococo do Grupo B',
+          h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Rastreio por swab vaginal/retal entre 35-37 semanas; profilaxia antibiótica intraparto (penicilina cristalina como primeira escolha) indicada em gestantes com swab positivo, idealmente iniciada com pelo menos 4 horas antes do parto.', score: 2, ref: 'Ministério da Saúde / FEBRASGO' }
+            { item: 'Realizou toque vaginal avaliando dilatação, esvaecimento e plano de descida', score: 1.0, ref: 'Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' },
+            { item: 'Realizou ausculta intermitente dos batimentos cardiofetais', score: 0.5, ref: 'OMS / Ministério da Saúde' }
           ]
         },
         {
-          h: 'Manejo da Dor',
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO',
           items: [
-            { item: 'Métodos não farmacológicos (deambulação, bola suíça, banho morno, respiração) devem ser oferecidos; analgesia farmacológica (incluindo peridural) deve estar disponível conforme desejo da paciente.', score: 1, ref: 'Ministério da Saúde' }
+            { item: 'Classificou corretamente a fase do trabalho de parto e usou o partograma', score: 1.0, ref: 'Ministério da Saúde — Diretriz Nacional de Assistência ao Parto Normal' }
           ]
         },
         {
-          h: 'Monitorização Fetal',
+          h: 'BLOCO 5 — CONDUTA',
           items: [
-            { item: 'Ausculta intermitente dos batimentos cardiofetais é adequada em trabalho de parto de baixo risco; cardiotocografia contínua reservada para gestações de risco.', score: 1, ref: 'OMS / Ministério da Saúde' }
+            { item: 'Iniciou profilaxia antibiótica intraparto para estreptococo do grupo B', score: 1.5, ref: 'Ministério da Saúde / FEBRASGO' },
+            { item: 'Ofereceu métodos não farmacológicos e farmacológicos de alívio da dor', score: 0.5, ref: 'Ministério da Saúde' },
+            { item: 'Evitou episiotomia de rotina sem indicação específica', score: 0.5, ref: 'Ministério da Saúde / OMS' }
           ]
         }
       ]
