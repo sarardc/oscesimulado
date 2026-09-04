@@ -139,78 +139,95 @@
     </div>
 
     <div class="ia-drawer-content">
-        <!-- Exportar prompt para usar em outra IA (não gasta tokens daqui; sempre disponível) -->
+        <!-- Exportar prompt para usar em outra IA: única forma de simular no momento.
+             A simulação embutida (via API do Gemini) foi desativada por ora — ver bloco
+             "bloco-simulacao-api" abaixo e a flag SIMULACAO_VIA_API_ATIVA no script. -->
         <div id="secao-exportar-prompt" style="background: #eef6f8; border: 1px solid #cfe3e8; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-            <p style="font-size: 0.85rem; margin: 0 0 8px; color: #333;">
-                🔋 <strong>Ficou sem tokens?</strong> Baixe o prompt deste caso e cole (ou anexe o arquivo) numa IA de chat/voz de sua preferência — ela vai simular o caso inteiro sem inventar nada.
+            <p style="font-size: 0.9rem; margin: 0 0 10px; color: #333;">
+                Para simular esta estação com IA, use o prompt abaixo numa IA de chat/voz de sua preferência (ChatGPT, Claude, Gemini, etc.):
             </p>
+            <ol style="font-size: 0.85rem; color: #444; margin: 0 0 12px 18px; line-height: 1.6;">
+                <li>Baixe o arquivo <code>.md</code> desta estação clicando no botão abaixo (ou abra-o em qualquer editor de texto).</li>
+                <li>Copie todo o conteúdo do arquivo — ou anexe o próprio arquivo, se a IA escolhida aceitar upload de <code>.md</code>.</li>
+                <li>Cole (ou envie) esse conteúdo como a primeira mensagem da conversa com a IA.</li>
+                <li>A partir daí, converse normalmente por texto ou voz: a IA vai simular o paciente, responder aos exames que você pedir e, ao final, avaliar seu atendimento — tudo baseado apenas nos dados reais desta estação.</li>
+            </ol>
             <button id="btn-exportar-prompt" class="btn-ia primario" type="button">📄 Baixar prompt desta estação (.md)</button>
         </div>
 
-        <!-- Seção de Configuração da Chave (Aparece se não houver chave salva) -->
-        <div id="secao-config-chave" style="background: #f1f3f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-            <p style="font-size: 0.9rem; margin-bottom: 8px; color: #333;">
-                🔑 <strong>Configuração Inicial:</strong> Para simular com a IA, insira sua chave gratuita do Google AI Studio.
-            </p>
-            <ol style="font-size: 0.8rem; color: #555; margin-left: 15px; margin-bottom: 10px;">
-                <li>Acesse <a href="https://aistudio.google.com/" target="_blank" style="color: #0d6efd;">Google AI Studio</a> e crie uma chave gratuita.</li>
-                <li>Cole a chave gerada no campo abaixo:</li>
-            </ol>
-            <div style="display: flex; gap: 5px;">
-                <input type="password" id="input-api-key" placeholder="Cole sua chave aqui (AIzaSy...)" style="flex: 1; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem;">
-                <button id="btn-salvar-chave" style="padding: 6px 12px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Salvar</button>
+        <!-- ═══════════════════════════════════════════════════════════════════
+             Simulação embutida via API do Gemini — DESATIVADA para o usuário.
+             Todo o código (HTML e JS) continua aqui de propósito para permitir
+             reativar essa opção no futuro: para religar, remova o
+             "display: none" abaixo e troque SIMULACAO_VIA_API_ATIVA para true
+             no script no fim do arquivo.
+             ═══════════════════════════════════════════════════════════════════ -->
+        <div id="bloco-simulacao-api" style="display: none;">
+            <!-- Seção de Configuração da Chave (Aparece se não houver chave salva) -->
+            <div id="secao-config-chave" style="background: #f1f3f5; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p style="font-size: 0.9rem; margin-bottom: 8px; color: #333;">
+                    🔑 <strong>Configuração Inicial:</strong> Para simular com a IA, insira sua chave gratuita do Google AI Studio.
+                </p>
+                <ol style="font-size: 0.8rem; color: #555; margin-left: 15px; margin-bottom: 10px;">
+                    <li>Acesse <a href="https://aistudio.google.com/" target="_blank" style="color: #0d6efd;">Google AI Studio</a> e crie uma chave gratuita.</li>
+                    <li>Cole a chave gerada no campo abaixo:</li>
+                </ol>
+                <div style="display: flex; gap: 5px;">
+                    <input type="password" id="input-api-key" placeholder="Cole sua chave aqui (AIzaSy...)" style="flex: 1; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85rem;">
+                    <button id="btn-salvar-chave" style="padding: 6px 12px; background: #0d6efd; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Salvar</button>
+                </div>
+                <p id="status-chave" style="font-size: 0.75rem; margin-top: 5px; color: #666;"></p>
             </div>
-            <p id="status-chave" style="font-size: 0.75rem; margin-top: 5px; color: #666;"></p>
-        </div>
 
-        <!-- Status do Paciente -->
-        <div class="status-bar" id="status-ia">Insira sua chave acima para habilitar o paciente.</div>
+            <!-- Status do Paciente -->
+            <div class="status-bar" id="status-ia">Insira sua chave acima para habilitar o paciente.</div>
 
-        <!-- Área do Chat -->
-        <div class="chat-box" id="chat-box" style="display: none;"></div>
+            <!-- Área do Chat -->
+            <div class="chat-box" id="chat-box" style="display: none;"></div>
 
-        <!-- Controles de Texto e Voz -->
-        <div class="controles-ia">
-            <div class="input-row" id="input-row-texto" style="display: none;">
-                <input type="text" id="input-texto-medico" class="input-texto" placeholder="Digite sua fala para o paciente..." autocomplete="off">
-                <button id="btn-enviar-texto" class="btn-enviar" title="Enviar mensagem">➤</button>
+            <!-- Controles de Texto e Voz -->
+            <div class="controles-ia">
+                <div class="input-row" id="input-row-texto" style="display: none;">
+                    <input type="text" id="input-texto-medico" class="input-texto" placeholder="Digite sua fala para o paciente..." autocomplete="off">
+                    <button id="btn-enviar-texto" class="btn-enviar" title="Enviar mensagem">➤</button>
+                </div>
+                <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Falar</button>
             </div>
-            <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Falar</button>
-        </div>
 
-        <!-- Solicitação de Exames: devolve somente o que consta na aba B do caso -->
-        <div class="painel-secao" id="painel-exames" style="display: none;">
-            <button type="button" class="btn-toggle-secao" id="btn-toggle-exames">🧪 Solicitar Exames</button>
-            <div class="secao-corpo" id="secao-exames-corpo" hidden>
-                <p class="dica-secao">Descreva os exames físicos/complementares que deseja solicitar. Você recebe de volta apenas os achados cadastrados nesta estação.</p>
-                <textarea id="input-pedido-exames" class="textarea-ia" rows="2" placeholder="Ex: hemograma completo, glicemia, ausculta cardíaca..."></textarea>
-                <button id="btn-pedir-exames" class="btn-ia primario">Solicitar</button>
-                <div id="resultado-exames" class="resultado-secao"></div>
+            <!-- Solicitação de Exames: devolve somente o que consta na aba B do caso -->
+            <div class="painel-secao" id="painel-exames" style="display: none;">
+                <button type="button" class="btn-toggle-secao" id="btn-toggle-exames">🧪 Solicitar Exames</button>
+                <div class="secao-corpo" id="secao-exames-corpo" hidden>
+                    <p class="dica-secao">Descreva os exames físicos/complementares que deseja solicitar. Você recebe de volta apenas os achados cadastrados nesta estação.</p>
+                    <textarea id="input-pedido-exames" class="textarea-ia" rows="2" placeholder="Ex: hemograma completo, glicemia, ausculta cardíaca..."></textarea>
+                    <button id="btn-pedir-exames" class="btn-ia primario">Solicitar</button>
+                    <div id="resultado-exames" class="resultado-secao"></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Conduta/tratamento também pode ser registrada em texto, além de falado ao paciente -->
-        <div class="painel-secao" id="painel-conduta" style="display: none;">
-            <button type="button" class="btn-toggle-secao" id="btn-toggle-conduta">💊 Registrar Conduta por Escrito</button>
-            <div class="secao-corpo" id="secao-conduta-corpo" hidden>
-                <p class="dica-secao">Prefere escrever a conduta/tratamento em vez de falar com o paciente? Descreva aqui — ela entra na conversa e na avaliação final.</p>
-                <textarea id="input-conduta-texto" class="textarea-ia" rows="2" placeholder="Ex: Vou solicitar internação, iniciar AAS 300mg e encaminhar para..."></textarea>
-                <button id="btn-enviar-conduta" class="btn-ia primario">Enviar Conduta</button>
+            <!-- Conduta/tratamento também pode ser registrada em texto, além de falado ao paciente -->
+            <div class="painel-secao" id="painel-conduta" style="display: none;">
+                <button type="button" class="btn-toggle-secao" id="btn-toggle-conduta">💊 Registrar Conduta por Escrito</button>
+                <div class="secao-corpo" id="secao-conduta-corpo" hidden>
+                    <p class="dica-secao">Prefere escrever a conduta/tratamento em vez de falar com o paciente? Descreva aqui — ela entra na conversa e na avaliação final.</p>
+                    <textarea id="input-conduta-texto" class="textarea-ia" rows="2" placeholder="Ex: Vou solicitar internação, iniciar AAS 300mg e encaminhar para..."></textarea>
+                    <button id="btn-enviar-conduta" class="btn-ia primario">Enviar Conduta</button>
+                </div>
             </div>
-        </div>
 
-        <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
+            <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
 
-        <!-- Velocidade da voz do paciente -->
-        <div class="controle-velocidade" id="controle-velocidade" style="display: none;">
-            <label for="input-velocidade-voz">🔊 Velocidade da voz: <span id="valor-velocidade-voz">1.0x</span></label>
-            <input type="range" id="input-velocidade-voz" min="1" max="2" step="0.1" value="1">
-        </div>
+            <!-- Velocidade da voz do paciente -->
+            <div class="controle-velocidade" id="controle-velocidade" style="display: none;">
+                <label for="input-velocidade-voz">🔊 Velocidade da voz: <span id="valor-velocidade-voz">1.0x</span></label>
+                <input type="range" id="input-velocidade-voz" min="1" max="2" step="0.1" value="1">
+            </div>
 
-        <!-- Área de Avaliação (Debriefing) -->
-        <div id="area-debriefing" class="area-debriefing" style="display: none;">
-            <h3>📋 Avaliação do Atendimento</h3>
-            <div id="resultado-avaliacao" class="resultado-avaliacao"></div>
+            <!-- Área de Avaliação (Debriefing) -->
+            <div id="area-debriefing" class="area-debriefing" style="display: none;">
+                <h3>📋 Avaliação do Atendimento</h3>
+                <div id="resultado-avaliacao" class="resultado-avaliacao"></div>
+            </div>
         </div>
     </div>
 
@@ -255,6 +272,14 @@
 <!-- SCRIPT DA IA: liga a UI do painel lateral ao GeminiOSCE (js/gemini.js) -->
 
 <script>
+    // Simulação embutida via API do Gemini: DESATIVADA por ora (tokens dos
+    // alunos são limitados). Com a flag em `false`, o clique em "Simular com
+    // IA" mostra só as instruções para baixar o prompt (.md) e usá-lo em
+    // outra IA. Todo o código do chat/exames/avaliação por API continua
+    // abaixo, intacto — para reativar no futuro, troque para `true` aqui E
+    // remova o "display: none" do #bloco-simulacao-api no HTML.
+    const SIMULACAO_VIA_API_ATIVA = false;
+
     document.addEventListener("DOMContentLoaded", () => {
         const btnAbrirIa = document.getElementById("btn-abrir-ia");
         const btnFecharIa = document.getElementById("btn-fechar-ia");
@@ -263,6 +288,59 @@
         const tituloDrawer = document.getElementById("titulo-ia-drawer");
 
         const btnExportarPrompt = document.getElementById("btn-exportar-prompt");
+
+        function estacaoAtual() {
+            return window.currentStation || null;
+        }
+
+        // Exportar prompt "para levar": não usa a API, funciona mesmo sem
+        // chave/tokens — monta o arquivo localmente a partir dos dados da
+        // estação e dispara o download no navegador.
+        function baixarArquivoTexto(nomeArquivo, conteudo) {
+            const blob = new Blob([conteudo], { type: "text/markdown;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = nomeArquivo;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        if (btnExportarPrompt) {
+            btnExportarPrompt.addEventListener("click", () => {
+                const estacao = estacaoAtual();
+                if (!estacao) return;
+                const conteudo = GeminiOSCE.gerarPromptOffline(estacao);
+                baixarArquivoTexto(`estacao-${estacao.id}-prompt-ia.md`, conteudo);
+            });
+        }
+
+        // 1. Controle da Aba Lateral
+        if (btnAbrirIa) {
+            btnAbrirIa.addEventListener("click", () => {
+                drawer.classList.add("aberto");
+                overlay.classList.add("ativo");
+                document.body.classList.add("ia-panel-aberto");
+                const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
+                if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
+
+                if (SIMULACAO_VIA_API_ATIVA) checarChaveSalva();
+            });
+        }
+
+        function fecharPainel() {
+            drawer.classList.remove("aberto");
+            overlay.classList.remove("ativo");
+            document.body.classList.remove("ia-panel-aberto");
+        }
+        if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
+        if (overlay) overlay.addEventListener("click", fecharPainel);
+
+        // A partir daqui só existe o chat/exames/avaliação por API — desligado
+        // por enquanto (ver SIMULACAO_VIA_API_ATIVA no topo do script).
+        if (!SIMULACAO_VIA_API_ATIVA) return;
 
         const secaoConfig = document.getElementById("secao-config-chave");
         const inputApiKey = document.getElementById("input-api-key");
@@ -300,34 +378,6 @@
         let examesSolicitados = [];   // {pedido, resultado} feitos nesta consulta
         let estacaoCarregadaId = null; // id da estação cujo histórico está carregado
 
-        function estacaoAtual() {
-            return window.currentStation || null;
-        }
-
-        // Exportar prompt "para levar": não usa a API, funciona mesmo sem
-        // chave/tokens — monta o arquivo localmente a partir dos dados da
-        // estação e dispara o download no navegador.
-        function baixarArquivoTexto(nomeArquivo, conteudo) {
-            const blob = new Blob([conteudo], { type: "text/markdown;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.href = url;
-            link.download = nomeArquivo;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
-
-        if (btnExportarPrompt) {
-            btnExportarPrompt.addEventListener("click", () => {
-                const estacao = estacaoAtual();
-                if (!estacao) return;
-                const conteudo = GeminiOSCE.gerarPromptOffline(estacao);
-                baixarArquivoTexto(`estacao-${estacao.id}-prompt-ia.md`, conteudo);
-            });
-        }
-
         // Velocidade da voz do paciente (1x a 2x), lembrada entre sessões
         let velocidadeVoz = parseFloat(localStorage.getItem("velocidade_voz")) || 1;
         inputVelocidadeVoz.value = velocidadeVoz;
@@ -338,27 +388,6 @@
             valorVelocidadeVoz.textContent = velocidadeVoz.toFixed(1) + "x";
             localStorage.setItem("velocidade_voz", velocidadeVoz);
         });
-
-        // 1. Controle da Aba Lateral
-        if (btnAbrirIa) {
-            btnAbrirIa.addEventListener("click", () => {
-                drawer.classList.add("aberto");
-                overlay.classList.add("ativo");
-                document.body.classList.add("ia-panel-aberto");
-                const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
-                if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
-
-                checarChaveSalva();
-            });
-        }
-
-        function fecharPainel() {
-            drawer.classList.remove("aberto");
-            overlay.classList.remove("ativo");
-            document.body.classList.remove("ia-panel-aberto");
-        }
-        if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
-        if (overlay) overlay.addEventListener("click", fecharPainel);
 
         // Painéis retráteis (Solicitar Exames / Registrar Conduta)
         function ligarToggle(botao, corpo) {
