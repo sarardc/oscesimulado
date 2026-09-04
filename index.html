@@ -398,14 +398,17 @@
 
             statusIa.innerText = "O paciente está entrando na sala...";
             travarEntrada(true);
+            mostrarDigitando();
             try {
                 const { texto, contents } = await GeminiOSCE.saudacaoInicial(estacao);
                 historicoConsulta = contents;
+                removerDigitando();
                 adicionarMensagem(texto, "paciente");
                 falarComVoz(texto);
                 statusIa.innerText = "Paciente pronto! Digite ou toque no microfone para falar.";
             } catch (erro) {
                 console.error("Erro ao iniciar consulta:", erro);
+                removerDigitando();
                 statusIa.innerText = "Erro ao iniciar o paciente. Verifique sua chave da API.";
                 adicionarMensagem("Não foi possível carregar o paciente simulado: " + erro.message, "sistema");
             } finally {
@@ -443,12 +446,15 @@
             if (!texto || processandoMensagem || !estacao) return;
             travarEntrada(true);
             adicionarMensagem(texto, "medico");
+            mostrarDigitando();
             try {
                 const falaPaciente = await GeminiOSCE.responderComoPaciente(estacao, historicoConsulta, texto);
+                removerDigitando();
                 adicionarMensagem(falaPaciente, "paciente");
                 falarComVoz(falaPaciente);
             } catch (erro) {
                 console.error("Erro na API do Gemini:", erro);
+                removerDigitando();
                 adicionarMensagem("Erro ao comunicar com a IA: " + erro.message, "sistema");
             } finally {
                 travarEntrada(false);
@@ -592,6 +598,22 @@
             msg.innerText = texto;
             chatBox.appendChild(msg);
             chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Balão com três pontinhos animados, exibido enquanto se aguarda a
+        // resposta da IA — para o usuário não achar que ficou sem resposta.
+        function mostrarDigitando() {
+            const msg = document.createElement("div");
+            msg.className = "mensagem paciente digitando";
+            msg.id = "indicador-digitando";
+            msg.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
+            chatBox.appendChild(msg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function removerDigitando() {
+            const indicador = document.getElementById("indicador-digitando");
+            if (indicador) indicador.remove();
         }
 
         // 4. Avaliação Final (Debriefing) — fundamentada no gabarito real da estação
