@@ -147,12 +147,14 @@
                 Para simular esta estação com IA, use o prompt abaixo numa IA de chat/voz de sua preferência (ChatGPT, Claude, Gemini, etc.):
             </p>
             <ol style="font-size: 0.85rem; color: #444; margin: 0 0 12px 18px; line-height: 1.6;">
-                <li>Baixe o arquivo <code>.md</code> desta estação clicando no botão abaixo (ou abra-o em qualquer editor de texto).</li>
-                <li>Copie todo o conteúdo do arquivo — ou anexe o próprio arquivo, se a IA escolhida aceitar upload de <code>.md</code>.</li>
-                <li>Cole (ou envie) esse conteúdo como a primeira mensagem da conversa com a IA.</li>
+                <li>Copie o texto do prompt desta estação (botão abaixo) ou baixe o arquivo <code>.md</code> — o que for mais fácil no seu dispositivo.</li>
+                <li>Cole esse texto como a primeira mensagem da conversa com a IA — ou anexe o arquivo <code>.md</code> baixado, se a IA escolhida aceitar upload.</li>
                 <li>A partir daí, converse normalmente por texto ou voz: a IA vai simular o paciente, responder aos exames que você pedir e, ao final, avaliar seu atendimento — tudo baseado apenas nos dados reais desta estação.</li>
             </ol>
-            <button id="btn-exportar-prompt" class="btn-ia primario" type="button">📄 Baixar prompt desta estação (.md)</button>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <button id="btn-copiar-prompt" class="btn-ia primario" type="button" style="width: auto; flex: 1;">📋 Copiar texto do prompt</button>
+                <button id="btn-exportar-prompt" class="btn-ia primario" type="button" style="width: auto; flex: 1;">📄 Baixar arquivo (.md)</button>
+            </div>
             <p style="font-size: 0.8rem; margin: 10px 0 4px; color: #555;">Abrir uma IA de chat/voz:</p>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                 <a href="https://claude.ai" target="_blank" rel="noopener" style="font-size: 0.8rem; color: #0d6efd; text-decoration: underline;">claude.ai</a>
@@ -294,6 +296,7 @@
         const tituloDrawer = document.getElementById("titulo-ia-drawer");
 
         const btnExportarPrompt = document.getElementById("btn-exportar-prompt");
+        const btnCopiarPrompt = document.getElementById("btn-copiar-prompt");
 
         function estacaoAtual() {
             return window.currentStation || null;
@@ -315,6 +318,43 @@
             link.click();
             document.body.removeChild(link);
             URL.revokeObjectURL(url);
+        }
+
+        // Copia o texto do prompt para a área de transferência, com fallback
+        // manual (textarea + execCommand) para navegadores/contextos onde a
+        // Clipboard API não está disponível (ex.: página aberta sem HTTPS).
+        async function copiarTexto(texto) {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(texto);
+                return;
+            }
+            const area = document.createElement("textarea");
+            area.value = texto;
+            area.style.position = "fixed";
+            area.style.opacity = "0";
+            document.body.appendChild(area);
+            area.focus();
+            area.select();
+            document.execCommand("copy");
+            document.body.removeChild(area);
+        }
+
+        if (btnCopiarPrompt) {
+            btnCopiarPrompt.addEventListener("click", async () => {
+                const estacao = estacaoAtual();
+                if (!estacao) return;
+                const conteudo = GeminiOSCE.gerarPromptOffline(estacao);
+                const textoOriginal = btnCopiarPrompt.textContent;
+                try {
+                    await copiarTexto(conteudo);
+                    btnCopiarPrompt.textContent = "✅ Copiado!";
+                } catch (erro) {
+                    console.error("Erro ao copiar prompt:", erro);
+                    btnCopiarPrompt.textContent = "❌ Não foi possível copiar";
+                } finally {
+                    setTimeout(() => { btnCopiarPrompt.textContent = textoOriginal; }, 2000);
+                }
+            });
         }
 
         if (btnExportarPrompt) {
