@@ -157,7 +157,7 @@
 
         <!-- Status do Paciente -->
         <div class="status-bar" id="status-ia">Insira sua chave acima para habilitar o paciente.</div>
-        
+
         <!-- Área do Chat -->
         <div class="chat-box" id="chat-box" style="display: none;">
             <div class="mensagem paciente">
@@ -165,11 +165,22 @@
             </div>
         </div>
 
-        <!-- Controles de Voz -->
+        <!-- Controles de Texto e Voz -->
         <div class="controles-ia">
-            <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Segure para Falar</button>
+            <div class="input-row" id="input-row-texto" style="display: none;">
+                <input type="text" id="input-texto-medico" class="input-texto" placeholder="Digite sua fala para o paciente..." autocomplete="off">
+                <button id="btn-enviar-texto" class="btn-enviar" title="Enviar mensagem">➤</button>
+            </div>
+            <button id="btn-falar" class="btn-ia sucesso" style="display: none;">🎤 Falar</button>
             <button id="btn-finalizar" class="btn-ia alerta" style="display: none;">⏱️ Finalizar e Avaliar</button>
         </div>
+
+        <!-- Velocidade da voz do paciente -->
+        <div class="controle-velocidade" id="controle-velocidade" style="display: none;">
+            <label for="input-velocidade-voz">🔊 Velocidade da voz: <span id="valor-velocidade-voz">1.0x</span></label>
+            <input type="range" id="input-velocidade-voz" min="1" max="2" step="0.1" value="1">
+        </div>
+
 
         <!-- Área de Avaliação (Debriefing) -->
         <div id="area-debriefing" class="area-debriefing" style="display: none;">
@@ -235,7 +246,13 @@
         const statusChave = document.getElementById("status-chave");
         
         const statusIa = document.getElementById("status-ia");
+        const controleVelocidade = document.getElementById("controle-velocidade");
+        const inputVelocidadeVoz = document.getElementById("input-velocidade-voz");
+        const valorVelocidadeVoz = document.getElementById("valor-velocidade-voz");
         const chatBox = document.getElementById("chat-box");
+        const inputRowTexto = document.getElementById("input-row-texto");
+        const inputTextoMedico = document.getElementById("input-texto-medico");
+        const btnEnviarTexto = document.getElementById("btn-enviar-texto");
         const btnFalar = document.getElementById("btn-falar");
         const btnFinalizar = document.getElementById("btn-finalizar");
 
@@ -247,14 +264,26 @@
 
         let historicoConsulta = [];
 
+        // Velocidade da voz do paciente (1x a 2x), lembrada entre sessões
+        let velocidadeVoz = parseFloat(localStorage.getItem("velocidade_voz")) || 1;
+        inputVelocidadeVoz.value = velocidadeVoz;
+        valorVelocidadeVoz.textContent = velocidadeVoz.toFixed(1) + "x";
+
+        inputVelocidadeVoz.addEventListener("input", () => {
+            velocidadeVoz = parseFloat(inputVelocidadeVoz.value);
+            valorVelocidadeVoz.textContent = velocidadeVoz.toFixed(1) + "x";
+            localStorage.setItem("velocidade_voz", velocidadeVoz);
+        });
+
         // 1. Controle da Aba Lateral
         if (btnAbrirIa) {
             btnAbrirIa.addEventListener("click", () => {
                 drawer.classList.add("aberto");
                 overlay.classList.add("ativo");
+                document.body.classList.add("ia-panel-aberto");
                 const tituloCaso = document.getElementById("sv-title") ? document.getElementById("sv-title").innerText : "Caso Clínico";
                 if (tituloDrawer) tituloDrawer.innerText = tituloCaso;
-                
+
                 checarChaveSalva();
             });
         }
@@ -262,6 +291,7 @@
         function fecharPainel() {
             drawer.classList.remove("aberto");
             overlay.classList.remove("ativo");
+            document.body.classList.remove("ia-panel-aberto");
         }
         if (btnFecharIa) btnFecharIa.addEventListener("click", fecharPainel);
         if (overlay) overlay.addEventListener("click", fecharPainel);
@@ -271,11 +301,13 @@
             const chaveSalva = localStorage.getItem("gemini_api_key");
             if (chaveSalva) {
                 secaoConfig.style.display = "none";
-                statusIa.innerText = "Paciente pronto! Prima o botão para falar.";
+                statusIa.innerText = "Paciente pronto! Digite ou toque no microfone para falar.";
+                controleVelocidade.style.display = "block";
                 chatBox.style.display = "block";
-                btnFalar.style.display = "block";
+                inputRowTexto.style.display = "flex";
+                btnFalar.style.display = ReconhecimentoVoz ? "block" : "none";
                 btnFinalizar.style.display = "block";
-                
+
                 // Inicializa histórico do paciente virtual
                 historicoConsulta = [
                     {
@@ -286,7 +318,9 @@
             } else {
                 secaoConfig.style.display = "block";
                 statusIa.innerText = "Insira sua chave acima para habilitar o paciente.";
+                controleVelocidade.style.display = "none";
                 chatBox.style.display = "none";
+                inputRowTexto.style.display = "none";
                 btnFalar.style.display = "none";
                 btnFinalizar.style.display = "none";
             }
@@ -305,29 +339,112 @@
             }
         });
 
-        // 3. Reconhecimento de Voz e Comunicação com Gemini
+        // 3. Envio por Texto e Reconhecimento de Voz Contínuo
+        let processandoMensagem = false;
+
+        async function enviarMensagemUsuario(texto) {
+            texto = (texto || "").trim();
+            if (!texto || processandoMensagem) return;
+            processandoMensagem = true;
+            btnEnviarTexto.disabled = true;
+            inputTextoMedico.disabled = true;
+            adicionarMensagem(texto, "medico");
+            await enviarParaGemini(texto);
+            processandoMensagem = false;
+            btnEnviarTexto.disabled = false;
+            inputTextoMedico.disabled = false;
+            inputTextoMedico.focus();
+        }
+
+        btnEnviarTexto.addEventListener("click", () => {
+            const texto = inputTextoMedico.value;
+            inputTextoMedico.value = "";
+            enviarMensagemUsuario(texto);
+        });
+
+        inputTextoMedico.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                btnEnviarTexto.click();
+            }
+        });
+
         const ReconhecimentoVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
         let microfone = null;
+        let escutando = false;
+        let transcricaoAcumulada = "";
+        let timeoutSilencio = null;
+        const SILENCIO_MS = 1800; // tempo sem falar novas palavras até encerrar sozinho
+
+        function limparTimeoutSilencio() {
+            if (timeoutSilencio) {
+                clearTimeout(timeoutSilencio);
+                timeoutSilencio = null;
+            }
+        }
+
+        // Reinicia a contagem de silêncio a cada trecho de fala reconhecido.
+        // Assim o microfone só encerra sozinho depois que a pessoa PARA de falar,
+        // e não logo após ser ligado.
+        function agendarParadaPorSilencio() {
+            limparTimeoutSilencio();
+            timeoutSilencio = setTimeout(() => {
+                if (escutando) microfone.stop();
+            }, SILENCIO_MS);
+        }
 
         if (ReconhecimentoVoz) {
             microfone = new ReconhecimentoVoz();
             microfone.lang = "pt-BR";
-            microfone.interimResults = false;
+            microfone.interimResults = true; // permite detectar pausas enquanto a pessoa fala
+            microfone.continuous = true; // mantém o microfone ligado enquanto durar a fala
 
-            btnFalar.addEventListener("mousedown", () => {
-                microfone.start();
-                btnFalar.innerText = "🎤 A ouvir... (solte para enviar)";
+            // Toque uma vez para ligar o microfone, toque de novo para parar manualmente
+            btnFalar.addEventListener("click", () => {
+                if (processandoMensagem) return;
+                if (!escutando) {
+                    transcricaoAcumulada = "";
+                    try {
+                        microfone.start();
+                    } catch (e) {
+                        // já estava a iniciar; ignora
+                    }
+                } else {
+                    limparTimeoutSilencio();
+                    microfone.stop();
+                }
             });
 
-            btnFalar.addEventListener("mouseup", () => {
-                microfone.stop();
-                btnFalar.innerText = "⏳ A processar...";
-            });
+            microfone.onstart = () => {
+                escutando = true;
+                btnFalar.classList.add("ouvindo");
+                btnFalar.innerText = "⏹️ A ouvir... (toque para parar)";
+            };
 
-            microfone.onresult = async (event) => {
-                const texto = event.results[0][0].transcript;
-                adicionarMensagem(texto, "medico");
-                await enviarParaGemini(texto);
+            microfone.onresult = (event) => {
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    if (event.results[i].isFinal) {
+                        transcricaoAcumulada += event.results[i][0].transcript + " ";
+                    }
+                }
+                // chegou som novo: a pessoa ainda está falando, adia o encerramento
+                agendarParadaPorSilencio();
+            };
+
+            microfone.onerror = (event) => {
+                console.error("Erro no reconhecimento de voz:", event.error);
+            };
+
+            microfone.onend = async () => {
+                escutando = false;
+                limparTimeoutSilencio();
+                btnFalar.classList.remove("ouvindo");
+                btnFalar.innerText = "🎤 Falar";
+                const texto = transcricaoAcumulada.trim();
+                transcricaoAcumulada = "";
+                if (texto) {
+                    await enviarMensagemUsuario(texto);
+                }
             };
         }
 
@@ -357,15 +474,15 @@
                 adicionarMensagem(falaPaciente, "paciente");
 
                 // Síntese de voz nativa do navegador
+                window.speechSynthesis.cancel(); // evita fila/atraso de falas anteriores
                 const voz = new SpeechSynthesisUtterance(falaPaciente);
                 voz.lang = "pt-BR";
+                voz.rate = velocidadeVoz; // escolhido pelo usuário no slider (1x a 2x)
                 window.speechSynthesis.speak(voz);
 
             } catch (erro) {
                 console.error("Erro na API do Gemini:", erro);
                 adicionarMensagem("Erro ao comunicar com a IA. Verifique se a sua chave está correta.", "paciente");
-            } finally {
-                btnFalar.innerText = "🎤 Segure para Falar";
             }
         }
 
@@ -379,6 +496,8 @@
 
         // 4. Avaliação Final (Debriefing)
         btnFinalizar.addEventListener("click", async () => {
+            if (escutando && microfone) microfone.stop();
+            inputRowTexto.style.display = "none";
             btnFalar.style.display = "none";
             btnFinalizar.style.display = "none";
             statusIa.innerText = "A gerar avaliação do atendimento...";

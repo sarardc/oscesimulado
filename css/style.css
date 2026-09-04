@@ -14,6 +14,7 @@
     --text3: #dcd9c9 80%;
     --mono: 'IBM Plex Mono', monospace;
     --sans: 'IBM Plex Sans', sans-serif;
+    --ia-drawer-w: 450px;
   }
   /* ===== LIGHT THEME ===== */
   html.light {
@@ -70,7 +71,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 18px; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 24px 16px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 18px; min-height: 100vh; display: flex; justify-content: center; align-items: flex-start; padding: 24px 16px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; transition: padding-right 0.3s ease-in-out; }
 
   #home,
   #station-view { width: min(1100px, 100%); max-width: 1100px; }
@@ -945,8 +946,8 @@
 .ia-drawer {
     position: fixed;
     top: 0;
-    right: -450px; /* Fica 450px fora da tela (escondido) */
-    width: 450px;
+    right: calc(-1 * var(--ia-drawer-w)); /* Fica fora da tela (escondido) */
+    width: var(--ia-drawer-w);
     height: 100vh;
     background-color: #f8f9fa;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
@@ -954,6 +955,16 @@
     transition: right 0.3s ease-in-out; /* Animação de deslizar */
     display: flex;
     flex-direction: column;
+}
+
+/* Versão web (telas largas): divide a tela em vez de escurecer o caso.
+   O conteúdo (home/estação) encolhe para o lado esquerdo, ficando visível
+   e navegável ao lado do chat — incluindo o timer no cabeçalho da estação. */
+@media (min-width: 769px) {
+    .ia-overlay { display: none; }
+    body.ia-panel-aberto {
+        padding-right: calc(var(--ia-drawer-w) + 16px);
+    }
 }
 
 /* Classe que será adicionada pelo JavaScript para abrir a aba */
@@ -982,6 +993,26 @@
     flex: 1;
 }
 
+/* Velocidade da voz do paciente */
+.controle-velocidade {
+    margin: 10px 0;
+    padding: 10px 12px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+}
+.controle-velocidade label {
+    display: block;
+    font-size: 0.85rem;
+    color: #333;
+    margin-bottom: 6px;
+}
+.controle-velocidade input[type="range"] {
+    width: 100%;
+    accent-color: #0d6efd;
+    cursor: pointer;
+}
+
 /* Elementos do chat (ajustados para a largura da aba lateral) */
 .chat-box {
     height: 35vh; /* Altura responsiva */
@@ -998,12 +1029,44 @@
 .controles-ia { display: flex; flex-direction: column; gap: 10px; }
 .btn-ia { padding: 12px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; transition: opacity 0.2s;}
 .btn-ia:hover { opacity: 0.8; }
+.btn-ia:disabled { opacity: 0.5; cursor: not-allowed; }
 .primario { background: #0d6efd; color: white; }
 .sucesso { background: #198754; color: white; }
 .alerta { background: #ffc107; color: black; }
 .roxo { background: #6f42c1; color: white; }
 .verde { background: #20c997; color: white; }
 .botoes-estudo { display: flex; gap: 10px; margin-top: 15px; }
+
+/* Envio de mensagem por texto */
+.input-row { display: flex; gap: 8px; }
+.input-texto {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+.input-texto:disabled { opacity: 0.6; }
+.btn-enviar {
+    flex-shrink: 0;
+    width: 44px;
+    border: none;
+    border-radius: 6px;
+    background: #0d6efd;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+.btn-enviar:hover { opacity: 0.8; }
+.btn-enviar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Microfone ligado de forma contínua (sem precisar segurar) */
+#btn-falar.ouvindo {
+    background: #dc3545;
+    animation: pulse 0.8s infinite alternate;
+}
 
 /* Celulares: a aba ocupa a tela toda */
 @media (max-width: 500px) {
