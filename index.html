@@ -37,8 +37,14 @@
     </div>
     -->
     <div class="home-layout">
-      <aside class="filter-sidebar">
+      <aside class="filter-sidebar" id="filter-sidebar">
+        <button class="filter-toggle" id="filter-toggle-btn" onclick="toggleFilterSidebar()">
+          <span class="filter-toggle-label">Filtrar por tema</span>
+          <span class="filter-toggle-current" id="filter-toggle-current">Todas</span>
+          <span class="filter-toggle-arr" id="filter-toggle-arr">▾</span>
+        </button>
         <p class="filter-label">Filtrar por tema</p>
+        <div class="filter-list" id="filter-list">
         <button class="filter-btn active" data-tema="all" onclick="setFilter('all')">Todas</button>
 
         <!-- CLÍNICA MÉDICA -->
@@ -81,6 +87,7 @@
         <button class="filter-btn tema-medicina-intensiva"       data-tema="medicina intensiva"       onclick="setFilter('medicina intensiva')">Medicina Intensiva</button>
         <button class="filter-btn tema-emergencias-neurologicas" data-tema="emergencias neurologicas" onclick="setFilter('emergencias neurologicas')">Emergência Neurológica</button>
         <button class="filter-btn tema-medicina-legal"           data-tema="medicina legal"           onclick="setFilter('medicina legal')">Medicina Legal</button>
+        </div>
       </aside>
       <div class="home-main">
         <p class="section-label">Estações disponíveis <span id="filter-count"></span></p>
@@ -144,15 +151,15 @@
              "bloco-simulacao-api" abaixo e a flag SIMULACAO_VIA_API_ATIVA no script. -->
         <div id="secao-exportar-prompt" style="background: #eef6f8; border: 1px solid #cfe3e8; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
             <p style="font-size: 0.9rem; margin: 0 0 10px; color: #333;">
-                Para simular esta estação com IA, use o prompt abaixo numa IA de chat/voz de sua preferência (ChatGPT, Claude, Gemini, etc.):
+                Como simular:
             </p>
             <ol style="font-size: 0.85rem; color: #444; margin: 0 0 12px 18px; line-height: 1.6;">
                 <li>Copie o texto do prompt desta estação (botão abaixo)</li>
-                <li>Cole esse texto como a primeira mensagem da conversa com a IA</li>
+                <li>Ative o modo voz e cole o texto</li>
                 <li>A IA vai simular o paciente</li>
-                <li>Peça os exames</li>
-                <li>Fale "finalizar atendimento" para receber a avaliação</li>
-                <li>Você também pode pedir um <strong>"quiz"</strong> ou um <strong>"resumo do caso"</strong>.</li>
+                <li>Peça os exames, fale o diagnóstico e o tratamento</li>
+                <li>Avaliação: após comando "finalizar atendimento"</li>
+                <li> "Resumo do caso" </li>
             </ol>
             <div style="display: flex; flex-wrap: wrap; gap: 8px;">
                 <button id="btn-copiar-prompt" class="btn-ia primario" type="button" style="width: auto; flex: 1;">📋 Copiar texto do prompt</button>
@@ -268,6 +275,13 @@
   function toggleFGroup(id) {
     const grp = document.getElementById(id);
     grp.classList.toggle('open');
+  }
+
+  function toggleFilterSidebar() {
+    const sidebar = document.getElementById('filter-sidebar');
+    const arr = document.getElementById('filter-toggle-arr');
+    const expanded = sidebar.classList.toggle('expanded');
+    arr.textContent = expanded ? '▴' : '▾';
   }
 </script>
 
