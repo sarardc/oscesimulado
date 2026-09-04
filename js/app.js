@@ -27,6 +27,7 @@ function goHome() {
 function openStation(id) {
   const st = stations.find(s => s.id === id);
   if (!st) return;
+  window.currentStation = st; // usado pela integração com a IA (js/gemini.js)
   document.getElementById('home').style.display = 'none';
   document.getElementById('station-view').style.display = 'block';
   document.getElementById('sv-title').textContent = `Estação ${st.id} — ${st.tema}`;

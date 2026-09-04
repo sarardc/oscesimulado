@@ -17,7 +17,7 @@ import especialidades2 from './data/especialidades2.js';
 import hematologia from './data/hematologia.js';
 import cardiologia from './data/cardiologia.js';
 import ortopedia from './data/ortopedia.js';
-import emergNeuro from './data/emerg_neuro.js';
+import emergNeuro from './data/emergNeuro.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
