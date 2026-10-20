@@ -1371,6 +1371,176 @@ const hematologia = [
     }
   },
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO — SÍNDROME DE LISE TUMORAL (LLA-T EM INDUÇÃO)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 1,
+    title: 'Adolescente em quimioterapia com câimbras, palpitações e urina escassa',
+    sub: 'Enfermaria de Onco-Hematologia — Plantão',
+    tema: 'Hematologia',
+    topic: 'Síndrome de Lise Tumoral',
+    level: 'difícil',
+    cardAccent: '#E53935',
+
+    instA: {
+      scenario: 'Enfermaria de onco-hematologia de hospital terciário, 03h da madrugada. Você é o médico plantonista e foi chamado pela enfermagem porque o paciente do leito 12 está com câimbras, formigamento e "urinou muito pouco" no turno. Ele iniciou quimioterapia de indução para leucemia linfoblástica aguda há cerca de 36 horas. A mãe está acompanhando.',
+      patient: 'Lucas Ferreira, 16 anos, sexo masculino, estudante do ensino médio, 62 kg, 1,72 m (SC ≈ 1,72 m²). Diagnóstico recente (há 4 dias) de LLA de células T com massa mediastinal.',
+      complaint: 'Câimbras nas pernas e nas mãos, formigamento ao redor da boca, sensação de "coração falhando" e pouca urina nas últimas horas.',
+      tasks: [
+        'Realize a anamnese dirigida (paciente e acompanhante).',
+        'Realize o exame físico dirigido.',
+        'Interprete os exames laboratoriais e o ECG fornecidos.',
+        'Formule o diagnóstico, justificando com os critérios de Cairo-Bishop.',
+        'Proponha a conduta imediata, incluindo o tratamento da hipercalemia e a indicação de terapia dialítica.',
+        'Comunique a situação à mãe e ao paciente.'
+      ]
+    },
+
+    instB: {
+      vitals: {
+        PA: '150/94 mmHg',
+        FC: '56 bpm, irregular',
+        FR: '22 irpm',
+        Tax: '36,8 °C',
+        SpO2: '94% em ar ambiente',
+        Peso: '65 kg (admissão: 62 kg)',
+        Altura: '1,72 m',
+        Diurese: '120 mL nas últimas 8 h (≈ 0,23 mL/kg/h)'
+      },
+      physicalGeneral: 'Regular estado geral, consciente e orientado, ansioso. Descorado 2+/4+, anictérico, acianótico. Edema de membros inferiores 2+/4+ e edema palpebral discreto. Cateter venoso central em jugular interna direita sem sinais flogísticos.',
+      physicalSeg: 'NEUROLÓGICO: Glasgow 15, sem déficits focais; sinal de Chvostek positivo; sinal de Trousseau positivo (espasmo carpopedal após 1 min de manguito insuflado); reflexos tendíneos discretamente diminuídos; fasciculações em panturrilhas. | CARDIOVASCULAR: ritmo irregular, bulhas normofonéticas, sem sopros; turgência jugular a 45°. | RESPIRATÓRIO: murmúrio vesicular presente, estertores crepitantes em bases bilaterais. | ABDOME: fígado a 3 cm do RCD, baço a 4 cm do RCE, indolor; sem globo vesical. | LINFONODOS: adenomegalia cervical e supraclavicular bilateral, endurecida, indolor.',
+      labs: [
+        { test: 'Potássio', val: '7,1 mEq/L', ref: '3,5–5,0 mEq/L (admissão: 4,6)', alt: true },
+        { test: 'Fósforo', val: '9,8 mg/dL', ref: '2,5–4,5 mg/dL (admissão: 5,1)', alt: true },
+        { test: 'Cálcio total', val: '6,4 mg/dL', ref: '8,5–10,5 mg/dL (admissão: 9,0)', alt: true },
+        { test: 'Cálcio iônico', val: '0,82 mmol/L', ref: '1,12–1,32 mmol/L', alt: true },
+        { test: 'Ácido úrico', val: '13,6 mg/dL', ref: '3,5–7,2 mg/dL (admissão: 8,9)', alt: true },
+        { test: 'Creatinina', val: '2,6 mg/dL', ref: '0,6–1,2 mg/dL (admissão: 0,7)', alt: true },
+        { test: 'Ureia', val: '118 mg/dL', ref: '15–45 mg/dL', alt: true },
+        { test: 'LDH', val: '3.480 UI/L', ref: '< 250 UI/L', alt: true },
+        { test: 'Gasometria venosa', val: 'pH 7,26; HCO₃ 15 mEq/L; pCO₂ 33 mmHg', ref: 'pH 7,35–7,45; HCO₃ 22–26', alt: true },
+        { test: 'Sódio', val: '136 mEq/L', ref: '135–145 mEq/L', alt: false },
+        { test: 'Leucócitos', val: '38.000/mm³ (admissão: 124.000)', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Hemoglobina', val: '8,1 g/dL', ref: '13–17 g/dL', alt: true },
+        { test: 'Plaquetas', val: '42.000/mm³', ref: '150.000–450.000/mm³', alt: true },
+        { test: 'Glicemia', val: '138 mg/dL', ref: '70–99 mg/dL', alt: true },
+        { test: 'G6PD (triagem da admissão)', val: 'Atividade normal', ref: 'Normal', alt: false }
+      ],
+      image: 'ECG de 12 derivações: ritmo sinusal com extrassístoles ventriculares isoladas, FC 56 bpm; ondas T apiculadas e simétricas em V2–V4; PR 220 ms; onda P achatada; QRS 120 ms; QTc 480 ms. | Prescrição atual (entregar se solicitada): prednisona 60 mg/m²/dia, vincristina e daunorrubicina D1, alopurinol 300 mg/dia VO, SF 0,9% 100 mL/h, bicarbonato de sódio 8,4% 40 mL em cada soro (alcalinização prescrita na admissão).',
+      note: 'Entregar os exames laboratoriais após o candidato solicitá-los (ou após 3 min). Entregar o ECG apenas se o candidato pedir ECG/monitorização — se não pedir, o examinador anota como falha. Entregar a prescrição atual se o candidato perguntar sobre medicações em uso. Se o candidato prescrever gluconato de cálcio, perguntar: "Mesmo com o fósforo tão alto?" — esperar justificativa (proteção miocárdica em hipercalemia com alteração de ECG/sintomas). Se perguntar sobre diálise, o examinador informa que a nefrologia está disponível.',
+      patientProfile: 'Lucas, 16 anos, cursa o 2º ano do ensino médio, joga futebol. Há 3 semanas com cansaço, tosse seca, falta de ar ao deitar e "caroços no pescoço". Diagnosticado há 4 dias com LLA-T (leucócitos 124.000, massa mediastinal anterior). Iniciou indução há ~36 h. Sem comorbidades prévias, sem alergias. Mora com a mãe (Cláudia, 42 anos, auxiliar administrativa) e uma irmã de 10 anos. Está assustado, mas colaborativo; a mãe está muito ansiosa e faz muitas perguntas.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor(a), desde ontem à noite eu tô com câimbra nas pernas, e agora a mão ficou dura sozinha, os dedos fecharam. Tá formigando em volta da boca.' },
+        { trigger: 'Sobre o coração / palpitações', speech: 'Parece que o coração dá umas falhadas, umas batidas fora do lugar. Me dá um aperto.' },
+        { trigger: 'Sobre a urina', speech: 'Eu quase não fui no banheiro hoje. A enfermeira mediu e disse que foi bem pouquinho. E tá escura.' },
+        { trigger: 'Sobre falta de ar / inchaço', speech: 'Tô com um pouco mais de falta de ar deitado. E minhas pernas e o olho incharam, eu acho.' },
+        { trigger: 'Sobre o tratamento (MÃE)', speech: 'Ele começou a quimio anteontem à tarde. Tomou uma injeção na veia e uns comprimidos de corticoide. Os médicos falaram que a leucemia dele era "de muitas células".' },
+        { trigger: 'Sobre náuseas / vômitos', speech: 'Vomitei duas vezes hoje. Tô sem fome nenhuma.' },
+        { trigger: 'Sobre fraqueza', speech: 'Tô sentindo as pernas fracas, mole.' },
+        { trigger: 'Pergunta ativa — MÃE', speech: 'Doutor(a), é a leucemia piorando? Foi o remédio que fez isso? Ele vai ter que fazer hemodiálise? Isso tem volta?' },
+        { trigger: 'Pergunta ativa — paciente', speech: 'Vou ter que parar a quimio? Eu queria tanto que desse certo...' }
+      ],
+      hiddenInfo: 'Urina "cor de chá" e com "areinha" no papel do coletor — só revela se perguntar sobre aspecto da urina | Vomitou e não conseguiu tomar o comprimido de alopurinol hoje — só revela se perguntar sobre medicações/adesão | O soro "ficou parado" por algumas horas à tarde porque o acesso deu problema — só a mãe revela se perguntada sobre hidratação/soro | Teve um episódio de "tremedeira na mão" (espasmo) há 1 h que durou 2 minutos — só revela se perguntar sobre convulsão/espasmos',
+      actorBehavior: 'Lucas: assustado, voz fraca, colaborativo; ao exame do Trousseau, simular a mão em "posição de parteiro". Mãe (Cláudia): muito ansiosa, interrompe para perguntar se o filho vai morrer; acalma-se se o candidato explicar com clareza e empatia. Se o candidato usar jargão sem explicar, a mãe diz "não entendi nada, doutor(a)".'
+    },
+
+    instC: {
+      diagnosis: 'Síndrome de lise tumoral clínica (critérios de Cairo-Bishop) em paciente com LLA-T de alta carga tumoral, 36 h após início da indução: hipercalemia grave com alterações eletrocardiográficas, hiperfosfatemia, hipocalcemia sintomática, hiperuricemia e lesão renal aguda oligúrica com hipervolemia e acidose metabólica.',
+      differentials: [
+        'LRA pré-renal por vômitos/hipovolemia — entra pela oligúria e vômitos; sai porque o paciente está hipervolêmico (edema, turgência jugular, crepitações) e o padrão de hipercalemia + hiperfosfatemia + hipocalcemia + hiperuricemia aponta para lise celular.',
+        'Nefrotoxicidade medicamentosa (aminoglicosídeo, contraste, AINE) — entra como causa de LRA no paciente oncológico; sai porque não há exposição e não explica o perfil de eletrólitos.',
+        'Hipercalemia por pseudo-hipercalemia (leucocitose extrema/hemólise da amostra) — entra porque leucometria > 100.000 pode falsear K; sai porque há alterações no ECG e a leucometria atual caiu para 38.000.',
+        'Hipocalcemia por hipoparatireoidismo/hipomagnesemia — entra pela tetania; sai porque a hipocalcemia é secundária à precipitação de fosfato de cálcio (fósforo 9,8). Dosar magnésio, que pode coexistir.',
+        'Uropatia obstrutiva (compressão ureteral por massa linfonodal) — deve ser lembrada; afastada com USG de rins e vias urinárias.'
+      ],
+      context: 'A síndrome de lise tumoral (SLT) é a emergência oncológica mais comum em neoplasias hematológicas de alta proliferação — LLA, linfoma de Burkitt e LMA hiperleucocitária. A destruição maciça de células libera potássio, fosfato e ácidos nucleicos (metabolizados a ácido úrico). O fosfato precipita com o cálcio (hipocalcemia e nefrocalcinose), e o ácido úrico e o fosfato de cálcio cristalizam nos túbulos, causando LRA. Lucas tinha todos os fatores de risco: LLA-T, leucócitos > 100.000, LDH > 2× LSN, ácido úrico elevado já na admissão e massa volumosa. Recebeu apenas alopurinol (que não reduz o ácido úrico já formado), com hidratação interrompida e alcalinização urinária (hoje contraindicada).',
+      justify: 'Cairo-Bishop — SLT laboratorial (≥ 2 critérios entre 3 dias antes e 7 dias após o início da terapia): ácido úrico ≥ 8 mg/dL (13,6) ✔ | potássio ≥ 6 mEq/L (7,1) ✔ | fósforo ≥ 4,5 mg/dL em adultos / ≥ 6,5 mg/dL em crianças (9,8) ✔ | cálcio ≤ 7 mg/dL (6,4) ✔ — os 4 preenchidos. SLT clínica = SLT laboratorial + ≥ 1 entre: creatinina ≥ 1,5× LSN (2,6 mg/dL, ≈ 3,7× o basal) ✔, arritmia (extrassístoles, alterações de condução) ✔, convulsão/tetania (espasmo carpopedal, Trousseau/Chvostek) ✔. Grau 3 (creatinina 3–6× o basal e oligúria) e indicação de terapia dialítica.',
+      expectedAnamnesis: 'Caracterizar sintomas neuromusculares: câimbras, parestesias periorais, espasmos, convulsão | Palpitações, dor torácica, síncope | Débito urinário, aspecto da urina (escura, cristais/"areia") | Náuseas, vômitos, ingestão oral | Dispneia, ortopneia, ganho de peso, edema | Data e horário de início da quimioterapia e esquema utilizado | Profilaxia em uso: alopurinol (adesão), hidratação (interrupções), alcalinização | Uso de nefrotóxicos (AINE, contraste, aminoglicosídeos) | Antecedentes: doença renal prévia, deficiência de G6PD, alergias | Carga tumoral ao diagnóstico (leucometria, LDH, massas)',
+      expectedPhysical: 'Sinais vitais completos com diurese horária e peso (comparar com admissão) | Avaliação volêmica: turgência jugular, edema, crepitações pulmonares | Ausculta cardíaca (ritmo irregular, bradicardia) | Sinais de Chvostek e Trousseau | Força muscular e reflexos (fraqueza por hipercalemia) | Estado de consciência / Glasgow (convulsão, encefalopatia urêmica) | Palpação de globo vesical (afastar retenção) | Visceromegalias e linfonodos (carga tumoral)',
+      expectedExams: [
+        { exam: 'ECG de 12 derivações + monitorização cardíaca contínua', justify: 'Hipercalemia grave e hipocalcemia: risco de arritmia fatal. Alteração no ECG define a necessidade de gluconato de cálcio imediato.', expected: 'T apiculadas, PR prolongado, P achatada, QRS alargado, QTc longo, extrassístoles' },
+        { exam: 'Eletrólitos: K, P, Ca total e iônico, Mg, Na', justify: 'Critérios de Cairo-Bishop e guiar o tratamento. Magnésio baixo perpetua hipocalcemia e arritmias.', expected: 'K 7,1; P 9,8; Ca 6,4 (iônico 0,82)' },
+        { exam: 'Ácido úrico (amostra em gelo se em uso de rasburicase)', justify: 'Critério de SLT e alvo da rasburicase. A rasburicase continua agindo na amostra à temperatura ambiente, falseando valores para baixo.', expected: '13,6 mg/dL' },
+        { exam: 'Creatinina, ureia e diurese horária (sonda vesical de demora)', justify: 'Define SLT clínica, estadia a LRA (KDIGO) e indicação de diálise.', expected: 'Creatinina 2,6 (≈ 3,7× o basal); oligúria' },
+        { exam: 'Gasometria venosa/arterial', justify: 'Acidose metabólica agrava a hipercalemia e é critério para diálise se refratária.', expected: 'pH 7,26, HCO₃ 15' },
+        { exam: 'LDH, hemograma', justify: 'Marcadores de carga tumoral e de resposta à terapia.', expected: 'LDH 3.480; queda dos leucócitos de 124.000 para 38.000' },
+        { exam: 'Atividade de G6PD', justify: 'Obrigatória antes da rasburicase: deficiência → hemólise grave e metemoglobinemia.', expected: 'Normal (já disponível)' },
+        { exam: 'USG de rins e vias urinárias', justify: 'Afastar obstrução (compressão por linfonodos, cálculos de urato) e infiltração renal.', expected: 'Rins aumentados e hiperecogênicos, sem hidronefrose' },
+        { exam: 'Radiografia de tórax', justify: 'Congestão pulmonar e avaliação da massa mediastinal.', expected: 'Congestão hilar e alargamento mediastinal' }
+      ],
+      expectedConduct: 'EMERGÊNCIA: monitorização contínua, acesso venoso calibroso, acionar UTI e nefrologia imediatamente | HIPERCALEMIA COM ALTERAÇÃO DE ECG (sequência): (1) gluconato de cálcio 10% 10–20 mL IV em 5–10 min — estabiliza a membrana do miocárdio; indicado aqui apesar do fósforo alto por haver alteração de ECG e tetania; usar a menor dose eficaz, repetir se o ECG não melhorar | (2) insulina regular 10 UI IV + glicose 50% 50 mL (ou 0,1 UI/kg + glicose 0,5 g/kg) — desloca K para o meio intracelular; glicemia capilar a cada hora | (3) beta-2 agonista inalatório (salbutamol 10–20 mg nebulizado) como adjuvante | (4) bicarbonato de sódio NÃO como rotina: piora a hipocalcemia e a precipitação de fosfato de cálcio | (5) remoção de K: diálise é o tratamento definitivo neste paciente oligúrico; resinas (poliestireno/patiromer) são lentas e auxiliares | HIPERURICEMIA: rasburicase 0,2 mg/kg IV em 30 min (G6PD normal), repetir conforme o ácido úrico; suspender o alopurinol (desnecessário e eleva xantina) | HIDRATAÇÃO: suspender a alcalinização e retirar o bicarbonato dos soros; paciente hipervolêmico e oligúrico → NÃO fazer hiper-hidratação agressiva agora; furosemida pode ser tentada se não houver obstrução, mas não deve atrasar a diálise | HIPERFOSFATEMIA: suspender fontes de fósforo, quelante oral (hidróxido de alumínio/sevelamer) se tolerar VO; a correção definitiva é a diálise | HIPOCALCEMIA: tratar apenas se sintomática ou se houver arritmia (o caso) — evitar reposição em assintomáticos pelo risco de precipitação (Ca × P > 60–70); repor magnésio se baixo | INDICAÇÃO DE DIÁLISE (presente): hipercalemia refratária/com alteração de ECG, oligúria/anúria, sobrecarga volêmica com congestão pulmonar, hiperfosfatemia grave com hipocalcemia sintomática (Ca × P ≈ 63), acidose metabólica, uremia progressiva → hemodiálise intermitente (maior clearance de K/P) ou CRRT se instabilidade, com reavaliação frequente porque a lise continua | ONCOLOGIA: discutir com o hematologista a manutenção/ajuste da quimioterapia; não suspender sem decisão compartilhada | Controle laboratorial (K, P, Ca, ácido úrico, creatinina) a cada 4–6 h',
+      expectedCommunication: 'Apresentar-se pelo nome e função | Explicar à mãe e ao paciente, em linguagem simples, que a quimioterapia está destruindo as células da leucemia (o que é esperado) e que o "lixo" dessas células sobrecarregou os rins e alterou os sais do sangue | Ser honesto quanto à gravidade e à necessidade de UTI e possivelmente hemodiálise | Explicar que a diálise, nesse contexto, costuma ser temporária e que a função renal frequentemente se recupera | Esclarecer que a quimioterapia não será abandonada — a equipe vai ajustá-la | Acolher a ansiedade da mãe e a frustração do adolescente | Checar compreensão e oferecer espaço para perguntas',
+      criticalErrors: [
+        'Não solicitar ECG/monitorização cardíaca diante de potássio 7,1 mEq/L',
+        'Não administrar gluconato de cálcio diante de hipercalemia com alteração eletrocardiográfica',
+        'Prescrever rasburicase sem conhecer a atividade de G6PD',
+        'Manter ou prescrever alcalinização urinária com bicarbonato (precipitação de fosfato de cálcio e xantina)',
+        'Prescrever hiper-hidratação agressiva em paciente oligúrico e hipervolêmico, em vez de indicar diálise',
+        'Não reconhecer a indicação de terapia dialítica nem acionar a nefrologia/UTI',
+        'Repor cálcio de forma agressiva e repetida para "normalizar" o cálcio sérico com fósforo de 9,8'
+      ]
+    },
+
+    instD: {
+      title: 'Síndrome de Lise Tumoral — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição, Fisiopatologia e Fatores de Risco',
+          items: [
+            { item: 'SLT: liberação maciça de conteúdo intracelular após lise de células tumorais (espontânea ou pós-tratamento) → hipercalemia, hiperfosfatemia, hiperuricemia e hipocalcemia secundária.', score: 1, ref: 'Howard SC et al., NEJM 2011' },
+            { item: 'LRA por cristalização tubular de ácido úrico e de fosfato de cálcio, além de nefropatia por xantina (alopurinol) e mecanismos não cristalinos (vasoconstrição, inflamação).', score: 1, ref: 'Howard SC et al., NEJM 2011' },
+            { item: 'Alto risco: linfoma de Burkitt, LLA com leucócitos ≥ 100.000, LMA com leucócitos ≥ 100.000, LDH ≥ 2× LSN, doença volumosa (> 10 cm), ácido úrico/K/P elevados antes do tratamento, DRC/oligúria, desidratação.', score: 2, ref: 'Cairo MS et al., Br J Haematol 2010' },
+            { item: 'Momento típico: 12–72 h após o início da quimioterapia (pode ser espontânea em neoplasias muito proliferativas).', score: 1, ref: 'UpToDate' }
+          ]
+        },
+        {
+          h: 'Critérios de Cairo-Bishop',
+          items: [
+            { item: 'SLT LABORATORIAL — ≥ 2 alterações entre 3 dias antes e 7 dias após o início da terapia: ácido úrico ≥ 8 mg/dL; K ≥ 6 mEq/L; fósforo ≥ 4,5 mg/dL (adulto) ou ≥ 6,5 mg/dL (criança); cálcio ≤ 7 mg/dL (ou cálcio iônico < 1,12 mmol/L). A definição original aceita também variação ≥ 25% em relação ao basal.', score: 2, ref: 'Cairo MS, Bishop M, Br J Haematol 2004' },
+            { item: 'SLT CLÍNICA — SLT laboratorial + ≥ 1 entre: creatinina ≥ 1,5× LSN (ou LRA), arritmia cardíaca/morte súbita, convulsão (ou manifestações neuromusculares da hipocalcemia: tetania, parestesias, espasmo carpopedal).', score: 2, ref: 'Cairo MS, Bishop M, Br J Haematol 2004' },
+            { item: 'A gradação (0–5) é definida pela manifestação clínica mais grave (creatinina, arritmia, convulsão).', score: 1, ref: 'Cairo MS, Bishop M, Br J Haematol 2004' }
+          ]
+        },
+        {
+          h: 'Manejo da Hipercalemia',
+          items: [
+            { item: 'ECG imediato. Com alteração eletrocardiográfica ou K ≥ 6,5–7: gluconato de cálcio 10% 10–20 mL IV em 5–10 min (início em minutos, duração de 30–60 min); repetir se persistirem as alterações. Na SLT, usar a menor dose eficaz pelo risco de precipitação com o fosfato.', score: 2, ref: 'KDIGO / UpToDate' },
+            { item: 'Shift intracelular: insulina regular 10 UI IV + glicose 25–50 g (efeito em 15–30 min, duração de 4–6 h); salbutamol nebulizado 10–20 mg como adjuvante.', score: 2, ref: 'KDIGO / UpToDate' },
+            { item: 'Bicarbonato de sódio não é recomendado na SLT (reduz o cálcio iônico, favorece precipitação de fosfato de cálcio e xantina); reservar para acidose grave com orientação da nefrologia.', score: 1, ref: 'Cairo MS et al., Br J Haematol 2010' },
+            { item: 'Remoção: diálise (definitiva); diuréticos de alça se houver diurese; resinas de troca (poliestireno de sódio, patiromer, ciclossilicato de zircônio) são lentas.', score: 1, ref: 'KDIGO' }
+          ]
+        },
+        {
+          h: 'Hiperuricemia, Hidratação e Fósforo',
+          items: [
+            { item: 'Prevenção: hidratação vigorosa (2,5–3 L/m²/dia; alvo de diurese ≥ 80–100 mL/m²/h) iniciada 24–48 h antes da quimioterapia em pacientes de risco intermediário/alto.', score: 2, ref: 'Coiffier B et al., J Clin Oncol 2008' },
+            { item: 'Alopurinol: inibe a xantina oxidase e previne a formação de novo ácido úrico, mas não reduz o já existente — indicado em risco baixo/intermediário.', score: 1, ref: 'Coiffier B et al., J Clin Oncol 2008' },
+            { item: 'Rasburicase (urato oxidase recombinante) 0,2 mg/kg IV: converte ácido úrico em alantoína (solúvel) em horas — primeira escolha em alto risco ou SLT estabelecida. Contraindicada na deficiência de G6PD (hemólise, metemoglobinemia). Coletar o ácido úrico em tubo resfriado/gelo.', score: 2, ref: 'Cairo MS et al., Br J Haematol 2010' },
+            { item: 'A alcalinização urinária não é mais recomendada: não traz benefício com rasburicase e aumenta a precipitação de fosfato de cálcio e xantina.', score: 1, ref: 'Coiffier B et al., J Clin Oncol 2008' },
+            { item: 'Hiperfosfatemia: restrição de fósforo, quelantes orais (hidróxido de alumínio, sevelamer); a diálise é o tratamento definitivo nos casos graves.', score: 1, ref: 'UpToDate' },
+            { item: 'Hipocalcemia: tratar apenas se sintomática (tetania, convulsão, arritmia) com a menor dose de gluconato de cálcio; corrigir magnésio. Evitar reposição em assintomáticos, sobretudo com produto Ca × P > 60.', score: 2, ref: 'Howard SC et al., NEJM 2011' }
+          ]
+        },
+        {
+          h: 'Indicações de Terapia Dialítica',
+          items: [
+            { item: 'Oligúria/anúria grave ou LRA progressiva; hipercalemia persistente ou com repercussão eletrocardiográfica; hiperfosfatemia grave/progressiva; hipocalcemia sintomática com fósforo elevado; sobrecarga volêmica refratária a diuréticos; acidose metabólica grave; uremia.', score: 2, ref: 'KDIGO / Cairo MS et al., Br J Haematol 2010' },
+            { item: 'Modalidade: hemodiálise intermitente tem maior clearance de K e fósforo; CRRT é útil em instabilidade hemodinâmica e na lise contínua (evita rebote do fósforo). Na SLT, o limiar para indicar diálise é mais baixo que em outras LRA, porque a liberação de K e fosfato continua.', score: 1, ref: 'UpToDate' },
+            { item: 'Prognóstico renal geralmente favorável: a maioria recupera a função após a resolução da lise.', score: 1, ref: 'Howard SC et al., NEJM 2011' }
+          ]
+        },
+        {
+          h: 'Comunicação e Seguimento',
+          items: [
+            { item: 'Explicar à família que a SLT reflete a resposta à quimioterapia e é tratável, e que a diálise geralmente é temporária.', score: 1, ref: 'SPIKES' },
+            { item: 'Monitorização laboratorial a cada 4–6 h nas primeiras 24–72 h em alto risco; balanço hídrico e peso diários.', score: 1, ref: 'Coiffier B et al., J Clin Oncol 2008' }
+          ]
+        }
+      ]
+    }
+  },
+
 ];
 
 export default hematologia;
