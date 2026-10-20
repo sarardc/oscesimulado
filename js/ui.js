@@ -1,4 +1,27 @@
 let activeFilter = 'all';
+let searchTerm = '';
+
+// Remove acentos, troca hífens/pontuação por espaço e põe em minúsculas —
+// o topic vem do build.js como "doenca-do-refluxo-gastroesofagico".
+function normalize(str) {
+  return String(str ?? '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+// Todas as palavras digitadas precisam aparecer no topic da estação.
+function matchesSearch(st) {
+  if (!searchTerm) return true;
+  const topic = ` ${normalize(st.topic)} `;
+  return searchTerm.split(' ').every(word => topic.includes(word));
+}
+
+function setSearch(term) {
+  searchTerm = normalize(term);
+  renderCards();
+}
 
 function esc(str) {
   return String(str ?? '')
@@ -47,11 +70,20 @@ function renderCards() {
   const grid = document.getElementById('cards-grid');
   grid.innerHTML = '';
   const norm = s => s.toLowerCase();
-  const visible = activeFilter === 'all'
-    ? stations
-    : stations.filter(st => norm(st.tema) === norm(activeFilter));
+  const visible = stations.filter(st =>
+    (activeFilter === 'all' || norm(st.tema) === norm(activeFilter)) && matchesSearch(st));
   const countEl = document.getElementById('filter-count');
   if (countEl) countEl.textContent = `(${visible.length})`;
+  if (!visible.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-state search-empty';
+    const term = document.getElementById('search-input')?.value.trim();
+    empty.textContent = term
+      ? `Nenhum caso encontrado para "${term}".`
+      : 'Nenhum caso disponível para este filtro.';
+    grid.appendChild(empty);
+    return;
+  }
   visible.forEach(st => {
     const levelClass = `pill-level-${st.level}`;
     const temaClass = `pill-${String(st.tema).toLowerCase().replace(/\s+/g, '-')}`;
