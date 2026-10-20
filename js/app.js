@@ -63,3 +63,21 @@ document.addEventListener('change', (e) => {
   if (checkbox) updatePepScore(Number(checkbox.dataset.idx), Number(checkbox.dataset.score));
 });
 
+
+// Busca por tema (js/ui.js → setSearch). Pequeno atraso para não
+// re-renderizar a grade a cada tecla.
+const searchInput = document.getElementById('search-input');
+const searchClearBtn = document.getElementById('search-clear-btn');
+let searchDebounce;
+searchInput.addEventListener('input', () => {
+  searchClearBtn.hidden = !searchInput.value;
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => setSearch(searchInput.value), 150);
+});
+searchClearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  searchClearBtn.hidden = true;
+  clearTimeout(searchDebounce);
+  setSearch('');
+  searchInput.focus();
+});

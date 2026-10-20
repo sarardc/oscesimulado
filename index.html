@@ -132,6 +132,15 @@
         </div>
       </aside>
       <div class="home-main">
+        <!-- Busca pelo tema do caso (campo "topic" de cada estação). O tema
+             não é exibido nos cards: só serve para encontrar os casos. -->
+        <div class="search-box" role="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input type="search" id="search-input" class="search-input"
+            placeholder="Buscar por tema (ex.: celíaca, glaucoma, DPOC)"
+            aria-label="Buscar casos por tema" autocomplete="off" spellcheck="false">
+          <button type="button" class="search-clear" id="search-clear-btn" title="Limpar busca" aria-label="Limpar busca" hidden>×</button>
+        </div>
         <p class="section-label">Estações disponíveis <span id="filter-count"></span></p>
         <div class="grid" id="cards-grid"></div>
       </div>
