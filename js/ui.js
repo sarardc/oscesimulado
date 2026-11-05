@@ -224,6 +224,19 @@ function renderExamsBlock(b) {
     }
   }
 
+  // Impresso fotográfico: a foto vai para o candidato, que deve fazer a
+  // fotodescrição; o gabarito da descrição fica em instC.photoDescription.
+  if (b.photo && b.photo.src) {
+    html += `<div class="impression-box">
+      <h4>Impresso — ${esc(b.photo.title || 'Fotografia da lesão')}</h4>
+      <figure class="photo-figure">
+        <img src="${esc(b.photo.src)}" alt="${esc(b.photo.alt || 'Fotografia clínica')}" loading="lazy">
+        ${b.photo.caption ? `<figcaption>${esc(b.photo.caption)}</figcaption>` : ''}
+      </figure>
+      <div class="alert alert-warn mt-8">📝 ${esc(b.photo.request || 'Realize a fotodescrição da lesão utilizando terminologia dermatológica formal.')}</div>
+    </div>`;
+  }
+
   if (b.note) {
     html += `<div class="alert alert-info mt-8">ℹ ${esc(b.note)}</div>`;
   }
@@ -346,6 +359,16 @@ function renderTabC(st) {
       <h3>Diagnósticos Diferenciais</h3>
       <ul class="expected-list">
         ${c.differentials.map(d => `<li>${d}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+
+  // Gabarito da fotodescrição (quando a estação traz impresso fotográfico)
+  if (c.photoDescription && c.photoDescription.length) {
+    html += `<div class="section-block">
+      <h3>Gabarito da Fotodescrição</h3>
+      <ul class="expected-list">
+        ${toList(c.photoDescription).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
