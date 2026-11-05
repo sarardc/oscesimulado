@@ -154,7 +154,7 @@ const dermatologia2 = [
       complaint: 'Manchas na pele e formigamento/perda de sensibilidade nas mãos há vários meses.',
       tasks: [
         'Realize a anamnese dirigida ao caso, incluindo epidemiologia.',
-        'Realize o exame físico dermatoneurológico dirigido.',
+        'Realize o exame físico dermatoneurológico dirigido e, ao receber o impresso fotográfico, faça a fotodescrição das lesões com terminologia semiológica formal.',
         'Formule a hipótese diagnóstica e classifique operacionalmente o caso.',
         'Solicite os exames complementares adequados.',
         'Proponha o tratamento (PQT-U) e as medidas de vigilância epidemiológica pertinentes.'
@@ -171,17 +171,24 @@ const dermatologia2 = [
         Altura: '1,70 m',
         IMC: '24,9 kg/m²'
       },
-      physicalGeneral: 'Bom estado geral, corado, hidratado, sem sinais de toxemia.',
-      physicalSeg: 'PELE: múltiplas lesões (mais de 10) eritemato-acastanhadas, infiltradas, de limites imprecisos, distribuídas de forma assimétrica em tronco, face e membros; presença também de placas e nódulos (hansenomas) em pavilhões auriculares e face. | NEUROLÓGICO: espessamento palpável do nervo ulnar bilateralmente e do nervo fibular comum à direita, com dor discreta à palpação; teste de sensibilidade térmica e dolorosa alterado (hipoestesia) nas lesões cutâneas e em território de nervo ulnar nas mãos; força de preensão discretamente diminuída em mão direita (avaliação de função motora).',
+      physicalGeneral: 'Bom estado geral, corado, hidratado, sem sinais de toxemia. Fototipo IV.',
+      physicalSeg: 'PELE (DORSO): ver impresso fotográfico — fornecido somente mediante solicitação de exame da pele. À palpação, as placas lombares são infiltradas (espessamento da pele) e as lesões apresentam hipoestesia térmica e dolorosa | PELE (DEMAIS ÁREAS): lesões semelhantes, eritemato-acastanhadas e infiltradas, em face anterior do tronco e membros; placas e nódulos (hansenomas) em pavilhões auriculares e face; rarefação do terço distal das sobrancelhas (madarose discreta) | NEUROLÓGICO: espessamento palpável do nervo ulnar bilateralmente e do nervo fibular comum à direita, com dor discreta à palpação; teste de sensibilidade térmica e dolorosa alterado (hipoestesia) nas lesões cutâneas e em território de nervo ulnar nas mãos; força de preensão discretamente diminuída em mão direita (avaliação de função motora).',
+      photo: {
+        src: 'img/estacoes/hanseniase-dorso.webp',
+        title: 'Fotografia das lesões (dorso)',
+        alt: 'Fotografia do dorso inteiro de paciente de pele morena, com várias manchas e placas acastanhadas e avermelhadas, mais intensas na região lombar.',
+        caption: 'Paciente em decúbito ventral: dorso da região escapular (parte superior da imagem) até a região lombar/sacral (parte inferior). Sem régua na foto.',
+        request: 'Realize a fotodescrição das lesões utilizando terminologia dermatológica formal (topografia, distribuição, lesão elementar, número, tamanho, limites, cor, superfície e pele ao redor).'
+      },
       labs: [
         { test: 'Baciloscopia de raspado intradérmico (lóbulos auriculares, cotovelos, lesão)', val: 'Índice baciloscópico positivo (bacilos álcool-ácido resistentes presentes)', ref: 'Negativo', alt: true },
         { test: 'Biópsia de pele com histopatologia (quando realizada)', val: 'Infiltrado inflamatório dérmico compatível com hanseníase, forma multibacilar', ref: 'Ausência de achados específicos', alt: true }
       ],
-      note: 'A baciloscopia positiva já classifica o caso como multibacilar independentemente da contagem de lesões — essa informação deve ser correlacionada pelo candidato com o número de lesões (>5) para reforçar a classificação operacional multibacilar. A biópsia não é obrigatória para o diagnóstico/início do tratamento quando a baciloscopia já é positiva e o quadro clínico é característico.',
+      note: 'Entregar o IMPRESSO FOTOGRÁFICO SOMENTE quando o candidato solicitar examinar a pele; ao entregá-lo, pedir que realize a fotodescrição em voz alta. NÃO fornecer a descrição das lesões — o gabarito está na aba do avaliador (Gabarito da Fotodescrição). Os achados de sensibilidade, palpação de nervos e força só devem ser informados se o candidato realizar/solicitar cada teste. A baciloscopia positiva já classifica o caso como multibacilar independentemente da contagem de lesões — essa informação deve ser correlacionada pelo candidato com o número de lesões (>5) para reforçar a classificação operacional multibacilar. A biópsia não é obrigatória para o diagnóstico/início do tratamento quando a baciloscopia já é positiva e o quadro clínico é característico.',
       patientProfile: 'Agricultor, trabalha em área rural, mora com a esposa e dois filhos adolescentes. Relata que um tio que morava na mesma casa há anos teve "uma doença de pele" não bem esclarecida e não foi tratado adequadamente. Refere início insidioso dos sintomas, sem procurar atendimento antes por acreditar que fosse "coisa do sol" ou alergia.',
       script: [
         { trigger: 'Queixa principal', speech: 'Doutor(a), tenho umas manchas na pele há uns meses, e uma dormência estranha nas mãos, como se elas estivessem "adormecidas" o tempo todo.' },
-        { trigger: 'Sobre as manchas', speech: 'As manchas são acastanhadas, algumas até meio inchadas, espalhadas pelo corpo, achei que fosse coisa do sol no trabalho na roça.' },
+        { trigger: 'Sobre as manchas', speech: 'As manchas são acastanhadas, umas mais avermelhadas e meio inchadas, principalmente nas costas, lá embaixo na cintura, achei que fosse coisa do sol no trabalho na roça.' },
         { trigger: 'Sobre a dormência', speech: 'É como se eu não sentisse direito quando me machuco ou pego algo quente, minha esposa até brigou comigo outro dia porque me queimei na panela e nem senti na hora.' },
         { trigger: 'Sobre fraqueza', speech: 'Sinto que minha mão direita ficou um pouco mais fraca para segurar as coisas, tenho deixado ferramentas caírem sem querer.' },
         { trigger: 'Sobre história familiar/contato', speech: 'Um tio meu, que morou com a gente muitos anos, tinha uma "doença de pele" esquisita, mas nunca soubemos direito o que era, ele não gostava de falar sobre isso.' },
@@ -194,8 +201,9 @@ const dermatologia2 = [
 
     instC: {
       diagnosis: 'Hanseníase, forma multibacilar (classificação operacional: mais de 5 lesões cutâneas e baciloscopia positiva), com comprometimento neural (nervos ulnar e fibular comum).',
+      photoDescription: 'Topografia: dorso — regiões escapulares, dorsal média e lombar, chegando à região sacral | Distribuição: disseminada, BILATERAL e tendendo à SIMETRIA, mais intensa na região lombar | Número: MÚLTIPLAS lesões (muito mais de 5), várias confluentes — dado-chave para a classificação operacional multibacilar | Lesões elementares: (1) dorso superior e médio — MÁCULAS e manchas acastanhadas/hipercrômicas, de limites IMPRECISOS, confluentes, entremeadas por áreas de pele mais clara; (2) região lombar e flancos — grandes PLACAS eritemato-acastanhadas (cor "acobreada"/ferruginosa), INFILTRADAS, com superfície de aspecto em "casca de laranja" (acentuação dos óstios foliculares, sugerindo infiltração), formando faixa larga confluente de um flanco ao outro; placas menores eritematosas na região escapular e sacral | Tamanho: de poucos centímetros a mais de 15–20 cm nas placas lombares confluentes (sem régua — estimativa pela proporção com o dorso) | Limites: IMPRECISOS/esmaecidos, as bordas se perdem gradualmente na pele sã (sem borda nítida e sem centro claro) | Superfície: sem descamação significativa, sem vesículas, crostas, pústulas ou ulcerações; pelos preservados sobre as lesões nesta foto | Pele ao redor: fototipo IV, pequenos nevos melanocíticos puntiformes esparsos; pequena mácula hipocrômica isolada na região lombar | Síntese esperada: múltiplas manchas e placas eritemato-acastanhadas infiltradas, de limites imprecisos, disseminadas e bilaterais no dorso — padrão sugestivo de hanseníase multibacilar (dimorfa/virchowiana); a confirmação exige teste de sensibilidade nas lesões, palpação de nervos e baciloscopia',
       differentials: [
-        'Pitiríase versicolor — entra pela presença de manchas cutâneas; sai pela ausência de alteração de sensibilidade e de espessamento neural, achados centrais e obrigatórios para o diagnóstico de hanseníase.',
+        'Pitiríase versicolor — entra pelas manchas acastanhadas confluentes no dorso superior (área seborreica); sai pela infiltração das placas lombares, pela ausência de descamação furfurácea (sinal de Zileri negativo) e, sobretudo, pela alteração de sensibilidade e de espessamento neural, achados centrais e obrigatórios para o diagnóstico de hanseníase.',
         'Vitiligo — entra como diferencial de manchas cutâneas; sai pela ausência de hipocromia acrômica característica e pela presença de infiltração das lesões e alteração de sensibilidade, incompatíveis com vitiligo.',
         'Tinea corporis — entra como diferencial de lesões cutâneas com bordas; sai pela cronicidade, ausência de prurido intenso e presença de comprometimento neural característico de hanseníase.',
         'Neuropatia periférica de outra etiologia (ex.: diabética) — entra pela queixa de hipoestesia em mãos; sai pela associação com lesões cutâneas características e espessamento neural palpável, achados que direcionam para hanseníase como causa primária do quadro neurológico.'
@@ -241,7 +249,7 @@ const dermatologia2 = [
         {
           h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Realizou teste de sensibilidade térmica/dolorosa nas lesões', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
+            { item: 'Realizou a fotodescrição das lesões (múltiplas, disseminadas, eritemato-acastanhadas, infiltradas, de limites imprecisos) e testou a sensibilidade térmica/dolorosa nelas', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
             { item: 'Palpou os troncos nervosos periféricos buscando espessamento', score: 1.0, ref: 'Ministério da Saúde — PCDT Hanseníase' },
             { item: 'Avaliou força motora nas mãos', score: 0.5, ref: 'Ministério da Saúde — PCDT Hanseníase' }
           ]
