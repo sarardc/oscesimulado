@@ -285,14 +285,14 @@ const dermatologia2 = [
 
     instA: {
       scenario: 'Consulta de demanda espontânea na UBS, paciente traz também os filhos para avaliação (simulação focada no paciente índice).',
-      patient: 'Rosangela Melo Costa, 35 anos, sexo feminino, diarista.',
+      patient: 'Rogério Melo Costa, 35 anos, sexo masculino, pedreiro.',
       complaint: 'Coceira intensa, principalmente noturna, há cerca de 3 semanas, que também acomete seus dois filhos.',
       tasks: [
         'Realize a anamnese dirigida ao caso, incluindo avaliação de contactantes.',
-        'Realize o exame físico dermatológico dirigido.',
+        'Realize o exame físico dermatológico dirigido e, ao receber o impresso fotográfico, faça a fotodescrição das lesões com terminologia semiológica formal.',
         'Formule a hipótese diagnóstica e os diferenciais.',
         'Solicite exames complementares, se pertinente.',
-        'Proponha o tratamento para a paciente e para os contactantes domiciliares.'
+        'Proponha o tratamento para o paciente e para os contactantes domiciliares.'
       ]
     },
 
@@ -302,49 +302,57 @@ const dermatologia2 = [
         FC: '78 bpm',
         FR: '16 irpm',
         Tax: '36,3 °C',
-        Peso: '64 kg',
-        Altura: '1,60 m',
-        IMC: '25,0 kg/m²'
+        Peso: '74 kg',
+        Altura: '1,74 m',
+        IMC: '24,4 kg/m²'
       },
-      physicalGeneral: 'Bom estado geral, corada, hidratada, visivelmente incomodada pela coceira, com escoriações por coçadura em diversas áreas do corpo.',
-      physicalSeg: 'PELE: pápulas eritematosas e escoriadas distribuídas em espaços interdigitais das mãos, punhos (face flexora), região periumbilical, sulco interglúteo e mamas; presença de sulcos lineares acinzentados sutis em alguns espaços interdigitais, sugestivos de túneis escabióticos; lesões poupam a face e o couro cabeludo (padrão típico em adultos).',
+      physicalGeneral: 'Bom estado geral, corado, hidratado, visivelmente incomodado pela coceira, com escoriações por coçadura em diversas áreas do corpo.',
+      physicalSeg: 'PELE (ANTEBRAÇO E PUNHO): ver impresso fotográfico — fornecido somente mediante solicitação de exame da pele | PELE (DEMAIS ÁREAS): pápulas eritematosas e escoriadas em espaços interdigitais das mãos, face flexora dos punhos, cotovelos, axilas, região periumbilical, cintura e sulco interglúteo; sulcos lineares acinzentados sutis (túneis escabióticos) em alguns espaços interdigitais e na face flexora dos punhos | GENITÁLIA: pápulas e nódulos eritemato-acastanhados pruriginosos em corpo do pênis e escroto (nódulos escabióticos) — informar SOMENTE se o candidato examinar a genitália | FACE E COURO CABELUDO: poupados (padrão típico em adultos)',
+      photo: {
+        src: 'img/estacoes/escabiose-antebraco.webp',
+        title: 'Fotografia das lesões (antebraço)',
+        alt: 'Fotografia do antebraço estendido, com pelos, mostrando múltiplas lesões avermelhadas pequenas espalhadas até o punho.',
+        caption: 'Antebraço em extensão, face extensora/dorsal, do terço proximal (à esquerda da imagem) até o punho e o dorso da mão (à direita). Sem régua na foto.',
+        request: 'Realize a fotodescrição das lesões utilizando terminologia dermatológica formal (topografia, distribuição, lesões elementares, número, tamanho, cor, superfície e lesões secundárias).'
+      },
       labs: [
         { test: 'Exame micológico direto/dermatoscopia (quando disponível)', val: 'Visualização de ácaro, ovos ou fezes (escíbala) em raspado de túnel escabiótico', ref: 'Ausência de elementos parasitários', alt: true }
       ],
-      note: 'O diagnóstico de escabiose é predominantemente clínico. A dermatoscopia/exame micológico direto só deve ser mencionado como confirmatório se o candidato tiver dúvida diagnóstica ou solicitar ativamente — não é obrigatório para iniciar o tratamento diante de quadro clínico e epidemiológico típicos.',
-      patientProfile: 'Diarista, mora com o marido e dois filhos (8 e 5 anos) em casa pequena, todos compartilhando os mesmos quartos e roupas de cama. Refere que os filhos também estão com coceira importante, principalmente à noite, há cerca de 2 semanas.',
+      note: 'Entregar o IMPRESSO FOTOGRÁFICO SOMENTE quando o candidato solicitar examinar a pele; ao entregá-lo, pedir que realize a fotodescrição em voz alta. NÃO fornecer a descrição das lesões — o gabarito está na aba do avaliador (Gabarito da Fotodescrição). Os achados de espaços interdigitais, punhos, genitália e demais áreas só devem ser informados se o candidato examinar cada região — a foto mostra apenas o antebraço. O diagnóstico de escabiose é predominantemente clínico. A dermatoscopia/exame micológico direto só deve ser mencionado como confirmatório se o candidato tiver dúvida diagnóstica ou solicitar ativamente — não é obrigatório para iniciar o tratamento diante de quadro clínico e epidemiológico típicos.',
+      patientProfile: 'Pedreiro, mora com a esposa e dois filhos (8 e 5 anos) em casa pequena, todos compartilhando os mesmos quartos e roupas de cama. Refere que os filhos também estão com coceira importante, principalmente à noite, há cerca de 2 semanas.',
       script: [
         { trigger: 'Queixa principal', speech: 'Doutor(a), estou com uma coceira insuportável, principalmente à noite, não consigo nem dormir direito. E meus filhos também estão se coçando muito.' },
-        { trigger: 'Sobre localização da coceira', speech: 'Coça mais entre os dedos das mãos, nos pulsos, na barriga perto do umbigo, e entre as nádegas também.' },
+        { trigger: 'Sobre localização da coceira', speech: 'Coça mais nos braços, entre os dedos das mãos, nos pulsos, na barriga perto do umbigo, e entre as nádegas também. E nas partes íntimas, mas fico com vergonha de falar.' },
         { trigger: 'Sobre piora noturna', speech: 'É bem pior à noite, de dia melhora um pouco, mas quando deito para dormir a coceira fica insuportável.' },
         { trigger: 'Sobre os filhos', speech: 'Meus dois filhos também estão se coçando bastante, principalmente o menor, ele até já se machucou de tanto se coçar.' },
-        { trigger: 'Sobre outros contactantes', speech: 'Meu marido também reclamou de uma coceira leve, mas ele disse que "não é nada".' },
+        { trigger: 'Sobre outros contactantes', speech: 'Minha esposa também reclamou de uma coceira leve, mas ela disse que "não é nada".' },
         { trigger: 'Sobre condições de moradia', speech: 'Moramos numa casa pequena, todo mundo divide os quartos e às vezes até as roupas de cama.' },
         { trigger: 'Pergunta ativa — tratamento', speech: 'Doutor(a), o que é isso? Como eu trato? Preciso tratar todo mundo em casa?' }
       ],
-      hiddenInfo: 'Tem vergonha de ter uma doença associada a "falta de higiene", achando que os outros vão julgá-la — só revela essa preocupação se o candidato explicar que a escabiose não tem relação com higiene pessoal | Não lavou os lençóis e roupas de cama recentemente por não saber que isso era necessário para o tratamento — só revela se perguntada sobre medidas de higiene domiciliar já tomadas | Uma colega de trabalho (também diarista) relatou coceira parecida há algumas semanas — só revela se perguntada sobre outros contatos fora do ambiente domiciliar | Está preocupada em perder dias de trabalho por causa do tratamento — só revela essa preocupação se o candidato abordar afastamento/orientações práticas',
-      actorBehavior: 'Coçar-se discretamente durante a consulta, demonstrando desconforto real. Preocupada com os filhos mais do que consigo mesma. Receptiva e aliviada quando esclarecida sobre a doença não estar relacionada à falta de higiene.'
+      hiddenInfo: 'Tem vergonha de ter uma doença associada a "falta de higiene", achando que os outros vão julgá-lo — só revela essa preocupação se o candidato explicar que a escabiose não tem relação com higiene pessoal | Não lavou os lençóis e roupas de cama recentemente por não saber que isso era necessário para o tratamento — só revela se perguntado sobre medidas de higiene domiciliar já tomadas | Um colega de obra, que divide o alojamento com ele em alguns dias, relatou coceira parecida há algumas semanas — só revela se perguntado sobre outros contatos fora do ambiente domiciliar | Está preocupado em perder dias de trabalho por causa do tratamento — só revela essa preocupação se o candidato abordar afastamento/orientações práticas',
+      actorBehavior: 'Coçar-se discretamente durante a consulta, demonstrando desconforto real. Constrangido ao falar das lesões genitais. Preocupado com os filhos mais do que consigo mesmo. Receptivo e aliviado quando esclarecido sobre a doença não estar relacionada à falta de higiene.'
     },
 
     instC: {
-      diagnosis: 'Escabiose (sarna), com provável surto domiciliar acometendo múltiplos contactantes (marido e filhos).',
+      diagnosis: 'Escabiose (sarna), com provável surto domiciliar acometendo múltiplos contactantes (esposa e filhos).',
+      photoDescription: 'Topografia: face extensora (dorsal) do antebraço, do terço proximal até o punho, estendendo-se ao dorso da mão | Distribuição: disseminada pelo antebraço, sem padrão linear ou dermatomérico; lesões isoladas e algumas agrupadas, mais numerosas nos terços médio e distal | Número: MÚLTIPLAS lesões (dezenas) | Lesões elementares: PÁPULAS ERITEMATOSAS de 2–5 mm, muitas com CROSTÍCULA HEMÁTICA/ESCORIAÇÃO puntiforme central (lesões secundárias à coçadura); pápulas maiores e pequenas PLACAS eritematosas de aspecto urticariforme (5–10 mm), de limites pouco nítidos e com halo eritematoso | Cor: eritematosa (rósea a vermelho-vivo); algumas máculas acastanhadas residuais (hiperpigmentação pós-inflamatória) | Superfície: escoriações e crostículas; sem vesículas íntegras, pústulas, descamação ou exsudação evidentes; túneis escabióticos NÃO são visíveis nesta foto | Pele ao redor: normal, com pilificação abundante; sem eritema difuso | Síntese esperada: dermatose papulosa pruriginosa escoriada, disseminada no antebraço — o aspecto isolado é inespecífico (diferencial com picadas de inseto/prurigo estrófulo); o candidato deve pesquisar ativamente as áreas típicas da escabiose (espaços interdigitais, punhos, axilas, cintura, genitália) e os túneis, e correlacionar com o prurido noturno e o acometimento familiar',
       differentials: [
         'Dermatite atópica — entra pelo prurido intenso; sai pela distribuição característica em espaços interdigitais, punhos e região periumbilical, além do padrão de acometimento familiar simultâneo, incomum na dermatite atópica isolada.',
-        'Picadas de inseto (ex.: percevejos, pulgas) — entra pelo prurido e pápulas; sai pela presença de túneis escabióticos característicos e pela distribuição típica poupando face, além do padrão de contágio intradomiciliar mais compatível com escabiose.',
+        'Picadas de inseto / prurigo estrófulo (ex.: percevejos, pulgas, mosquitos) — entra fortemente pela foto do antebraço (pápulas eritematosas urticariformes com ponto central escoriado em área exposta); sai pela presença de túneis escabióticos característicos e pela distribuição típica poupando face, além do padrão de contágio intradomiciliar mais compatível com escabiose.',
         'Urticária — entra pelo prurido intenso; sai pela morfologia das lesões (pápulas escoriadas fixas, não lesões urticariformes fugazes) e pela cronicidade de 3 semanas, incompatível com urticária aguda.',
         'Dermatite herpetiforme — entra como diferencial de prurido intenso com lesões papulosas; sai pela distribuição típica e pelo contexto epidemiológico de contágio familiar, mais compatível com escabiose do que com uma dermatose autoimune rara associada à doença celíaca.'
       ],
       context: 'A escabiose é uma dermatose parasitária causada pelo ácaro Sarcoptes scabiei, transmitida por contato pele a pele prolongado ou compartilhamento de roupas/roupas de cama, sendo extremamente comum em ambientes de aglomeração domiciliar. Não está relacionada à falta de higiene pessoal, e o diagnóstico é predominantemente clínico, baseado no padrão de distribuição das lesões, prurido de piora noturna e, frequentemente, acometimento simultâneo de contactantes domiciliares, como observado neste caso.',
-      justify: 'O diagnóstico de escabiose é sustentado pela distribuição característica das lesões papulosas pruriginosas em espaços interdigitais, punhos, região periumbilical e sulco interglúteo, com presença de túneis escabióticos, prurido de piora noturna característica, e pelo contexto epidemiológico de acometimento simultâneo de múltiplos membros da família (marido e filhos), fortemente sugestivo de surto domiciliar por transmissão interpessoal.',
+      justify: 'O diagnóstico de escabiose é sustentado pela distribuição característica das lesões papulosas pruriginosas em espaços interdigitais, punhos, região periumbilical e sulco interglúteo, com presença de túneis escabióticos, prurido de piora noturna característica, e pelo contexto epidemiológico de acometimento simultâneo de múltiplos membros da família (esposa e filhos), fortemente sugestivo de surto domiciliar por transmissão interpessoal.',
       expectedAnamnesis: 'Caracterização do prurido (localização, intensidade, padrão noturno) | Tempo de evolução | Presença de sintomas semelhantes em outros membros do domicílio ou contatos próximos | Condições de moradia e compartilhamento de roupas/roupas de cama | Tratamentos já tentados',
-      expectedPhysical: 'Inspeção cuidadosa da pele, com atenção a espaços interdigitais, punhos, região periumbilical, sulco interglúteo, mamas e genitália | Pesquisa ativa de túneis escabióticos | Avaliação de lesões secundárias por coçadura (escoriações, infecção secundária)',
+      expectedPhysical: 'Inspeção cuidadosa da pele, com atenção a espaços interdigitais, punhos, região periumbilical, sulco interglúteo, axilas e genitália (nódulos escabióticos em pênis e escroto no homem) | Pesquisa ativa de túneis escabióticos | Avaliação de lesões secundárias por coçadura (escoriações, infecção secundária)',
       expectedExams: [
         { exam: 'Dermatoscopia ou exame micológico direto de raspado de túnel escabiótico (quando disponível e útil em caso de dúvida)', justify: 'Confirmar a presença do ácaro, ovos ou fezes em casos de apresentação atípica ou dúvida diagnóstica', expected: 'Visualização de elementos parasitários, confirmando o diagnóstico' }
       ],
       expectedConduct: 'Farmacológica: permetrina a 5% em creme, aplicada em todo o corpo do pescoço para baixo (ou incluindo face/couro cabeludo em lactentes), deixada agir por 8-12 horas antes de banho, com repetição após 7-14 dias conforme protocolo; ivermectina oral como alternativa em casos extensos, crostosos ou de difícil adesão ao tratamento tópico, respeitando contraindicações (ex.: crianças pequenas, gestantes); anti-histamínico oral para alívio sintomático do prurido | Não farmacológica: tratar simultaneamente TODOS os contactantes domiciliares (mesmo assintomáticos), dado o período de incubação; orientar lavagem de roupas de cama, toalhas e roupas pessoais em água quente, com secagem ao sol ou armazenamento em saco plástico fechado por alguns dias para itens que não podem ser lavados | Orientações ao paciente: esclarecer que a escabiose NÃO está relacionada à falta de higiene, desconstruindo o estigma associado; explicar a necessidade de tratamento simultâneo de todos os contactantes domiciliares, mesmo os assintomáticos; orientar que o prurido pode persistir por até 2-4 semanas após tratamento eficaz (reação de hipersensibilidade residual), sem que isso indique falha terapêutica',
       expectedCommunication: 'Desconstruir ativamente o estigma associado à escabiose e falta de higiene | Explicar de forma didática a necessidade de tratar todos os membros do domicílio simultaneamente | Orientar de forma prática e acessível sobre lavagem de roupas e itens domiciliares | Verificar compreensão do esquema terapêutico completo (aplicação, tempo de ação, repetição)',
       criticalErrors: [
-        'Tratar apenas a paciente índice sem orientar tratamento simultâneo de todos os contactantes domiciliares',
+        'Tratar apenas o paciente índice sem orientar tratamento simultâneo de todos os contactantes domiciliares',
         'Não orientar sobre lavagem/tratamento de roupas de cama e roupas pessoais',
         'Reforçar ou não desconstruir o estigma de falta de higiene associado à doença',
         'Não orientar corretamente o modo de aplicação e o tempo de permanência da medicação tópica',
@@ -358,7 +366,7 @@ const dermatologia2 = [
         {
           h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Apresentou-se pelo nome à paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
             { item: 'Desconstruiu ativamente o estigma associado a "falta de higiene"', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
@@ -373,7 +381,7 @@ const dermatologia2 = [
         {
           h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Inspecionou espaços interdigitais, punhos, região periumbilical e sulco interglúteo', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' },
+            { item: 'Realizou a fotodescrição das lesões do antebraço (pápulas eritematosas escoriadas, disseminadas) e inspecionou espaços interdigitais, punhos, região periumbilical, sulco interglúteo e genitália', score: 1.0, ref: 'Sociedade Brasileira de Dermatologia' },
             { item: 'Pesquisou ativamente túneis escabióticos', score: 0.5, ref: 'Sociedade Brasileira de Dermatologia' }
           ]
         },
