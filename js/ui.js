@@ -224,6 +224,25 @@ function renderExamsBlock(b) {
     }
   }
 
+  // Impresso fotográfico: a(s) foto(s) vão para o candidato, que deve fazer a
+  // fotodescrição; o gabarito da descrição fica em instC.photoDescription.
+  // Aceita instB.photo (uma foto) ou instB.photos (lista de fotos).
+  const photos = (b.photos && b.photos.length) ? b.photos : (b.photo && b.photo.src ? [b.photo] : []);
+  if (photos.length) {
+    const multi = photos.length > 1;
+    const request = photos.map(ph => ph.request).filter(Boolean).pop()
+      || 'Realize a fotodescrição da lesão utilizando terminologia dermatológica formal.';
+    html += `<div class="impression-box">
+      <h4>Impresso — ${esc(multi ? (b.photosTitle || 'Fotografias das lesões') : (photos[0].title || 'Fotografia da lesão'))}</h4>
+      ${photos.map((ph, i) => `<figure class="photo-figure${i ? ' mt-14' : ''}">
+        ${multi ? `<div class="field-label">FOTO ${i + 1}${ph.title ? ' — ' + esc(ph.title) : ''}</div>` : ''}
+        <img src="${esc(ph.src)}" alt="${esc(ph.alt || 'Fotografia clínica')}" loading="lazy">
+        ${ph.caption ? `<figcaption>${esc(ph.caption)}</figcaption>` : ''}
+      </figure>`).join('')}
+      <div class="alert alert-warn mt-8">📝 ${esc(request)}</div>
+    </div>`;
+  }
+
   if (b.note) {
     html += `<div class="alert alert-info mt-8">ℹ ${esc(b.note)}</div>`;
   }
@@ -346,6 +365,16 @@ function renderTabC(st) {
       <h3>Diagnósticos Diferenciais</h3>
       <ul class="expected-list">
         ${c.differentials.map(d => `<li>${d}</li>`).join('')}
+      </ul>
+    </div>`;
+  }
+
+  // Gabarito da fotodescrição (quando a estação traz impresso fotográfico)
+  if (c.photoDescription && c.photoDescription.length) {
+    html += `<div class="section-block">
+      <h3>Gabarito da Fotodescrição</h3>
+      <ul class="expected-list">
+        ${toList(c.photoDescription).map(i => `<li>${esc(i)}</li>`).join('')}
       </ul>
     </div>`;
   }
