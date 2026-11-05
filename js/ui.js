@@ -186,6 +186,10 @@ function renderExamsBlock(b) {
       <div class="vt-item"><span class="vt-label">Peso:</span><span class="vt-val">${esc(b.vitals.Peso)}</span></div>
       <div class="vt-item"><span class="vt-label">Altura:</span><span class="vt-val">${esc(b.vitals.Altura)}</span></div>
       <div class="vt-item"><span class="vt-label">IMC:</span><span class="vt-val">${esc(b.vitals.IMC)}</span></div>
+      ${Object.entries(b.vitals)
+        .filter(([k]) => !['PA', 'FC', 'FR', 'Tax', 'Peso', 'Altura', 'IMC'].includes(k))
+        .map(([k, v]) => `<div class="vt-item"><span class="vt-label">${esc(k)}:</span><span class="vt-val">${esc(v)}</span></div>`)
+        .join('')}
     </div>
     <div class="mt-16">
       <div class="field-label">EXAME FÍSICO GERAL</div>
