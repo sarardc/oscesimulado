@@ -2,7 +2,7 @@ const dermatologia2 = [
   // CASO 1 — PSORÍASE EM PLACAS
   {
     id: 1,
-    title: 'Placas avermelhadas e descamativas nos cotovelos e joelhos',
+    title: 'Placas avermelhadas e descamativas nos joelhos e braços',
     sub: 'Ambulatório — Dermatologia',
     tema: 'Dermatologia',
     topic: 'Psoríase em Placas',
@@ -11,14 +11,14 @@ const dermatologia2 = [
 
     instA: {
       scenario: 'Consulta ambulatorial de dermatologia, paciente encaminhada da UBS por lesões cutâneas recorrentes.',
-      patient: 'Marcelo Andrade Silva, 38 anos, sexo masculino, motorista de aplicativo.',
-      complaint: 'Placas avermelhadas com descamação espessa nos cotovelos, joelhos e couro cabeludo, há cerca de 4 anos, com piora recente.',
+      patient: 'Marcela Andrade Silva, 38 anos, sexo feminino, motorista de aplicativo.',
+      complaint: 'Placas avermelhadas com descamação espessa nos joelhos, nos braços e no couro cabeludo, há cerca de 4 anos, com piora recente.',
       tasks: [
         'Realize a anamnese dirigida ao caso.',
-        'Realize o exame físico dermatológico dirigido.',
+        'Realize o exame físico dermatológico dirigido e, ao receber o impresso fotográfico, faça a fotodescrição das lesões com terminologia semiológica formal.',
         'Formule a hipótese diagnóstica principal e os diferenciais.',
         'Solicite os exames complementares pertinentes.',
-        'Proponha o tratamento e oriente o paciente.'
+        'Proponha o tratamento e oriente a paciente.'
       ]
     },
 
@@ -28,24 +28,31 @@ const dermatologia2 = [
         FC: '76 bpm',
         FR: '16 irpm',
         Tax: '36,4 °C',
-        Peso: '88 kg',
-        Altura: '1,74 m',
-        IMC: '29,1 kg/m²'
+        Peso: '72 kg',
+        Altura: '1,64 m',
+        IMC: '26,8 kg/m²'
       },
-      physicalGeneral: 'Bom estado geral, corado, hidratado, sobrepeso.',
-      physicalSeg: 'PELE: placas eritematosas bem delimitadas, com descamação prateada espessa e aderente, simétricas em superfícies extensoras (cotovelos e joelhos) e em couro cabeludo (região occipital e retroauricular); sinal de Auspitz presente à raspagem metódica de Brocq (pontos de sangramento puntiforme). | UNHAS: pequenas depressões puntiformes (pitting ungueal) nas unhas das mãos, onicólise discreta em alguns dedos. | ARTICULAÇÕES: dor e discreto edema em interfalangeanas distais dos dedos da mão direita, sem sinais flogísticos importantes no momento.',
+      physicalGeneral: 'Bom estado geral, corada, hidratada, sobrepeso. Fototipo II.',
+      physicalSeg: 'PELE (JOELHO, PERNA E ANTEBRAÇO): ver impresso fotográfico — fornecido somente mediante solicitação de exame da pele. À curetagem metódica de Brocq (se realizada/solicitada): sinal da vela (descamação esbranquiçada em camadas) e sinal de Auspitz (orvalho sangrante — pontos de sangramento puntiforme) | PELE (DEMAIS ÁREAS): placas semelhantes, menores, nos cotovelos; couro cabeludo com placas eritematosas e descamação prateada aderente em região occipital e retroauricular, que ultrapassam discretamente a linha de implantação dos cabelos; sem lesões em dobras | UNHAS: pequenas depressões puntiformes (pitting ungueal) nas unhas das mãos, onicólise discreta em alguns dedos. | ARTICULAÇÕES: dor e discreto edema em interfalangeanas distais dos dedos da mão direita, sem sinais flogísticos importantes no momento.',
+      photo: {
+        src: 'img/estacoes/psoriase-placas-joelho.webp',
+        title: 'Fotografia das lesões (joelho, perna e antebraço)',
+        alt: 'Fotografia de paciente sentada com as pernas cruzadas, mostrando lesões avermelhadas e descamativas no joelho, na perna e no antebraço.',
+        caption: 'Paciente sentada, de pernas cruzadas: joelho e perna em primeiro plano; antebraço apoiado sobre a coxa ao fundo (canto superior esquerdo da imagem). Sem régua na foto.',
+        request: 'Realize a fotodescrição das lesões utilizando terminologia dermatológica formal (topografia, distribuição, lesão elementar, número, forma, tamanho, limites, cor, superfície/escamas e pele ao redor).'
+      },
       labs: [
         { test: 'PCR (Proteína C reativa)', val: '8 mg/L', ref: '< 5 mg/L', alt: true },
         { test: 'Glicemia de jejum', val: '108 mg/dL', ref: '70 – 99 mg/dL', alt: true },
         { test: 'Perfil lipídico', val: 'Colesterol total 224 mg/dL, LDL 148 mg/dL, HDL 42 mg/dL, TG 168 mg/dL', ref: 'Colesterol total < 190, LDL < 130, HDL > 40, TG < 150 mg/dL', alt: true },
         { test: 'Fator reumatoide', val: 'Negativo', ref: 'Negativo', alt: false }
       ],
-      note: 'Os exames metabólicos (glicemia, perfil lipídico) só devem ser entregues se o candidato justificar a solicitação como rastreio de síndrome metabólica, comorbidade frequentemente associada à psoríase. O diagnóstico em si é clínico e não depende de exames laboratoriais.',
+      note: 'Entregar o IMPRESSO FOTOGRÁFICO SOMENTE quando o candidato solicitar examinar a pele; ao entregá-lo, pedir que realize a fotodescrição em voz alta. NÃO fornecer a descrição das lesões — o gabarito está na aba do avaliador (Gabarito da Fotodescrição). Os achados de unhas, couro cabeludo, articulações e da curetagem metódica (sinal da vela/Auspitz) só devem ser informados se o candidato os examinar/solicitar. Os exames metabólicos (glicemia, perfil lipídico) só devem ser entregues se o candidato justificar a solicitação como rastreio de síndrome metabólica, comorbidade frequentemente associada à psoríase. O diagnóstico em si é clínico e não depende de exames laboratoriais.',
       patientProfile: 'Motorista de aplicativo, trabalha longas horas sentado, sedentário. Refere piora das lesões em períodos de maior estresse no trabalho. Tem vergonha das lesões e evita usar roupas de manga curta ou ir à praia.',
       script: [
         { trigger: 'Queixa principal', speech: 'Doutor(a), tenho essas manchas vermelhas com uma casca grossa branca há uns 4 anos, principalmente nos cotovelos, joelhos e no couro cabeludo. Piorou bastante nos últimos meses.' },
-        { trigger: 'Sobre evolução/gatilhos', speech: 'Percebo que piora muito quando estou estressado no trabalho, e também quando o tempo está mais frio e seco.' },
-        { trigger: 'Sobre coceira/dor', speech: 'Coça um pouco, mas o que mais incomoda é a aparência mesmo, tenho vergonha de usar bermuda ou camisa de manga curta.' },
+        { trigger: 'Sobre evolução/gatilhos', speech: 'Percebo que piora muito quando estou estressada no trabalho, e também quando o tempo está mais frio e seco.' },
+        { trigger: 'Sobre coceira/dor', speech: 'Coça um pouco, mas o que mais incomoda é a aparência mesmo, tenho vergonha de usar short, saia ou blusa de manga curta.' },
         { trigger: 'Sobre as unhas', speech: 'Ah, minhas unhas também ficaram estranhas, com uns furinhos, não sabia se tinha relação.' },
         { trigger: 'Sobre dor nas articulações', speech: 'Ultimamente sinto uma dor nos dedos da mão direita, incha um pouco às vezes, principalmente de manhã.' },
         { trigger: 'Sobre história familiar', speech: 'Meu pai tinha "uma coisa parecida" na pele, mas ele nunca foi ao médico direito para isso.' },
@@ -53,34 +60,35 @@ const dermatologia2 = [
         { trigger: 'Pergunta ativa — diagnóstico', speech: 'Doutor(a), isso é contagioso? Meus filhos podem pegar de mim?' }
       ],
       hiddenInfo: 'Sente rigidez matinal nas articulações dos dedos que melhora ao longo do dia, sugestivo de artrite psoriásica — só revela se perguntado especificamente sobre rigidez matinal | Tem se sentido para baixo e evita interações sociais por causa da aparência da pele, com sintomas compatíveis com impacto importante na qualidade de vida — só revela se o candidato explorar o aspecto emocional/psicológico | Bebe socialmente, cerca de 3-4 doses de cerveja aos finais de semana — só revela se perguntado sobre uso de álcool (relevante para escolha terapêutica futura, ex. metotrexato) | Não tem diagnóstico prévio de diabetes ou dislipidemia, mas nunca fez exames de rotina recentemente — só revela se perguntado sobre exames de rastreio prévios',
-      actorBehavior: 'Demonstrar desconforto e vergonha ao mostrar as lesões, cobrir os braços por hábito. Preocupado com a possibilidade de ser contagioso, repetir a pergunta se não for esclarecida. Alívio visível quando acolhido e informado corretamente.'
+      actorBehavior: 'Demonstrar desconforto e vergonha ao mostrar as lesões, cobrir os braços por hábito. Preocupada com a possibilidade de ser contagioso, repetir a pergunta se não for esclarecida. Alívio visível quando acolhida e informada corretamente.'
     },
 
     instC: {
       diagnosis: 'Psoríase em placas (psoríase vulgar), com acometimento ungueal e sinais sugestivos de artrite psoriásica associada.',
+      photoDescription: 'Topografia: face anterior (extensora) do joelho, face anterior da perna (região pré-tibial) e face extensora/borda ulnar do terço distal do antebraço | Distribuição: em superfícies EXTENSORAS — padrão típico da psoríase vulgar | Lesão elementar: PLACAS eritematodescamativas (lesões elevadas, > 1 cm, bem delimitadas) | Número e tamanho: no joelho, duas placas grandes (cerca de 5–7 cm cada), a superior sobre a patela e a inferior irregular, abaixo dela, com pequena placa satélite arredondada (~1,5 cm) em sua borda inferior; na perna, pequena placa oval (~1–1,5 cm); no antebraço, placa alongada (~6–8 cm) no sentido do eixo do membro — sem régua, estimativas pela proporção com o membro | Forma: arredondadas a ovaladas e irregulares/policíclicas, por confluência | Limites: NÍTIDOS, bem delimitados em relação à pele sã | Cor: eritemato-rósea (rosa-avermelhada) | Superfície: recoberta por ESCAMAS ESPESSAS, branco-prateadas, secas, lamelares/micáceas e aderentes, com aspecto rachado/em camadas nas placas do joelho; escamação mais fina na placa do antebraço | Pele ao redor: normal, sem eritema perilesional, sem pústulas, sem vesículas, sem crostas e sem escoriações | Síntese esperada: placas eritematosas bem delimitadas com escamas prateadas espessas em superfícies extensoras (joelho, perna, antebraço) — psoríase em placas (vulgar); confirmar com curetagem metódica de Brocq (sinal da vela e de Auspitz) e examinar couro cabeludo, unhas e articulações',
       differentials: [
         'Dermatite seborreica — entra pelo acometimento de couro cabeludo; sai pela descamação característica prateada e aderente e pela distribuição em superfícies extensoras (cotovelos, joelhos), não compatível com o padrão mais untuoso e de couro cabeludo/face da dermatite seborreica.',
         'Eczema numular — entra como causa de placas eritemato-descamativas; sai pela distribuição típica em superfícies extensoras e pelo sinal de Auspitz positivo, mais específico de psoríase.',
         'Tinea corporis (dermatofitose) — entra como diferencial de lesão eritemato-descamativa; sai pela ausência de bordas ativas com clareamento central e pela cronicidade e simetria das lesões, mais compatíveis com psoríase.',
         'Líquen simples crônico — entra pela cronicidade e placas espessadas; sai pela distribuição característica e pelo acometimento ungueal e articular associado, não típicos do líquen simples.'
       ],
-      context: 'A psoríase é uma doença inflamatória crônica, imunomediada, com base genética, que acomete cerca de 1-3% da população, cursando com placas eritemato-descamativas características, frequentemente em superfícies extensoras e couro cabeludo. Associa-se a comorbidades metabólicas (síndrome metabólica, obesidade, dislipidemia) e a artrite psoriásica em até 30% dos pacientes, exigindo avaliação e rastreio ativos, como no caso deste paciente com sinais articulares sugestivos.',
+      context: 'A psoríase é uma doença inflamatória crônica, imunomediada, com base genética, que acomete cerca de 1-3% da população, cursando com placas eritemato-descamativas características, frequentemente em superfícies extensoras e couro cabeludo. Associa-se a comorbidades metabólicas (síndrome metabólica, obesidade, dislipidemia) e a artrite psoriásica em até 30% dos pacientes, exigindo avaliação e rastreio ativos, como no caso desta paciente com sinais articulares sugestivos.',
       justify: 'O diagnóstico de psoríase é clínico, sustentado pelas placas eritematosas bem delimitadas com descamação prateada espessa em superfícies extensoras e couro cabeludo, associado ao sinal de Auspitz positivo (sangramento puntiforme à raspagem metódica), alterações ungueais características (pitting, onicólise) e sintomas articulares sugestivos de artrite psoriásica associada, quadro compatível com a apresentação clássica descrita pelo Consenso Brasileiro de Psoríase.',
       expectedAnamnesis: 'Tempo de evolução e cronicidade das lesões | Fatores desencadeantes/agravantes (estresse, clima, trauma - fenômeno de Koebner) | Presença de prurido ou dor associada | Alterações ungueais | Sintomas articulares (dor, rigidez matinal, edema) | História familiar de psoríase | Impacto psicossocial e na qualidade de vida | Tratamentos prévios utilizados | Uso de álcool (relevante para opções terapêuticas futuras)',
       expectedPhysical: 'Inspeção completa da pele, incluindo couro cabeludo, unhas e áreas de dobras | Pesquisa do sinal de Auspitz (raspagem metódica de Brocq) | Avaliação de acometimento ungueal | Exame articular sumário buscando sinais de artrite psoriásica | Estimativa da extensão da superfície corporal acometida (BSA) e/ou PASI, quando pertinente',
       expectedExams: [
         { exam: 'O diagnóstico é clínico; biópsia de pele pode ser considerada em casos atípicos ou dúvida diagnóstica', justify: 'Confirmação histológica em casos de apresentação atípica', expected: 'Achados histológicos característicos (acantose, paraqueratose, papilomatose) quando realizada' },
-        { exam: 'Glicemia de jejum e perfil lipídico', justify: 'Rastrear síndrome metabólica, comorbidade frequente associada à psoríase', expected: 'Podem estar alterados, como observado neste paciente' },
+        { exam: 'Glicemia de jejum e perfil lipídico', justify: 'Rastrear síndrome metabólica, comorbidade frequente associada à psoríase', expected: 'Podem estar alterados, como observado nesta paciente' },
         { exam: 'Avaliação reumatológica com fator reumatoide e exames de imagem articulares, se indicado', justify: 'Investigar artrite psoriásica diante de sintomas articulares sugestivos', expected: 'Fator reumatoide tipicamente negativo na artrite psoriásica (auxilia a diferenciar de artrite reumatoide)' }
       ],
-      expectedConduct: 'Farmacológica: corticoide tópico de média/alta potência associado a análogos da vitamina D tópicos para doença leve a moderada localizada; considerar fototerapia (UVB de banda estreita) ou terapia sistêmica (metotrexato, acitretina, ou agentes biológicos) diante de doença moderada a grave, extensa, refratária ao tratamento tópico, ou com artrite psoriásica associada — encaminhamento ao especialista para essa definição | Não farmacológica: orientar hidratação regular da pele, evitar traumas cutâneos (fenômeno de Koebner) e manejo do estresse; orientar mudança de estilo de vida (perda de peso, atividade física) dado o risco cardiometabólico associado | Orientações ao paciente: esclarecer que a psoríase NÃO é contagiosa, tranquilizando quanto ao medo de transmissão aos filhos; explicar a natureza crônica da doença, com períodos de melhora e piora; encaminhar para avaliação reumatológica diante dos sintomas articulares sugestivos de artrite psoriásica; abordar o impacto psicossocial e oferecer suporte',
-      expectedCommunication: 'Esclarecer de forma clara e enfática que a psoríase não é contagiosa | Acolher o impacto emocional e social da doença na vida do paciente | Explicar a cronicidade da doença e a necessidade de acompanhamento a longo prazo | Verificar compreensão do plano terapêutico proposto',
+      expectedConduct: 'Farmacológica: corticoide tópico de média/alta potência associado a análogos da vitamina D tópicos para doença leve a moderada localizada; considerar fototerapia (UVB de banda estreita) ou terapia sistêmica (metotrexato, acitretina, ou agentes biológicos) diante de doença moderada a grave, extensa, refratária ao tratamento tópico, ou com artrite psoriásica associada — encaminhamento ao especialista para essa definição | Não farmacológica: orientar hidratação regular da pele, evitar traumas cutâneos (fenômeno de Koebner) e manejo do estresse; orientar mudança de estilo de vida (perda de peso, atividade física) dado o risco cardiometabólico associado | Orientações à paciente: esclarecer que a psoríase NÃO é contagiosa, tranquilizando quanto ao medo de transmissão aos filhos; explicar a natureza crônica da doença, com períodos de melhora e piora; encaminhar para avaliação reumatológica diante dos sintomas articulares sugestivos de artrite psoriásica; abordar o impacto psicossocial e oferecer suporte',
+      expectedCommunication: 'Esclarecer de forma clara e enfática que a psoríase não é contagiosa | Acolher o impacto emocional e social da doença na vida da paciente | Explicar a cronicidade da doença e a necessidade de acompanhamento a longo prazo | Verificar compreensão do plano terapêutico proposto',
       criticalErrors: [
         'Não esclarecer que a psoríase não é uma doença contagiosa',
         'Não investigar sintomas articulares sugestivos de artrite psoriásica',
         'Não considerar/rastrear comorbidades metabólicas associadas (síndrome metabólica)',
         'Prescrever apenas corticoide tópico crônico sem orientar sobre riscos de uso prolongado ou sem considerar escalonamento terapêutico em doença mais extensa',
-        'Ignorar o impacto psicossocial relatado pelo paciente'
+        'Ignorar o impacto psicossocial relatado pela paciente'
       ]
     },
 
@@ -90,7 +98,7 @@ const dermatologia2 = [
         {
           h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
           items: [
-            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
+            { item: 'Apresentou-se pelo nome à paciente', score: 0.5, ref: 'CFM Res. 2.217/2018' },
             { item: 'Esclareceu de forma clara e enfática que a psoríase não é contagiosa', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         },
@@ -106,7 +114,7 @@ const dermatologia2 = [
         {
           h: 'BLOCO 3 — EXAME FÍSICO',
           items: [
-            { item: 'Realizou inspeção completa da pele, incluindo couro cabeludo e unhas', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
+            { item: 'Realizou a fotodescrição das lesões (placas eritematosas bem delimitadas com escamas prateadas em superfícies extensoras) e inspecionou couro cabeludo e unhas', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
             { item: 'Pesquisou o sinal de Auspitz', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' },
             { item: 'Realizou exame articular sumário', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
@@ -123,7 +131,7 @@ const dermatologia2 = [
           items: [
             { item: 'Prescreveu corticoide tópico associado a análogo da vitamina D', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' },
             { item: 'Encaminhou para avaliação reumatológica diante dos sintomas articulares', score: 1.0, ref: 'Consenso Brasileiro de Psoríase — SBD' },
-            { item: 'Acolheu o impacto psicossocial relatado pelo paciente', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
+            { item: 'Acolheu o impacto psicossocial relatado pela paciente', score: 0.5, ref: 'Consenso Brasileiro de Psoríase — SBD' }
           ]
         }
       ]
