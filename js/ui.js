@@ -224,16 +224,22 @@ function renderExamsBlock(b) {
     }
   }
 
-  // Impresso fotográfico: a foto vai para o candidato, que deve fazer a
+  // Impresso fotográfico: a(s) foto(s) vão para o candidato, que deve fazer a
   // fotodescrição; o gabarito da descrição fica em instC.photoDescription.
-  if (b.photo && b.photo.src) {
+  // Aceita instB.photo (uma foto) ou instB.photos (lista de fotos).
+  const photos = (b.photos && b.photos.length) ? b.photos : (b.photo && b.photo.src ? [b.photo] : []);
+  if (photos.length) {
+    const multi = photos.length > 1;
+    const request = photos.map(ph => ph.request).filter(Boolean).pop()
+      || 'Realize a fotodescrição da lesão utilizando terminologia dermatológica formal.';
     html += `<div class="impression-box">
-      <h4>Impresso — ${esc(b.photo.title || 'Fotografia da lesão')}</h4>
-      <figure class="photo-figure">
-        <img src="${esc(b.photo.src)}" alt="${esc(b.photo.alt || 'Fotografia clínica')}" loading="lazy">
-        ${b.photo.caption ? `<figcaption>${esc(b.photo.caption)}</figcaption>` : ''}
-      </figure>
-      <div class="alert alert-warn mt-8">📝 ${esc(b.photo.request || 'Realize a fotodescrição da lesão utilizando terminologia dermatológica formal.')}</div>
+      <h4>Impresso — ${esc(multi ? (b.photosTitle || 'Fotografias das lesões') : (photos[0].title || 'Fotografia da lesão'))}</h4>
+      ${photos.map((ph, i) => `<figure class="photo-figure${i ? ' mt-14' : ''}">
+        ${multi ? `<div class="field-label">FOTO ${i + 1}${ph.title ? ' — ' + esc(ph.title) : ''}</div>` : ''}
+        <img src="${esc(ph.src)}" alt="${esc(ph.alt || 'Fotografia clínica')}" loading="lazy">
+        ${ph.caption ? `<figcaption>${esc(ph.caption)}</figcaption>` : ''}
+      </figure>`).join('')}
+      <div class="alert alert-warn mt-8">📝 ${esc(request)}</div>
     </div>`;
   }
 

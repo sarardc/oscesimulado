@@ -50,9 +50,10 @@ function formatarListaExames(instB) {
       linhas.push(`- Imagem: ${instB.image}`);
     }
   }
-  if (instB.photo && instB.photo.src) {
-    linhas.push(`- ${instB.photo.title || 'Fotografia da lesão'}: o estudante já tem esta foto em mãos (impresso fotográfico). Quando ele pedir para examinar a lesão, NÃO descreva a lesão — peça que ele mesmo faça a fotodescrição em voz alta.`);
-  }
+  const fotos = (instB.photos && instB.photos.length) ? instB.photos : (instB.photo && instB.photo.src ? [instB.photo] : []);
+  fotos.forEach(f => {
+    linhas.push(`- ${f.title || 'Fotografia da lesão'}: o estudante já tem esta foto em mãos (impresso fotográfico). Quando ele pedir para examinar a lesão, NÃO descreva a lesão — peça que ele mesmo faça a fotodescrição em voz alta.`);
+  });
   return linhas.join('\n');
 }
 
