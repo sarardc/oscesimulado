@@ -37,6 +37,7 @@ jobs:
           cp -r data _site/data
           cp -r cards _site/cards
           cp -r img _site/img
+          cp -r agenda _site/agenda
           [ -d questoes ] && cp -r questoes _site/questoes || true
 
       - name: Upload Pages artifact
