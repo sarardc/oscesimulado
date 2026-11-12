@@ -259,6 +259,278 @@ const toracica5 = [
         ]}
       ]
     }
+  },
+
+  // CASO 4 — CÂNCER DE PULMÃO
+  {
+    id: 'CT-4',
+    title: 'Tosse persistente e nódulo no pulmão em fumante',
+    sub: 'Ambulatório — Cirurgia Torácica',
+    tema: 'Cirurgia Torácica',
+    topic: 'Câncer de pulmão não pequenas células — estadiamento e ressecabilidade',
+    level: 'difícil',
+    duracao: '5 minutos',
+    cardAccent: '#455A64',
+    instA: {
+      scenario: 'Ambulatório de cirurgia torácica. Paciente encaminhado pela pneumologia com exames.',
+      patient: 'Ademir, 64 anos, sexo masculino, ex-motorista de caminhão.',
+      complaint: 'Tosse seca há 3 meses e um episódio de escarro com raias de sangue. A tomografia mostrou uma lesão no pulmão direito.',
+      tasks: [
+        'Interprete a tomografia e a biópsia entregues e solicite os exames de estadiamento.',
+        'Com os resultados do estadiamento, defina o estádio e a ressecabilidade.',
+        'Solicite a avaliação de operabilidade e proponha o tratamento.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '132/82 mmHg', FC: '80 bpm', FR: '16 irpm', Tax: '36,4 °C', SpO2: '95% em ar ambiente', Peso: '74 kg' },
+      physicalGeneral: 'Bom estado geral, corado, eupneico, sem baqueteamento digital. ECOG 0.',
+      physicalSeg: 'APARELHO RESPIRATÓRIO: murmúrio vesicular presente bilateralmente, discretamente diminuído em ápice direito, sem ruídos adventícios | PESCOÇO: sem linfonodos supraclaviculares palpáveis | ABDOME: sem hepatomegalia | NEUROLÓGICO: sem déficits',
+      labs: [
+        { test: 'Biópsia percutânea guiada por TC', val: 'ADENOCARCINOMA de pulmão (TTF-1 positivo); EGFR, ALK e PD-L1 em andamento', ref: '—', alt: true },
+        { test: 'PET-CT (entregar se solicitado)', val: 'Captação no nódulo (SUV 9,2); linfonodos mediastinais e hilares SEM captação; sem metástases a distância', ref: '—', alt: true },
+        { test: 'RM de crânio (entregar se solicitada)', val: 'Sem lesões', ref: '—', alt: false },
+        { test: 'Espirometria (entregar se solicitada)', val: 'VEF1 = 2,4 L (78% do previsto); CVF 84%; VEF1/CVF 0,68', ref: 'VEF1 > 80% prev.', alt: true },
+        { test: 'DLCO (entregar se solicitada)', val: '74% do previsto', ref: '> 80%', alt: true }
+      ],
+      image: 'TC DE TÓRAX COM CONTRASTE (entregar no início): nódulo sólido espiculado de 3,2 cm no lobo superior direito, periférico, sem invasão da parede torácica ou do mediastino; linfonodos mediastinais < 1 cm no menor eixo; enfisema centrolobular leve; sem derrame pleural; cortes do abdome superior sem lesões em fígado e suprarrenais.',
+      note: 'Entregar a TC e o resultado da biópsia no início. PET-CT, RM de crânio, espirometria e DLCO SOMENTE se solicitados. Se o candidato pedir mediastinoscopia ou EBUS, informar: “com tumor de 3,2 cm e PET sem captação mediastinal, há indicação de estadiamento invasivo? Justifique” (aceitar EBUS para tumor > 3 cm — ver gabarito). Se o candidato indicar apenas quimioterapia/radioterapia, ANOTAR como erro crítico.',
+      patientProfile: 'Ademir, 64 anos, ex-motorista, tabagista 50 maços-ano, parou há 1 ano. Hipertenso controlado. Sobe 3 lances de escada sem parar. Mora com a esposa.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, faz uns três meses que tô com essa tosse que não passa. Uma vez saiu um pouquinho de sangue no catarro e eu me assustei.' },
+        { trigger: 'Perda de peso / dor', speech: 'Não emagreci, não sinto dor nos ossos nem dor de cabeça.' },
+        { trigger: 'Tolerância ao esforço', speech: 'Subo três andares de escada até a casa da minha filha sem parar. Cansa um pouco, mas vou.' },
+        { trigger: 'Tabagismo', speech: 'Fumei dos 15 aos 63 anos, mais de um maço por dia. Parei faz um ano.' },
+        { trigger: 'Pergunta ativa', speech: 'É câncer, né? Dá pra operar? Vou ficar com falta de ar depois?' }
+      ],
+      hiddenInfo: 'Sobe 3 lances de escada sem parar (boa capacidade funcional) — só revela se perguntado sobre esforço físico | Exposição ao amianto na juventude (trabalhou em fábrica de telhas) — só revela se perguntado sobre exposição ocupacional',
+      actorBehavior: 'Sereno, mas preocupado; quer saber se “dá pra tirar”. Pergunta sobre a respiração após a cirurgia.'
+    },
+    instC: {
+      diagnosis: 'Adenocarcinoma de pulmão (câncer de pulmão não pequenas células) no lobo superior direito, cT2a (3,2 cm) N0 M0 — estádio IB (TNM 8ª ed.), ressecável, com função pulmonar adequada (VEF1 e DLCO > 60% — operável) — indicação de lobectomia superior direita com linfadenectomia mediastinal sistemática.',
+      differentials: [
+        'Granuloma infeccioso (tuberculose, histoplasmose) — nódulos geralmente menores, calcificados; a biópsia define adenocarcinoma.',
+        'Metástase pulmonar de outro sítio — nódulos múltiplos; TTF-1 positivo indica origem pulmonar.',
+        'Carcinoma de pequenas células — central, com linfonodos volumosos e doença disseminada; tratado com QT/RT, não com cirurgia.',
+        'Carcinoma espinocelular — mais central e associado a tabagismo; definido pela imuno-histoquímica.'
+      ],
+      context: 'O câncer de pulmão é a principal causa de morte por câncer no mundo; o tabagismo responde por ~85% dos casos. Apenas ~25% dos pacientes são diagnosticados em estádio cirúrgico. Em estádios I–II, a ressecção anatômica é o tratamento padrão.',
+      justify: 'Nódulo espiculado de 3,2 cm (T2a: > 3 e ≤ 4 cm), linfonodos mediastinais sem aumento à TC e sem captação no PET (N0), sem metástases ao PET e à RM de crânio (M0) → IB. Ressecabilidade: lesão periférica sem invasão de estruturas. Operabilidade: VEF1 e DLCO pós-operatórios previstos > 60% (lobectomia superior direita retira ~3 de 19 segmentos funcionais → ppoVEF1 ≈ 66%) e boa capacidade funcional.',
+      expectedAnamnesis: 'Sintomas respiratórios (tosse, hemoptise, dispneia) | Sintomas de doença avançada: perda de peso, dor óssea, cefaleia, rouquidão (nervo laríngeo recorrente), síndrome de Horner, síndrome da veia cava superior | Carga tabágica e exposição ocupacional (amianto, radônio) | Capacidade funcional e comorbidades',
+      expectedPhysical: 'Linfonodos supraclaviculares | Sinais de doença metastática | Performance status (ECOG)',
+      expectedExams: [
+        { exam: 'PET-CT', justify: 'Estadiamento mediastinal e a distância em candidatos a tratamento curativo.', expected: 'N0 M0.' },
+        { exam: 'RM de crânio', justify: 'Recomendada no estádio II ou mais e considerada a partir do IB (adenocarcinoma).', expected: 'Normal.' },
+        { exam: 'Estadiamento mediastinal invasivo (EBUS/mediastinoscopia)', justify: 'Indicado se linfonodos aumentados/captantes, tumor central ou > 3 cm (mesmo com PET negativo, segundo ESTS/ACCP).', expected: 'EBUS negativo, se realizado.' },
+        { exam: 'Espirometria e DLCO (± teste de exercício)', justify: 'Avaliar operabilidade: ppoVEF1 e ppoDLCO; se < 60%, teste cardiopulmonar/escada.', expected: 'VEF1 78% e DLCO 74%: operável.' },
+        { exam: 'Pesquisa de mutações (EGFR, ALK) e PD-L1', justify: 'Orienta tratamento adjuvante/perioperatório (osimertinibe, imunoterapia).', expected: 'Em andamento.' }
+      ],
+      expectedConduct: 'LOBECTOMIA superior direita (preferencialmente por videotoracoscopia ou robótica) com linfadenectomia mediastinal sistemática (amostragem/dissecção) | Segmentectomia anatômica é alternativa para tumores periféricos ≤ 2 cm (JCOG0802, CALGB 140503) — não aplicável aqui | Avaliar quimioterapia adjuvante conforme patologia final (indicada a partir de tumores > 4 cm ou N+); osimertinibe adjuvante se EGFR mutado; imunoterapia perioperatória em casos selecionados | Se inoperável por função pulmonar: radioterapia estereotáxica (SBRT) | Manter abstinência do tabagismo; reabilitação pulmonar pré-operatória | Discussão em equipe multidisciplinar',
+      expectedCommunication: 'Confirmar o diagnóstico de câncer com empatia (SPIKES) | Explicar que o tumor está em estágio inicial e que a cirurgia tem intenção curativa | Responder sobre a função respiratória após a cirurgia',
+      criticalErrors: [
+        'Indicar cirurgia sem estadiamento (PET-CT/RM de crânio)',
+        'Indicar cirurgia sem avaliação da função pulmonar',
+        'Indicar apenas quimioterapia/radioterapia para tumor ressecável em paciente operável',
+        'Indicar ressecção não anatômica (cunha) como tratamento padrão em paciente com boa reserva'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — CÂNCER DE PULMÃO (ESTÁDIO INICIAL)',
+      sections: [
+        { h: 'ESTADIAMENTO', items: [
+          { item: 'Pesquisou sintomas de doença avançada/paraneoplásicos e exposição ocupacional', score: 0.5, ref: 'NCCN Non-Small Cell Lung Cancer, 2024' },
+          { item: 'Solicitou PET-CT', score: 1.5, ref: 'NCCN 2024; Diretrizes SBCT/SBOC' },
+          { item: 'Solicitou RM de crânio', score: 1, ref: 'NCCN 2024' },
+          { item: 'Discutiu estadiamento mediastinal invasivo (EBUS/mediastinoscopia) para tumor > 3 cm', score: 0.5, ref: 'ESTS Guidelines, 2014; ACCP 2013' },
+          { item: 'Estadiou como cT2a N0 M0 — IB e definiu como ressecável', score: 1.5, ref: 'IASLC — TNM 8ª edição' }
+        ]},
+        { h: 'OPERABILIDADE', items: [
+          { item: 'Solicitou espirometria e DLCO e interpretou (ppoVEF1/ppoDLCO > 60% = operável)', score: 1.5, ref: 'ACCP Physiologic Evaluation Guidelines, 2013; ERS/ESTS 2009' },
+          { item: 'Avaliou capacidade funcional (subir escadas/ECOG)', score: 0.5, ref: 'ACCP 2013' }
+        ]},
+        { h: 'TRATAMENTO E COMUNICAÇÃO', items: [
+          { item: 'Indicou lobectomia superior direita (VATS/robótica) com linfadenectomia mediastinal', score: 2, ref: 'NCCN 2024' },
+          { item: 'Citou tratamento adjuvante conforme patologia/mutações (EGFR — osimertinibe)', score: 0.5, ref: 'Wu et al., ADAURA, NEJM 2020' },
+          { item: 'Comunicou diagnóstico e intenção curativa com empatia', score: 0.5, ref: 'Protocolo SPIKES' }
+        ]}
+      ]
+    }
+  },
+
+  // CASO 5 — HIPERIDROSE PRIMÁRIA
+  {
+    id: 'CT-5',
+    title: 'Suor excessivo nas mãos que atrapalha a vida',
+    sub: 'Ambulatório — Cirurgia Torácica',
+    tema: 'Cirurgia Torácica',
+    topic: 'Hiperidrose primária palmar — indicação de simpatectomia',
+    level: 'fácil',
+    duracao: '5 minutos',
+    cardAccent: '#455A64',
+    instA: {
+      scenario: 'Ambulatório de cirurgia torácica. Consulta de primeira vez.',
+      patient: 'Bianca, 22 anos, sexo feminino, estudante de odontologia.',
+      complaint: 'Suor excessivo nas mãos desde a infância, que atrapalha os estudos e o atendimento aos pacientes. Deseja saber sobre a cirurgia.',
+      tasks: [
+        'Realize anamnese dirigida para diferenciar hiperidrose primária de secundária.',
+        'Formule o diagnóstico, citando os critérios.',
+        'Proponha o tratamento escalonado e oriente sobre a simpatectomia, incluindo seu principal efeito adverso.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '112/70 mmHg', FC: '72 bpm', FR: '14 irpm', Tax: '36,3 °C', Peso: '57 kg', Altura: '1,65 m' },
+      physicalGeneral: 'Bom estado geral, eutrófica, sem bócio, sem tremores, sem exoftalmia.',
+      physicalSeg: 'MÃOS: palmas úmidas, com gotejamento de suor durante a consulta, bilateral e simétrico; pele fria | AXILAS: sudorese discretamente aumentada | PÉS: úmidos | TIREOIDE: sem nódulos ou aumento | LINFONODOS: sem linfonodomegalias',
+      labs: [
+        { test: 'TSH', val: '1,6 mUI/L', ref: '0,4–4,0', alt: false },
+        { test: 'Glicemia de jejum', val: '84 mg/dL', ref: '< 100', alt: false },
+        { test: 'Hemograma', val: 'Normal', ref: '—', alt: false }
+      ],
+      image: '',
+      note: 'Entregar sinais vitais e exame físico no início. Exames laboratoriais somente se solicitados (não são obrigatórios na hiperidrose primária típica, mas o candidato pode pedir TSH/glicemia na dúvida). Avaliar se o candidato orienta sobre a hiperidrose compensatória.',
+      patientProfile: 'Bianca, 22 anos, estudante do 4º ano de odontologia. Saudável, sem medicamentos. Pai também “sua muito nas mãos”.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, minhas mãos suam demais, pinga mesmo. Desde criança. Molho a prova, as luvas escorregam no atendimento, tenho vergonha de cumprimentar as pessoas.' },
+        { trigger: 'Início e padrão', speech: 'Desde pequena, nas duas mãos igual. Os pés também suam muito.' },
+        { trigger: 'Sudorese durante o sono', speech: 'Dormindo não, só acordada. Piora quando fico nervosa ou com calor.' },
+        { trigger: 'Sintomas sistêmicos', speech: 'Não tenho febre, não emagreci, não tenho palpitação nem tremor.' },
+        { trigger: 'Tratamentos prévios', speech: 'Já usei antitranspirante forte nas mãos, irrita a pele e quase não resolve. Nunca tomei remédio pra isso.' },
+        { trigger: 'Pergunta ativa', speech: 'A cirurgia resolve de vez? Tem algum risco? Uma amiga disse que depois começa a suar nas costas...' }
+      ],
+      hiddenInfo: 'Pai com o mesmo quadro (história familiar positiva) — só revela se perguntada sobre família | Não sua durante o sono — só revela se perguntada',
+      actorBehavior: 'Constrangida, esconde as mãos; muito motivada para operar. Quer saber sobre o suor “nas costas”.'
+    },
+    instC: {
+      diagnosis: 'Hiperidrose primária (focal) palmoplantar, de grande impacto na qualidade de vida (HDSS 3–4), refratária a antitranspirante tópico — candidata a tratamento clínico (oxibutinina) e/ou simpatectomia torácica videotoracoscópica.',
+      differentials: [
+        'Hipertireoidismo — sudorese generalizada, perda de peso, taquicardia, tremor; TSH normal.',
+        'Feocromocitoma — crises de sudorese, cefaleia, palpitações e hipertensão paroxística.',
+        'Infecções crônicas (tuberculose) e linfomas — sudorese noturna generalizada com febre e perda de peso.',
+        'Hiperidrose secundária a medicamentos (antidepressivos), diabetes, menopausa — história não compatível.'
+      ],
+      context: 'A hiperidrose primária afeta ~2–3% da população, inicia-se na infância/adolescência e decorre de hiperatividade do sistema simpático. Tem grande impacto social e profissional.',
+      justify: 'Critérios diagnósticos (sudorese focal visível, excessiva, por > 6 meses, sem causa aparente, com ≥ 2 de): bilateral e simétrica; prejudica atividades diárias; ≥ 1 episódio por semana; início antes dos 25 anos; história familiar positiva; ausência durante o sono. A paciente preenche todos.',
+      expectedAnamnesis: 'Idade de início | Localização, bilateralidade e simetria | Sudorese durante o sono (ausente na primária) | História familiar | Sintomas sistêmicos (febre, perda de peso, palpitações, tremor) | Medicamentos | Impacto na qualidade de vida | Tratamentos prévios',
+      expectedPhysical: 'Confirmar sudorese palmar | Pesquisar sinais de hipertireoidismo e linfonodomegalias',
+      expectedExams: [
+        { exam: 'Nenhum exame é obrigatório na hiperidrose primária típica', justify: 'Diagnóstico clínico; TSH/glicemia se houver dúvida ou sinais de causa secundária.', expected: 'Normais.' }
+      ],
+      expectedConduct: 'Tratamento escalonado: 1) antitranspirante tópico com cloreto de alumínio 15–20% à noite | 2) oxibutinina oral em dose baixa e crescente (2,5 mg/dia até 5 mg 2x/dia) — efeitos: boca seca, constipação; contraindicada em glaucoma de ângulo fechado | 3) iontoforese ou toxina botulínica (efeito temporário de 4–6 meses; dolorosa nas mãos) | 4) Simpatectomia torácica videotoracoscópica bilateral: para palmar, interrupção da cadeia simpática ao nível de R3 (ou R3–R4; R4 para axilar), poupando R2 — alta eficácia (> 95% para mãos) | Riscos a orientar: HIPERIDROSE COMPENSATÓRIA (reflexa) em dorso, abdome e coxas — muito frequente (até 50–80%), geralmente leve, mas pode ser intensa e irreversível; síndrome de Horner (lesão do gânglio estrelado, rara); pneumotórax; dor torácica; os pés podem melhorar apenas parcialmente | Decisão compartilhada após informação adequada',
+      expectedCommunication: 'Acolher o constrangimento | Explicar benefícios e riscos da cirurgia com honestidade, em especial a hiperidrose compensatória | Oferecer tratamento clínico antes ou como alternativa',
+      criticalErrors: [
+        'Não pesquisar causas de hiperidrose secundária (sudorese noturna, sintomas sistêmicos)',
+        'Indicar simpatectomia sem orientar sobre hiperidrose compensatória',
+        'Indicar simpatectomia ao nível de R2/gânglio estrelado (risco de Horner e compensatória mais intensa)',
+        'Não oferecer opções de tratamento clínico'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — HIPERIDROSE PRIMÁRIA',
+      sections: [
+        { h: 'ANAMNESE E DIAGNÓSTICO', items: [
+          { item: 'Investigou início, localização, bilateralidade e simetria', score: 1, ref: 'Hornberger et al., J Am Acad Dermatol 2004' },
+          { item: 'Perguntou sobre sudorese durante o sono e sintomas sistêmicos (afastar causa secundária)', score: 1.5, ref: 'International Hyperhidrosis Society' },
+          { item: 'Perguntou história familiar e impacto na qualidade de vida', score: 1, ref: 'Hornberger 2004' },
+          { item: 'Diagnosticou hiperidrose primária palmoplantar citando os critérios', score: 1.5, ref: 'Hornberger 2004' }
+        ]},
+        { h: 'TRATAMENTO', items: [
+          { item: 'Propôs tratamento escalonado (tópico → oxibutinina → toxina botulínica/iontoforese)', score: 1.5, ref: 'SBD; Consenso Brasileiro de Hiperidrose' },
+          { item: 'Indicou simpatectomia videotoracoscópica bilateral no nível adequado (R3 ou R3–R4 para palmar)', score: 1.5, ref: 'STS Expert Consensus — Cerfolio et al., Ann Thorac Surg 2011' }
+        ]},
+        { h: 'ORIENTAÇÕES', items: [
+          { item: 'Orientou sobre hiperidrose compensatória (frequente e possivelmente permanente)', score: 1.5, ref: 'STS 2011; SBCT' },
+          { item: 'Citou outros riscos (Horner, pneumotórax) e fez decisão compartilhada', score: 0.5, ref: 'STS 2011' }
+        ]}
+      ]
+    }
+  },
+
+  // CASO 6 — TÓRAX INSTÁVEL
+  {
+    id: 'CT-6',
+    title: 'Motociclista com parte do tórax afundando ao respirar',
+    sub: 'Sala de Emergência — Trauma',
+    tema: 'Cirurgia Torácica',
+    topic: 'Trauma torácico — tórax instável com contusão pulmonar',
+    level: 'difícil',
+    duracao: '5 minutos',
+    cardAccent: '#455A64',
+    instA: {
+      scenario: 'Sala de emergência de hospital de referência em trauma. Equipe disponível. Paciente trazido pelo SAMU com colar cervical e prancha, recebendo O₂ por máscara.',
+      patient: 'Homem de 45 anos, motociclista, colisão frontal contra automóvel a cerca de 60 km/h há 40 minutos.',
+      complaint: 'Dor torácica intensa à direita e falta de ar.',
+      tasks: [
+        'Realize a avaliação primária (ABCDE), verbalizando cada etapa (achados fornecidos conforme solicitação).',
+        'Identifique a lesão torácica e a lesão associada que determina o prognóstico.',
+        'Descreva o tratamento.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '128/80 mmHg', FC: '112 bpm', FR: '32 irpm', SpO2: '89% com O₂ em máscara com reservatório', Glasgow: '15', Tax: '36,2 °C' },
+      physicalGeneral: 'Ansioso, taquipneico, respiração superficial por dor, sem cianose central.',
+      physicalSeg: 'A — VIA AÉREA: pérvia, fala frases curtas; colar cervical | B — RESPIRAÇÃO: traqueia centralizada; jugulares sem turgência; MOVIMENTO PARADOXAL de segmento da parede torácica lateral direita (afunda na inspiração e abaula na expiração), com crepitação óssea à palpação de arcos costais 4 a 7 à direita; percussão normal (som claro pulmonar), sem timpanismo ou macicez; murmúrio vesicular presente bilateralmente, diminuído em base direita, com estertores crepitantes à direita | C — CIRCULAÇÃO: pulsos cheios, enchimento capilar 2 s; E-FAST sem pneumotórax, sem hemotórax significativo, sem derrame pericárdico, sem líquido livre abdominal | D: Glasgow 15, pupilas isocóricas | E: escoriações em tórax e membros; sem outras lesões evidentes',
+      labs: [
+        { test: 'Gasometria arterial (O₂ em máscara)', val: 'pH 7,33; PaCO₂ 48 mmHg; PaO₂ 62 mmHg; lactato 2,1', ref: 'pH 7,35–7,45; PaCO₂ 35–45', alt: true },
+        { test: 'Hemoglobina', val: '13,2 g/dL', ref: '13–17 g/dL', alt: false }
+      ],
+      image: 'RADIOGRAFIA DE TÓRAX AP (entregar após a avaliação primária, se solicitada): fraturas de arcos costais 4 a 7 à direita, cada um fraturado em dois pontos (anterior e lateral); opacidade alveolar mal definida em lobo médio e inferior direitos (contusão pulmonar); sem pneumotórax; sem alargamento do mediastino. TC DE TÓRAX (se solicitada, após estabilização): confirma fraturas segmentares de 4 arcos e contusão pulmonar extensa à direita.',
+      note: 'Fornecer achados conforme o candidato verbaliza o ABCDE. Se o candidato indicar estabilização com enfaixamento circunferencial ou fixação externa com sacos de areia, ANOTAR como erro crítico. Se o candidato indicar drenagem torácica, perguntar: “qual é a indicação neste momento?” (não há pneumotórax/hemotórax; aceitar apenas se mencionar profilaxia antes de ventilação com pressão positiva em casos selecionados).',
+      patientProfile: 'Motociclista de 45 anos, sem comorbidades conhecidas.',
+      script: [
+        { trigger: 'Ao ser abordado', speech: 'Dói... muito... pra respirar... do lado direito...' },
+        { trigger: 'Nome / o que aconteceu', speech: 'Marcos... bati de moto num carro...' },
+        { trigger: 'Alergias / medicamentos / doenças', speech: 'Não... nada...' }
+      ],
+      hiddenInfo: 'Sem informações ocultas — estação de habilidade de atendimento ao trauma.',
+      actorBehavior: 'Respira de forma rápida e superficial, protege o lado direito com a mão; piora da dor ao tossir.'
+    },
+    instC: {
+      diagnosis: 'Tórax instável (retalho costal móvel) à direita — fraturas de 4 arcos costais consecutivos em 2 pontos cada (4º–7º) — com contusão pulmonar subjacente e insuficiência respiratória hipoxêmica.',
+      differentials: [
+        'Fraturas costais simples múltiplas — sem movimento paradoxal (cada arco fraturado em um único ponto).',
+        'Pneumotórax hipertensivo/simples — afastado por percussão normal, MV presente e E-FAST.',
+        'Hemotórax — afastado por percussão normal e E-FAST.',
+        'Ruptura traumática de aorta — mecanismo de desaceleração; investigar se mediastino alargado (ausente).'
+      ],
+      context: 'O tórax instável ocorre quando ≥ 2 (classicamente ≥ 3) arcos costais adjacentes fraturam em ≥ 2 pontos, criando um segmento sem continuidade com a parede. A hipoxemia decorre principalmente da CONTUSÃO PULMONAR subjacente e da dor, e não do movimento paradoxal em si.',
+      justify: 'Trauma de alta energia com movimento paradoxal de segmento da parede torácica, crepitação de múltiplos arcos, radiografia com fraturas segmentares de 4 arcos consecutivos e opacidade alveolar (contusão), associados a hipoxemia e hipercapnia.',
+      expectedAnamnesis: 'AMPLA (alergias, medicamentos, passado médico, última refeição, ambiente/mecanismo)',
+      expectedPhysical: 'ABCDE sequencial com restrição de coluna | Inspeção da parede torácica (movimento paradoxal) | Palpação de arcos costais | Percussão e ausculta | Jugulares e traqueia | E-FAST',
+      expectedExams: [
+        { exam: 'E-FAST', justify: 'Afastar pneumotórax, hemotórax, tamponamento e hemoperitônio.', expected: 'Negativo.' },
+        { exam: 'Gasometria arterial', justify: 'Avaliar hipoxemia/hipercapnia e necessidade de suporte ventilatório.', expected: 'PaO₂ 62, PaCO₂ 48.' },
+        { exam: 'Radiografia de tórax e TC de tórax', justify: 'Confirmar fraturas, contusão e lesões associadas (após estabilização).', expected: 'Fraturas segmentares 4º–7º arcos + contusão.' }
+      ],
+      expectedConduct: 'O₂ em alto fluxo e monitorização | ANALGESIA ADEQUADA é o pilar: analgesia multimodal, opioide EV, preferencialmente bloqueio regional — analgesia peridural torácica ou bloqueio paravertebral/do eretor da espinha — para permitir respiração profunda e tosse | Suporte ventilatório se hipoxemia persistente: ventilação não invasiva em paciente consciente e cooperativo; intubação orotraqueal e ventilação mecânica se insuficiência respiratória refratária, rebaixamento de consciência ou outras lesões | Hidratação criteriosa (evitar hiper-hidratação — piora a contusão pulmonar), mantendo perfusão adequada | Fisioterapia respiratória e higiene brônquica | Fixação cirúrgica das costelas (osteossíntese) em casos selecionados: falha do desmame da ventilação, instabilidade grave da parede, dor refratária, ou durante toracotomia por outra indicação — reduz tempo de VM e pneumonia | NÃO realizar enfaixamento circunferencial ou fixação com sacos de areia (restringem a ventilação) | Vigilância para pneumotórax tardio (especialmente se VM) e pneumonia',
+      expectedCommunication: 'Liderança da equipe, comunicação em alça fechada | Explicar ao paciente os procedimentos',
+      criticalErrors: [
+        'Não seguir a sequência ABCDE',
+        'Não identificar o movimento paradoxal / tórax instável',
+        'Indicar enfaixamento circunferencial do tórax ou fixação externa com sacos de areia',
+        'Não prover analgesia adequada (incluindo bloqueio regional)',
+        'Hiper-hidratação com cristaloide em paciente estável com contusão pulmonar'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — TÓRAX INSTÁVEL COM CONTUSÃO PULMONAR',
+      sections: [
+        { h: 'AVALIAÇÃO PRIMÁRIA', items: [
+          { item: 'Seguiu ABCDE com restrição cervical, O₂ em alto fluxo e monitorização', score: 1, ref: 'ATLS — 10ª edição, ACS 2018' },
+          { item: 'Inspecionou e palpou a parede torácica, identificando movimento paradoxal e crepitação', score: 1.5, ref: 'ATLS 10ª ed.' },
+          { item: 'Afastou pneumotórax/hemotórax/tamponamento (percussão, ausculta, jugulares, E-FAST)', score: 1, ref: 'ATLS 10ª ed.' },
+          { item: 'Solicitou gasometria arterial e radiografia de tórax', score: 0.5, ref: 'ATLS 10ª ed.' }
+        ]},
+        { h: 'DIAGNÓSTICO', items: [
+          { item: 'Diagnosticou tórax instável (≥ 2 arcos adjacentes fraturados em ≥ 2 pontos)', score: 1.5, ref: 'ATLS 10ª ed.' },
+          { item: 'Identificou a contusão pulmonar como principal causa da hipoxemia', score: 1, ref: 'EAST Practice Management Guideline — Pulmonary Contusion and Flail Chest, 2012' }
+        ]},
+        { h: 'TRATAMENTO', items: [
+          { item: 'Analgesia adequada, citando bloqueio regional (peridural/paravertebral)', score: 1.5, ref: 'EAST 2012; EAST Rib Fracture Analgesia, 2016' },
+          { item: 'Suporte ventilatório escalonado (VNI → IOT/VM se refratário)', score: 1, ref: 'EAST 2012' },
+          { item: 'Hidratação criteriosa e fisioterapia respiratória; contraindicou enfaixamento', score: 0.5, ref: 'EAST 2012; ATLS 10ª ed.' },
+          { item: 'Citou fixação cirúrgica de costelas em casos selecionados', score: 0.5, ref: 'EAST Surgical Stabilization of Rib Fractures, 2017' }
+        ]}
+      ]
+    }
   }
 ];
 
