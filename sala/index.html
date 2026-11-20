@@ -192,6 +192,8 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .composer{display:flex;gap:8px;align-items:center;padding-block:10px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);border-top:1px solid var(--line);min-width:0}
 .composer input{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 14px;font-size:15px}
 .composer select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 8px;max-width:150px}
+.rec-stop{background:var(--crit);border-color:var(--crit);color:#fff;font-weight:600}
+.rec-stop svg.i{fill:currentColor}
 .mic[aria-pressed="true"]{background:var(--crit);color:#fff;border-color:var(--crit);animation:pulse 1.2s infinite}
 .aimode{font-size:12px}
 
@@ -283,6 +285,7 @@ const I = {
   folder:'<path d="M4 4h6l2 2h8v13H4z"/><path d="M8 11h8M8 15h5"/>',
   clip:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10l2 2 4-4M9 16h6"/>',
   syringe:'<path d="M18 2l4 4M15 5l4 4M17 7L8 16l-3 1 1-3 9-9"/><path d="M11 7l6 6M3 21l3-3"/>',
+  stop:'<rect x="6" y="6" width="12" height="12" rx="2"/>',
   mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
   send:'<path d="M4 12l16-8-6 16-2-6z"/>',
   close:'<path d="M6 6l12 12M18 6L6 18"/>',
@@ -2236,7 +2239,7 @@ let loopId = null, rafId = null;
   if (dc){
     dc.onPartial(({text}) => { if (S && S.listening){ const inp = $("#say"); if (inp){ inp.value = (S.dictBase + " " + text).trim(); } } });
     dc.onFinal(({text}) => { if (S && S.listening){ S.dictBase = (S.dictBase + text).replace(/^\s+/,""); const inp = $("#say"); if (inp) inp.value = S.dictBase; } });
-    dc.onState(({state}) => { if (!S) return; S.listening = state==="listening" || state==="starting"; const b = $("#micBtn"); if (b) b.setAttribute("aria-pressed", S.listening); });
+    dc.onState(({state}) => { if (!S) return; S.listening = state==="listening" || state==="starting"; const b = $("#micBtn"); if (b) b.setAttribute("aria-pressed", S.listening); const st = $("#stopRecBtn"); if (st) st.hidden = !S.listening; });
   }
   refreshCapsUI();
 })();
@@ -2385,6 +2388,7 @@ function enterRoom(c){
       ${c.emergencia || c.dyn ? `<select id="talkTo" aria-label="Falar com"><option value="paciente">Paciente</option><option value="enfermeira">Enf. Carla</option></select>` : ""}
       <input id="say" placeholder="${c.emergencia || c.dyn ? "Fale com o paciente ou dê ordens à enfermeira…" : c.equipe ? "Fale com a equipe, a família ou o paciente…" : c.crianca ? (c.pac.idade < 2 ? "Converse com a mãe…" : "Converse com a mãe ou com a criança…") : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
       <button type="button" class="iconbtn mic" id="micBtn" aria-pressed="false" title="Falar (microfone)" aria-label="Falar pelo microfone" ${CAP.dict?"":"hidden"}>${ic("mic")}</button>
+      <button type="button" class="btn rec-stop" id="stopRecBtn" hidden title="Parar de gravar e enviar">${ic("stop")}<span>Parar</span></button>
       <button class="btn primary" id="sendBtn" type="submit">${ic("send")}<span class="hide-sm">Enviar</span></button>
     </form>
   </section>`;
@@ -2398,6 +2402,7 @@ function enterRoom(c){
   const vb = $("#voiceBtn"); vb.onclick = () => { prefs.voz = !prefs.voz; savePrefs(); vb.setAttribute("aria-pressed", prefs.voz); if (!prefs.voz) CAP.tts?.stop?.(); };
   const tt = $("#talkTo"); if (tt) tt.onchange = () => { S.talkTo = tt.value; $("#say").focus(); };
   $("#micBtn").onclick = toggleMic;
+  $("#stopRecBtn").onclick = stopRec;
   document.querySelectorAll("[data-tool]").forEach(b => b.onclick = () => openDrawer(b.dataset.tool === S.drawer ? null : b.dataset.tool));
   if (c.emergencia || c.monitor || c.dyn) startMonitor();
   if (c.abertura){ const ab = c.abertura; S.topics[ab.id] = {t:0, q:"(relato inicial)"}; S.transcript.push({who:"paciente", label:ab.quem, text:ab.r, t:0}); setTimeout(() => { if (S && S.c===c){ showCaption(null, ab.r, "paciente", null, ab.quem); speak(ab.r, "paciente"); } }, 600); }
@@ -2469,11 +2474,14 @@ function showCaption(meText, otherText, speaker, emo, label){
 const speakerName = sp => sp==="enfermeira" ? "Enf. Carla" : sp==="cena" ? "Cena" : (S?.c.repo ? "Paciente" : (S?.c.pac.trat || "Paciente"));
 
 /* ---------- microfone ---------- */
+function stopRec(){
+  const d = CAP.dict; if (!d || !S) return;
+  const st = $("#stopRecBtn"); if (st) st.hidden = true;
+  d.stop().then(() => { const v = $("#say")?.value.trim(); if (v){ $("#say").value=""; S.dictBase=""; say(v); } }).catch(()=>{});
+}
 function toggleMic(){
   const d = CAP.dict; if (!d || !S) return;
-  if (S.listening){
-    d.stop().then(() => { const v = $("#say")?.value.trim(); if (v){ $("#say").value=""; S.dictBase=""; say(v); } }).catch(()=>{});
-  } else {
+  if (S.listening){ stopRec(); } else {
     S.dictBase = $("#say").value.trim();
     d.start({language:"pt-BR"}).catch(e => {
       if (e?.code === "not_granted" || e?.code === "unavailable"){ $("#micBtn").hidden = true; toast("Microfone indisponível. Continue digitando.", "warn"); }
