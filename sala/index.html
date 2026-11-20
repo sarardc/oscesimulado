@@ -1,0 +1,1573 @@
+<title>Sala de Simulação OSCE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: lobby de estações → porta (impresso) → sala em tela cheia: cena à esquerda, trilho de ferramentas à direita,
+   gaveta que abre sobre o lado do médico (o rosto do paciente fica sempre visível), legenda da fala embaixo. */
+:root{
+  --paper:#F3F6F7; --panel:#FFFFFF; --sunk:#E8EEF0; --line:#D3DDE2; --ink:#13212E; --muted:#556675;
+  --accent:#0E766F; --accent-soft:#D6EEEB; --on-accent:#FFFFFF;
+  --ok:#2C8A4B; --ok-soft:#DDF1E3; --warn:#B8611A; --warn-soft:#F8E7D7; --crit:#BE3239; --crit-soft:#F7DEDF;
+  --stage:#0B141B; --scrim:rgba(9,17,24,.62); --caption:rgba(9,17,24,.78);
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0D1419; --panel:#152029; --sunk:#1B2833; --line:#283844; --ink:#E4ECF1; --muted:#93A5B2;
+  --accent:#43B9AE; --accent-soft:#173A38; --on-accent:#06201E;
+  --ok:#5CC27E; --ok-soft:#173424; --warn:#E89B57; --warn-soft:#3A2715; --crit:#EF6B71; --crit-soft:#3E1C1F;
+  --stage:#05090C; --scrim:rgba(3,7,10,.7); --caption:rgba(3,7,10,.82); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0D1419; --panel:#152029; --sunk:#1B2833; --line:#283844; --ink:#E4ECF1; --muted:#93A5B2;
+  --accent:#43B9AE; --accent-soft:#173A38; --on-accent:#06201E;
+  --ok:#5CC27E; --ok-soft:#173424; --warn:#E89B57; --warn-soft:#3A2715; --crit:#EF6B71; --crit-soft:#3E1C1F;
+  --stage:#05090C; --scrim:rgba(3,7,10,.7); --caption:rgba(3,7,10,.82); color-scheme:dark}
+
+html,body{height:100%}
+#app{height:100%}
+[hidden]{display:none!important}
+#drawerHost{display:contents}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:9px 14px;font-weight:500}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent}
+.btn.danger{color:var(--crit);border-color:var(--crit)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.chip.acc{background:var(--accent-soft);color:var(--accent)}
+.screen{min-height:100%}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- Lobby ---------- */
+.lobby{max-width:1180px;margin:0 auto;padding-block:32px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+.lobby-head{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;align-items:end}
+.lobby-head h1{font-size:clamp(30px,4.4vw,48px);font-weight:700;letter-spacing:-.01em}
+.lobby-head p{color:var(--muted);max-width:60ch;margin:10px 0 0}
+.setup{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:14px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--sunk);border-radius:8px;padding:3px;gap:3px}
+.seg button{border:0;background:transparent;border-radius:6px;padding:8px 10px;text-align:left;line-height:1.3}
+.seg button small{display:block;color:var(--muted);font-size:12px}
+.seg button[aria-pressed="true"]{background:var(--panel);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.setup-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;font-size:13.5px;color:var(--muted)}
+.stations{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.st-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-rows:auto 1fr;text-align:left;padding:0;transition:border-color .15s, transform .15s}
+.st-card:hover:not(:disabled){border-color:var(--accent);transform:translateY(-2px)}
+.st-card img{aspect-ratio:16/9;width:100%;object-fit:cover;display:block}
+.st-card .body{padding:14px 16px 16px;display:grid;gap:8px;align-content:start}
+.st-card h3{font-size:19px}
+.st-card .meta{display:flex;flex-wrap:wrap;gap:6px}
+.st-card p{margin:0;color:var(--muted);font-size:13.5px}
+.st-card:disabled{cursor:default}
+.st-card:disabled img{filter:grayscale(.7) opacity(.6)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;border-top:1px solid var(--line);padding-top:22px}
+.how div{display:grid;gap:4px;font-size:13.5px;color:var(--muted)}
+.how b{color:var(--ink);font-weight:600;font-size:14px}
+
+/* ---------- Porta (impresso) ---------- */
+.door{min-height:100%;display:grid;place-items:center;padding-block:28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:var(--sunk)}
+.sheet{background:#FFFEFA;color:#1D232A;width:min(720px,100%);border-radius:4px;box-shadow:0 18px 40px rgba(0,0,0,.18),0 2px 4px rgba(0,0,0,.08);padding:34px clamp(18px,5vw,48px) 30px;position:relative;display:grid;gap:16px}
+.sheet::before,.sheet::after{content:"";position:absolute;top:-10px;width:86px;height:24px;background:rgba(214,206,170,.75);transform:rotate(-4deg)}
+.sheet::before{left:24px}.sheet::after{right:24px;transform:rotate(5deg)}
+.sheet .eyebrow{color:#5F6B74}
+.sheet h2{font-size:26px}
+.sheet .enun{font-size:15.5px;line-height:1.6;margin:0}
+.sheet ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.sheet .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:1px dashed #C9C3AE;padding-top:14px}
+.sheet .count{font-family:var(--f-mono);font-size:28px;font-weight:600;color:#0E766F}
+.sheet .btn{background:#0E766F;border-color:#0E766F;color:#fff}
+.sheet .btn.ghost{background:transparent;color:#1D232A;border-color:#C9C3AE}
+
+/* ---------- Sala ---------- */
+.room{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:var(--stage)}
+.topbar{display:flex;align-items:center;gap:12px;padding-block:8px;padding-left:max(14px,env(safe-area-inset-left,0px));padding-right:max(14px,env(safe-area-inset-right,0px));background:var(--panel);border-bottom:1px solid var(--line);min-width:0}
+.topbar .who{display:grid;min-width:0;line-height:1.25}
+.topbar .who b{font-family:var(--f-display);font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .who span{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .sp{flex:1}
+.timer{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:24px;font-weight:600;padding:2px 12px;border-radius:8px;background:var(--sunk);letter-spacing:.02em}
+.timer.warn{background:var(--warn-soft);color:var(--warn)}
+.timer.crit{background:var(--crit-soft);color:var(--crit);animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.iconbtn{border:1px solid var(--line);background:var(--panel);border-radius:8px;width:38px;height:38px;display:inline-grid;place-items:center;color:var(--muted)}
+.iconbtn[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+.main{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 84px;min-height:0}
+.stage{position:relative;overflow:hidden;min-height:0;background:var(--stage)}
+.stage img.scene{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:breathe 7s ease-in-out infinite;transform-origin:70% 45%}
+@keyframes breathe{50%{transform:scale(1.012)}}
+.stage .vignette{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.55),transparent 38%);pointer-events:none}
+.stage.dopen .caption{left:calc(430px + (100% - 430px)/2);width:min(640px,calc(100% - 462px))}
+.caption{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;width:min(760px,calc(100% - 32px));display:grid;gap:6px;pointer-events:none}
+.cap{background:var(--caption);color:#F4F7F9;border-radius:10px;padding:10px 14px;font-size:16.5px;line-height:1.45;backdrop-filter:blur(6px)}
+.cap .spk{display:flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#9FD9D2;margin-bottom:2px}
+.cap.me{background:rgba(255,255,255,.88);color:#13212E;justify-self:end;max-width:85%;font-size:14.5px}
+.cap.me .spk{color:#0E766F}
+.cap .emo{font-family:var(--f-body);text-transform:none;letter-spacing:0;color:#C7D3DB;font-size:12px}
+.dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:#9FD9D2;margin-right:4px;animation:dot 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{opacity:.25;transform:translateY(-3px)}}
+.toast-wrap{position:absolute;top:14px;left:50%;transform:translateX(-50%);display:grid;gap:8px;z-index:6;width:min(520px,calc(100% - 32px));pointer-events:none}
+.toast{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:9px 12px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:tin .25s ease-out}
+.toast.crit{border-left-color:var(--crit)}.toast.warn{border-left-color:var(--warn)}
+@keyframes tin{from{opacity:0;transform:translateY(-6px)}}
+
+/* trilho de ferramentas */
+.rail{background:var(--panel);border-left:1px solid var(--line);display:flex;flex-direction:column;gap:4px;padding:8px 6px;overflow:auto}
+.tool{border:0;background:transparent;border-radius:8px;padding:9px 2px 7px;display:grid;justify-items:center;gap:4px;font-size:11px;color:var(--muted);position:relative;line-height:1.15;text-align:center}
+.tool svg.i{width:24px;height:24px}
+.tool:hover{background:var(--sunk);color:var(--ink)}
+.tool[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent)}
+.tool .badge{position:absolute;top:4px;right:12px;min-width:17px;height:17px;border-radius:9px;background:var(--crit);color:#fff;font-size:10.5px;display:grid;place-items:center;padding:0 4px;font-family:var(--f-mono)}
+
+/* gaveta */
+.drawer{position:absolute;top:0;bottom:0;left:0;width:min(430px,calc(100% - 84px));background:var(--panel);border-right:1px solid var(--line);z-index:5;display:grid;grid-template-rows:auto minmax(0,1fr);box-shadow:12px 0 32px rgba(0,0,0,.25);animation:din .2s ease-out}
+@keyframes din{from{transform:translateX(-14px);opacity:0}}
+.drawer header{display:flex;align-items:start;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--line)}
+.drawer header h2{font-size:20px}
+.drawer header p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.drawer header .iconbtn{margin-left:auto}
+.dbody{overflow:auto;padding:14px 16px 24px;display:grid;gap:16px;align-content:start}
+.group{display:grid;gap:6px}
+.group > .eyebrow{padding-bottom:2px}
+.item{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:9px 11px;font-size:14px}
+.item:hover:not(:disabled){border-color:var(--accent)}
+.item.done{background:var(--sunk)}
+.item .st{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap;font-family:var(--f-mono)}
+.item.bad{border-color:var(--crit)}
+.finding{font-size:13.5px;color:var(--ink);background:var(--accent-soft);border-radius:6px;padding:7px 10px;margin-top:-2px}
+.search{width:100%;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:9px 12px}
+.field{display:grid;gap:6px}
+.field label{font-weight:600;font-size:14px}
+.field small{color:var(--muted);font-size:12.5px}
+.field textarea,.field input{width:100%;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:10px 12px;resize:vertical}
+.transcript{display:grid;gap:8px}
+.tl{display:grid;gap:2px;font-size:14px}
+.tl .w{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+.tl.me .w{color:var(--accent)}
+.empty{color:var(--muted);font-size:13.5px;border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0}
+.note{font-size:13px;color:var(--muted)}
+
+/* impressos */
+.imp{background:#FFFEFA;color:#1D232A;border:1px solid #E2DCC6;border-radius:6px;padding:12px 14px;display:grid;gap:6px;font-size:14px}
+.imp header{display:flex;justify-content:space-between;gap:8px;align-items:baseline;border:0;padding:0}
+.imp header b{font-family:var(--f-display);font-size:15px}
+.imp header span{font-family:var(--f-mono);font-size:11.5px;color:#6B7178}
+.imp .res{font-family:var(--f-mono);font-size:13px;white-space:pre-wrap;line-height:1.55}
+.imp .laudo{font-size:13px;color:#3C4650;border-top:1px dashed #D8D1B8;padding-top:6px}
+.imp.wait{color:#6B7178}
+.ecgwrap{overflow-x:auto;border-radius:4px}
+.ecgwrap svg{display:block;min-width:620px;width:100%;height:auto;cursor:zoom-in}
+.zoom{position:absolute;inset:0;z-index:20;background:var(--scrim);display:grid;place-items:center;padding:16px}
+.zoom .imp{max-width:1100px;width:100%;max-height:100%;overflow:auto}
+
+/* monitor */
+.monitor{position:absolute;top:12px;right:12px;width:min(300px,46%);background:#05080A;border:1px solid #2A3238;border-radius:10px;padding:8px 10px 10px;z-index:3;color:#CFE;box-shadow:0 10px 30px rgba(0,0,0,.5);font-family:var(--f-mono)}
+.monitor .mh{display:flex;justify-content:space-between;font-size:10.5px;color:#7F8C93;letter-spacing:.08em}
+.monitor canvas{display:block;width:100%;height:54px}
+.monitor .vals{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
+.monitor .v{display:grid;line-height:1.05}
+.monitor .v small{font-size:9.5px;color:#7F8C93;letter-spacing:.06em}
+.monitor .v b{font-size:22px;font-weight:600}
+.monitor .hr b{color:#4BE37A}.monitor .sp b{color:#4FD3F0}.monitor .pa b{color:#F2F2F2;font-size:17px}.monitor .fr b{color:#F4D35E}
+.monitor .off{display:grid;place-items:center;height:96px;color:#7F8C93;font-size:12px;text-align:center;letter-spacing:.05em}
+.monitor.alarm{border-color:#E5484D;box-shadow:0 0 0 2px rgba(229,72,77,.5),0 10px 30px rgba(0,0,0,.5)}
+
+/* composer */
+.composer{display:flex;gap:8px;align-items:center;padding-block:10px;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));background:var(--panel);border-top:1px solid var(--line);min-width:0}
+.composer input{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:11px 14px;font-size:15px}
+.composer select{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 8px;max-width:150px}
+.mic[aria-pressed="true"]{background:var(--crit);color:#fff;border-color:var(--crit);animation:pulse 1.2s infinite}
+.aimode{font-size:12px}
+
+/* feedback */
+.fb{max-width:1080px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:24px}
+.fb-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center}
+.ring{width:132px;height:132px}
+.fb-head h1{font-size:clamp(26px,3.6vw,38px)}
+.fb-head p{margin:6px 0 0;color:var(--muted)}
+.doms{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.dom{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;display:grid;gap:6px}
+.dom .row{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+.dom .row b{font-family:var(--f-mono);font-size:18px}
+.bar{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.fb-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:12px;min-width:0}
+.card h2{font-size:19px}
+.ck{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px;align-items:start;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.ck:last-child{border-bottom:0}
+.ck .mk{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;margin-top:1px}
+.ck.y .mk{background:var(--ok-soft);color:var(--ok)}
+.ck.n .mk{background:var(--crit-soft);color:var(--crit)}
+.ck .ev{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
+.ck .dica{display:block;color:var(--warn);font-size:12.5px;margin-top:2px}
+.ck .w{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.ck .ia{font-family:var(--f-mono);font-size:10px;color:var(--accent);margin-left:6px}
+.crit-list{display:grid;gap:8px}
+.crit-list div{background:var(--crit-soft);color:var(--crit);border-radius:8px;padding:9px 12px;font-size:14px}
+.ai-box{background:var(--accent-soft);border-radius:8px;padding:12px 14px;font-size:14.5px;display:grid;gap:8px}
+.ai-box ul{margin:0;padding-left:18px}
+.photo{margin:0;display:grid;gap:6px;background:#FFFEFA;color:#1D232A;border:1px solid #E2DCC6;border-radius:6px;padding:10px}
+.photo img{width:100%;border-radius:4px;cursor:zoom-in;display:block}
+.photo figcaption{font-size:12.5px;color:#4A535C}
+.photo .req{font-size:13px;font-weight:500;color:#0E766F}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:13.5px}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.gab{display:grid;gap:10px;font-size:14px}
+.gab ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.zoom img{max-width:100%;max-height:80vh;border-radius:4px;display:block;margin:0 auto}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media (max-width: 900px){
+  .lobby-head{grid-template-columns:1fr}
+  .fb-grid{grid-template-columns:1fr}
+}
+@media (max-width: 720px){
+  .main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+  .rail{flex-direction:row;border-left:0;border-top:1px solid var(--line);overflow-x:auto;padding:4px}
+  .tool{min-width:68px}
+  .drawer{width:100%;bottom:66px}
+  .stage.dopen .caption{left:50%;width:calc(100% - 32px)}
+  .topbar .hide-sm{display:none}
+  .timer{font-size:19px;padding:2px 8px}
+  .cap{font-size:15px}
+  .monitor{width:min(230px,60%)}
+  .monitor .v b{font-size:17px}.monitor .pa b{font-size:14px}
+  .composer select{max-width:104px}
+  .fb-head{grid-template-columns:1fr}
+}
+</style>
+
+<div id="app"></div>
+
+<script>
+"use strict";
+/* =========================================================================
+   ÍCONES
+   ========================================================================= */
+const I = {
+  chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+  steth:'<path d="M6 3v6a5 5 0 0 0 10 0V3"/><path d="M11 14v2a4 4 0 0 0 8 0v-2"/><circle cx="19" cy="12" r="2"/>',
+  flask:'<path d="M9 3h6M10 3v6L4.5 18.5A1.6 1.6 0 0 0 6 21h12a1.6 1.6 0 0 0 1.5-2.5L14 9V3"/><path d="M7 15h10"/>',
+  folder:'<path d="M4 4h6l2 2h8v13H4z"/><path d="M8 11h8M8 15h5"/>',
+  clip:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 10l2 2 4-4M9 16h6"/>',
+  syringe:'<path d="M18 2l4 4M15 5l4 4M17 7L8 16l-3 1 1-3 9-9"/><path d="M11 7l6 6M3 21l3-3"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+  send:'<path d="M4 12l16-8-6 16-2-6z"/>',
+  close:'<path d="M6 6l12 12M18 6L6 18"/>',
+  vol:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
+  door:'<path d="M5 21V3h11v18M3 21h18M13 12h.01"/>',
+  back:'<path d="M15 6l-6 6 6 6"/>',
+};
+const ic = (n, cls="i") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${I[n]}</svg>`;
+
+/* =========================================================================
+   UTILITÁRIOS
+   ========================================================================= */
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const fmt = sec => { sec = Math.max(0, Math.round(sec)); return String(Math.floor(sec/60)).padStart(2,"0")+":"+String(sec%60).padStart(2,"0"); };
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+
+/* =========================================================================
+   CATÁLOGO DE EXAMES (valores normais por padrão; cada caso sobrescreve)
+   ========================================================================= */
+const EXAMES = [
+  {id:"hemograma", nome:"Hemograma completo", grupo:"Laboratório", t:6, res:"Hb 13,6 g/dL · Ht 40%\nLeucócitos 7.400/mm³ (diferencial normal)\nPlaquetas 248.000/mm³"},
+  {id:"renal", nome:"Ureia e creatinina", grupo:"Laboratório", t:6, res:"Ureia 32 mg/dL\nCreatinina 0,9 mg/dL"},
+  {id:"eletrolitos", nome:"Sódio e potássio", grupo:"Laboratório", t:6, res:"Na 139 mEq/L\nK 4,2 mEq/L"},
+  {id:"glicemia", nome:"Glicemia de jejum", grupo:"Laboratório", t:5, res:"Glicemia 91 mg/dL"},
+  {id:"hba1c", nome:"Hemoglobina glicada", grupo:"Laboratório", t:6, res:"HbA1c 5,3%"},
+  {id:"lipidograma", nome:"Perfil lipídico", grupo:"Laboratório", t:6, res:"CT 182 · LDL 104 · HDL 52 · TG 128 mg/dL"},
+  {id:"tsh", nome:"TSH e T4 livre", grupo:"Laboratório", t:6, res:"TSH 2,1 mUI/L\nT4L 1,2 ng/dL"},
+  {id:"bnp", nome:"BNP / NT-proBNP", grupo:"Laboratório", t:7, res:"BNP 38 pg/mL"},
+  {id:"troponina", nome:"Troponina ultrassensível", grupo:"Laboratório", t:9, res:"Troponina I us: 4 ng/L (ref. < 19)"},
+  {id:"ddimero", nome:"D-dímero", grupo:"Laboratório", t:7, res:"D-dímero 220 ng/mL (ref. < 500)"},
+  {id:"coag", nome:"Coagulograma (TP/TTPa)", grupo:"Laboratório", t:6, res:"TP 12,8 s · RNI 1,0\nTTPa 29 s"},
+  {id:"gaso", nome:"Gasometria arterial", grupo:"Laboratório", t:4, res:"pH 7,41 · pCO2 39 · pO2 94 · HCO3 24 · SatO2 97%"},
+  {id:"urina", nome:"Urina tipo 1", grupo:"Laboratório", t:6, res:"Densidade 1.018 · sem leucocitúria, hematúria ou proteinúria"},
+  {id:"bhcg", nome:"Beta-hCG", grupo:"Laboratório", t:6, res:"Beta-hCG: negativo"},
+  {id:"tox", nome:"Triagem toxicológica", grupo:"Laboratório", t:8, res:"Negativa para as substâncias pesquisadas"},
+  {id:"ecg", nome:"Eletrocardiograma (12 derivações)", grupo:"Gráficos e imagem", t:3, ecg:{fc:76}},
+  {id:"ecg_d", nome:"ECG com derivações direitas (V3R/V4R) e posteriores", grupo:"Gráficos e imagem", t:3, res:"V3R, V4R: sem alteração de ST\nV7–V9: sem alteração de ST"},
+  {id:"rx", nome:"Radiografia de tórax (PA e perfil)", grupo:"Gráficos e imagem", t:8, res:"Área cardíaca normal. Campos pulmonares sem alterações. Seios costofrênicos livres."},
+  {id:"eco", nome:"Ecocardiograma transtorácico", grupo:"Gráficos e imagem", t:10, res:"Câmaras de dimensões normais. FEVE 63% (Simpson). Valvas sem alterações."},
+  {id:"tc_cranio", nome:"Tomografia de crânio", grupo:"Gráficos e imagem", t:10, res:"Sem alterações. Ausência de lesões expansivas ou sangramento."},
+  {id:"rm_cranio", nome:"Ressonância de crânio", grupo:"Gráficos e imagem", t:12, res:"Sem alterações."},
+];
+const EXAME = Object.fromEntries(EXAMES.map(e => [e.id, e]));
+
+/* =========================================================================
+   AUXILIARES DE CHECKLIST
+   Cada item tem test(s) → {ok, ev}. Itens com ia:true são revisados pelo avaliador IA (texto livre).
+   ========================================================================= */
+const quote = (t, q) => `${fmt(t)} — “${q.length>90 ? q.slice(0,88)+"…" : q}”`;
+const T = (...ids) => s => { const h = ids.map(id => s.topics[id]).filter(Boolean).sort((a,b)=>a.t-b.t)[0]; return h ? {ok:true, ev:quote(h.t, h.q)} : {ok:false}; };
+const M = (...ids) => s => { const h = ids.map(id => s.man[id]).filter(v=>v!=null).sort((a,b)=>a-b)[0]; return h!=null ? {ok:true, ev:`${fmt(h)} — manobra realizada`} : {ok:false}; };
+const X = (...ids) => s => { const h = ids.map(id => s.exams[id] && {id, t:s.exams[id].t}).filter(Boolean).sort((a,b)=>a.t-b.t)[0]; return h ? {ok:true, ev:`${fmt(h.t)} — solicitou ${examDef(h.id).nome}`} : {ok:false}; };
+const O = (...ids) => s => { const h = ids.map(id => s.orders[id]!=null && {id, t:s.orders[id]}).filter(Boolean).sort((a,b)=>a.t-b.t)[0]; return h ? {ok:true, ev:`${fmt(h.t)} — ordem: ${ORD_NAME[h.id]||h.id}`} : {ok:false}; };
+const NO = (...ids) => s => { const g = ids.filter(id => s.orders[id]!=null); return g.length ? {ok:false, ev:`Prescreveu: ${g.map(id=>ORD_NAME[id]).join(", ")}`} : {ok:true, ev:"Não prescrito"}; };
+const C = flag => s => s.com[flag] ? {ok:true, ev:quote(s.com[flag].t, s.com[flag].q)} : {ok:false};
+const H = re => s => { const txt = norm(s.hip+" \n "+s.dif); return re.test(txt) ? {ok:true, ev:`Hipótese: “${s.hip||s.dif}”`} : {ok:false}; };
+const K = re => s => {
+  if (re.test(norm(s.conduta))) return {ok:true, ev:"Registrado na conduta"};
+  const u = s.transcript.find(m => m.who==="me" && re.test(norm(m.text)));
+  return u ? {ok:true, ev:quote(u.t, u.text)} : {ok:false};
+};
+const ANY = (...fs) => s => { for (const f of fs){ const r = f(s); if (r.ok) return r; } return {ok:false}; };
+const ECG_BY = sec => s => { const e = s.exams.ecg; if (!e) return {ok:false, ev:"ECG não solicitado"}; return e.t <= sec ? {ok:true, ev:`ECG solicitado em ${fmt(e.t)}`} : {ok:false, ev:`ECG só em ${fmt(e.t)} (meta: até ${fmt(sec)})`}; };
+const NOT_X = (...ids) => s => { const g = ids.filter(id => s.exams[id]); return g.length ? {ok:false, ev:`Solicitou ${g.map(id=>EXAME[id].nome).join(", ")} sem indicação`} : {ok:true, ev:"Sem exames de imagem desnecessários"}; };
+
+const COM_RE = {
+  apresentou:/(meu nome (e|eh)|me chamo|sou (o|a) (dr|doutor|doutora|medic|residente|estudante|academic|intern)|sou (dr|doutor|doutora)\b)/,
+  empatia:/(entendo|imagino|compreendo|sinto muito|lamento|deve ser (dificil|complicado|ruim|pesado|assustador)|estou aqui|vamos (cuidar|resolver|juntos|te ajudar)|fique tranquil|obrigad[oa] por (contar|confiar|compartilhar|falar)|faz sentido (voce|o senhor|a senhora) (estar|se sentir)|e normal (sentir|ficar))/,
+  entendimento:/(alguma duvida|ficou (claro|alguma duvida)|entendeu|tem alguma pergunta|quer perguntar|faz sentido pra|consegui explicar|pode me (dizer|repetir) o que entendeu)/,
+  explicou:/(o que (o senhor|a senhora|voce) tem|seu (coracao|exame|problema)|suspeit|diagnostico|vamos (precisar|fazer|tratar|levar|encaminh)|o tratamento|isso (acontece|e causado|explica))/,
+  sigilo:/(sigilo|confidencial|fica entre (nos|a gente)|segredo|nao vou contar)/,
+};
+
+/* =========================================================================
+   ORDENS DA SALA DE EMERGÊNCIA
+   ========================================================================= */
+const ORDENS = [
+  {id:"mov", nome:"Monitorização + acesso venoso", g:"Suporte", kw:/(monitor|acesso|veia|mov\b|puncion|cateter venoso)/},
+  {id:"o2", nome:"O2 por cateter nasal 2 L/min", g:"Suporte", kw:/(oxigeni|o2|cateter nasal|oxigenio)/},
+  {id:"glic", nome:"Glicemia capilar", g:"Suporte", kw:/(dextro|hgt|glicemia capilar)/},
+  {id:"aas", nome:"AAS 300 mg mastigado", g:"Antitrombóticos", kw:/(aas|aspirina|acido acetil)/},
+  {id:"p2y12", nome:"Clopidogrel 600 mg (ou ticagrelor 180 mg)", g:"Antitrombóticos", kw:/(clopidogrel|ticagrelor|prasugrel|p2y12)/},
+  {id:"anticoag", nome:"Heparina não fracionada EV (bolus)", g:"Antitrombóticos", kw:/(heparina|enoxaparina|clexane|anticoagul)/},
+  {id:"nitrato", nome:"Isossorbida 5 mg sublingual", g:"Sintomáticos", kw:/(isossorbida|isordil|nitrato|nitroglicerina|tridil)/},
+  {id:"morfina", nome:"Morfina 2 mg EV", g:"Sintomáticos", kw:/(morfina)/},
+  {id:"bb", nome:"Metoprolol 5 mg EV", g:"Sintomáticos", kw:/(metoprolol|betabloq|beta-bloq|esmolol)/},
+  {id:"sf", nome:"SF 0,9% 500 mL EV em bolus", g:"Suporte", kw:/(soro|sf\b|cristaloide|volume|ringer|expans)/},
+  {id:"icp", nome:"Acionar hemodinâmica (angioplastia primária)", g:"Reperfusão", kw:/(hemodinamica|cateterismo|angioplastia|icp|cate\b)/},
+  {id:"trombolise", nome:"Tenecteplase EV (trombólise)", g:"Reperfusão", kw:/(tenecteplase|alteplase|trombolit|tnk|estreptoquinase|fibrinolit)/},
+];
+const ORD_NAME = Object.fromEntries(ORDENS.map(o => [o.id, o.nome]));
+
+/* =========================================================================
+   ECG (traçado desenhado a partir de parâmetros por derivação)
+   ========================================================================= */
+const LEADS_NORMAL = {
+  DI:{r:.8,s:.1,t:.25}, DII:{r:1.1,s:.15,t:.3}, DIII:{r:.5,s:.1,t:.12}, aVR:{r:.9,s:.1,t:.25,inv:1}, aVL:{r:.45,s:.1,t:.12}, aVF:{r:.8,s:.12,t:.2},
+  V1:{r:.25,s:1.0,t:.08}, V2:{r:.5,s:1.3,t:.35}, V3:{r:.9,s:.8,t:.4}, V4:{r:1.4,s:.4,t:.4}, V5:{r:1.5,s:.2,t:.35}, V6:{r:1.1,s:.1,t:.3}
+};
+function ecgSVG(cfg){
+  const fc = cfg.fc||75, RR = 60/fc, L = {};
+  for (const k in LEADS_NORMAL) L[k] = Object.assign({}, LEADS_NORMAL[k], (cfg.leads||{})[k]||{});
+  const g = (x,mu,sd,a) => a*Math.exp(-((x-mu)**2)/(2*sd*sd));
+  const sm = (x,a,b) => x<=a?0:x>=b?1:((x-a)/(b-a))**2*(3-2*((x-a)/(b-a)));
+  const v = (t, P) => {
+    const tb = ((t % RR) + RR) % RR;
+    let y = g(tb,.08,.022,.12) + g(tb,.19,P.q?.016:.008,-(P.q||.04)) + g(tb,.215,.011,P.r) + g(tb,.24,.011,-(P.s||.1));
+    y += (P.st||0) * sm(tb,.245,.29) * (1 - sm(tb,.40,.48));
+    y += g(tb,.40,.045,P.t);
+    return P.inv ? -y : y;
+  };
+  const pxs = 100, mv = 40, cw = 250, rh = 110;
+  const path = (lead, x0, y0, t0, dur) => { let d = ""; for (let t=0; t<=dur; t+=.004){ d += (t?"L":"M")+(x0+t*pxs).toFixed(1)+","+(y0 - v(t0+t, L[lead])*mv).toFixed(1); } return d; };
+  const rows = [["DI","aVR","V1","V4"],["DII","aVL","V2","V5"],["DIII","aVF","V3","V6"]];
+  let paths = "", labels = "";
+  rows.forEach((row, ri) => row.forEach((ld, ci) => {
+    const x0 = ci*cw, y0 = 62 + ri*rh;
+    paths += `<path d="${path(ld, x0, y0, ci*2.5, 2.5)}"/>`;
+    labels += `<text x="${x0+6}" y="${y0-34}">${ld}</text>`;
+  }));
+  const yR = 62 + 3*rh;
+  paths += `<path d="${path("DII", 0, yR, 0, 10)}"/>`; labels += `<text x="6" y="${yR-34}">DII longo</text>`;
+  const H = yR + 50;
+  return `<svg viewBox="0 0 1000 ${H}" role="img" aria-label="Eletrocardiograma de 12 derivações">
+    <defs><pattern id="s" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M4 0H0V4" fill="none" stroke="#F3C9C9" stroke-width=".5"/></pattern>
+    <pattern id="b" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="url(#s)"/><path d="M20 0H0V20" fill="none" stroke="#E79A9A" stroke-width=".9"/></pattern></defs>
+    <rect width="1000" height="${H}" fill="#FFF8F6"/><rect width="1000" height="${H}" fill="url(#b)"/>
+    <g fill="none" stroke="#1B1F24" stroke-width="1.35" stroke-linejoin="round">${paths}</g>
+    <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#1B1F24">${labels}<text x="994" y="${H-8}" text-anchor="end" font-size="11">25 mm/s · 10 mm/mV</text></g></svg>`;
+}
+
+/* =========================================================================
+   CASOS
+   kw: expressões (sem acento, minúsculas) usadas no modo local; o paciente IA recebe a ficha completa.
+   ========================================================================= */
+const CASOS = [
+{
+  id:"lucia", ativo:true, img:"img/lucia.jpg", focus:"72% 40%", voz:"rounded",
+  area:"Clínica médica", local:"Unidade Básica de Saúde · consulta de demanda espontânea", tempo:600,
+  titulo:"Cansaço que não passa",
+  pac:{nome:"Lúcia Ferreira", primeiro:"lucia", trat:"Dona Lúcia", idade:74, sexo:"Feminino", prof:"Costureira aposentada", peso:"68 kg", altura:"1,58 m"},
+  enunciado:"Lúcia Ferreira, 74 anos, aposentada, procura a UBS com queixa de cansaço. Ela está sentada no consultório aguardando atendimento.",
+  tarefas:["Realize a anamnese dirigida.","Examine a paciente, verbalizando as manobras.","Formule a hipótese diagnóstica e a classificação clínica.","Proponha a conduta e oriente a paciente."],
+  persona:"Senhora simples, afetuosa, um pouco ofegante ao falar (frases curtas). Chama o médico de 'doutor' ou 'doutora'. Não conhece termos técnicos. Está com medo de 'ter outro infarto' e quer saber se vai ficar internada. Só conta que parou a furosemida se perguntarem sobre os remédios ou sobre adesão. Se perguntarem detalhes não previstos, responda de forma coerente com insuficiência cardíaca descompensada (sem dizer o diagnóstico).",
+  topicos:[
+    {id:"qp", g:"Queixa principal", q:"O que traz a senhora aqui hoje?", kw:/(o que (traz|trouxe|aconteceu|houve|esta sentindo|sente)|qual (e )?(o|a) (problema|queixa)|em que posso|como posso ajudar|motivo)/, r:"Ai, é esse cansaço, doutor. Ando sem ar pra tudo."},
+    {id:"tempo", g:"História da doença atual", q:"Há quanto tempo está assim?", kw:/(quanto tempo|desde quando|comecou quando|quando comecou|ha quantos dias|faz quanto)/, r:"Faz umas três semanas. Foi piorando devagarinho."},
+    {id:"esforco", g:"História da doença atual", q:"Que esforço provoca o cansaço?", kw:/(esforco|caminh|andar|subir|escada|atividade|ladeira|quanto consegue|tarefas de casa)/, r:"Antes eu subia a ladeira da igreja sem parar. Agora chego no portão de casa e já preciso parar pra respirar."},
+    {id:"ortopneia", g:"História da doença atual", q:"A senhora consegue dormir deitada?", kw:/(deitad|travesseiro|dorm|deita|reto|cabeceira)/, r:"Deitada reta não dá, parece que afogo. Tô dormindo com três travesseiros, quase sentada."},
+    {id:"dpn", g:"História da doença atual", q:"Acorda à noite com falta de ar?", kw:/(acord|noite|madrugada|sufoc)/, r:"Acordei duas vezes essa semana sufocada. Tive que sentar na beira da cama e abrir a janela."},
+    {id:"edema", g:"História da doença atual", q:"Notou inchaço no corpo?", kw:/(inch|edema|perna|pes\b|pe\b|sapato|tornozel)/, r:"As pernas incham demais, principalmente à tarde. O sapato nem entra."},
+    {id:"peso", g:"História da doença atual", q:"Seu peso mudou?", kw:/(peso|engord|emagre|quilo|kg\b|balanca)/, r:"Engordei uns quatro quilos esse mês, e nem tô comendo muito."},
+    {id:"dor", g:"Interrogatório sintomatológico", q:"Sentiu dor no peito?", kw:/(peito|toracic|aperto|angina|precordi|dor no coracao)/, r:"Dor no peito não. Às vezes um peso quando ando muito, mas passa quando paro."},
+    {id:"tosse", g:"Interrogatório sintomatológico", q:"Tem tosse?", kw:/(tosse|catarro|escarro|secrec)/, r:"Uma tossezinha seca à noite. Catarro não."},
+    {id:"febre", g:"Interrogatório sintomatológico", q:"Teve febre ou gripe?", kw:/(febre|calafrio|gripe|resfri|infec)/, r:"Febre não. Gripe também não."},
+    {id:"urina", g:"Interrogatório sintomatológico", q:"Como está a urina?", kw:/(urin|xixi|miccao|banheiro)/, r:"De dia faço pouco xixi. De noite levanto umas três vezes."},
+    {id:"palp", g:"Interrogatório sintomatológico", q:"Sente palpitações?", kw:/(palpit|batedeira|coracao (acelerad|dispar|batendo))/, r:"Às vezes sinto o coração batendo rápido quando falta o ar."},
+    {id:"meds", g:"Antecedentes", q:"Quais remédios a senhora usa?", kw:/(remedio|medica|toma (algum|alguma)|usa (algum|alguma)|comprimido|tratamento)/, r:"Tomo losartana de manhã e à noite, o carvedilol, o AAS e a sinvastatina. Tinha a furosemida também, mas essa eu parei."},
+    {id:"furo", g:"Antecedentes", q:"Por que parou a furosemida?", kw:/(furosemida|lasix|parou|por que (parou|deixou)|deixou de tomar|esquec|suspend|tomando (direitinho|certo|corretamente)|adesao)/, r:"Parei faz um mês. Fui pra casa da minha filha em Minas e ela me fazia correr pro banheiro na estrada. Acabei não voltando a tomar."},
+    {id:"dieta", g:"Hábitos de vida", q:"Como é sua alimentação? Usa muito sal?", kw:/(sal\b|salgad|comida|aliment|dieta|liquido|agua)/, r:"Na casa da minha filha foi muita festa, linguiça, feijoada... Sal eu sempre usei bem, né. Água bebo uns dois litros."},
+    {id:"has", g:"Antecedentes", q:"Tem pressão alta?", kw:/(pressao|hipertens)/, r:"Pressão alta tenho faz uns vinte anos."},
+    {id:"iam", g:"Antecedentes", q:"Já teve algum problema no coração?", kw:/(infart|coracao|cardiac|cateter|stent|cirurgia|internad|internac|cardiolog)/, r:"Tive um infarto há seis anos. Colocaram um stent. Ia no cardiologista, mas faz um ano que não vou."},
+    {id:"dm", g:"Antecedentes", q:"Tem diabetes?", kw:/(diabet|acucar|glicose)/, r:"Diabetes não. O colesterol é que é alto."},
+    {id:"alergia", g:"Antecedentes", q:"Tem alergia a algum remédio?", kw:/(alergi)/, r:"Que eu saiba, não."},
+    {id:"fumo", g:"Hábitos de vida", q:"A senhora fuma ou já fumou?", kw:/(fum|cigarro|tabag)/, r:"Fumei trinta anos, um maço por dia. Parei depois do infarto."},
+    {id:"alcool", g:"Hábitos de vida", q:"Consome bebida alcoólica?", kw:/(bebida|alcool|cerveja|pinga|vinho|bebe\b)/, r:"Bebida não, só um vinhozinho no Natal."},
+    {id:"familia", g:"Antecedentes", q:"Alguém na família tem doença do coração?", kw:/(familia|mae\b|pai\b|irma|parente|heredit)/, r:"Minha mãe morreu do coração, com setenta e poucos anos."},
+    {id:"social", g:"Hábitos de vida", q:"Com quem a senhora mora?", kw:/(mora\b|morando|sozinha|vive com|aposentad|neta|filh)/, r:"Sou viúva. Moro com minha neta, ela trabalha o dia todo."},
+    {id:"medo", g:"Perspectiva da paciente", q:"O que a senhora acha que está acontecendo?", kw:/(preocup|medo|o que (a senhora )?acha|como (a senhora )?(esta|se sente) com isso|ansios)/, r:"Tô com medo de ser o coração de novo, doutor. Vou ter que ficar internada?"},
+    {id:"nome", g:"Identificação", q:"Qual o seu nome?", kw:/(seu nome|como (a senhora|voce) se chama|nome completo)/, r:"Lúcia Ferreira."},
+    {id:"idade", g:"Identificação", q:"Quantos anos a senhora tem?", kw:/(idade|quantos anos)/, r:"Setenta e quatro."},
+  ],
+  exame:[
+    {g:"Geral", itens:[
+      {id:"ectoscopia", nome:"Inspeção geral", achado:"Bom estado geral, corada, hidratada, acianótica. Dispneica leve durante a fala."},
+      {id:"sv", nome:"Sinais vitais", achado:"PA 158 × 94 mmHg · FC 98 bpm regular · FR 24 irpm · SpO₂ 92% (ar ambiente) · Tax 36,4 °C"},
+      {id:"antropo", nome:"Peso, altura e IMC", achado:"Peso 68 kg (há 1 mês: 64 kg) · Altura 1,58 m · IMC 27,2 kg/m²"},
+    ]},
+    {g:"Cardiovascular", itens:[
+      {id:"jugular", nome:"Pulso venoso jugular (45°)", achado:"Turgência jugular patológica a 45°. Refluxo hepatojugular positivo."},
+      {id:"ictus", nome:"Palpação do ictus", achado:"Ictus no 6º EIC, 2 cm lateral à linha hemiclavicular, impulsivo, 3 polpas."},
+      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Ritmo regular em 3 tempos (B3 presente — galope). Sopro sistólico 2+/6+ em foco mitral."},
+      {id:"pulsos", nome:"Pulsos periféricos", achado:"Pulsos presentes e simétricos, amplitude levemente reduzida. Extremidades quentes."},
+    ]},
+    {g:"Respiratório", itens:[
+      {id:"ausc_pulm", nome:"Ausculta pulmonar", achado:"Estertores crepitantes em terços inferiores bilateralmente. Murmúrio diminuído em base direita."},
+      {id:"percussao", nome:"Percussão torácica", achado:"Macicez em base direita."},
+    ]},
+    {g:"Abdome e membros", itens:[
+      {id:"abdome", nome:"Palpação abdominal / fígado", achado:"Fígado palpável a 3 cm do rebordo costal direito, doloroso, borda romba."},
+      {id:"mmii", nome:"Membros inferiores", achado:"Edema 3+/4+ bilateral, simétrico, até joelhos, cacifo positivo. Panturrilhas livres."},
+    ]},
+  ],
+  exames:{
+    bnp:{res:"BNP 1.240 pg/mL (ref. < 100)"},
+    renal:{res:"Ureia 58 mg/dL\nCreatinina 1,3 mg/dL (basal 1,0)"},
+    eletrolitos:{res:"Na 134 mEq/L\nK 4,6 mEq/L"},
+    hemograma:{res:"Hb 12,1 g/dL · Ht 37%\nLeucócitos 6.900/mm³\nPlaquetas 231.000/mm³"},
+    troponina:{res:"Troponina I us: 22 ng/L (ref. < 19) · repetição em 3 h: 23 ng/L (estável)"},
+    ecg:{ecg:{fc:98, leads:{DII:{q:.32,t:.18},DIII:{q:.38,r:.4,t:.1},aVF:{q:.34,t:.12},V5:{r:2.1,st:-.08,t:-.15},V6:{r:1.7,st:-.06,t:-.12},V1:{s:1.9},V2:{s:2.1}}}, laudo:"Ritmo sinusal, FC 98 bpm. Ondas Q patológicas em DII, DIII e aVF (área inativa inferior). Critérios de sobrecarga ventricular esquerda com alteração de repolarização em V5–V6."},
+    rx:{res:"Índice cardiotorácico 0,62 (cardiomegalia). Cefalização da trama vascular. Linhas B de Kerley em bases. Pequeno derrame pleural à direita."},
+    eco:{res:"VE dilatado, hipocinesia da parede inferior e inferolateral. FEVE 32% (Simpson). Insuficiência mitral moderada funcional. PSAP estimada 48 mmHg."},
+  },
+  hipRe:/(insuficiencia cardiaca|\bic\b|\bicc\b|icfer|ic descomp|ic agud|cardiopatia descomp)/,
+  checklist:[
+    {d:"Comunicação", l:"Apresenta-se à paciente", w:.5, test:C("apresentou")},
+    {d:"Comunicação", l:"Chama a paciente pelo nome", w:.5, test:C("nome")},
+    {d:"Comunicação", l:"Acolhe o medo da paciente (empatia)", w:.5, test:C("empatia")},
+    {d:"Comunicação", l:"Verifica entendimento e abre espaço para dúvidas", w:.5, test:C("entendimento")},
+    {d:"Anamnese", l:"Caracteriza a dispneia: início e progressão", w:1, test:T("tempo")},
+    {d:"Anamnese", l:"Gradua a dispneia pelo esforço (classe funcional)", w:1, test:T("esforco"), dica:"Pergunte o que ela consegue fazer antes de cansar: é isso que define a classe NYHA."},
+    {d:"Anamnese", l:"Pergunta sobre ortopneia", w:1, test:T("ortopneia")},
+    {d:"Anamnese", l:"Pergunta sobre dispneia paroxística noturna", w:1, test:T("dpn")},
+    {d:"Anamnese", l:"Investiga edema e ganho de peso", w:.5, test:T("edema","peso")},
+    {d:"Anamnese", l:"Pergunta sobre dor torácica", w:.5, test:T("dor")},
+    {d:"Anamnese", l:"Revisa medicamentos em uso", w:1, test:T("meds")},
+    {d:"Anamnese", l:"Identifica o fator de descompensação: abandono do diurético", w:1, test:T("furo"), dica:"Toda IC descompensada pede a busca do gatilho: adesão, sal, infecção, isquemia, arritmia."},
+    {d:"Anamnese", l:"Investiga ingestão de sal e líquidos", w:.5, test:T("dieta")},
+    {d:"Anamnese", l:"Investiga antecedentes cardiovasculares (HAS, IAM)", w:1, test:T("iam","has")},
+    {d:"Anamnese", l:"Pergunta sobre tabagismo", w:.5, test:T("fumo")},
+    {d:"Exame físico", l:"Afere sinais vitais", w:1, test:M("sv")},
+    {d:"Exame físico", l:"Avalia o pulso venoso jugular", w:1, test:M("jugular")},
+    {d:"Exame físico", l:"Ausculta cardíaca", w:1, test:M("ausc_card")},
+    {d:"Exame físico", l:"Ausculta pulmonar", w:1, test:M("ausc_pulm")},
+    {d:"Exame físico", l:"Examina membros inferiores (edema)", w:.5, test:M("mmii")},
+    {d:"Exame físico", l:"Avalia peso / hepatomegalia", w:.5, test:M("antropo","abdome")},
+    {d:"Raciocínio", l:"Hipótese: insuficiência cardíaca descompensada", w:2, ia:true, test:H(/(insuficiencia cardiaca|\bic\b|\bicc\b|icfer|ic descomp)/)},
+    {d:"Raciocínio", l:"Classifica o perfil hemodinâmico (quente e úmido / perfil B)", w:.5, ia:true, test:H(/(quente.{0,6}umid|perfil b|congest)/), dica:"Congesta e bem perfundida = perfil B (quente e úmido). Isso guia o uso de diurético."},
+    {d:"Raciocínio", l:"Solicita BNP e/ou ecocardiograma", w:1, test:X("bnp","eco")},
+    {d:"Raciocínio", l:"Solicita ECG e radiografia de tórax", w:1, test:X("ecg","rx")},
+    {d:"Raciocínio", l:"Solicita função renal e eletrólitos", w:1, test:X("renal","eletrolitos")},
+    {d:"Conduta", l:"Prescreve diurético de alça", w:1.5, ia:true, test:K(/(furosemida|diuretico de alca|lasix)/)},
+    {d:"Conduta", l:"Avalia gravidade e define o local de tratamento (urgência/observação ou reavaliação em 24–48 h)", w:1, ia:true, test:K(/(encaminh|pronto.socorro|\bupa\b|emergencia|intern|observacao|reavali|retorno em (24|48|1|2) )/)},
+    {d:"Conduta", l:"Otimiza a terapia de IC com FE reduzida (iSGLT2, espironolactona, sacubitril-valsartana)", w:1, ia:true, test:K(/(espironolactona|dapagliflozina|empagliflozina|isglt|sglt|sacubitril|quadrupl)/)},
+    {d:"Conduta", l:"Orienta restrição de sal", w:.5, ia:true, test:K(/(\bsal\b|sodio|salgad)/)},
+    {d:"Conduta", l:"Orienta pesar-se diariamente", w:.5, ia:true, test:K(/(pes(ar|e)(-se)? (todo|diari)|peso diari|balanca)/)},
+    {d:"Conduta", l:"Reforça a adesão aos medicamentos", w:.5, ia:true, test:K(/(nao (pare|parar|deixe|suspend)|adesao|tomar (todo|certinho|corretamente|direito)|importancia (do|de tomar))/)},
+    {d:"Conduta", l:"Explica sinais de alarme e retorno", w:.5, ia:true, test:K(/(sinais de alarme|sinal de alerta|se piorar|voltar|retorn)/)},
+  ],
+  criticos:[],
+},
+{
+  id:"rafael", ativo:true, img:"img/rafael.jpg", focus:"74% 40%", voz:"glassy",
+  area:"Saúde mental", local:"Unidade Básica de Saúde · acolhimento", tempo:600,
+  titulo:"Um remédio para dormir",
+  pac:{nome:"Rafael Souza", primeiro:"rafael", trat:"Rafael", idade:23, sexo:"Masculino", prof:"Estudante de engenharia", peso:"64 kg", altura:"1,78 m"},
+  enunciado:"Rafael, 23 anos, estudante universitário, procura a UBS pedindo “um remédio para dormir”. Na triagem, a técnica de enfermagem notou um curativo no punho esquerdo.",
+  tarefas:["Acolha o paciente e investigue a queixa.","Avalie o risco de suicídio.","Examine o que julgar necessário.","Defina e explique a conduta."],
+  persona:"Jovem retraído, fala baixo, evita contato visual, frases curtas. Começa pedindo só um remédio para dormir. Se o médico for acolhedor, sem julgamento, e garantir sigilo, ele se abre aos poucos. Se o médico for apressado, julgador ou usar frases como 'isso é bobagem', ele se fecha ('deixa pra lá, só quero o remédio'). Só fala do corte no punho se perguntarem sobre o curativo, o braço ou autolesão. Responde com honestidade quando perguntado diretamente sobre pensamentos de suicídio. Nunca descreva métodos em detalhe além do que está na ficha.",
+  topicos:[
+    {id:"qp", g:"Queixa principal", q:"O que te trouxe aqui hoje?", kw:/(o que (te |o )?(traz|trouxe|aconteceu|houve)|em que posso|como posso (te )?ajudar|motivo)/, r:"Eu queria um remédio pra dormir. Não tô conseguindo dormir direito."},
+    {id:"insonia", g:"Queixa principal", q:"Como está o seu sono?", kw:/(dorm|sono|insonia|acord)/, r:"Demoro horas pra pegar no sono, fico pensando em tudo. E acordo umas quatro da manhã e não durmo mais. Faz uns dois meses."},
+    {id:"humor", g:"Sintomas depressivos", q:"Como você tem se sentido?", kw:/(humor|triste|tristeza|deprimid|como (voce )?(esta|anda|tem andado|se sente|tem se sentido)|desanim|chor|vazio)/, r:"Ando mal... meio vazio. Choro às vezes sem motivo."},
+    {id:"anedonia", g:"Sintomas depressivos", q:"Ainda sente prazer nas coisas que gostava?", kw:/(prazer|gosta|divert|hobby|lazer|futebol|interesse|vontade de fazer|graca)/, r:"Eu jogava futebol toda quinta, parei. Nem videogame tenho vontade. Nada tem graça."},
+    {id:"apetite", g:"Sintomas depressivos", q:"Como está o apetite?", kw:/(apetite|fome|comer|comendo|peso|emagre)/, r:"Quase não sinto fome. Acho que perdi uns cinco quilos."},
+    {id:"energia", g:"Sintomas depressivos", q:"E a energia, a concentração?", kw:/(energia|cansa|disposic|concentr|foco|estud|faculdade|aula|culpa|fracass)/, r:"Tô sempre cansado. Não consigo me concentrar, reprovei em duas matérias. Me sinto um fracasso."},
+    {id:"estressor", g:"Contexto", q:"Aconteceu alguma coisa recentemente?", kw:/(aconteceu algo|aconteceu alguma|namor|termin|briga|problema em casa|como (esta|anda) (em casa|a familia))/, r:"Minha namorada terminou comigo faz três meses. E em casa tá difícil, meu pai vive brigando por causa das notas."},
+    {id:"punho", g:"Risco de suicídio", q:"O que aconteceu com o seu punho?", kw:/(punho|braco|curativo|machuc|corte|cortou|ferida|lesao|se (ferir|feriu)|autoles)/, r:"Isso... foi há três dias. Depois de uma briga com meu pai, eu me cortei com um estilete. Não sei se queria morrer. Queria parar de sentir aquilo."},
+    {id:"ideacao", g:"Risco de suicídio", q:"Você tem pensado em se matar?", kw:/(suicid|se matar|tirar (a )?(sua |propria )?vida|morrer|morte|nao (estar|existir|acordar)|acabar com tudo|desaparecer)/, r:"Já pensei, sim... Às vezes acho que seria melhor não acordar mais. Esses dias isso vem quase todo dia."},
+    {id:"plano", g:"Risco de suicídio", q:"Você pensou em como faria?", kw:/(plano|como (voce )?(faria|pensou)|de que (forma|jeito|maneira)|pensou em (como|algum jeito))/, r:"Pensei em tomar os remédios da minha mãe. Ela tem uma caixa de amitriptilina no armário."},
+    {id:"meios", g:"Risco de suicídio", q:"Você tem acesso a esses remédios?", kw:/(acesso|arma\b|onde (ficam|fica|esta|estao)|guardad|amitriptilina|em casa tem)/, r:"Ficam no armário da cozinha. Qualquer um pega."},
+    {id:"intencao", g:"Risco de suicídio", q:"Você acha que faria isso? Hoje?", kw:/(intenc|pretende|faria (isso|de novo)|vai fazer|hoje|agora|seguro|se proteger)/, r:"Não sei... Hoje eu não queria estar aqui. Mas não sei se faria. Às vezes tenho medo de mim."},
+    {id:"previa", g:"Risco de suicídio", q:"Já tinha se machucado ou tentado antes?", kw:/(antes|outra vez|ja tentou|tentativa|primeira vez|outras vezes)/, r:"Nunca tinha feito nada antes. Foi a primeira vez que eu me machuquei."},
+    {id:"alcool", g:"Fatores de risco", q:"Você usa álcool ou outras drogas?", kw:/(alcool|bebe|bebida|cerveja|drog|maconha|substanc|cocaina|usa algo)/, r:"Tô bebendo mais. Fim de semana, sozinho no quarto, umas oito, dez latas. Maconha às vezes, com os amigos."},
+    {id:"famhist", g:"Fatores de risco", q:"Alguém na família teve depressão ou suicídio?", kw:/(alguem na familia|historia familiar|familiar|parente|tio|avo)/, r:"Um tio meu, irmão do meu pai, se matou faz uns cinco anos. Ninguém fala disso em casa."},
+    {id:"mania", g:"Diagnóstico diferencial", q:"Já teve fases de muita energia ou euforia?", kw:/(euforia|euforic|agitad|muita energia|acelerad|gastar|mania|grandios|fase (boa|muito boa)|eletric)/, r:"Não, nunca tive isso de ficar elétrico. Sempre fui mais na minha."},
+    {id:"psicose", g:"Diagnóstico diferencial", q:"Ouve vozes ou vê coisas que outros não veem?", kw:/(vozes|voz\b|ouv(e|indo|ir) coisas|ve coisas|alucina|perseg|vigiando)/, r:"Não, nada disso."},
+    {id:"protecao", g:"Fatores de proteção", q:"Com quem você pode contar?", kw:/(apoio|alguem (pra|para|com quem)|confia|amigo|rede|irma|motivo (pra|para) viver|razao|religi|igreja)/, r:"Minha irmã, a Bia. Ela tem doze anos. Não queria fazer isso com ela. E o João, meu melhor amigo, sabe um pouco."},
+    {id:"saude", g:"Antecedentes", q:"Tem algum problema de saúde ou usa remédios?", kw:/(doenca|problema de saude|tratamento|remedio|medica|psicolog|psiquiatr|alergi)/, r:"Nunca tratei nada. Não tomo remédio nenhum. Alergia não."},
+    {id:"mora", g:"Contexto", q:"Com quem você mora?", kw:/(mora\b|vive com|quem (mora|vive))/, r:"Moro com meus pais e minha irmã."},
+    {id:"nome", g:"Identificação", q:"Qual o seu nome?", kw:/(seu nome|como (voce )?se chama)/, r:"Rafael."},
+    {id:"idade", g:"Identificação", q:"Quantos anos você tem?", kw:/(idade|quantos anos)/, r:"Vinte e três."},
+  ],
+  exame:[
+    {g:"Geral", itens:[
+      {id:"sv", nome:"Sinais vitais", achado:"PA 118 × 74 mmHg · FC 84 bpm · FR 16 irpm · SpO₂ 98% · Tax 36,5 °C"},
+      {id:"antropo", nome:"Peso e IMC", achado:"Peso 64 kg (referia 69 kg há 2 meses) · IMC 20,2 kg/m²"},
+      {id:"mental", nome:"Exame do estado mental", achado:"Vigil, orientado. Hipomímico, pouco contato visual. Discurso lentificado, baixo volume. Humor deprimido, afeto congruente. Pensamento com ideias de culpa e desesperança, sem delírios. Sem alterações de sensopercepção. Crítica preservada."},
+    ]},
+    {g:"Lesão no punho esquerdo", itens:[
+      {id:"inspecao_punho", nome:"Inspeção da lesão (retirar curativo)", achado:"Três cortes lineares, paralelos, superficiais, de 3–4 cm na face volar do punho esquerdo, em cicatrização, sem secreção ou sinais flogísticos. Sem cicatrizes antigas."},
+      {id:"neurovasc", nome:"Avaliação neurovascular e tendínea", achado:"Perfusão capilar < 2 s. Sensibilidade e força preservadas nos territórios mediano, ulnar e radial. Flexão dos dedos sem déficit."},
+    ]},
+  ],
+  exames:{},
+  hipRe:/depress/,
+  checklist:[
+    {d:"Comunicação", l:"Apresenta-se ao paciente", w:.5, test:C("apresentou")},
+    {d:"Comunicação", l:"Chama o paciente pelo nome", w:.5, test:C("nome")},
+    {d:"Comunicação", l:"Acolhe sem julgamento (empatia explícita)", w:1, test:C("empatia")},
+    {d:"Comunicação", l:"Garante sigilo e explica seus limites", w:.5, ia:true, test:C("sigilo"), dica:"Combine o sigilo, mas avise que, havendo risco à vida, a rede de apoio precisa ser envolvida."},
+    {d:"Anamnese", l:"Caracteriza a insônia", w:.5, test:T("insonia")},
+    {d:"Anamnese", l:"Investiga humor deprimido", w:.5, test:T("humor")},
+    {d:"Anamnese", l:"Investiga anedonia", w:1, test:T("anedonia")},
+    {d:"Anamnese", l:"Investiga sintomas somáticos (apetite, peso, energia, concentração)", w:.5, test:T("apetite","energia")},
+    {d:"Anamnese", l:"Investiga estressores recentes", w:.5, test:T("estressor")},
+    {d:"Risco de suicídio", l:"Pergunta sobre a lesão no punho e suas circunstâncias", w:1, test:T("punho")},
+    {d:"Risco de suicídio", l:"Pergunta diretamente sobre ideação suicida", w:2, test:T("ideacao"), dica:"Perguntar diretamente não induz suicídio. É o item de maior peso da estação."},
+    {d:"Risco de suicídio", l:"Investiga plano", w:1, test:T("plano")},
+    {d:"Risco de suicídio", l:"Investiga acesso a meios letais", w:1, test:T("meios")},
+    {d:"Risco de suicídio", l:"Investiga intenção atual", w:.5, test:T("intencao")},
+    {d:"Risco de suicídio", l:"Pergunta sobre tentativas prévias", w:.5, test:T("previa")},
+    {d:"Risco de suicídio", l:"Investiga uso de álcool e outras drogas", w:1, test:T("alcool")},
+    {d:"Risco de suicídio", l:"Pergunta sobre história familiar de suicídio", w:.5, test:T("famhist")},
+    {d:"Risco de suicídio", l:"Identifica fatores de proteção / rede de apoio", w:1, test:T("protecao")},
+    {d:"Anamnese", l:"Rastreia episódios de mania (antes de antidepressivo)", w:1, test:T("mania"), dica:"Antes de iniciar um ISRS, exclua a bipolaridade: o antidepressivo pode induzir uma virada maníaca."},
+    {d:"Anamnese", l:"Rastreia sintomas psicóticos", w:.5, test:T("psicose")},
+    {d:"Exame físico", l:"Examina a lesão com avaliação neurovascular", w:1, test:M("neurovasc","inspecao_punho")},
+    {d:"Exame físico", l:"Realiza o exame do estado mental", w:1, test:M("mental")},
+    {d:"Raciocínio", l:"Hipótese: episódio depressivo (moderado a grave)", w:2, ia:true, test:H(/depress/)},
+    {d:"Raciocínio", l:"Estratifica o risco de suicídio como alto", w:1, ia:true, test:H(/(alto risco|risco (alto|elevado|grave|importante|moderado a alto))/)},
+    {d:"Conduta", l:"Não libera o paciente apenas com hipnótico", w:.5, ia:true, test:s => /(zolpidem|clonazepam|rivotril|diazepam|benzodiazep|hipnotico)/.test(norm(s.conduta)) ? {ok:false, ev:"Conduta cita hipnótico/benzodiazepínico"} : {ok:true, ev:"Sem prescrição de hipnótico isolado"}},
+    {d:"Conduta", l:"Encaminha com urgência para CAPS / psiquiatria", w:1.5, ia:true, test:K(/(caps|psiquiatr|saude mental|emergencia psiq|urgencia)/)},
+    {d:"Conduta", l:"Orienta restrição de acesso aos meios (retirar os medicamentos de casa)", w:1.5, ia:true, test:K(/(retir|guard|tranc|afast|restricao de (meios|acesso)|acesso aos (remedios|medicamentos)|remov|tirar (os )?remedios)/), dica:"Restringir o acesso aos meios é uma das intervenções com maior evidência de redução de suicídio."},
+    {d:"Conduta", l:"Envolve família/rede de apoio com consentimento", w:1, ia:true, test:K(/(familia|seus pais|sua mae|seu pai|acompanhante|rede de apoio|avisar|chamar alguem)/)},
+    {d:"Conduta", l:"Constrói um plano de segurança", w:1, ia:true, test:K(/(plano de seguranca|plano de crise|se (os pensamentos|a vontade) (vier|piorar)|o que fazer se)/)},
+    {d:"Conduta", l:"Informa canais de crise (CVV 188 / SAMU 192)", w:.5, ia:true, test:K(/(cvv|188|192|samu)/)},
+    {d:"Conduta", l:"Considera iniciar antidepressivo (ISRS)", w:.5, ia:true, test:K(/(isrs|sertralina|fluoxetina|escitalopram|citalopram|antidepress)/)},
+    {d:"Conduta", l:"Orienta cuidado da ferida e a vacina antitetânica", w:.5, ia:true, test:K(/(curativo|ferida|limp|antitet|tetano|vacina)/)},
+  ],
+  criticos:[
+    {l:"Prescreveu benzodiazepínico/hipnótico para um paciente com plano de intoxicação medicamentosa", test:s => /(zolpidem|clonazepam|rivotril|diazepam|benzodiazep)/.test(norm(s.conduta))},
+  ],
+},
+{
+  id:"antonio", ativo:true, img:"img/emergencia.jpg", focus:"55% 45%", voz:"buttery", emergencia:true,
+  area:"Urgência e emergência", local:"Sala de emergência · hospital com hemodinâmica 24 h", tempo:600,
+  titulo:"Dor no peito na sala vermelha",
+  pac:{nome:"Antônio Carlos Lima", primeiro:"antonio", trat:"Seu Antônio", idade:58, sexo:"Masculino", prof:"Motorista de ônibus", peso:"86 kg", altura:"1,72 m"},
+  enunciado:"Antônio, 58 anos, chega trazido pela esposa com dor no peito há 1h30. Já está no leito da sala de emergência. A enfermeira Carla está ao seu lado e cumpre as suas ordens.",
+  tarefas:["Realize o atendimento inicial.","Solicite e interprete os exames essenciais.","Estabeleça o diagnóstico.","Institua a conduta inicial."],
+  persona:"Homem de 58 anos, assustado, suando, fala entrecortada pela dor (frases curtas). Chama o médico de 'doutor'. Usa linguagem popular ('um aperto aqui'). Só conta que tomou sildenafil se perguntarem sobre remédios para ereção / 'remédio azul' / uso recente de outros remédios.",
+  topicos:[
+    {id:"qp", g:"Dor", q:"O que o senhor está sentindo?", kw:/(o que (o senhor )?(esta sentindo|sente|aconteceu|houve)|qual (o|a) (problema|queixa)|o que trouxe)/, r:"Uma dor no peito, doutor... um aperto forte aqui no meio."},
+    {id:"inicio", g:"Dor", q:"Quando começou a dor?", kw:/(quando comecou|comecou quando|quanto tempo|desde quando|ha quanto|o que estava fazendo)/, r:"Faz uma hora e meia. Tava sentado vendo televisão."},
+    {id:"carater", g:"Dor", q:"Como é essa dor?", kw:/(como e (essa|a) dor|tipo de dor|aperto|pontada|queimacao|pressao|onde doi|localiz|aponte)/, r:"É um aperto, como se tivesse um peso em cima do peito."},
+    {id:"irrad", g:"Dor", q:"A dor vai para algum lugar?", kw:/(irradi|vai para|espalha|braco|mandibula|queixo|costas|pescoco)/, r:"Vai pro braço esquerdo e pro queixo."},
+    {id:"intens", g:"Dor", q:"De 0 a 10, qual a intensidade?", kw:/(0 a 10|zero a dez|nota|intensidade|forte)/, r:"Nove. Não melhora com nada."},
+    {id:"assoc", g:"Sintomas associados", q:"Sente mais alguma coisa?", kw:/(suor|sudorese|enjoo|nausea|vomit|falta de ar|tontura|desmai|mais alguma coisa|outros sintomas)/, r:"Tô suando frio, enjoado... e meio tonto."},
+    {id:"fr", g:"Fatores de risco", q:"Tem pressão alta, diabetes, colesterol?", kw:/(pressao|hipertens|diabet|acucar|colesterol)/, r:"Pressão alta e diabetes. Colesterol o médico falou que tá alto, mas não tomo nada."},
+    {id:"fumo", g:"Fatores de risco", q:"O senhor fuma?", kw:/(fum|cigarro|tabag)/, r:"Um maço por dia, desde moleque."},
+    {id:"meds", g:"Medicamentos", q:"Quais remédios usa?", kw:/(remedio|medica|toma (algum|alguma)|usa (algum|alguma)|comprimido)/, r:"Losartana e metformina."},
+    {id:"pde5", g:"Medicamentos", q:"Usou remédio para ereção nas últimas 48 h?", kw:/(erec|sildenafil|viagra|tadalafil|cialis|azulzinho|remedio azul|disfuncao)/, r:"Ah... tomei um azulzinho ontem à noite, doutor."},
+    {id:"sangra", g:"Contraindicações", q:"Teve sangramento, AVC ou cirurgia recente?", kw:/(sangr|avc|derrame|cirurgia|operou|ulcera|hemorrag|trauma)/, r:"Não, nada disso."},
+    {id:"alergia", g:"Medicamentos", q:"Tem alergia a algum remédio?", kw:/(alergi)/, r:"Não tenho."},
+    {id:"previo", g:"Antecedentes", q:"Já teve isso antes?", kw:/(ja teve|antes|infarto|coracao|cateterismo)/, r:"Nunca. Meu pai morreu de infarto com sessenta."},
+    {id:"nome", g:"Identificação", q:"Qual o nome do senhor?", kw:/(seu nome|como (o senhor )?se chama)/, r:"Antônio Carlos."},
+  ],
+  enfermeira:"Enfermeira Carla, experiente, objetiva e cordial. Cumpre ordens claras do médico e confirma em voz alta. Informa os sinais vitais do monitor quando perguntada (se o paciente estiver monitorizado; se não, avisa que ainda não monitorizou). Peso do paciente: cerca de 86 kg. A hemodinâmica está disponível, com equipe de sobreaviso, sala pronta em cerca de 30 min. Se o médico pedir algo inadequado (ex.: nitrato com PA baixa), ela cumpre mas comenta discretamente a pressão.",
+  exame:[
+    {g:"Geral", itens:[
+      {id:"ectoscopia", nome:"Inspeção geral", achado:"Ansioso, pálido, sudoreico, levine (mão fechada sobre o esterno)."},
+      {id:"sv", nome:"Sinais vitais", achado:"VITAIS"},
+      {id:"pa_bilateral", nome:"PA nos dois braços + pulsos", achado:"PA MSD 94 × 60 · MSE 92 × 58 mmHg. Pulsos radiais e femorais simétricos."},
+    ]},
+    {g:"Cardiovascular", itens:[
+      {id:"jugular", nome:"Pulso venoso jugular (45°)", achado:"Turgência jugular a 45°, sem refluxo hepatojugular. (Pulmões limpos — ver ausculta.)"},
+      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Ritmo regular, bradicárdico, 2 tempos, bulhas normofonéticas, sem sopros ou B3."},
+    ]},
+    {g:"Respiratório", itens:[
+      {id:"ausc_pulm", nome:"Ausculta pulmonar", achado:"Murmúrio vesicular presente bilateralmente, sem ruídos adventícios."},
+    ]},
+    {g:"Abdome e membros", itens:[
+      {id:"abdome", nome:"Abdome", achado:"Flácido, indolor, sem massas pulsáteis."},
+      {id:"mmii", nome:"Membros inferiores", achado:"Sem edema. Panturrilhas livres."},
+    ]},
+  ],
+  exames:{
+    ecg:{t:2, ecg:{fc:52, leads:{DII:{st:.22,t:.42},DIII:{st:.36,t:.5,r:.6},aVF:{st:.3,t:.45},DI:{st:-.1,t:.05},aVL:{st:-.22,t:-.15},V1:{st:.08},V2:{st:-.06}}}, laudo:"Bradicardia sinusal, FC 52 bpm. Supradesnivelamento do segmento ST em DII, DIII e aVF (DIII > DII), com infradesnivelamento recíproco em DI e aVL. Sugere IAM com supra de ST de parede inferior; supra em DIII > DII sugere oclusão de coronária direita — investigar o ventrículo direito."},
+    ecg_d:{t:2, res:"V3R: supra de ST de 1 mm\nV4R: supra de ST de 1,5 mm\nV7–V9: sem alterações", laudo:"Supra em V4R ≥ 1 mm: acometimento do ventrículo direito."},
+    troponina:{t:14, res:"Troponina I us: 1.840 ng/L (ref. < 19)"},
+    renal:{res:"Ureia 38 mg/dL\nCreatinina 1,0 mg/dL"},
+    eletrolitos:{res:"Na 138 mEq/L\nK 4,3 mEq/L"},
+    glicemia:{res:"Glicemia 194 mg/dL"},
+    rx:{t:10, res:"Área cardíaca normal. Campos pulmonares limpos. Mediastino de dimensões normais."},
+  },
+  hipRe:/(iam|infarto|sca|sindrome coronari)/,
+  checklist:[
+    {d:"Comunicação", l:"Apresenta-se ao paciente", w:.5, test:C("apresentou")},
+    {d:"Comunicação", l:"Explica ao paciente o que está acontecendo e o que será feito", w:.5, ia:true, test:C("explicou")},
+    {d:"Comunicação", l:"Tranquiliza o paciente (empatia)", w:.5, test:C("empatia")},
+    {d:"Atendimento inicial", l:"Monitoriza e obtém acesso venoso (MOV)", w:1, test:O("mov")},
+    {d:"Atendimento inicial", l:"ECG nos primeiros 3 minutos (meta real: ≤ 10 min da chegada)", w:1.5, test:ECG_BY(180), dica:"Na dor torácica, o ECG vem antes de qualquer outra coisa: a meta é laudar em até 10 minutos da chegada."},
+    {d:"Atendimento inicial", l:"Glicemia capilar", w:.25, test:O("glic")},
+    {d:"Anamnese", l:"Caracteriza a dor (início, tipo, irradiação)", w:1, test:s => { const h = ["inicio","carater","irrad"].filter(k=>s.topics[k]); return h.length>=2 ? {ok:true, ev:`${h.length} de 3 características investigadas`} : {ok:false, ev:h.length?`Só ${h.length} de 3 características`:undefined}; }},
+    {d:"Anamnese", l:"Pergunta sintomas associados", w:.5, test:T("assoc")},
+    {d:"Anamnese", l:"Investiga fatores de risco cardiovascular", w:.5, test:T("fr","fumo")},
+    {d:"Anamnese", l:"Pergunta sobre uso de inibidor de PDE-5 (sildenafil)", w:.5, test:T("pde5"), dica:"Nitrato + sildenafil nas últimas 24 h (tadalafila 48 h) = hipotensão grave."},
+    {d:"Anamnese", l:"Investiga contraindicações a antitrombóticos (sangramento, AVC, cirurgia)", w:.5, test:T("sangra")},
+    {d:"Exame físico", l:"Avalia sinais vitais", w:.5, test:ANY(M("sv"), s => s.vitalsAsked ? {ok:true, ev:"Pediu os sinais vitais à enfermeira"} : {ok:false})},
+    {d:"Exame físico", l:"Ausculta pulmonar (Killip)", w:.5, test:M("ausc_pulm")},
+    {d:"Exame físico", l:"Avalia a jugular (sinal de infarto de VD)", w:.5, test:M("jugular")},
+    {d:"Exame físico", l:"PA nos dois braços / pulsos (exclui dissecção de aorta)", w:.5, test:M("pa_bilateral")},
+    {d:"Raciocínio", l:"Diagnóstico: IAM com supra de ST de parede inferior", w:2, ia:true, test:H(/((iam|infarto).{0,30}(supra|cst|com supra|st)|iamcsst|stemi|supra.{0,20}st)/)},
+    {d:"Raciocínio", l:"Reconhece acometimento do ventrículo direito (pede V3R/V4R ou cita VD)", w:1, test:ANY(X("ecg_d"), H(/(ventriculo direito|\bvd\b|v4r|v3r)/))},
+    {d:"Conduta", l:"AAS 300 mg", w:1, test:O("aas")},
+    {d:"Conduta", l:"Segundo antiagregante (inibidor de P2Y12)", w:1, test:O("p2y12")},
+    {d:"Conduta", l:"Anticoagulação", w:1, test:O("anticoag")},
+    {d:"Conduta", l:"Aciona a hemodinâmica para angioplastia primária", w:2, test:O("icp"), dica:"Com hemodinâmica disponível e porta-balão < 90 min, a angioplastia primária é a reperfusão de escolha."},
+    {d:"Conduta", l:"Não prescreve nitrato (hipotensão, VD e sildenafil)", w:1, test:NO("nitrato")},
+    {d:"Conduta", l:"Não prescreve betabloqueador EV (bradicardia e hipotensão)", w:.5, test:NO("bb")},
+    {d:"Conduta", l:"Expande volume para a hipotensão do infarto de VD", w:.5, test:O("sf")},
+  ],
+  criticos:[
+    {l:"Nitrato em paciente hipotenso, com infarto de VD e uso de sildenafil há menos de 24 h", test:s => s.orders.nitrato!=null},
+    {l:"Betabloqueador EV em paciente bradicárdico e hipotenso", test:s => s.orders.bb!=null},
+    {l:"Não indicou nenhuma estratégia de reperfusão", test:s => s.orders.icp==null && s.orders.trombolise==null},
+  ],
+},
+{
+  id:"camila", ativo:true, img:"img/camila.jpg", focus:"72% 40%", voz:"airy",
+  area:"Clínica médica · Neurologia", local:"Unidade Básica de Saúde · consulta agendada", tempo:600,
+  titulo:"Dor de cabeça de novo",
+  pac:{nome:"Camila Nunes", primeiro:"camila", trat:"Camila", idade:29, sexo:"Feminino", prof:"Analista de marketing", peso:"58 kg", altura:"1,65 m"},
+  enunciado:"Camila, 29 anos, analista de marketing, procura a UBS porque as dores de cabeça “estão cada vez mais frequentes”.",
+  tarefas:["Realize a anamnese da cefaleia, incluindo sinais de alarme.","Faça o exame físico e neurológico pertinente.","Formule a hipótese diagnóstica.","Proponha a conduta e as orientações."],
+  persona:"Jovem comunicativa, objetiva, um pouco irritada com a dor que atrapalha o trabalho. Quer 'um remédio mais forte'. Toma anticoncepcional combinado há 5 anos e só menciona se perguntarem sobre medicamentos ou contracepção. Descreve as luzes em zigue-zague só se perguntarem sobre alterações visuais ou o que acontece antes da dor.",
+  topicos:[
+    {id:"qp", g:"Queixa principal", q:"O que te traz aqui hoje?", kw:/(o que (te )?(traz|trouxe|aconteceu)|em que posso|como posso (te )?ajudar|motivo)/, r:"Minhas dores de cabeça. Tão cada vez mais frequentes, não aguento mais."},
+    {id:"tempo", g:"Caracterização", q:"Desde quando tem essas dores?", kw:/(desde quando|quanto tempo|quando comec|comecou quando)/, r:"Tenho desde a adolescência, mas pioraram muito nos últimos seis meses."},
+    {id:"freq", g:"Caracterização", q:"Quantas vezes por mês?", kw:/(quantas vezes|frequen|por (semana|mes)|quantos dias)/, r:"Umas três crises fortes por mês, mas tenho dor quase dia sim, dia não."},
+    {id:"local", g:"Caracterização", q:"Onde dói e como é a dor?", kw:/(onde doi|local|lado|como e (a|essa) dor|tipo de dor|latej|pulsa|aperto|pontada)/, r:"De um lado só, às vezes direito, às vezes esquerdo. Lateja muito."},
+    {id:"intens", g:"Caracterização", q:"Qual a intensidade e quanto tempo dura?", kw:/(intensidade|0 a 10|nota|forte|quanto tempo dura|dura quanto|duracao)/, r:"Umas oito de dez. Dura o dia inteiro se eu não tomar nada."},
+    {id:"assoc", g:"Caracterização", q:"Sente enjoo ou incômodo com luz e barulho?", kw:/(enjoo|nausea|vomit|luz|claridade|barulho|som|fotofob|fonofob)/, r:"Enjoo sim, e luz me incomoda demais. Preciso ficar no quarto escuro."},
+    {id:"aura", g:"Caracterização", q:"Acontece algo antes da dor? Alterações na visão?", kw:/(antes da dor|aura|visao|enxerg|luzes|brilho|zigue|ponto cego|formigamento|aviso)/, r:"Algumas vezes, antes da dor, vejo umas luzes em zigue-zague, tipo um brilho, por uns vinte minutos. Depois vem a dor."},
+    {id:"esforco", g:"Caracterização", q:"Piora com esforço físico?", kw:/(esforco|piora com|atividade fisica|subir escada|movimento)/, r:"Piora sim, até subir escada piora."},
+    {id:"gatilho", g:"Caracterização", q:"Percebe algo que desencadeia?", kw:/(desencade|gatilho|piora quando|menstrua|estresse|sono|vinho|jejum|chocolate)/, r:"Estresse do trabalho, dormir mal, perto da menstruação... e vinho."},
+    {id:"alarme", g:"Sinais de alarme", q:"Teve febre, rigidez no pescoço, fraqueza, a pior dor da vida?", kw:/(febre|rigidez|nuca|fraqueza|formig|pior dor|subita|trovao|acorda com|tosse|evacuar|convuls|desmai|confus|trauma|bateu a cabeca)/, r:"Não, nada disso. É sempre o mesmo padrão, só ficou mais frequente."},
+    {id:"analg", g:"Medicamentos", q:"O que você toma para a dor? Com que frequência?", kw:/(toma (para|pra|algum)|analgesic|dipirona|neosaldina|paracetamol|ibuprofeno|remedio pra dor|o que (voce )?toma|quantos dias (voce )?toma)/, r:"Dipirona e Neosaldina. Tomo uns quinze dias por mês, às vezes duas vezes no mesmo dia."},
+    {id:"aco", g:"Medicamentos", q:"Usa algum método contraceptivo?", kw:/(anticoncep|contracep|pilula|aco\b|metodo|diu|hormonio|remedio (de uso )?continuo|outros remedios|usa algum remedio)/, r:"Tomo pílula anticoncepcional há uns cinco anos. Aquela com estrogênio."},
+    {id:"fumo", g:"Hábitos", q:"Você fuma?", kw:/(fum|cigarro|tabag|vape)/, r:"Fumo socialmente. Três, quatro cigarros no fim de semana."},
+    {id:"sono", g:"Hábitos", q:"Como está o sono e o estresse?", kw:/(dorm|sono|ansiedade|cafe|cafeina)/, r:"Durmo umas cinco horas. Tomo muito café, uns seis por dia."},
+    {id:"familia", g:"Antecedentes", q:"Alguém na família tem enxaqueca?", kw:/(familia|mae\b|pai\b|irma|heredit)/, r:"Minha mãe tem enxaqueca."},
+    {id:"nome", g:"Identificação", q:"Qual o seu nome?", kw:/(seu nome|como (voce )?se chama)/, r:"Camila Nunes."},
+  ],
+  exame:[
+    {g:"Geral", itens:[
+      {id:"sv", nome:"Sinais vitais", achado:"PA 118 × 76 mmHg · FC 72 bpm · FR 14 irpm · Tax 36,3 °C"},
+    ]},
+    {g:"Neurológico", itens:[
+      {id:"neuro", nome:"Exame neurológico (força, sensibilidade, reflexos, pares cranianos, coordenação, marcha)", achado:"Sem déficits focais. Pares cranianos normais. Força grau V global. Reflexos simétricos 2+. Coordenação e marcha normais."},
+      {id:"fundo", nome:"Fundoscopia", achado:"Papilas de bordos nítidos, sem edema. Pulso venoso espontâneo presente."},
+      {id:"meningeo", nome:"Sinais meníngeos", achado:"Rigidez de nuca ausente. Kernig e Brudzinski negativos."},
+      {id:"pericranio", nome:"Palpação pericraniana e da ATM", achado:"Leve dor à palpação de trapézios. ATM sem alterações."},
+    ]},
+  ],
+  exames:{ bhcg:{res:"Beta-hCG: negativo"} },
+  hipRe:/(enxaqueca|migranea)/,
+  checklist:[
+    {d:"Comunicação", l:"Apresenta-se à paciente", w:.5, test:C("apresentou")},
+    {d:"Comunicação", l:"Chama a paciente pelo nome", w:.5, test:C("nome")},
+    {d:"Comunicação", l:"Valida o impacto da dor (empatia)", w:.5, test:C("empatia")},
+    {d:"Comunicação", l:"Verifica entendimento", w:.5, test:C("entendimento")},
+    {d:"Anamnese", l:"Caracteriza localização e tipo da dor", w:1, test:T("local")},
+    {d:"Anamnese", l:"Caracteriza frequência", w:1, test:T("freq")},
+    {d:"Anamnese", l:"Pergunta intensidade e duração", w:.5, test:T("intens")},
+    {d:"Anamnese", l:"Investiga náusea, fotofobia e fonofobia", w:1, test:T("assoc")},
+    {d:"Anamnese", l:"Investiga aura", w:1.5, test:T("aura"), dica:"A aura muda tudo nesta estação: contraindica o anticoncepcional com estrogênio."},
+    {d:"Anamnese", l:"Pesquisa sinais de alarme", w:1.5, test:T("alarme")},
+    {d:"Anamnese", l:"Quantifica o uso de analgésicos", w:1, test:T("analg")},
+    {d:"Anamnese", l:"Pergunta sobre contracepção", w:1.5, test:T("aco")},
+    {d:"Anamnese", l:"Pergunta sobre tabagismo", w:.5, test:T("fumo")},
+    {d:"Anamnese", l:"Investiga gatilhos, sono e cafeína", w:.5, test:T("gatilho","sono")},
+    {d:"Exame físico", l:"Afere sinais vitais", w:.5, test:M("sv")},
+    {d:"Exame físico", l:"Exame neurológico", w:1, test:M("neuro")},
+    {d:"Exame físico", l:"Fundoscopia", w:1, test:M("fundo")},
+    {d:"Exame físico", l:"Sinais meníngeos", w:.5, test:M("meningeo")},
+    {d:"Raciocínio", l:"Hipótese: enxaqueca com aura", w:2, ia:true, test:H(/((enxaqueca|migranea).{0,15}com aura|com aura)/)},
+    {d:"Raciocínio", l:"Reconhece uso excessivo de analgésicos", w:1, ia:true, test:H(/(uso excessivo|abuso de analg|rebote|cefaleia por (uso|abuso))/)},
+    {d:"Raciocínio", l:"Não solicita neuroimagem sem indicação", w:1, test:NOT_X("tc_cranio","rm_cranio")},
+    {d:"Conduta", l:"Suspende o anticoncepcional combinado e propõe método sem estrogênio", w:2, ia:true, test:K(/((suspend|trocar|substitu|parar|contraindic).{0,40}(anticoncep|pilula|estrogen|aco\b|hormon)|diu|desogestrel|progestag|implante)/), dica:"Enxaqueca com aura + estrogênio = risco aumentado de AVC isquêmico (critério de elegibilidade OMS 4)."},
+    {d:"Conduta", l:"Inicia profilaxia (propranolol, amitriptilina ou topiramato)", w:1, ia:true, test:K(/(propranolol|amitriptilina|topiramato|flunarizina|profilax|preventiv)/)},
+    {d:"Conduta", l:"Trata as crises com AINE e/ou triptano", w:1, ia:true, test:K(/(triptano|sumatriptano|naratriptano|rizatriptano|zolmitriptano|aine|naproxeno|ibuprofeno|cetoprofeno|diclofenaco)/)},
+    {d:"Conduta", l:"Orienta limitar analgésicos (< 10 dias/mês)", w:1, ia:true, test:K(/(limit|reduz|menos de (10|dez)|dias por mes|evitar (o )?uso|no maximo)/)},
+    {d:"Conduta", l:"Recomenda diário da cefaleia", w:.5, ia:true, test:K(/(diario|anotar|registrar|calendario)/)},
+    {d:"Conduta", l:"Aconselha parar de fumar", w:.5, ia:true, test:K(/(parar de fumar|cessar|tabagismo|cigarro)/)},
+    {d:"Conduta", l:"Orienta higiene do sono, cafeína e gatilhos", w:.5, ia:true, test:K(/(sono|dormir|cafe|cafeina|gatilho|regular)/)},
+  ],
+  criticos:[],
+},
+{ id:"joaquim", ativo:false, img:"img/joaquim.jpg", area:"Geriatria", titulo:"Esquecimentos do Seu Joaquim", pac:{nome:"Joaquim Prado", idade:79}, tempo:600 },
+];
+
+
+/* =========================================================================
+   ESTAÇÕES DO REPOSITÓRIO (data/stations.json → formato da sala)
+   Gerado por sala/build-sala.mjs em casos-repo.json. O checklist vem do gabarito (instC);
+   o avaliador IA revisa todos os itens, e o reconhecimento local por palavras serve de reserva.
+   ========================================================================= */
+const STOP = new Set("paciente pacientes sobre quando outros outras sinais exame exames avaliar avaliacao presenca ausencia tempo historia investigar pergunta perguntar questionar caracterizar quanto qualquer durante antes depois desde entre sempre ainda tambem muito pouco forma local devem possivel principal relacao associado associada candidato solicitar realizar orientar explicar identificar verificar descrever pesquisar incluindo inclusive principalmente especialmente".split(" "));
+const stems = t => [...new Set(norm(t).split(/[^a-z0-9]+/).filter(w => w.length>=5 && !STOP.has(w)).map(w => w.slice(0,5)))];
+const hasStems = (item, text, min=1) => { const a = stems(item); if (!a.length) return false; const b = new Set(stems(text)); return a.filter(x => b.has(x)).length >= Math.min(min, a.length); };
+const SAID = (item, min=1) => s => { for (const m of s.transcript){ if (m.who==="me" && hasStems(item, m.text, min)) return {ok:true, ev:quote(m.t, m.text)}; } return {ok:false}; };
+const DID = item => s => { for (const g of s.c.exame) for (const it of g.itens){ if (s.man[it.id]!=null && hasStems(item, it.nome)) return {ok:true, ev:`${fmt(s.man[it.id])} — ${it.nome}`}; } return {ok:false}; };
+const ASKED_EX = item => s => { for (const id in s.exams){ const n = examDef(id).nome || ""; if (hasStems(item, n)) return {ok:true, ev:`${fmt(s.exams[id].t)} — solicitou ${n}`}; } return {ok:false}; };
+const WROTE = (item, min=2) => s => hasStems(item, s.conduta+" \n "+s.notas, min) ? {ok:true, ev:"Registrado na conduta/anotações"} : SAID(item, min)(s);
+const DIAG = topic => { const w = String(topic||"").split("-").filter(x => x.length>=4 && !["para","tipo","forma","campo"].includes(x)).map(x => x.slice(0,5)); const need = w.length>=3 ? 2 : 1;
+  return s => { const b = new Set(stems(s.hip+" "+s.dif)); return w.filter(x => b.has(x)).length >= need ? {ok:true, ev:`Hipótese: “${s.hip||s.dif}”`} : {ok:false}; }; };
+const PHOTO = s => { const txt = norm(s.transcript.filter(m=>m.who==="me").map(m=>m.text).join(" ")+" "+s.notas+" "+s.conduta);
+  const hits = new Set(txt.match(/(papul|macul|mancha|placa|nodul|vesic|pustul|crost|escam|eritem|hipercr|hipocr|ulcer|topogr|distrib|descam|lique|atrof|cicatr|tuberc|bolha|acrom|enduri|telang|perol|bord|simetr|assimetr)/g) || []);
+  return hits.size>=3 ? {ok:true, ev:`${hits.size} termos semiológicos usados`} : {ok:false, ev: hits.size ? `Só ${hits.size} termo(s) semiológico(s)` : undefined}; };
+const comTest = x => { const n = norm(x);
+  if (/apresent/.test(n)) return C("apresentou");
+  if (/(sigil|confid)/.test(n)) return C("sigilo");
+  if (/(duvid|entend|compreens)/.test(n)) return C("entendimento");
+  if (/(empat|acolh|preocupa|medo|ansied|tranquil|valid|escuta)/.test(n)) return ANY(C("empatia"), SAID(x));
+  if (/(diagnost|explic|comunic|inform|orient)/.test(n)) return ANY(C("explicou"), SAID(x));
+  return SAID(x); };
+const splitP = t => String(t||"").split(/\s+\|\s+/).map(x => x.trim()).filter(Boolean);
+const titleCase = t => t.toLowerCase().replace(/(^|\s|\()([a-zà-ú]+)/g, (m,a,b) => a + (/^(e|de|da|do|das|dos|em|com|a|o)$/.test(b) && a ? b : b.charAt(0).toUpperCase()+b.slice(1)));
+const cleanAchado = t => String(t||"").replace(/\s*[—-]\s*(informar|fornecid|entregar|so |só |somente)[^|]*$/i, "").trim();
+
+function fromStation(st){
+  const A = st.instA||{}, B = st.instB||{}, K2 = st.instC||{};
+  const pat = String(A.patient||"");
+  const nome = pat.split(",")[0].trim() || "Paciente";
+  const idade = +((pat.match(/(\d+)\s*anos/)||[])[1] || 40);
+  const fem = /feminin/i.test(pat) || /\bsra\b|\bdona\b/i.test(nome);
+  const iniciais = /^([A-ZÀ-Ú]\.){2,}/.test(nome.replace(/\s/g,""));
+  const primeiro = iniciais ? "" : nome.split(/\s+/)[0];
+  const trat = iniciais ? (idade>=55 ? (fem?"a senhora":"o senhor") : "Paciente") : (idade>=60 ? (fem?"Dona ":"Seu ")+primeiro : primeiro);
+  const scriptTxt = (B.script||[]).map(x => x.trigger).join(" ");
+  const equipe = /intensiva|emergenc/.test(norm(st.tema)) || (/(uti|trauma|pronto|emergencia|ps —|ps -)/.test(norm(st.sub)) && /(enfermag|samu|famil|equipe|acompanhante|colega)/.test(norm(scriptTxt)));
+  const img = equipe ? "img/emergencia.jpg" : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const vv = B.vitals || {}; const vget = re => { for (const k in vv) if (re.test(k)) return String(vv[k]); return ""; };
+  const num = (t, re) => { const m = String(t).match(re); return m ? +m[1] : null; };
+  const pa = vget(/^pa\b|press/i).match(/(\d{2,3})\s*[x×/]\s*(\d{2,3})/);
+  const vitIni = {fc: num(vget(/^fc|frequ[eê]ncia card/i), /(\d{2,3})/), pas: pa ? +pa[1] : null, pad: pa ? +pa[2] : null, sat: num(vget(/sp ?o|sat/i), /(\d{2,3})/), fr: num(vget(/^fr|frequ[eê]ncia resp/i), /(\d{1,2})/)};
+  const monitor = equipe && vitIni.fc && vitIni.pas;
+  const roleOf = (tr, sp) => { const n = norm(tr), f = norm(sp).slice(0, 40); if (/^\(?\s*paciente/.test(f) || /^paciente/.test(n)) return "Paciente"; return /\bsamu\b/.test(n) ? "SAMU" : /\b(famil\w*|mae|pai|filh[oa]s?|espos[oa]|acompanhante)\b/.test(n) ? "Família" : /\b(colega|quem trouxe)\b/.test(n) ? "Acompanhante" : /\b(enfermag\w*|equipe|chamado|relato|informacao)\b/.test(n) ? "Enfermagem" : "Paciente"; };
+  const prof = (pat.split(",").slice(1).find(x => !/anos|sexo|masculin|feminin|fototipo/i.test(x)) || "").trim();
+  // roteiro
+  const topicos = (B.script||[]).map((sc, i) => {
+    const tr = String(sc.trigger||"");
+    const ativo = /pergunta ativa|pergunta do paciente|paciente pergunta/i.test(tr);
+    const qp = /queixa principal|abertura|in[ií]cio/i.test(tr);
+    const tema = tr.replace(/^(sobre|quando perguntad[oa] sobre|se perguntad[oa] sobre)\s+/i, "");
+    const st2 = stems(tema);
+    const kw = ativo ? /$^/ : qp ? /(o que (te |o |a )?(traz|trouxe)|motivo|queixa|como posso|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|qual o problema)/ : (st2.length ? new RegExp("("+st2.join("|")+")") : /$^/);
+    return {id:"s"+i, g: ativo ? "Perguntas do paciente" : qp ? "Queixa principal" : "Anamnese", q: qp ? "O que traz você aqui hoje?" : "Pergunte "+tema.charAt(0).toLowerCase()+tema.slice(1), kw, r:String(sc.speech||""), ativo, trig:tr, quem: equipe ? roleOf(tr, sc.speech) : ""};
+  });
+  // exame físico
+  const vit = B.vitals ? Object.entries(B.vitals).map(([k,v]) => `${k} ${v}`).join(" · ") : "";
+  const geral = [{id:"geral", nome:"Inspeção geral", achado: B.physicalGeneral || "Sem alterações."}];
+  if (vit) geral.push({id:"sv", nome:"Sinais vitais e antropometria", achado: vit});
+  const seg = []; let fotoUsada = false;
+  splitP(B.physicalSeg).forEach((x, i) => {
+    const m = x.match(/^([^:]{2,90}):\s*([\s\S]*)$/);
+    const nm = m ? titleCase(m[1].trim()) : "Exame segmentar "+(i+1);
+    const ach = m ? m[2] : x;
+    if (B.photo && !fotoUsada && /impresso fotogr|ver (a )?foto/i.test(ach)){ fotoUsada = true; seg.push({id:"seg"+i, nome: nm+" — impresso fotográfico", foto:B.photo}); }
+    else seg.push({id:"seg"+i, nome:nm, achado:cleanAchado(ach)});
+  });
+  if (B.photo && !fotoUsada) seg.unshift({id:"foto", nome:"Inspeção da lesão — impresso fotográfico", foto:B.photo});
+  if (B.image && typeof B.image === "object" && B.image.report) seg.push({id:"imgobj", nome: String(B.image.title||"Achado adicional").replace(/\s*\((entregar|somente|só)[^)]*\)/i, ""), achado: B.image.report});
+  // exames do caso
+  const examesCaso = (B.labs||[]).map((l, i) => ({id:"cx"+i, nome:l.test, res:`${l.val}${l.ref ? "\nReferência: "+l.ref : ""}`, alt:!!l.alt, t:6, grupo:"Exames deste caso"}));
+  (K2.expectedExams||[]).forEach((e, i) => {
+    if (examesCaso.some(x => hasStems(e.exam, x.nome))) return;
+    examesCaso.push({id:"cxe"+i, nome:e.exam, res: e.expected || "Resultado compatível com o quadro.", t:8, grupo:"Exames deste caso"});
+  });
+  if (typeof B.image === "string" && B.image.trim()){
+    const mm = B.image.match(/^([^:]{3,80}):\s*([\s\S]+)$/);
+    examesCaso.push({id:"cximg", nome: mm ? mm[1].replace(/\s*\([^)]*\)/g,"").trim() : "Laudo complementar do caso", res: mm ? mm[2] : B.image, t:8, grupo:"Exames deste caso"});
+  }
+  // checklist a partir do gabarito
+  const ck = [];
+  splitP(K2.expectedCommunication).forEach(x => ck.push({d:"Comunicação", l:x, w:.5, ia:true, test:comTest(x)}));
+  const TOPIC = x => s => { for (const tp of s.c.topicos){ const h = s.topics[tp.id]; if (h && !tp.ativo && hasStems(x, tp.q+" "+tp.r, 2)) return {ok:true, ev:quote(h.t, h.q)}; } return {ok:false}; };
+  splitP(K2.expectedAnamnesis).forEach(x => ck.push({d:"Anamnese", l:x, w:1, ia:true, test:ANY(SAID(x), TOPIC(x))}));
+  splitP(K2.expectedPhysical).forEach(x => ck.push({d:"Exame físico", l:x, w:1, ia:true, test:ANY(DID(x), SAID(x))}));
+  if (K2.photoDescription) ck.push({d:"Exame físico", l:"Fotodescrição das lesões com terminologia dermatológica formal (falada ou nas anotações)", w:1.5, ia:true, test:PHOTO});
+  if (K2.diagnosis) ck.push({d:"Raciocínio", l:"Hipótese diagnóstica: "+K2.diagnosis, w:2, ia:true, test:DIAG(st.topic)});
+  if ((K2.differentials||[]).length){ const nomes = K2.differentials.map(d => String(d).split(/\s+—\s+/)[0]); ck.push({d:"Raciocínio", l:"Diferenciais pertinentes: "+nomes.join("; "), w:1, ia:true, test: s => { const ok = nomes.find(n => hasStems(n, s.dif+" "+s.hip)); return ok ? {ok:true, ev:`Citou: ${ok}`} : {ok:false}; }}); }
+  (K2.expectedExams||[]).forEach(e => ck.push({d:"Raciocínio", l:"Solicita "+e.exam+(e.justify ? " — "+e.justify : ""), w:.5, ia:true, test:ANY(ASKED_EX(e.exam), WROTE(e.exam,1))}));
+  splitP(K2.expectedConduct).flatMap(x => x.length>200 ? x.split(/;\s+/) : [x]).map(x => x.trim()).filter(x => x.length>3).forEach(x => ck.push({d:"Conduta", l:x, w:1, ia:true, test:WROTE(x, 2)}));
+  const ativos = topicos.filter(t => t.ativo).map(t => t.r);
+  const abertura = equipe && topicos[0] && /(informa|relato|chamado|enfermag|samu|famil|quem trouxe|equipe)/.test(norm(topicos[0].trig)) ? topicos[0] : null;
+  return {
+    id:"st"+st.id, ativo:true, repo:true, equipe, monitor: !!monitor, vitIni, abertura, img, focus: equipe ? "55% 45%" : "72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
+    area: st.tema, nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
+    pac:{nome, primeiro: norm(primeiro), trat, idade, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
+    enunciado: [A.scenario, A.patient ? "Paciente: "+A.patient : "", A.complaint ? "Queixa: "+A.complaint : ""].filter(Boolean).join(" "),
+    tarefas: A.tasks || [],
+    persona: [B.patientProfile, B.actorBehavior ? "COMPORTAMENTO: "+B.actorBehavior : "", B.hiddenInfo ? "INFORMAÇÕES OCULTAS (revele cada uma só na condição descrita): "+B.hiddenInfo : "", B.note ? "ORIENTAÇÕES DO APLICADOR (achados de exame e impressos são entregues pelo sistema, não por você; siga as restrições sobre o que revelar): "+B.note : "", ativos.length ? "PERGUNTAS QUE VOCÊ FAZ POR INICIATIVA PRÓPRIA quando o aluno começar a explicar o diagnóstico ou a conduta: "+ativos.join(" / ") : ""].filter(Boolean).join("\n"),
+    topicos, exame:[{g:"Geral", itens:geral}, {g:"Exame segmentar", itens:seg}].filter(g => g.itens.length),
+    exames:{}, examesCaso, checklist: ck, criticos: [], criticosTexto: K2.criticalErrors || [],
+    gabarito:{diag:K2.diagnosis, foto:K2.photoDescription, difs:K2.differentials, conduta:K2.expectedConduct, exames:K2.expectedExams},
+  };
+}
+async function loadRepoCases(){
+  try{
+    const r = await fetch("casos-repo.json"); if (!r.ok) return;
+    const arr = await r.json(); const extra = [];
+    for (const st of arr){ try{ extra.push(fromStation(st)); }catch(e){} }
+    const i = CASOS.findIndex(c => !c.ativo);
+    CASOS.splice(i<0 ? CASOS.length : i, 0, ...extra);
+    if (!S && $(".lobby")) renderLobby();
+  }catch(e){}
+}
+/* =========================================================================
+   ESTADO E CAPACIDADES
+   ========================================================================= */
+const prefs = Object.assign({mode:"treino", voz:true, area:"Todas"}, store.get("osce-sala-prefs", {}));
+const savePrefs = () => store.set("osce-sala-prefs", prefs);
+let CAP = {sample:null, tts:null, dict:null, aiOff:false};
+let S = null;              // estado da estação em curso
+let loopId = null, rafId = null;
+
+(async () => {
+  if (!window.claude?.use) return;
+  const [sm, tt, dc] = await Promise.all(["sample","tts","dictation"].map(n => window.claude.use(n).catch(()=>null)));
+  CAP.sample = sm; CAP.tts = tt; CAP.dict = dc;
+  if (dc){
+    dc.onPartial(({text}) => { if (S && S.listening){ const inp = $("#say"); if (inp){ inp.value = (S.dictBase + " " + text).trim(); } } });
+    dc.onFinal(({text}) => { if (S && S.listening){ S.dictBase = (S.dictBase + text).replace(/^\s+/,""); const inp = $("#say"); if (inp) inp.value = S.dictBase; } });
+    dc.onState(({state}) => { if (!S) return; S.listening = state==="listening" || state==="starting"; const b = $("#micBtn"); if (b) b.setAttribute("aria-pressed", S.listening); });
+  }
+  refreshCapsUI();
+})();
+function refreshCapsUI(){
+  const el = $("#aiStatus"); if (el) el.outerHTML = aiChip();
+  const mic = $("#micBtn"); if (mic) mic.hidden = !CAP.dict;
+  const vb = $("#voiceBtn"); if (vb) vb.hidden = !CAP.tts;
+}
+const aiChip = () => (CAP.sample && !CAP.aiOff)
+  ? `<span id="aiStatus" class="chip ok aimode" title="As respostas são geradas por IA a partir da ficha do paciente">Paciente com IA</span>`
+  : `<span id="aiStatus" class="chip aimode" title="Sem IA disponível: respostas pelo roteiro local">Roteiro local</span>`;
+
+/* =========================================================================
+   LOBBY
+   ========================================================================= */
+function renderLobby(){
+  stopLoops();
+  S = null;
+  document.body.style.overflow = "";
+  const hist = store.get("osce-sala-hist", {});
+  $("#app").innerHTML = `
+  <section class="screen"><div class="lobby">
+    <div class="lobby-head">
+      <div>
+        <div class="eyebrow">Estações de habilidades clínicas</div>
+        <h1>Sala de Simulação OSCE</h1>
+        <p>Você entra no consultório, conversa com o paciente com as suas próprias palavras, examina, pede exames e decide a conduta. O cronômetro corre como na prova. No fim, recebe o checklist corrigido, com a evidência de cada item.</p>
+      </div>
+      <div class="setup">
+        <div class="seg" role="group" aria-label="Modo">
+          <button id="mTreino" aria-pressed="${prefs.mode==="treino"}">Treino<small>Roteiro de perguntas, laudos e dicas</small></button>
+          <button id="mProva" aria-pressed="${prefs.mode==="prova"}">Prova<small>Sem dicas nem laudos: como no dia</small></button>
+        </div>
+        <div class="setup-row">${aiChip()}<span>${CAP.tts ? "O paciente fala em voz alta" : "Respostas em legenda"}</span></div>
+      </div>
+    </div>
+    <div class="filters" role="group" aria-label="Filtrar por especialidade">${["Todas", ...new Set(CASOS.map(c => c.area))].map(a => `<button data-area="${esc(a)}" aria-pressed="${prefs.area===a}">${esc(a)} <span class="mono">${a==="Todas" ? CASOS.length : CASOS.filter(c=>c.area===a).length}</span></button>`).join("")}</div>
+    <div class="stations">
+      ${CASOS.filter(c => prefs.area==="Todas" || c.area===prefs.area).map(c => {
+        const h = hist[c.id];
+        return `<button class="st-card" data-case="${c.id}" ${c.ativo?"":"disabled"}>
+          <img src="${c.thumb || c.img}" alt="">
+          <div class="body">
+            <div class="meta"><span class="chip acc">${esc(c.area)}</span><span class="chip mono">${c.tempo/60} min</span>${c.nivel?`<span class="chip">${esc(c.nivel)}</span>`:""}${c.ativo?"":`<span class="chip">Em produção</span>`}${h?`<span class="chip ${h.best>=70?"ok":"warn"}">Melhor: ${h.best}%</span>`:""}</div>
+            <h3>${esc(c.titulo)}</h3>
+            <p>${esc(c.pac.nome)}, ${c.pac.idade} anos${c.local?" · "+esc(c.local.split(" · ")[0]):""}</p>
+          </div></button>`;
+      }).join("")}
+    </div>
+    <div class="how">
+      <div><b>Pergunte com as suas palavras</b>Não há lista de perguntas para clicar na prova. O paciente só conta o que você perguntar.</div>
+      <div><b>Fale ou digite</b>Use o microfone para conversar em voz alta, como na estação real.</div>
+      <div><b>Paciente que reage</b>Na sala de emergência, o monitor responde às suas ordens: a conduta errada derruba a pressão.</div>
+      <div><b>Correção com evidência</b>Cada item do checklist mostra o minuto e a frase em que você o cumpriu.</div>
+    </div>
+  </div></section>`;
+  $("#mTreino").onclick = () => { prefs.mode="treino"; savePrefs(); renderLobby(); };
+  $("#mProva").onclick = () => { prefs.mode="prova"; savePrefs(); renderLobby(); };
+  document.querySelectorAll("[data-case]").forEach(b => b.onclick = () => renderDoor(b.dataset.case));
+  document.querySelectorAll("[data-area]").forEach(b => b.onclick = () => { prefs.area = b.dataset.area; savePrefs(); renderLobby(); });
+  if (prefs.area!=="Todas" && !CASOS.some(c => c.area===prefs.area)) { /* especialidade ainda carregando */ }
+}
+
+/* =========================================================================
+   PORTA DA ESTAÇÃO
+   ========================================================================= */
+function renderDoor(id){
+  stopLoops();
+  const c = CASOS.find(x => x.id===id);
+  let left = 60;
+  $("#app").innerHTML = `
+  <section class="door">
+    <article class="sheet">
+      <div class="eyebrow">${esc(c.area)} · ${esc(c.titulo)} · ${prefs.mode==="prova"?"Modo prova":"Modo treino"}</div>
+      <h2>${esc(c.local)}</h2>
+      <p class="enun">${esc(c.enunciado)}</p>
+      <div><div class="eyebrow" style="margin-bottom:6px">Nesta estação, você deverá</div><ol>${c.tarefas.map(t=>`<li>${esc(t)}</li>`).join("")}</ol></div>
+      <div class="foot">
+        <div><div class="eyebrow">Leitura</div><div class="count" id="doorCount">01:00</div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn ghost" id="doorBack">${ic("back")}Voltar</button>
+          <button class="btn primary" id="doorGo">${ic("door")}Entrar na sala</button>
+        </div>
+      </div>
+      <p class="note" style="margin:0;color:#5F6B74">Tempo de estação: ${c.tempo/60} minutos. Ao sinal sonoro, a estação é encerrada.</p>
+    </article>
+  </section>`;
+  $("#doorBack").onclick = renderLobby;
+  $("#doorGo").onclick = () => enterRoom(c);
+  loopId = setInterval(() => {
+    left--; const el = $("#doorCount"); if (el) el.textContent = fmt(left);
+    if (left <= 0){ clearInterval(loopId); enterRoom(c); }
+  }, 1000);
+}
+
+/* =========================================================================
+   SALA
+   ========================================================================= */
+function enterRoom(c){
+  stopLoops();
+  beep(880, .18);
+  S = {
+    c, mode:prefs.mode, t0:performance.now(), elapsed:0, ended:false,
+    transcript:[], topics:{}, man:{}, exams:{}, orders:{}, com:{},
+    hip:"", dif:"", conduta:"", notas:"",
+    drawer:null, talkTo:"paciente", busy:false, unread:0, dictBase:"", listening:false,
+    warned:{}, vitalsAsked:false,
+    vit: c.monitor ? {fc:c.vitIni.fc, pas:c.vitIni.pas, pad:c.vitIni.pad||Math.round(c.vitIni.pas*.62), sat:c.vitIni.sat ?? null, fr:c.vitIni.fr||18} : {fc:52, pas:94, pad:60, sat:93, fr:22}, mon:!!c.monitor, reperf:false,
+    findingsOpen:{},
+  };
+  $("#app").innerHTML = `
+  <section class="room">
+    <header class="topbar">
+      <button class="iconbtn" id="exitBtn" title="Sair da estação" aria-label="Sair da estação">${ic("back")}</button>
+      <div class="who"><b>${esc(c.pac.nome)}, ${c.pac.idade} anos</b><span>${esc(c.local)}</span></div>
+      <div class="sp"></div>
+      <span class="hide-sm">${aiChip()}</span>
+      <span class="chip hide-sm">${S.mode==="prova"?"Prova":"Treino"}</span>
+      <button class="iconbtn" id="voiceBtn" aria-pressed="${prefs.voz}" title="Voz do paciente" aria-label="Voz do paciente" ${CAP.tts?"":"hidden"}>${ic("vol")}</button>
+      <div class="timer" id="timer" role="timer" aria-live="off">${fmt(c.tempo)}</div>
+      <button class="btn danger hide-sm" id="endBtn">Encerrar</button>
+    </header>
+    <div class="main">
+      <div class="stage" id="stage">
+        <img class="scene" src="${c.img}" alt="Cena: ${esc(c.pac.nome)} ${c.emergencia?"na sala de emergência":"no consultório"}" style="object-position:${c.focus}">
+        <div class="vignette"></div>
+        ${c.emergencia || c.monitor ? `<div class="monitor" id="monitor"></div>` : ""}
+        <div class="toast-wrap" id="toasts" aria-live="polite"></div>
+        <div class="caption" id="caption" aria-live="polite"></div>
+      </div>
+      <nav class="rail" id="rail" aria-label="Ferramentas">
+        ${tool("conversa","chat","Conversa")}
+        ${tool("exame","steth","Exame físico")}
+        ${tool("exames","flask","Exames")}
+        ${c.emergencia ? tool("ordens","syringe","Ordens") : ""}
+        ${tool("prontuario","folder","Prontuário")}
+        ${tool("conduta","clip","Hipótese e conduta")}
+        <button class="tool" id="endBtn2" style="color:var(--crit)">${ic("close")}Encerrar</button>
+      </nav>
+      <div id="drawerHost"></div>
+    </div>
+    <form class="composer" id="composer" autocomplete="off">
+      ${c.emergencia ? `<select id="talkTo" aria-label="Falar com"><option value="paciente">Paciente</option><option value="enfermeira">Enf. Carla</option></select>` : ""}
+      <input id="say" placeholder="${c.emergencia ? "Fale com o paciente ou dê ordens à enfermeira…" : c.equipe ? "Fale com a equipe, a família ou o paciente…" : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
+      <button type="button" class="iconbtn mic" id="micBtn" aria-pressed="false" title="Falar (microfone)" aria-label="Falar pelo microfone" ${CAP.dict?"":"hidden"}>${ic("mic")}</button>
+      <button class="btn primary" id="sendBtn" type="submit">${ic("send")}<span class="hide-sm">Enviar</span></button>
+    </form>
+  </section>`;
+  document.body.style.overflow = "hidden";
+  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : `${c.equipe ? "A equipe aguarda as suas orientações." : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
+
+  $("#composer").onsubmit = e => { e.preventDefault(); const v = $("#say").value.trim(); if (v) { $("#say").value=""; S.dictBase=""; say(v); } };
+  $("#exitBtn").onclick = () => confirmInline("Sair sem corrigir? O tempo e as respostas desta tentativa serão perdidos.", renderLobby);
+  $("#endBtn").onclick = $("#endBtn2").onclick = () => confirmInline("Encerrar a estação agora e ver a correção?", () => endStation("manual"));
+  const vb = $("#voiceBtn"); vb.onclick = () => { prefs.voz = !prefs.voz; savePrefs(); vb.setAttribute("aria-pressed", prefs.voz); if (!prefs.voz) CAP.tts?.stop?.(); };
+  const tt = $("#talkTo"); if (tt) tt.onchange = () => { S.talkTo = tt.value; $("#say").focus(); };
+  $("#micBtn").onclick = toggleMic;
+  document.querySelectorAll("[data-tool]").forEach(b => b.onclick = () => openDrawer(b.dataset.tool === S.drawer ? null : b.dataset.tool));
+  if (c.emergencia || c.monitor) startMonitor();
+  if (c.abertura){ const ab = c.abertura; S.topics[ab.id] = {t:0, q:"(relato inicial)"}; S.transcript.push({who:"paciente", label:ab.quem, text:ab.r, t:0}); setTimeout(() => { if (S && S.c===c){ showCaption(null, ab.r, "paciente", null, ab.quem); speak(ab.r, "paciente"); } }, 600); }
+  loopId = setInterval(tick, 250);
+  $("#say").focus();
+}
+const tool = (id, icon, label) => `<button class="tool" data-tool="${id}" aria-pressed="false">${ic(icon)}<span>${label}</span><span class="badge" data-badge="${id}" hidden></span></button>`;
+const now = () => S ? (performance.now() - S.t0)/1000 : 0;
+
+function tick(){
+  if (!S || S.ended) return;
+  const c = S.c, el = now(), rem = c.tempo - el;
+  const t = $("#timer"); if (t){ t.textContent = fmt(rem); t.className = "timer" + (rem<=30 ? " crit" : rem<=120 ? " warn" : ""); }
+  if (rem<=120 && !S.warned.w2){ S.warned.w2=1; beep(660,.12); toast("Faltam 2 minutos.", "warn"); }
+  if (rem<=30 && !S.warned.w30){ S.warned.w30=1; beep(660,.12); setTimeout(()=>beep(660,.12),200); }
+  if (c.emergencia || c.monitor) evolveVitals(el);
+  if (rem <= 0) endStation("tempo");
+}
+
+function confirmInline(msg, yes){
+  const host = $("#toasts"); if (!host) return yes();
+  const d = document.createElement("div");
+  d.className = "toast warn"; d.style.pointerEvents = "auto";
+  d.innerHTML = `<div style="display:grid;gap:8px"><span>${esc(msg)}</span><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn ghost" data-a="n">Continuar na estação</button><button class="btn primary" data-a="y">Confirmar</button></div></div>`;
+  host.appendChild(d);
+  d.querySelector('[data-a="n"]').onclick = () => d.remove();
+  d.querySelector('[data-a="y"]').onclick = () => { d.remove(); yes(); };
+}
+function toast(msg, kind=""){
+  const host = $("#toasts"); if (!host) return;
+  const d = document.createElement("div"); d.className = "toast " + kind; d.textContent = msg; host.appendChild(d);
+  setTimeout(() => d.remove(), 5200);
+}
+let actx = null;
+function beep(f, dur){
+  try{
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.frequency.value = f; o.type = "sine"; g.gain.value = .08;
+    o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + dur);
+  }catch(e){}
+}
+
+/* ---------- legenda (fala) ---------- */
+function showCaption(meText, otherText, speaker, emo, label){
+  const cap = $("#caption"); if (!cap) return;
+  let h = "";
+  if (meText) h += `<div class="cap me"><div class="spk">Você</div>${esc(meText)}</div>`;
+  if (otherText === "…") h += `<div class="cap"><div class="spk">${esc(S?.c.equipe ? "Equipe / paciente" : speakerName(speaker))}</div><span class="dots"><span></span><span></span><span></span></span></div>`;
+  else if (otherText) h += `<div class="cap"><div class="spk">${esc(label || speakerName(speaker))}${emo && emo!=="neutro" ? `<span class="emo">· parece ${esc(emo)}</span>` : ""}</div>${esc(otherText)}</div>`;
+  cap.innerHTML = h;
+}
+const speakerName = sp => sp==="enfermeira" ? "Enf. Carla" : sp==="cena" ? "Cena" : (S?.c.repo ? "Paciente" : (S?.c.pac.trat || "Paciente"));
+
+/* ---------- microfone ---------- */
+function toggleMic(){
+  const d = CAP.dict; if (!d || !S) return;
+  if (S.listening){
+    d.stop().then(() => { const v = $("#say")?.value.trim(); if (v){ $("#say").value=""; S.dictBase=""; say(v); } }).catch(()=>{});
+  } else {
+    S.dictBase = $("#say").value.trim();
+    d.start({language:"pt-BR"}).catch(e => {
+      if (e?.code === "not_granted" || e?.code === "unavailable"){ $("#micBtn").hidden = true; toast("Microfone indisponível. Continue digitando.", "warn"); }
+    });
+  }
+}
+
+/* =========================================================================
+   CONVERSA: paciente / enfermeira (IA com fallback local)
+   ========================================================================= */
+async function say(text){
+  if (!S || S.ended) return;
+  if (S.busy){ toast("Aguarde a resposta antes de falar de novo."); return; }
+  const c = S.c, t = now(), to = S.talkTo;
+  S.transcript.push({who:"me", to, text, t});
+  detectCom(text, t, to);
+  showCaption(text, "…", to);
+  S.busy = true; { const sb = $("#sendBtn"); if (sb) sb.disabled = true; }
+  let reply = null;
+  try{
+    if (CAP.sample && !CAP.aiOff) reply = to==="enfermeira" ? await aiNurse(text) : await aiPatient(text);
+  }catch(e){
+    if (e?.code === "not_granted"){ CAP.aiOff = true; refreshCapsUI(); toast("IA não autorizada: usando o roteiro local do paciente.", "warn"); }
+    reply = null;
+  }
+  if (!reply) reply = to==="enfermeira" ? localNurse(text) : localPatient(text);
+  // marca tópicos: IA + palavras-chave locais
+  const ids = new Set(reply.topicos || []);
+  if (to==="paciente") for (const tp of c.topicos) if (tp.kw.test(norm(text))) ids.add(tp.id);
+  for (const id of ids) if (!S.topics[id] && c.topicos.some(x=>x.id===id)) S.topics[id] = {t, q:text};
+  if (reply.com) for (const k in reply.com) if (reply.com[k] && !S.com[k]) S.com[k] = {t, q:text};
+  if (to==="enfermeira"){
+    const ords = new Set(reply.ordens || []);
+    for (const o of ORDENS) if (o.kw.test(norm(text)) && /(faz|faca|fazer|administr|da\b|dar|de\b|instal|coloc|pega|pegue|aciona|acionar|liga|ligar|chama|chamar|prescrev|vamos|quero|pode|inicia|iniciar|corre|correr|solicito|peco|realiz|mastig)/.test(norm(text))) ords.add(o.id);
+    for (const id of ords) giveOrder(id, true);
+    if (/(ecg|eletro)/.test(norm(text)) && /(faz|faca|fazer|realiz|solicit|quero|pode|pega)/.test(norm(text))) requestExam("ecg");
+    if (/(sinais vitais|pressao|frequencia|saturacao|como (ele )?esta)/.test(norm(text))) S.vitalsAsked = true;
+  }
+  let f = reply.fala || "…", label = reply.quem || "";
+  const lm = f.match(/^\s*\[([^\]]{2,30})\]\s*/); if (lm){ label = lm[1]; f = f.slice(lm[0].length); }
+  S.transcript.push({who:to, label, text:f, t:now(), emo:reply.emocao});
+  showCaption(text, f, to, reply.emocao, label);
+  S.busy = false; const sb = $("#sendBtn"); if (sb) sb.disabled = false;
+  if (S.drawer==="conversa") renderDrawer();
+  speak(f, to);
+}
+function speak(text, who){
+  if (!CAP.tts || !prefs.voz) return;
+  const voice = who==="enfermeira" ? "airy" : (S?.c.voz || "buttery");
+  CAP.tts.speak(text, {voice, language:"pt-BR"}).catch(()=>{});
+}
+function detectCom(text, t, to){
+  const n = norm(text), c = S.c;
+  const mark = k => { if (!S.com[k]) S.com[k] = {t, q:text}; };
+  if (to!=="enfermeira" || !c.emergencia){
+    for (const k in COM_RE) if (COM_RE[k].test(n)) mark(k);
+    const fn = norm(c.pac.trat), pn = c.pac.primeiro;
+    if ((pn && n.includes(pn)) || (fn.length>4 && !/^(o senhor|a senhora|paciente)$/.test(fn) && n.includes(fn))) mark("nome");
+  }
+}
+function history(max=18){
+  return S.transcript.slice(-max).map(m => `${m.who==="me" ? (m.to==="enfermeira"?"Médico(a) → enfermeira":"Médico(a)") : m.who==="enfermeira" ? "Enfermeira Carla" : (m.label || S.c.pac.trat)}: ${m.text}`).join("\n");
+}
+async function aiPatient(text){
+  const c = S.c;
+  const fatos = c.topicos.map(tp => `- ${tp.id}${tp.trig ? " ["+tp.trig+"]" : ""}${tp.ativo ? " (pergunta que VOCÊ faz por iniciativa própria)" : ""}: ${tp.r}`).join("\n");
+  const equipeRegra = c.equipe ? `
+CENA DE EQUIPE: você interpreta TODOS os personagens da cena — equipe de enfermagem, SAMU, familiares/acompanhantes e o próprio paciente (só quando o estado de consciência permitir). Comece a "fala" sempre com o personagem entre colchetes, por exemplo "[Enfermagem] ..." ou "[Família] ...". Quem responde é quem o aluno chamou ou quem faria sentido na cena. A equipe cumpre as ordens claras do aluno, confirma em voz alta e relata a resposta clínica conforme a ficha (ex.: o que acontece após uma medicação). Se uma ordem for perigosa, a equipe cumpre, mas relata as consequências previstas na ficha ou coerentes com o quadro. Sinais vitais atuais: FC ${Math.round(S.vit.fc)} bpm, PA ${Math.round(S.vit.pas)}x${Math.round(S.vit.pad)} mmHg, SpO2 ${S.vit.sat==null ? "não aferida" : Math.round(S.vit.sat)+"%"}, FR ${Math.round(S.vit.fr)} irpm.` : "";
+  const prompt = `Você é um ator interpretando um paciente simulado numa estação de OSCE para estudantes de medicina no Brasil.
+PERSONAGEM: ${c.pac.nome}, ${c.pac.idade} anos, ${c.pac.sexo.toLowerCase()}, ${c.pac.prof}. Cenário: ${c.local}.${c.repo ? " Se o nome do personagem estiver abreviado em iniciais, invente um nome brasileiro coerente com as iniciais e use-o se perguntarem." : ""}
+COMO AGIR: ${c.persona}
+FICHA (cada linha é um fato com seu id; diga o fato só quando o aluno perguntar sobre ele):
+${fatos}
+REGRAS:
+- Responda apenas ao que a ÚLTIMA fala do aluno perguntou. Não antecipe fatos não perguntados: o aluno precisa investigar.
+- Português do Brasil coloquial, linguagem leiga, 1 a 3 frases curtas. Nunca use termos técnicos nem cite diagnósticos.
+- Se perguntarem algo fora da ficha, invente algo banal e coerente (geralmente negativo/normal) e mantenha a consistência com o que já disse.
+- Se o aluno usar jargão que um leigo não entenderia, peça para explicar.
+- Se o aluno explicar uma conduta, reaja como o personagem (dúvida, alívio, preocupação) em 1 a 2 frases.
+- Se o aluno pedir para examinar, concorde brevemente.
+- Se o aluno só cumprimentar ou se apresentar, cumprimente de volta.${equipeRegra}
+CONVERSA ATÉ AGORA:
+${history() || "(início da consulta)"}
+ÚLTIMA FALA DO ALUNO: "${text}"
+Responda SOMENTE com JSON válido:
+{"fala":"resposta do personagem","emocao":"neutro|preocupado|ansioso|com dor|aliviado|triste|irritado|retraído","topicos":["ids da FICHA que a última fala do aluno perguntou ou abordou"],"com":{"apresentou":bool,"nome":bool,"empatia":bool,"entendimento":bool,"explicou":bool,"sigilo":bool}}
+Em "com", marque true apenas para o que a ÚLTIMA fala do aluno fez: apresentou-se pelo nome/função; chamou o paciente pelo nome; demonstrou empatia/validação; checou entendimento ou abriu espaço para dúvidas; explicou diagnóstico ou plano; garantiu sigilo.`;
+  const r = await CAP.sample.json(prompt, {modelTier:"quick", cache:false});
+  if (!r || typeof r.fala !== "string") return null;
+  return r;
+}
+async function aiNurse(text){
+  const c = S.c, v = S.vit;
+  const ords = ORDENS.map(o => `- ${o.id}: ${o.nome}`).join("\n");
+  const vit = S.mon ? `Monitor: FC ${Math.round(v.fc)} bpm, PA ${Math.round(v.pas)}x${Math.round(v.pad)} mmHg, SpO2 ${Math.round(v.sat)}%, FR ${Math.round(v.fr)} irpm.` : "Paciente AINDA NÃO monitorizado (sem sinais vitais disponíveis até o médico pedir monitorização).";
+  const feitas = Object.keys(S.orders).map(k => ORD_NAME[k]).join("; ") || "nenhuma";
+  const prompt = `Você é a enfermeira Carla numa estação de OSCE de emergência (Brasil). ${c.enfermeira}
+Paciente: ${c.pac.nome}, ${c.pac.idade} anos, dor torácica. ${vit}
+Ordens já executadas: ${feitas}.
+ORDENS POSSÍVEIS (id: descrição):
+${ords}
+REGRAS: responda em 1 a 2 frases, português do Brasil, tom profissional. Se o médico der uma ordem que corresponda a um id, confirme a execução e inclua o id em "ordens". Não sugira condutas por iniciativa própria nem dê diagnósticos. Se pedirem ECG, diga que vai fazer agora (inclua "ecg" em "exames"). Se pedirem sinais vitais, informe os do monitor.
+CONVERSA ATÉ AGORA:
+${history()}
+ÚLTIMA FALA DO MÉDICO: "${text}"
+Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido],"emocao":"neutro"}`;
+  const r = await CAP.sample.json(prompt, {modelTier:"quick", cache:false});
+  if (!r || typeof r.fala !== "string") return null;
+  if (Array.isArray(r.exames) && r.exames.includes("ecg")) setTimeout(() => requestExam("ecg"), 50);
+  return r;
+}
+function localPatient(text){
+  const n = norm(text), c = S.c;
+  const hits = c.topicos.filter(tp => tp.kw.test(n));
+  if (!hits.length){
+    if (/(bom dia|boa tarde|boa noite|\bola\b|\boi\b|tudo bem|prazer)/.test(n)) return {fala: c.id==="rafael" ? "Oi. Tudo bem..." : "Bom dia, doutor.", emocao:"neutro"};
+    if (/(examin|vou (te |lhe )?examinar|posso (te |lhe )?examinar|deitar|tirar a blusa)/.test(n)) return {fala:"Pode sim, doutor.", emocao:"neutro"};
+    if (COM_RE.explicou.test(n)) return {fala:"Entendi, doutor. E isso tem tratamento?", emocao:"preocupado"};
+    return {fala:"Desculpa, doutor, não entendi direito. Pode perguntar de outro jeito?", emocao:"neutro"};
+  }
+  const fresh = hits.filter(tp => !S.topics[tp.id]);
+  const pick = (fresh.length ? fresh : hits).slice(0, 2);
+  return {fala: pick.map(tp => tp.r).join(" "), quem: pick[0].quem || "", topicos: hits.map(h=>h.id), emocao: c.id==="rafael" ? "triste" : c.emergencia ? "com dor" : "neutro"};
+}
+function localNurse(text){
+  const n = norm(text), v = S.vit;
+  const isOrder = ORDENS.filter(o => o.kw.test(n));
+  if (isOrder.length) return {fala: "Certo, doutor. " + isOrder.map(o => o.nome).join(", ") + ": providenciando agora.", ordens: isOrder.map(o=>o.id)};
+  if (/(ecg|eletro)/.test(n)) return {fala:"Vou fazer o eletro agora, doutor."};
+  if (/(sinais vitais|pressao|frequencia|saturacao|como (ele )?esta|monitor)/.test(n)) return {fala: S.mon ? `Ele está com PA ${Math.round(v.pas)} por ${Math.round(v.pad)}, frequência ${Math.round(v.fc)}, saturando ${Math.round(v.sat)}%.` : "Ainda não monitorizei, doutor. Quer que eu monitorize e pegue acesso?"};
+  if (/(peso|quanto pesa)/.test(n)) return {fala:"Uns 86 quilos, doutor."};
+  if (/(hemodinamica|cateterismo|cate\b)/.test(n)) return {fala:"A hemodinâmica está de sobreaviso, doutor. Quer que eu acione?"};
+  return {fala:"Pois não, doutor. O que o senhor precisa?"};
+}
+
+/* =========================================================================
+   EMERGÊNCIA: ordens e sinais vitais dinâmicos
+   ========================================================================= */
+function giveOrder(id, fromChat){
+  if (!S || S.orders[id]!=null) return;
+  const t = now(), v = S.vit;
+  S.orders[id] = t;
+  const nurse = msg => { S.transcript.push({who:"enfermeira", text:msg, t:now()}); if (!fromChat) { showCaption(null, msg, "enfermeira"); speak(msg, "enfermeira"); } };
+  switch(id){
+    case "mov": S.mon = true; nurse("Paciente monitorizado e com acesso venoso calibroso no braço direito."); break;
+    case "o2": nurse("Cateter nasal a 2 litros instalado."); setTimeout(()=>{ if(S) S.vit.sat = 96; }, 4000); break;
+    case "glic": nurse("Glicemia capilar: 186."); break;
+    case "aas": nurse("AAS 300 mg: ele mastigou."); break;
+    case "p2y12": nurse("Segundo antiagregante administrado."); break;
+    case "anticoag": nurse("Heparina em bolus feita."); break;
+    case "nitrato":
+      nurse("Isossorbida sublingual administrada.");
+      setTimeout(() => { if (!S || S.ended) return; v.pas = 70; v.pad = 42; v.fc = 48; S.drop = true;
+        const m = "Doutor! A pressão caiu para 70 por 42, ele está muito tonto e mais pálido!";
+        S.transcript.push({who:"enfermeira", text:m, t:now()}); showCaption(null, m, "enfermeira"); speak(m, "enfermeira"); toast("Hipotensão grave após o nitrato.", "crit"); beep(990,.25); }, 4500);
+      break;
+    case "morfina": nurse("Morfina 2 mg feita, lentamente."); v.pas -= 6; break;
+    case "bb":
+      nurse("Metoprolol EV feito.");
+      setTimeout(() => { if (!S || S.ended) return; v.fc = 40; v.pas -= 12; const m = "Doutor, a frequência caiu para 40 e a pressão está caindo!"; S.transcript.push({who:"enfermeira", text:m, t:now()}); showCaption(null, m, "enfermeira"); speak(m, "enfermeira"); toast("Bradicardia importante após o betabloqueador.", "crit"); beep(990,.25); }, 4000);
+      break;
+    case "sf": nurse("Soro fisiológico 500 mL correndo aberto."); S.fluid = true; break;
+    case "icp": S.reperf = true; nurse("Hemodinâmica acionada: a sala fica pronta em cerca de 30 minutos. Vou preparar o paciente para o transporte."); break;
+    case "trombolise": S.reperf = true; nurse("Tenecteplase em infusão, doutor."); toast("Com hemodinâmica disponível, a angioplastia primária seria a escolha.", "warn"); break;
+  }
+  if (S.drawer==="ordens" || S.drawer==="conversa") renderDrawer();
+}
+function evolveVitals(el){
+  const v = S.vit, dt = .25;
+  if (S.c.emergencia && !S.reperf) { v.pas = Math.max(78, v.pas - .02*dt*10); v.pad = Math.max(48, v.pad - .012*dt*10); }
+  if (S.fluid) { v.pas = Math.min(112, v.pas + .25*dt*4); v.pad = Math.min(70, v.pad + .15*dt*4); if (v.fc < 58) v.fc += .05; }
+  v.fc += (Math.random()-.5)*.15; if (v.sat!=null) v.sat = Math.min(99, Math.max(S.c.emergencia ? 88 : 40, v.sat + (Math.random()-.5)*.05));
+  const mon = $("#monitor");
+  if (mon){
+    const alarm = S.mon && (v.pas < 80 || v.fc < 45 || v.fc > 130 || (v.sat!=null && v.sat < 90) || v.fr < 8);
+    mon.classList.toggle("alarm", alarm);
+    const h = $("#mHR"); if (h){ h.textContent = Math.round(v.fc); $("#mSP").textContent = v.sat==null ? "--" : Math.round(v.sat); $("#mPA").textContent = `${Math.round(v.pas)}/${Math.round(v.pad)}`; $("#mFR").textContent = Math.round(v.fr); }
+  }
+}
+function startMonitor(){
+  const mon = $("#monitor"); if (!mon) return;
+  const draw = () => {
+    if (!S) return;
+    if (!S.mon){
+      if (!mon.dataset.off){ mon.dataset.off = 1; mon.innerHTML = `<div class="mh"><span>MONITOR · LEITO 2</span><span>—</span></div><div class="off">SEM SINAL<br>paciente não monitorizado</div>`; }
+      rafId = requestAnimationFrame(draw); return;
+    }
+    if (mon.dataset.off !== "0"){
+      mon.dataset.off = "0";
+      mon.innerHTML = `<div class="mh"><span>MONITOR · LEITO 2</span><span>DII</span></div><canvas id="mCv" width="560" height="108"></canvas>
+        <div class="vals"><div class="v hr"><small>FC</small><b id="mHR">--</b></div><div class="v sp"><small>SpO₂</small><b id="mSP">--</b></div><div class="v pa"><small>PNI</small><b id="mPA">--</b></div><div class="v fr"><small>FR</small><b id="mFR">--</b></div></div>`;
+      S.sweep = 0;
+    }
+    const cv = $("#mCv"); if (!cv) return;
+    const ctx = cv.getContext("2d"), W = cv.width, Hh = cv.height;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const pxPerSec = 110, RR = 60 / S.vit.fc;
+    const val = tt => { const tb = ((tt % RR)+RR)%RR; const g=(x,m,s,a)=>a*Math.exp(-((x-m)**2)/(2*s*s));
+      return g(tb,.08,.022,.12)+g(tb,.19,.008,-.05)+g(tb,.215,.011,1)+g(tb,.24,.011,-.15)+ .3*(tb>.25&&tb<.45?1:0)*Math.sin(Math.PI*(tb-.25)/.2)*.6 + g(tb,.4,.045,.28); };
+    if (reduce){
+      ctx.fillStyle="#05080A"; ctx.fillRect(0,0,W,Hh); ctx.strokeStyle="#4BE37A"; ctx.lineWidth=2; ctx.beginPath();
+      for (let x=0;x<W;x++){ const y = Hh*.65 - val(x/pxPerSec)*Hh*.5; x?ctx.lineTo(x,y):ctx.moveTo(x,y); } ctx.stroke();
+      return;
+    }
+    const step = 3;
+    for (let k=0;k<step;k++){
+      const x = S.sweep % W, tt = S.sweep / pxPerSec;
+      ctx.fillStyle="#05080A"; ctx.fillRect(x, 0, 14, Hh);
+      const y = Hh*.65 - val(tt)*Hh*.5, yp = Hh*.65 - val((S.sweep-1)/pxPerSec)*Hh*.5;
+      ctx.strokeStyle="#4BE37A"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(Math.max(0,x-1), yp); ctx.lineTo(x, y); ctx.stroke();
+      S.sweep++;
+    }
+    rafId = requestAnimationFrame(draw);
+  };
+  draw();
+}
+function stopLoops(){ if (loopId) clearInterval(loopId); loopId = null; if (rafId) cancelAnimationFrame(rafId); rafId = null; try{ CAP.tts?.stop?.(); }catch(e){} try{ if (S?.listening) CAP.dict?.stop(); }catch(e){} }
+
+/* =========================================================================
+   GAVETAS
+   ========================================================================= */
+function openDrawer(id){
+  if (!S) return;
+  S.drawer = id;
+  document.querySelectorAll("[data-tool]").forEach(b => b.setAttribute("aria-pressed", b.dataset.tool===id));
+  if (id==="exames"){ S.unread = 0; setBadge("exames", 0); }
+  $("#stage")?.classList.toggle("dopen", !!id);
+  renderDrawer();
+}
+function setBadge(id, n){ const b = document.querySelector(`[data-badge="${id}"]`); if (b){ b.hidden = !n; b.textContent = n; } }
+function drawerShell(title, sub, body){
+  return `<aside class="drawer" role="dialog" aria-label="${esc(title)}"><header><div><h2>${esc(title)}</h2>${sub?`<p>${sub}</p>`:""}</div><button class="iconbtn" id="dClose" aria-label="Fechar">${ic("close")}</button></header><div class="dbody" id="dBody">${body}</div></aside>`;
+}
+function renderDrawer(){
+  const host = $("#drawerHost"); if (!host || !S) return;
+  const keep = $("#dBody")?.scrollTop || 0;
+  const c = S.c, id = S.drawer;
+  if (!id){ host.innerHTML = ""; return; }
+  let html = "";
+  if (id==="conversa"){
+    const tr = S.transcript.length ? `<div class="transcript">${S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me" ? (m.to==="enfermeira"?"Você → Enf. Carla":"Você") : esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("")}</div>` : `<div class="empty">Cumprimente, apresente-se e comece a anamnese pela caixa de texto ou pelo microfone.</div>`;
+    let roteiro = "";
+    if (S.mode==="treino"){
+      const groups = {};
+      c.topicos.filter(tp => !tp.ativo).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
+      roteiro = `<div class="group"><div class="eyebrow">Roteiro sugerido (modo treino)</div><p class="note" style="margin:0">Clique para perguntar ou use como lembrete. No modo prova este roteiro não aparece.</p></div>` +
+        Object.entries(groups).map(([g, list]) => `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`).join("")}</div>`).join("");
+    }
+    html = drawerShell("Conversa", S.mode==="treino" ? "Transcrição e roteiro de anamnese" : "Transcrição da consulta", `<div class="group"><div class="eyebrow">Transcrição</div>${tr}</div>${roteiro}`);
+  }
+  else if (id==="exame"){
+    html = drawerShell("Exame físico", "Escolha a manobra: o achado aparece logo abaixo.", c.exame.map(gr => `<div class="group"><div class="eyebrow">${esc(gr.g)}</div>${gr.itens.map(it => {
+      const done = S.man[it.id]!=null;
+      return `<button class="item ${done?"done":""}" data-man="${it.id}">${esc(it.nome)}${done?`<span class="st">${fmt(S.man[it.id])}</span>`:""}</button>${done ? (it.foto ? fotoHTML(it.foto) : `<div class="finding">${esc(findingText(it))}</div>`) : ""}`;
+    }).join("")}</div>`).join(""));
+  }
+  else if (id==="exames"){
+    const req = Object.keys(S.exams);
+    const imp = req.length ? req.sort((a,b)=>S.exams[b].t-S.exams[a].t).map(eid => impresso(eid)).join("") : `<div class="empty">Nenhum exame solicitado. Os resultados chegam como impressos, após o tempo de processamento.</div>`;
+    const gs = {}; (c.examesCaso||[]).forEach(e => (gs["Exames deste caso"]=gs["Exames deste caso"]||[]).push(e)); EXAMES.forEach(e => (gs[e.grupo]=gs[e.grupo]||[]).push(e));
+    html = drawerShell("Exames complementares", S.mode==="prova" ? "Digite o exame que deseja solicitar." : "Solicite e aguarde o impresso.", `
+      <div class="group"><div class="eyebrow">Impressos recebidos</div>${imp}</div>
+      <input class="search" id="exSearch" placeholder="Buscar exame (ex.: troponina, BNP, ECG)" aria-label="Buscar exame" value="${esc(S.exQ||"")}">
+      ${Object.entries(gs).map(([g, list]) => `<div class="group" data-exg><div class="eyebrow">${esc(g)}</div>${list.map(e => `<button class="item ${S.exams[e.id]?"done":""}" data-ex="${e.id}" data-name="${esc(norm(e.nome))}" ${S.exams[e.id]?"disabled":""}>${esc(e.nome)}<span class="st">${S.exams[e.id]?"solicitado":"~"+(examDef(e.id).t||e.t||6)+" s"}</span></button>`).join("")}</div>`).join("")}`);
+  }
+  else if (id==="ordens"){
+    const gs = {}; ORDENS.forEach(o => (gs[o.g]=gs[o.g]||[]).push(o));
+    html = drawerShell("Ordens à enfermagem", "A enfermeira Carla executa na hora. Você também pode falar as ordens no chat (Falar com: Enf. Carla).",
+      Object.entries(gs).map(([g, list]) => `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(o => `<button class="item ${S.orders[o.id]!=null?"done":""}" data-ord="${o.id}" ${S.orders[o.id]!=null?"disabled":""}>${esc(o.nome)}${S.orders[o.id]!=null?`<span class="st">✓ ${fmt(S.orders[o.id])}</span>`:""}</button>`).join("")}</div>`).join(""));
+  }
+  else if (id==="prontuario"){
+    const anam = c.topicos.filter(tp => S.topics[tp.id] && !tp.oculto);
+    const exf = c.exame.flatMap(g => g.itens).filter(it => S.man[it.id]!=null);
+    html = drawerShell("Prontuário", "Montado automaticamente com o que você investigou.", `
+      <div class="group"><div class="eyebrow">Identificação</div><dl class="kv"><dt>Nome</dt><dd>${esc(c.pac.nome)}</dd><dt>Idade</dt><dd>${c.pac.idade} anos</dd><dt>Sexo</dt><dd>${esc(c.pac.sexo)}</dd><dt>Profissão</dt><dd>${esc(c.pac.prof)}</dd></dl></div>
+      <div class="group"><div class="eyebrow">Anamnese (${anam.length} de ${c.topicos.length} pontos da ficha)</div>${anam.length ? anam.map(tp => `<div class="tl"><span class="w">${esc(tp.g)}</span>${esc(tp.r)}</div>`).join("") : `<div class="empty">Ainda nada investigado.</div>`}</div>
+      <div class="group"><div class="eyebrow">Exame físico</div>${exf.length ? exf.map(it => `<div class="tl"><span class="w">${esc(it.nome)}</span>${it.foto ? "Impresso fotográfico recebido (ver Exame físico)." : esc(findingText(it))}</div>`).join("") : `<div class="empty">Nenhuma manobra realizada.</div>`}</div>
+      <div class="field"><label for="notas">Anotações livres</label><textarea id="notas" rows="5" placeholder="Rascunho do seu raciocínio">${esc(S.notas)}</textarea></div>`);
+  }
+  else if (id==="conduta"){
+    html = drawerShell("Hipótese e conduta", "Escreva com as suas palavras: não há alternativas para escolher.", `
+      <div class="field"><label for="hip">Hipótese diagnóstica principal</label><input id="hip" value="${esc(S.hip)}" placeholder="Seja específico: diagnóstico, classificação, etiologia"></div>
+      <div class="field"><label for="dif">Diagnósticos diferenciais</label><textarea id="dif" rows="3" placeholder="Um por linha">${esc(S.dif)}</textarea></div>
+      <div class="field"><label for="cond">Conduta e orientações</label><small>O que você também explicar ao paciente na conversa conta para a nota.</small><textarea id="cond" rows="8" placeholder="Medicamentos com dose, exames, encaminhamentos, orientações, retorno">${esc(S.conduta)}</textarea></div>
+      ${c.emergencia ? `<p class="note">Na emergência, os medicamentos contam pelas <b>Ordens</b> executadas pela enfermeira.</p>` : ""}`);
+  }
+  host.innerHTML = html;
+  const body = $("#dBody"); if (body) body.scrollTop = keep;
+  $("#dClose").onclick = () => openDrawer(null);
+  host.querySelectorAll("[data-ask]").forEach(b => b.onclick = () => { const tp = c.topicos.find(x=>x.id===b.dataset.ask); say(tp.q); });
+  host.querySelectorAll("[data-man]").forEach(b => b.onclick = () => { if (S.man[b.dataset.man]==null){ S.man[b.dataset.man] = now(); renderDrawer(); } });
+  host.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => requestExam(b.dataset.ex));
+  host.querySelectorAll("[data-ord]").forEach(b => b.onclick = () => giveOrder(b.dataset.ord));
+  host.querySelectorAll("[data-zoom]").forEach(b => b.onclick = () => zoomImp(b.dataset.zoom));
+  host.querySelectorAll("[data-zimg]").forEach(b => b.onclick = () => zoomImg(b.getAttribute("src"), b.getAttribute("alt")));
+  const exs = $("#exSearch"); if (exs){ const f = () => { S.exQ = exs.value; const q = norm(exs.value).trim(); const show = S.mode==="treino" || q.length>=2; host.querySelectorAll("[data-ex]").forEach(b => b.hidden = !show || (q && !q.split(/\s+/).every(w => b.dataset.name.includes(w)))); host.querySelectorAll("[data-exg]").forEach(g => g.hidden = ![...g.querySelectorAll("[data-ex]")].some(b=>!b.hidden)); }; exs.oninput = f; f(); }
+  const bind = (sel, key) => { const e = $(sel); if (e) e.oninput = () => { S[key] = e.value; }; };
+  bind("#hip","hip"); bind("#dif","dif"); bind("#cond","conduta"); bind("#notas","notas");
+}
+function fotoHTML(f){
+  return `<figure class="photo"><img src="${esc(f.src)}" alt="${esc(f.alt||f.title||"Fotografia da lesão")}" data-zimg>${f.caption?`<figcaption>${esc(f.caption)}</figcaption>`:""}${f.request?`<div class="req">${esc(f.request)} Fale em voz alta para o paciente/examinador ou escreva em Prontuário → Anotações.</div>`:""}</figure>`;
+}
+function zoomImg(src, alt){
+  const host = $("#stage"); if (!host) return;
+  const z = document.createElement("div"); z.className = "zoom";
+  z.innerHTML = `<div class="imp"><header><b>${esc(alt||"Fotografia")}</b><button class="btn ghost" style="color:#1D232A;border-color:#C9C3AE">Fechar</button></header><img src="${esc(src)}" alt="${esc(alt||"")}"></div>`;
+  z.onclick = ev => { if (ev.target===z || ev.target.closest("button")) z.remove(); };
+  host.appendChild(z);
+}
+function findingText(it){
+  if (it.achado !== "VITAIS") return it.achado;
+  const v = S.vit;
+  return `PA ${Math.round(v.pas)} × ${Math.round(v.pad)} mmHg · FC ${Math.round(v.fc)} bpm · FR ${Math.round(v.fr)} irpm · SpO₂ ${Math.round(v.sat)}% (aferidos em ${fmt(S.man[it.id])})`;
+}
+function examDef(id){ const extra = (S?.c.examesCaso||[]).find(e => e.id===id); return Object.assign({}, EXAME[id] || extra || {}, (S?.c.exames||{})[id] || {}); }
+function requestExam(id){
+  if (!S || S.exams[id]) return;
+  const d = examDef(id), t = now();
+  S.exams[id] = {t, ready:false};
+  toast(`${d.nome}: solicitado.`);
+  if (S.drawer==="exames") renderDrawer();
+  setTimeout(() => {
+    if (!S || !S.exams[id]) return;
+    S.exams[id].ready = true; S.exams[id].tr = now();
+    if (S.drawer!=="exames"){ S.unread++; setBadge("exames", S.unread); }
+    toast(`Resultado disponível: ${d.nome}.`);
+    if (S.drawer==="exames") renderDrawer();
+  }, (d.t || 6) * 1000);
+}
+function impresso(id){
+  const d = examDef(id), e = S.exams[id];
+  if (!e.ready) return `<div class="imp wait"><header><b>${esc(d.nome)}</b><span>${fmt(e.t)}</span></header>Aguardando resultado…</div>`;
+  const showLaudo = S.mode==="treino" && d.laudo;
+  const body = d.ecg ? `<div class="ecgwrap" data-zoom="${id}" role="button" tabindex="0" title="Ampliar">${ecgSVG(d.ecg)}</div>` : `<div class="res">${esc(d.res)}${S.mode==="treino" && d.alt ? "\n(alterado)" : ""}</div>`;
+  return `<div class="imp"><header><b>${esc(d.nome)}</b><span>${esc(S.c.pac.nome.split(" ")[0])} · ${fmt(e.tr)}</span></header>${body}${showLaudo?`<div class="laudo"><b>Laudo (treino):</b> ${esc(d.laudo)}</div>`:""}</div>`;
+}
+function zoomImp(id){
+  const d = examDef(id), host = $("#stage"); if (!host) return;
+  const z = document.createElement("div"); z.className = "zoom";
+  z.innerHTML = `<div class="imp"><header><b>${esc(EXAME[id].nome)}</b><button class="btn ghost" style="color:#1D232A;border-color:#C9C3AE">Fechar</button></header><div class="ecgwrap">${ecgSVG(d.ecg)}</div></div>`;
+  z.onclick = ev => { if (ev.target===z || ev.target.closest("button")) z.remove(); };
+  host.appendChild(z);
+}
+
+/* =========================================================================
+   ENCERRAMENTO E CORREÇÃO
+   ========================================================================= */
+function endStation(reason){
+  if (!S || S.ended) return;
+  S.ended = true; S.elapsed = Math.min(now(), S.c.tempo);
+  stopLoops();
+  beep(520,.35); setTimeout(()=>beep(520,.35), 420);
+  if (reason==="tempo") toast("Tempo esgotado.", "warn");
+  setTimeout(() => renderFeedback(), reason==="tempo" ? 900 : 0);
+}
+function evaluate(override){
+  const c = S.c;
+  const items = c.checklist.map((it, i) => {
+    let r = it.test(S) || {ok:false};
+    let byAI = false;
+    if (override && it.ia && override[i]!=null){ if (override[i] !== r.ok) byAI = true; r = {ok: !!override[i], ev: r.ev || (override[i] ? "Reconhecido pelo avaliador IA" : undefined)}; }
+    return Object.assign({}, it, {ok:r.ok, ev:r.ev, byAI, i});
+  });
+  const doms = {};
+  items.forEach(it => { const d = doms[it.d] = doms[it.d] || {got:0, tot:0}; d.tot += it.w; if (it.ok) d.got += it.w; });
+  const got = items.reduce((a,it)=>a+(it.ok?it.w:0),0), tot = items.reduce((a,it)=>a+it.w,0);
+  const crit = (c.criticos||[]).filter(k => k.test(S)).map(k => k.l);
+  if (S.critIA) S.critIA.forEach(i => { const t = (c.criticosTexto||[])[i]; if (t) crit.push(t); });
+  return {items, doms, pct: Math.round(100*got/tot), got, tot, crit};
+}
+function renderFeedback(override, ai){
+  const c = S.c, R = evaluate(override);
+  document.body.style.overflow = "";
+  const hist = store.get("osce-sala-hist", {});
+  const h = hist[c.id] || {best:0, n:0};
+  if (!S.saved){ h.n++; S.saved = true; }
+  h.best = Math.max(h.best, R.pct); hist[c.id] = h; store.set("osce-sala-hist", hist);
+  const R2 = 52, C = 2*Math.PI*R2, col = R.pct>=70 ? "var(--ok)" : R.pct>=50 ? "var(--warn)" : "var(--crit)";
+  const domOrder = [...new Set(c.checklist.map(i=>i.d))];
+  const aiBox = ai === "loading" ? `<div class="ai-box"><b>Avaliador IA</b><span class="note">Revisando a hipótese, a conduta e a conversa…</span></div>`
+    : ai && ai.comentario ? `<div class="ai-box"><b>Comentário do avaliador</b><span>${esc(ai.comentario)}</span>${ai.fortes?.length?`<div><b>Pontos fortes</b><ul>${ai.fortes.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}${ai.melhorar?.length?`<div><b>Para melhorar</b><ul>${ai.melhorar.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}</div>` : "";
+  $("#app").innerHTML = `
+  <section class="screen"><div class="fb">
+    <div class="fb-head">
+      <svg class="ring" viewBox="0 0 132 132" role="img" aria-label="Nota ${R.pct}%"><circle cx="66" cy="66" r="${R2}" fill="none" stroke="var(--sunk)" stroke-width="12"/><circle cx="66" cy="66" r="${R2}" fill="none" stroke="${col}" stroke-width="12" stroke-linecap="round" stroke-dasharray="${C*R.pct/100} ${C}" transform="rotate(-90 66 66)"/><text x="66" y="72" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="28" font-weight="600" fill="var(--ink)">${R.pct}%</text></svg>
+      <div>
+        <div class="eyebrow">${esc(c.area)} · ${esc(c.pac.nome)} · ${S.mode==="prova"?"Prova":"Treino"}</div>
+        <h1>${R.pct>=70 ? "Estação aprovada" : R.pct>=50 ? "Quase lá" : "Vale refazer esta estação"}</h1>
+        <p>${R.got.toLocaleString("pt-BR")} de ${R.tot.toLocaleString("pt-BR")} pontos · tempo usado ${fmt(S.elapsed)} de ${fmt(c.tempo)} · ${S.transcript.filter(m=>m.who==="me").length} falas · melhor nota nesta estação: ${h.best}%</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+          <button class="btn primary" id="again">${ic("door")}Refazer a estação</button>
+          <button class="btn" id="toLobby">${ic("back")}Outras estações</button>
+        </div>
+      </div>
+    </div>
+    <div class="doms">${domOrder.map(d => { const v = R.doms[d]; const p = Math.round(100*v.got/v.tot); return `<div class="dom"><div class="row"><span>${esc(d)}</span><b>${p}%</b></div><div class="bar"><i style="width:${p}%"></i></div></div>`; }).join("")}</div>
+    ${R.crit.length ? `<div class="crit-list">${R.crit.map(x=>`<div><b>Erro crítico:</b> ${esc(x)}</div>`).join("")}</div>` : ""}
+    <div class="fb-grid">
+      <div class="card"><h2>Checklist da estação</h2>
+        ${domOrder.map(d => `<div><div class="eyebrow" style="margin:8px 0 2px">${esc(d)}</div>${R.items.filter(it=>it.d===d).map(it => `<div class="ck ${it.ok?"y":"n"}"><span class="mk">${it.ok?"✓":"✕"}</span><div>${esc(it.l)}${it.byAI?`<span class="ia">IA</span>`:""}${it.ev?`<span class="ev">${esc(it.ev)}</span>`:""}${!it.ok && it.dica?`<span class="dica">${esc(it.dica)}</span>`:""}</div><span class="w">${String(it.w).replace(".",",")}</span></div>`).join("")}</div>`).join("")}
+      </div>
+      <div style="display:grid;gap:20px;min-width:0">
+        ${aiBox ? `<div class="card">${aiBox}</div>` : ""}
+        ${c.gabarito ? gabaritoHTML(c.gabarito) : ""}
+        <div class="card"><h2>Sua hipótese e conduta</h2>
+          <dl class="kv"><dt>Hipótese</dt><dd>${esc(S.hip)||"<span class='note'>não registrada</span>"}</dd><dt>Diferenciais</dt><dd>${esc(S.dif)||"—"}</dd></dl>
+          <div class="note" style="white-space:pre-wrap">${esc(S.conduta)||"Conduta não registrada por escrito."}</div>
+          ${c.emergencia ? `<div><div class="eyebrow">Ordens executadas</div>${Object.keys(S.orders).sort((a,b)=>S.orders[a]-S.orders[b]).map(k=>`<div class="tl"><span class="w">${fmt(S.orders[k])}</span>${esc(ORD_NAME[k])}</div>`).join("") || "<span class='note'>Nenhuma</span>"}</div>` : ""}
+        </div>
+        <div class="card"><h2>Transcrição</h2><div class="transcript" style="max-height:420px;overflow:auto">${S.transcript.length ? S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me"?"Você":esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("") : "<span class='note'>Sem falas registradas.</span>"}</div></div>
+      </div>
+    </div>
+  </div></section>`;
+  window.scrollTo(0,0);
+  $("#again").onclick = () => renderDoor(c.id);
+  $("#toLobby").onclick = renderLobby;
+  if (ai===undefined && CAP.sample && !CAP.aiOff) runAIEval();
+}
+function gabaritoHTML(g){
+  const li = arr => `<ul>${arr.map(x => `<li>${esc(x)}</li>`).join("")}</ul>`;
+  return `<div class="card gab"><h2>Gabarito da estação</h2>
+    ${g.diag ? `<div><div class="eyebrow">Diagnóstico</div>${esc(g.diag)}</div>` : ""}
+    ${g.foto ? `<div><div class="eyebrow">Fotodescrição esperada</div>${li(splitP(g.foto))}</div>` : ""}
+    ${(g.difs||[]).length ? `<div><div class="eyebrow">Diferenciais</div>${li(g.difs)}</div>` : ""}
+    ${(g.exames||[]).length ? `<div><div class="eyebrow">Exames esperados</div>${li(g.exames.map(e => `${e.exam}: ${e.expected||e.justify||""}`))}</div>` : ""}
+    ${g.conduta ? `<div><div class="eyebrow">Conduta esperada</div>${li(splitP(g.conduta))}</div>` : ""}
+  </div>`;
+}
+async function runAIEval(){
+  const c = S.c, snap = S;
+  renderFeedback(undefined, "loading");
+  const iaItems = c.checklist.map((it,i)=>({it,i})).filter(x=>x.it.ia);
+  const prompt = `Você é um avaliador de OSCE (exame clínico objetivo estruturado) de medicina no Brasil, rigoroso e justo.
+ESTAÇÃO: ${c.titulo}. Paciente: ${c.pac.nome}, ${c.pac.idade} anos. ${c.enunciado}
+TAREFAS: ${c.tarefas.join(" ")}
+HIPÓTESE ESCRITA PELO ALUNO: "${S.hip}"
+DIFERENCIAIS: "${S.dif}"
+CONDUTA ESCRITA: "${S.conduta}"
+${c.emergencia ? "ORDENS EXECUTADAS: " + (Object.keys(S.orders).map(k=>ORD_NAME[k]).join("; ")||"nenhuma") : ""}
+MANOBRAS DE EXAME FÍSICO REALIZADAS: ${c.exame.flatMap(g=>g.itens).filter(it=>S.man[it.id]!=null).map(it=>it.nome).join("; ") || "nenhuma"}
+EXAMES SOLICITADOS: ${Object.keys(S.exams).map(id=>examDef(id).nome).join("; ") || "nenhum"}
+ANOTAÇÕES DO ALUNO: "${S.notas}"
+FALAS DO ALUNO NA CONSULTA:
+${S.transcript.filter(m=>m.who==="me").map(m=>`[${fmt(m.t)}] ${m.text}`).join("\n") || "(nenhuma)"}
+Avalie SOMENTE estes itens do checklist (true = cumprido de forma clara e correta pelo que foi escrito ou dito; considere negações: "não vou dar X" não conta como dar X):
+${iaItems.map(x=>`${x.i}: ${x.it.l}`).join("\n")}
+${(c.criticosTexto||[]).length ? `ERROS CRÍTICOS POSSÍVEIS (marque em "criticos" os índices que o aluno COMETEU de fato; na dúvida, não marque):\n${c.criticosTexto.map((t,i)=>`${i}: ${t}`).join("\n")}\n` : ""}Responda SOMENTE JSON: {"itens":{"<número>":true|false,...},"criticos":[índices],"comentario":"2 a 4 frases, tom de preceptor, dirigidas ao aluno (você)","fortes":["até 3"],"melhorar":["até 3, específicos e acionáveis"]}`;
+  try{
+    const r = await CAP.sample.json(prompt, {modelTier:"default", cache:false});
+    if (S !== snap) return;
+    const ov = {};
+    if (r && r.itens) for (const k in r.itens) ov[+k] = !!r.itens[k];
+    if (r && Array.isArray(r.criticos)) S.critIA = r.criticos.map(Number).filter(n => Number.isInteger(n));
+    renderFeedback(ov, r || {});
+  }catch(e){
+    if (S !== snap) return;
+    renderFeedback(undefined, {comentario: e?.code==="not_granted" ? "" : "O avaliador IA não respondeu. A correção acima usa o reconhecimento automático do texto."});
+  }
+}
+
+renderLobby();
+loadRepoCases();
+</script>
