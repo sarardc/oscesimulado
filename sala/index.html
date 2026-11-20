@@ -223,6 +223,10 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .crit-list div{background:var(--crit-soft);color:var(--crit);border-radius:8px;padding:9px 12px;font-size:14px}
 .ai-box{background:var(--accent-soft);border-radius:8px;padding:12px 14px;font-size:14.5px;display:grid;gap:8px}
 .ai-box ul{margin:0;padding-left:18px}
+.noimg{aspect-ratio:16/9;width:100%;display:grid;place-items:center;background:var(--sunk);color:var(--muted)}
+.noimg svg.i{width:44px;height:44px;opacity:.6}
+.noscene{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:10px;background:radial-gradient(circle at 60% 40%,#1d3140,#0b141b);color:#8fa3b1;font-size:13px}
+.noscene svg.i{width:64px;height:64px;opacity:.5}
 .photo{margin:0;display:grid;gap:6px;background:#FFFEFA;color:#1D232A;border:1px solid #E2DCC6;border-radius:6px;padding:10px}
 .photo img{width:100%;border-radius:4px;cursor:zoom-in;display:block}
 .photo figcaption{font-size:12.5px;color:#4A535C}
@@ -476,7 +480,7 @@ function ecgSVG(cfg){
 const CASOS = [
 {
   id:"lucia", ativo:true, img:"img/lucia.jpg", focus:"72% 40%", voz:"rounded",
-  area:"Clínica médica", local:"Unidade Básica de Saúde · consulta de demanda espontânea", tempo:600,
+  area:"Cardiologia", local:"Unidade Básica de Saúde · consulta de demanda espontânea", tempo:600,
   titulo:"Cansaço que não passa",
   pac:{nome:"Lúcia Ferreira", primeiro:"lucia", trat:"Dona Lúcia", idade:74, sexo:"Feminino", prof:"Costureira aposentada", peso:"68 kg", altura:"1,58 m"},
   enunciado:"Lúcia Ferreira, 74 anos, aposentada, procura a UBS com queixa de cansaço. Ela está sentada no consultório aguardando atendimento.",
@@ -581,7 +585,7 @@ const CASOS = [
 },
 {
   id:"rafael", ativo:true, img:"img/rafael.jpg", focus:"74% 40%", voz:"glassy",
-  area:"Saúde mental", local:"Unidade Básica de Saúde · acolhimento", tempo:600,
+  area:"Psiquiatria", local:"Unidade Básica de Saúde · acolhimento", tempo:600,
   titulo:"Um remédio para dormir",
   pac:{nome:"Rafael Souza", primeiro:"rafael", trat:"Rafael", idade:23, sexo:"Masculino", prof:"Estudante de engenharia", peso:"64 kg", altura:"1,78 m"},
   enunciado:"Rafael, 23 anos, estudante universitário, procura a UBS pedindo “um remédio para dormir”. Na triagem, a técnica de enfermagem notou um curativo no punho esquerdo.",
@@ -664,7 +668,7 @@ const CASOS = [
 },
 {
   id:"antonio", ativo:true, img:"img/emergencia.jpg", focus:"55% 45%", voz:"buttery", emergencia:true,
-  area:"Urgência e emergência", local:"Sala de emergência · hospital com hemodinâmica 24 h", tempo:600,
+  area:"Cardiologia", local:"Sala de emergência · hospital com hemodinâmica 24 h", tempo:600,
   titulo:"Dor no peito na sala vermelha",
   pac:{nome:"Antônio Carlos Lima", primeiro:"antonio", trat:"Seu Antônio", idade:58, sexo:"Masculino", prof:"Motorista de ônibus", peso:"86 kg", altura:"1,72 m"},
   enunciado:"Antônio, 58 anos, chega trazido pela esposa com dor no peito há 1h30. Já está no leito da sala de emergência. A enfermeira Carla está ao seu lado e cumpre as suas ordens.",
@@ -749,7 +753,7 @@ const CASOS = [
 },
 {
   id:"camila", ativo:true, img:"img/camila.jpg", focus:"72% 40%", voz:"airy",
-  area:"Clínica médica · Neurologia", local:"Unidade Básica de Saúde · consulta agendada", tempo:600,
+  area:"Neurologia", local:"Unidade Básica de Saúde · consulta agendada", tempo:600,
   titulo:"Dor de cabeça de novo",
   pac:{nome:"Camila Nunes", primeiro:"camila", trat:"Camila", idade:29, sexo:"Feminino", prof:"Analista de marketing", peso:"58 kg", altura:"1,65 m"},
   enunciado:"Camila, 29 anos, analista de marketing, procura a UBS porque as dores de cabeça “estão cada vez mais frequentes”.",
@@ -850,20 +854,26 @@ const splitP = t => String(t||"").split(/\s+\|\s+/).map(x => x.trim()).filter(Bo
 const titleCase = t => t.toLowerCase().replace(/(^|\s|\()([a-zà-ú]+)/g, (m,a,b) => a + (/^(e|de|da|do|das|dos|em|com|a|o)$/.test(b) && a ? b : b.charAt(0).toUpperCase()+b.slice(1)));
 const cleanAchado = t => String(t||"").replace(/\s*[—-]\s*(informar|fornecid|entregar|so |só |somente)[^|]*$/i, "").trim();
 
+const AREA_FIX = {"emergencias neurologicas":"Emergências Neurológicas", "obstetricia":"Obstetrícia", "cirurgia pediatrica":"Cirurgia Pediátrica", "pediatria geral":"Pediatria Geral", "medicina intensiva":"Medicina Intensiva", "medicina legal":"Medicina Legal"};
+const idadeStr = p => p.idadeTxt || (Math.round(p.idade) + " anos");
+const areaNome = t => { const n = norm(t).trim(); return AREA_FIX[n] || (n.charAt(0).toUpperCase() + n.slice(1)); };
 function fromStation(st){
   const A = st.instA||{}, B = st.instB||{}, K2 = st.instC||{};
   const pat = String(A.patient||"");
-  const nome = pat.split(",")[0].trim() || "Paciente";
-  const idade = +((pat.match(/(\d+)\s*anos/)||[])[1] || 40);
+  const nome = (pat.split(",")[0].trim() || "Paciente").replace(/^(m[ãa]e|pai|respons[áa]vel|av[óô])\s+d[eoa]s?\s+/i, "");
+  const mA = pat.match(/(\d+)\s*anos?\b/i), mM = pat.match(/(\d+)\s*m[eê]s(es)?\b/i), mD = pat.match(/(\d+)\s*dias?\b/i), mH = pat.match(/(\d+)\s*horas?\b/i), rn = /^\s*RN\b|rec[ée]m.nascid/i.test(pat);
+  const idade = mA ? +mA[1] + (mM ? +mM[1]/12 : 0) : mM ? +mM[1]/12 : mD ? +mD[1]/365 : (mH || rn) ? 0 : 40;
+  const idadeTxt = mA ? (+mA[1] + (+mA[1] === 1 ? " ano" : " anos") + (mM ? " e " + mM[1] + (+mM[1] === 1 ? " mês" : " meses") : "")) : mM ? mM[1] + (+mM[1] === 1 ? " mês" : " meses") : mD ? mD[1] + " dias de vida" : mH ? mH[1] + " horas de vida" : rn ? "recém-nascido" : "";
   const fem = /feminin/i.test(pat) || /\bsra\b|\bdona\b/i.test(nome);
   const iniciais = /^([A-ZÀ-Ú]\.){2,}/.test(nome.replace(/\s/g,""));
   const primeiro = iniciais ? "" : nome.split(/\s+/)[0];
   const trat = iniciais ? (idade>=55 ? (fem?"a senhora":"o senhor") : "Paciente") : (idade>=60 ? (fem?"Dona ":"Seu ")+primeiro : primeiro);
-  const scriptTxt = (B.script||[]).map(x => x.trigger).join(" ");
+  const scriptTxt = [...(Array.isArray(B.script) ? B.script : []), ...(Array.isArray(K2.script) ? K2.script : [])].map(x => x.trigger).join(" ");
   const equipe = /intensiva|emergenc/.test(norm(st.tema)) || (/(uti|trauma|pronto|emergencia|ps —|ps -)/.test(norm(st.sub)) && /(enfermag|samu|famil|equipe|acompanhante|colega)/.test(norm(scriptTxt)));
   const ps = /(pronto|ps —|ps -|\bupa\b|emergencia|\buti\b|trauma)/.test(norm(st.sub));
   const crianca = idade < 14;
-  const img = (equipe || ps) ? "img/emergencia.jpg" : crianca ? (fem ? "img/menina.jpg" : "img/menino.jpg") : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const bebe = idade < 2;
+  const img = bebe ? null : (equipe || ps) ? "img/emergencia.jpg" : crianca ? (fem ? "img/menina.jpg" : "img/menino.jpg") : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
   const vv = B.vitals || {}; const vget = re => { for (const k in vv) if (re.test(k)) return String(vv[k]); return ""; };
   const num = (t, re) => { const m = String(t).match(re); return m ? +m[1] : null; };
   const pa = vget(/^pa\b|press/i).match(/(\d{2,3})\s*[x×/]\s*(\d{2,3})/);
@@ -872,21 +882,23 @@ function fromStation(st){
   const roleOf = (tr, sp) => { const n = norm(tr), f = norm(sp).slice(0, 40); if (/^\(?\s*paciente/.test(f) || /^paciente/.test(n)) return "Paciente"; return /\bsamu\b/.test(n) ? "SAMU" : /\b(famil\w*|mae|pai|filh[oa]s?|espos[oa]|acompanhante)\b/.test(n) ? "Família" : /\b(colega|quem trouxe)\b/.test(n) ? "Acompanhante" : /\b(enfermag\w*|equipe|chamado|relato|informacao)\b/.test(n) ? "Enfermagem" : "Paciente"; };
   const prof = (pat.split(",").slice(1).find(x => !/anos|sexo|masculin|feminin|fototipo/i.test(x)) || "").trim();
   // roteiro
-  const topicos = (B.script||[]).map((sc, i) => {
+  const scriptSrc = (Array.isArray(B.script) && B.script.length) ? B.script : (Array.isArray(K2.script) ? K2.script : []);
+  if (!scriptSrc.length && A.complaint) scriptSrc.push({trigger:"Queixa principal", speech:A.complaint});
+  const topicos = scriptSrc.map((sc, i) => {
     const tr = String(sc.trigger||"");
     const ativo = /pergunta ativa|pergunta do paciente|paciente pergunta/i.test(tr);
     const qp = /queixa principal|abertura|in[ií]cio/i.test(tr);
     const tema = tr.replace(/^(sobre|quando perguntad[oa] sobre|se perguntad[oa] sobre)\s+/i, "");
     const st2 = stems(tema);
     const kw = ativo ? /$^/ : qp ? /(o que (te |o |a )?(traz|trouxe)|motivo|queixa|como posso|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|qual o problema)/ : (st2.length ? new RegExp("("+st2.join("|")+")") : /$^/);
-    return {id:"s"+i, g: ativo ? "Perguntas do paciente" : qp ? "Queixa principal" : "Anamnese", q: qp ? "O que traz você aqui hoje?" : "Pergunte "+tema.charAt(0).toLowerCase()+tema.slice(1), kw, r:String(sc.speech||""), ativo, trig:tr, quem: equipe ? roleOf(tr, sc.speech) : crianca ? (/\b(mae|pai|responsavel|avo)\b/.test(norm(tr)) ? "Mãe" : "Criança") : ""};
+    return {id:"s"+i, g: ativo ? "Perguntas do paciente" : qp ? "Queixa principal" : "Anamnese", q: qp ? "O que traz você aqui hoje?" : "Pergunte "+tema.charAt(0).toLowerCase()+tema.slice(1), kw, r:String(sc.speech||""), ativo, trig:tr, quem: equipe ? roleOf(tr, sc.speech) : crianca ? ((bebe || /\b(mae|pai|responsavel|avo)\b/.test(norm(tr))) ? "Mãe" : "Criança") : ""};
   });
   // exame físico
   const vit = B.vitals ? Object.entries(B.vitals).map(([k,v]) => `${k} ${v}`).join(" · ") : "";
   const geral = [{id:"geral", nome:"Inspeção geral", achado: B.physicalGeneral || "Sem alterações."}];
   if (vit) geral.push({id:"sv", nome:"Sinais vitais e antropometria", achado: vit});
   const seg = []; let fotoUsada = false;
-  splitP(B.physicalSeg).forEach((x, i) => {
+  (Array.isArray(B.physicalSeg) ? B.physicalSeg : splitP(B.physicalSeg)).forEach((x, i) => {
     const m = x.match(/^([^:]{2,90}):\s*([\s\S]*)$/);
     const nm = m ? titleCase(m[1].trim()) : "Exame segmentar "+(i+1);
     const ach = m ? m[2] : x;
@@ -925,14 +937,24 @@ function fromStation(st){
     examesCaso.splice(k, 1);
   }
   if (exames.ecg && !/derivacoes direitas/.test(norm(exames.ecg.res))) { const txt = exames.ecg.res; exames.ecg = {res:txt, ecg: ecgFromText(txt), desc: txt}; }
-  // checklist a partir do gabarito
+  // checklist a partir do gabarito (instC.expected*), do PEP antigo (instC.pep) ou do checklist da aba D
   const ck = [];
+  const temExpected = K2.expectedAnamnesis || K2.expectedConduct || K2.expectedPhysical;
+  const secoes = !temExpected ? (Array.isArray(K2.pep) ? K2.pep : ((st.instD?.sections||[]).some(x => Array.isArray(x.items) && x.items.some(i => i && i.item)) ? st.instD.sections : [])) : [];
+  secoes.forEach(sec => {
+    const h = String(sec.section || sec.h || ""), hn = norm(h);
+    const d = /comunic|relacao/.test(hn) ? "Comunicação" : /anamnese|historia/.test(hn) ? "Anamnese" : /exame fisico|exame/.test(hn) && !/complementar|investig/.test(hn) ? "Exame físico" : /conduta|tratamento|orienta|manejo|terapeut|seguimento/.test(hn) ? "Conduta" : "Raciocínio";
+    (sec.items||[]).forEach(it => { const x = String(it.item||"").trim(); if (!x) return; const w = +it.score || .5;
+      const test = d === "Comunicação" ? comTest(x) : d === "Anamnese" ? ANY(SAID(x), s => { for (const tp of s.c.topicos){ const hh = s.topics[tp.id]; if (hh && !tp.ativo && hasStems(x, tp.q+" "+tp.r, 2)) return {ok:true, ev:quote(hh.t, hh.q)}; } return {ok:false}; }) : d === "Exame físico" ? ANY(DID(x), SAID(x)) : d === "Conduta" ? WROTE(x, 2) : ANY(ASKED_EX(x), WROTE(x, 2), s => hasStems(x, s.hip+" "+s.dif, 2) ? {ok:true, ev:"Hipótese/diferenciais"} : {ok:false});
+      ck.push({d, l:x, w, ia:true, test}); });
+  });
+  if (secoes.length && K2.diagnosis && !ck.some(x => /hipotese|diagnost/.test(norm(x.l)))) ck.push({d:"Raciocínio", l:"Hipótese diagnóstica: "+K2.diagnosis, w:2, ia:true, test:DIAG(st.topic)});
   splitP(K2.expectedCommunication).forEach(x => ck.push({d:"Comunicação", l:x, w:.5, ia:true, test:comTest(x)}));
   const TOPIC = x => s => { for (const tp of s.c.topicos){ const h = s.topics[tp.id]; if (h && !tp.ativo && hasStems(x, tp.q+" "+tp.r, 2)) return {ok:true, ev:quote(h.t, h.q)}; } return {ok:false}; };
   splitP(K2.expectedAnamnesis).forEach(x => ck.push({d:"Anamnese", l:x, w:1, ia:true, test:ANY(SAID(x), TOPIC(x))}));
   splitP(K2.expectedPhysical).forEach(x => ck.push({d:"Exame físico", l:x, w:1, ia:true, test:ANY(DID(x), SAID(x))}));
   if (K2.photoDescription) ck.push({d:"Exame físico", l:"Fotodescrição das lesões com terminologia dermatológica formal (falada ou nas anotações)", w:1.5, ia:true, test:PHOTO});
-  if (K2.diagnosis) ck.push({d:"Raciocínio", l:"Hipótese diagnóstica: "+K2.diagnosis, w:2, ia:true, test:DIAG(st.topic)});
+  if (K2.diagnosis && !secoes.length) ck.push({d:"Raciocínio", l:"Hipótese diagnóstica: "+K2.diagnosis, w:2, ia:true, test:DIAG(st.topic)});
   if ((K2.differentials||[]).length){ const nomes = K2.differentials.map(d => String(d).split(/\s+—\s+/)[0]); ck.push({d:"Raciocínio", l:"Diferenciais pertinentes: "+nomes.join("; "), w:1, ia:true, test: s => { const ok = nomes.find(n => hasStems(n, s.dif+" "+s.hip)); return ok ? {ok:true, ev:`Citou: ${ok}`} : {ok:false}; }}); }
   (K2.expectedExams||[]).forEach(e => ck.push({d:"Raciocínio", l:"Solicita "+e.exam+(e.justify ? " — "+e.justify : ""), w:.5, ia:true, test:ANY(ASKED_EX(e.exam), WROTE(e.exam,1))}));
   splitP(K2.expectedConduct).flatMap(x => x.length>200 ? x.split(/;\s+/) : [x]).map(x => x.trim()).filter(x => x.length>3).forEach(x => ck.push({d:"Conduta", l:x, w:1, ia:true, test:WROTE(x, 2)}));
@@ -940,8 +962,8 @@ function fromStation(st){
   const abertura = equipe && topicos[0] && /(informa|relato|chamado|enfermag|samu|famil|quem trouxe|equipe)/.test(norm(topicos[0].trig)) ? topicos[0] : null;
   return {
     id:"st"+st.id, ativo:true, repo:true, equipe, crianca, monitor: !!monitor, vitIni, abertura, img, focus: (equipe || ps) ? "55% 45%" : "72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
-    area: st.tema, nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
-    pac:{nome, primeiro: norm(primeiro), trat, idade, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
+    area: areaNome(st.tema), nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
+    pac:{nome, primeiro: norm(primeiro), trat, idade, idadeTxt, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
     enunciado: [A.scenario, A.patient ? "Paciente: "+A.patient : "", A.complaint ? "Queixa: "+A.complaint : ""].filter(Boolean).join(" "),
     tarefas: A.tasks || [],
     persona: [B.patientProfile, B.actorBehavior ? "COMPORTAMENTO: "+B.actorBehavior : "", B.hiddenInfo ? "INFORMAÇÕES OCULTAS (revele cada uma só na condição descrita): "+B.hiddenInfo : "", B.note ? "ORIENTAÇÕES DO APLICADOR (achados de exame e impressos são entregues pelo sistema, não por você; siga as restrições sobre o que revelar): "+B.note : "", ativos.length ? "PERGUNTAS QUE VOCÊ FAZ POR INICIATIVA PRÓPRIA quando o aluno começar a explicar o diagnóstico ou a conduta: "+ativos.join(" / ") : ""].filter(Boolean).join("\n"),
@@ -1574,16 +1596,16 @@ function renderLobby(){
         <div class="setup-row">${aiChip()}<span>${CAP.tts ? "O paciente fala em voz alta" : "Respostas em legenda"}</span></div>
       </div>
     </div>
-    <div class="filters" role="group" aria-label="Filtrar por especialidade">${["Todas", ...new Set(CASOS.map(c => c.area))].map(a => `<button data-area="${esc(a)}" aria-pressed="${prefs.area===a}">${esc(a)} <span class="mono">${a==="Todas" ? CASOS.length : CASOS.filter(c=>c.area===a).length}</span></button>`).join("")}</div>
+    <div class="filters" role="group" aria-label="Filtrar por especialidade">${["Todas", ...[...new Set(CASOS.map(c => c.area))].sort((a, b) => (a === "Casos dinâmicos" ? -1 : b === "Casos dinâmicos" ? 1 : a.localeCompare(b, "pt-BR")))].map(a => `<button data-area="${esc(a)}" aria-pressed="${prefs.area===a}">${esc(a)} <span class="mono">${a==="Todas" ? CASOS.length : CASOS.filter(c=>c.area===a).length}</span></button>`).join("")}</div>
     <div class="stations">
       ${CASOS.filter(c => prefs.area==="Todas" || c.area===prefs.area).map(c => {
         const h = hist[c.id];
         return `<button class="st-card" data-case="${c.id}" ${c.ativo?"":"disabled"}>
-          <img src="${c.thumb || c.img}" alt="">
+          ${(c.thumb || c.img) ? `<img src="${c.thumb || c.img}" alt="">` : `<div class="noimg" aria-hidden="true">${ic("steth")}</div>`}
           <div class="body">
             <div class="meta"><span class="chip acc">${esc(c.area)}</span><span class="chip mono">${c.tempo/60} min</span>${c.dyn ? `<span class="chip warn">Risco de óbito</span>` : c.nivel?`<span class="chip">${esc(c.nivel)}</span>`:""}${c.ativo?"":`<span class="chip">Em produção</span>`}${h?`<span class="chip ${h.best>=70?"ok":"warn"}">Melhor: ${h.best}%</span>`:""}</div>
             <h3>${esc(c.titulo)}</h3>
-            <p>${esc(c.pac.nome)}, ${c.pac.idade} anos${c.local?" · "+esc(c.local.split(" · ")[0]):""}</p>
+            <p>${esc(c.pac.nome)}, ${idadeStr(c.pac)}${c.local?" · "+esc(c.local.split(" · ")[0]):""}</p>
           </div></button>`;
       }).join("")}
     </div>
@@ -1654,7 +1676,7 @@ function enterRoom(c){
   <section class="room">
     <header class="topbar">
       <button class="iconbtn" id="exitBtn" title="Sair da estação" aria-label="Sair da estação">${ic("back")}</button>
-      <div class="who"><b>${esc(c.pac.nome)}, ${c.pac.idade} anos</b><span>${esc(c.local)}</span></div>
+      <div class="who"><b>${esc(c.pac.nome)}, ${idadeStr(c.pac)}</b><span>${esc(c.local)}</span></div>
       <div class="sp"></div>
       <span class="hide-sm">${aiChip()}</span>
       <span class="chip hide-sm">${S.mode==="prova"?"Prova":"Treino"}</span>
@@ -1665,7 +1687,7 @@ function enterRoom(c){
     </header>
     <div class="main">
       <div class="stage" id="stage">
-        <img class="scene" src="${c.img}" alt="Cena: ${esc(c.pac.nome)} ${c.emergencia?"na sala de emergência":"no consultório"}" style="object-position:${c.focus}">
+        ${c.img ? "" : `<div class="noscene" aria-hidden="true">${ic("steth")}<span>Sem ilustração para este caso</span></div>`}<img class="scene" ${c.img ? "" : "hidden"} src="${c.img || ""}" alt="Cena: ${esc(c.pac.nome)} ${c.emergencia?"na sala de emergência":"no consultório"}" style="object-position:${c.focus}">
         <div class="vignette"></div>
         ${c.emergencia || c.monitor || c.dyn ? `<div class="monitor" id="monitor"></div>` : ""}
         <div class="toast-wrap" id="toasts" aria-live="polite"></div>
@@ -1684,13 +1706,13 @@ function enterRoom(c){
     </div>
     <form class="composer" id="composer" autocomplete="off">
       ${c.emergencia || c.dyn ? `<select id="talkTo" aria-label="Falar com"><option value="paciente">Paciente</option><option value="enfermeira">Enf. Carla</option></select>` : ""}
-      <input id="say" placeholder="${c.emergencia || c.dyn ? "Fale com o paciente ou dê ordens à enfermeira…" : c.equipe ? "Fale com a equipe, a família ou o paciente…" : c.crianca ? "Converse com a mãe ou com a criança…" : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
+      <input id="say" placeholder="${c.emergencia || c.dyn ? "Fale com o paciente ou dê ordens à enfermeira…" : c.equipe ? "Fale com a equipe, a família ou o paciente…" : c.crianca ? (c.pac.idade < 2 ? "Converse com a mãe…" : "Converse com a mãe ou com a criança…") : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
       <button type="button" class="iconbtn mic" id="micBtn" aria-pressed="false" title="Falar (microfone)" aria-label="Falar pelo microfone" ${CAP.dict?"":"hidden"}>${ic("mic")}</button>
       <button class="btn primary" id="sendBtn" type="submit">${ic("send")}<span class="hide-sm">Enviar</span></button>
     </form>
   </section>`;
   document.body.style.overflow = "hidden";
-  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : c.dyn ? "A enfermeira Carla aguarda as suas ordens. O tempo está correndo." : `${c.equipe ? "A equipe aguarda as suas orientações." : c.crianca ? "A criança aguarda com a mãe, sentada ao lado (fora da imagem)." : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
+  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : c.dyn ? "A enfermeira Carla aguarda as suas ordens. O tempo está correndo." : `${c.equipe ? "A equipe aguarda as suas orientações." : c.crianca ? (c.pac.idade < 2 ? "A mãe aguarda com o bebê no colo." : "A criança aguarda com a mãe, sentada ao lado (fora da imagem).") : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
 
   $("#composer").onsubmit = e => { e.preventDefault(); const v = $("#say").value.trim(); if (v) { $("#say").value=""; S.dictBase=""; say(v); } };
   $("#exitBtn").onclick = () => confirmInline("Sair sem corrigir? O tempo e as respostas desta tentativa serão perdidos.", renderLobby);
@@ -1818,6 +1840,7 @@ async function say(text){
   }
   let f = reply.fala || "…", label = reply.quem || "";
   const lm = f.match(/^\s*\[([^\]]{2,30})\]\s*/); if (lm){ label = lm[1]; f = f.slice(lm[0].length); }
+  if (!label && c.crianca && to !== "enfermeira") label = "Mãe";
   S.transcript.push({who:to, label, text:f, t:now(), emo:reply.emocao});
   showCaption(text, f, to, reply.emocao, label);
   S.busy = false; const sb = $("#sendBtn"); if (sb) sb.disabled = false;
@@ -1845,10 +1868,10 @@ async function aiPatient(text){
   const c = S.c;
   const fatos = c.topicos.map(tp => `- ${tp.id}${tp.trig ? " ["+tp.trig+"]" : ""}${tp.ativo ? " (pergunta que VOCÊ faz por iniciativa própria)" : ""}: ${tp.r}`).join("\n");
   const equipeRegra = c.crianca ? `
-CONSULTA PEDIÁTRICA: o paciente é uma criança de ${c.pac.idade} anos, trazida pela mãe (ou responsável). Quem responde à maioria das perguntas é a mãe; a criança só fala quando o aluno se dirigir diretamente a ela, com frases simples de criança. Comece a "fala" com o personagem entre colchetes: "[Mãe] ..." ou "[Criança] ...".` : c.equipe ? `
+CONSULTA PEDIÁTRICA: o paciente é ${c.pac.idade < 2 ? "um bebê de" : "uma criança de"} ${idadeStr(c.pac)}${c.pac.idade < 3 ? " (o bebê NÃO fala: quem responde é sempre a mãe; use apenas [Mãe])" : ""}, trazida pela mãe (ou responsável). Quem responde à maioria das perguntas é a mãe; a criança só fala quando o aluno se dirigir diretamente a ela, com frases simples de criança. Comece a "fala" com o personagem entre colchetes: "[Mãe] ..." ou "[Criança] ...".` : c.equipe ? `
 CENA DE EQUIPE: você interpreta TODOS os personagens da cena — equipe de enfermagem, SAMU, familiares/acompanhantes e o próprio paciente (só quando o estado de consciência permitir). Comece a "fala" sempre com o personagem entre colchetes, por exemplo "[Enfermagem] ..." ou "[Família] ...". Quem responde é quem o aluno chamou ou quem faria sentido na cena. A equipe cumpre as ordens claras do aluno, confirma em voz alta e relata a resposta clínica conforme a ficha (ex.: o que acontece após uma medicação). Se uma ordem for perigosa, a equipe cumpre, mas relata as consequências previstas na ficha ou coerentes com o quadro. Sinais vitais atuais: FC ${Math.round(S.vit.fc)} bpm, PA ${Math.round(S.vit.pas)}x${Math.round(S.vit.pad)} mmHg, SpO2 ${S.vit.sat==null ? "não aferida" : Math.round(S.vit.sat)+"%"}, FR ${Math.round(S.vit.fr)} irpm.` : "";
   const prompt = `Você é um ator interpretando um paciente simulado numa estação de OSCE para estudantes de medicina no Brasil.
-PERSONAGEM: ${c.pac.nome}, ${c.pac.idade} anos, ${c.pac.sexo.toLowerCase()}, ${c.pac.prof}. Cenário: ${c.local}.${c.repo ? " Se o nome do personagem estiver abreviado em iniciais, invente um nome brasileiro coerente com as iniciais e use-o se perguntarem." : ""}
+PERSONAGEM: ${c.pac.nome}, ${idadeStr(c.pac)}, ${c.pac.sexo.toLowerCase()}, ${c.pac.prof}. Cenário: ${c.local}.${c.repo ? " Se o nome do personagem estiver abreviado em iniciais, invente um nome brasileiro coerente com as iniciais e use-o se perguntarem." : ""}
 COMO AGIR: ${c.persona}
 FICHA (cada linha é um fato com seu id; diga o fato só quando o aluno perguntar sobre ele):
 ${fatos}
@@ -1877,7 +1900,7 @@ async function aiNurse(text){
   const vit = S.dyn ? (S.mon ? "Estado do paciente: " + dynEstadoTxt() + "." : "Paciente AINDA NÃO monitorizado. Estado aparente: " + dynEstadoTxt() + ".") : S.mon ? `Monitor: FC ${Math.round(v.fc)} bpm, PA ${Math.round(v.pas)}x${Math.round(v.pad)} mmHg, SpO2 ${Math.round(v.sat)}%, FR ${Math.round(v.fr)} irpm.` : "Paciente AINDA NÃO monitorizado (sem sinais vitais disponíveis até o médico pedir monitorização).";
   const feitas = Object.keys(S.orders).map(k => ordName(k)).join("; ") || "nenhuma";
   const prompt = `Você é a enfermeira Carla numa estação de OSCE de emergência (Brasil). ${c.enfermeira || "Enfermeira experiente, objetiva e cordial. Cumpre ordens claras do médico e confirma em voz alta; informa os sinais vitais quando perguntada; não sugere condutas nem dá diagnósticos."}${S.dyn ? " Nesta cena, quando uma ordem corresponder a um id da lista, NÃO descreva o efeito clínico: apenas inclua o id em \"ordens\" e responda algo curto como \"Certo, doutor(a).\" — o sistema relata o efeito." : ""}
-Paciente: ${c.pac.nome}, ${c.pac.idade} anos. ${c.enunciado} ${vit}
+Paciente: ${c.pac.nome}, ${idadeStr(c.pac)}. ${c.enunciado} ${vit}
 Ordens já executadas: ${feitas}.
 ORDENS POSSÍVEIS (id: descrição):
 ${ords}
@@ -1899,7 +1922,7 @@ function localPatient(text){
     const mine = new Set(stems(text));
     const role = /\b(mae|pai|filh[oa]|familia|esposa|marido|senhora da familia)\b/.test(n) ? "Família" : /\b(enfermeir[oa]|enfermagem|equipe|tecnic[oa])\b/.test(n) ? "Enfermagem" : /\bsamu\b/.test(n) ? "SAMU" : "";
     let best = null, bs = 0;
-    for (const tp of c.topicos){ if (tp.ativo) continue; let sc = stems(tp.trig+" "+tp.r).filter(x => mine.has(x)).length; if (role && tp.quem === role) sc += 1.5; if (S.topics[tp.id]) sc -= .5; if (sc > bs){ bs = sc; best = tp; } }
+    for (const tp of c.topicos){ if (tp.ativo) continue; let sc = stems(tp.trig+" "+tp.r).filter(x => mine.has(x)).length; if (role && (tp.quem === role || (role === "Família" && tp.quem === "Mãe"))) sc += 1.5; if (S.topics[tp.id]) sc -= .5; if (sc > bs){ bs = sc; best = tp; } }
     if (best && bs >= 1) hits = [best];
   }
   if (!hits.length && S.dyn && dynConsc() === "sonolento") return {fala:"(Geme e abre os olhos devagar) …hum… doutor…", emocao:"sonolento"};
@@ -2081,7 +2104,7 @@ function renderDrawer(){
     const anam = c.topicos.filter(tp => S.topics[tp.id] && !tp.oculto);
     const exf = c.exame.flatMap(g => g.itens).filter(it => S.man[it.id]!=null);
     html = drawerShell("Prontuário", "Montado automaticamente com o que você investigou.", `
-      <div class="group"><div class="eyebrow">Identificação</div><dl class="kv"><dt>Nome</dt><dd>${esc(c.pac.nome)}</dd><dt>Idade</dt><dd>${c.pac.idade} anos</dd><dt>Sexo</dt><dd>${esc(c.pac.sexo)}</dd><dt>Profissão</dt><dd>${esc(c.pac.prof)}</dd></dl></div>
+      <div class="group"><div class="eyebrow">Identificação</div><dl class="kv"><dt>Nome</dt><dd>${esc(c.pac.nome)}</dd><dt>Idade</dt><dd>${idadeStr(c.pac)}</dd><dt>Sexo</dt><dd>${esc(c.pac.sexo)}</dd><dt>Profissão</dt><dd>${esc(c.pac.prof)}</dd></dl></div>
       <div class="group"><div class="eyebrow">Anamnese (${anam.length} de ${c.topicos.length} pontos da ficha)</div>${anam.length ? anam.map(tp => `<div class="tl"><span class="w">${esc(tp.g)}</span>${esc(tp.r)}</div>`).join("") : `<div class="empty">Ainda nada investigado.</div>`}</div>
       <div class="group"><div class="eyebrow">Exame físico</div>${exf.length ? exf.map(it => `<div class="tl"><span class="w">${esc(it.nome)}</span>${it.foto ? "Impresso fotográfico recebido (ver Exame físico)." : esc(findingText(it))}</div>`).join("") : `<div class="empty">Nenhuma manobra realizada.</div>`}</div>
       <div class="field"><label for="notas">Anotações livres</label><textarea id="notas" rows="5" placeholder="Rascunho do seu raciocínio">${esc(S.notas)}</textarea></div>`);
@@ -2256,7 +2279,7 @@ async function runAIEval(){
   renderFeedback(undefined, "loading");
   const iaItems = c.checklist.map((it,i)=>({it,i})).filter(x=>x.it.ia);
   const prompt = `Você é um avaliador de OSCE (exame clínico objetivo estruturado) de medicina no Brasil, rigoroso e justo.
-ESTAÇÃO: ${c.titulo}. Paciente: ${c.pac.nome}, ${c.pac.idade} anos. ${c.enunciado}
+ESTAÇÃO: ${c.titulo}. Paciente: ${c.pac.nome}, ${idadeStr(c.pac)}. ${c.enunciado}
 TAREFAS: ${c.tarefas.join(" ")}
 HIPÓTESE ESCRITA PELO ALUNO: "${S.hip}"
 DIFERENCIAIS: "${S.dif}"

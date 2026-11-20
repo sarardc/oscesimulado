@@ -4,11 +4,12 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'fs';
 
 // Especialidades do repositório que entram na sala (comparação sem acento/maiúsculas).
-const TEMAS = ['dermatologia', 'medicina intensiva', 'cardiologia', 'pneumologia', 'infectologia'];
+// null = todas as especialidades do site
+const TEMAS = null;
 
 const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const all = JSON.parse(readFileSync('data/stations.json', 'utf8'));
-const casos = all.filter(st => TEMAS.includes(norm(st.tema)));
+const casos = TEMAS ? all.filter(st => TEMAS.includes(norm(st.tema))) : all;
 
 mkdirSync('sala/img/estacoes', { recursive: true });
 for (const st of casos) {
@@ -17,4 +18,4 @@ for (const st of casos) {
 }
 
 writeFileSync('sala/casos-repo.json', JSON.stringify(casos));
-console.log(`Sala: ${casos.length} estações (${TEMAS.join(', ')}) -> sala/casos-repo.json`);
+console.log(`Sala: ${casos.length} estações (${TEMAS ? TEMAS.join(', ') : 'todas as especialidades'}) -> sala/casos-repo.json`);
