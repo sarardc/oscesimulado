@@ -844,7 +844,7 @@ function fromStation(st){
   splitP(K2.expectedConduct).flatMap(x => x.length>200 ? x.split(/;\s+/) : [x]).map(x => x.trim()).filter(x => x.length>3).forEach(x => ck.push({d:"Conduta", l:x, w:1, ia:true, test:WROTE(x, 2)}));
   const ativos = topicos.filter(t => t.ativo).map(t => t.r);
   return {
-    id:"st"+st.id, ativo:true, repo:true, img, thumb: B.photo?.src || img, focus:"72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
+    id:"st"+st.id, ativo:true, repo:true, img, focus:"72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
     area: st.tema, nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
     pac:{nome, primeiro: norm(primeiro), trat, idade, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
     enunciado: [A.scenario, A.patient ? "Paciente: "+A.patient : "", A.complaint ? "Queixa: "+A.complaint : ""].filter(Boolean).join(" "),
