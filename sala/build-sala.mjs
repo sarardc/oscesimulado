@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'fs';
 
 // Especialidades do repositório que entram na sala (comparação sem acento/maiúsculas).
-const TEMAS = ['dermatologia', 'medicina intensiva'];
+const TEMAS = ['dermatologia', 'medicina intensiva', 'cardiologia'];
 
 const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const all = JSON.parse(readFileSync('data/stations.json', 'utf8'));

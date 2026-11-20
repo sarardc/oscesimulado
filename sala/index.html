@@ -797,12 +797,13 @@ function fromStation(st){
   const trat = iniciais ? (idade>=55 ? (fem?"a senhora":"o senhor") : "Paciente") : (idade>=60 ? (fem?"Dona ":"Seu ")+primeiro : primeiro);
   const scriptTxt = (B.script||[]).map(x => x.trigger).join(" ");
   const equipe = /intensiva|emergenc/.test(norm(st.tema)) || (/(uti|trauma|pronto|emergencia|ps —|ps -)/.test(norm(st.sub)) && /(enfermag|samu|famil|equipe|acompanhante|colega)/.test(norm(scriptTxt)));
-  const img = equipe ? "img/emergencia.jpg" : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const ps = /(pronto|ps —|ps -|\bupa\b|emergencia|\buti\b|trauma)/.test(norm(st.sub));
+  const img = (equipe || ps) ? "img/emergencia.jpg" : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
   const vv = B.vitals || {}; const vget = re => { for (const k in vv) if (re.test(k)) return String(vv[k]); return ""; };
   const num = (t, re) => { const m = String(t).match(re); return m ? +m[1] : null; };
   const pa = vget(/^pa\b|press/i).match(/(\d{2,3})\s*[x×/]\s*(\d{2,3})/);
   const vitIni = {fc: num(vget(/^fc|frequ[eê]ncia card/i), /(\d{2,3})/), pas: pa ? +pa[1] : null, pad: pa ? +pa[2] : null, sat: num(vget(/sp ?o|sat/i), /(\d{2,3})/), fr: num(vget(/^fr|frequ[eê]ncia resp/i), /(\d{1,2})/)};
-  const monitor = equipe && vitIni.fc && vitIni.pas;
+  const monitor = (equipe || ps) && vitIni.fc && vitIni.pas;
   const roleOf = (tr, sp) => { const n = norm(tr), f = norm(sp).slice(0, 40); if (/^\(?\s*paciente/.test(f) || /^paciente/.test(n)) return "Paciente"; return /\bsamu\b/.test(n) ? "SAMU" : /\b(famil\w*|mae|pai|filh[oa]s?|espos[oa]|acompanhante)\b/.test(n) ? "Família" : /\b(colega|quem trouxe)\b/.test(n) ? "Acompanhante" : /\b(enfermag\w*|equipe|chamado|relato|informacao)\b/.test(n) ? "Enfermagem" : "Paciente"; };
   const prof = (pat.split(",").slice(1).find(x => !/anos|sexo|masculin|feminin|fototipo/i.test(x)) || "").trim();
   // roteiro
@@ -836,8 +837,24 @@ function fromStation(st){
     examesCaso.push({id:"cxe"+i, nome:e.exam, res: e.expected || "Resultado compatível com o quadro.", t:8, grupo:"Exames deste caso"});
   });
   if (typeof B.image === "string" && B.image.trim()){
-    const mm = B.image.match(/^([^:]{3,80}):\s*([\s\S]+)$/);
-    examesCaso.push({id:"cximg", nome: mm ? mm[1].replace(/\s*\([^)]*\)/g,"").trim() : "Laudo complementar do caso", res: mm ? mm[2] : B.image, t:8, grupo:"Exames deste caso"});
+    splitP(B.image).forEach((part, i) => {
+      const mm = part.match(/^([^:]{3,80}):\s*([\s\S]+)$/);
+      const nm = mm ? mm[1].replace(/\s*\([^)]*\)/g,"").trim() : "Laudo complementar do caso";
+      if (examesCaso.some(x => norm(x.nome) === norm(nm))) return;
+      examesCaso.push({id:"cximg"+i, nome:nm, res: mm ? mm[2] : part, t:8, grupo:"Exames deste caso"});
+    });
+  }
+  // resultados do caso substituem os valores padrão do catálogo
+  const exames = {};
+  const CAT = [[/(\becg\b|eletrocardio)/,"ecg"],[/(radiograf|\brx\b|raio.?x)/,"rx"],[/ecocardio/,"eco"],[/troponin/,"troponina"],[/(\bbnp\b|natriur)/,"bnp"],[/d.?dimero/,"ddimero"],[/gasometr/,"gaso"],[/hemograma/,"hemograma"],[/(tomografia (computadorizada )?de cranio|\btc de cranio)/,"tc_cranio"],[/coagulograma/,"coag"],[/(\btsh\b)/,"tsh"],[/(hemoglobina glicada|hba1c)/,"hba1c"],[/(perfil lipidico|lipidograma|colesterol total)/,"lipidograma"]];
+  for (let k = examesCaso.length-1; k >= 0; k--){
+    const e = examesCaso[k], n = norm(e.nome);
+    if (/derivacoes direitas|v4r/.test(n)) continue;
+    const hit = CAT.find(([re]) => re.test(n));
+    if (!hit) continue;
+    if (exames[hit[1]]) exames[hit[1]].res = e.res + "\n\n" + exames[hit[1]].res;
+    else exames[hit[1]] = {res:e.res, ecg:null, laudo:null, alt:e.alt};
+    examesCaso.splice(k, 1);
   }
   // checklist a partir do gabarito
   const ck = [];
@@ -853,14 +870,14 @@ function fromStation(st){
   const ativos = topicos.filter(t => t.ativo).map(t => t.r);
   const abertura = equipe && topicos[0] && /(informa|relato|chamado|enfermag|samu|famil|quem trouxe|equipe)/.test(norm(topicos[0].trig)) ? topicos[0] : null;
   return {
-    id:"st"+st.id, ativo:true, repo:true, equipe, monitor: !!monitor, vitIni, abertura, img, focus: equipe ? "55% 45%" : "72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
+    id:"st"+st.id, ativo:true, repo:true, equipe, monitor: !!monitor, vitIni, abertura, img, focus: (equipe || ps) ? "55% 45%" : "72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
     area: st.tema, nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
     pac:{nome, primeiro: norm(primeiro), trat, idade, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
     enunciado: [A.scenario, A.patient ? "Paciente: "+A.patient : "", A.complaint ? "Queixa: "+A.complaint : ""].filter(Boolean).join(" "),
     tarefas: A.tasks || [],
     persona: [B.patientProfile, B.actorBehavior ? "COMPORTAMENTO: "+B.actorBehavior : "", B.hiddenInfo ? "INFORMAÇÕES OCULTAS (revele cada uma só na condição descrita): "+B.hiddenInfo : "", B.note ? "ORIENTAÇÕES DO APLICADOR (achados de exame e impressos são entregues pelo sistema, não por você; siga as restrições sobre o que revelar): "+B.note : "", ativos.length ? "PERGUNTAS QUE VOCÊ FAZ POR INICIATIVA PRÓPRIA quando o aluno começar a explicar o diagnóstico ou a conduta: "+ativos.join(" / ") : ""].filter(Boolean).join("\n"),
     topicos, exame:[{g:"Geral", itens:geral}, {g:"Exame segmentar", itens:seg}].filter(g => g.itens.length),
-    exames:{}, examesCaso, checklist: ck, criticos: [], criticosTexto: K2.criticalErrors || [],
+    exames, examesCaso, checklist: ck, criticos: [], criticosTexto: K2.criticalErrors || [],
     gabarito:{diag:K2.diagnosis, foto:K2.photoDescription, difs:K2.differentials, conduta:K2.expectedConduct, exames:K2.expectedExams},
   };
 }
@@ -868,7 +885,8 @@ async function loadRepoCases(){
   try{
     const r = await fetch("casos-repo.json"); if (!r.ok) return;
     const arr = await r.json(); const extra = [];
-    for (const st of arr){ try{ extra.push(fromStation(st)); }catch(e){} }
+    const titulos = new Set(CASOS.map(c => norm(c.titulo)));
+    for (const st of arr){ if (titulos.has(norm(st.title))) continue; try{ extra.push(fromStation(st)); }catch(e){} }
     const i = CASOS.findIndex(c => !c.ativo);
     CASOS.splice(i<0 ? CASOS.length : i, 0, ...extra);
     if (!S && $(".lobby")) renderLobby();
