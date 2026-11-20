@@ -863,7 +863,7 @@ function fromStation(st){
   const equipe = /intensiva|emergenc/.test(norm(st.tema)) || (/(uti|trauma|pronto|emergencia|ps —|ps -)/.test(norm(st.sub)) && /(enfermag|samu|famil|equipe|acompanhante|colega)/.test(norm(scriptTxt)));
   const ps = /(pronto|ps —|ps -|\bupa\b|emergencia|\buti\b|trauma)/.test(norm(st.sub));
   const crianca = idade < 14;
-  const img = (equipe || ps) ? "img/emergencia.jpg" : crianca ? "img/camila.jpg" : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const img = (equipe || ps) ? "img/emergencia.jpg" : crianca ? (fem ? "img/menina.jpg" : "img/menino.jpg") : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
   const vv = B.vitals || {}; const vget = re => { for (const k in vv) if (re.test(k)) return String(vv[k]); return ""; };
   const num = (t, re) => { const m = String(t).match(re); return m ? +m[1] : null; };
   const pa = vget(/^pa\b|press/i).match(/(\d{2,3})\s*[x×/]\s*(\d{2,3})/);
@@ -1690,7 +1690,7 @@ function enterRoom(c){
     </form>
   </section>`;
   document.body.style.overflow = "hidden";
-  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : c.dyn ? "A enfermeira Carla aguarda as suas ordens. O tempo está correndo." : `${c.equipe ? "A equipe aguarda as suas orientações." : c.crianca ? "A mãe e a criança aguardam você começar." : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
+  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : c.dyn ? "A enfermeira Carla aguarda as suas ordens. O tempo está correndo." : `${c.equipe ? "A equipe aguarda as suas orientações." : c.crianca ? "A criança aguarda com a mãe, sentada ao lado (fora da imagem)." : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
 
   $("#composer").onsubmit = e => { e.preventDefault(); const v = $("#say").value.trim(); if (v) { $("#say").value=""; S.dictBase=""; say(v); } };
   $("#exitBtn").onclick = () => confirmInline("Sair sem corrigir? O tempo e as respostas desta tentativa serão perdidos.", renderLobby);
