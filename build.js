@@ -27,6 +27,7 @@ import medicinaIntensiva from './data/medicinaintensiva.js';
 import medicinaLegal from './data/medicinalegal.js';
 import gastroenterologia2 from './data/gastroenterologia2.js';
 import geriatria2 from './data/geriatria2.js';
+import salaSimulacao from './data/salasimulacao.js';
 
 function sanitizeTopic(topic) {
   if (!topic) return '';
@@ -63,6 +64,7 @@ const allStations = [
   ...medicinaLegal,
   ...gastroenterologia2,
   ...geriatria2,
+  ...salaSimulacao,
 ].map((st, idx) => ({
   ...st,
   id: idx + 1,

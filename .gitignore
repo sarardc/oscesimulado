@@ -13,3 +13,7 @@ settings.local.json
 /data/Markdown files/
 /MDtoJS/
 /docs/
+
+# Sala de Simulação: gerados por sala/build-sala.mjs
+/sala/casos-repo.json
+/sala/img/estacoes/
