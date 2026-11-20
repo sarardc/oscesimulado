@@ -272,6 +272,7 @@ const I = {
   mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
   send:'<path d="M4 12l16-8-6 16-2-6z"/>',
   close:'<path d="M6 6l12 12M18 6L6 18"/>',
+  pulse:'<path d="M3 12h4l2-6 4 12 2-6h6"/>',
   vol:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>',
   door:'<path d="M5 21V3h11v18M3 21h18M13 12h.01"/>',
   back:'<path d="M15 6l-6 6 6 6"/>',
@@ -895,7 +896,7 @@ async function loadRepoCases(){
 /* =========================================================================
    ESTADO E CAPACIDADES
    ========================================================================= */
-const prefs = Object.assign({mode:"treino", voz:true, area:"Todas"}, store.get("osce-sala-prefs", {}));
+const prefs = Object.assign({mode:"treino", voz:true, area:"Todas", monSom:true}, store.get("osce-sala-prefs", {}));
 const savePrefs = () => store.set("osce-sala-prefs", prefs);
 let CAP = {sample:null, tts:null, dict:null, aiOff:false};
 let S = null;              // estado da estação em curso
@@ -1009,6 +1010,7 @@ function renderDoor(id){
    ========================================================================= */
 function enterRoom(c){
   stopLoops();
+  unlockAudio();
   beep(880, .18);
   S = {
     c, mode:prefs.mode, t0:performance.now(), elapsed:0, ended:false,
@@ -1027,6 +1029,7 @@ function enterRoom(c){
       <div class="sp"></div>
       <span class="hide-sm">${aiChip()}</span>
       <span class="chip hide-sm">${S.mode==="prova"?"Prova":"Treino"}</span>
+      ${c.emergencia || c.monitor ? `<button class="iconbtn" id="monSomBtn" aria-pressed="${prefs.monSom}" title="Som do monitor" aria-label="Som do monitor">${ic("pulse")}</button>` : ""}
       <button class="iconbtn" id="voiceBtn" aria-pressed="${prefs.voz}" title="Voz do paciente" aria-label="Voz do paciente" ${CAP.tts?"":"hidden"}>${ic("vol")}</button>
       <div class="timer" id="timer" role="timer" aria-live="off">${fmt(c.tempo)}</div>
       <button class="btn danger hide-sm" id="endBtn">Encerrar</button>
@@ -1063,6 +1066,7 @@ function enterRoom(c){
   $("#composer").onsubmit = e => { e.preventDefault(); const v = $("#say").value.trim(); if (v) { $("#say").value=""; S.dictBase=""; say(v); } };
   $("#exitBtn").onclick = () => confirmInline("Sair sem corrigir? O tempo e as respostas desta tentativa serão perdidos.", renderLobby);
   $("#endBtn").onclick = $("#endBtn2").onclick = () => confirmInline("Encerrar a estação agora e ver a correção?", () => endStation("manual"));
+  const mb = $("#monSomBtn"); if (mb) mb.onclick = () => { prefs.monSom = !prefs.monSom; savePrefs(); mb.setAttribute("aria-pressed", prefs.monSom); if (prefs.monSom) unlockAudio(); };
   const vb = $("#voiceBtn"); vb.onclick = () => { prefs.voz = !prefs.voz; savePrefs(); vb.setAttribute("aria-pressed", prefs.voz); if (!prefs.voz) CAP.tts?.stop?.(); };
   const tt = $("#talkTo"); if (tt) tt.onchange = () => { S.talkTo = tt.value; $("#say").focus(); };
   $("#micBtn").onclick = toggleMic;
@@ -1100,13 +1104,27 @@ function toast(msg, kind=""){
   setTimeout(() => d.remove(), 5200);
 }
 let actx = null;
-function beep(f, dur){
+function unlockAudio(){ try{ actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); }catch(e){} }
+function tone(f, dur, vol=.08, when=0, type="sine"){
   try{
-    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    const o = actx.createOscillator(), g = actx.createGain();
-    o.frequency.value = f; o.type = "sine"; g.gain.value = .08;
-    o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + dur);
+    unlockAudio(); if (!actx) return;
+    const t0 = actx.currentTime + when, o = actx.createOscillator(), g = actx.createGain();
+    o.type = type; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(vol, t0 + .006); g.gain.setValueAtTime(vol, t0 + dur - .015); g.gain.linearRampToValueAtTime(0, t0 + dur);
+    o.connect(g); g.connect(actx.destination); o.start(t0); o.stop(t0 + dur + .02);
   }catch(e){}
+}
+function beep(f, dur){ tone(f, dur, .08); }
+/* Bipe do oxímetro: tom cai conforme a saturação (como nos monitores reais). */
+function pulseBeep(){
+  if (!S || S.ended || !S.mon || !prefs.monSom) return;
+  const sat = S.vit.sat == null ? 97 : S.vit.sat;
+  tone(Math.max(330, Math.min(980, 980 - (100 - sat) * 26)), .085, .045, 0, "triangle");
+}
+/* Alarme de prioridade alta: 3 + 2 pulsos (padrão IEC 60601-1-8). */
+function alarmTone(){
+  if (!prefs.monSom) return;
+  [0, .2, .4, .9, 1.1].forEach(w => tone(988, .13, .06, w, "square"));
 }
 
 /* ---------- legenda (fala) ---------- */
@@ -1302,6 +1320,8 @@ function evolveVitals(el){
   if (mon){
     const alarm = S.mon && (v.pas < 80 || v.fc < 45 || v.fc > 130 || (v.sat!=null && v.sat < 90) || v.fr < 8);
     mon.classList.toggle("alarm", alarm);
+    const tNow = performance.now();
+    if (alarm && (!S.lastAlarm || tNow - S.lastAlarm > 6000)){ S.lastAlarm = tNow; alarmTone(); }
     const h = $("#mHR"); if (h){ h.textContent = Math.round(v.fc); $("#mSP").textContent = v.sat==null ? "--" : Math.round(v.sat); $("#mPA").textContent = `${Math.round(v.pas)}/${Math.round(v.pad)}`; $("#mFR").textContent = Math.round(v.fr); }
   }
 }
@@ -1328,10 +1348,17 @@ function startMonitor(){
     if (reduce){
       ctx.fillStyle="#05080A"; ctx.fillRect(0,0,W,Hh); ctx.strokeStyle="#4BE37A"; ctx.lineWidth=2; ctx.beginPath();
       for (let x=0;x<W;x++){ const y = Hh*.65 - val(x/pxPerSec)*Hh*.5; x?ctx.lineTo(x,y):ctx.moveTo(x,y); } ctx.stroke();
+      const beatLoop = () => { if (!S || S.ended || !S.mon) return; pulseBeep(); S.beatTimer = setTimeout(beatLoop, 60000 / Math.max(20, S.vit.fc)); };
+      if (!S.beatTimer) beatLoop();
       return;
     }
-    const step = 3;
+    const nowT = performance.now(); const dtS = Math.min(.1, ((nowT - (S.lastFrame || nowT)) / 1000)); S.lastFrame = nowT;
+    S.sweepAcc = (S.sweepAcc || 0) + dtS * pxPerSec;
+    const step = Math.floor(S.sweepAcc); S.sweepAcc -= step;
     for (let k=0;k<step;k++){
+      const bi = Math.floor((S.sweep / pxPerSec - .215) / RR);
+      if (S.beatIdx !== undefined && bi > S.beatIdx) pulseBeep();
+      S.beatIdx = bi;
       const x = S.sweep % W, tt = S.sweep / pxPerSec;
       ctx.fillStyle="#05080A"; ctx.fillRect(x, 0, 14, Hh);
       const y = Hh*.65 - val(tt)*Hh*.5, yp = Hh*.65 - val((S.sweep-1)/pxPerSec)*Hh*.5;
@@ -1342,7 +1369,7 @@ function startMonitor(){
   };
   draw();
 }
-function stopLoops(){ if (loopId) clearInterval(loopId); loopId = null; if (rafId) cancelAnimationFrame(rafId); rafId = null; try{ CAP.tts?.stop?.(); }catch(e){} try{ if (S?.listening) CAP.dict?.stop(); }catch(e){} }
+function stopLoops(){ if (loopId) clearInterval(loopId); loopId = null; if (S?.beatTimer){ clearTimeout(S.beatTimer); S.beatTimer = null; } if (rafId) cancelAnimationFrame(rafId); rafId = null; try{ CAP.tts?.stop?.(); }catch(e){} try{ if (S?.listening) CAP.dict?.stop(); }catch(e){} }
 
 /* =========================================================================
    GAVETAS
