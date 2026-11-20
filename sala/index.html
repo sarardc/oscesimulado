@@ -376,7 +376,7 @@ const LEADS_NORMAL = {
 };
 /* Monta os parâmetros do traçado a partir da descrição escrita do ECG (casos do repositório). */
 function ecgFromText(text){
-  const t = String(text||""), n = norm(t);
+  const t = String(text||"").replace(/\bD([123])\b/g, (m, d) => "D" + "I".repeat(+d)), n = norm(t);
   const fcm = n.match(/fc(?: media)?\s*(?:de\s*)?(\d{2,3})/) || n.match(/(\d{2,3})\s*bpm/);
   const cfg = {fc: fcm ? +fcm[1] : 75, rhythm:"sinus", leads:{}};
   if (/fibrilacao ventricular/.test(n)) cfg.rhythm = "vf";
@@ -1311,7 +1311,15 @@ Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido]
 }
 function localPatient(text){
   const n = norm(text), c = S.c;
-  const hits = c.topicos.filter(tp => tp.kw.test(n));
+  let hits = c.topicos.filter(tp => tp.kw.test(n));
+  if (!hits.length && c.repo){
+    // reserva: aproxima pelo conteúdo das falas e por quem foi chamado (mãe, enfermagem, SAMU...)
+    const mine = new Set(stems(text));
+    const role = /\b(mae|pai|filh[oa]|familia|esposa|marido|senhora da familia)\b/.test(n) ? "Família" : /\b(enfermeir[oa]|enfermagem|equipe|tecnic[oa])\b/.test(n) ? "Enfermagem" : /\bsamu\b/.test(n) ? "SAMU" : "";
+    let best = null, bs = 0;
+    for (const tp of c.topicos){ if (tp.ativo) continue; let sc = stems(tp.trig+" "+tp.r).filter(x => mine.has(x)).length; if (role && tp.quem === role) sc += 1.5; if (S.topics[tp.id]) sc -= .5; if (sc > bs){ bs = sc; best = tp; } }
+    if (best && bs >= 1) hits = [best];
+  }
   if (!hits.length){
     if (/(bom dia|boa tarde|boa noite|\bola\b|\boi\b|tudo bem|prazer)/.test(n)) return {fala: c.id==="rafael" ? "Oi. Tudo bem..." : "Bom dia, doutor.", emocao:"neutro"};
     if (/(examin|vou (te |lhe )?examinar|posso (te |lhe )?examinar|deitar|tirar a blusa)/.test(n)) return {fala:"Pode sim, doutor.", emocao:"neutro"};
