@@ -1,6 +1,6 @@
 # Imagens da Sala de Simulação: pedidos para o Gemini
 
-São **13 personagens** (P1 a P13) e **23 imagens**. Cada personagem aparece em todos os casos em que o sexo, a faixa etária e a cor da pele batem com a descrição do caso. Quando o caso não diz a cor da pele, ela foi escolhida para dar diversidade ao conjunto (isso está marcado como "cor livre").
+São **17 personagens** (P1 a P17) e **33 imagens**. Cada personagem aparece em todos os casos em que o sexo, a faixa etária e a cor da pele batem com a descrição do caso. Quando o caso não diz a cor da pele, ela foi escolhida para dar diversidade ao conjunto (isso está marcado como "cor livre").
 
 ## Como usar
 
@@ -29,19 +29,23 @@ O paciente precisa ficar à direita porque, na sala, o painel lateral abre sobre
 
 | Personagem | Sexo | Faixa etária | Cor da pele | Aparência fixa | Casos |
 |---|---|---|---|---|---|
-| **P1** | M | 62–68 | Branca muito clara (fototipo II), olhos azuis | Calvo no topo, cabelo branco nas laterais, pele muito castigada pelo sol: rosto e couro cabeludo avermelhados, com manchas e rugas profundas. Camisa xadrez de manga curta. | 149, 151, 210 |
-| **P2** | M | 60–65 | Branca (fototipo III), olhos castanhos | Cabelo grisalho curto penteado para trás, bigode grisalho, óculos de armação fina. Camisa social clara. | 147, 305 |
+| **P1** | M | 62–68 | Branca muito clara (fototipo II), olhos azuis | Calvo no topo, cabelo branco nas laterais, pele muito castigada pelo sol: rosto e couro cabeludo avermelhados, com manchas e rugas profundas. Camisa xadrez de manga curta. | 149, 151, 210, 293 |
+| **P2** | M | 60–65 | Branca (fototipo III), olhos castanhos | Cabelo grisalho curto penteado para trás, bigode grisalho, óculos de armação fina. Camisa social clara. | 147, 305, 289, 292 |
 | **P3** | M | 52–56 | Branca muito clara (fototipo II), olhos azuis, sardas | Atlético, cabelo castanho-claro curto com entradas, barba feita. Camiseta polo esportiva. | 146, 301 |
-| **P4** | M | 64–71 | Parda (fototipo IV) | Cabelo grisalho curto e crespo, rosto marcado pelo trabalho no campo, mãos grossas. Camisa de botão de manga curta, simples. | 148, 233, 234, 302, 304 |
+| **P4** | M | 64–71 | Parda (fototipo IV) | Cabelo grisalho curto e crespo, rosto marcado pelo trabalho no campo, mãos grossas. Camisa de botão de manga curta, simples. | 148, 233, 234, 302, 304, 290, 297, 300 |
 | **P5** | F | 54–61 | Branca levemente morena (fototipo III) | Leve sobrepeso, cabelo castanho na altura do ombro com fios grisalhos, óculos pendurados no pescoço. Blusa estampada. | 150, 235, 237 |
 | **P6** | F | 36–40 | Branca clara (fototipo II) | Sobrepeso, cabelo loiro-escuro preso em rabo de cavalo. Camiseta e calça jeans. | 277 |
 | **P7** | M | 41–46 | Parda (fototipo IV) | Magro e forte, cabelo preto curto, bigode. Camiseta de trabalho. | 278, 309 |
-| **P8** | M | 45–48 | Branca (cor livre) | Obesidade leve, cabelo castanho curto com entradas, barba por fazer. Camisa social de manga longa. | 238, 231 |
-| **P9** | M | 35–38 | Negra (cor livre) | Cabelo raspado, barba curta, porte atlético. Camiseta lisa. | 279, 236, 308 |
-| **P10** | M | 57–59 | Branca (cor livre) | Cabelo grisalho curto, sobrepeso, rosto arredondado. Camisa polo. | 229, sala vermelha (Seu Antônio) |
+| **P8** | M | 45–48 | Branca (cor livre) | Obesidade leve, cabelo castanho curto com entradas, barba por fazer. Camisa social de manga longa. | 238, 231, 296 |
+| **P9** | M | 33–38 | Negra (cor livre) | Cabelo raspado, barba curta, porte atlético. Camiseta lisa. | 279, 236, 308, 207 |
+| **P10** | M | 57–59 | Branca (cor livre) | Cabelo grisalho curto, sobrepeso, rosto arredondado. Camisa polo. | 229, sala vermelha (Seu Antônio), 291, 299 |
 | **P11** | F | 72–76 | Negra (cor livre) | Cabelo branco curto e crespo, magra. Camisola hospitalar quando internada. | 230, 215, 306 |
-| **P12** | F | 27–30 | Parda (cor livre) | Cabelo cacheado escuro na altura do ombro, magra. Blusa de trabalho (professora). | 232 |
+| **P12** | F | 27–30 | Parda (cor livre) | Cabelo cacheado escuro na altura do ombro, magra. Blusa de trabalho (professora). | 232, 206 |
 | **P13** | M | 24–29 | Parda (cor livre) | Magro, cabelo preto curto, rosto jovem sem barba. | 303, 307 |
+| **P14** | F | 50–53 | Branca (cor livre) | Cabelo castanho-escuro liso na altura do queixo, magra, aparência de executiva. | 208 |
+| **P15** | M | 20–23 | Branca (cor livre) | Muito alto e magro (longilíneo), cabelo castanho bagunçado, rosto juvenil. | 294 |
+| **P16** | F | 18–20 | Negra (cor livre) | Cabelo crespo preso em coque alto, magra, roupa de estudante (moletom). Vem acompanhada da mãe (mulher negra de cerca de 45 anos). | 295 |
+| **P17** | F | 42–46 | Negra (cor livre) | Cabelo em tranças até os ombros, óculos de armação redonda, cardigã. | 298 |
 
 Os casos próprios da sala (Dona Lúcia, Rafael e Camila no consultório, e Seu Joaquim, que ainda não tem caso) já têm imagem e não precisam de nova.
 
@@ -128,6 +132,38 @@ Os casos próprios da sala (Dona Lúcia, Rafael e Camila no consultório, e Seu 
 **23. `enf-p4-pcr.jpg`** (caso 304)
 > Cenário: quarto de enfermaria. Paciente: homem pardo de 71 anos, cabelo grisalho curto e crespo, camisola hospitalar, deitado de costas na cama, inconsciente, olhos fechados. Um profissional faz compressões torácicas com os braços estendidos; outro ventila com bolsa-válvula-máscara na cabeceira; carrinho de emergência com desfibrilador ao lado. Médico à esquerda coordenando. Cena séria, sem sangue.
 
+### Pneumologia: novas cenas
+
+**24. `cons-p12.jpg`** (caso 206)
+> Cenário: consultório da referência. Paciente: mulher parda de 28 anos, cabelo cacheado escuro na altura do ombro, magra, blusa de trabalho, sentada na poltrona inclinada levemente para a frente, com as mãos apoiadas nos joelhos, respirando com esforço e expressão ansiosa. Uma bombinha de asma na mão. Médico à esquerda.
+
+**25. `cons-p9-tb.jpg`** (caso 207)
+> Cenário: consultório da referência. Paciente: homem negro de 34 anos, cabelo raspado, barba curta, bem mais magro e abatido, com olheiras, camiseta folgada, usando máscara cirúrgica descartável e segurando um lenço de papel. Sentado na poltrona, cansado. Médico à esquerda, também de máscara.
+
+**26. `ps-p14.jpg`** (caso 208)
+> Cenário: sala de emergência de UPA. Paciente: mulher branca de 52 anos, cabelo castanho-escuro liso na altura do queixo, magra, camisola hospitalar, sentada na maca com a cabeceira elevada, ansiosa, suando, com a mão no lado direito do peito e cateter nasal de oxigênio. Joelho direito com curativo cirúrgico e muleta encostada na maca. Médica à esquerda.
+
+**27. `ps-p4.jpg`** (caso 290)
+> Cenário: sala de emergência. Paciente: homem pardo de 68 anos, cabelo grisalho curto e crespo, tórax arredondado, camisola hospitalar, sentado na maca inclinado para a frente com as mãos apoiadas nos joelhos, respirando com os lábios semicerrados, músculos do pescoço tensos, com nebulização em máscara. Médico à esquerda.
+
+**28. `ps-p10-pneumonia.jpg`** (caso 291)
+> Cenário: sala de emergência. Paciente: homem branco de 57 anos, cabelo grisalho curto, sobrepeso, camisola hospitalar, deitado na maca com a cabeceira elevada, febril (rosto avermelhado e suado), tossindo na mão, com cobertor sobre as pernas e cateter nasal de oxigênio. Médica à esquerda.
+
+**29. `ps-p10-hemoptise.jpg`** (caso 299)
+> Cenário: sala de emergência. Paciente: homem branco de 59 anos, cabelo grisalho curto, sobrepeso, ainda de roupa comum (camisa polo), sentado na maca, assustado, segurando um lenço de papel com pequenas manchas vermelhas discretas junto à boca. Cuba-rim plástica no colo. Médico à esquerda.
+
+**30. `ps-p1.jpg`** (caso 293)
+> Cenário: sala de emergência. Paciente: homem de 66 anos, pele branca muito clara, olhos azuis, calvo no topo com cabelo branco nas laterais, rosto envelhecido pelo sol, mais magro e abatido, camisola hospitalar, deitado na maca com a cabeceira bem elevada, com falta de ar moderada e cateter nasal de oxigênio. Médica à esquerda.
+
+**31. `ps-p15.jpg`** (caso 294)
+> Cenário: sala de emergência. Paciente: homem branco de 22 anos, muito alto e magro, cabelo castanho bagunçado, camiseta de faculdade, sentado na maca com a mão espalmada no lado esquerdo do peito, careta de dor ao respirar fundo, mochila no chão. Médico à esquerda.
+
+**32. `ps-p16.jpg`** (caso 295)
+> Cenário: sala de emergência. Paciente: jovem negra de 19 anos, cabelo crespo preso em coque alto, magra, moletom, sentada na maca inclinada para a frente com as mãos apoiadas na borda (posição de tripé), em extrema falta de ar, boca aberta, músculos do pescoço salientes, com nebulização em máscara. A mãe (mulher negra de cerca de 45 anos) ao lado, segurando o ombro da filha, aflita. Médico à esquerda.
+
+**33. `cons-p17.jpg`** (caso 298)
+> Cenário: consultório da referência. Paciente: mulher negra de 44 anos, cabelo em tranças até os ombros, óculos de armação redonda, cardigã, sentada na poltrona segurando um potinho de coleta de escarro fechado, expressão cansada mas tranquila. Médica à esquerda.
+
 ---
 
 ## Resumo: imagem de cada caso
@@ -165,3 +201,18 @@ Os casos próprios da sala (Dona Lúcia, Rafael e Camila no consultório, e Seu 
 | 307 | Hálito cetônico (cetoacidose) | `uti-p13.jpg` |
 | 308 | Depressão respiratória (opioides) | `ps-p9.jpg` |
 | 309 | Queda de altura (pneumotórax hipertensivo) | `trauma-p7.jpg` |
+| 206 | Falta de ar e chiado há 2 dias (asma) | `cons-p12.jpg` |
+| 207 | Tosse com sangue e perda de peso (tuberculose) | `cons-p9-tb.jpg` |
+| 208 | Dor no peito após cirurgia (TEP) | `ps-p14.jpg` |
+| 289 | Falta de ar progressiva em tabagista (DPOC) | `cons-p2.jpg` |
+| 290 | Piora da falta de ar em DPOC (exacerbação) | `ps-p4.jpg` |
+| 291 | Febre e dor pleurítica (pneumonia) | `ps-p10-pneumonia.jpg` |
+| 292 | Nódulo pulmonar em exame de rotina | `cons-p2.jpg` |
+| 293 | Derrame pleural | `ps-p1.jpg` |
+| 294 | Dor torácica súbita em jovem longilíneo (pneumotórax) | `ps-p15.jpg` |
+| 295 | Crise asmática grave | `ps-p16.jpg` |
+| 296 | Sonolência e ronco (apneia do sono) | `cons-p8.jpg` |
+| 297 | Tosse seca e falta de ar em idoso (fibrose) | `cons-p4.jpg` |
+| 298 | Escarro diário abundante (bronquiectasias) | `cons-p17.jpg` |
+| 299 | Escarro com sangue vivo (hemoptise) | `ps-p10-hemoptise.jpg` |
+| 300 | Massa pulmonar em tabagista (câncer de pulmão) | `cons-p4.jpg` |
