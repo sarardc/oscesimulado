@@ -795,7 +795,15 @@ function fromStation(st){
   const iniciais = /^([A-ZÀ-Ú]\.){2,}/.test(nome.replace(/\s/g,""));
   const primeiro = iniciais ? "" : nome.split(/\s+/)[0];
   const trat = iniciais ? (idade>=55 ? (fem?"a senhora":"o senhor") : "Paciente") : (idade>=60 ? (fem?"Dona ":"Seu ")+primeiro : primeiro);
-  const img = fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const scriptTxt = (B.script||[]).map(x => x.trigger).join(" ");
+  const equipe = /intensiva|emergenc/.test(norm(st.tema)) || (/(uti|trauma|pronto|emergencia|ps —|ps -)/.test(norm(st.sub)) && /(enfermag|samu|famil|equipe|acompanhante|colega)/.test(norm(scriptTxt)));
+  const img = equipe ? "img/emergencia.jpg" : fem ? (idade>=55 ? "img/lucia.jpg" : "img/camila.jpg") : (idade>=55 ? "img/joaquim.jpg" : "img/rafael.jpg");
+  const vv = B.vitals || {}; const vget = re => { for (const k in vv) if (re.test(k)) return String(vv[k]); return ""; };
+  const num = (t, re) => { const m = String(t).match(re); return m ? +m[1] : null; };
+  const pa = vget(/^pa\b|press/i).match(/(\d{2,3})\s*[x×/]\s*(\d{2,3})/);
+  const vitIni = {fc: num(vget(/^fc|frequ[eê]ncia card/i), /(\d{2,3})/), pas: pa ? +pa[1] : null, pad: pa ? +pa[2] : null, sat: num(vget(/sp ?o|sat/i), /(\d{2,3})/), fr: num(vget(/^fr|frequ[eê]ncia resp/i), /(\d{1,2})/)};
+  const monitor = equipe && vitIni.fc && vitIni.pas;
+  const roleOf = (tr, sp) => { const n = norm(tr), f = norm(sp).slice(0, 40); if (/^\(?\s*paciente/.test(f) || /^paciente/.test(n)) return "Paciente"; return /\bsamu\b/.test(n) ? "SAMU" : /\b(famil\w*|mae|pai|filh[oa]s?|espos[oa]|acompanhante)\b/.test(n) ? "Família" : /\b(colega|quem trouxe)\b/.test(n) ? "Acompanhante" : /\b(enfermag\w*|equipe|chamado|relato|informacao)\b/.test(n) ? "Enfermagem" : "Paciente"; };
   const prof = (pat.split(",").slice(1).find(x => !/anos|sexo|masculin|feminin|fototipo/i.test(x)) || "").trim();
   // roteiro
   const topicos = (B.script||[]).map((sc, i) => {
@@ -805,7 +813,7 @@ function fromStation(st){
     const tema = tr.replace(/^(sobre|quando perguntad[oa] sobre|se perguntad[oa] sobre)\s+/i, "");
     const st2 = stems(tema);
     const kw = ativo ? /$^/ : qp ? /(o que (te |o |a )?(traz|trouxe)|motivo|queixa|como posso|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|qual o problema)/ : (st2.length ? new RegExp("("+st2.join("|")+")") : /$^/);
-    return {id:"s"+i, g: ativo ? "Perguntas do paciente" : qp ? "Queixa principal" : "Anamnese", q: qp ? "O que traz você aqui hoje?" : "Pergunte "+tema.charAt(0).toLowerCase()+tema.slice(1), kw, r:String(sc.speech||""), ativo};
+    return {id:"s"+i, g: ativo ? "Perguntas do paciente" : qp ? "Queixa principal" : "Anamnese", q: qp ? "O que traz você aqui hoje?" : "Pergunte "+tema.charAt(0).toLowerCase()+tema.slice(1), kw, r:String(sc.speech||""), ativo, trig:tr, quem: equipe ? roleOf(tr, sc.speech) : ""};
   });
   // exame físico
   const vit = B.vitals ? Object.entries(B.vitals).map(([k,v]) => `${k} ${v}`).join(" · ") : "";
@@ -843,8 +851,9 @@ function fromStation(st){
   (K2.expectedExams||[]).forEach(e => ck.push({d:"Raciocínio", l:"Solicita "+e.exam+(e.justify ? " — "+e.justify : ""), w:.5, ia:true, test:ANY(ASKED_EX(e.exam), WROTE(e.exam,1))}));
   splitP(K2.expectedConduct).flatMap(x => x.length>200 ? x.split(/;\s+/) : [x]).map(x => x.trim()).filter(x => x.length>3).forEach(x => ck.push({d:"Conduta", l:x, w:1, ia:true, test:WROTE(x, 2)}));
   const ativos = topicos.filter(t => t.ativo).map(t => t.r);
+  const abertura = equipe && topicos[0] && /(informa|relato|chamado|enfermag|samu|famil|quem trouxe|equipe)/.test(norm(topicos[0].trig)) ? topicos[0] : null;
   return {
-    id:"st"+st.id, ativo:true, repo:true, img, focus:"72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
+    id:"st"+st.id, ativo:true, repo:true, equipe, monitor: !!monitor, vitIni, abertura, img, focus: equipe ? "55% 45%" : "72% 40%", voz: fem ? (idade>=55 ? "rounded" : "airy") : "buttery",
     area: st.tema, nivel: st.level, local: st.sub || "Consultório", tempo:600, titulo: st.title,
     pac:{nome, primeiro: norm(primeiro), trat, idade, sexo: fem ? "Feminino" : "Masculino", prof: prof || "—"},
     enunciado: [A.scenario, A.patient ? "Paciente: "+A.patient : "", A.complaint ? "Queixa: "+A.complaint : ""].filter(Boolean).join(" "),
@@ -989,7 +998,7 @@ function enterRoom(c){
     hip:"", dif:"", conduta:"", notas:"",
     drawer:null, talkTo:"paciente", busy:false, unread:0, dictBase:"", listening:false,
     warned:{}, vitalsAsked:false,
-    vit:{fc:52, pas:94, pad:60, sat:93, fr:22}, mon:false, reperf:false,
+    vit: c.monitor ? {fc:c.vitIni.fc, pas:c.vitIni.pas, pad:c.vitIni.pad||Math.round(c.vitIni.pas*.62), sat:c.vitIni.sat ?? null, fr:c.vitIni.fr||18} : {fc:52, pas:94, pad:60, sat:93, fr:22}, mon:!!c.monitor, reperf:false,
     findingsOpen:{},
   };
   $("#app").innerHTML = `
@@ -1008,7 +1017,7 @@ function enterRoom(c){
       <div class="stage" id="stage">
         <img class="scene" src="${c.img}" alt="Cena: ${esc(c.pac.nome)} ${c.emergencia?"na sala de emergência":"no consultório"}" style="object-position:${c.focus}">
         <div class="vignette"></div>
-        ${c.emergencia ? `<div class="monitor" id="monitor"></div>` : ""}
+        ${c.emergencia || c.monitor ? `<div class="monitor" id="monitor"></div>` : ""}
         <div class="toast-wrap" id="toasts" aria-live="polite"></div>
         <div class="caption" id="caption" aria-live="polite"></div>
       </div>
@@ -1025,13 +1034,13 @@ function enterRoom(c){
     </div>
     <form class="composer" id="composer" autocomplete="off">
       ${c.emergencia ? `<select id="talkTo" aria-label="Falar com"><option value="paciente">Paciente</option><option value="enfermeira">Enf. Carla</option></select>` : ""}
-      <input id="say" placeholder="${c.emergencia ? "Fale com o paciente ou dê ordens à enfermeira…" : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
+      <input id="say" placeholder="${c.emergencia ? "Fale com o paciente ou dê ordens à enfermeira…" : c.equipe ? "Fale com a equipe, a família ou o paciente…" : c.repo ? "Converse com o paciente…" : `Converse com ${esc(c.pac.trat)}…`}" aria-label="Sua fala">
       <button type="button" class="iconbtn mic" id="micBtn" aria-pressed="false" title="Falar (microfone)" aria-label="Falar pelo microfone" ${CAP.dict?"":"hidden"}>${ic("mic")}</button>
       <button class="btn primary" id="sendBtn" type="submit">${ic("send")}<span class="hide-sm">Enviar</span></button>
     </form>
   </section>`;
   document.body.style.overflow = "hidden";
-  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : `${c.repo ? "O paciente" : c.pac.trat} aguarda você começar.${c.repo ? " A ilustração do consultório é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
+  showCaption(null, c.emergencia ? "Seu Antônio geme baixinho, com a mão fechada sobre o peito." : `${c.equipe ? "A equipe aguarda as suas orientações." : (c.repo ? "O paciente" : c.pac.trat)+" aguarda você começar."}${c.repo ? " A ilustração é genérica; os dados do paciente estão no enunciado." : ""}`, "cena");
 
   $("#composer").onsubmit = e => { e.preventDefault(); const v = $("#say").value.trim(); if (v) { $("#say").value=""; S.dictBase=""; say(v); } };
   $("#exitBtn").onclick = () => confirmInline("Sair sem corrigir? O tempo e as respostas desta tentativa serão perdidos.", renderLobby);
@@ -1040,7 +1049,8 @@ function enterRoom(c){
   const tt = $("#talkTo"); if (tt) tt.onchange = () => { S.talkTo = tt.value; $("#say").focus(); };
   $("#micBtn").onclick = toggleMic;
   document.querySelectorAll("[data-tool]").forEach(b => b.onclick = () => openDrawer(b.dataset.tool === S.drawer ? null : b.dataset.tool));
-  if (c.emergencia) startMonitor();
+  if (c.emergencia || c.monitor) startMonitor();
+  if (c.abertura){ const ab = c.abertura; S.topics[ab.id] = {t:0, q:"(relato inicial)"}; S.transcript.push({who:"paciente", label:ab.quem, text:ab.r, t:0}); setTimeout(() => { if (S && S.c===c){ showCaption(null, ab.r, "paciente", null, ab.quem); speak(ab.r, "paciente"); } }, 600); }
   loopId = setInterval(tick, 250);
   $("#say").focus();
 }
@@ -1053,7 +1063,7 @@ function tick(){
   const t = $("#timer"); if (t){ t.textContent = fmt(rem); t.className = "timer" + (rem<=30 ? " crit" : rem<=120 ? " warn" : ""); }
   if (rem<=120 && !S.warned.w2){ S.warned.w2=1; beep(660,.12); toast("Faltam 2 minutos.", "warn"); }
   if (rem<=30 && !S.warned.w30){ S.warned.w30=1; beep(660,.12); setTimeout(()=>beep(660,.12),200); }
-  if (c.emergencia) evolveVitals(el);
+  if (c.emergencia || c.monitor) evolveVitals(el);
   if (rem <= 0) endStation("tempo");
 }
 
@@ -1082,12 +1092,12 @@ function beep(f, dur){
 }
 
 /* ---------- legenda (fala) ---------- */
-function showCaption(meText, otherText, speaker, emo){
+function showCaption(meText, otherText, speaker, emo, label){
   const cap = $("#caption"); if (!cap) return;
   let h = "";
   if (meText) h += `<div class="cap me"><div class="spk">Você</div>${esc(meText)}</div>`;
-  if (otherText === "…") h += `<div class="cap"><div class="spk">${esc(speakerName(speaker))}</div><span class="dots"><span></span><span></span><span></span></span></div>`;
-  else if (otherText) h += `<div class="cap"><div class="spk">${esc(speakerName(speaker))}${emo && emo!=="neutro" ? `<span class="emo">· parece ${esc(emo)}</span>` : ""}</div>${esc(otherText)}</div>`;
+  if (otherText === "…") h += `<div class="cap"><div class="spk">${esc(S?.c.equipe ? "Equipe / paciente" : speakerName(speaker))}</div><span class="dots"><span></span><span></span><span></span></span></div>`;
+  else if (otherText) h += `<div class="cap"><div class="spk">${esc(label || speakerName(speaker))}${emo && emo!=="neutro" ? `<span class="emo">· parece ${esc(emo)}</span>` : ""}</div>${esc(otherText)}</div>`;
   cap.innerHTML = h;
 }
 const speakerName = sp => sp==="enfermeira" ? "Enf. Carla" : sp==="cena" ? "Cena" : (S?.c.repo ? "Paciente" : (S?.c.pac.trat || "Paciente"));
@@ -1136,9 +1146,10 @@ async function say(text){
     if (/(ecg|eletro)/.test(norm(text)) && /(faz|faca|fazer|realiz|solicit|quero|pode|pega)/.test(norm(text))) requestExam("ecg");
     if (/(sinais vitais|pressao|frequencia|saturacao|como (ele )?esta)/.test(norm(text))) S.vitalsAsked = true;
   }
-  const f = reply.fala || "…";
-  S.transcript.push({who:to, text:f, t:now(), emo:reply.emocao});
-  showCaption(text, f, to, reply.emocao);
+  let f = reply.fala || "…", label = reply.quem || "";
+  const lm = f.match(/^\s*\[([^\]]{2,30})\]\s*/); if (lm){ label = lm[1]; f = f.slice(lm[0].length); }
+  S.transcript.push({who:to, label, text:f, t:now(), emo:reply.emocao});
+  showCaption(text, f, to, reply.emocao, label);
   S.busy = false; const sb = $("#sendBtn"); if (sb) sb.disabled = false;
   if (S.drawer==="conversa") renderDrawer();
   speak(f, to);
@@ -1158,11 +1169,13 @@ function detectCom(text, t, to){
   }
 }
 function history(max=18){
-  return S.transcript.slice(-max).map(m => `${m.who==="me" ? (m.to==="enfermeira"?"Médico(a) → enfermeira":"Médico(a)") : m.who==="enfermeira" ? "Enfermeira Carla" : S.c.pac.trat}: ${m.text}`).join("\n");
+  return S.transcript.slice(-max).map(m => `${m.who==="me" ? (m.to==="enfermeira"?"Médico(a) → enfermeira":"Médico(a)") : m.who==="enfermeira" ? "Enfermeira Carla" : (m.label || S.c.pac.trat)}: ${m.text}`).join("\n");
 }
 async function aiPatient(text){
   const c = S.c;
-  const fatos = c.topicos.map(tp => `- ${tp.id}${tp.ativo ? " (pergunta que VOCÊ faz por iniciativa própria)" : ""}: ${tp.r}`).join("\n");
+  const fatos = c.topicos.map(tp => `- ${tp.id}${tp.trig ? " ["+tp.trig+"]" : ""}${tp.ativo ? " (pergunta que VOCÊ faz por iniciativa própria)" : ""}: ${tp.r}`).join("\n");
+  const equipeRegra = c.equipe ? `
+CENA DE EQUIPE: você interpreta TODOS os personagens da cena — equipe de enfermagem, SAMU, familiares/acompanhantes e o próprio paciente (só quando o estado de consciência permitir). Comece a "fala" sempre com o personagem entre colchetes, por exemplo "[Enfermagem] ..." ou "[Família] ...". Quem responde é quem o aluno chamou ou quem faria sentido na cena. A equipe cumpre as ordens claras do aluno, confirma em voz alta e relata a resposta clínica conforme a ficha (ex.: o que acontece após uma medicação). Se uma ordem for perigosa, a equipe cumpre, mas relata as consequências previstas na ficha ou coerentes com o quadro. Sinais vitais atuais: FC ${Math.round(S.vit.fc)} bpm, PA ${Math.round(S.vit.pas)}x${Math.round(S.vit.pad)} mmHg, SpO2 ${S.vit.sat==null ? "não aferida" : Math.round(S.vit.sat)+"%"}, FR ${Math.round(S.vit.fr)} irpm.` : "";
   const prompt = `Você é um ator interpretando um paciente simulado numa estação de OSCE para estudantes de medicina no Brasil.
 PERSONAGEM: ${c.pac.nome}, ${c.pac.idade} anos, ${c.pac.sexo.toLowerCase()}, ${c.pac.prof}. Cenário: ${c.local}.${c.repo ? " Se o nome do personagem estiver abreviado em iniciais, invente um nome brasileiro coerente com as iniciais e use-o se perguntarem." : ""}
 COMO AGIR: ${c.persona}
@@ -1175,7 +1188,7 @@ REGRAS:
 - Se o aluno usar jargão que um leigo não entenderia, peça para explicar.
 - Se o aluno explicar uma conduta, reaja como o personagem (dúvida, alívio, preocupação) em 1 a 2 frases.
 - Se o aluno pedir para examinar, concorde brevemente.
-- Se o aluno só cumprimentar ou se apresentar, cumprimente de volta.
+- Se o aluno só cumprimentar ou se apresentar, cumprimente de volta.${equipeRegra}
 CONVERSA ATÉ AGORA:
 ${history() || "(início da consulta)"}
 ÚLTIMA FALA DO ALUNO: "${text}"
@@ -1217,7 +1230,7 @@ function localPatient(text){
   }
   const fresh = hits.filter(tp => !S.topics[tp.id]);
   const pick = (fresh.length ? fresh : hits).slice(0, 2);
-  return {fala: pick.map(tp => tp.r).join(" "), topicos: hits.map(h=>h.id), emocao: c.id==="rafael" ? "triste" : c.emergencia ? "com dor" : "neutro"};
+  return {fala: pick.map(tp => tp.r).join(" "), quem: pick[0].quem || "", topicos: hits.map(h=>h.id), emocao: c.id==="rafael" ? "triste" : c.emergencia ? "com dor" : "neutro"};
 }
 function localNurse(text){
   const n = norm(text), v = S.vit;
@@ -1264,14 +1277,14 @@ function giveOrder(id, fromChat){
 }
 function evolveVitals(el){
   const v = S.vit, dt = .25;
-  if (!S.reperf) { v.pas = Math.max(78, v.pas - .02*dt*10); v.pad = Math.max(48, v.pad - .012*dt*10); }
+  if (S.c.emergencia && !S.reperf) { v.pas = Math.max(78, v.pas - .02*dt*10); v.pad = Math.max(48, v.pad - .012*dt*10); }
   if (S.fluid) { v.pas = Math.min(112, v.pas + .25*dt*4); v.pad = Math.min(70, v.pad + .15*dt*4); if (v.fc < 58) v.fc += .05; }
-  v.fc += (Math.random()-.5)*.15; v.sat = Math.min(99, Math.max(88, v.sat + (Math.random()-.5)*.05));
+  v.fc += (Math.random()-.5)*.15; if (v.sat!=null) v.sat = Math.min(99, Math.max(S.c.emergencia ? 88 : 40, v.sat + (Math.random()-.5)*.05));
   const mon = $("#monitor");
   if (mon){
-    const alarm = S.mon && (v.pas < 80 || v.fc < 45 || v.sat < 90);
+    const alarm = S.mon && (v.pas < 80 || v.fc < 45 || v.fc > 130 || (v.sat!=null && v.sat < 90) || v.fr < 8);
     mon.classList.toggle("alarm", alarm);
-    const h = $("#mHR"); if (h){ h.textContent = Math.round(v.fc); $("#mSP").textContent = Math.round(v.sat); $("#mPA").textContent = `${Math.round(v.pas)}/${Math.round(v.pad)}`; $("#mFR").textContent = Math.round(v.fr); }
+    const h = $("#mHR"); if (h){ h.textContent = Math.round(v.fc); $("#mSP").textContent = v.sat==null ? "--" : Math.round(v.sat); $("#mPA").textContent = `${Math.round(v.pas)}/${Math.round(v.pad)}`; $("#mFR").textContent = Math.round(v.fr); }
   }
 }
 function startMonitor(){
@@ -1335,7 +1348,7 @@ function renderDrawer(){
   if (!id){ host.innerHTML = ""; return; }
   let html = "";
   if (id==="conversa"){
-    const tr = S.transcript.length ? `<div class="transcript">${S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me" ? (m.to==="enfermeira"?"Você → Enf. Carla":"Você") : esc(speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("")}</div>` : `<div class="empty">Cumprimente, apresente-se e comece a anamnese pela caixa de texto ou pelo microfone.</div>`;
+    const tr = S.transcript.length ? `<div class="transcript">${S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me" ? (m.to==="enfermeira"?"Você → Enf. Carla":"Você") : esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("")}</div>` : `<div class="empty">Cumprimente, apresente-se e comece a anamnese pela caixa de texto ou pelo microfone.</div>`;
     let roteiro = "";
     if (S.mode==="treino"){
       const groups = {};
@@ -1504,7 +1517,7 @@ function renderFeedback(override, ai){
           <div class="note" style="white-space:pre-wrap">${esc(S.conduta)||"Conduta não registrada por escrito."}</div>
           ${c.emergencia ? `<div><div class="eyebrow">Ordens executadas</div>${Object.keys(S.orders).sort((a,b)=>S.orders[a]-S.orders[b]).map(k=>`<div class="tl"><span class="w">${fmt(S.orders[k])}</span>${esc(ORD_NAME[k])}</div>`).join("") || "<span class='note'>Nenhuma</span>"}</div>` : ""}
         </div>
-        <div class="card"><h2>Transcrição</h2><div class="transcript" style="max-height:420px;overflow:auto">${S.transcript.length ? S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me"?"Você":esc(speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("") : "<span class='note'>Sem falas registradas.</span>"}</div></div>
+        <div class="card"><h2>Transcrição</h2><div class="transcript" style="max-height:420px;overflow:auto">${S.transcript.length ? S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me"?"Você":esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("") : "<span class='note'>Sem falas registradas.</span>"}</div></div>
       </div>
     </div>
   </div></section>`;
