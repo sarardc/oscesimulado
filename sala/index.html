@@ -237,6 +237,18 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .filters button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:13.5px}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .gab{display:grid;gap:10px;font-size:14px}
+.rt-wrap{display:grid;gap:20px}
+.rt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.rt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px 24px}
+.rt-sec{display:grid;gap:2px;align-content:start}
+.rt-sec .eyebrow{margin-bottom:4px;color:var(--accent)}
+.rt-it{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:14px;padding:4px 0;border-bottom:1px solid var(--line);align-items:start}
+.rt-it small{grid-column:2;color:var(--muted);font-size:12px}
+.rt-it small.ev{display:block;grid-column:auto}
+.rt-mk{font-weight:700;text-align:center}
+.rt-it.y .rt-mk{color:var(--ok)}.rt-it.n .rt-mk{color:var(--crit)}.rt-it.na{color:var(--muted)}
+.rt-it.manual{cursor:pointer}.rt-it.manual input{margin:3px 0 0;accent-color:var(--accent)}
+.rt-dicas{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px}
 .gab ul{margin:0;padding-left:18px;display:grid;gap:4px}
 .obito{position:absolute;inset:0;z-index:8;display:grid;place-content:center;justify-items:center;gap:6px;background:rgba(0,0,0,.72);color:#fff;text-align:center;animation:tin .6s ease-out;padding:16px}
 .obito b{font-family:var(--f-display);font-size:clamp(40px,8vw,72px);letter-spacing:.08em}
@@ -1551,7 +1563,7 @@ CASOS.unshift(...DYN_CASOS);
    Casos para quem está aprendendo: o foco é a anamnese completa, na ordem certa,
    e as manobras do exame físico; o raciocínio pedido é o diagnóstico sindrômico.
    ========================================================================= */
-const AN_ORDEM = ["Identificação","Queixa principal","História da doença atual","Interrogatório sintomatológico","Antecedentes pessoais","Antecedentes familiares","Hábitos e estilo de vida","Condições socioeconômicas e culturais"];
+const AN_ORDEM = ["Identificação","Queixa principal","História da doença atual","Interrogatório sintomatológico","Antecedentes pessoais","Antecedentes familiares","Hábitos e estilo de vida","Condições socioeconômicas e culturais","Fechamento"];
 const AN = {
   nome:{g:"Identificação", q:"Qual é o seu nome completo?", kw:/(seu nome|como (o senhor |a senhora |voce )?se chama|nome completo)/},
   idade:{g:"Identificação", q:"Quantos anos o(a) senhor(a) tem?", kw:/(idade|quantos anos|data de nascimento)/},
@@ -1586,10 +1598,35 @@ const AN = {
   animais:{g:"Condições socioeconômicas e culturais", q:"Tem animais em casa?", kw:/(anima(l|is)|cachorro|gato|bicho|passaro|galinha)/},
   moradia:{g:"Condições socioeconômicas e culturais", q:"Como é a sua casa? Tem água encanada e esgoto?", kw:/(sua casa|moradia|mora em|saneamento|agua encanada|esgoto|comodo|onde (o senhor |a senhora |voce )?vive)/},
 };
+// Perguntas do roteiro do Porto que todo caso precisa ter; o caso pode sobrescrever pelo id.
+// Nos sistemas fora do quadro, a resposta é neutra para não contradizer a história do caso.
+const NADA = "Fora o que eu já contei, não tenho isso não.";
+const AN_GERAL = [
+  {id:"hda_evol", g:"História da doença atual", q:"Como isso evoluiu? Já tinha acontecido antes?", kw:/(evolu|foi piorando|ja (tinha|aconteceu)|outras vezes|outro episodio)/, r:"Foi do jeito que eu contei, doutor(a). Antes disso eu estava bem."},
+  {id:"hda_trat", g:"História da doença atual", q:"Já procurou atendimento, fez algum exame ou tratamento por isso?", kw:/(ja (procurou|consultou|foi ao medico|fez (algum )?exame)|fez algum tratamento|exames? (antes|anterior))/, r:"Não procurei médico por isso ainda. Exame, não fiz nenhum."},
+  {id:"hda_vida", g:"História da doença atual", q:"Isso atrapalha o seu dia a dia?", kw:/(atrapalh|dia a dia|rotina|vida diaria|impede)/, r:"Atrapalha, sim. No trabalho e em casa eu não rendo como antes."},
+  {id:"isd_geral", g:"Interrogatório sintomatológico", q:"Teve febre, suor à noite ou mudança de apetite?", kw:/(febre|suor|sudorese|apetite)/, r:NADA},
+  {id:"isd_pele", g:"Interrogatório sintomatológico", q:"Notou algo na pele, unhas ou cabelo?", kw:/(pele|coceira|prurido|mancha|lesao|unha|cabelo)/, r:NADA},
+  {id:"isd_cabeca", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça, tontura ou caroço no pescoço?", kw:/(cabeca|tontura|caroco|rouquid)/, r:NADA},
+  {id:"isd_oong", g:"Interrogatório sintomatológico", q:"Como estão a visão, a audição, o nariz e a garganta?", kw:/(visao|vista|enxerg|ouvido|zumbido|audicao|escuta|nariz|garganta)/, r:NADA},
+  {id:"isd_resp", g:"Interrogatório sintomatológico", q:"Tem tosse, catarro ou chiado no peito?", kw:/(tosse|catarro|escarro|chiado)/, r:NADA},
+  {id:"isd_cv", g:"Interrogatório sintomatológico", q:"Sente dor no peito, palpitação ou desmaio?", kw:/(peito|palpit|desmai)/, r:NADA},
+  {id:"isd_dig", g:"Interrogatório sintomatológico", q:"Tem enjoo, vômito, dificuldade para engolir ou mudança no intestino?", kw:/(enjoo|nausea|vomit|engol|intestin|fezes|evacu)/, r:NADA},
+  {id:"isd_uri", g:"Interrogatório sintomatológico", q:"Tem ardência para urinar ou mudança na urina?", kw:/(urin|xixi|ardencia|jato)/, r:NADA},
+  {id:"isd_hemato", g:"Interrogatório sintomatológico", q:"Teve sangramentos, manchas roxas ou ínguas?", kw:/(sangra|roxo|equimose|ingua|gangli)/, r:NADA},
+  {id:"isd_endo", g:"Interrogatório sintomatológico", q:"Sente muita sede, muito frio ou muito calor?", kw:/(sede|\bfrio\b|calor)/, r:NADA},
+  {id:"isd_musc", g:"Interrogatório sintomatológico", q:"Tem dor nas articulações, rigidez ou fraqueza muscular?", kw:/(articula|junta|rigidez|musculo|fraqueza muscular)/, r:NADA},
+  {id:"isd_neuro", g:"Interrogatório sintomatológico", q:"Teve convulsão, formigamento, fraqueza ou problema de memória?", kw:/(convuls|formig|dormen|memoria|esquec)/, r:NADA},
+  {id:"isd_psi", g:"Interrogatório sintomatológico", q:"Como está o seu humor? Anda triste ou ansioso(a)?", kw:/(humor|triste|ansios|nervos)/, r:"Fico preocupado(a) com isso tudo, mas triste mesmo, não."},
+  {id:"af_infec", g:"Antecedentes familiares", q:"Alguém na família ou em casa teve tuberculose ou hepatite?", kw:/(tuberculose|hepatite|\btb\b)/, r:"Que eu saiba, não."},
+  {id:"viagem", g:"Hábitos e estilo de vida", q:"Viajou recentemente?", kw:/(viag|viajou)/, r:"Não viajei."},
+  {id:"expect", g:"Fechamento", q:"O que o(a) senhor(a) espera desta consulta? O que mais preocupa?", kw:/(o que (o senhor |a senhora |voce )?espera|o que (mais )?(te |lhe )?preocupa|tem medo de)/, r:"Quero saber o que eu tenho e se tem tratamento. Tenho medo de ser algo grave."},
+];
 function anamnese(base, outros){
   const out = [];
   for (const [id, r] of Object.entries(base)){ const d = AN[id]; if (d) out.push({id, g:d.g, q:d.q, kw:d.kw, r}); }
   outros.forEach(h => out.push(Object.assign({g:"História da doença atual"}, h)));
+  AN_GERAL.forEach(gn => { if (!out.some(t => t.id === gn.id)) out.push(Object.assign({gen:true}, gn)); });
   return out.sort((a, b) => AN_ORDEM.indexOf(a.g) - AN_ORDEM.indexOf(b.g));
 }
 const TN = (ids, n) => s => { const h = ids.filter(id => s.topics[id]); return h.length >= n ? {ok:true, ev:`${h.length} de ${ids.length} itens perguntados`} : {ok:false, ev: h.length ? `Só ${h.length} de ${ids.length} itens` : undefined}; };
@@ -2241,6 +2278,145 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
 
 CASOS.splice(DYN_CASOS.length, 0, ...P1_CASOS);
 
+
+/* ---------- Resumo final da P1 duda: roteiro da anamnese (Porto) e do exame físico ---------- */
+const SAY = re => s => { const m = s.transcript.find(x => x.who === "me" && re.test(norm(x.text))); return m ? {ok:true, ev:quote(m.t, m.text)} : {ok:false}; };
+const HDA_N = n => s => { const k = s.c.topicos.filter(tp => tp.g === "História da doença atual" && s.topics[tp.id]).length; return k >= n ? {ok:true, ev:`${k} perguntas sobre a HDA`} : {ok:false, ev: k ? `Só ${k} pergunta(s) sobre a HDA` : undefined}; };
+const MAN = re => s => { const its = s.c.exame.flatMap(g => g.itens).filter(it => re.test(norm(it.nome))); if (!its.length) return {na:true}; const d = its.filter(it => s.man[it.id] != null); return d.length ? {ok:true, ev:d.map(it => it.nome).join("; ")} : {ok:false, ev:"Disponível na estação e não realizado"}; };
+const MANUAL = null;
+const ROTEIRO_AN = [
+  {h:"1. Identificação", itens:[
+    ["Nome, idade, sexo/gênero", TN(["nome","idade"], 2)],
+    ["Cor/etnia (autodeclarada), estado civil", TN(["cor","civil"], 2)],
+    ["Profissão e ocupação atual", T("prof")],
+    ["Naturalidade e procedência (onde mora e onde viveu)", T("natural")],
+    ["Religião, escolaridade", TN(["religiao","escolaridade"], 2)],
+    ["Fonte da informação e confiabilidade (paciente, acompanhante, prontuário)", MANUAL],
+  ]},
+  {h:"2. Queixa principal (QP)", itens:[
+    ["Motivo da consulta, nas palavras do paciente", T("qp")],
+    ["Duração (\"há quanto tempo?\")", TN(["inicio","quando"], 1)],
+  ]},
+  {h:"3. História da doença atual (HDA)", itens:[
+    ["Início (quando, como, súbito ou insidioso) e cronologia", TN(["inicio","quando"], 1)],
+    ["Características do sintoma: localização, qualidade, intensidade, irradiação", HDA_N(3)],
+    ["Fatores de melhora e piora", SAY(/(melhora|piora|alivi|agrava)/)],
+    ["Sintomas associados", HDA_N(5)],
+    ["Evolução (progressão, periodicidade, episódios anteriores)", SAY(/(evolu|piorando|foi piorando|antes|outras vezes|outro episodio|ja (tinha|aconteceu))/)],
+    ["Tratamentos já feitos e consultas ou exames prévios", SAY(/(tomou|tomando|remedio para|tratamento|ja (consultou|foi ao medico)|exame)/)],
+    ["Repercussão na vida diária (trabalho, sono, apetite, humor)", SAY(/(atrapalh|dia a dia|rotina|vida diaria|no trabalho|impede)/)],
+    ["Negativas pertinentes", MANUAL],
+    ["Fechar o relato: \"Mais alguma coisa que queira me contar?\"", SAY(/(mais alguma coisa|algo mais|quer (me )?contar mais|esqueci de perguntar|gostaria de acrescentar)/)],
+  ]},
+  {h:"4. Interrogatório sistemático (ISDA)", itens:[
+    ["Geral: febre, astenia, peso, sudorese, apetite", SAY(/(febre|peso|emagrec|suor|sudorese|apetite|cansac|astenia)/)],
+    ["Pele e fâneros: prurido, lesões, unhas e cabelo", SAY(/(pele|coceira|prurido|mancha|lesao|unha|cabelo)/)],
+    ["Cabeça e pescoço: cefaleia, tontura, nódulos, rouquidão", SAY(/(cabeca|tontura|pescoco|caroco|rouquid)/)],
+    ["Olhos, ouvidos, nariz e garganta", SAY(/(visao|vista|enxerg|ouvido|zumbido|audicao|escuta|nariz|garganta)/)],
+    ["Respiratório: tosse, expectoração, hemoptise, dispneia, chiado", SAY(/(tosse|catarro|escarro|falta de ar|chiado|respir)/)],
+    ["Cardiovascular: dor torácica, palpitação, ortopneia, edema, síncope", SAY(/(peito|palpit|coracao|travesseiro|inch|desmai)/)],
+    ["Digestivo: náusea, vômito, disfagia, dor abdominal, hábito intestinal, icterícia", SAY(/(enjoo|nausea|vomit|engol|barriga|abdom|intestin|fezes|evacu|amarel)/)],
+    ["Urinário: disúria, polaciúria, hematúria, jato, nictúria, incontinência", SAY(/(urin|xixi|ardencia|jato|segura a urina)/)],
+    ["Genital: DUM, ciclo, corrimento, libido, disfunção sexual", SAY(/(menstrua|corrimento|libido|erec|sexual|\bdum\b|ciclo)/)],
+    ["Hematopoiético/linfático: sangramentos, equimoses, gânglios", SAY(/(sangra|sangue|roxo|equimose|ingua|gangli)/)],
+    ["Endócrino: polidipsia, poliúria, intolerância ao frio ou calor", SAY(/(sede|urina muito|\bfrio\b|calor)/)],
+    ["Musculoesquelético: dor articular, rigidez, fraqueza, limitação", SAY(/(articula|junta|rigidez|fraqueza|movimento|musculo)/)],
+    ["Neurológico: convulsão, parestesia, déficit motor, marcha, memória", SAY(/(convuls|formig|dormen|andar|marcha|memoria|esquec|forca)/)],
+    ["Psíquico: humor, ansiedade, sono, ideação suicida", SAY(/(humor|triste|ansios|nervos|sono|dormir|suicid|vontade de morrer)/)],
+  ]},
+  {h:"5. Antecedentes pessoais", itens:[
+    ["Fisiológicos: gestação, parto, desenvolvimento, menarca, menopausa, G/P/A", s => s.c.pac.sexo === "Feminino" ? T("gineco")(s) : TN(["nascimento","gineco"], 1)(s)],
+    ["Patológicos: doenças prévias e da infância, internações, cirurgias, traumas, transfusões", TN(["dp","infancia","cirurgia","trauma","transfusao","transf"], 3)],
+    ["Vacinação", T("vacina")],
+    ["Medicamentos em uso (incluindo fitoterápicos e automedicação)", T("meds")],
+    ["Alergias (medicamentos, alimentos)", T("alergia")],
+  ]},
+  {h:"6. Antecedentes familiares", itens:[
+    ["Pais, irmãos, filhos: vivos ou mortos, causa e idade do óbito", T("af")],
+    ["Doenças hereditárias ou prevalentes: HAS, DM, câncer, DAC/AVC, psiquiátricas", T("af")],
+    ["Doenças infecciosas na família (TB, hepatites)", SAY(/(tuberculose|hepatite|\btb\b)/)],
+  ]},
+  {h:"7. Hábitos e condições de vida (perfil psicossocial)", itens:[
+    ["Alimentação, atividade física, sono", TN(["alim","ativ","sono"], 2)],
+    ["Tabagismo (maços-ano), etilismo (quantidade e frequência), drogas", TN(["fumo","alcool","drogas"], 2)],
+    ["Vida sexual e uso de preservativo", T("vidasexual")],
+    ["Moradia, saneamento, renda, rede de apoio", TN(["moradia","renda","lazer"], 2)],
+    ["Ocupação e exposições (poeira, químicos, estresse)", T("exposicao")],
+    ["Viagens recentes, contato com animais, contactantes doentes", ANY(TN(["animais","contato"], 1), SAY(/(viag|viajou)/))],
+  ]},
+  {h:"8. Fechamento", itens:[
+    ["Resumir o caso ao paciente e checar se algo ficou de fora", SAY(/(resum|deixa eu ver se entendi|se eu entendi|entao (o senhor|a senhora|voce) (esta|tem|veio))/)],
+    ["Perguntar o que ele espera da consulta e quais são suas preocupações", ANY(T("expect"), SAY(/(o que (o senhor|a senhora|voce) espera|preocupa|tem medo|o que (o senhor|a senhora|voce) acha que)/))],
+    ["Explicar os próximos passos (exame físico, exames, conduta)", ANY(C("explicou"), SAY(/(proximos passos|vou (te |lhe )?examinar|agora vou|vamos (pedir|fazer) (alguns )?exames)/))],
+  ]},
+];
+const ROTEIRO_EF = [
+  {h:"1. Preparação", itens:[
+    ["Higienizar as mãos (antes e depois)", SAY(/(higieniz|lavar as maos|alcool (gel|nas maos))/)],
+    ["Explicar o exame e pedir permissão", SAY(/(posso (te |lhe |o |a )?examinar|vou (te |lhe )?examinar|com (a sua )?licenca|permiss)/)],
+    ["Garantir privacidade e posicionar o paciente", MANUAL],
+  ]},
+  {h:"2. Exame geral (ectoscopia)", itens:[
+    ["Estado geral, consciência, fácies, atitude, hidratação, coloração de mucosas, icterícia, cianose", MAN(/(ectoscopia|inspecao geral)/)],
+    ["Pele, mucosas e fâneros", MAN(/(mucosa|pele|unha|lingua|estigma|pregas|maos)/)],
+    ["Linfonodos", MAN(/linfonod/)],
+  ]},
+  {h:"3. Sinais vitais e antropometria", itens:[
+    ["PA (técnica correta), FC, FR, temperatura, SpO₂", MAN(/(sinais vitais|pressao|korotkoff|palpatorio|frequencia)/)],
+    ["Peso, altura, IMC e circunferência abdominal", MAN(/(peso|altura|imc|circunferencia)/)],
+  ]},
+  {h:"4. Cabeça e pescoço", itens:[
+    ["Olhos, face e nervos cranianos", MAN(/(olho|ocular|palpebr|face|mimica|pares cranianos|nervos cranianos)/)],
+    ["Tireoide, jugulares e carótidas", MAN(/(tireoide|pescoco|jugular|carotid)/)],
+  ]},
+  {h:"5. Tórax e aparelho respiratório", itens:[
+    ["Inspeção estática e dinâmica", MAN(/inspecao (estatica|dinamica)/)],
+    ["Palpação: expansibilidade e frêmito toracovocal", MAN(/(expansibilidade|fremito toracovocal)/)],
+    ["Percussão comparativa", MAN(/percussao (comparativa|toracica)/)],
+    ["Ausculta pulmonar (e da voz)", MAN(/(ausculta pulmonar|ausculta da voz)/)],
+  ]},
+  {h:"6. Aparelho cardiovascular", itens:[
+    ["Inspeção e palpação do precórdio (ictus, frêmitos)", MAN(/(precordio|ictus|fremitos nos focos)/)],
+    ["Ausculta dos focos cardíacos", MAN(/(ausculta cardiaca|ausculta do foco)/)],
+    ["Pulsos arteriais", MAN(/(pulso|pedioso)/)],
+  ]},
+  {h:"7. Abdome", itens:[
+    ["Inspeção", MAN(/inspecao do abdome/)],
+    ["Ausculta (antes da palpação)", MAN(/ausculta abdominal/)],
+    ["Percussão (incluindo hepatimetria e Traube)", MAN(/(percussao do abdome|hepatimetria|traube|macicez movel|piparote)/)],
+    ["Palpação superficial e profunda; fígado e baço", MAN(/(palpacao (superficial|do baco|do figado|abdominal)|exame do abdome|palpacao do baco)/)],
+  ]},
+  {h:"8. Membros e sistema vascular periférico", itens:[
+    ["Edema, perfusão e pulsos periféricos", MAN(/(membros|edema|perfusao|pes \(|exame dos pes|inspecao dos pes|pre.?tibial)/)],
+  ]},
+  {h:"9. Exame neurológico", itens:[
+    ["Força, tônus, reflexos, sensibilidade, coordenação e marcha", MAN(/(forca|tonus|reflexo|sensibilidade|coordenacao|marcha|monofilamento|diapasao|flapping|tremor|romberg|manobras deficitarias)/)],
+  ]},
+  {h:"10. Finalização", itens:[
+    ["Agradecer, cobrir o paciente e higienizar as mãos", MANUAL],
+    ["Descrever os achados com terminologia semiológica", s => s.c.checklist.find(i => /terminologia/.test(i.l))?.test(s) || {ok:false}],
+  ]},
+];
+const DICAS_OSCE = ["Apresente-se, higienize as mãos e confirme a identidade do paciente.","Comece com perguntas abertas e só depois use as dirigidas.","Evite jargão e perguntas indutoras.","Demonstre empatia e organize a HDA em ordem cronológica."];
+function roteiroCard(titulo, roteiro, sub){
+  let feitos = 0, aval = 0;
+  const secs = roteiro.map(sec => `<div class="rt-sec"><div class="eyebrow">${esc(sec.h)}</div>${sec.itens.map(([txt, fn], k) => {
+    if (!fn) return `<label class="rt-it manual"><input type="checkbox"> <span>${esc(txt)}</span><small>autoavaliação</small></label>`;
+    const r = fn(S) || {ok:false};
+    if (r.na) return `<div class="rt-it na"><span class="rt-mk">–</span><span>${esc(txt)}</span><small>não se aplica nesta estação</small></div>`;
+    aval++; if (r.ok) feitos++;
+    return `<div class="rt-it ${r.ok ? "y" : "n"}"><span class="rt-mk">${r.ok ? "✓" : "✕"}</span><span>${esc(txt)}${r.ev ? `<small class="ev">${esc(r.ev)}</small>` : ""}</span></div>`;
+  }).join("")}</div>`).join("");
+  return `<div class="card rt"><div class="rt-head"><h2>${esc(titulo)}</h2><span class="chip ${feitos/Math.max(1,aval) >= .7 ? "ok" : "warn"}">${feitos} de ${aval} itens</span></div>${sub ? `<p class="note" style="margin:0">${sub}</p>` : ""}<div class="rt-grid">${secs}</div></div>`;
+}
+function roteiroP1HTML(){
+  return `<div class="rt-wrap">
+    ${roteiroCard("Resumo da anamnese — roteiro tipo Porto (Semiologia Médica)", ROTEIRO_AN, "✓ feito · ✕ faltou · caixinha: marque você mesmo o que a sala não consegue avaliar.")}
+    ${roteiroCard("Resumo do exame físico — roteiro para o 1º período", ROTEIRO_EF, "Sequência: inspeção → palpação → percussão → ausculta (no abdome, a ausculta vem antes da palpação).")}
+    <div class="card"><h2>Dicas para OSCE e prova prática</h2><ul class="rt-dicas">${DICAS_OSCE.map(d => `<li>${esc(d)}</li>`).join("")}</ul></div>
+  </div>`;
+}
+
 /* =========================================================================
    ESTADO E CAPACIDADES
    ========================================================================= */
@@ -2620,6 +2796,12 @@ Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido]
 function localPatient(text){
   const n = norm(text), c = S.c;
   let hits = c.topicos.filter(tp => tp.kw.test(n));
+  if (hits.some(h => h.gen) && hits.some(h => !h.gen)){
+    // pergunta casou com tópico do caso e com tópico geral: vence a palavra-chave mais específica (mais longa)
+    const len = h => { const m = h.kw.exec(n); return m ? m[0].length : 0; };
+    const bg = Math.max(...hits.filter(h => h.gen).map(len)), bs = Math.max(...hits.filter(h => !h.gen).map(len));
+    hits = bg > bs ? hits.filter(h => h.gen) : hits.filter(h => !h.gen);
+  }
   if (!hits.length && c.repo){
     // reserva: aproxima pelo conteúdo das falas e por quem foi chamado (mãe, enfermagem, SAMU...)
     const mine = new Set(stems(text));
@@ -2953,6 +3135,7 @@ function renderFeedback(override, ai){
         <div class="card"><h2>Transcrição</h2><div class="transcript" style="max-height:420px;overflow:auto">${S.transcript.length ? S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me"?"Você":esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("") : "<span class='note'>Sem falas registradas.</span>"}</div></div>
       </div>
     </div>
+    ${c.area === "P1 duda" && c.id !== "p1-spikes" ? roteiroP1HTML() : ""}
   </div></section>`;
   window.scrollTo(0,0);
   $("#again").onclick = () => renderDoor(c.id);
