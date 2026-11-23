@@ -238,6 +238,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .gab{display:grid;gap:10px;font-size:14px}
 .rt-wrap{display:grid;gap:20px}
+.group .sis{font-size:12.5px;font-weight:600;color:var(--accent);margin-top:6px}
 .rt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .rt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px 24px}
 .rt-sec{display:grid;gap:2px;align-content:start}
@@ -1607,12 +1608,14 @@ const AN_GERAL = [
   {id:"hda_vida", g:"História da doença atual", q:"Isso atrapalha o seu dia a dia?", kw:/(atrapalh|dia a dia|rotina|vida diaria|impede)/, r:"Atrapalha, sim. No trabalho e em casa eu não rendo como antes."},
   {id:"isd_geral", g:"Interrogatório sintomatológico", q:"Teve febre, suor à noite ou mudança de apetite?", kw:/(febre|suor|sudorese|apetite)/, r:NADA},
   {id:"isd_pele", g:"Interrogatório sintomatológico", q:"Notou algo na pele, unhas ou cabelo?", kw:/(pele|coceira|prurido|mancha|lesao|unha|cabelo)/, r:NADA},
-  {id:"isd_cabeca", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça, tontura ou caroço no pescoço?", kw:/(cabeca|tontura|caroco|rouquid)/, r:NADA},
+  {id:"isd_cabeca", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça, tontura, caroço no pescoço ou rouquidão?", kw:/(cabeca|tontura|caroco|rouquid)/, r:NADA},
   {id:"isd_oong", g:"Interrogatório sintomatológico", q:"Como estão a visão, a audição, o nariz e a garganta?", kw:/(visao|vista|enxerg|ouvido|zumbido|audicao|escuta|nariz|garganta)/, r:NADA},
   {id:"isd_resp", g:"Interrogatório sintomatológico", q:"Tem tosse, catarro ou chiado no peito?", kw:/(tosse|catarro|escarro|chiado)/, r:NADA},
   {id:"isd_cv", g:"Interrogatório sintomatológico", q:"Sente dor no peito, palpitação ou desmaio?", kw:/(peito|palpit|desmai)/, r:NADA},
   {id:"isd_dig", g:"Interrogatório sintomatológico", q:"Tem enjoo, vômito, dificuldade para engolir ou mudança no intestino?", kw:/(enjoo|nausea|vomit|engol|intestin|fezes|evacu)/, r:NADA},
   {id:"isd_uri", g:"Interrogatório sintomatológico", q:"Tem ardência para urinar ou mudança na urina?", kw:/(urin|xixi|ardencia|jato)/, r:NADA},
+  {id:"isd_gen", g:"Interrogatório sintomatológico", q:"Tem alguma queixa na região genital (corrimento, dor, alteração da libido)?", kw:/(genital|corrimento|libido|ereca|menstrua)/, r:NADA},
+  {id:"isd_vasc", g:"Interrogatório sintomatológico", q:"Tem varizes ou dor nas pernas ao caminhar?", kw:/(variz|claudica|dor nas pernas ao (andar|caminhar))/, r:NADA},
   {id:"isd_hemato", g:"Interrogatório sintomatológico", q:"Teve sangramentos, manchas roxas ou ínguas?", kw:/(sangra|roxo|equimose|ingua|gangli)/, r:NADA},
   {id:"isd_endo", g:"Interrogatório sintomatológico", q:"Sente muita sede, muito frio ou muito calor?", kw:/(sede|\bfrio\b|calor)/, r:NADA},
   {id:"isd_musc", g:"Interrogatório sintomatológico", q:"Tem dor nas articulações, rigidez ou fraqueza muscular?", kw:/(articula|junta|rigidez|musculo|fraqueza muscular)/, r:NADA},
@@ -1919,6 +1922,31 @@ const P1_HDA = {
     {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["cefaleia","tontura","edema"], r:"Às vezes dói a nuca de manhã, vejo uns pontinhos, e os tornozelos incham no fim do dia de trabalho."},
   ]},
 };
+// Interrogatório sintomatológico em ordem crânio-caudal, por sistemas (Porto)
+const ISDA_ORDEM = ["Sintomas gerais","Pele e fâneros","Cabeça e pescoço","Olhos, ouvidos, nariz e garganta","Respiratório","Cardiovascular","Digestivo","Urinário","Genital","Hematológico e linfático","Endócrino","Musculoesquelético","Vascular periférico","Neurológico","Psíquico"];
+const ISDA_SIS = {
+  isd_geral:"Sintomas gerais", peso:"Sintomas gerais", febre:"Sintomas gerais", apetite:"Sintomas gerais", fraqueza:"Sintomas gerais",
+  isd_pele:"Pele e fâneros", infec:"Pele e fâneros", cabelo:"Pele e fâneros", prurido:"Pele e fâneros",
+  isd_cabeca:"Cabeça e pescoço", cefaleia:"Cabeça e pescoço",
+  isd_oong:"Olhos, ouvidos, nariz e garganta", visao:"Olhos, ouvidos, nariz e garganta",
+  isd_resp:"Respiratório", hemopt:"Respiratório", dispneia:"Respiratório",
+  isd_cv:"Cardiovascular", dor_peito:"Cardiovascular", palpit:"Cardiovascular", edema:"Cardiovascular", ortopneia:"Cardiovascular",
+  isd_dig:"Digestivo", intestino:"Digestivo",
+  isd_uri:"Urinário", urina:"Urinário",
+  isd_gen:"Genital", sexual:"Genital", menop:"Genital",
+  isd_hemato:"Hematológico e linfático",
+  isd_endo:"Endócrino", frio:"Endócrino", sede:"Endócrino",
+  isd_musc:"Musculoesquelético",
+  isd_vasc:"Vascular periférico",
+  isd_neuro:"Neurológico",
+  isd_psi:"Psíquico", humor:"Psíquico",
+};
+P1_CASOS.forEach(c => {
+  const isda = c.topicos.filter(tp => tp.g === "Interrogatório sintomatológico");
+  isda.forEach(tp => { tp.sis = ISDA_SIS[tp.id] || "Sintomas gerais"; });
+  // se o caso já tem uma pergunta própria para o sistema, a genérica sai do roteiro (continua respondida)
+  isda.forEach(tp => { if (tp.gen && isda.some(o => !o.gen && o.sis === tp.sis)) tp.extra = true; });
+});
 P1_CASOS.forEach(c => {
   const cfg = P1_HDA[c.id]; if (!cfg) return;
   c.topicos.forEach(tp => { if (cfg.extra.includes(tp.id)) tp.extra = true; });
@@ -1971,6 +1999,7 @@ const ROTEIRO_AN = [
     ["Hematopoiético/linfático: sangramentos, equimoses, gânglios", SAY(/(sangra|sangue|roxo|equimose|ingua|gangli)/)],
     ["Endócrino: polidipsia, poliúria, intolerância ao frio ou calor", SAY(/(sede|urina muito|\bfrio\b|calor)/)],
     ["Musculoesquelético: dor articular, rigidez, fraqueza, limitação", SAY(/(articula|junta|rigidez|fraqueza|movimento|musculo)/)],
+    ["Vascular periférico: varizes, dor nas pernas ao caminhar", SAY(/(variz|claudica|dor nas pernas)/)],
     ["Neurológico: convulsão, parestesia, déficit motor, marcha, memória", SAY(/(convuls|formig|dormen|andar|marcha|memoria|esquec|forca)/)],
     ["Psíquico: humor, ansiedade, sono, ideação suicida", SAY(/(humor|triste|ansios|nervos|sono|dormir|suicid|vontade de morrer)/)],
   ]},
@@ -2612,7 +2641,18 @@ function renderDrawer(){
       const groups = {};
       c.topicos.filter(tp => !tp.ativo && !tp.extra).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
       roteiro = `<div class="group"><div class="eyebrow">Roteiro sugerido (modo treino)</div><p class="note" style="margin:0">Clique para perguntar ou use como lembrete. No modo prova este roteiro não aparece.</p></div>` +
-        Object.entries(groups).map(([g, list]) => `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`).join("")}</div>`).join("");
+        Object.entries(groups).map(([g, list]) => {
+          const btn = tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`;
+          if (list.some(tp => tp.sis)){
+            // interrogatório sintomatológico: ordem crânio-caudal, por sistemas
+            const ord = x => { const i = ISDA_ORDEM.indexOf(x.sis); return i < 0 ? 99 : i; };
+            const sorted = list.slice().sort((a, b) => ord(a) - ord(b));
+            let last = null, html = "";
+            sorted.forEach(tp => { if (tp.sis !== last){ html += `<div class="sis">${esc(tp.sis || "Outros")}</div>`; last = tp.sis; } html += btn(tp); });
+            return `<div class="group"><div class="eyebrow">${esc(g)} — crânio-caudal, por sistemas</div>${html}</div>`;
+          }
+          return `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(btn).join("")}</div>`;
+        }).join("");
     }
     html = drawerShell("Conversa", S.mode==="treino" ? "Transcrição e roteiro de anamnese" : "Transcrição da consulta", `<div class="group"><div class="eyebrow">Transcrição</div>${tr}</div>${roteiro}`);
   }
