@@ -1572,7 +1572,7 @@ const AN = {
   cor:{g:"Identificação", q:"Como o(a) senhor(a) se declara quanto à cor da pele?", kw:/(\bcor\b|\braca\b|etnia|se declara|branc[oa]|pard[oa]|negr[oa])/},
   religiao:{g:"Identificação", q:"Tem alguma religião?", kw:/(religi|igreja|culto|missa|\bcren(ca|te)|espirit)/},
   civil:{g:"Identificação", q:"Qual é o seu estado civil?", kw:/(casad|estado civil|solteir|viuv|divorc|mora com quem|com quem (o senhor |a senhora |voce )?mora)/},
-  qp:{g:"Queixa principal", q:"O que traz o(a) senhor(a) aqui hoje?", kw:/(o que (o |a )?(traz|trouxe)|motivo|queixa|como posso (te |lhe )?ajudar|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|o que (esta )?acontec)/},
+  qp:{g:"Queixa principal", q:"O que traz o(a) senhor(a) aqui hoje?", kw:/(o que (o |a |te |lhe |voce )?(traz|trouxe)|motivo|queixa|como posso (te |lhe )?ajudar|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|o que (esta )?acontec)/},
   nascimento:{g:"Antecedentes pessoais", q:"Sabe como foi o seu nascimento e o seu desenvolvimento na infância?", kw:/(como (foi o seu |voce )?nasc|nascimento|prematur|desenvolvimento|parto (normal|cesarea) quando)/},
   gineco:{g:"Antecedentes pessoais", q:"Com que idade menstruou pela primeira vez? Teve gestações, partos ou abortos? Já entrou na menopausa?", kw:/(menarca|primeira menstrua|gestac|gravid|engravid|parto|aborto|cesarea|menopausa|preventivo|papanicolau|ciclo menstrual)/},
   infancia:{g:"Antecedentes pessoais", q:"Teve doenças na infância, como sarampo, catapora ou caxumba?", kw:/(infancia|quando (era )?crianca|sarampo|catapora|caxumba|rubeola|coqueluche)/},
@@ -1637,10 +1637,10 @@ function ckSimples(o){
     {d:"Comunicação", l:"Apresenta-se ao paciente (nome e função)", w:1, test:C("apresentou")},
     {d:"Comunicação", l:"Chama o paciente pelo nome ou demonstra empatia", w:1, test:ANY(C("nome"), C("empatia"))},
     {d:"Comunicação", l:"Pergunta se o paciente tem dúvidas no final", w:1, test:C("entendimento")},
-    {d:"Anamnese", l:"Identificação (nome, idade, profissão, de onde é, estado civil…)", w:1, test:TN(["nome","idade","cor","civil","prof","natural","religiao"], 4)},
+    {d:"Anamnese", l:"Identificação (nome, idade, profissão, de onde é, estado civil…)", w:1, test:TN(["nome","idade","cor","civil","prof","natural","religiao"], 3)},
     {d:"Anamnese", l:"Queixa principal", w:1, test:T("qp")},
     {d:"Anamnese", l:"HDA: quando e como começou", w:1, test:TN(["inicio","quando"], 1)},
-    {d:"Anamnese", l:"HDA: características do problema e sintomas associados", w:1, test:n("História da doença atual", 4), dica:"Explore a queixa: como é, o que piora ou melhora e o que vem junto."},
+    {d:"Anamnese", l:"HDA: pede para o paciente contar mais e pergunta o que piora, melhora ou vem junto", w:1, test:ANY(TN(["hda_conte","hda_fatores","hda_assoc"], 2), n("História da doença atual", 4)), dica:"Comece com \"me conte mais\" e depois pergunte \"o que piora ou melhora?\" e \"sente mais alguma coisa junto?\". O paciente vai contar o resto."},
     {d:"Anamnese", l:"Interrogatório sintomatológico (pergunta sobre outros sistemas)", w:1, test:n("Interrogatório sintomatológico", 3)},
     {d:"Anamnese", l:"Antecedentes pessoais (doenças, remédios, alergias)", w:1, test:TN(["dp","meds","alergia","cirurgia"], 2)},
     {d:"Anamnese", l:"Antecedentes familiares", w:1, test:T("af")},
@@ -1650,7 +1650,7 @@ function ckSimples(o){
     {d:"Hipótese", l:"Hipótese diagnóstica: " + o.diag, w:1, ia:true, test:H(o.re)},
   ];
 }
-const P1_BASE = {persona:"Paciente colaborativo, linguagem simples. Responde só ao que for perguntado, sem adiantar informações. Se o aluno usar termos técnicos, pede para explicar. Se perguntarem algo que não está na ficha, responda de forma coerente e geralmente negativa.", area:"P1 duda", nivel:"Anamnese e semiologia", tempo:900, labelHip:"Hipótese diagnóstica", labelCond:"Anotações sobre o exame físico"};
+const P1_BASE = {persona:"Paciente colaborativo, linguagem simples. Quando o aluno fizer perguntas abertas ('me conte mais', 'o que piora ou melhora?', 'sente mais alguma coisa junto?'), conte a história com detalhes, como um paciente real faria: o aluno é do 1º período e ainda não sabe fazer perguntas muito específicas. Fora isso, não adiante informações de outras seções da anamnese. Se o aluno usar termos técnicos, pede para explicar. Se perguntarem algo que não está na ficha, responda de forma coerente e geralmente negativa.", area:"P1 duda", nivel:"Anamnese e semiologia", tempo:900, labelHip:"Hipótese diagnóstica", labelCond:"Anotações sobre o exame físico"};
 const P1_TAREFAS = sistema => ["Faça a anamnese completa (roteiro do Porto): identificação, queixa principal, HDA, interrogatório sintomatológico, antecedentes pessoais fisiológicos e patológicos, antecedentes familiares, hábitos e estilo de vida e condições socioeconômicas e culturais.", `Examine o paciente com foco no ${sistema}, nomeando cada manobra (inspeção, palpação, percussão e ausculta).`, "Diga qual é a sua hipótese diagnóstica."];
 
 const P1_CASOS = [];
@@ -1896,6 +1896,35 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     modelo:[["S","\"Helena, vamos nos sentar aqui com calma. Desliguei o meu celular para conversarmos sem interrupção. A senhora gostaria que o seu marido estivesse aqui com a gente?\""],["P","\"Antes de eu falar do resultado, o que a senhora sabe sobre o porquê de termos feito essa biópsia?\""],["I","\"A senhora prefere que eu explique todos os detalhes ou que eu fale primeiro o principal?\""],["K","\"Infelizmente, o resultado não foi o que a gente esperava. A biópsia mostrou que esse nódulo é um câncer de mama.\" (pausa) \"O que a senhora entendeu do que eu falei?\""],["E","(silêncio) \"Eu percebo que essa notícia é muito difícil. É normal sentir medo agora.\" Diante de \"vou morrer?\": \"Ainda precisamos de alguns exames para saber a extensão, mas hoje muitas mulheres com câncer de mama fazem o tratamento e ficam bem. Vou ser honesto(a) com a senhora em cada etapa.\""],["S","\"Os próximos passos são alguns exames e o encaminhamento para a equipe que vai cuidar da senhora. Vamos marcar o retorno para esta semana, e a senhora pode trazer o seu marido. A senhora não vai passar por isso sozinha. Que dúvidas a senhora tem agora?\""]],
   },
 }));
+
+// HDA para o 1º período: perguntas abertas, e o paciente conta a história (como um paciente real).
+// As perguntas específicas continuam respondidas, mas saem do roteiro de treino (extra).
+const KW_CONTE = /(me (conte|conta|fale|fala|explique|explica)|conte mais|fale mais|pode (me )?(contar|falar|explicar)|como (e|eh|foi) (esse|essa|isso|o seu|a sua)|descrev|o que (a senhora |o senhor |voce )?sente)/;
+const KW_FATORES = /(piora|melhora|alivia|agrava)/;
+const KW_ASSOC = /(sente (mais )?alguma (outra )?coisa|mais algum sintoma|algo mais junto|vem junto|junto com (isso|esse)|outros? sintomas?|sente mais (alguma|algo))/;
+const P1_HDA = {
+  "p1-anemia":{depois:"inicio", extra:["cansaco","tontura","menstr","pica","sangra","unhas","palpit"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre esse cansaço.", kw:KW_CONTE, cobre:["cansaco","palpit"], r:"É um cansaço que não passa, doutor(a). Faz uns seis meses que eu fui ficando sem força. Subir a escada do trabalho me deixa sem ar e com o coração disparado. E a minha mãe diz que eu ando muito pálida."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, cobre:["cansaco"], r:"Piora quando eu faço esforço. Descansando melhora um pouco, mas nunca passa de vez."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["tontura","unhas","pica","menstr"], r:"Fico tonta quando levanto rápido e as unhas estão quebrando. E uma coisa estranha: tenho uma vontade enorme de mastigar gelo. Ah, e a minha menstruação sempre foi muito forte, dura uns oito dias."},
+  ]},
+  "p1-diabetes":{depois:"inicio", extra:["sede","diurese","fome_peso","visao","pes","feridas","cansaco"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre isso.", kw:KW_CONTE, cobre:["sede","diurese","fome_peso"], r:"Faz uns três meses que eu vivo com sede, doutor(a). Bebo uns quatro, cinco litros de água por dia e fico correndo para o banheiro, até de noite. E o estranho é que eu como bastante, mas emagreci uns seis quilos."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, r:"Nada melhora. Se eu tomo refrigerante, parece que a sede fica até pior."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["visao","cansaco","pes","feridas"], r:"A vista fica embaçada às vezes, ando muito cansado, e os pés formigam e queimam à noite. Teve até um calo que machucou e demorou para fechar."},
+  ]},
+  "p1-has":{depois:"quando", extra:["sintomas","cefaleia","tontura","dor_peito","edema"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre isso.", kw:KW_CONTE, cobre:["quando","sintomas"], r:"Medi na farmácia semana passada e deu dezesseis por dez. Em março, no posto, já tinha dado alta, mas eu não liguei. Na maior parte do tempo eu não sinto nada."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, cobre:["cefaleia"], r:"Quando fico nervosa no trabalho, a nuca dói mais. Descansando, melhora."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["cefaleia","tontura","edema"], r:"Às vezes dói a nuca de manhã, vejo uns pontinhos, e os tornozelos incham no fim do dia de trabalho."},
+  ]},
+};
+P1_CASOS.forEach(c => {
+  const cfg = P1_HDA[c.id]; if (!cfg) return;
+  c.topicos.forEach(tp => { if (cfg.extra.includes(tp.id)) tp.extra = true; });
+  const i = c.topicos.findIndex(tp => tp.id === cfg.depois);
+  c.topicos.splice(i + 1, 0, ...cfg.novos.map(n => Object.assign({g:"História da doença atual"}, n)));
+});
 
 CASOS.splice(DYN_CASOS.length, 0, ...P1_CASOS);
 
@@ -2328,6 +2357,7 @@ async function say(text){
   const ids = new Set(reply.topicos || []);
   if (to==="paciente") for (const tp of c.topicos) if (tp.kw.test(norm(text))) ids.add(tp.id);
   for (const id of ids) if (!S.topics[id] && c.topicos.some(x=>x.id===id)) S.topics[id] = {t, q:text};
+  for (const id of [...ids]) { const tp = c.topicos.find(x => x.id === id); (tp?.cobre || []).forEach(k => { if (!S.topics[k]) S.topics[k] = {t, q:text}; }); }
   if (reply.com) for (const k in reply.com) if (reply.com[k] && !S.com[k]) S.com[k] = {t, q:text};
   if (to==="enfermeira"){
     const ords = new Set(reply.ordens || []);
@@ -2417,6 +2447,7 @@ Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido]
 function localPatient(text){
   const n = norm(text), c = S.c;
   let hits = c.topicos.filter(tp => tp.kw.test(n));
+  if (hits.some(h => /^hda_(conte|fatores|assoc)$/.test(h.id))) hits = hits.filter(h => /^hda_(conte|fatores|assoc)$/.test(h.id));
   if (hits.some(h => h.gen) && hits.some(h => !h.gen)){
     // pergunta casou com tópico do caso e com tópico geral: vence a palavra-chave mais específica (mais longa)
     const len = h => { const m = h.kw.exec(n); return m ? m[0].length : 0; };
@@ -2579,7 +2610,7 @@ function renderDrawer(){
     let roteiro = "";
     if (S.mode==="treino"){
       const groups = {};
-      c.topicos.filter(tp => !tp.ativo).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
+      c.topicos.filter(tp => !tp.ativo && !tp.extra).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
       roteiro = `<div class="group"><div class="eyebrow">Roteiro sugerido (modo treino)</div><p class="note" style="margin:0">Clique para perguntar ou use como lembrete. No modo prova este roteiro não aparece.</p></div>` +
         Object.entries(groups).map(([g, list]) => `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`).join("")}</div>`).join("");
     }
