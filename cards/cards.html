@@ -519,10 +519,20 @@ function cardHTML(d){
       <div class="sl">Pontos-chave OSCE</div>
       <div class="qa">${qa}</div>
       <div class="alert">⚠ ${esc(d.alerta)}</div>
-      <button class="askb" onclick="event.stopPropagation();sendPrompt('Me explica mais sobre ${d.title.replace(/'/g,"\\'")} para o OSCE')">↗ Aprofundar</button>
+      <button class="askb" data-ask="${esc(d.title)}" title="Abrir no Claude com esta pergunta">↗ Aprofundar</button>
     </div>
   </div>`;
 }
 
 render();
+
+// "Aprofundar": dentro do Claude usa sendPrompt; no site abre o claude.ai com a pergunta e a copia
+document.addEventListener('click', ev => {
+  const btn = ev.target.closest('[data-ask]'); if (!btn) return;
+  ev.stopPropagation();
+  const q = `Me explica mais sobre ${btn.dataset.ask} para o OSCE`;
+  if (typeof window.sendPrompt === 'function') { window.sendPrompt(q); return; }
+  try { navigator.clipboard?.writeText(q).catch(() => {}); } catch (e) {}
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(q), '_blank', 'noopener');
+}, true);
 </script>
