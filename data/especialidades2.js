@@ -139,7 +139,7 @@ const especialidades2 = [
     sub: 'UBS — Atenção Primária',
     tema: 'Infectologia',
     topic: 'Oxiuríase',
-    level: 'simples',
+    level: 'fácil',
     cardAccent: '#43A047',
     instA: {
       scenario: 'Atenção Primária — UBS. Consultório, turno vespertino. A mãe traz o filho para consulta.',
@@ -413,7 +413,7 @@ const especialidades2 = [
     sub: 'UPA — Urgência e Emergência',
     tema: 'Emergencias Neurologicas',
     topic: 'AVC Hemorrágico',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#FF7043',
     instA: {
       scenario: 'Urgência e Emergência — UPA. Sala de emergência, turno matutino. Paciente chega trazido pela esposa.',
@@ -674,7 +674,7 @@ const especialidades2 = [
     sub: 'UTI — Medicina Intensiva',
     tema: 'Medicina Intensiva',
     topic: 'Choque Séptico',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'UTI — Hospital Geral. Você é o médico plantonista da UTI. Paciente internada há 48h por pneumonia comunitária apresentou deterioração hemodinâmica progressiva nas últimas 2 horas.',

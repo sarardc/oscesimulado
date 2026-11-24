@@ -529,7 +529,7 @@ const uro1stations = [
   sub: "UPA — Urgência e Emergência",
   tema: "Urologia",
   topic: "Litíase ureteral obstrutiva com pielonefrite obstrutiva / pionefrólise",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#B03A2E",
 
   instA: {
@@ -712,7 +712,7 @@ const uro1stations = [
   sub: "Ambulatório — Atenção Secundária",
   tema: "Urologia",
   topic: "Litíase renal — investigação metabólica e prevenção",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#2E86AB",
 
   instA: {

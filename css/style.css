@@ -264,9 +264,9 @@
   .pill-medicina-legal           { border-color: #546E7A; color: #546E7A; }
   .pill-ginecologia               { border-color: #AD1457; color: #AD1457; }
   .pill-obstetricia               { border-color: #8E24AA; color: #8E24AA; }
-  .pill-level-simples  { border-color: #69db7c; color: #69db7c; }
   .pill-level-moderado { border-color: #ffd43b; color: #ffd43b; }
-  .pill-level-complexo { border-color: #ff6b6b; color: #ff6b6b; }
+  .pill-level-fácil    { border-color: #69db7c; color: #69db7c; }
+  .pill-level-difícil  { border-color: #ff6b6b; color: #ff6b6b; }
 
   /* ===== STATION VIEW ===== */
   .sv-header {

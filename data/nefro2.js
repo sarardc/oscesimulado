@@ -1460,7 +1460,7 @@
   sub: "Ambulatório de Nefrologia — Hospital de Referência",
   tema: "Nefrologia",
   topic: "Doença Renal Crônica Avançada — DRC G5 pré-diálise",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#4E342E",
   instA: {
     scenario: "Ambulatório de Nefrologia — hospital de referência terciária. Consulta de retorno, turno matutino.",
@@ -1605,7 +1605,7 @@
   sub: "Pronto-Atendimento — Hospital de Referência em Nefrologia",
   tema: "Nefrologia",
   topic: "DRC em Hemodiálise — Complicações Agudas",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#880E4F",
   instA: {
     scenario: "Pronto-atendimento de hospital de referência em nefrologia. Sala de urgência, turno vespertino. Paciente chegou da sessão de hemodiálise encaminhado pela equipe da clínica de diálise.",
