@@ -182,7 +182,7 @@ const pediatria2 = [
   sub: "Maternidade — Alojamento Conjunto",
   tema: 'Neonatologia',
   topic: "Infecções Congênitas / Síndrome da Rubéola Congênita",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#e57373",
 
   instA: {
@@ -553,7 +553,7 @@ const pediatria2 = [
   sub: "UBS/UPA — Atenção Primária / Urgência",
   tema: 'Pediatria Geral',
   topic: "Coqueluche Grave em Lactente / Antibioticoterapia e Notificação",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#c62828",
 
   instA: {
@@ -729,7 +729,7 @@ const pediatria2 = [
   sub: "Ambulatório — Atenção Secundária",
   tema: 'Pediatria Geral',
   topic: "Febre Reumática / Critérios de Jones / Profilaxia Secundária",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#7b1fa2",
 
   instA: {
@@ -913,7 +913,7 @@ const pediatria2 = [
   sub: "UBS — Atenção Primária",
   tema: 'Pediatria Geral',
   topic: "Anorexia Nervosa / Saúde do Adolescente / HEEADSSS",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#ad1457",
 
   instA: {
@@ -1592,7 +1592,7 @@ const pediatria2 = [
   sub: "UPA — Urgência e Emergência",
   tema: 'Cirurgia Pediatrica',
   topic: "Torção Testicular / Escroto Agudo / Emergência Urológica",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#b71c1c",
 
   instA: {

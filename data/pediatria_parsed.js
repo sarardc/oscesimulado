@@ -10,7 +10,7 @@ const pediatriaStations = [
     sub: "UBS — Atenção Primária",
     tema: 'Puericultura',
     topic: "vacinação",
-    level: "simples",
+    level: "fácil",
     cardAccent: "#4CAF50",
 
     instA: {
@@ -863,7 +863,7 @@ const pediatriaStations = [
     sub: "UBS — Atenção Primária",
     tema: 'Puericultura',
     topic: "puericultura-dnpm",
-    level: "simples",
+    level: "fácil",
     cardAccent: "#E91E63",
 
     instA: {
@@ -1032,7 +1032,7 @@ const pediatriaStations = [
     sub: "Maternidade — Centro Obstétrico / Sala de Parto",
     tema: 'Neonatologia',
     topic: "reanimacao-neonatal",
-    level: "complexo",
+    level: "difícil",
     cardAccent: "#C62828",
 
     instA: {
@@ -1190,7 +1190,7 @@ const pediatriaStations = [
     sub: "Maternidade / UTI Neonatal",
     tema: 'Neonatologia',
     topic: "membrana-hialina",
-    level: "complexo",
+    level: "difícil",
     cardAccent: "#37474F",
 
     instA: {
@@ -1355,7 +1355,7 @@ const pediatriaStations = [
     sub: "Maternidade — Alojamento Conjunto",
     tema: 'Neonatologia',
     topic: "ictericia-neonatal",
-    level: "complexo",
+    level: "difícil",
     cardAccent: "#F9A825",
 
     instA: {

@@ -352,7 +352,7 @@ const psiq1stations = [
   sub: "UBS — Demanda espontânea trazida por familiar",
   tema: "Psiquiatria",
   topic: "Psicose — episódio agudo na atenção primária",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#6A1B9A",
   instA: {
     scenario: "Atenção Primária — UBS. Consultório de acolhimento, turno da manhã. A irmã trouxe a paciente, que está falando sozinha na sala de espera e recusou a entrar na sala inicialmente.",
@@ -507,7 +507,7 @@ const psiq1stations = [
   sub: "UBS — Encaminhamento urgente pela escola",
   tema: "Psiquiatria",
   topic: "Automutilação e avaliação de risco de suicídio em adolescente",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#880E4F",
   instA: {
     scenario: "Atenção Primária — UBS. Sala de acolhimento, turno da tarde. A coordenadora da escola trouxe a paciente após uma colega de classe avisar que a jovem tinha marcas de cortes no braço. Os pais foram avisados e o pai chegará em 20 minutos.",
@@ -650,7 +650,7 @@ const psiq1stations = [
   sub: "Ambulatório de Psiquiatria — Referenciado pela UBS",
   tema: "Psiquiatria",
   topic: "Transtorno bipolar — primeiro episódio maníaco tardio",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#E65100",
   instA: {
     scenario: "Ambulatório de Psiquiatria — hospital geral. Primeira consulta, turno matutino. Paciente veio acompanhado da filha, que o trouxe após preocupação com mudança abrupta de comportamento.",
@@ -952,7 +952,7 @@ const psiq1stations = [
   sub: "Enfermaria de Clínica Médica — Hospital Geral",
   tema: "Psiquiatria",
   topic: "Delirium (síndrome confusional aguda)",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#4E342E",
   instA: {
     scenario: "Enfermaria de Clínica Médica — Hospital Geral. Internação no 3º dia pós-operatório de cirurgia de quadril. Plantão noturno. A enfermagem chamou o médico plantonista porque o paciente está agitado, desorientado e tentando tirar o acesso venoso.",
@@ -1104,7 +1104,7 @@ const psiq1stations = [
   sub: "Ambulatório de Saúde Mental — Policlínica",
   tema: "Psiquiatria",
   topic: "Transtorno de estresse pós-traumático em homem — apresentação atípica",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#1A237E",
   instA: {
     scenario: "Ambulatório de Saúde Mental — Policlínica Pública. Primeira consulta, turno da tarde. Paciente encaminhado pela médica do trabalho da corporação após dois acidentes sem vítimas no trabalho, irritabilidade intensa e dois episódios de licença médica por 'stress'.",
@@ -1258,7 +1258,7 @@ const psiq1stations = [
   sub: "Ambulatório de Psiquiatria — Policlínica",
   tema: "Psiquiatria",
   topic: "Transtorno obsessivo-compulsivo (TOC)",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#00695C",
   instA: {
     scenario: "Ambulatório de Psiquiatria — Policlínica Municipal. Primeira consulta, turno da manhã. A paciente chegou 40 minutos atrasada, apologética, explicando que 'teve que voltar três vezes pra checar o gás'.",
@@ -1568,7 +1568,7 @@ const psiq1stations = [
   sub: "UPA — Urgência e Emergência",
   tema: "Psiquiatria",
   topic: "Síndrome de abstinência alcoólica grave — delirium tremens",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#B71C1C",
 
   instA: {
@@ -1742,7 +1742,7 @@ const psiq1stations = [
   sub: "CAPS AD — Centro de Atenção Psicossocial Álcool e Drogas",
   tema: "Psiquiatria",
   topic: "Síndrome de dependência alcoólica — diagnóstico e plano terapêutico",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#4E342E",
 
   instA: {
@@ -2082,7 +2082,7 @@ const psiq1stations = [
   sub: "Enfermaria de Pneumologia — Hospital Geral",
   tema: "Psiquiatria",
   topic: "Transtorno por uso de nicotina em paciente internado — cessação hospitalar",
-  level: "complexo",
+  level: "difícil",
   cardAccent: "#2E7D32",
 
   instA: {

@@ -7,7 +7,7 @@ const oftalmo = [
   sub: 'UBS — Atenção Primária',
   tema: 'oftalmologia',
   topic: 'Conjuntivite',
-  level: 'simples',
+  level: 'fácil',
   cardAccent: '#4CAF50',
   instA: {
     scenario: 'Atenção Primária — UBS. Consultório de clínica geral, turno matutino.',
@@ -113,7 +113,7 @@ const oftalmo = [
   sub: 'UPA — Urgência e Emergência',
   tema: 'oftalmologia',
   topic: 'Glaucoma Agudo',
-  level: 'complexo',
+  level: 'difícil',
   cardAccent: '#E53935',
   instA: {
     scenario: 'Urgência e Emergência — UPA. Sala de triagem/consultório médico, turno noturno.',
@@ -340,7 +340,7 @@ const oftalmo = [
   sub: 'Ambulatório — Clínica Médica / APS',
   tema: 'oftalmologia',
   topic: 'Catarata',
-  level: 'simples',
+  level: 'fácil',
   cardAccent: '#9C27B0',
   instA: {
     scenario: 'Atenção Primária — UBS. Consultório de clínica geral, turno matutino.',
@@ -552,7 +552,7 @@ const oftalmo = [
   sub: 'UBS / Ambulatório — Clínica Médica',
   tema: 'oftalmologia',
   topic: 'Olho Vermelho — Diagnóstico Diferencial / Uveíte Anterior',
-  level: 'complexo',
+  level: 'difícil',
   cardAccent: '#673AB7',
   instA: {
     scenario: 'Atenção Primária — UBS. Consultório médico, turno matutino.',
@@ -995,7 +995,7 @@ const oftalmo = [
   sub: 'UPA — Urgência Pediátrica',
   tema: 'oftalmologia',
   topic: 'Celulite Orbitária vs. Celulite Pré-septal',
-  level: 'complexo',
+  level: 'difícil',
   cardAccent: '#D32F2F',
   instA: {
     scenario: 'Urgência Pediátrica — UPA. Sala de atendimento, turno noturno. Mãe traz criança com queixa de olho inchado.',
