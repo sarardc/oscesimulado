@@ -18,43 +18,42 @@ description: >
 **Repositório:** `/home/user/oscesimulado`
 **Site:** plataforma de simulação OSCE para estudantes de medicina brasileiros
 **Idioma dos casos:** Português (Brasil)
-**Branch de desenvolvimento:** `claude/medical-cases-pneumology-gastro-NsPTs`
+**Branch de desenvolvimento:** a indicada para a sessão
   (verificar sempre com `git branch` antes de commitar)
 
 ## Fluxo de trabalho
 
-1. Criar (ou editar) o arquivo JS de dados em `data/`
-2. Atualizar `build.js` para importar e spredar o novo arquivo
-3. Rodar `node build.js` para gerar `data/stations.json`
+1. Criar o arquivo JS de casos na subpasta certa de `casos/`
+2. Registrar o arquivo no **fim** da lista em `casos/index.js`
+3. Rodar `npm run build` para gerar `data/stations.json`
 4. Commitar tudo + fazer push
 5. Enviar o arquivo JS ao usuário com `SendUserFile` após cada caso ou lote
 
 ---
 
-## Estrutura de arquivos de dados
+## Estrutura de arquivos de casos
 
 ```
-data/
-  casos.js              — casos originais (urologia, endocrinologia)
-  endocrino_parsed.js
-  pediatria_parsed.js
-  pediatria2.js
-  uro1.js
-  psiq1.js
-  uro2.js
-  nefro2.js
-  neuro.js
-  orl.js                — ORL + Dermatologia (6 casos dermatológicos concatenados)
-  ped3.js
-  oftalmo.js
-  cc/cirurgiatoracica.js
-  pneumo_gastro.js
-  especialidades2.js    — 9 especialidades novas (Derma, Infectologia, Hemato, etc.)
-  hematologia.js        — casos de Hematologia
-  stations.json         — gerado automaticamente pelo build
+casos/
+  index.js                      — lista de todos os arquivos, na ordem do site
+  clinica-medica/               — cardiologia, endocrinologia, gastroenterologia,
+                                  geriatria, hematologia, infectologia, nefrologia,
+                                  neurologia, emergencias-neurologicas, pneumologia,
+                                  pneumologia-gastro, medicina-intensiva
+  cirurgia/                     — cirurgia-toracica, ortopedia, urologia-1, urologia-2
+  pediatria/                    — pediatria-1, pediatria-2, pediatria-3
+  ginecologia-obstetricia/      — ginecologia, obstetricia
+  especialidades/               — dermatologia, oftalmologia, psiquiatria, medicina-legal,
+                                  otorrino-e-dermato (ORL + 6 casos de Dermatologia)
+  mistos/                       — casos-originais (urologia, endócrino, psiquiatria),
+                                  especialidades-variadas (9 especialidades),
+                                  sala-simulacao
+data/stations.json              — gerado automaticamente pelo build (não editar)
+scripts/build.js                — gera data/stations.json
 ```
 
-Cada novo conjunto de casos vai em **um novo arquivo JS** (ex: `data/neurologia2.js`).
+Cada novo conjunto de casos vai em **um novo arquivo JS**, com nome em
+minúsculas e hífens, na subpasta da área (ex: `casos/clinica-medica/neurologia-2.js`).
 Nunca edite `data/stations.json` à mão — ele é sobrescrito pelo build.
 
 ---
@@ -206,21 +205,24 @@ export default nomeDoArquivo;
 
 ---
 
-## Atualizar build.js
+## Registrar em casos/index.js
 
-Depois de criar o arquivo, adicionar no `build.js`:
+Depois de criar o arquivo, adicioná-lo em `casos/index.js`:
 
 ```js
-// 1. No bloco de imports (no topo, junto aos outros):
-import nomeDoArquivo from './data/nomeDoArquivo.js';
+// 1. No bloco de imports (no topo, depois do último):
+import neurologia2 from './clinica-medica/neurologia-2.js';
 
-// 2. No array allStations (dentro do .map), adicionar o spread:
-  ...nomeDoArquivo,
+// 2. No array exportado, NO FIM da lista (antes do comentário final):
+  ...neurologia2,
 ```
+
+**Sempre no fim**: a posição define o número da estação (id), e o site usa esse
+número (`js/ui.js` trata `id >= 30` de outro jeito). Nunca reordene a lista.
 
 Depois rodar:
 ```bash
-node build.js
+npm run build
 ```
 
 Verificar que o log diz `Build concluido: NNN estacoes -> data/stations.json`.
@@ -230,7 +232,7 @@ Verificar que o log diz `Build concluido: NNN estacoes -> data/stations.json`.
 ## Git — commit e push
 
 ```bash
-git add data/novoArquivo.js build.js data/stations.json
+git add casos/<area>/novo-arquivo.js casos/index.js data/stations.json
 git commit -m "feat(tema): descrição do que foi adicionado
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>

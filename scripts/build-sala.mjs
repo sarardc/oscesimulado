@@ -1,7 +1,11 @@
 // Gera os dados da Sala de Simulação a partir de data/stations.json.
-// Uso: node build.js && node sala/build-sala.mjs
+// Uso (na raiz do repositório): npm run build:sala
+//   (equivale a: node scripts/build.js && node scripts/build-sala.mjs)
 // Saída: sala/casos-repo.json + cópia das fotos usadas em sala/img/estacoes/
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'fs';
+
+// Os caminhos abaixo são relativos à raiz do repositório.
+process.chdir(new URL('..', import.meta.url).pathname);
 
 // Especialidades do repositório que entram na sala (comparação sem acento/maiúsculas).
 // null = todas as especialidades do site
