@@ -1,0 +1,35 @@
+name: Qualidade
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tipos (TypeScript)
+        run: npm run typecheck
+
+      - name: Testes
+        run: npm test
+
+      # Ainda só relatório: as 11 estações com erro precisam ser corrigidas
+      # antes de trocar para `npm run validar -- --estrito`, que barra o push.
+      - name: Validar estações
+        run: npm run validar
+
+      - name: Build
+        run: node build.js

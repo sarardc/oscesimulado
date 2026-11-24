@@ -1,5 +1,21 @@
 {
   "name": "oscesimulado",
   "version": "1.0.0",
-  "type": "module"
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "validar": "tsx scripts/validar-estacoes.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.7",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
+  }
 }

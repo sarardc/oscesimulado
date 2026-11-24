@@ -24,8 +24,9 @@ description: >
 ## Fluxo de trabalho
 
 1. Criar (ou editar) o arquivo JS de dados em `data/`
-2. Atualizar `build.js` para importar e spredar o novo arquivo
-3. Rodar `node build.js` para gerar `data/stations.json`
+2. Registrar o novo arquivo em `data/fontes.js` (sempre no FIM da lista)
+3. Rodar `npm run validar` e corrigir todo ERRO das estações novas
+4. Rodar `node build.js` para gerar `data/stations.json`
 4. Commitar tudo + fazer push
 5. Enviar o arquivo JS ao usuário com `SendUserFile` após cada caso ou lote
 
@@ -206,17 +207,30 @@ export default nomeDoArquivo;
 
 ---
 
-## Atualizar build.js
+## Registrar em data/fontes.js
 
-Depois de criar o arquivo, adicionar no `build.js`:
+`build.js` e o validador leem a lista de arquivos de `data/fontes.js`. Depois de criar o arquivo:
 
 ```js
 // 1. No bloco de imports (no topo, junto aos outros):
-import nomeDoArquivo from './data/nomeDoArquivo.js';
+import nomeDoArquivo from './nomeDoArquivo.js';
 
-// 2. No array allStations (dentro do .map), adicionar o spread:
-  ...nomeDoArquivo,
+// 2. No FIM do array `fontes` (a posição define o número da estação no site):
+  { arquivo: 'data/nomeDoArquivo.js', estacoes: nomeDoArquivo },
 ```
+
+## Validar contra o schema
+
+O schema oficial está em `packages/core/src/estacao.ts` (Zod). Na primeira vez, rodar `npm install`. Depois:
+
+```bash
+npm run validar            # relatório; as estações novas não podem ter ERRO
+npm run validar -- --detalhes
+```
+
+- `tema` precisa existir em `packages/core/src/temas.ts` (especialidade nova: adicionar lá).
+- `level`: use `'fácil'`, `'moderado'` ou `'difícil'` (evite os sinônimos `simples`/`complexo`).
+- Avisos (quantidade de tarefas, diferenciais, campos vazios) indicam fuga do padrão editorial: corrija nas estações novas.
 
 Depois rodar:
 ```bash
@@ -230,7 +244,7 @@ Verificar que o log diz `Build concluido: NNN estacoes -> data/stations.json`.
 ## Git — commit e push
 
 ```bash
-git add data/novoArquivo.js build.js data/stations.json
+git add data/novoArquivo.js data/fontes.js data/stations.json
 git commit -m "feat(tema): descrição do que foi adicionado
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
