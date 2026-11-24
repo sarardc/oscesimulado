@@ -85,7 +85,7 @@ function renderCards() {
     return;
   }
   visible.forEach(st => {
-    const levelClass = `pill-level-${st.level}`;
+    const levelClass = `pill-level-${normalize(String(st.level)).replace(/\s+/g, '-')}`; // facil | moderado | dificil
     const temaClass = `pill-${String(st.tema).toLowerCase().replace(/\s+/g, '-')}`;
     const card = document.createElement('div');
     card.className = 'card';
@@ -108,38 +108,20 @@ function renderCards() {
 // em app.js) lê o atributo data-tab-idx de cada botão.
 function buildTabsNav(st) {
   const nav = document.querySelector('.tabs-nav');
-  if (st.id >= 30) {
-    nav.innerHTML = `
-      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
-      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" data-tab-idx="4"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
-  } else {
-    nav.innerHTML = `
-      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">D</span><span class="tab-desc">Material de Estudo</span></button>`;
-  }
+  nav.innerHTML = `
+    <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+    <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+    <button class="tab-btn" data-tab-idx="2"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
+    <button class="tab-btn" data-tab-idx="3"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+    <button class="tab-btn" data-tab-idx="4"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
 }
 
 function renderTabs(st) {
-  if (st.id >= 30) {
-    document.getElementById('tab0').innerHTML = renderTabA(st);
-    document.getElementById('tab1').innerHTML = renderTabBExamsOnly(st);
-    document.getElementById('tab2').innerHTML = renderTabB1Script(st);
-    document.getElementById('tab3').innerHTML = renderTabC(st);
-    document.getElementById('tab4').innerHTML = renderTabD(st);
-    document.getElementById('tab4').style.display = '';
-  } else {
-    document.getElementById('tab0').innerHTML = renderTabA(st);
-    document.getElementById('tab1').innerHTML = renderTabB(st);
-    document.getElementById('tab2').innerHTML = renderTabC(st);
-    document.getElementById('tab3').innerHTML = renderTabD(st);
-    document.getElementById('tab4').innerHTML = '';
-    document.getElementById('tab4').style.display = 'none';
-  }
+  document.getElementById('tab0').innerHTML = renderTabA(st);
+  document.getElementById('tab1').innerHTML = renderTabBExamsOnly(st);
+  document.getElementById('tab2').innerHTML = renderTabB1Script(st);
+  document.getElementById('tab3').innerHTML = renderTabC(st);
+  document.getElementById('tab4').innerHTML = renderTabD(st);
 }
 
 // ── TAB A — Instruções ao Candidato ─────────────────────────────────────────
@@ -254,43 +236,12 @@ function renderExamsBlock(b) {
   return html;
 }
 
-// Casos < 30: aba B com tudo (exames + script)
-function renderTabB(st) {
-  const b = st.instB;
-  let html = renderExamsBlock(b);
-
-  if (b.script && b.script.length) {
-    html += `<div class="section-block">
-      <h3>Script do Paciente Simulado</h3>
-      ${b.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${esc(s.trigger)}</div>
-        <div class="script-speech">"${esc(s.speech)}"</div>
-      </div>`).join('')}
-    </div>`;
-  }
-
-  if (b.hiddenInfo && b.hiddenInfo.length) {
-    html += `<div class="section-block">
-      <h3>Informações Escondidas</h3>
-      <div class="hidden-info-list">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn m-0">🔒 ${esc(h)}</div>`).join('')}
-      </div>
-    </div>`;
-  }
-
-  if (b.actorBehavior) {
-    html += `<div class="alert alert-info mt-8">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
-  }
-
-  return html;
-}
-
-// Casos >= 30: aba B somente com exames
+// Aba B: impressos (sinais vitais, exame físico, exames)
 function renderTabBExamsOnly(st) {
   return renderExamsBlock(st.instB);
 }
 
-// Casos >= 30: aba B1 com script do paciente
+// Aba B1: script do paciente, informações escondidas e comportamento do ator
 function renderTabB1Script(st) {
   const b = st.instB;
   let html = '';
@@ -368,7 +319,7 @@ function renderTabC(st) {
     html += `<div class="section-block">
       <h3>Diagnósticos Diferenciais</h3>
       <ul class="expected-list">
-        ${c.differentials.map(d => `<li>${d}</li>`).join('')}
+        ${c.differentials.map(d => `<li>${esc(d)}</li>`).join('')}
       </ul>
     </div>`;
   }
@@ -436,22 +387,30 @@ function renderTabC(st) {
     </div>`;
   }
 
-  // Script do paciente (schema antigo: instC.script)
-  if (c.script && c.script.length) {
-    html += `<div class="section-block">
-      <h3>Script do Paciente Simulado</h3>
-      ${c.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${esc(s.trigger)}</div>
-        <div class="script-speech">"${esc(s.speech)}"</div>
-      </div>`).join('')}
-    </div>`;
+  html += `<div class="section-block section-critical">
+    <h3>Erros Críticos</h3>
+    ${c.criticalErrors.map(e => `<div class="critical-error">${esc(e)}</div>`).join('')}
+  </div>`;
+
+  return html;
+}
+
+// ── TAB D — Checklist avaliativo (+ material de estudo, quando houver) ──────
+
+function renderTabD(st) {
+  const d = st.instD;
+
+  if (!d || !d.sections || !d.sections.length) {
+    return `<div class="empty-state">Nenhum checklist disponível para esta estação.</div>`;
   }
 
-  // PEP (schema antigo: instC.pep)
-  if (c.pep && c.pep.length) {
-    const rows = renderPepTable(c.pep, 0);
-    html += `<div class="section-block">
-      <h3>PEP — Padrão Esperado de Procedimentos</h3>
+  const rows = renderPepTable(d.sections, 0);
+  let html = `
+    <div class="tab-d-header">
+      <div class="tab-d-kicker">Checklist Avaliativo</div>
+      <div class="tab-d-title">${esc(d.title)}</div>
+    </div>
+    <div class="section-block">
       <div class="table-scroll">
       <table class="pep-table">
         <tr><th>Item Avaliado</th><th class="col-points">Pontos</th><th class="checkbox-header"></th></tr>
@@ -464,60 +423,20 @@ function renderTabC(st) {
       </table>
       </div>
     </div>`;
-  }
 
-  html += `<div class="section-block section-critical">
-    <h3>Erros Críticos</h3>
-    ${c.criticalErrors.map(e => `<div class="critical-error">${esc(e)}</div>`).join('')}
-  </div>`;
-
-  return html;
-}
-
-// ── TAB D — Checklist (novo schema) ou Material de Estudo (schema antigo) ───
-
-function renderTabD(st) {
-  const d = st.instD;
-
-  if (!d || !d.sections || !d.sections.length) {
-    return `<div class="empty-state">Nenhum material disponível para esta estação.</div>`;
-  }
-
-  // Detecta schema pelo primeiro section: novo tem .items, antigo tem .body
-  const isChecklist = Array.isArray(d.sections[0].items);
-
-  if (isChecklist) {
-    const rows = renderPepTable(d.sections, 0);
-    return `
-      <div class="tab-d-header">
-        <div class="tab-d-kicker">Checklist Avaliativo</div>
-        <div class="tab-d-title">${esc(d.title)}</div>
+  // Material de estudo (instD.study): seções com HTML escrito no próprio
+  // repositório (conteúdo confiável), por isso o .body não é escapado.
+  if (d.study && d.study.length) {
+    html += `
+      <div class="tab-d-header mt-10">
+        <div class="tab-d-kicker">Material de Estudo</div>
       </div>
-      <div class="section-block">
-        <div class="table-scroll">
-        <table class="pep-table">
-          <tr><th>Item Avaliado</th><th class="col-points">Pontos</th><th class="checkbox-header"></th></tr>
-          ${rows}
-          <tr class="row-total">
-            <td class="cell-total-label">TOTAL</td>
-            <td class="pep-total" id="pep-total">0.0</td>
-            <td></td>
-          </tr>
-        </table>
+      ${d.study.map(sec => `
+        <div class="study-section">
+          <h3>${esc(sec.h)}</h3>
+          ${sec.body}
         </div>
-      </div>`;
+      `).join('')}`;
   }
-
-  // Schema antigo: seções educacionais com HTML no .body
-  return `
-    <div class="tab-d-header">
-      <div class="tab-d-kicker">Material de Estudo</div>
-      <div class="tab-d-title">${esc(d.title)}</div>
-    </div>
-    ${d.sections.map(sec => `
-      <div class="study-section">
-        <h3>${esc(sec.h)}</h3>
-        ${sec.body}
-      </div>
-    `).join('')}`;
+  return html;
 }

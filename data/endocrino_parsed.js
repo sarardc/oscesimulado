@@ -10,10 +10,7 @@ const endocrineStations1 = [
     sub: "UBS — Atenção Primária",
     tema: "Endocrinologia",
     topic: "hipotireoidismo",
-    level: "simples",
-    time: null,
-    type: null,
-    comp: ["Anamnese", "Exame Físico", "Raciocínio Clínico", "Conduta", "Comunicação"],
+    level: "fácil",
     cardAccent: "#9b59b6",
 
     instA: {
@@ -164,10 +161,7 @@ const endocrineStations1 = [
     sub: "UBS — Atenção Primária",
     tema: "Endocrinologia",
     topic: "diabetes-mellitus",
-    level: "simples",
-    time: null,
-    type: null,
-    comp: ["Anamnese", "Exame Físico", "Raciocínio Clínico", "Conduta", "Comunicação"],
+    level: "fácil",
     cardAccent: "#f39c12",
 
     instA: {

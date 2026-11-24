@@ -145,6 +145,7 @@ Nunca edite `data/stations.json` à mão — ele é sobrescrito pelo build.
   },
 
   instD: {
+    // sections = checklist pontuado (aba D). Opcional: study: [{ h, body: '<p>HTML</p>' }] = material de estudo
     title: 'Nome da Doença — Material de Estudo',
     sections: [
       {

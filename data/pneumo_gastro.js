@@ -292,7 +292,7 @@ const pneumoGastroStations = [
     sub: 'UPA — Urgência e Emergência',
     tema: 'Pneumologia',
     topic: 'Tromboembolismo Pulmonar',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#8E44AD',
     instA: {
       scenario: 'Urgência e Emergência — UPA. Sala de atendimento, turno noturno.',
@@ -440,7 +440,7 @@ const pneumoGastroStations = [
     sub: 'UBS — Atenção Primária',
     tema: 'Gastroenterologia',
     topic: 'Diarreia Aguda Infecciosa',
-    level: 'simples',
+    level: 'fácil',
     cardAccent: '#27AE60',
     instA: {
       scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',

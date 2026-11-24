@@ -61,19 +61,11 @@ export function grafiaPadraoDoTema(textoOriginal: string): boolean {
   return textoOriginal === nome || textoOriginal === semAcento(nome);
 }
 
-// Nível de dificuldade. Os dados usam dois vocabulários; os sinônimos
-// "simples" e "complexo" são aceitos, mas geram aviso.
+// Nível de dificuldade (sem acento no id; nos arquivos: "fácil", "moderado", "difícil").
 export const NIVEIS = ["facil", "moderado", "dificil"] as const;
 export type Nivel = (typeof NIVEIS)[number];
 
-export const SINONIMOS_DE_NIVEL: Record<string, Nivel> = {
-  facil: "facil",
-  simples: "facil",
-  moderado: "moderado",
-  dificil: "dificil",
-  complexo: "dificil",
-};
-
 export function nivelCanonico(texto: string): Nivel | undefined {
-  return SINONIMOS_DE_NIVEL[semAcento(texto).trim().toLowerCase()];
+  const n = semAcento(texto).trim().toLowerCase();
+  return (NIVEIS as readonly string[]).includes(n) ? (n as Nivel) : undefined;
 }

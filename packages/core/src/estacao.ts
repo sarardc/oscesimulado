@@ -32,6 +32,13 @@ const listaDeTexto = z
     (Array.isArray(v) ? v : v.split("|")).map((s) => s.trim()).filter((s) => s.length > 0),
   );
 
+/** Lista obrigatória: como `listaDeTexto`, mas com ao menos um item. */
+const listaObrigatoria = (mensagem: string) =>
+  z
+    .union([z.string(), z.array(z.string())], { error: mensagem })
+    .transform((v) => (Array.isArray(v) ? v : v.split("|")).map((s) => s.trim()).filter((s) => s.length > 0))
+    .refine((l) => l.length > 0, { error: mensagem });
+
 /** Slug: identificador permanente da estação, ex.: "cardio-iam-supra". */
 export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
@@ -42,11 +49,6 @@ const fala = z.strictObject({
 
 /** Pontuação de um item de checklist. Zero é aceito, mas gera aviso. */
 const pontuacao = z.number().nonnegative({ error: "a pontuação não pode ser negativa" });
-
-const itemDePontuacao = z.strictObject({
-  item: texto,
-  score: pontuacao,
-});
 
 // ---------------------------------------------------------------------------
 // Instrução A: o que o candidato lê na porta da estação
@@ -111,7 +113,7 @@ const instB = z.strictObject({
   photo: foto.optional(),
   note: z.string().trim().optional(),
   patientProfile: z.string().trim().optional(),
-  script: z.array(fala).optional(),
+  script: z.array(fala), // vazio em estações sem ator (caso escrito)
   hiddenInfo: listaDeTexto.optional(),
   actorBehavior: z.string().trim().optional(),
 });
@@ -126,26 +128,17 @@ const exameEsperado = z.strictObject({
   expected: texto,
 });
 
-/** Checklist no estilo PEP (formato das 29 primeiras estações). */
-const itemPep = z.union([
-  z.strictObject({ section: texto, items: z.array(itemDePontuacao).min(1) }),
-  itemDePontuacao,
-]);
-
 const instC = z.strictObject({
   diagnosis: texto,
   context: z.string().trim(), // vazio gera aviso
   justify: z.string().trim(), // vazio gera aviso
   criticalErrors: z.array(texto),
-  differentials: z.array(texto).optional(),
+  differentials: z.array(texto, { error: "faltam os diagnósticos diferenciais" }).min(1, { error: "faltam os diagnósticos diferenciais" }),
   expectedAnamnesis: listaDeTexto.optional(),
   expectedPhysical: listaDeTexto.optional(),
-  expectedExams: z.array(exameEsperado).optional(),
-  expectedConduct: listaDeTexto.optional(),
+  expectedExams: z.array(exameEsperado), // pode ficar vazio (ex.: psiquiatria, medicina legal)
+  expectedConduct: listaObrigatoria("falta a conduta esperada"),
   expectedCommunication: listaDeTexto.optional(),
-  // Formato PEP
-  pep: z.array(itemPep).optional(),
-  script: z.array(fala).optional(),
   // Estações com foto (dermatologia)
   photoDescription: z.string().trim().optional(),
 });
@@ -160,14 +153,16 @@ const itemDeEstudo = z.strictObject({
   ref: z.string().trim(), // fonte (Harrison, diretriz...)
 });
 
-const secaoDeEstudo = z.union([
-  z.strictObject({ h: texto, items: z.array(itemDeEstudo).min(1) }),
-  z.strictObject({ h: texto, body: texto }),
-]);
+/** Bloco do checklist pontuado (ex.: "BLOCO 2 — ANAMNESE"). */
+const blocoDoChecklist = z.strictObject({ h: texto, items: z.array(itemDeEstudo).min(1) });
+
+/** Seção do material de estudo, com HTML escrito no repositório. */
+const secaoDeEstudo = z.strictObject({ h: texto, body: texto });
 
 const instD = z.strictObject({
   title: texto,
-  sections: z.array(secaoDeEstudo).min(1),
+  sections: z.array(blocoDoChecklist).min(1, { error: "o checklist precisa de ao menos um bloco" }),
+  study: z.array(secaoDeEstudo).optional(),
 });
 
 // ---------------------------------------------------------------------------
@@ -207,24 +202,10 @@ export const EstacaoSchema = z
     topic: texto,
     level: nivel,
     cardAccent: z.string().regex(/^#[0-9a-fA-F]{6}$/, { error: "cor do card deve ser hexadecimal, ex.: #E53935" }),
-    // Campos antigos presentes em 2 estações de endocrinologia, sem uso no site.
-    time: z.null().optional(),
-    type: z.null().optional(),
-    comp: z.array(texto).optional(),
     instA,
     instB,
     instC,
     instD,
-  })
-  .superRefine((e, ctx) => {
-    // Estações no formato completo (sem PEP) precisam do núcleo do gabarito.
-    // (Exames esperados podem faltar: psiquiatria e medicina legal, por exemplo.)
-    if (e.instC.pep) return;
-    const exigir = (ok: boolean, path: (string | number)[], message: string) => {
-      if (!ok) ctx.addIssue({ code: "custom", path, message });
-    };
-    exigir(!!e.instC.differentials?.length, ["instC", "differentials"], "faltam os diagnósticos diferenciais");
-    exigir(!!e.instC.expectedConduct?.length, ["instC", "expectedConduct"], "falta a conduta esperada");
   });
 
 /** Formato dos arquivos de dados (antes da normalização). */

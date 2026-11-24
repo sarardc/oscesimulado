@@ -76,12 +76,6 @@ function avisosDeQualidade(bruta: Record<string, any>, e: Estacao): Problema[] {
   if (typeof bruta.tema === "string" && !grafiaPadraoDoTema(bruta.tema)) {
     aviso("tema-grafia", `tema escrito fora do padrão: "${bruta.tema}"`);
   }
-  if (typeof bruta.level === "string" && /^(simples|complexo)$/i.test(bruta.level.trim())) {
-    aviso("nivel-sinonimo", `nível "${bruta.level}" é sinônimo; prefira fácil, moderado ou difícil`);
-  }
-  if ("time" in bruta || "type" in bruta || "comp" in bruta) {
-    aviso("campo-legado", "campos antigos time/type/comp sem uso no site");
-  }
 
   const tarefas = e.instA.tasks.length;
   if (fora(tarefas, 3, 6)) aviso("tarefas-quantidade", `${tarefas} tarefas na instrução A (padrão: 3 a 6)`);
@@ -89,11 +83,12 @@ function avisosDeQualidade(bruta: Record<string, any>, e: Estacao): Problema[] {
   const erros = e.instC.criticalErrors.length;
   if (fora(erros, 3, 6)) aviso("erros-criticos-quantidade", `${erros} erros críticos (padrão: 3 a 6)`);
 
-  if (!e.instC.pep) {
-    const dif = e.instC.differentials?.length ?? 0;
+  {
+    const dif = e.instC.differentials.length;
     if (fora(dif, 3, 5)) aviso("diferenciais-quantidade", `${dif} diagnósticos diferenciais (padrão: 3 a 5)`);
 
-    if (!e.instB.script?.length) {
+    const semAtor = /sem ator/i.test(`${e.instA.scenario} ${e.instB.note ?? ""} ${e.instB.actorBehavior ?? ""}`);
+    if (!e.instB.script.length && !semAtor) {
       aviso("sem-roteiro", "sem roteiro de falas do paciente (instB.script): a Sala responde só pela ficha");
     }
 
@@ -104,13 +99,11 @@ function avisosDeQualidade(bruta: Record<string, any>, e: Estacao): Problema[] {
     if (!e.instC.expectedPhysical?.length) vazios.push("instC.expectedPhysical");
     if (!e.instC.expectedCommunication?.length) vazios.push("instC.expectedCommunication");
     if (!e.instB.patientProfile) vazios.push("instB.patientProfile");
-    if (!e.instB.actorBehavior) vazios.push("instB.actorBehavior");
-    if (!e.instB.hiddenInfo?.length) vazios.push("instB.hiddenInfo");
+    if (!e.instB.actorBehavior && !semAtor) vazios.push("instB.actorBehavior");
+    if (!e.instB.hiddenInfo?.length && !semAtor) vazios.push("instB.hiddenInfo");
     for (const campo of vazios) aviso("campo-vazio", `${campo} vazio ou ausente`);
   }
-  const zerados =
-    e.instD.sections.flatMap((sec) => ("items" in sec ? sec.items : [])).filter((i) => i.score === 0).length +
-    (e.instC.pep ?? []).flatMap((p) => ("items" in p ? p.items : [p])).filter((i) => i.score === 0).length;
+  const zerados = e.instD.sections.flatMap((sec) => sec.items).filter((i) => i.score === 0).length;
   if (zerados) aviso("pontuacao-zero", `${zerados} item(ns) de checklist com pontuação zero`);
   return avisos;
 }

@@ -43,10 +43,7 @@ function estacaoBase(): Record<string, any> {
     },
     instD: {
       title: "IAM — Material de Estudo",
-      sections: [
-        { h: "Definição", body: "Necrose miocárdica por isquemia." },
-        { h: "Checklist", items: [{ item: "Pediu ECG", score: 1, ref: "Diretriz SBC" }] },
-      ],
+      sections: [{ h: "BLOCO 1 — CONDUTA", items: [{ item: "Pediu ECG", score: 1, ref: "Diretriz SBC" }] }],
     },
   };
 }
@@ -84,11 +81,15 @@ describe("EstacaoSchema", () => {
     expect(r.success && r.data.instB.image).toEqual({ title: null, report: "ECG com supra de ST em DII, DIII e aVF." });
   });
 
-  it("aceita os sinônimos de nível e qualquer grafia do tema", () => {
-    const e = { ...estacaoBase(), level: "complexo", tema: "emergencias neurologicas" };
+  it("aceita o nível com ou sem acento e qualquer grafia do tema", () => {
+    const e = { ...estacaoBase(), level: "difícil", tema: "emergencias neurologicas" };
     const r = parse(e);
     expect(r.success && [r.data.level, r.data.tema]).toEqual(["dificil", "emergencias-neurologicas"]);
-    expect(parse({ ...estacaoBase(), level: "simples" }).success && "ok").toBe("ok");
+    expect(parse({ ...estacaoBase(), level: "facil" }).success).toBe(true);
+  });
+
+  it("recusa os sinônimos antigos de nível", () => {
+    expect(mensagens({ ...estacaoBase(), level: "complexo" })[0]).toMatch(/nível desconhecido: "complexo"/);
   });
 
   it("recusa estação sem nível", () => {
@@ -117,11 +118,23 @@ describe("EstacaoSchema", () => {
     ]);
   });
 
-  it("não exige diferenciais no formato PEP", () => {
+  it("recusa o formato PEP antigo (checklist em instC.pep)", () => {
     const e = estacaoBase();
-    delete e.instC.differentials;
-    delete e.instC.expectedConduct;
     e.instC.pep = [{ section: "Anamnese", items: [{ item: "Caracteriza a dor", score: 1 }] }];
+    expect(mensagens(e)[0]).toMatch(/^instC: /);
+  });
+
+  it("aceita material de estudo em instD.study e exige checklist em instD.sections", () => {
+    const e = estacaoBase();
+    e.instD.study = [{ h: "Definição", body: "<p>Necrose miocárdica.</p>" }];
+    expect(parse(e).success).toBe(true);
+    e.instD.sections = [{ h: "Definição", body: "<p>texto</p>" }];
+    expect(parse(e).success).toBe(false);
+  });
+
+  it("aceita estação sem ator com roteiro vazio", () => {
+    const e = estacaoBase();
+    e.instB.script = [];
     expect(parse(e).success).toBe(true);
   });
 

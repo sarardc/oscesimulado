@@ -8,7 +8,7 @@ const medicinaIntensiva = [
     sub: 'UTI — Medicina Intensiva',
     tema: 'Medicina Intensiva',
     topic: 'Síndrome do Desconforto Respiratório Agudo (SDRA)',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'UTI, paciente internado há 2 dias por pneumonia grave, agora em ventilação mecânica invasiva, com piora da oxigenação.',
@@ -131,7 +131,7 @@ const medicinaIntensiva = [
     sub: 'UTI — Medicina Intensiva',
     tema: 'Medicina Intensiva',
     topic: 'Choque Cardiogênico',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'UTI coronariana, paciente admitido há 6 horas por IAM extenso, evoluindo com hipotensão.',
@@ -253,7 +253,7 @@ const medicinaIntensiva = [
     sub: 'PS — Sala de Trauma',
     tema: 'Medicina Intensiva',
     topic: 'Choque Hemorrágico',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'Sala de trauma do Pronto-Socorro, vítima de acidente motociclístico trazida pelo SAMU.',
@@ -377,7 +377,7 @@ const medicinaIntensiva = [
     sub: 'Enfermaria — Emergência Interna',
     tema: 'Medicina Intensiva',
     topic: 'Parada Cardiorrespiratória',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'Enfermaria clínica, paciente internado por insuficiência cardíaca descompensada, encontrado irresponsivo pela equipe de enfermagem.',
@@ -739,7 +739,7 @@ const medicinaIntensiva = [
     sub: 'UTI — Medicina Intensiva',
     tema: 'Medicina Intensiva',
     topic: 'Cetoacidose Diabética Grave',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'Pronto-Socorro/UTI, paciente trazida pela família com rebaixamento do nível de consciência.',
@@ -983,7 +983,7 @@ const medicinaIntensiva = [
     sub: 'PS — Sala de Trauma',
     tema: 'Medicina Intensiva',
     topic: 'Politraumatizado Grave — Avaliação Inicial (ATLS)',
-    level: 'complexo',
+    level: 'difícil',
     cardAccent: '#E65100',
     instA: {
       scenario: 'Sala de trauma, vítima de queda de andaime trazida pelo SAMU.',
