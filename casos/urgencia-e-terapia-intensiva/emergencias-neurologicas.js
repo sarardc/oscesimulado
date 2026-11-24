@@ -1,4 +1,138 @@
-const emergNeuro = [
+// Casos de Emergencias Neurologicas (10)
+const emergenciasNeurologicas = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 4 — AVC HEMORRÁGICO (AVEH)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 4,
+    title: 'Cefaleia súbita e fraqueza no hemicorpo direito',
+    sub: 'UPA — Urgência e Emergência',
+    tema: 'Emergencias Neurologicas',
+    topic: 'AVC Hemorrágico',
+    level: 'difícil',
+    cardAccent: '#FF7043',
+    instA: {
+      scenario: 'Urgência e Emergência — UPA. Sala de emergência, turno matutino. Paciente chega trazido pela esposa.',
+      patient: 'R.F.B., 58 anos, masculino, comerciante, hipertenso há 10 anos, em uso irregular de losartana, tabagista 20 maços-ano.',
+      complaint: 'Esposa refere que o marido teve cefaleia súbita muito intensa há 1 hora, com fraqueza no lado direito do corpo e dificuldade para falar.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso (com o paciente e a esposa como informantes).',
+        'Realize o exame físico neurológico e geral pertinente.',
+        'Calcule o escore NIHSS de forma simplificada e interprete.',
+        'Solicite os exames complementares imediatos adequados à hipótese diagnóstica.',
+        'Proponha a conduta terapêutica inicial baseada no diagnóstico de imagem.',
+        'Oriente a família sobre o diagnóstico, a gravidade e os próximos passos.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '218/124 mmHg',
+        FC: '96 bpm',
+        FR: '20 irpm',
+        Tax: '37,0 °C',
+        Peso: '88 kg',
+        Altura: '1,74 m',
+        IMC: '29,1 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, torporoso (Glasgow 12 — O3V4M5), sudoreico, com desvio de comissura labial à direita visível.',
+      physicalSeg: 'NEUROLÓGICO: nível de consciência reduzido (GCS 12); afasia motora (fala reduzida, palavras isoladas); pupilas isocóricas (4mm) fotorreagentes bilateralmente; desvio do olhar conjugado para a ESQUERDA; paralisia facial central à direita; hemiparesia direita — força 2/5 em membro superior e 3/5 em membro inferior; reflexo cutâneoplantar em extensão (Babinski) à direita; sensibilidade difícil de avaliar | CARDIOVASCULAR: bulhas rítmicas normofonéticas, sem sopros; FC 96 bpm | RESPIRATÓRIO: MV presente bilateralmente, sem ruídos adventícios; FR 20 irpm | ABDOME: sem alterações relevantes',
+      labs: [
+        { test: 'Glicemia capilar (HGT)', val: '142 mg/dL', ref: '70–99 mg/dL', alt: true },
+        { test: 'Hemograma — Hemoglobina', val: '14,8 g/dL', ref: '13,5–17,5 g/dL', alt: false },
+        { test: 'Hemograma — Plaquetas', val: '198.000/mm³', ref: '150.000–400.000/mm³', alt: false },
+        { test: 'TP/INR', val: '1,1', ref: '0,8–1,2', alt: false },
+        { test: 'TTPA', val: '32 s', ref: '25–35 s', alt: false },
+        { test: 'Creatinina', val: '1,2 mg/dL', ref: '0,7–1,2 mg/dL', alt: false },
+        { test: 'Sódio', val: '138 mEq/L', ref: '136–145 mEq/L', alt: false }
+      ],
+      image: 'TC de crânio SEM contraste (resultado imediato — entregar se o candidato solicitar TC de crânio): Hiperdensidade espontânea em núcleo lentiforme esquerdo (putame), compatível com hematoma hipertensivo. Volume estimado ~35 mL (Fórmula ABC/2). Desvio de linha média de 5 mm para a direita. Edema perilesional discreto. Sem hidrocefalia obstrutiva. Sem herniação uncal visível.',
+      note: 'Entregar sinais vitais ao início. Entregar HGT ao início. Entregar demais labs se solicitados. Entregar a TC de crânio SOMENTE se o candidato solicitar TC de crânio SEM contraste (não entregar se solicitar apenas "exames de imagem" sem especificar, e NÃO entregar se o candidato solicitar trombolítico antes de ver a imagem — este é o erro crítico do caso). ATENÇÃO: Se o candidato solicitar alteplase/rtPA antes da TC, informar que não foi coletada a imagem ainda e aguardar a conduta do candidato.',
+      patientProfile: 'R.F.B., 58 anos, masculino, comerciante, casado, 2 filhos. Hipertenso há 10 anos — usa losartana 50mg mas toma irregular ("só quando lembra"). Tabagista 20 maços-ano. Nega diabetes e cardiopatia. Nega uso de anticoagulantes.',
+      script: [
+        { trigger: 'Esposa — relato inicial', speech: 'Doutor, meu marido tava tomando café da manhã quando de repente ele falou que tinha uma dor de cabeça horrível, a pior da vida dele. Aí eu vi que o canto da boca dele tava torto e ele começou a arrastar a fala. Trouxe correndo.' },
+        { trigger: 'Paciente — queixa (afasia)', speech: '(Fala apenas palavras soltas, com dificuldade) "Cabeça... dói muito... braço... não mexe..."' },
+        { trigger: 'Esposa — sobre a cefaleia', speech: 'A dor de cabeça foi de uma hora pra outra, do nada. Ele nunca teve dor de cabeça assim antes. Falou que era como se tivesse levado uma pancada.' },
+        { trigger: 'Esposa — sobre os medicamentos', speech: 'Ele tem pressão alta faz anos, mas toma o remédio de vez em quando só. Semana passada foi ao cardiologista e a pressão tava 200 e alguma coisa.' },
+        { trigger: 'Esposa — sobre anticoagulantes', speech: 'Não toma nenhum remédio pra afinar o sangue. Só losartana.' },
+        { trigger: 'Esposa — sobre tempo de início', speech: 'Faz exatamente uma hora, eu olhei no relógio porque fiquei desesperada.' },
+        { trigger: 'Esposa — pergunta ativa', speech: 'Doutor, é derrame? Vai ficar assim? Precisa de cirurgia?' },
+        { trigger: 'Esposa — pergunta ativa', speech: 'Pode dar aquela injeção que dissolve o coágulo? Vi na internet que existe um remédio assim.' }
+      ],
+      hiddenInfo: 'Uso irregular da losartana — toma "só quando lembra", última dose há 3 dias — só revela se o candidato perguntar especificamente sobre adesão ao anti-hipertensivo | Episódio de cefaleia intensa 2 semanas atrás que passou sozinha (possível "sentinel headache" de sangramento menor) — só revela se o candidato perguntar sobre episódios anteriores semelhantes | Sem histórico de AVC ou TIA prévios — revela se perguntado',
+      actorBehavior: 'Esposa muito ansiosa e assustada, chora durante a consulta. Fornece as informações com clareza quando questionada objetivamente. Fica mais tranquila se o candidato demonstrar que está agindo rapidamente. Pode questionar sobre o uso de trombolítico por ter visto na internet — candidato deve explicar a contraindicação após TC confirmar sangramento. O paciente é colaborativo mas com afasia motora — fala apenas palavras isoladas.'
+    },
+    instC: {
+      diagnosis: 'AVC hemorrágico (AVEH) hipertensivo — hematoma intraparenquimatoso em núcleo lentiforme esquerdo (putame), volume ~35 mL, com desvio de linha média de 5 mm. Hipertensão arterial não controlada como etiologia principal.',
+      differentials: [
+        'AVC isquêmico — quadro neurológico focal agudo idêntico; distinguido pela TC de crânio SEM contraste (hiperdensidade = sangue = hemorrágico; hipodensidade tardia = isquêmico); A TROMBOLÍSE É CONTRAINDICADA NO AVEH',
+        'Hemorragia subaracnoide (HSA) — cefaleia em trovoada; sangue nas cisternas basais e na fissura silviana; geralmente sem déficit motor focal inicial; TC mostra hiperdensidade diferente (difusa, subaracnoide)',
+        'Crise epiléptica seguida de paralisia de Todd — deficit motor pós-ictal transitório; geralmente sem cefaleia in trovão; afastado pela neuroimagem',
+        'Encefalopatia hipertensiva — alteração difusa de consciência, cefaleia, vômitos; sem déficit focal; PRES na RM; PA muito elevada; afastado pelo achado focal na TC'
+      ],
+      context: 'Homem de 58 anos, hipertenso não controlado (PA 218/124), tabagista, em uso irregular de anti-hipertensivo, com instalação hiperaguda de déficit neurológico focal (hemiparesia direita, afasia motora, desvio conjugado do olhar à esquerda, paralisia facial central direita) e cefaleia explosiva. TC de crânio confirma hematoma intraparenquimatoso em putame esquerdo com desvio de linha média de 5 mm — padrão típico de AVEH hipertensivo.',
+      justify: 'Localização putaminal é a mais comum no AVEH hipertensivo (40–50% dos casos), seguida por tálamo, cerebelo e tronco cerebral. Volume > 30 mL em hematoma supratentorial com desvio de LM > 3 mm indica risco aumentado de herniação e é critério de discussão neurocirúrgica. NIHSS estimado: nível consciência (1) + desvio do olhar (2) + paralisia facial (1) + motor braço D (3) + motor perna D (2) + afasia (2) = ~11 pontos (déficit moderado-grave). Trombolíticos são absolutamente contraindicados no AVEH.',
+      expectedAnamnesis: 'Investigar início (tempo exato desde o início dos sintomas) e modo de instalação (súbito = vascular) | Caracterizar sintomas: cefaleia (intensidade, "pior da vida"), déficit motor, alteração da fala | Perguntar sobre HAS e controle — adesão ao tratamento | Investigar uso de anticoagulantes, antiagregantes, cocaína/anfetaminas (causas de AVEH em jovens) | Perguntar sobre AVC/TIA prévios | Investigar tabagismo, diabetes, cardiopatia | Questionar episódios sentinela (cefaleia recente)',
+      expectedPhysical: 'Avaliar nível de consciência (GCS/escala de alerta) | Calcular NIHSS simplificado: consciência, olhar, campos visuais, paralisia facial, motor MMSS e MMII, ataxia, sensibilidade, linguagem/afasia, disartria, extinção | Avaliar pupilas (midriana unilateral = sinal de herniação uncal iminente) | Verificar sinais vitais com ênfase na PA | Auscultar coração (FA como causa de AVC isquêmico) | Fundoscopia (papiledema = HIC)',
+      expectedExams: [
+        { exam: 'TC de crânio SEM contraste (URGENTE)', justify: 'Exame de imagem de escolha e obrigatório imediato — diferencia AVEH de AVCi ANTES de qualquer decisão terapêutica; disponível e rápido', expected: 'Hiperdensidade putaminal esquerda — hematoma hipertensivo ~35 mL, desvio de LM 5 mm' },
+        { exam: 'Glicemia capilar (HGT)', justify: 'Hipoglicemia e hiperglicemia podem mimetizar déficit neurológico focal; deve ser coletada na chegada', expected: '142 mg/dL — discreta hiperglicemia de estresse' },
+        { exam: 'Coagulograma (TP/INR, TTPA, plaquetas)', justify: 'Avaliar coagulopatia que possa expandir o hematoma; necessário antes de qualquer intervenção', expected: 'Normal — sem coagulopatia' },
+        { exam: 'Hemograma, creatinina, eletrólitos', justify: 'Avaliação geral e suporte à conduta clínica', expected: 'Dentro da normalidade' }
+      ],
+      expectedConduct: 'Monitorização e suporte: Monitorização contínua (ECG, PA não invasiva, SatO2, glicemia); acesso venoso calibroso; cabeceira a 30°; oxigenoterapia se SatO2 < 95%; evitar glicose hipotônica | Controle pressórico: Meta PA ≤ 140/90 mmHg nas primeiras 24h (evidência CLASS IIa para hematoma sem HIC grave); Labetalol IV 20 mg em bolus (não disponível no SUS → Nitroprussiato de sódio 0,5–8 mcg/kg/min) — CUIDADO: hipotensão abrupta piora perfusão perihematoma | Avaliar indicação neurocirúrgica: Volume > 30 mL + desvio LM > 3 mm em paciente jovem com GCS < 8 ou deterioração clínica = discutir com neurocirurgia; escore ICH Score para prognóstico | CONTRAINDICADO: alteplase/rtPA (trombolítico) — absolutamente contraindicado em AVEH confirmado | Profilaxia: antiepiléptico profilático não é rotina (mas tratar crises se ocorrerem); profilaxia de TVP com compressão pneumática; controle glicêmico; prevenção de úlceras | Encaminhamento: UTI neurológica; comunicar neurocirurgia; contato com serviço de referência (SAMU/remoção se necessário) | Orientação familiar: comunicar diagnóstico com clareza; explicar impossibilidade do uso de trombolítico por ser sangramento (não coágulo); orientar sobre prognóstico guardado',
+      expectedCommunication: 'Apresentar-se pelo nome | Comunicar o diagnóstico de "derrame cerebral por sangramento" de forma clara à esposa | Explicar objetivamente POR QUÊ o trombolítico não pode ser usado — é sangramento, não coágulo | Demonstrar empatia sem gerar desespero | Explicar que está sendo tomando todas as medidas necessárias | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Prescrever alteplase (rtPA) sem realizar TC de crânio — ERRO FATAL: trombolítico em AVEH causa expansão do hematoma e morte',
+        'Não solicitar TC de crânio de forma emergencial ao chegar um AVC agudo',
+        'Não controlar a pressão arterial (PA 218/124 mmHg sem tratamento favorece expansão do hematoma)',
+        'Não calcular GCS ou avaliar o nível de consciência (fundamental para estadiamento e decisão neurocirúrgica)',
+        'Não comunicar a neurocirurgia (volume > 30 mL com desvio de LM requer avaliação especializada urgente)'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — CEFALEIA SÚBITA E HEMIPARESIA (AVEH)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se ao paciente e à esposa', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico à família com clareza, explicando por que o trombolítico não pode ser usado', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Definiu o tempo de início dos sintomas (fundamental para triagem terapêutica)', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Investigou uso de anticoagulantes e anti-hipertensivos (adesão)', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Perguntou sobre HAS e controle pressórico prévio', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou nível de consciência (GCS)', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Realizou exame neurológico focal (motor, pupilas, olhar, facial, fala)', score: 1.0, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Coletou HGT/glicemia capilar', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou TC de crânio SEM contraste de forma emergencial', score: 1.0, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Identificou o AVEH pela TC e contraindicou o trombolítico', score: 1.0, ref: 'Diretriz AVC SBN/ABN, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA IMEDIATA',
+          items: [
+            { item: 'Iniciou controle pressórico imediato (meta PA ≤ 140 mmHg)', score: 1.0, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'Indicou internação em UTI e acionou neurocirurgia', score: 0.5, ref: 'Diretriz AVC SBN/ABN, 2020' },
+            { item: 'NÃO prescreveu alteplase/trombolítico', score: 1.0, ref: 'Diretriz AVC SBN/ABN, 2020' }
+          ]
+        }
+      ]
+    }
+  },
 
   // CASO 1 — AVC ISQUÊMICO
   {
@@ -981,7 +1115,6 @@ const emergNeuro = [
       ]
     }
   },
-
 ];
 
-export default emergNeuro;
+export default emergenciasNeurologicas;

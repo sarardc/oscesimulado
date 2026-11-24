@@ -1,9 +1,10 @@
-const ctoracica = [ 
-    {
+// Casos de Cirurgia (28)
+const cirurgiaGeral = [
+  {
   id: 1,
   title: "Dispneia progressiva e dor torácica há 1 semana",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "derrame pleural",
   level: "moderado",
   cardAccent: "#3B7DD8",
@@ -140,11 +141,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 2,
   title: "Cansaço, tosse seca e falta de ar há três semanas",
   sub: "Ambulatório de Pneumologia — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "derrame pleural",
   level: "moderado",
   cardAccent: "#3B7DD8",
@@ -278,11 +279,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 3,
   title: "Febre vespertina, suor noturno e dor no peito há duas semanas",
   sub: "UBS — Atenção Primária à Saúde",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "derrame pleural",
   level: "moderado",
   cardAccent: "#3B7DD8",
@@ -417,11 +418,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 4,
   title: "Queimação no peito após as refeições há quatro meses",
   sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "doença do refluxo gastroesofágico",
   level: "moderado",
   cardAccent: "#E07B39",
@@ -536,11 +537,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 5,
   title: "Paciente com histórico de refluxo e pirose há anos retorna com queimação persistente",
   sub: "Ambulatório de Gastroenterologia — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "esôfago de Barrett",
   level: "moderado",
   cardAccent: "#C0392B",
@@ -660,11 +661,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 6,
   title: "Tosse com sangue e perda de peso em homem tabagista",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "câncer de pulmão",
   level: "moderado",
   cardAccent: "#7D3C98",
@@ -792,11 +793,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 7,
   title: "Nódulo pulmonar descoberto em exame de rotina em paciente assintomática",
   sub: "Ambulatório de Pneumologia — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "câncer de pulmão",
   level: "moderado",
   cardAccent: "#7D3C98",
@@ -914,11 +915,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 8,
   title: "Abaulamento na virilha ao esforço há seis meses",
   sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "hérnia inguinal",
   level: "moderado",
   cardAccent: "#1E8449",
@@ -1031,11 +1032,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 9,
   title: "Abaulamento doloroso na cicatriz de cirurgia abdominal anterior",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "hérnia incisional",
   level: "moderado",
   cardAccent: "#1E8449",
@@ -1157,11 +1158,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 10,
   title: "Dor abdominal intensa em barra após refeição gordurosa",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "pancreatite aguda",
   level: "moderado",
   cardAccent: "#F39C12",
@@ -1293,11 +1294,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 11,
   title: "Dor súbita no peito e falta de ar em jovem sem doenças pulmonares",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "pneumotórax",
   level: "moderado",
   cardAccent: "#2980B9",
@@ -1409,11 +1410,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 12,
   title: "Queda brusca da saturação e hipotensão em paciente ventilado após trauma",
   sub: "PS — Pronto-Socorro / Sala de Emergência",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "pneumotórax hipertensivo",
   level: "moderado",
   cardAccent: "#2980B9",
@@ -1525,11 +1526,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 13,
   title: "Dor no lado esquerdo da barriga com febre há dois dias",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "diverticulite aguda",
   level: "moderado",
   cardAccent: "#8E44AD",
@@ -1645,11 +1646,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 14,
   title: "Sangramento ao defecar e desconforto anal há três meses",
   sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "doença hemorroidária",
   level: "moderado",
   cardAccent: "#C0392B",
@@ -1765,11 +1766,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 15,
   title: "Dor abdominal após colisão de veículo em alta velocidade",
   sub: "PS — Pronto-Socorro / Sala de Emergência",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "trauma abdominal fechado",
   level: "moderado",
   cardAccent: "#922B21",
@@ -1935,11 +1936,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 16,
   title: "Nódulo no pescoço descoberto em exame de rotina",
   sub: "Ambulatório de Cirurgia de Cabeça e Pescoço — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "nódulo tireoidiano",
   level: "moderado",
   cardAccent: "#1A5276",
@@ -2100,11 +2101,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 17,
   title: "Dor intensa no peito e dificuldade para respirar após queda de motocicleta",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "trauma torácico fechado",
   level: "moderado",
   cardAccent: "#784212",
@@ -2268,11 +2269,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 18,
   title: "Dor abdominal intensa desproporcional ao exame em idoso cardiopata",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "isquemia mesentérica aguda",
   level: "moderado",
   cardAccent: "#6E2F2F",
@@ -2440,11 +2441,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 19,
   title: "Dor intensa ao defecar e sangramento vivo há seis semanas",
   sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "fissura anal",
   level: "moderado",
   cardAccent: "#6C3483",
@@ -2600,11 +2601,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 20,
   title: "Pernas pesadas, varizes e ferida na perna que não cicatriza",
   sub: "Ambulatório de Cirurgia Vascular — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "insuficiência venosa crônica",
   level: "moderado",
   cardAccent: "#1F618D",
@@ -2766,11 +2767,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 21,
   title: "Dor na panturrilha ao caminhar que melhora com o repouso",
   sub: "Ambulatório de Cirurgia Vascular — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "doença arterial periférica",
   level: "moderado",
   cardAccent: "#B03A2E",
@@ -2935,11 +2936,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 22,
   title: "Dor que começou no umbigo e foi para o lado direito da barriga",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "apendicite aguda",
   level: "moderado",
   cardAccent: "#117A65",
@@ -3100,11 +3101,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 23,
   title: "Idosa com dor abdominal difusa, febre alta e confusão há dois dias",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "apendicite aguda perfurada",
   level: "moderado",
   cardAccent: "#117A65",
@@ -3264,11 +3265,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 24,
   title: "Paciente obesa solicitando informações sobre cirurgia para emagrecer",
   sub: "Ambulatório de Cirurgia Bariátrica — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "cirurgia bariátrica",
   level: "moderado",
   cardAccent: "#1D6A96",
@@ -3438,11 +3439,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 25,
   title: "Suor excessivo nas mãos que atrapalha o trabalho e a vida social",
   sub: "Ambulatório de Cirurgia Torácica — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "hiperidrose primária",
   level: "moderado",
   cardAccent: "#2E86C1",
@@ -3599,11 +3600,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 26,
   title: "Dor forte no lado direito da barriga com febre após refeição gordurosa",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "colecistite aguda",
   level: "moderado",
   cardAccent: "#D4AC0D",
@@ -3768,11 +3769,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 27,
   title: "Febre, icterícia e dor no lado direito da barriga em paciente com cálculos biliares",
   sub: "PS — Pronto-Socorro",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "coledocolitíase e colangite aguda",
   level: "moderado",
   cardAccent: "#D4AC0D",
@@ -3932,11 +3933,11 @@ const ctoracica = [
   }
 },
 
-{
+  {
   id: 28,
   title: "Pedra na vesícula descoberta em exame de rotina — paciente sem sintomas",
   sub: "Ambulatório de Cirurgia Geral — Hospital Geral",
-  tema: "Cirurgia",
+  tema: 'Cirurgia',
   topic: "colelitíase e cólica biliar",
   level: "moderado",
   cardAccent: "#D4AC0D",
@@ -4096,7 +4097,6 @@ const ctoracica = [
     ]
   }
 },
+];
 
-]
-
-export default ctoracica;
+export default cirurgiaGeral;

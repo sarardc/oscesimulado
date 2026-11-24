@@ -1,9 +1,525 @@
-    const nefro2 = [
-    {
+// Casos de Nefrologia (15)
+const nefrologia = [
+  // NEFROLOGIA — Cistite aguda não complicada em mulher jovem não gestante, no contexto de ITU de repetição
+  {
+    id: 1,
+    title: 'Ardência para urinar há 3 dias',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Nefrologia',
+    topic: 'ITU — Cistite Aguda Não Complicada',
+    level: 'fácil',
+    cardAccent: '#5C6BC0',
+    instA: {
+      scenario: 'Unidade Básica de Saúde (UBS), atendimento de demanda espontânea. Turno da manhã.',
+      patient: 'J.S., 26 anos, feminino, professora, sem comorbidades conhecidas.',
+      complaint: 'Paciente refere ardência ao urinar e vontade frequente de ir ao banheiro há 3 dias. Nega febre.',
+      tasks: [
+        'Realize a anamnese dirigida à queixa urinária, incluindo antecedentes ginecológicos e alergias.',
+        'Solicite o exame físico pertinente ao caso.',
+        'Formule a hipótese diagnóstica e os diagnósticos diferenciais.',
+        'Solicite e interprete os exames complementares adequados.',
+        'Prescreva o tratamento de acordo com as diretrizes atuais e oriente a prevenção de recorrências.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '112/72 mmHg', FC: '78 bpm', FR: '16 irpm', Tax: '36,8 °C', Peso: '58 kg', Altura: '1,62 m', IMC: '22,1 kg/m²' },
+      physicalGeneral: 'Paciente em bom estado geral, corada, hidratada, anictérica, afebril ao toque.',
+      physicalSeg: 'ABDOME: Plano, macio, sem visceromegalias. Dor leve à palpação profunda em hipogastro. Sem defesa. Punho-percussão lombar bilateral NEGATIVA | GENITÁLIA EXTERNA: Sem sinais de corrimento, eritema ou lesões visíveis. Meato uretral sem secreção | MAMAS: Simétricas, sem nódulos ou descarga papilar | MEMBROS: Sem edema',
+      labs: [
+        { test: 'Urina tipo 1 — Leucocitúria', val: '++ (15-20 leucócitos/campo)', ref: '< 5/campo', alt: true },
+        { test: 'Urina tipo 1 — Nitrito', val: 'POSITIVO', ref: 'Negativo', alt: true },
+        { test: 'Urina tipo 1 — Hematúria', val: '+ (3-5 hemácias/campo)', ref: '< 2/campo', alt: true },
+        { test: 'Urina tipo 1 — Proteinúria', val: 'Traços', ref: 'Negativo', alt: false },
+        { test: 'Urina tipo 1 — pH', val: '6.0', ref: '4.5–8.0', alt: false },
+        { test: 'Urocultura (coleta na consulta)', val: 'Aguardando resultado (48-72h)', ref: '< 10³ UFC/mL', alt: false },
+        { test: 'Beta-HCG urinário', val: 'NEGATIVO', ref: 'Negativo', alt: false },
+        { test: 'Hemograma — Leucócitos totais', val: '9.200/mm³', ref: '4.000–11.000/mm³', alt: false }
+      ],
+      note: 'Entregar o EAS e o beta-HCG apenas se solicitados. Se o candidato pedir urocultura, informar que foi coletada e o resultado sai em 48–72 h (crescimento de E. coli > 10⁵ UFC/mL, sensível a nitrofurantoína e fosfomicina, resistente a SMX-TMP e ampicilina). A alergia à penicilina só é revelada se perguntada.',
+      patientProfile: 'J.S., 26 anos, professora do ensino fundamental, mora com o namorado. Sem doenças crônicas, usa anticoncepcional oral combinado. Bebe pouca água e segura a urina durante as aulas. Teve dois episódios de "infecção de urina" no último ano, tratados no pronto-atendimento com antibiótico cujo nome não lembra. Preocupada porque os episódios estão se repetindo e atrapalham o trabalho.',
+      script: [
+        {
+          trigger: 'Queixa principal',
+          speech: 'Doutora(o), tô sentindo uma ardência muito chata pra urinar faz três dias. Fica aquela vontade o tempo todo, mas quando vou, sai pouco e ainda dói. Tá me atrapalhando até de trabalhar.'
+        },
+        { trigger: 'Sobre febre ou calafrios', speech: 'Não, febre não tive não. Nem calafrio.' },
+        { trigger: 'Sobre dor lombar ou nas costas', speech: 'Não, nas costas não dói não. É mais aqui embaixo da barriga.' },
+        { trigger: 'Sobre a cor da urina', speech: 'Ontem notei que tava um pouquinho mais escura que o normal, mas hoje tá melhor.' },
+        { trigger: 'Sobre náusea ou vômito', speech: 'Não, tô bem nesse sentido.' },
+        { trigger: 'Sobre corrimento vaginal', speech: 'Não, tô normal nessa parte.' },
+        { trigger: 'Sobre atividade sexual e preservativo', speech: 'Tenho parceiro fixo. A gente usa camisinha às vezes, mas não sempre.' },
+        { trigger: 'Sobre data da última menstruação', speech: 'Foi há umas duas semanas, tô regular.' },
+        { trigger: 'Sobre uso de anticoncepcional', speech: 'Uso anticoncepcional oral, tomo direitinho.' },
+        { trigger: 'Sobre episódios anteriores', speech: 'Já tive isso umas duas vezes antes, no ano passado e no começo desse ano. Tomei um antibiótico e passou.' },
+        { trigger: 'Sobre antecedentes médicos e cirúrgicos', speech: 'Não tenho nenhuma doença, nunca operei nada.' },
+        { trigger: 'Sobre alergias', speech: 'Alergia a penicilina? Sim, tomei quando criança e fiquei toda manchada. O médico falou que era alergia.' },
+        { trigger: 'Sobre hidratação e hábitos', speech: 'Eu bebo pouca água, confesso. Fico o dia todo na sala de aula e às vezes seguro o xixi por horas.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutora(o)? É grave?' },
+        { trigger: 'Pergunta ativa — tratamento', speech: 'Vou precisar tomar antibiótico de novo? Tem algum jeito de não ficar repetindo tanto?' },
+        {
+          trigger: 'Sobre relação dos sintomas com a relação sexual',
+          speech: 'Pensando bem... das outras vezes também começou um ou dois dias depois de eu ter relação.'
+        },
+        { trigger: 'Sobre automedicação', speech: 'Tomei um chá de quebra-pedra e um comprimido que sobrou da outra vez, mas não lembro o nome.' }
+      ],
+      hiddenInfo: 'Alergia à penicilina (exantema na infância) — só revela se perguntada sobre alergias | Três episódios em cerca de 12 meses (ITU recorrente) — só detalha se perguntada sobre episódios anteriores | Tomou um comprimido de antibiótico que sobrou do episódio anterior — só revela se perguntada sobre automedicação | Sintomas costumam começar após relação sexual — só revela se perguntada',
+      actorBehavior: 'Paciente colaborativa, um pouco ansiosa e incomodada com a disúria (mexe-se na cadeira). Responde de forma objetiva. Fica aliviada quando o candidato explica que o quadro não é grave e pergunta ativamente como evitar novos episódios. Se o candidato prescrever amoxicilina sem perguntar sobre alergias, a atriz diz: "Doutor(a), isso aí não é penicilina, né?".'
+    },
+    instC: {
+      diagnosis: 'Cistite aguda não complicada em mulher jovem não gestante, no contexto de ITU de repetição (3 episódios em ~12 meses), em paciente com alergia à penicilina.',
+      differentials: [
+        'Pielonefrite aguda — sai pela ausência de febre, dor lombar, náuseas e Giordano negativo',
+        'Uretrite por IST (clamídia/gonococo) — considerar pela atividade sexual sem preservativo consistente; sai pela ausência de corrimento uretral e nitrito positivo, mas oferecer testagem para IST',
+        'Vulvovaginite (candidíase, vaginose, tricomoníase) — sai pela ausência de corrimento, prurido e disúria "externa"',
+        'Gestação — excluída pelo beta-HCG negativo (mudaria a escolha do antibiótico)',
+        'Cistite intersticial / síndrome da bexiga dolorosa — diagnóstico de exclusão; sai pelo EAS francamente infeccioso'
+      ],
+      context: 'Mulher jovem, imunocompetente, sem fatores de risco para complicação (sem gravidez, sem diabetes, sem anomalia urológica, sem cateterismo, sem internação recente). Apresentação clássica de cistite aguda com disúria, polaciúria e ausência de febre. EAS confirma infecção com leucocitúria, nitrito positivo e hematúria leve.',
+      justify: 'Disúria + polaciúria + urgência, sem corrimento e sem sinais sistêmicos, têm alto valor preditivo para cistite (> 90%). EAS confirma com leucocitúria e nitrito positivo. Ausência de gestação, comorbidades e anomalias urológicas define a forma não complicada. Três episódios em 12 meses caracterizam ITU recorrente, o que justifica urocultura com antibiograma.',
+      expectedAnamnesis: 'Caracterização da disúria, polaciúria e urgência | Sintomas de ITU alta: febre, calafrios, dor lombar, náuseas e vômitos | Hematúria, aspecto e odor da urina | Corrimento vaginal, prurido e dispareunia (diferencial com vulvovaginite/IST) | Data da última menstruação e método contraceptivo | Atividade sexual e uso de preservativo | Episódios prévios, antibióticos usados e automedicação | Alergias medicamentosas | Comorbidades (diabetes, imunossupressão) | Hábitos: ingesta hídrica e retenção urinária',
+      expectedPhysical: 'Sinais vitais (afebril) | Palpação abdominal: dor suprapúbica | Punho-percussão lombar bilateral (Giordano) | Inspeção da genitália externa (corrimento, lesões)',
+      expectedExams: [
+        { exam: 'Urina tipo 1 (EAS)', justify: 'Confirmar o padrão infeccioso', expected: 'Leucocitúria, nitrito positivo, hematúria discreta' },
+        { exam: 'Urocultura com antibiograma', justify: 'Indicada por ITU recorrente e uso recente de antibiótico', expected: 'E. coli > 10⁵ UFC/mL' },
+        { exam: 'Beta-HCG', justify: 'Mulher em idade fértil — gestação muda o antibiótico e a classificação', expected: 'Negativo' },
+        {
+          exam: 'Testagem para IST (clamídia/gonococo, HIV, sífilis)',
+          justify: 'Atividade sexual com uso irregular de preservativo',
+          expected: 'Oferecer conforme protocolo'
+        }
+      ],
+      expectedConduct: 'Farmacológica: nitrofurantoína 100 mg VO 6/6 h por 5 dias OU fosfomicina trometamol 3 g VO dose única (1ª linha); evitar betalactâmicos pela alergia à penicilina; SMX-TMP apenas se resistência local < 20% e sem uso recente; não usar fluoroquinolona como 1ª linha | Analgesia sintomática: fenazopiridina por até 2 dias ou dipirona | Prevenção da recorrência: ingesta hídrica ≥ 1,5–2 L/dia, não reter urina, micção pós-coito; discutir profilaxia (pós-coital com dose única de nitrofurantoína ou fosfomicina, ou contínua) se os episódios persistirem; cranberry/D-manose como opções de baixa evidência | Retorno com urocultura e se sintomas persistirem após 48–72 h | Sinais de alarme: febre, dor lombar, vômitos',
+      expectedCommunication: 'Apresentar-se pelo nome e função | Explicar o diagnóstico em linguagem simples, tranquilizando sobre a benignidade | Perguntar sobre alergias antes de prescrever | Explicar a posologia e a importância de completar o tratamento | Orientar sinais de alarme e retorno | Verificar a compreensão da paciente',
+      criticalErrors: [
+        'Prescrever amoxicilina, amoxicilina-clavulanato ou cefalosporina sem investigar alergia (paciente com alergia à penicilina)',
+        'Não solicitar beta-HCG (ou não perguntar DUM) antes de prescrever em mulher em idade fértil',
+        'Prescrever fluoroquinolona como primeira linha para cistite não complicada',
+        'Diagnosticar e tratar como pielonefrite sem febre, dor lombar ou Giordano positivo',
+        'Não orientar sinais de alarme de ITU alta'
+      ]
+    },
+    instD: {
+      title: 'ITU Não Complicada — Cistite Aguda — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            {
+              item: 'Cistite não complicada: ITU baixa em mulher não gestante, sem anomalia funcional/anatômica do trato urinário e sem comorbidades relevantes.',
+              score: 1,
+              ref: 'EAU Guidelines on Urological Infections, 2024'
+            },
+            {
+              item: 'Cerca de 50–60% das mulheres terão ao menos um episódio na vida; E. coli responde por 75–95% dos casos.',
+              score: 1,
+              ref: 'Harrison — Medicina Interna, 21ª ed.'
+            },
+            {
+              item: 'ITU recorrente: ≥ 2 episódios em 6 meses ou ≥ 3 em 12 meses — indica urocultura em cada episódio.',
+              score: 1,
+              ref: 'EAU Guidelines on Urological Infections, 2024'
+            }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: 'Disúria + polaciúria sem corrimento vaginal tem VPP > 90%; o diagnóstico é clínico e o EAS reforça.', score: 2, ref: 'Bent S et al., JAMA 2002' },
+            {
+              item: 'Urocultura não é obrigatória no episódio isolado típico; solicitar em recorrência, falha terapêutica, gestação ou sintomas atípicos.',
+              score: 1,
+              ref: 'IDSA / EAU 2024'
+            },
+            { item: 'Sempre perguntar DUM / solicitar beta-HCG e investigar alergias antes de prescrever.', score: 1, ref: 'PCDT — Ministério da Saúde' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: '1ª linha: nitrofurantoína 100 mg 6/6 h (macrocristais) por 5 dias ou fosfomicina trometamol 3 g dose única.', score: 2, ref: 'EAU 2024; RENAME 2024' },
+            {
+              item: 'SMX-TMP 800/160 mg 12/12 h por 3 dias só se resistência local < 20%; fluoroquinolonas reservadas (efeitos adversos graves — alerta FDA/ANVISA).',
+              score: 1,
+              ref: 'IDSA 2011 (atualização 2025); FDA Safety Communication'
+            },
+            {
+              item: 'Nitrofurantoína não deve ser usada se TFG < 30 mL/min nem para pielonefrite (não atinge o parênquima renal).',
+              score: 1,
+              ref: 'UpToDate 2025 — Acute simple cystitis in females'
+            }
+          ]
+        },
+        {
+          h: 'Prevenção da Recorrência',
+          items: [
+            {
+              item: 'Aumentar ingesta hídrica (+1,5 L/dia reduz recorrência em ~50%), não reter urina, micção pós-coito.',
+              score: 1,
+              ref: 'Hooton TM et al., JAMA Intern Med 2018'
+            },
+            {
+              item: 'Profilaxia antimicrobiana contínua ou pós-coital quando medidas não farmacológicas falham; metenamina e D-manose como alternativas não antibióticas.',
+              score: 1,
+              ref: 'EAU Guidelines, 2024'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  // NEFROLOGIA — Pielonefrite aguda à direita, adquirida na comunidade, com sepse
+  {
+    id: 2,
+    title: 'Dor nas costas, febre e mal-estar há 2 dias',
+    sub: 'Pronto-Socorro — Urgência',
+    tema: 'Nefrologia',
+    topic: 'Pielonefrite Aguda com Sepse',
+    level: 'moderado',
+    cardAccent: '#5C6BC0',
+    instA: {
+      scenario: 'Pronto-socorro de hospital de médio porte. Triagem de risco moderado (amarelo).',
+      patient: 'R.O., 34 anos, feminino, auxiliar de enfermagem, G1P1, sem comorbidades.',
+      complaint: 'Paciente refere febre alta, calafrios e dor intensa no lado direito das costas há 2 dias. Associa ardência ao urinar e náuseas. Nega gravidez.',
+      tasks: [
+        'Realize a anamnese dirigida à queixa atual.',
+        'Solicite o exame físico pertinente e avalie sinais de gravidade.',
+        'Solicite e interprete os exames laboratoriais e de imagem adequados.',
+        'Formule a hipótese diagnóstica e os diagnósticos diferenciais.',
+        'Defina a conduta inicial e o local de tratamento.',
+        'Oriente a paciente sobre o diagnóstico e o seguimento.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '98/62 mmHg (PAM 74)',
+        FC: '112 bpm',
+        FR: '22 irpm',
+        Tax: '39,2 °C',
+        SpO2: '96% em ar ambiente',
+        Glasgow: '15',
+        Peso: '62 kg',
+        Altura: '1,65 m',
+        IMC: '22,8 kg/m²'
+      },
+      physicalGeneral: 'Paciente em estado geral regular, corada, hidratada, anictérica, febril, taquicárdica, com fácies de dor.',
+      physicalSeg: 'ABDOME: Plano, doloroso à palpação profunda em flanco e fossa ilíaca direita. Sem defesa ou rigidez | PUNHO-PERCUSSÃO LOMBAR: POSITIVA à direita (dor intensa) | GENITÁLIA EXTERNA: Sem alterações. Sem corrimento vaginal | MEMBROS: Sem edema. TEC < 3s | NEUROLÓGICO: Orientada, responsiva. SNC sem alterações focais',
+      labs: [
+        { test: 'Hemograma — Leucócitos totais', val: '18.500/mm³', ref: '4.000–11.000', alt: true },
+        { test: 'Hemograma — Neutrófilos', val: '85% (desvio à esquerda)', ref: '55–65%', alt: true },
+        { test: 'PCR', val: '148 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'Creatinina', val: '1.4 mg/dL', ref: '0.5–1.1 mg/dL', alt: true },
+        { test: 'Ureia', val: '42 mg/dL', ref: '17–42 mg/dL', alt: false },
+        { test: 'Sódio', val: '136 mEq/L', ref: '135–145', alt: false },
+        { test: 'Potássio', val: '4.1 mEq/L', ref: '3.5–5.0', alt: false },
+        { test: 'Lactato', val: '2.3 mmol/L', ref: '< 2.0 mmol/L', alt: true },
+        { test: 'Urina tipo 1 — Leucocitúria', val: '+++ (> 50/campo)', ref: '< 5/campo', alt: true },
+        { test: 'Urina tipo 1 — Nitrito', val: 'POSITIVO', ref: 'Negativo', alt: true },
+        { test: 'Urina tipo 1 — Cilindros leucocitários', val: 'PRESENTES', ref: 'Ausente', alt: true },
+        { test: 'Urocultura', val: 'Coletada — resultado em 48-72h', ref: '< 10³ UFC/mL', alt: false },
+        { test: 'Hemocultura (2 amostras)', val: 'Coletadas — resultado em 48-72h', ref: 'Negativo', alt: false },
+        { test: 'Beta-HCG', val: 'NEGATIVO', ref: 'Negativo', alt: false }
+      ],
+      image: {
+        title: 'Ultrassonografia de Rins e Vias Urinárias',
+        report: 'LAUDO — ULTRASSONOGRAFIA DE RINS E VIAS URINÁRIAS\n        \nRim direito: dimensões aumentadas (13,8 cm), com ecotextura heterogênea, edema difuso do parênquima. Sem dilatação pielocalicial. Sem cálculos identificados.\n        \nRim esquerdo: dimensões normais (11,2 cm), ecotextura homogênea preservada.\n\nBexiga: paredes espessadas (>3mm), com conteúdo urinário normal.\n\nCONCLUSÃO: Achados compatíveis com pielonefrite aguda à direita. Sem evidência de abscesso perirrenal ou hidronefrose. Sem litíase identificada.'
+      },
+      note: 'Entregar os exames laboratoriais e o laudo da USG somente se solicitados. Urocultura e hemoculturas: informar que foram coletadas e que os resultados saem em 48–72 h (E. coli sensível a ceftriaxona e ciprofloxacino). Se o candidato prescrever antibiótico antes de pedir culturas, o avaliador registra a falha.',
+      patientProfile: 'R.O., 34 anos, auxiliar de enfermagem em hospital, casada, um filho de 5 anos. Sem comorbidades, sem uso de medicamentos regulares. Teve dois episódios de cistite no passado, tratados sem complicação. Trabalhou ontem mesmo com febre porque "não podia faltar". Preocupa-se com o filho, que ficou com a vizinha.',
+      script: [
+        {
+          trigger: 'Queixa principal',
+          speech: 'Tô muito mal, doutor(a). Faz dois dias que tenho febre alta, calafrio, e essa dor nas costas do lado direito tá me matando. Fica pior quando me mexo.'
+        },
+        { trigger: 'Sobre ardência urinária', speech: 'Sim, tô sentindo ardência pra urinar também, e vou ao banheiro mais vezes que o normal.' },
+        { trigger: 'Sobre a intensidade da febre', speech: 'Medi em casa, deu 39,4°C ontem à noite. Tomei dipirona e baixou um pouco, mas voltou.' },
+        { trigger: 'Sobre náuseas e vômitos', speech: 'Tô enjoada o tempo todo. Ontem vomitei duas vezes. Não consigo comer quase nada.' },
+        { trigger: 'Sobre possível gravidez / DUM', speech: 'Não, não estou grávida, fiz o teste agora há pouco. Menstruei há 3 semanas.' },
+        {
+          trigger: 'Sobre episódios anteriores de infecção urinária',
+          speech: 'Já tive cistite antes, umas 2 vezes, mas nunca assim, com febre e essa dor nas costas.'
+        },
+        {
+          trigger: 'Sobre antecedentes médicos',
+          speech: 'Não tenho nenhuma doença crônica. Não operei nada. Não uso remédio regular. Não tenho alergia a remédio que eu saiba.'
+        },
+        { trigger: 'Sobre vida sexual e ISTs', speech: 'Tenho parceiro fixo, a gente usa preservativo. Nunca tive DST.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutor(a)? É sério? Vou precisar ficar internada?' },
+        { trigger: 'Pergunta ativa — se falarem em sepse', speech: 'Meu Deus, sepse? Mas eu tava bem anteontem. Por que ficou tão grave?' },
+        { trigger: 'Sobre diurese', speech: 'Estou urinando menos hoje, acho que porque não consigo beber nada, tudo que eu tomo eu ponho pra fora.' },
+        { trigger: 'Sobre medicamentos usados em casa', speech: 'Só dipirona. Não tomei antibiótico nenhum.' }
+      ],
+      hiddenInfo: 'Vomitou duas vezes e não tolera via oral — só detalha se perguntada sobre náuseas e vômitos | Diurese reduzida hoje — só revela se perguntada sobre volume urinário | Trabalhou febril ontem e está preocupada com o filho — só revela se o candidato perguntar sobre contexto social ou preocupações',
+      actorBehavior: 'Paciente prostrada, com fácies de dor, encolhida na maca. Responde com frases curtas e pede algo para a dor. Por ser da área da saúde, assusta-se ao ouvir a palavra "sepse" e pergunta se vai para a UTI. Inicialmente resiste à internação ("não posso deixar meu filho"), mas aceita quando o candidato explica a gravidade com empatia.'
+    },
+    instC: {
+      diagnosis: 'Pielonefrite aguda à direita, adquirida na comunidade, com sepse (disfunção renal: creatinina 1,4 mg/dL; lactato 2,3 mmol/L) — indicação de internação e antibioticoterapia endovenosa.',
+      differentials: [
+        'Pielonefrite obstrutiva (cálculo) — deve ser excluída por imagem; USG sem hidronefrose e sem litíase',
+        'Abscesso renal/perirrenal — considerar se não houver melhora em 48–72 h; USG não mostra coleção',
+        'Apendicite aguda retrocecal — dor em flanco/FID com febre; sai pela leucocitúria intensa, cilindros leucocitários e Giordano positivo',
+        'Doença inflamatória pélvica — febre e dor abdominal em mulher sexualmente ativa; sai pela ausência de corrimento e dor à mobilização do colo',
+        'Colecistite aguda — dor em hipocôndrio direito; sai pela localização lombar e pelo EAS'
+      ],
+      context: 'Mulher jovem com síndrome de ITU alta: febre, calafrios, dor lombar direita com Giordano positivo, disúria e vômitos. Laboratório com leucocitose com desvio, PCR elevada, leucocitúria intensa com cilindros leucocitários, creatinina acima do basal e lactato discretamente elevado. Taquicardia, taquipneia e PA limítrofe sinalizam sepse: a disfunção orgânica (renal) e a intolerância à via oral indicam internação, culturas e antibiótico EV na primeira hora.',
+      justify: 'Pielonefrite: febre + dor lombar + Giordano positivo + EAS com leucocitúria e cilindros leucocitários (patognomônicos de origem renal) + USG com rim direito aumentado e edemaciado. Sepse (Sepsis-3): infecção + disfunção orgânica (aumento de creatinina, lactato > 2). O qSOFA (2 pontos: FR ≥ 22 e PAS ≤ 100) sinaliza risco, mas não deve ser usado isoladamente como triagem (Surviving Sepsis 2021).',
+      expectedAnamnesis: 'Febre: início, magnitude, calafrios | Dor lombar: lado, intensidade, irradiação (diferencial com cólica renal) | Sintomas de ITU baixa | Náuseas e vômitos e tolerância à via oral | Volume urinário | Gestação / DUM | Episódios prévios de ITU e uso recente de antibióticos | Alergias | Comorbidades (diabetes, imunossupressão, litíase) | Corrimento vaginal e vida sexual (diferencial com DIP)',
+      expectedPhysical: 'Sinais vitais completos com cálculo da PAM | Avaliação da perfusão (TEC, nível de consciência) | Palpação abdominal e sinais de irritação peritoneal | Punho-percussão lombar bilateral (Giordano) | Hidratação',
+      expectedExams: [
+        {
+          exam: 'Urina tipo 1 e urocultura com antibiograma',
+          justify: 'Confirmar ITU e guiar antibiótico',
+          expected: 'Leucocitúria intensa, nitrito positivo, cilindros leucocitários'
+        },
+        { exam: 'Hemoculturas (2 amostras) antes do antibiótico', justify: 'Sepse — bacteremia em 15–30%', expected: 'Pendentes' },
+        {
+          exam: 'Hemograma, PCR, creatinina, ureia, eletrólitos, lactato',
+          justify: 'Avaliar gravidade e disfunção orgânica',
+          expected: 'Leucocitose com desvio, creatinina 1,4, lactato 2,3'
+        },
+        { exam: 'Beta-HCG', justify: 'Gestação muda a conduta (pielonefrite na gestação = internação)', expected: 'Negativo' },
+        {
+          exam: 'USG de rins e vias urinárias',
+          justify: 'Excluir obstrução e abscesso em quadro com sepse',
+          expected: 'Rim direito aumentado e edemaciado, sem hidronefrose'
+        }
+      ],
+      expectedConduct: 'Internação hospitalar | Coletar urocultura e hemoculturas e iniciar antibiótico EV na primeira hora: ceftriaxona 1–2 g EV 1x/dia (ou ciprofloxacino EV se alergia a betalactâmico e baixa resistência local) | Hidratação venosa com cristaloide balanceado (Ringer lactato) guiada por resposta; 30 mL/kg se hipotensão ou lactato ≥ 4 | Antitérmico, analgesia (dipirona) e antiemético (ondansetrona) | Reavaliar lactato, diurese e sinais vitais; vigiar evolução para choque | Transição para via oral após 24–48 h afebril e tolerando dieta, guiada pelo antibiograma; duração total de 7 dias (fluoroquinolona) a 10–14 dias (betalactâmico oral) | Imagem de controle (TC) se não houver melhora em 48–72 h',
+      expectedCommunication: 'Acolher a dor e oferecer analgesia precocemente | Explicar o diagnóstico e o motivo da internação sem alarmismo | Abordar a preocupação com o filho e ajudar a organizar apoio | Explicar os próximos passos (antibiótico na veia, exames, tempo estimado de internação)',
+      criticalErrors: [
+        'Liberar para tratamento ambulatorial com antibiótico oral paciente com vômitos e sinais de sepse',
+        'Prescrever nitrofurantoína ou fosfomicina para pielonefrite',
+        'Atrasar o antibiótico além da primeira hora ou não coletar culturas antes de iniciá-lo',
+        'Não solicitar exame de imagem para excluir obstrução em pielonefrite com sepse',
+        'Não reconhecer taquicardia, taquipneia, aumento de creatinina e lactato como sinais de gravidade'
+      ]
+    },
+    instD: {
+      title: 'Pielonefrite Aguda e Sepse de Foco Urinário — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Classificação',
+          items: [
+            {
+              item: 'Pielonefrite aguda: infecção do parênquima e da pelve renal; complicada quando há gestação, obstrução, anomalia urológica, cateter, imunossupressão ou sexo masculino.',
+              score: 1,
+              ref: 'EAU Guidelines on Urological Infections, 2024'
+            },
+            {
+              item: 'Sepse (Sepsis-3): disfunção orgânica ameaçadora à vida (↑ SOFA ≥ 2) causada por resposta desregulada à infecção.',
+              score: 1,
+              ref: 'Singer M et al., JAMA 2016'
+            }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            {
+              item: 'Tríade: febre + dor lombar/ângulo costovertebral + sintomas urinários; cilindros leucocitários indicam origem renal.',
+              score: 1,
+              ref: 'Harrison — Medicina Interna, 21ª ed.'
+            },
+            { item: 'Urocultura sempre; hemoculturas na sepse ou internação, antes do antibiótico.', score: 1, ref: 'Surviving Sepsis Campaign, 2021' },
+            { item: 'Imagem (USG ou TC) na sepse, suspeita de obstrução, litíase ou ausência de melhora em 48–72 h.', score: 1, ref: 'EAU Guidelines, 2024' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            {
+              item: 'Internação se: sepse, vômitos, gestação, obstrução, falha ambulatorial, imunossupressão ou dúvida diagnóstica.',
+              score: 2,
+              ref: 'PCDT ITU — Ministério da Saúde; IDSA'
+            },
+            { item: 'Antibiótico EV empírico na primeira hora: ceftriaxona 1–2 g/dia; ajustar pelo antibiograma.', score: 2, ref: 'Surviving Sepsis Campaign, 2021' },
+            {
+              item: 'Duração: 7 dias com fluoroquinolona; 10–14 dias com betalactâmico oral; 7 dias são suficientes em mulheres com boa resposta.',
+              score: 1,
+              ref: 'UpToDate 2025 — Acute complicated UTI'
+            },
+            { item: 'Nitrofurantoína e fosfomicina oral não têm nível tecidual renal adequado: contraindicadas na pielonefrite.', score: 1, ref: 'EAU Guidelines, 2024' }
+          ]
+        },
+        {
+          h: 'Ressuscitação na Sepse',
+          items: [
+            {
+              item: 'Cristaloide 30 mL/kg nas primeiras 3 h se hipotensão ou lactato ≥ 4 mmol/L; preferir soluções balanceadas.',
+              score: 1,
+              ref: 'Surviving Sepsis Campaign, 2021'
+            },
+            { item: 'Reavaliar lactato e perfusão; noradrenalina se PAM < 65 mmHg após volume.', score: 1, ref: 'Surviving Sepsis Campaign, 2021' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // NEFROLOGIA — Cólica renal por ureterolitíase distal direita: cálculo de 10 mm na junção ureterovesical com hidronefrose, sem sinais de infecção
+  {
+    id: 3,
+    title: 'Dor intensa no lado direito que irradia para a virilha',
+    sub: 'Pronto-Socorro — Urgência',
+    tema: 'Nefrologia',
+    topic: 'Ureterolitíase — Cólica Renal',
+    level: 'moderado',
+    cardAccent: '#5C6BC0',
+    instA: {
+      scenario: 'Pronto-socorro de hospital geral. A paciente está visivelmente agitada e com fácies de dor, alternando entre sentar e deitar.',
+      patient: 'M.S., 24 anos, feminino, solteira, estudante universitária.',
+      complaint: 'Dor intensa no lado direito da barriga, de início súbito há cerca de 24 horas, que irradia para a virilha. Não consegue ficar parada.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Solicite e interprete o exame físico.',
+        'Formule as hipóteses diagnósticas e os diferenciais relevantes.',
+        'Solicite e interprete os exames laboratoriais e de imagem adequados.',
+        'Prescreva a analgesia e defina a conduta terapêutica.',
+        'Oriente a paciente sobre a prevenção de novos episódios.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '124/80 mmHg', FC: '104 bpm', FR: '20 irpm', Tax: '37,1 °C', SpO2: '98% em ar ambiente', Peso: '57 kg', Altura: '1,63 m', IMC: '21,4 kg/m²' },
+      physicalGeneral: 'Paciente em regular estado geral, agitada, em posição antálgica, com fácies de dor intensa. Afebril.',
+      physicalSeg: 'ABDOME: Plano, tenso pela dor, doloroso à palpação profunda em flanco e fossa ilíaca direita. Sem defesa ou rigidez. Peristaltismo presente | PUNHO-PERCUSSÃO LOMBAR (GIORDANO): POSITIVO à direita. Negativo à esquerda | GENITÁLIA EXTERNA: Sem corrimento vaginal. Sem lesões | MEMBROS: Sem edema. Perfusão periférica preservada',
+      labs: [
+        { test: 'Hemograma — Leucócitos', val: '11.200/mm³', ref: '4.000–11.000', alt: true },
+        { test: 'PCR', val: '18 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'Creatinina', val: '0.9 mg/dL', ref: '0.5–1.1 mg/dL', alt: false },
+        { test: 'Sódio', val: '138 mEq/L', ref: '135–145', alt: false },
+        { test: 'Potássio', val: '3.8 mEq/L', ref: '3.5–5.0', alt: false },
+        { test: 'Urina tipo 1 — Hematúria', val: '+++ (> 50 hemácias/campo)', ref: '< 2/campo', alt: true },
+        { test: 'Urina tipo 1 — Leucocitúria', val: 'Traços (2-3/campo)', ref: '< 5/campo', alt: false },
+        { test: 'Urina tipo 1 — Nitrito', val: 'NEGATIVO', ref: 'Negativo', alt: false },
+        { test: 'Beta-HCG urinário', val: 'NEGATIVO', ref: 'Negativo', alt: false }
+      ],
+      image: {
+        title: 'Exames de Imagem',
+        report: 'ULTRASSOM DE ABDOME TOTAL:\nHidronefrose à direita, sem evidência de fator obstrutivo identificável pelo método de imagem. Sem outros achados anormais.\n\n─────────────────────────────────────────\n\nTOMOGRAFIA COMPUTADORIZADA DE ABDOME SEM CONTRASTE:\nHidronefrose à direita, visualizando-se cálculo de 10 mm em junção ureterovesical.\nSem outros achados anormais.\n\nCONCLUSÃO: Ureterolitíase à direita com cálculo de 10 mm em JUV — indicação de avaliação urológica urgente.'
+      },
+      note: 'Entregar o laudo de USG se solicitada. Entregar a TC sem contraste apenas se o candidato solicitar especificamente. O beta-HCG só é entregue se pedido. Se o candidato prescrever analgesia, a atriz refere melhora parcial da dor após alguns minutos.',
+      patientProfile: 'M.S., 24 anos, estudante universitária de Direito, solteira, mora em república. Sem comorbidades, não usa medicamentos. Bebe pouca água, consome muito refrigerante e salgadinhos durante os estudos. Pai teve cálculo renal. Episódio prévio de dor lombar leve que passou sozinho há 1 ano. Muito assustada com a intensidade da dor.',
+      script: [
+        {
+          trigger: 'Queixa principal',
+          speech: 'Doutor(a), tô sentindo uma dor horrível aqui no lado direito da barriga que começou do nada umas 24 horas atrás. Tá me matando. Fica como uma cólica que vai e vem, mas não passa. Irradia lá pra virilha e parte interna da coxa.'
+        },
+        { trigger: 'Sobre intensidade da dor', speech: 'Nossa, é 9 de 10. Não consigo nem ficar parada. Fico tentando achar uma posição mas não tem jeito.' },
+        { trigger: 'Sobre febre e calafrios', speech: 'Não tenho febre não. Controlei em casa, tava normal.' },
+        { trigger: 'Sobre disúria ou urgência urinária', speech: 'Não, não sinto ardência pra urinar, nem urgência. Não tô indo mais que o normal ao banheiro.' },
+        { trigger: 'Sobre a urina', speech: 'Quando a dor começou eu percebi que a urina tava avermelhada, com sangue. Fiquei com muito medo.' },
+        { trigger: 'Sobre náuseas', speech: 'Sim, tô enjoada, mas não vomitei ainda.' },
+        {
+          trigger: 'Sobre episódio parecido anteriormente',
+          speech: 'Já tive uma dorzinha parecida uma vez, mas bem mais fraca. Passou sozinha. Nunca fiz exame pra isso.'
+        },
+        { trigger: 'Sobre corrimento vaginal ou dor pélvica', speech: 'Não, tudo normal nessa parte. Sem corrimento, sem dor na relação.' },
+        { trigger: 'Sobre data da última menstruação', speech: 'Menstruei há 7 dias, normal.' },
+        { trigger: 'Sobre antecedentes médicos', speech: 'Não tenho doença nenhuma. Nunca operei. Não tomo nenhum remédio. Não tenho alergia que eu saiba.' },
+        { trigger: 'Sobre histórico familiar de cálculo renal', speech: 'Meu pai teve pedra no rim uma vez, mas nunca conversamos direito sobre isso.' },
+        { trigger: 'Sobre hábitos', speech: 'Bebo muito pouco líquido. Fico o dia todo estudando e às vezes esqueço de tomar água.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutor(a)? É pedra no rim? Vai precisar operar?' },
+        { trigger: 'Pergunta ativa — prevenção', speech: 'Como eu faço pra não ter isso de novo? É muito sofrido.' },
+        { trigger: 'Sobre alimentação', speech: 'Eu como muita besteira estudando: salgadinho, miojo, refrigerante. Quase não como fruta.' }
+      ],
+      hiddenInfo: 'Pai teve cálculo renal — só revela se perguntada sobre história familiar | Episódio prévio de dor lombar leve que passou sozinho — só revela se perguntada sobre episódios anteriores | Dieta rica em sódio e refrigerante, baixa ingesta hídrica — só revela se perguntada sobre hábitos',
+      actorBehavior: 'Paciente muito agitada, não para quieta: senta, levanta, deita de lado, segura o flanco direito. Responde entre as ondas de dor e pede remédio. Se o candidato demorar a prescrever analgesia, pergunta várias vezes "vão me dar alguma coisa pra dor?". Acalma-se quando recebe analgesia e explicação.'
+    },
+    instC: {
+      diagnosis: 'Cólica renal por ureterolitíase distal direita: cálculo de 10 mm na junção ureterovesical com hidronefrose, sem sinais de infecção — baixa probabilidade de eliminação espontânea, indicação de avaliação urológica para tratamento ativo.',
+      differentials: [
+        'Gravidez ectópica rota — principal diferencial em mulher em idade fértil; excluída pelo beta-HCG negativo',
+        'Apendicite aguda — dor em FID; sai pela dor em cólica com irradiação para virilha, agitação (e não imobilidade) e hematúria',
+        'Pielonefrite / pielonefrite obstrutiva — sai pela ausência de febre, nitrito negativo e leucocitúria normal',
+        'Torção ou cisto ovariano roto — dor pélvica súbita; investigar com USG transvaginal se dúvida',
+        'Dissecção de aorta / aneurisma — improvável na idade, mas lembrar em pacientes > 50 anos com "cólica renal"'
+      ],
+      context: 'Mulher jovem, sem comorbidades, com quadro clássico de cólica renal: dor em flanco de início súbito, cólica com irradiação para virilha, hematúria macroscópica e agitação psicomotora. Cálculo de 10mm em JUV: baixa probabilidade de eliminação espontânea (<10% para cálculos >8mm), indicando avaliação urológica urgente para terapia ativa.',
+      justify: 'Dor lombar súbita em cólica, irradiada para a virilha, com agitação psicomotora e hematúria macroscópica; EAS com hematúria e sem sinais de infecção; USG com hidronefrose e TC sem contraste (padrão-ouro, sensibilidade > 95%) demonstrando cálculo de 10 mm em JUV direita. Beta-HCG negativo exclui gestação ectópica.',
+      expectedAnamnesis: 'Caracterização da dor: início, tipo cólica, intensidade, irradiação, fatores de melhora/piora | Náuseas e vômitos | Febre e calafrios (sinal de infecção associada) | Hematúria, disúria, polaciúria | DUM, atraso menstrual, corrimento, dor pélvica (diferencial ginecológico) | Episódios prévios e história familiar de litíase | Ingesta hídrica e dieta | Comorbidades e medicamentos | Alergias (antes de prescrever AINE/opioide)',
+      expectedPhysical: 'Sinais vitais (afebril, taquicardia pela dor) | Palpação abdominal: ausência de irritação peritoneal | Sinal de McBurney / Blumberg (diferencial com apendicite) | Punho-percussão lombar bilateral (Giordano)',
+      expectedExams: [
+        { exam: 'Beta-HCG', justify: 'Excluir gestação (ectópica) e definir exame de imagem', expected: 'Negativo' },
+        { exam: 'Urina tipo 1', justify: 'Hematúria e exclusão de infecção', expected: 'Hematúria +++, nitrito negativo' },
+        { exam: 'Hemograma, PCR, creatinina, eletrólitos', justify: 'Função renal e sinais de infecção', expected: 'Creatinina normal, leucocitose leve' },
+        {
+          exam: 'TC de abdome e pelve sem contraste (baixa dose)',
+          justify: 'Padrão-ouro para localizar e medir o cálculo',
+          expected: 'Cálculo de 10 mm em JUV direita com hidronefrose'
+        },
+        { exam: 'USG de rins e vias urinárias', justify: 'Alternativa inicial sem radiação; avalia hidronefrose', expected: 'Hidronefrose direita' }
+      ],
+      expectedConduct: 'Analgesia imediata: AINE como 1ª escolha (cetoprofeno 100 mg EV ou diclofenaco 75 mg IM), associado a dipirona; opioide (morfina ou tramadol) se dor refratária; antiemético se necessário | Evitar hiper-hidratação forçada (não acelera a eliminação) | Cálculo de 10 mm em ureter distal: baixa chance de eliminação espontânea — encaminhar à urologia para ureteroscopia (ou LECO); terapia expulsiva com tansulosina 0,4 mg/dia pode ser oferecida a cálculos distais > 5 mm enquanto aguarda | Critérios de intervenção urgente: febre/infecção, rim único, dor refratária, IRA | Coar a urina e enviar o cálculo para análise | Prevenção: ingesta hídrica para diurese > 2,5 L/dia, sódio < 2 g/dia, reduzir proteína animal e refrigerantes à base de cola, manter cálcio dietético normal; estudo metabólico se recorrência',
+      expectedCommunication: 'Priorizar o alívio da dor antes da anamnese extensa | Explicar o diagnóstico ("pedra que desceu do rim e está presa no canal da urina") | Explicar por que precisa de avaliação do urologista e o que pode ser feito | Orientar sinais de alarme: febre, vômitos incoercíveis, parada da urina | Orientar prevenção de forma prática',
+      criticalErrors: [
+        'Não solicitar beta-HCG em mulher em idade fértil com dor abdominal',
+        'Liberar a paciente sem analgesia adequada',
+        'Prescrever antibiótico sem evidência de infecção',
+        'Não encaminhar à urologia um cálculo de 10 mm (baixa chance de eliminação espontânea)',
+        'Não orientar sinais de alarme (febre = pielonefrite obstrutiva, emergência)'
+      ]
+    },
+    instD: {
+      title: 'Litíase Urinária — Cólica Renal — Material de Estudo',
+      sections: [
+        {
+          h: 'Epidemiologia',
+          items: [
+            {
+              item: 'Prevalência de 5–10%, pico entre 30 e 50 anos, recorrência de ~50% em 5–10 anos; cálculos de oxalato de cálcio são os mais comuns (~80%).',
+              score: 1,
+              ref: 'EAU Guidelines on Urolithiasis, 2024'
+            }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            {
+              item: 'Dor súbita em flanco em cólica, irradiada para virilha/genitália, com agitação psicomotora; hematúria em ~90%.',
+              score: 1,
+              ref: 'Harrison — Medicina Interna, 21ª ed.'
+            },
+            {
+              item: 'TC sem contraste (baixa dose) é o padrão-ouro; USG é a primeira escolha em gestantes, crianças e como triagem.',
+              score: 2,
+              ref: 'EAU Guidelines on Urolithiasis, 2024'
+            },
+            { item: 'Beta-HCG obrigatório em mulheres em idade fértil.', score: 1, ref: 'EAU Guidelines, 2024' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            {
+              item: 'AINEs são a primeira escolha para analgesia (menor necessidade de resgate que opioides); dipirona e opioides como associação/resgate.',
+              score: 2,
+              ref: 'EAU Guidelines, 2024; Cochrane 2015'
+            },
+            { item: 'Eliminação espontânea: ~95% se < 4 mm, ~50% entre 5–10 mm, < 20% se > 10 mm.', score: 1, ref: 'UpToDate 2025 — Kidney stones in adults' },
+            { item: 'Terapia expulsiva com alfabloqueador (tansulosina) beneficia cálculos de ureter distal > 5 mm.', score: 1, ref: 'EAU Guidelines, 2024' },
+            { item: 'Descompressão urgente (duplo J ou nefrostomia) se obstrução + infecção, rim único obstruído ou IRA.', score: 2, ref: 'EAU Guidelines, 2024' }
+          ]
+        },
+        {
+          h: 'Prevenção',
+          items: [
+            {
+              item: 'Ingesta hídrica para diurese > 2,5 L/dia, restrição de sódio e proteína animal, manter ingestão normal de cálcio (1–1,2 g/dia).',
+              score: 1,
+              ref: 'EAU Guidelines, 2024; AUA Guideline 2019'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
     id: 1,
     title: "Inchaço nas pernas e urina espumosa há 2 semanas",
     sub: "Ambulatório de Clínica Médica",
-    tema: "Nefrologia",
+    tema: 'Nefrologia',
     topic: "Síndrome Nefrótica",
     level: "moderado",
     cardAccent: "#5C6BC0",
@@ -170,11 +686,11 @@
     }
     },
 
-   {
+  {
   id: 2,
   title: "Urina marrom-escura, inchaço no rosto e pressão alta após dor de garganta",
   sub: "Pronto-Atendimento — Clínica Médica",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Síndrome Nefrítica",
   level: "moderado",
   cardAccent: "#E53935",
@@ -318,11 +834,11 @@
   }
 },
 
-{
+  {
   id: 3,
   title: "Paciente com pouco xixi e confusão mental após cirurgia",
   sub: "Enfermaria de Cirurgia Geral — Hospital Geral",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Lesão Renal Aguda",
   level: "moderado",
   cardAccent: "#FF7043",
@@ -459,11 +975,11 @@
   }
 },
 
-{
+  {
   id: 4,
   title: "Dor ao urinar e urina turva há 3 dias em mulher jovem",
   sub: "UBS — Atenção Primária à Saúde",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Infecção do Trato Urinário",
   level: "moderado",
   cardAccent: "#26A69A",
@@ -591,11 +1107,11 @@
   }
 },
 
-{
+  {
   id: 5,
   title: "Idosa confusa e com fraqueza progressiva há 2 dias",
   sub: "Pronto-Atendimento — Hospital Geral",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Distúrbio do Sódio — Hiponatremia",
   level: "moderado",
   cardAccent: "#8D6E63",
@@ -734,11 +1250,11 @@
   }
 },
 
-{
+  {
   id: 6,
   title: "Fraqueza muscular intensa e coração acelerado em paciente com vômitos frequentes",
   sub: "Pronto-Atendimento — Hospital Geral",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Distúrbio do Potássio — Hipocalemia",
   level: "moderado",
   cardAccent: "#F57F17",
@@ -873,11 +1389,11 @@
   }
 },
 
-{
+  {
   id: 7,
   title: "Cálculos renais de repetição, fraqueza e dor óssea em adulto de meia-idade",
   sub: "Ambulatório de Clínica Médica",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Distúrbio do Cálcio — Hipercalcemia",
   level: "moderado",
   cardAccent: "#7B1FA2",
@@ -1017,11 +1533,11 @@
   }
 },
 
-{
+  {
   id: 8,
   title: "Respiração acelerada, confusão e fraqueza em paciente diabético descompensado",
   sub: "Pronto-Atendimento — Hospital Geral",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Distúrbio Ácido-Base — Acidose Metabólica",
   level: "moderado",
   cardAccent: "#C62828",
@@ -1163,11 +1679,11 @@
   }
 },
 
-{
+  {
   id: 9,
   title: "Exames alterados em paciente diabético com inchaço e urina espumosa",
   sub: "Ambulatório de Endocrinologia / Atenção Primária",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Doença Renal Crônica — Nefropatia Diabética",
   level: "moderado",
   cardAccent: "#00838F",
@@ -1309,11 +1825,11 @@
   }
 },
 
-{
+  {
   id: 10,
   title: "Cansaço, urina espumosa e pressão difícil de controlar em paciente hipertenso",
   sub: "Ambulatório de Clínica Médica / Atenção Primária",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Doença Renal Crônica — Nefropatia Hipertensiva",
   level: "moderado",
   cardAccent: "#1565C0",
@@ -1454,11 +1970,11 @@
   }
 },
 
-{
+  {
   id: 11,
   title: "Paciente com múltiplas complicações renais, cardíacas e metabólicas em seguimento de DRC avançada",
   sub: "Ambulatório de Nefrologia — Hospital de Referência",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "Doença Renal Crônica Avançada — DRC G5 pré-diálise",
   level: "difícil",
   cardAccent: "#4E342E",
@@ -1599,11 +2115,11 @@
   }
 },
 
-{
+  {
   id: 12,
   title: "Paciente em hemodiálise com dor torácica, dispneia e febre",
   sub: "Pronto-Atendimento — Hospital de Referência em Nefrologia",
-  tema: "Nefrologia",
+  tema: 'Nefrologia',
   topic: "DRC em Hemodiálise — Complicações Agudas",
   level: "difícil",
   cardAccent: "#880E4F",
@@ -1742,8 +2258,7 @@
       }
     ]
   }
-}
+},
+];
 
-]; 
-
-export default nefro2;
+export default nefrologia;

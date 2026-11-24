@@ -1,4 +1,129 @@
+// Casos de Ortopedia (10)
 const ortopedia = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 5 — LUXAÇÃO DE OMBRO
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 5,
+    title: 'Dor e deformidade no ombro após queda',
+    sub: 'UPA — Urgência e Emergência',
+    tema: 'Ortopedia',
+    topic: 'Luxação de Ombro',
+    level: 'moderado',
+    cardAccent: '#607D8B',
+    instA: {
+      scenario: 'Urgência e Emergência — UPA. Sala de atendimento, turno vespertino.',
+      patient: 'M.A.R., 22 anos, masculino, estudante de educação física, sem comorbidades. Chega à UPA após queda durante jogo de basquete.',
+      complaint: 'Dor intensa no ombro direito e deformidade visível, incapacidade de movimentar o braço após queda há 45 minutos.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico do ombro e avalie o status neurovascular do membro.',
+        'Solicite os exames de imagem adequados.',
+        'Realize ou descreva o procedimento de redução fechada da luxação.',
+        'Oriente o paciente sobre os cuidados pós-redução, a imobilização e o seguimento.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '128/80 mmHg',
+        FC: '98 bpm',
+        FR: '18 irpm',
+        Tax: '36,6 °C',
+        Peso: '78 kg',
+        Altura: '1,80 m',
+        IMC: '24,1 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, consciente, orientado, ansioso, em posição antálgica com o braço direito em abdução leve e rotação externa, sustentado com a mão esquerda.',
+      physicalSeg: 'OMBRO DIREITO: perda do contorno arredondado normal do ombro — "sinal do ombro em charrete" (ombro quadrado); proeminência acromiocoracoide visível; cabeça do úmero palpável na posição subcoracoide (anterior); abdução de ~20° com rotação externa; sinal de Dugas POSITIVO (impossibilidade de tocar o ombro oposto com a mão ipsilateral) | NEUROVASCULAR: sensibilidade do nervo axilar (área do "crachá" — face lateral do deltóide) preservada; força de contração do deltóide não avaliável por dor; pulso radial presente e simétrico; TEC < 2s; sem parestesias relatadas | OMBRO CONTRALATERAL: sem alterações',
+      labs: [
+        { test: 'Radiografia de ombro direito — incidência AP', val: 'Luxação glenoumeral anterior — cabeça do úmero em posição subcoracoide. Sem fratura do tubérculo maior ou do colo cirúrgico do úmero visível na AP', ref: 'Normal', alt: true },
+        { test: 'Radiografia de ombro direito — incidência axilar (Y-scapular)', val: 'Confirma luxação anterior. Sem fratura de Bankart ósseo visível. Sem lesão de Hill-Sachs evidenciada nesta incidência', ref: 'Normal', alt: true }
+      ],
+      image: null,
+      note: 'Entregar sinais vitais ao início. Entregar a radiografia SOMENTE se o candidato a solicitar formalmente — em AP e axilar (ou Y-escapular). NÃO entregar se o candidato tentar realizar a redução sem solicitar imagem prévia. Se o candidato solicitar apenas uma incidência (somente AP), entregar AP mas orientar que a incidência axilar/Y é necessária para confirmar e afastar lesões associadas.',
+      patientProfile: 'M.A.R., 22 anos, masculino, estudante de educação física, solteiro. Mecanismo: queda com o braço em abdução e rotação externa durante disputa de bola no basquete.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, eu caí durante o jogo, o braço foi pra trás e ouvi um estalo. Dói muito, não consigo mexer o ombro. Olha o jeito que ele tá.' },
+        { trigger: 'Sobre o mecanismo da queda', speech: 'Fui disputar uma bola, levantei o braço assim pra cima e pra fora, aí cai em cima do braço extendido. Na hora ouvi um barulho e senti que saiu do lugar.' },
+        { trigger: 'Sobre episódios anteriores', speech: 'Saiu uma vez antes, faz uns dois anos. Na época o médico colocou de volta no pronto-socorro e fui pra fisioterapia. Mas depois parei a fisio no meio.' },
+        { trigger: 'Sobre sensibilidade e circulação', speech: 'A mão tá boa, não tô sentindo formigamento. Só dói muito no ombro.' },
+        { trigger: 'Sobre o movimento', speech: 'Não consigo levantar o braço de jeito nenhum, dói demais. Tô segurando ele assim pra não mover.' },
+        { trigger: 'Pergunta ativa', speech: 'Vai precisar de cirurgia, doutor? Tenho que fazer uma prova de educação física mês que vem.' },
+        { trigger: 'Pergunta ativa', speech: 'Vai colocar de volta agora? Vai doer muito? Precisa de anestesia?' }
+      ],
+      hiddenInfo: 'Episódio anterior de luxação no mesmo ombro há 2 anos — só revela se o candidato perguntar especificamente sobre luxações ou lesões anteriores no ombro | Fisioterapia interrompida após 2 semanas no episódio anterior — só revela se perguntado sobre reabilitação prévia | Nega uso de anti-inflamatórios previamente — revela se perguntado sobre medicamentos',
+      actorBehavior: 'Paciente jovem, ansioso e com dor evidente. Segura o braço em posição antálgica e recusa movimentação. Cooperativo verbalmente. Demonstra preocupação com a prova de educação física. Fica mais tranquilo quando o médico explica o procedimento passo a passo antes de realizá-lo. Se o candidato tentar reduzir sem analgesia prévia, pode simular reação à dor intensa.'
+    },
+    instC: {
+      diagnosis: 'Luxação glenoumeral anterior (subcoracoide) do ombro direito. Segundo episódio (luxação recidivante). Sem fratura associada nas incidências AP e axilar.',
+      differentials: [
+        'Fratura do tubérculo maior do úmero — frequentemente associada à luxação anterior (até 15% dos casos); afastada pelas radiografias sem fratura evidente; deve ser investigada antes da redução',
+        'Fratura-luxação (fratura do colo cirúrgico do úmero + luxação) — mais comum em idosos; afastada pela radiografia e pela idade do paciente',
+        'Luxação posterior do ombro — menos comum (~2%); braço em rotação interna e adução; não há deformidade anterior característica; incidência axilar é fundamental para diagnóstico',
+        'Fratura isolada do tubérculo maior — sem luxação; contorno do ombro preservado; mecanismo diferente'
+      ],
+      context: 'Jovem atleta com segundo episódio de luxação glenoumeral anterior (subcoracoide) após mecanismo típico (abdução + rotação externa + trauma). Posição antálgica característica, perda do contorno arredondado, sinal de Dugas positivo e cabeça umeral palpável anteriormente. Radiografias confirmam luxação anterior sem fratura visível.',
+      justify: 'Luxação glenoumeral anterior representa ~95% das luxações de ombro. O mecanismo clássico é abdução + rotação externa forçada. O sinal de Dugas é específico (impossibilidade de tocar o ombro oposto). Radiografia em AP + axilar (ou Y-escapular) é mandatória ANTES da redução para afastar fraturas associadas (especialmente fratura do tubérculo maior e lesão de Hill-Sachs). A redução deve ser realizada sob analgesia e/ou sedação adequadas. Segundo episódio aumenta o risco de instabilidade crônica e indica avaliação cirúrgica eletiva.',
+      expectedAnamnesis: 'Investigar mecanismo de trauma (abdução + rotação externa = luxação anterior; queda em adução = luxação posterior) | Perguntar sobre episódios anteriores de luxação no mesmo ombro (recidivante?) | Investigar se houve reabilitação adequada anteriormente | Questionar sobre sensibilidade (nervo axilar) e força distal | Perguntar sobre pulso e circulação distal | Investigar tempo desde o trauma (quanto mais tempo, mais difícil a redução sem sedação)',
+      expectedPhysical: 'Inspeção do ombro: deformidade (ombro quadrado), assimetria bilateral | Palpação: posição da cabeça umeral (anterior = subcoracoide; inferior = subglenóide) | Sinal de Dugas | Avaliação do nervo axilar: sensibilidade na região do deltóide (face lateral, área do "crachá") | Avaliação vascular: pulso radial, TEC | Avaliação neurológica distal: força, sensibilidade, perfusão do membro',
+      expectedExams: [
+        { exam: 'Radiografia de ombro — AP + axilar (ou Y-escapular)', justify: 'Obrigatória ANTES da redução para afastar fratura do tubérculo maior, fratura do colo cirúrgico, lesão de Bankart ósseo ou Hill-Sachs que contraindiquem redução fechada', expected: 'Luxação anterior subcoracoide confirmada, sem fratura visível' },
+        { exam: 'Radiografia pós-redução (AP + axilar)', justify: 'Confirma redução adequada e afasta fraturas que possam ter ocorrido durante a manobra', expected: 'Cabeça umeral reduzida na glenoide' }
+      ],
+      expectedConduct: 'Analgesia/sedação: Dipirona IV ou IM + Morfina 2–4 mg IV ou Cetamina dissociativa para sedação procedural (se disponível); Benzodiazepínico (Midazolam) para relaxamento muscular | Redução fechada — descrever uma das manobras: Técnica de Cunningham (massagem do deltóide em posição sentada — não usa sedação profunda), Técnica de Stimson (decúbito ventral com peso no braço), Técnica de Milch, Técnica de Kocher (cuidado com fraturas) | Pós-redução: imobilização em tipoia/sling por 3–4 semanas; analgesia oral (AINEs + dipirona); radiografia confirmatória pós-redução | Fisioterapia: retorno gradual após 3–4 semanas de imobilização; fortalecimento do manguito rotador | Encaminhamento: ortopedia ambulatorial em 7–10 dias; segundo episódio = discutir reparo cirúrgico eletivo (artroscopia de Bankart) para instabilidade recidivante | Orientações: não praticar atividade esportiva até liberação ortopédica; sinais de alarme (piora da dor, dormência, fraqueza distal)',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar o diagnóstico de luxação de ombro em linguagem acessível | Descrever a manobra de redução antes de realizá-la, com empatia sobre a dor | Informar que em segundo episódio há risco de recidiva e pode ser necessária cirurgia eletiva futura | Orientar sobre a imobilização e reabilitação | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Tentar redução fechada SEM realizar radiografia prévia — risco de piora de fratura associada não diagnosticada',
+        'Não avaliar o nervo axilar antes e após a redução (lesão do nervo axilar ocorre em até 9% das luxações anteriores)',
+        'Não realizar radiografia pós-redução confirmatória',
+        'Não imobilizar após a redução e liberar o paciente sem orientações sobre a imobilização',
+        'Não encaminhar para seguimento ortopédico (segundo episódio — risco de instabilidade crônica)'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — DOR E DEFORMIDADE NO OMBRO APÓS QUEDA (LUXAÇÃO)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Explicou o procedimento de redução antes de realizá-lo, com empatia', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Identificou o mecanismo de trauma (abdução + rotação externa)', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Perguntou sobre episódios anteriores de luxação no mesmo ombro', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Descreveu deformidade (ombro quadrado) e realizou sinal de Dugas', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Avaliou o nervo axilar (sensibilidade na área do deltóide — "crachá")', score: 1.0, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Avaliou pulso radial e perfusão distal', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou radiografia ANTES da tentativa de redução (AP + axilar ou Y-escapular)', score: 1.0, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Solicitou radiografia pós-redução confirmatória', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
+          items: [
+            { item: 'Prescreveu analgesia adequada antes da redução', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Descreveu ou realizou manobra de redução fechada corretamente', score: 1.0, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Imobilizou em tipoia/sling após redução', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' },
+            { item: 'Encaminhou ao ortopedista e orientou sobre risco de recidiva (2º episódio)', score: 0.5, ref: 'Ortopedia e Traumatologia — SBO, 2022' }
+          ]
+        }
+      ]
+    }
+  },
 
   // CASO 1 — FRATURA DE COLO DO FÊMUR
   {
@@ -312,7 +437,6 @@ const ortopedia = [
     }
   },
 
-
   // CASO 4 — LESÃO DO LCA
   {
     id: 4,
@@ -622,7 +746,6 @@ const ortopedia = [
     }
   },
 
-
   // CASO 7 — RUPTURA DO MANGUITO ROTADOR
   {
     id: 7,
@@ -929,7 +1052,6 @@ const ortopedia = [
       ]
     }
   },
-
 ];
 
 export default ortopedia;

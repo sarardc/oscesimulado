@@ -1,4 +1,148 @@
+// Casos de Hematologia (11)
 const hematologia = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 3 — TALASSEMIA ALPHA
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 3,
+    title: 'Anemia persistente sem melhora com sulfato ferroso há 4 meses',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Hematologia',
+    topic: 'Talassemia Alpha',
+    level: 'moderado',
+    cardAccent: '#E53935',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',
+      patient: 'C.K.L., 26 anos, feminino, descendente de japoneses, recepcionista, encaminhada por anemia microcítica hipocrômica sem resposta ao sulfato ferroso após 4 meses de tratamento.',
+      complaint: 'Cansaço e palidez desde a adolescência. Tratou anemia com sulfato ferroso por 4 meses sem melhora dos exames.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico pertinente.',
+        'Solicite os exames complementares adequados para elucidar a causa da anemia.',
+        'Formule a hipótese diagnóstica e os diferenciais.',
+        'Oriente a paciente sobre o diagnóstico, as implicações clínicas e o aconselhamento genético.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '108/68 mmHg',
+        FC: '82 bpm',
+        FR: '16 irpm',
+        Tax: '36,4 °C',
+        Peso: '55 kg',
+        Altura: '1,58 m',
+        IMC: '22,0 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientada, levemente hipocorada (+/4+), sem icterícia, hidratada, sem linfadenomegalias.',
+      physicalSeg: 'CARDIOVASCULAR: bulhas rítmicas, normofonéticas, sem sopros, FC 82 bpm | RESPIRATÓRIO: MV presente bilateralmente, sem ruídos adventícios | ABDOME: baço palpável a 2 cm abaixo do rebordo costal esquerdo (esplenomegalia leve), fígado no limite superior, indolor | GERAL: hipocoramento de conjuntivas palpebral. Fácies e estrutura óssea normais. Sem hepatomegalia significativa.',
+      labs: [
+        { test: 'Hemoglobina', val: '9,8 g/dL', ref: '12,0–16,0 g/dL', alt: true },
+        { test: 'Hematócrito', val: '32%', ref: '37–47%', alt: true },
+        { test: 'VCM (Volume Corpuscular Médio)', val: '66 fL', ref: '80–100 fL', alt: true },
+        { test: 'HCM (Hemoglobina Corpuscular Média)', val: '21 pg', ref: '27–33 pg', alt: true },
+        { test: 'RDW (Índice de Anisocitose)', val: '14,2%', ref: '11,5–14,5%', alt: false },
+        { test: 'Leucócitos', val: '6.800/mm³', ref: '4.000–11.000/mm³', alt: false },
+        { test: 'Plaquetas', val: '320.000/mm³', ref: '150.000–400.000/mm³', alt: false },
+        { test: 'Ferro sérico', val: '82 µg/dL', ref: '60–160 µg/dL', alt: false },
+        { test: 'Ferritina', val: '48 ng/mL', ref: '12–150 ng/mL', alt: false },
+        { test: 'CTLF (Capacidade Total de Ligação do Ferro)', val: '290 µg/dL', ref: '250–370 µg/dL', alt: false },
+        { test: 'Eletroforese de hemoglobina — HbA', val: '97,2%', ref: '95–98%', alt: false },
+        { test: 'Eletroforese de hemoglobina — HbA2', val: '2,1%', ref: '2,2–3,5%', alt: true },
+        { test: 'Eletroforese de hemoglobina — HbF', val: '0,7%', ref: '< 2%', alt: false },
+        { test: 'Reticulócitos', val: '2,8%', ref: '0,5–2,5%', alt: true },
+        { test: 'Bilirrubina indireta', val: '1,8 mg/dL', ref: '< 1,0 mg/dL', alt: true }
+      ],
+      image: 'Esfregaço de sangue periférico: hemácias microcíticas hipocrômicas com anisocitose leve, poiquilocitose discreta (eliptócitos, dianocítos/hemácias em alvo), sem corpúsculos de Heinz visíveis.',
+      note: 'Entregar sinais vitais ao início. Entregar hemograma e perfil de ferro somente se solicitados. Entregar eletroforese de hemoglobina somente se o candidato solicitar especificamente este exame. Entregar esfregaço de sangue periférico somente se o candidato solicitar. O candidato deve ser pontuado por solicitar eletroforese de Hb e perfil de ferro — esses exames são fundamentais para diferenciar talassemia de deficiência de ferro.',
+      patientProfile: 'C.K.L., 26 anos, feminino, descendente de japoneses (avós imigrantes), solteira, sem filhos no momento. Gestação planejada para o próximo ano. Nega tabagismo e etilismo. Faz uso de sulfato ferroso 40mg de Fe elementar 2x/dia há 4 meses sem melhora dos sintomas ou exames.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutora, eu tenho anemia desde que era adolescente. O médico me passou sulfato ferroso faz 4 meses, mas o exame continua alterado. Tô cansada, com falta de ar quando subo escada.' },
+        { trigger: 'Sobre a história da anemia', speech: 'Minha mãe sempre me disse que eu tinha "anemia", mas nunca investigaram muito. Tomei ferro na adolescência algumas vezes, mas parava e voltava a mesma coisa.' },
+        { trigger: 'Sobre sintomas', speech: 'Tenho cansaço fácil, às vezes palpitação quando forço bastante. Nada que me impede de trabalhar, mas percebo que fico mais cansada que as outras pessoas.' },
+        { trigger: 'Sobre origem e família', speech: 'Meus avós são japoneses, vieram pro Brasil na época da guerra. Minha mãe também é pálida sempre, mas nunca tratou nada.' },
+        { trigger: 'Sobre menstruação e perdas sanguíneas', speech: 'Minha menstruação é regular, dura uns 4 dias, fluxo normal. Não tenho nenhum sangramento anormal.' },
+        { trigger: 'Sobre alimentação', speech: 'Me alimento bem, como bastante carne vermelha, feijão, verduras. Não sou vegetariana.' },
+        { trigger: 'Sobre gravidez planejada', speech: 'Tô pensando em engravidar no próximo ano. O meu namorado é japonês também, da mesma família imigrante.' },
+        { trigger: 'Pergunta ativa', speech: 'Por que o ferro não tá resolvendo, doutora? Tenho que continuar tomando?' },
+        { trigger: 'Pergunta ativa', speech: 'Isso é hereditário? Posso passar pro meu filho?' }
+      ],
+      hiddenInfo: 'Mãe também tem anemia microcítica crônica sem diagnóstico definitivo — só revela se o candidato perguntar sobre história familiar de anemia | Namorado é descendente de japoneses e a paciente planeja engravidar — só revela se o candidato perguntar sobre projetos de gestação ou parceiro | Nunca fez eletroforese de hemoglobina previamente — só revela se o candidato perguntar sobre exames anteriores já realizados',
+      actorBehavior: 'Paciente tranquila, curiosa e inteligente. Bem informada. Demonstra frustração com a falta de diagnóstico apesar dos anos de anemia. Bastante receptiva a explicações detalhadas. Fica preocupada ao ouvir que pode passar a condição para o filho — necessita de abordagem empática sobre aconselhamento genético.'
+    },
+    instC: {
+      diagnosis: 'Talassemia alpha (portadora — traço talassêmico alpha, provável genótipo --/αα ou -α/-α): anemia microcítica hipocrômica com ferritina normal, HbA2 levamente reduzida e ausência de resposta ao ferro. Esplenomegalia leve por hemólise compensada.',
+      differentials: [
+        'Anemia ferropriva — diferenciada pela ferritina e ferro sérico normais; ausência de resposta ao sulfato ferroso; padrão de eletroforese diferente (na ferropriva, HbA2 pode estar falsamente reduzida — importante interpretar após reposição)',
+        'Talassemia beta menor — microcitose similar; mas HbA2 ≥ 3,5% (está reduzida/normal aqui); apresentação clínica semelhante; diferenciada pela eletroforese e teste genético',
+        'Anemia de doença crônica — ferritina geralmente elevada, ferro sérico baixo, CTLF reduzida; afastada pelo perfil do ferro normal',
+        'Hemoglobinopatia S (traço falciforme) — afastada pela eletroforese sem HbS detectada'
+      ],
+      context: 'Jovem descendente de japoneses com anemia microcítica crônica desde a adolescência, sem resposta a 4 meses de sulfato ferroso, com perfil de ferro normal (ferritina 48, ferro sérico 82, CTLF 290), HbA2 levemente reduzida (2,1%), esplenomegalia leve, bilirrubina indireta levemente elevada e reticulocitose discreta sugerindo hemólise compensada. Quadro típico de traço talassêmico alpha com hemólise leve.',
+      justify: 'Na talassemia alpha, a redução da síntese das cadeias alpha resulta em microcitose/hipocromia. Diferente da talassemia beta, a HbA2 é normal ou REDUZIDA (pois HbA2 também depende das cadeias alpha). Ferritina e ferro sérico normais afastam ferropenia. O diagnóstico definitivo requer PCR/genótipo para identificar o número de deleções (--/αα = 2 deleções; -α/-α = 2 deleções em trans). A paciente deve ser encaminhada para hematologista e a INTERRUPÇÃO do sulfato ferroso é necessária (ferro não indicado e pode ser prejudicial).',
+      expectedAnamnesis: 'Investigar início da anemia e histórico de tratamentos anteriores | Perguntar sobre resposta prévia ao sulfato ferroso | Investigar história menstrual (perdas sanguíneas) | Investigar alimentação (dieta equilibrada vs. vegetarianismo) | Perguntar sobre histórico familiar de anemia (mãe, irmãos, avós) | Investigar origem étnica (asiáticos, mediterrâneos, africanos têm maior prevalência de talassemia) | Perguntar sobre projetos de gestação e parceiro | Investigar sintomas de hemólise: icterícia, colúria, litíase biliar',
+      expectedPhysical: 'Avaliar estado geral e grau de anemia (palidez de mucosas) | Pesquisar icterícia (hemólise) | Examinar abdome: esplenomegalia (hemólise compensada) | Pesquisar hepatomegalia | Avaliar fácies talassêmica (deformidade óssea craniofacial — mais evidente na talassemia major) | Auscultar coração (sopro anêmico)',
+      expectedExams: [
+        { exam: 'Eletroforese de hemoglobina (HPLC)', justify: 'Fundamental para diferenciação das hemoglobinopatias; na talassemia alpha: HbA2 normal ou reduzida; na talassemia beta: HbA2 ≥ 3,5%', expected: 'HbA2 2,1% (reduzida) — padrão talassemia alpha' },
+        { exam: 'Perfil de ferro (ferritina, ferro sérico, CTLF)', justify: 'Diferencia anemia ferropriva de talassemia — crucial para evitar reposição de ferro desnecessária', expected: 'Ferritina e ferro sérico normais — descarta ferropenia' },
+        { exam: 'Esfregaço de sangue periférico', justify: 'Caracteriza a morfologia eritrocitária: microcitose, hipocromia, hemácias em alvo, eliptócitos', expected: 'Microcitose hipocrômica, dianocítos (hemácias em alvo), eliptócitos' },
+        { exam: 'Pesquisa molecular (PCR/genótipo) — encaminhar', justify: 'Confirma número de deleções no gene alpha (para aconselhamento genético preciso)', expected: 'Encaminhar ao hematologista' }
+      ],
+      expectedConduct: 'Farmacológica: SUSPENDER o sulfato ferroso — não está indicado na talassemia (ferro sérico e ferritina são normais; suplementação de ferro sem indicação pode causar hemocromatose) | Ácido fólico 5mg/dia pode ser prescrito (suporte eritropoético em hemólise compensada) | Não farmacológica: Encaminhamento para Hematologia para confirmação diagnóstica (teste molecular) e seguimento | Aconselhamento genético: se a paciente e o parceiro são ambos portadores de deleções alpha (ambos descendentes de asiáticos), existe risco de 25% de doença de HbH ou 25% de hidropsia fetal nos filhos — encaminhar ao geneticista | Orientações: Explicar que talassemia alpha traço é geralmente benigna e compatível com vida normal; não requer tratamento específico; informar sobre importância de testar o parceiro antes de engravidar | Seguimento: hematologista; hemograma semestral; aconselhamento genético antes de gestação',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar de forma clara que o diagnóstico não é deficiência de ferro — portanto o ferro não ajuda e pode ser prejudicial | Explicar o que é talassemia em linguagem acessível | Abordar com sensibilidade o risco de transmissão aos filhos, reforçando a necessidade de testar o parceiro antes da gravidez | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Manter ou aumentar a dose de sulfato ferroso sem investigar a causa da ausência de resposta — pode causar sobrecarga de ferro',
+        'Não solicitar eletroforese de hemoglobina na investigação de anemia microcítica refratária ao ferro',
+        'Não orientar aconselhamento genético para paciente em planejamento de gestação (risco de forma grave nos filhos)',
+        'Interpretar HbA2 reduzida como normal sem contextualizar com o quadro de talassemia alpha',
+        'Não encaminhar ao hematologista para diagnóstico molecular definitivo'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — ANEMIA SEM RESPOSTA AO FERRO (TALASSEMIA ALPHA)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome à paciente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Explicou de forma clara a diferença entre anemia ferropriva e talassemia', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou resposta ao tratamento prévio com sulfato ferroso', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Pesquisou história familiar de anemia (mãe, avós)', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Investigou origem étnica (asiáticos, mediterrâneos)', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Perguntou sobre planejamento de gestação e origem étnica do parceiro', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou palidez de mucosas e icterícia discreta (hemólise)', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Pesquisou esplenomegalia à palpação abdominal', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou perfil de ferro (ferritina, ferro sérico, CTLF) para diferenciar de ferropenia', score: 1.0, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Solicitou eletroforese de hemoglobina (HPLC)', score: 1.0, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Interpretou HbA2 reduzida como sugestiva de talassemia alpha', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
+          items: [
+            { item: 'Suspendeu o sulfato ferroso (não indicado com ferritina e ferro normais)', score: 1.0, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Encaminhou ao hematologista para diagnóstico molecular e seguimento', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Orientou sobre aconselhamento genético antes da gestação', score: 0.5, ref: 'Diretrizes ABH — Talassemias, 2020' },
+            { item: 'Perguntou se a paciente tinha dúvidas', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
 
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — ANEMIA FERROPRIVA
@@ -174,7 +318,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 2 — ANEMIA MEGALOBLÁSTICA POR DEFICIÊNCIA DE B12
   // ─────────────────────────────────────────────────────────────────────────
@@ -345,7 +488,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 3 — DOENÇA FALCIFORME — CRISE VASO-OCLUSIVA
   // ─────────────────────────────────────────────────────────────────────────
@@ -503,7 +645,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 4 — LEUCEMIA LINFOBLÁSTICA AGUDA PEDIÁTRICA (LLA)
   // ─────────────────────────────────────────────────────────────────────────
@@ -652,7 +793,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 5 — LEUCEMIA MIELOIDE AGUDA (LMA) NO ADULTO
   // ─────────────────────────────────────────────────────────────────────────
@@ -797,7 +937,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 6 — LINFOMA DE HODGKIN
   // ─────────────────────────────────────────────────────────────────────────
@@ -939,7 +1078,6 @@ const hematologia = [
     }
   },
 
-
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 7 — PTI — PÚRPURA TROMBOCITOPÊNICA IMUNE
   // ─────────────────────────────────────────────────────────────────────────
@@ -1073,7 +1211,6 @@ const hematologia = [
       ]
     }
   },
-
 
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 8 — MIELOMA MÚLTIPLO
@@ -1220,7 +1357,6 @@ const hematologia = [
       ]
     }
   },
-
 
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 9 — NEUTROPENIA FEBRIL
@@ -1540,15 +1676,6 @@ const hematologia = [
       ]
     }
   },
-
 ];
 
 export default hematologia;
-
-
-
-
-
-
-
-

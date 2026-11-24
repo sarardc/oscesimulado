@@ -1,4 +1,141 @@
+// Casos de Medicina Intensiva (10)
 const medicinaIntensiva = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 6 — CHOQUE SÉPTICO (MEDICINA INTENSIVA)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 6,
+    title: 'Paciente internada com piora da pressão e confusão mental',
+    sub: 'UTI — Medicina Intensiva',
+    tema: 'Medicina Intensiva',
+    topic: 'Choque Séptico',
+    level: 'difícil',
+    cardAccent: '#E65100',
+    instA: {
+      scenario: 'UTI — Hospital Geral. Você é o médico plantonista da UTI. Paciente internada há 48h por pneumonia comunitária apresentou deterioração hemodinâmica progressiva nas últimas 2 horas.',
+      patient: 'E.C.S., 72 anos, feminino, aposentada, diabética tipo 2 e hipertensa, internada há 48h por pneumonia bacteriana comunitária, iniciou ceftriaxona há 2 dias.',
+      complaint: 'Enfermagem informa: pressão caiu para 78/44 mmHg, paciente confusa, taquicárdica, febril, com pouca urina nas últimas 6 horas.',
+      tasks: [
+        'Realize a avaliação clínica inicial (ABCDE) e identifique os critérios de choque séptico.',
+        'Calcule o escore qSOFA e o SOFA simplificado.',
+        'Solicite os exames complementares urgentes.',
+        'Institua o bundle de sepse (hora 1) de forma estruturada.',
+        'Prescreva a antibioticoterapia empírica adequada e os vasopressores necessários.',
+        'Oriente a família sobre o diagnóstico e a gravidade do quadro.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '78/44 mmHg',
+        FC: '128 bpm',
+        FR: '28 irpm',
+        Tax: '39,4 °C',
+        Peso: '64 kg',
+        Altura: '1,58 m',
+        IMC: '25,6 kg/m²'
+      },
+      physicalGeneral: 'Paciente em mau estado geral, confusa (Glasgow 12 — O3V3M6), extremidades frias e moteadas, taquicárdica, taquipneica, febril, em uso de O2 por cateter nasal 3 L/min.',
+      physicalSeg: 'NEUROLÓGICO: confusa, não obedece comandos complexos, responde ao nome | RESPIRATÓRIO: taquipneia (FR 28 irpm), SatO2 91% em 3 L/min; ausculta com estertores crepitantes em base direita e opacidade difusa bilateral à percussão | CARDIOVASCULAR: taquicárdica (128 bpm), bulhas hipofoneticas, sem sopros; extremidades frias, moteamento em joelhos, TEC > 3s | ABDOME: levemente distendido, RHA reduzidos, sem sinais de peritonite | DIURESE: < 0,3 mL/kg/h nas últimas 6h (oligúria grave) | ACESSO VENOSO: AVP periférico em MSE — calibrar para infusão rápida',
+      labs: [
+        { test: 'Lactato arterial', val: '4,8 mmol/L', ref: '< 2,0 mmol/L', alt: true },
+        { test: 'Hemograma — Leucócitos', val: '22.400/mm³ com 18% de bastões', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Hemograma — Hemoglobina', val: '10,2 g/dL', ref: '12,0–16,0 g/dL', alt: true },
+        { test: 'Plaquetas', val: '86.000/mm³', ref: '150.000–400.000/mm³', alt: true },
+        { test: 'PCR', val: '348 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'Procalcitonina', val: '42,3 ng/mL', ref: '< 0,5 ng/mL', alt: true },
+        { test: 'Creatinina', val: '3,2 mg/dL', ref: '0,6–1,1 mg/dL (basal 0,9)', alt: true },
+        { test: 'Ureia', val: '98 mg/dL', ref: '15–40 mg/dL', alt: true },
+        { test: 'Bilirrubina total', val: '3,4 mg/dL', ref: '< 1,0 mg/dL', alt: true },
+        { test: 'TGO', val: '112 U/L', ref: '< 40 U/L', alt: true },
+        { test: 'Gasometria — pH', val: '7,28', ref: '7,35–7,45', alt: true },
+        { test: 'Gasometria — PaO2', val: '62 mmHg', ref: '80–100 mmHg', alt: true },
+        { test: 'Gasometria — PaCO2', val: '32 mmHg', ref: '35–45 mmHg', alt: true },
+        { test: 'Gasometria — HCO3', val: '14 mEq/L', ref: '22–26 mEq/L', alt: true },
+        { test: 'Glicemia', val: '248 mg/dL', ref: '70–99 mg/dL', alt: true }
+      ],
+      image: 'Radiografia de tórax PA (repetida): Opacidade heterogênea bilateral de predomínio em bases, maior à direita. Infiltrado intersticial difuso bilateral. Silhueta cardíaca no limite superior. Sem pneumotórax. Padrão compatível com pneumonia bilateral e possível componente de SDRA inicial.',
+      note: 'Entregar sinais vitais ao início. Entregar lactato somente se solicitado. Entregar hemoculturas como "em coleta" (o candidato deve solicitar coleta antes dos antibióticos). Entregar demais labs se solicitados. Entregar RX se solicitado. Orientar: se o candidato iniciar antibiótico sem solicitar hemoculturas, registrar o erro mas não interromper o atendimento.',
+      patientProfile: 'E.C.S., 72 anos, feminino, aposentada, casada. DM tipo 2 em uso de metformina. HAS em uso de enalapril. Internada há 48h por pneumonia comunitária — iniciou ceftriaxona 2g/dia + azitromicina 500mg/dia. Há 6h a enfermagem registrou queda da PA e aumento da FR.',
+      script: [
+        { trigger: 'Enfermagem — relato', speech: 'Doutor, a Dona E. tá péssima. A pressão caiu muito — tô conseguindo palpar o pulso, mas tá fino. Tá confusa também, não tá respondendo direito. Diurese em 6h foi quase nada, umas 80 mL só.' },
+        { trigger: 'Paciente — ao ser chamada', speech: '(Abre os olhos ao ser chamada, confusa) "Onde... onde eu tô?... Filha?..."' },
+        { trigger: 'Familiar (filha) — ao ser chamada', speech: 'Doutor, o que tá acontecendo? Ela tava melhorando ontem! Agora piorou assim?' },
+        { trigger: 'Familiar — sobre histórico', speech: 'Ela tem diabete e pressão alta, toma metformina e enalapril. Internou por pneumonia anteontem, tava com febre e tosse.' },
+        { trigger: 'Familiar — pergunta sobre antibiótico', speech: 'Ela não tá tomando antibiótico já? Por que tá piorando?' },
+        { trigger: 'Familiar — pergunta sobre gravidade', speech: 'Ela vai morrer, doutor? O que vocês vão fazer agora?' },
+        { trigger: 'Familiar — sobre limitação de suporte', speech: '(Se perguntado sobre preferências da paciente) Ela sempre falou que não queria ficar presa em máquina se não tivesse jeito. Mas agora ela ainda tem jeito?' }
+      ],
+      hiddenInfo: 'Paciente não melhorou bem com ceftriaxona — febre persistiu em 38,8°C nas últimas 24h — só revela se o candidato perguntar sobre a evolução do internamento | Hemocultura de admissão há 48h ainda sem resultado — só revela se o candidato perguntar sobre culturas já coletadas | Filha é a responsável legal — só revela se o candidato perguntar sobre responsável ou representante legal',
+      actorBehavior: 'Filha muito assustada, chora, faz perguntas rápidas e ansiosas. Cooperativa quando o médico demonstra calma e competência. Necessita de comunicação empática e clara sobre a gravidade. A paciente está confusa — responde ao nome com frases isoladas, não coopera com o exame detalhado.'
+    },
+    instC: {
+      diagnosis: 'Choque séptico por pneumonia bacteriana comunitária com disfunção de múltiplos órgãos (SDMO): insuficiência respiratória (SatO2 91%, PaO2 62), insuficiência renal aguda (Cr 3,2), lesão hepática (BT 3,4, TGO 112), trombocitopenia (86.000), acidose metabólica com lactato 4,8 mmol/L. qSOFA 3/3. SOFA estimado ≥ 10.',
+      differentials: [
+        'Choque cardiogênico — também cursa com hipotensão e oligúria; distinguido pelo débito cardíaco reduzido, pressão venosa jugular elevada, congestão pulmonar severa; menos provável em contexto de sepse com febre alta e resposta inflamatória maciça; ecocardiograma diferencia',
+        'Choque hipovolêmico — por desidratação ou sangramento; sem febre, sem resposta inflamatória; lactato pode estar elevado; afastado pelo contexto infeccioso',
+        'SDRA sem choque — insuficiência respiratória grave sem hipotensão; pode coexistir com choque séptico como aqui',
+        'Embolia pulmonar maciça — hipotensão e hipoxemia; sem febre alta, sem contexto infeccioso típico; afastada pelo contexto clínico'
+      ],
+      context: 'Idosa diabética e hipertensa, internada por pneumonia comunitária, evoluindo em 48h com deterioração hemodinâmica grave: hipotensão refratária (PA 78/44), taquicardia (128 bpm), taquipneia (28 irpm), febre (39,4°C), Glasgow 12, oligúria grave e lactato 4,8 mmol/L. Critérios de choque séptico preenchidos (Sepsis-3): sepse + hipotensão refratária a volume + lactato > 2 mmol/L + necessidade de vasopressor para manter PAM ≥ 65 mmHg. SDMO com pelo menos 4 órgãos comprometidos.',
+      justify: 'Sepsis-3 (2016): Choque séptico = sepse + hipotensão persistente após reposição adequada de volume (30 mL/kg) + lactato > 2 mmol/L + necessidade de vasopressor. qSOFA: alteração do nível de consciência (1) + FR > 22 irpm (1) + PAS < 100 (1) = 3/3 — triagem positiva para sepse grave. SOFA: neurológico (GCS 12→1pt) + respiratório (PaO2/FiO2 <200→2-3pt) + renal (Cr 3,2→3pt) + hepático (BT 3,4→1pt) + coagulação (plaq 86k→1pt) + cardiovascular (vasopressor→2-4pt) = ~11 pontos → mortalidade estimada > 40%.',
+      expectedAnamnesis: 'Obter história rápida com enfermagem e familiar: tempo de deterioração, diurese, antibiótico em uso | Verificar culturas anteriores coletadas | Investigar foco primário (pneumonia confirmada) | Checar alergias medicamentosas | Avaliar comorbidades e imunossupressão | Perguntar sobre diretivas antecipadas de vontade ou limitação de suporte',
+      expectedPhysical: 'Avaliação ABCDE: A — via aérea patente; B — FR 28, SatO2 91%, estertores bilaterais; C — FC 128, PA 78/44, TEC > 3s, moteamento; D — GCS 12, confusa; E — temperatura 39,4°C, oligúria grave | Calcular qSOFA (3/3) | Avaliar perfusão periférica | Avaliar sinais de HIC abdominal | Verificar cateteres e focos de infecção local',
+      expectedExams: [
+        { exam: 'Hemoculturas — 2 amostras de sítios diferentes ANTES do antibiótico', justify: 'Coleta de culturas antes do antibiótico é obrigatória — não atrasar antibiótico mais de 45 min por causa das culturas', expected: 'Aguardar resultado — coleta imediata é o procedimento correto' },
+        { exam: 'Lactato arterial', justify: 'Marcador de hipoperfusão tecidual — fundamental para diagnóstico e estratificação de choque séptico; medir novamente em 2h após ressuscitação', expected: '4,8 mmol/L — choque séptico confirmado, prognóstico grave' },
+        { exam: 'Gasometria arterial', justify: 'Avaliar oxigenação, ventilação e acidose metabólica', expected: 'Acidose metabólica (pH 7,28, HCO3 14), hipoxemia (PaO2 62)' },
+        { exam: 'Hemograma, PCR, procalcitonina, função renal e hepática, coagulograma', justify: 'Avaliar extensão da SDMO e guiar conduta', expected: 'Leucocitose com desvio, plaquetopenia, IRA, lesão hepática, procalcitonina muito elevada' },
+        { exam: 'Urocultura + Hemocultura (coleta antes do antibiótico)', justify: 'Rastreamento de foco secundário e antibiograma futuro', expected: 'Coleta imediata' }
+      ],
+      expectedConduct: 'Bundle Hora-1 (Surviving Sepsis Campaign 2018): 1) Coletar hemoculturas (2 amostras) ANTES do antibiótico; 2) Antibioticoterapia empírica de amplo espectro: Piperacilina-Tazobactam 4,5g IV 6/6h (ou Meropenem 1g IV 8/8h se risco de multirresistente/nosocomial) + considerar cobertura para atípicos (Azitromicina 500mg IV/dia); 3) Reposição volumétrica: Ringer Lactato (ou SF 0,9%) 30 mL/kg IV em 3h (CUIDADO: idosa — avaliar resposta e sinais de congestão); 4) Vasopressor se PA não responder à volemia: Norepinefrina 0,1–1 mcg/kg/min por acesso venoso central (meta PAM ≥ 65 mmHg); 5) Medir lactato; 6) Repetir lactato em 2h | Suporte geral: O2 com máscara de alto fluxo (FiO2 > 0,4) para SatO2 ≥ 92%; Cabeceira 30–45°; Controle glicêmico (meta 140–180 mg/dL); Sondagem vesical para controle estrito de diurese | Considerar IOT e VM se progressão da insuficiência respiratória | Comunicação com família: diagnóstico de "infecção grave no sangue" em linguagem acessível; gravidade real com prognóstico reservado; decisão compartilhada sobre limites de suporte',
+      expectedCommunication: 'Apresentar-se à família | Comunicar com clareza e empatia o diagnóstico de sepse/choque séptico | Explicar em linguagem acessível ("a infecção entrou na corrente sanguínea e está afetando vários órgãos") | Ser honesto sobre a gravidade (mortalidade > 40%) sem retirar esperança | Perguntar sobre diretivas antecipadas de vontade | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Iniciar antibiótico ANTES de coletar hemoculturas (elimina a possibilidade de identificar o agente e o antibiograma)',
+        'Não iniciar antibioticoterapia de amplo espectro dentro da primeira hora (cada hora de atraso aumenta a mortalidade em ~7%)',
+        'Não iniciar vasopressor em paciente com hipotensão refratária à reposição volêmica (manter PAM < 65 mmHg causa hipoperfusão orgânica grave)',
+        'Não medir lactato arterial (fundamental para diagnóstico e monitorização do choque séptico)',
+        'Não envolver a família na tomada de decisão em paciente com prognóstico reservado (omissão em cuidados paliativos e bioética)'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — PIORA HEMODINÂMICA E CONFUSÃO (CHOQUE SÉPTICO)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE/FAMÍLIA',
+          items: [
+            { item: 'Apresentou-se à família claramente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico de sepse grave com clareza, empatia e honestidade sobre o prognóstico', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — AVALIAÇÃO CLÍNICA',
+          items: [
+            { item: 'Realizou avaliação ABCDE estruturada', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Calculou qSOFA (3/3: consciência, FR, PAS)', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Identificou os critérios de choque séptico (hipotensão + lactato + vasopressor)', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — BUNDLE HORA-1',
+          items: [
+            { item: 'Coletou hemoculturas ANTES de iniciar antibiótico', score: 1.0, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Iniciou antibioticoterapia de amplo espectro dentro de 1 hora', score: 1.0, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Prescreveu reposição volêmica 30 mL/kg IV em até 3h', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Indicou vasopressor (norepinefrina) para manter PAM ≥ 65 mmHg', score: 1.0, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Solicitou lactato arterial', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — SUPORTE E BIOÉTICA',
+          items: [
+            { item: 'Indicou O2 suplementar e monitorização contínua', score: 0.5, ref: 'Surviving Sepsis Campaign, 2018' },
+            { item: 'Discutiu com a família sobre a gravidade e eventualmente sobre limitação de suporte', score: 0.5, ref: 'CFM Res. 1.805/2006; Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — SÍNDROME DO DESCONFORTO RESPIRATÓRIO AGUDO (SDRA)
   // ─────────────────────────────────────────────────────────────────────────
@@ -1090,7 +1227,7 @@ const medicinaIntensiva = [
         }
       ]
     }
-  }
+  },
 ];
 
 export default medicinaIntensiva;

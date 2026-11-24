@@ -12,16 +12,16 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 ├── img/estacoes/           Fotos usadas nas estações (lesões de pele etc.)
 ├── data/stations.json      Todas as estações juntas, GERADO pelo build (não editar)
 │
-├── casos/                  Casos clínicos, separados por área
-│   ├── index.js            Lista de todos os arquivos de casos, na ordem do site
-│   ├── clinica-medica/     Cardiologia, endócrino, gastro, geriatria, hemato,
-│   │                       infecto, nefro, neuro, emergências neurológicas,
-│   │                       pneumo, medicina intensiva
-│   ├── cirurgia/           Cirurgia torácica, ortopedia, urologia
-│   ├── pediatria/          Pediatria geral, neonatologia, puericultura
-│   ├── ginecologia-obstetricia/
-│   ├── especialidades/     Dermato, oftalmo, otorrino, psiquiatria, medicina legal
-│   └── mistos/             Arquivos com várias especialidades juntas
+├── casos/                  Casos clínicos: um arquivo por especialidade
+│   ├── index.js            Lista de todos os arquivos, na ordem do site
+│   ├── clinica-medica/     cardiologia, endocrinologia, gastroenterologia, geriatria,
+│   │                       hematologia, infectologia, nefrologia, neurologia, pneumologia
+│   ├── urgencia-e-terapia-intensiva/   emergencias-neurologicas, medicina-intensiva
+│   ├── cirurgia/           cirurgia-geral, ortopedia, urologia, vascular
+│   ├── pediatria/          pediatria-geral, neonatologia, puericultura, cirurgia-pediatrica
+│   ├── ginecologia-obstetricia/        ginecologia, obstetricia
+│   └── especialidades/     dermatologia, medicina-legal, oftalmologia,
+│                           otorrinolaringologia, psiquiatria
 │
 ├── cards/                  Cards de estudo (cards/cards.html)
 ├── agenda/                 Agenda de estudos (app instalável)
@@ -37,10 +37,10 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 
 ## Como adicionar casos
 
-1. Crie um arquivo novo na subpasta da área, com nome em minúsculas e hífens
-   (ex.: `casos/clinica-medica/neurologia-2.js`).
-2. Registre o arquivo **no fim** da lista em `casos/index.js`. A posição define o
-   número da estação, então não reordene a lista.
+1. Adicione o caso no fim do arquivo da especialidade
+   (ex.: um caso de neurologia vai em `casos/clinica-medica/neurologia.js`).
+2. Só para uma especialidade nova: crie o arquivo na pasta da área e registre-o em
+   `casos/index.js`. O número de cada estação é recalculado a cada build.
 3. Gere o arquivo do site:
 
 ```bash

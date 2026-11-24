@@ -1,4 +1,131 @@
+// Casos de Medicina Legal (10)
 const medicinaLegal = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 9 — DECLARAÇÃO DE ÓBITO (MEDICINA LEGAL)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 9,
+    title: 'Preenchimento de declaração de óbito em paciente internado',
+    sub: 'Hospital Geral — Enfermaria',
+    tema: 'Medicina Legal',
+    topic: 'Declaração de Óbito',
+    level: 'moderado',
+    cardAccent: '#546E7A',
+    instA: {
+      scenario: 'Enfermaria de Clínica Médica — Hospital Geral. Turno diurno. Você é o médico assistente responsável pelo paciente.',
+      patient: 'G.A.M., 74 anos, masculino, internado há 6 dias por pneumonia comunitária grave com sepse. Evoluiu com falência múltipla de órgãos apesar do tratamento intensivo e foi a óbito nesta manhã às 07h12min.',
+      complaint: 'Enfermagem informa o óbito do paciente G.A.M. e solicita o preenchimento da Declaração de Óbito (DO). A família está presente e aguarda orientações.',
+      tasks: [
+        'Confirme o óbito ao exame clínico e registre os achados.',
+        'Identifique a causa básica e as causas antecedentes da morte.',
+        'Preencha corretamente a Declaração de Óbito (campo I — causa da morte).',
+        'Determine se o caso deve ou não ser comunicado ao IML/SVO.',
+        'Comunique o óbito à família com empatia e respeito.',
+        'Esclareça os trâmites legais e documentais após o óbito.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: 'Indetectável',
+        FC: 'Ausente (assistolia confirmada no monitor)',
+        FR: 'Ausente (apneia)',
+        Tax: '35,2 °C (hipotermia pós-óbito)',
+        Peso: '70 kg (internação)',
+        Altura: '1,68 m',
+        IMC: '24,8 kg/m²'
+      },
+      physicalGeneral: 'Paciente em posição supina, imóvel, sem resposta a estímulos. Cianose centroperiférica. Livores mortis incipientes na região dorsal.',
+      physicalSeg: 'SINAIS DE MORTE CLÍNICA (todos presentes): ausência de respiração espontânea (apneia total, sem movimentos torácicos); ausência de pulso carotídeo e femoral bilateralmente; ausência de bulhas cardíacas na ausculta por 5 minutos; pupilas midriáticas, arreativas, simétricas, em posição intermediária; ausência de reflexo corneal bilateral; livores mortis incipientes em região dorsal (sinal de morte real) | MONITOR: assistolia confirmada por traçado isoplano por mais de 20 minutos sem intervenção | ECG: linha plana — assistolia confirmada',
+      labs: [
+        { test: 'Prontuário — diagnóstico de internação', val: 'Pneumonia comunitária grave — agente não identificado em cultura (hemoculturas negativas)', ref: 'N/A', alt: false },
+        { test: 'Prontuário — evolução', val: 'Evoluiu com insuficiência respiratória aguda grave (SDRA) → necessitou IOT e VM no 2º dia de internação. Insuficiência renal aguda oligúrica instalada no 3º dia. Choque séptico refratário a vasopressores instalado no 4º dia. Óbito no 6º dia de internação (07h12min)', ref: 'N/A', alt: false },
+        { test: 'Prontuário — antecedentes', val: 'HAS; DM tipo 2; DPOC leve (ex-tabagista). Sem história de neoplasia. Sem trauma recente. Causa da morte determinada pela equipe assistente — morte natural por doença', ref: 'N/A', alt: false },
+        { test: 'Prontuário — assistência médica', val: 'Paciente sob assistência médica contínua nos últimos 7 dias (internação). Acompanhado por equipe de clínica médica e terapia intensiva. Diagnóstico estabelecido. Causa da morte determinável pelo médico assistente', ref: 'N/A', alt: false }
+      ],
+      image: 'DECLARAÇÃO DE ÓBITO (modelo — para preenchimento pelo candidato): Bloco I — Causa da morte: Ia) ___________ (causa imediata); Ib) ___________ (causa intermediária); Ic) ___________ (causa básica). Bloco II — Outras condições significativas. Bloco V — Tipo de morte (natural/acidente/homicídio/suicídio/ignorado). Bloco VIII — Médico que assina.',
+      note: 'Entregar sinais vitais e exame físico ao início. Entregar prontuário completo se o candidato solicitar. O candidato deve: (1) confirmar o óbito clinicamente; (2) determinar a causa; (3) preencher a DO corretamente na sequência Ia→Ib→Ic; (4) decidir se comunicar ao IML (caso natural, sob assistência médica → NÃO é caso para IML/SVO neste cenário); (5) comunicar à família. Avaliar se o candidato erra a sequência (escreve a causa básica em Ia — erro clássico).',
+      patientProfile: 'G.A.M., 74 anos, masculino, aposentado, casado. Faleceu sob assistência médica contínua em ambiente hospitalar. Causa da morte determinável pela equipe assistente. Sem indícios de morte violenta. Família presente (cônjuge + filho adulto).',
+      script: [
+        { trigger: 'Enfermagem — comunicação do óbito', speech: 'Doutor, o Sr. G. foi a óbito às 07h12min. O monitor mostra assistolia confirmada. A família está na sala de espera. A Sra. (esposa) pediu pra falar com o médico.' },
+        { trigger: 'Esposa — ao ser chamada', speech: '(Chorosa) Ele morreu mesmo, doutor? Não tem mais nada a fazer?' },
+        { trigger: 'Esposa — sobre o diagnóstico', speech: 'Mas ele entrou por causa de uma pneumonia... Como pode ter morrido de pneumonia?' },
+        { trigger: 'Filho — sobre a DO', speech: 'Doutor, precisa de atestado de óbito? O que a gente precisa fazer agora para poder fazer o velório?' },
+        { trigger: 'Filho — pergunta sobre IML', speech: 'Vai ter que ir para o IML? A gente vai conseguir fazer o velório hoje?' },
+        { trigger: 'Esposa — sobre os últimos momentos', speech: 'Ele sofreu no final? Estava sentindo dor?' },
+        { trigger: 'Filho — pergunta técnica', speech: 'Esse atestado de óbito, o médico preenche qual parte? A gente pode ver o que o senhor vai escrever?' }
+      ],
+      hiddenInfo: 'Família não sabia da gravidade máxima do quadro — só revela se o candidato perguntar sobre a comunicação prévia à família | Paciente havia expressado vontade de não ser ressuscitado em caso de PCR irreversível (DNR documentado em prontuário) — só revela se o candidato perguntar sobre diretivas antecipadas ou consultar o prontuário completo | Cônjuge perguntará sobre a possibilidade de "autopsia para saber se era mesmo pneumonia" — só revelar se a cena seguir por esse caminho',
+      actorBehavior: 'Esposa em luto agudo, chora, busca conforto. Pode fazer perguntas emocionais ("ele sofreu?"). Filho mais contido, focado nos trâmites práticos (documentos, velório, IML). Ambos precisam de empatia e clareza. O candidato deve equilibrar o suporte emocional com as orientações técnicas sobre a DO e os próximos passos.'
+    },
+    instC: {
+      diagnosis: 'Óbito por causa natural determinada — Preenchimento da Declaração de Óbito:\n• Ia) Choque séptico refratário\n• Ib) Sepse por pneumonia bacteriana comunitária\n• Ic) Pneumonia bacteriana comunitária (causa básica)\nII) Outras condições: HAS, DM tipo 2, DPOC\nTipo de morte: Natural\nNão é caso para IML/SVO: óbito sob assistência médica contínua, causa determinada, sem suspeita de morte violenta ou causa não natural.',
+      differentials: [
+        'Casos que DEVEM ser comunicados ao SVO (Serviço de Verificação de Óbitos): morte natural sem assistência médica nos últimos 7 dias (causa indeterminada) — o SVO emite a DO; morte natural com assistência mas causa indeterminada mesmo após análise',
+        'Casos que DEVEM ser comunicados ao IML (morte violenta ou suspeita): qualquer morte por causa externa (acidente, homicídio, suicídio), morte suspeita de violência mesmo que disfarçada de natural, morte em detenção ou custódia, morte por acidente de trabalho — NESTE CASO: morte natural determinada → NÃO vai ao IML',
+        'Sequência incorreta da DO (erro clássico): escrever a causa básica em Ia — o preenchimento correto é Ia = causa imediata (que levou diretamente à morte), Ib = causa antecedente, Ic = causa básica (que desencadeou toda a sequência)'
+      ],
+      context: 'Óbito hospitalar por causa natural em paciente sob assistência médica contínua. Causa da morte determinável pela equipe assistente. Sequência causal clara: Pneumonia → Sepse → Choque séptico → Óbito. Não há indícios de morte violenta, trauma, intoxicação ou causa externa. Caso de preenchimento de DO pelo médico assistente, sem necessidade de encaminhamento ao IML.',
+      justify: 'A DO é o documento legal que registra o óbito e deve ser preenchida pelo médico que atendeu o paciente (médico assistente, se houve assistência nos últimos 7 dias), pelo SVO (se não houve assistência ou causa indeterminada) ou pelo IML (se morte violenta ou suspeita). A sequência do Campo I é: Ia = causa IMEDIATA (última na sequência antes da morte), Ib = causa ANTECEDENTE (intermediária), Ic = causa BÁSICA (que iniciou a cadeia). NUNCA escrever a causa básica em Ia. O médico assistente deve assinar a DO, dispensando o IML. A certidão de óbito é emitida pelo cartório com base na DO.',
+      expectedAnamnesis: 'Revisar o prontuário: confirmar dados de identificação, data/hora do óbito, diagnóstico e evolução | Confirmar se houve assistência médica nos últimos 7 dias (determina quem preenche a DO) | Verificar se há suspeita de causa não natural (violência, intoxicação, acidente) | Consultar se há diretivas antecipadas de vontade documentadas | Obter informações sobre comorbidades para preencher o Campo II da DO',
+      expectedPhysical: 'Confirmar o óbito ao exame clínico (obrigatório antes de preencher a DO): ausência de pulso central (carotídeo/femoral) bilateralmente | Ausência de respiração espontânea (apneia) | Ausência de bulhas cardíacas por ≥ 1 minuto (na prática, 2-3 minutos) | Pupilas midriáticas fixas bilateralmente | Ausência de reflexo corneal | Confirmar no monitor: assistolia em traçado isoplano | Pesquisar sinais de morte real (livores mortis, rigor mortis incipiente) | Registrar hora e data da constatação do óbito no prontuário',
+      expectedExams: [
+        { exam: 'Confirmação por ECG (traçado isoplano por > 20 min)', justify: 'Confirmação técnica de assistolia — obrigatória em ambiente hospitalar antes de declarar o óbito formalmente', expected: 'Traçado isoplano — assistolia confirmada' },
+        { exam: 'Revisão do prontuário (diagnósticos, evolução, antecedentes)', justify: 'Necessária para preencher corretamente todos os campos da DO e determinar a causa básica', expected: 'Causa da morte determinada: Pneumonia → Sepse → Choque séptico refratário' }
+      ],
+      expectedConduct: 'Confirmação do óbito: Examinar o paciente e confirmar clinicamente o óbito (ver sinais acima); registrar no prontuário a data, hora e achados do exame que confirmam o óbito | Preenchimento da DO: Ia = Choque séptico refratário; Ib = Sepse / falência de múltiplos órgãos; Ic = Pneumonia bacteriana comunitária; Campo II = HAS, DM tipo 2, DPOC; Tipo de óbito = Natural; Assinar com CRM | Decisão sobre IML/SVO: NÃO encaminhar ao IML — morte natural com assistência médica e causa determinada; NÃO encaminhar ao SVO — assistência médica presente e causa determinada | Comunicação à família: comunicar o óbito em ambiente privado, com empatia; oferecer suporte emocional; responder às perguntas com honestidade | Orientação sobre os trâmites: informar que a DO é emitida pelo médico; a certidão de óbito é obtida no cartório; o velório pode ser realizado assim que a DO estiver assinada; não é necessário IML | Registro: registrar tudo no prontuário com data, hora e assinatura',
+      expectedCommunication: 'Apresentar-se pelo nome à família | Comunicar o óbito com clareza, empatia e respeito: "Lamento informar que o Sr. G. faleceu às 07h12min desta manhã" | Oferecer um momento de silêncio; não pressa | Explicar brevemente o que aconteceu em linguagem acessível (pneumonia evoluiu para infecção grave e falência dos órgãos) | Responder às perguntas sobre sofrimento com verdade e sensibilidade | Orientar sobre a DO e os próximos passos de forma clara | Oferecer apoio de assistente social ou psicológico se disponível | Perguntar se têm mais dúvidas antes de encerrar',
+      criticalErrors: [
+        'Preencher a DO com a causa básica no campo Ia — erro clássico e grave (sequência correta: Ia = causa imediata, Ic = causa básica)',
+        'Encaminhar o caso ao IML sem necessidade — causa constrangimento desnecessário à família e atraso no velório (morte natural determinada com assistência médica = médico assistente preenche a DO)',
+        'Não confirmar clinicamente o óbito antes de preencher a DO (exame físico obrigatório)',
+        'Não comunicar o óbito pessoalmente e com empatia à família (comunicação por telefone ou por terceiros sem presença do médico é inadequada)',
+        'Não orientar a família sobre os próximos passos (cartório, velório, certidão de óbito) — abandona a família em momento de vulnerabilidade'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — PREENCHIMENTO DE DECLARAÇÃO DE ÓBITO',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO COM A FAMÍLIA',
+          items: [
+            { item: 'Apresentou-se pelo nome à família', score: 0.5, ref: 'CFM Res. 2.232/2019; CFM Res. 1.779/2005' },
+            { item: 'Comunicou o óbito pessoalmente, em ambiente privado, com empatia', score: 1.0, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Explicou o que ocorreu em linguagem acessível e respondeu perguntas da família', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — CONFIRMAÇÃO DO ÓBITO',
+          items: [
+            { item: 'Confirmou clinicamente o óbito (ausência de pulso, apneia, pupilas, bulhas, reflexo corneal)', score: 1.0, ref: 'CFM Res. 1.779/2005' },
+            { item: 'Registrou data, hora e achados no prontuário', score: 0.5, ref: 'CFM Res. 1.779/2005' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — PREENCHIMENTO DA DO',
+          items: [
+            { item: 'Preencheu a sequência correta: Ia = causa imediata, Ib = intermediária, Ic = causa básica', score: 1.0, ref: 'CFM Res. 1.779/2005; MS — Manual de DO, 2023' },
+            { item: 'Preencheu o Campo II com comorbidades (HAS, DM, DPOC)', score: 0.5, ref: 'MS — Manual de DO, 2023' },
+            { item: 'Identificou o tipo de óbito como Natural', score: 0.5, ref: 'MS — Manual de DO, 2023' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — DECISÃO SOBRE IML/SVO',
+          items: [
+            { item: 'Determinou corretamente que o caso NÃO requer encaminhamento ao IML (morte natural determinada com assistência médica)', score: 1.0, ref: 'Lei 9.434/1997; CFM Res. 1.779/2005' },
+            { item: 'Explicou à família que a DO é emitida pelo médico assistente e que não haverá IML', score: 0.5, ref: 'CFM Res. 1.779/2005' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — TRÂMITES E ORIENTAÇÕES',
+          items: [
+            { item: 'Orientou a família sobre os próximos passos (cartório, certidão de óbito, velório)', score: 0.5, ref: 'Lei de Registros Públicos — Lei 6.015/1973' },
+            { item: 'Perguntou se a família tinha mais dúvidas antes de encerrar', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — EXAME DE CORPO DE DELITO E CLASSIFICAÇÃO DE LESÕES CORPORAIS
   // ─────────────────────────────────────────────────────────────────────────
@@ -991,7 +1118,7 @@ const medicinaLegal = [
         }
       ]
     }
-  }
+  },
 ];
 
 export default medicinaLegal;

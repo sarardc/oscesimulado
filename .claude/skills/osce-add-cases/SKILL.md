@@ -23,8 +23,9 @@ description: >
 
 ## Fluxo de trabalho
 
-1. Criar o arquivo JS de casos na subpasta certa de `casos/`
-2. Registrar o arquivo no **fim** da lista em `casos/index.js`
+1. Adicionar o caso no FIM do array do arquivo da especialidade em `casos/<area>/<especialidade>.js`
+   (um arquivo por especialidade; o campo `tema` do caso deve ser o da especialidade)
+2. Só se for uma especialidade nova: criar o arquivo e registrá-lo em `casos/index.js`
 3. Rodar `npm run build` para gerar `data/stations.json`
 4. Commitar tudo + fazer push
 5. Enviar o arquivo JS ao usuário com `SendUserFile` após cada caso ou lote
@@ -36,24 +37,21 @@ description: >
 ```
 casos/
   index.js                      — lista de todos os arquivos, na ordem do site
-  clinica-medica/               — cardiologia, endocrinologia, gastroenterologia,
-                                  geriatria, hematologia, infectologia, nefrologia,
-                                  neurologia, emergencias-neurologicas, pneumologia,
-                                  pneumologia-gastro, medicina-intensiva
-  cirurgia/                     — cirurgia-toracica, ortopedia, urologia-1, urologia-2
-  pediatria/                    — pediatria-1, pediatria-2, pediatria-3
+  clinica-medica/               — cardiologia, endocrinologia, gastroenterologia, geriatria,
+                                  hematologia, infectologia, nefrologia, neurologia, pneumologia
+  urgencia-e-terapia-intensiva/ — emergencias-neurologicas, medicina-intensiva
+  cirurgia/                     — cirurgia-geral, ortopedia, urologia, vascular
+  pediatria/                    — pediatria-geral, neonatologia, puericultura, cirurgia-pediatrica
   ginecologia-obstetricia/      — ginecologia, obstetricia
-  especialidades/               — dermatologia, oftalmologia, psiquiatria, medicina-legal,
-                                  otorrino-e-dermato (ORL + 6 casos de Dermatologia)
-  mistos/                       — casos-originais (urologia, endócrino, psiquiatria),
-                                  especialidades-variadas (9 especialidades),
-                                  sala-simulacao
+  especialidades/               — dermatologia, medicina-legal, oftalmologia,
+                                  otorrinolaringologia, psiquiatria
 data/stations.json              — gerado automaticamente pelo build (não editar)
 scripts/build.js                — gera data/stations.json
 ```
 
-Cada novo conjunto de casos vai em **um novo arquivo JS**, com nome em
-minúsculas e hífens, na subpasta da área (ex: `casos/clinica-medica/neurologia-2.js`).
+Casos novos entram **no arquivo da especialidade** (ex: um caso de Neurologia vai
+no fim do array de `casos/clinica-medica/neurologia.js`). Só crie arquivo novo para
+uma especialidade que ainda não existe, com nome em minúsculas e hífens.
 Nunca edite `data/stations.json` à mão — ele é sobrescrito pelo build.
 
 ---
@@ -205,20 +203,33 @@ export default nomeDoArquivo;
 
 ---
 
-## Registrar em casos/index.js
+## Especialidade nova: registrar em casos/index.js
 
-Depois de criar o arquivo, adicioná-lo em `casos/index.js`:
+Só quando for criado um arquivo novo (especialidade que ainda não existe):
 
 ```js
-// 1. No bloco de imports (no topo, depois do último):
-import neurologia2 from './clinica-medica/neurologia-2.js';
+// 1. No bloco de imports, junto à área certa:
+import reumatologia from './clinica-medica/reumatologia.js';
 
-// 2. No array exportado, NO FIM da lista (antes do comentário final):
-  ...neurologia2,
+// 2. No array exportado, junto à área certa:
+  ...reumatologia,
 ```
 
-**Sempre no fim**: a posição define o número da estação (id), e o site usa esse
-número (`js/ui.js` trata `id >= 30` de outro jeito). Nunca reordene a lista.
+O arquivo novo segue o mesmo formato dos outros:
+
+```js
+// Casos de Reumatologia (N)
+const reumatologia = [
+  { /* caso 1 */ },
+];
+
+export default reumatologia;
+```
+
+Se for um tema novo, adicionar também o botão de filtro em `index.html`
+(`data-tema="reumatologia"`) e a cor da pílula em `css/style.css` (`.pill-reumatologia`).
+
+O número de cada estação é a posição dela na lista final, recalculado a cada build.
 
 Depois rodar:
 ```bash
@@ -232,7 +243,7 @@ Verificar que o log diz `Build concluido: NNN estacoes -> data/stations.json`.
 ## Git — commit e push
 
 ```bash
-git add casos/<area>/novo-arquivo.js casos/index.js data/stations.json
+git add casos/ data/stations.json
 git commit -m "feat(tema): descrição do que foi adicionado
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>

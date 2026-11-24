@@ -1,4 +1,133 @@
-const infectologia2 = [
+// Casos de Infectologia (10)
+const infectologia = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 2 — OXIURÍASE
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 2,
+    title: 'Criança com coceira no ânus à noite há 3 semanas',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Infectologia',
+    topic: 'Oxiuríase',
+    level: 'fácil',
+    cardAccent: '#43A047',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno vespertino. A mãe traz o filho para consulta.',
+      patient: 'T.A.S., 7 anos, masculino, escolar, trazido pela mãe D.A.S., 32 anos. Sem comorbidades conhecidas.',
+      complaint: 'Mãe relata que o filho está com coceira intensa na região do ânus à noite há 3 semanas, dormindo mal e irritado.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso (com a mãe como informante principal).',
+        'Realize o exame físico pertinente na criança.',
+        'Formule a hipótese diagnóstica e solicite o exame confirmatório adequado.',
+        'Prescreva o tratamento correto para o caso.',
+        'Oriente a mãe sobre o tratamento de contatos domiciliares e as medidas preventivas.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '96/60 mmHg',
+        FC: '88 bpm',
+        FR: '20 irpm',
+        Tax: '36,5 °C',
+        Peso: '22 kg',
+        Altura: '1,20 m',
+        IMC: '15,3 kg/m²'
+      },
+      physicalGeneral: 'Bom estado geral, consciente, orientado, levemente agitado durante o exame, corado, hidratado, sem icterícia.',
+      physicalSeg: 'ABDOME: plano, RHA presentes, normofonéticos, sem dor à palpação, sem visceromegalias | REGIÃO PERIANAL: escoriações perianais superficiais por coçagem; mucosa perianal discretamente eritematosa; sem fissuras, abscessos ou prolapso | PELE: sem lesões, sem prurigo estrófulo | GERAL: sem adenomegalias periféricas',
+      labs: [
+        { test: 'Método de Graham (fita gomada) — 3 amostras em dias alternados', val: 'Positivo: ovos operculados de Enterobius vermicularis visualizados na 1ª amostra', ref: 'Negativo', alt: true }
+      ],
+      image: null,
+      note: 'Entregar sinais vitais ao início. Entregar resultado do método de Graham somente se o candidato solicitar este exame especificamente. Orientar que a coleta é feita pela manhã, antes do banho e da higiene perianal, com fita adesiva transparente pressionada na região perianal.',
+      patientProfile: 'T.A.S., 7 anos, masculino, 2ª série do ensino fundamental. Mora com a mãe, pai e irmã de 5 anos. Frequenta escola pública. Mãe relata que a irmã também está coçando.',
+      script: [
+        { trigger: 'Queixa principal (mãe)', speech: 'Doutor, meu filho tá com uma coceira horrível aqui atrás, na região do bumbum, especialmente de noite. Já faz umas três semanas assim. Ele não tá conseguindo dormir direito.' },
+        { trigger: 'Sobre o prurido (mãe)', speech: 'É de noite, principalmente. De dia ele fica bem, mas quando vai dormir começa a coçar. Uma noite eu fui ver e tinha umas coisinhas brancas pequeninhas se mexendo ali perto do ânus dele.' },
+        { trigger: 'Sobre outros sintomas (mãe)', speech: 'Tá mais irritado, não tá querendo comer direito e tá com sono durante o dia. Mas febre não teve.' },
+        { trigger: 'Sobre irmã (mãe)', speech: 'A irmã de 5 anos também tá coçando bastante. Acho que ela também tem.' },
+        { trigger: 'Sobre a escola (mãe)', speech: 'Ele estuda em escola pública. A professora não avisou nada, mas ele tem vários amiguinhos.' },
+        { trigger: 'Sobre higiene (mãe)', speech: 'Eu ensino eles a lavar as mãos, mas é criança né, esquece. Ele roe bastante a unhinha também.' },
+        { trigger: 'Sobre tratamento anterior (mãe)', speech: 'Ainda não tratei, fui direto pro médico. Comprei um vermífugo genérico na farmácia mas ainda não dei porque queria perguntar pro senhor primeiro.' },
+        { trigger: 'Pergunta ativa (mãe)', speech: 'É lombriga, doutor? Precisa de exame de fezes?' },
+        { trigger: 'Pergunta ativa (mãe)', speech: 'Eu preciso tomar remédio também? E o marido e a outra filha?' }
+      ],
+      hiddenInfo: 'Irmã de 5 anos com prurido perianal semelhante há 2 semanas — só revela se o candidato perguntar especificamente sobre sintomas em outros membros da família | Pai e mãe também relatam prurido leve perianal à noite — só revela se perguntado sobre sintomas nos adultos da casa | Hábito de roer unhas na criança — só revela se perguntado sobre hábitos da criança',
+      actorBehavior: 'Mãe colaborativa, levemente constrangida, com tom de cansaço por noites mal dormidas. Demonstra preocupação com o filho. Receptiva às orientações. Fica mais tranquila quando o candidato explica que a doença é comum, benigna e de fácil tratamento. A criança fica irrequieta durante o exame.'
+    },
+    instC: {
+      diagnosis: 'Enterobíase (oxiuríase) em criança escolar, com transmissão domiciliar confirmada pela presença de sintomas em irmã (e possivelmente pais).',
+      differentials: [
+        'Candidíase perianal — prurido perianal com eritema; sem padrão noturno exclusivo; sem verminhas visíveis; mais comum em lactentes ou pacientes imunossuprimidos; tratamento com antifúngico tópico',
+        'Dermatite de contato perianal — prurido sem padrão noturno, associado a sabonetes ou lenços umedecidos; sem ovos no método de Graham',
+        'Outras helmintíases intestinais (Ascaris, Trichuris) — podem coexistir; geralmente sintomas mais sistêmicos; ovos diferentes no EPF; não causam prurido perianal noturno clássico',
+        'Abuso sexual — deve ser considerado em qualquer criança com sintomas genitais ou perianais; afastado pela história clínica coerente e achado parasitológico positivo'
+      ],
+      context: 'Criança escolar com prurido perianal de predomínio noturno há 3 semanas, com relato materno de verminhas visíveis, escoriações perianais ao exame e método de Graham positivo. Transmissão domiciliar evidenciada pela irmã sintomática. Quadro clínico clássico de oxiuríase por Enterobius vermicularis.',
+      justify: 'Enterobius vermicularis causa prurido perianal noturno intenso pois as fêmeas migram para a região perianal à noite para oviposição. O método de Graham (fita adesiva perianal coletada pela manhã antes do banho) é o exame de escolha — sensibilidade ~90% com 3 amostras. EPF é inadequado para diagnóstico pois os ovos raramente são encontrados nas fezes.',
+      expectedAnamnesis: 'Caracterizar o prurido: horário (noturno = clássico), intensidade, início, evolução | Perguntar se a mãe/cuidador observou verminhas brancas na região perianal | Investigar sintomas em outros membros da família (transmissão domiciliar é regra) | Perguntar sobre frequência escolar e contatos com crianças | Investigar hábitos de higiene: lavar mãos antes das refeições, roer unhas, coçar e levar à boca | Investigar outros sintomas: irritabilidade, insônia, dor abdominal, anorexia | Perguntar sobre tratamentos anteriores',
+      expectedPhysical: 'Avaliar estado geral da criança | Examinar a região perianal: eritema, escoriações, presença visível de parasitas | Exame abdominal: geralmente normal | Pesquisar sinais de desnutrição | Avaliar higiene das unhas',
+      expectedExams: [
+        { exam: 'Método de Graham (fita gomada/Scotch tape test)', justify: 'Exame de escolha para enterobíase — ovos raramente aparecem em EPF; coleta perianal pela manhã antes do banho, por 3 dias alternados', expected: 'Ovos operculados de E. vermicularis — confirma diagnóstico' },
+        { exam: 'EPF (exame parasitológico de fezes) — opcional', justify: 'Baixa sensibilidade para E. vermicularis; indicado se suspeita de co-infestação com outros helmintos', expected: 'Geralmente negativo para E. vermicularis' }
+      ],
+      expectedConduct: 'Farmacológica: Albendazol 400mg VO dose única (crianças > 2 anos e adultos) OU Mebendazol 100mg VO dose única — REPETIR após 2 semanas (destrói os adultos mas não os ovos; 2ª dose elimina os que eclodiram); TRATAR TODOS OS CONTATOS DOMICILIARES SIMULTANEAMENTE (mãe, pai, irmã) independentemente de sintomas — regra fundamental | Não farmacológica: Higiene das mãos com frequência, especialmente antes das refeições e após o banho; cortar as unhas rentes; trocar e lavar a roupa de cama, pijamas e roupas íntimas com água quente (>60°C) no dia do tratamento; não sacudir roupas de cama (dispersa ovos) | Orientações: Explicar o ciclo do parasita (transmissão fecal-oral, autoinfestação); reforçar que a doença é muito comum em escolares e não significa descuido; orientar escola se necessário | Seguimento: Retorno em 4 semanas; repetir tratamento se persistência de sintomas',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar o diagnóstico de forma acessível ("são uns verminhos muito comuns em crianças da escola") sem causar constrangimento | Orientar claramente sobre a necessidade de tratar TODOS os membros da família ao mesmo tempo | Ensinar a técnica do método de Graham para próximas pesquisas | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Solicitar apenas EPF sem método de Graham — baixíssima sensibilidade para E. vermicularis; erro diagnóstico',
+        'Tratar apenas a criança sem tratar todos os contatos domiciliares — garante reinfestação e falha terapêutica',
+        'Não orientar a segunda dose após 2 semanas — dose única não elimina os ovos, recidiva certa',
+        'Diagnosticar "lombriga" (Ascaris) e prescrever tratamento inadequado sem solicitar exame confirmatório',
+        'Não orientar medidas de higiene (lavagem de roupas, corte de unhas) — ciclo de transmissão não é interrompido'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — CRIANÇA COM COCEIRA PERIANAL À NOITE (OXIURÍASE)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se ao paciente e à mãe', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico sem causar constrangimento, usando linguagem acessível', score: 0.5, ref: 'PNAB/MS 2017' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Caracterizou o prurido perianal de predomínio noturno', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Perguntou sobre visualização de verminhas brancas na região perianal', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Investigou sintomas em todos os membros da família', score: 1.0, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Questionou hábitos de higiene (lavar mãos, roer unhas)', score: 0.3, ref: 'Protocolo MS Helmintíases, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Realizou exame da região perianal e identificou escoriações/eritema', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Avaliou estado geral e nutricional da criança', score: 0.3, ref: 'Protocolo MS Helmintíases, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou método de Graham (fita gomada) como exame de escolha', score: 1.0, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Não solicitou apenas EPF como único exame diagnóstico', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
+          items: [
+            { item: 'Prescreveu Albendazol 400mg ou Mebendazol 100mg dose única', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Orientou repetição do tratamento após 2 semanas', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Prescreveu tratamento para TODOS os contatos domiciliares simultaneamente', score: 1.0, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Orientou medidas de higiene (roupas de cama, unhas, lavagem de mãos)', score: 0.5, ref: 'Protocolo MS Helmintíases, 2022' },
+            { item: 'Perguntou se havia dúvidas ao final', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
   // CASO 1 — DENGUE COM SINAIS DE ALARME
   {
     id: 1,
@@ -1130,7 +1259,7 @@ const infectologia2 = [
         }
       ]
     }
-  }
+  },
 ];
 
-export default infectologia2;
+export default infectologia;

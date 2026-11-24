@@ -1,10 +1,732 @@
-const psiq1stations = [
+// Casos de Psiquiatria (41)
+const psiquiatria = [
+  // PSIQUIATRIA — Esquizofrenia
+  {
+    id: 25,
+    title: 'Homem jovem com comportamento estranho e isolamento',
+    sub: 'PS — Pronto-Socorro / CAPS',
+    tema: 'Psiquiatria',
+    topic: 'Esquizofrenia — Primeiro Episódio Psicótico',
+    level: 'moderado',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Urgência psiquiátrica em pronto-socorro de hospital geral com apoio do CAPS. Há sala de observação, laboratório e tomografia.',
+      patient: 'R.M.S., 23 anos, sexo masculino, solteiro, estudante universitário (trancou matrícula há 8 meses).',
+      complaint: 'Familiar relata que o paciente está \'falando com vozes\' há cerca de 6 meses, saiu da faculdade, trancou-se no quarto, parou de tomar banho e acredita que vizinhos estão conspirando contra ele.',
+      tasks: [
+        'Realize a anamnese com o paciente e com a mãe.',
+        'Avalie os sintomas psicóticos positivos e negativos e o exame do estado mental.',
+        'Avalie o risco de suicídio e de heteroagressividade.',
+        'Formule as hipóteses diagnósticas e os diferenciais, solicitando exames para excluir causas orgânicas.',
+        'Proponha a conduta imediata e o plano terapêutico, orientando a família.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '118/76 mmHg',
+        FC: '88 bpm',
+        FR: '16 irpm',
+        Tax: '36,6 °C',
+        SpO2: '98% em ar ambiente',
+        Peso: '62 kg (há 6 meses: 68 kg)',
+        Altura: '1,75 m',
+        IMC: '20,2 kg/m²'
+      },
+      physicalGeneral: 'Higiene precária, odor corporal presente. Roupa inadequada para o clima (casaco em dia quente). Contato inicial difícil, desconfiança marcante. Sem sinais de trauma ou lesões cutâneas.',
+      physicalSeg: 'NEUROLÓGICO: Pupilas isocóricas e fotorreagentes. Sem déficits focais. Sem rigidez de nuca. Marcha sem alterações | EXAME DO ESTADO MENTAL: aparência descuidada, hipomímica, postura tensa; psicomotricidade lentificada com inquietação; humor disfórico e afeto embotado; fala de tom baixo, latência aumentada, conteúdo desorganizado; pensamento com desorganização formal, delírio persecutório e ideias de referência; percepção com alucinações auditivas imperativas; orientado em tempo e espaço; memória preservada; insight ausente; juízo crítico prejudicado; risco: nega ideação suicida ativa e plano heteroagressivo',
+      labs: [
+        { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+        { test: 'Glicemia de jejum', val: '89 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'TSH', val: '2,1 μUI/mL', ref: '0,4–4,0 μUI/mL', alt: false },
+        { test: 'Creatinina / Sódio', val: '0,9 mg/dL / 139 mEq/L', ref: '0,7–1,2 / 135–145', alt: false },
+        { test: 'TGO / TGP', val: '24 / 30 U/L', ref: '< 40 U/L', alt: false },
+        { test: 'VDRL / Anti-HIV', val: 'Não reagentes', ref: 'Não reagentes', alt: false },
+        { test: 'Perfil lipídico', val: 'LDL 98, TG 110 mg/dL', ref: 'LDL < 130; TG < 150', alt: false },
+        { test: 'Toxicológico urinário', val: 'Canabinoides positivo; cocaína e anfetaminas negativos', ref: 'Negativo', alt: true }
+      ],
+      image: 'TC de crânio sem contraste (se solicitada): sem lesões, sem sinais de sangramento ou efeito de massa; ventrículos laterais discretamente aumentados (achado inespecífico).',
+      note: 'O paciente responde de forma lacônica e desconfiada; a mãe complementa a história. Os exames só são entregues se solicitados. A informação sobre a faca só é revelada se o candidato perguntar diretamente sobre armas ou sobre como ele pretende se defender.',
+      patientProfile: 'R.M.S., 23 anos, solteiro, estudante de Engenharia (trancou a matrícula há 8 meses), mora com a mãe (professora) e a irmã. Bom aluno até 1 ano atrás. Fuma maconha desde os 16 anos, quase diariamente no último ano. Tio paterno com esquizofrenia, internado várias vezes. Há 6 meses passou a ouvir vozes, isolou-se no quarto, cobriu a janela com papel-alumínio e parou de comer a comida da mãe ("pode ter alguma coisa"). Nunca teve tratamento psiquiátrico.',
+      script: [
+        { trigger: 'Abertura espontânea', speech: 'Eu não precisava vir aqui. Minha mãe me trouxe à força. Não tem nada de errado comigo.' },
+        {
+          trigger: 'Quando perguntado sobre as vozes',
+          speech: 'Eu ouço pessoas falando sobre mim. Elas ficam me comentando o que eu faço. Às vezes duas vozes falam entre si sobre mim.'
+        },
+        {
+          trigger: 'Quando perguntado sobre os vizinhos',
+          speech: 'Eles colocaram câmeras no meu quarto. Eu vi os fios. Eles estão me monitorando para me prejudicar.'
+        },
+        {
+          trigger: 'Quando perguntado sobre a faculdade',
+          speech: 'Eu tranquei porque não consigo me concentrar. Fica difícil. E os colegas também fazem parte disso.'
+        },
+        { trigger: 'Quando perguntado sobre banho e autocuidado', speech: 'Não tenho vontade de nada. Fico no quarto.' },
+        { trigger: 'Quando perguntado sobre uso de drogas', speech: 'Às vezes fumo maconha. Mas isso não tem nada a ver.' },
+        { trigger: 'Quando perguntado sobre suicídio', speech: 'Não quero me matar. Só quero que me deixem em paz.' },
+        { trigger: 'Quando perguntado sobre agressividade', speech: 'Não vou machucar ninguém. Sou eu que estou sendo prejudicado.' },
+        {
+          trigger: 'Mãe — evolução e comportamento',
+          speech: 'Doutor(a), faz uns seis meses que ele mudou. Cobriu a janela com papel-alumínio, não sai do quarto, não come o que eu faço. Fala sozinho de madrugada.'
+        },
+        { trigger: 'Sobre armas ou como pretende se defender', speech: 'Eu tenho uma faca debaixo do colchão. Se eles entrarem lá em casa, eu me defendo.' },
+        { trigger: 'Mãe — família', speech: 'O irmão do pai dele tem esquizofrenia. Já foi internado várias vezes.' }
+      ],
+      hiddenInfo: 'Guarda uma faca debaixo do colchão "para se defender" (risco de heteroagressividade) — só revela se perguntado sobre armas ou como pretende se defender | Recusa a comida da mãe por medo de envenenamento, perdeu 6 kg — só revela se perguntado sobre alimentação | Tio paterno com esquizofrenia — a mãe só revela se perguntada sobre família | Uso diário de maconha no último ano — o paciente minimiza; a quantidade só aparece se perguntado diretamente sobre frequência',
+      actorBehavior: 'Paciente desconfiado, olha para os cantos da sala como se estivesse sendo observado, responde com frases curtas e latência aumentada. Às vezes interrompe para "escutar" algo. Fica irritado se o candidato confrontar os delírios ("isso não existe"), mas colabora mais se o candidato validar o sofrimento sem concordar com as crenças. A mãe está exausta, chorosa e com medo; quer que o filho seja internado.'
+    },
+    instC: {
+      diagnosis: 'Esquizofrenia — primeiro episódio psicótico (CID-11 6A20; CID-10 F20.0), com sintomas positivos (delírio persecutório, alucinações auditivas comentadoras e dialogadas), negativos (avolição, embotamento afetivo, isolamento) e declínio funcional há 6 meses, em usuário de cannabis, com risco de heteroagressividade defensiva a ser manejado.',
+      differentials: [
+        'Transtorno psicótico induzido por cannabis — sintomas persistem e progridem por meses, com sintomas negativos e declínio funcional, o que não se explica apenas pela substância; a cannabis é fator de risco e agravante',
+        'Transtorno esquizofreniforme — mesma clínica com duração de 1 a 6 meses; aqui já se completam 6 meses com pródromo',
+        'Transtorno bipolar ou depressão com sintomas psicóticos — sintomas psicóticos ocorrem fora de episódios de humor',
+        'Transtorno delirante — sai pela presença de alucinações proeminentes, desorganização e sintomas negativos',
+        'Causas orgânicas (encefalite autoimune, epilepsia de lobo temporal, tumor, HIV, sífilis, tireoidopatia) — exame neurológico, laboratório e TC sem alterações'
+      ],
+      context: 'Jovem de 23 anos com quadro insidioso de 6 meses, após pródromo de queda do rendimento acadêmico, caracterizado por delírio persecutório, alucinações auditivas comentadoras, comportamento bizarro, isolamento, descuido com a higiene e perda de peso por recusa alimentar. Uso diário de cannabis e história familiar de esquizofrenia aumentam o risco. A guarda de uma faca para "defesa" exige avaliação cuidadosa do risco de violência.',
+      justify: 'Critérios DSM-5-TR/CID-11: ≥ 2 sintomas (delírios, alucinações, discurso desorganizado, sintomas negativos) por ≥ 1 mês, com sinais contínuos por ≥ 6 meses e declínio funcional, após exclusão de transtornos do humor, substâncias como causa exclusiva e condições médicas. Exames laboratoriais e de imagem normais afastam causas orgânicas.',
+      expectedAnamnesis: 'Início, evolução e pródromo | Alucinações (tipo, conteúdo, se imperativas) | Delírios (conteúdo, convicção, ações tomadas em função deles) | Sintomas negativos e declínio funcional | Sintomas de humor (mania, depressão) | Uso de substâncias (tipo, frequência, relação temporal) | Risco de suicídio | Risco de heteroagressividade, incluindo acesso a armas | Alimentação e autocuidado | História familiar psiquiátrica | Comorbidades clínicas e medicamentos | Rede de apoio',
+      expectedPhysical: 'Sinais vitais | Exame neurológico sumário | Exame do estado mental completo (aparência, psicomotricidade, humor/afeto, pensamento, sensopercepção, orientação, crítica) | Sinais de intoxicação ou abstinência',
+      expectedExams: [
+        {
+          exam: 'Hemograma, glicemia, eletrólitos, função renal e hepática, TSH',
+          justify: 'Excluir causas orgânicas e linha de base para antipsicótico',
+          expected: 'Normais'
+        },
+        { exam: 'VDRL e anti-HIV', justify: 'Causas infecciosas de psicose', expected: 'Não reagentes' },
+        { exam: 'Toxicológico urinário', justify: 'Uso de substâncias', expected: 'Canabinoides positivo' },
+        { exam: 'Neuroimagem (TC/RM)', justify: 'Primeiro episódio — excluir lesão estrutural', expected: 'Sem alterações agudas' },
+        { exam: 'Perfil lipídico, peso, circunferência abdominal, ECG', justify: 'Linha de base metabólica e cardíaca para antipsicótico', expected: 'Normais' }
+      ],
+      expectedConduct: 'Manejo do risco: orientar a família a retirar a faca e outros objetos perigosos; avaliar necessidade de internação (voluntária ou involuntária, conforme Lei 10.216/2001) se o risco não puder ser contido — se houver adesão e suporte familiar, tratamento intensivo em CAPS (CAPS III/acolhimento noturno) | Antipsicótico em monoterapia na menor dose eficaz: risperidona 1–2 mg/dia titulando até 2–4 mg/dia (alternativas: aripiprazol, olanzapina, haloperidol 2–5 mg/dia); avaliar resposta em 2–4 semanas | Se agitação: abordagem verbal; benzodiazepínico ou antipsicótico IM apenas se necessário | Monitorização de efeitos extrapiramidais, prolactina e metabólicos (peso, glicemia, lipídios) | Abordar o uso de cannabis (aumenta recaídas) | Psicoeducação e intervenção familiar, terapia cognitivo-comportamental para psicose, reabilitação psicossocial e apoio ao retorno aos estudos | Considerar antipsicótico de depósito se baixa adesão | Manter tratamento por ao menos 1–2 anos após remissão do primeiro episódio | Seguimento no CAPS',
+      expectedCommunication: 'Abordar o paciente com respeito, sem confrontar os delírios e validando o sofrimento | Explicar o diagnóstico à família de forma clara, sem estigma, com mensagem de que há tratamento e possibilidade de recuperação | Acolher a mãe e orientar sobre sinais de crise e segurança | Envolver o paciente nas decisões tanto quanto possível',
+      criticalErrors: [
+        'Não avaliar risco de suicídio e de heteroagressividade, incluindo acesso a armas',
+        'Atribuir todo o quadro à cannabis sem considerar psicose primária',
+        'Prescrever benzodiazepínico como tratamento isolado da psicose',
+        'Não excluir causas orgânicas em primeiro episódio psicótico',
+        'Não envolver a família nem referenciar ao CAPS/psiquiatria'
+      ]
+    },
+    instD: {
+      title: 'Esquizofrenia — Primeiro Episódio — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição e Epidemiologia',
+          items: [
+            {
+              item: 'Prevalência ao longo da vida de ~0,7%; pico de início entre o fim da adolescência e os 30 anos, mais precoce em homens.',
+              score: 1,
+              ref: 'McCutcheon RA et al., Lancet 2020'
+            },
+            {
+              item: 'Fatores de risco: história familiar, uso de cannabis (sobretudo de alta potência e precoce), complicações perinatais, urbanicidade.',
+              score: 1,
+              ref: 'Di Forti M et al., Lancet Psychiatry 2019'
+            }
+          ]
+        },
+        {
+          h: 'Diagnóstico',
+          items: [
+            {
+              item: '≥ 2 sintomas (delírios, alucinações, discurso desorganizado, comportamento desorganizado, sintomas negativos) por ≥ 1 mês, com duração total ≥ 6 meses e prejuízo funcional.',
+              score: 2,
+              ref: 'DSM-5-TR, 2022'
+            },
+            {
+              item: 'Primeiro episódio: excluir causas orgânicas (laboratório, sorologias, toxicológico, neuroimagem conforme o caso).',
+              score: 1,
+              ref: 'NICE CG178 — Psychosis and schizophrenia in adults'
+            }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            {
+              item: 'Antipsicótico em monoterapia na menor dose eficaz; primeiro episódio responde a doses mais baixas.',
+              score: 2,
+              ref: 'APA Practice Guideline for Schizophrenia, 2020'
+            },
+            { item: 'Clozapina para esquizofrenia resistente (falha de 2 antipsicóticos em dose e tempo adequados).', score: 1, ref: 'APA Practice Guideline, 2020' },
+            { item: 'Intervenções psicossociais (psicoeducação, intervenção familiar, TCC, emprego apoiado) reduzem recaídas.', score: 1, ref: 'NICE CG178' },
+            { item: 'Monitorar peso, glicemia, lipídios e efeitos extrapiramidais.', score: 1, ref: 'APA Practice Guideline, 2020' }
+          ]
+        },
+        {
+          h: 'Rede e Aspectos Legais',
+          items: [
+            {
+              item: 'CAPS é o serviço de referência; internação só quando recursos extra-hospitalares forem insuficientes (Lei 10.216/2001), podendo ser voluntária, involuntária ou compulsória.',
+              score: 1,
+              ref: 'Lei nº 10.216/2001'
+            }
+          ]
+        }
+      ]
+    }
+  },
 
-{
+  // PSIQUIATRIA — Transtorno bipolar tipo I, episódio atual maníaco grave sem sintomas psicóticos
+  {
+    id: 26,
+    title: 'Mulher com \'euforia intensa\' e sem necessidade de dormir',
+    sub: 'PS — Pronto-Socorro',
+    tema: 'Psiquiatria',
+    topic: 'Transtorno Bipolar Tipo I — Episódio Maníaco',
+    level: 'moderado',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Pronto-socorro de hospital geral com sala de observação, laboratório e psiquiatra de plantão.',
+      patient: 'C.F.O., 34 anos, sexo feminino, casada, professora de ensino fundamental.',
+      complaint: 'Marido traz a esposa ao PS relatando que ela está \'completamente diferente há 12 dias\': dormindo apenas 2–3 horas por noite e se sentindo descansada, gastos excessivos no cartão, falando muito e rápido, iniciou projeto de \'abrir 3 empresas ao mesmo tempo\' e teve comportamento sexual inusitado para o casal.',
+      tasks: [
+        'Realize a anamnese com a paciente e com o marido.',
+        'Avalie o estado mental atual.',
+        'Investigue episódios anteriores, história familiar, adesão ao tratamento e uso de substâncias.',
+        'Avalie o risco (suicídio, comportamentos de risco) e formule o diagnóstico.',
+        'Proponha a conduta para estabilização do episódio e oriente a paciente e o marido.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '132/84 mmHg', FC: '102 bpm', FR: '18 irpm', Tax: '36,8 °C', SpO2: '99% em ar ambiente', Peso: '68 kg', Altura: '1,64 m', IMC: '25,3 kg/m²' },
+      physicalGeneral: 'Apresentação exuberante, maquiagem intensa, roupas chamativas. Agitação psicomotora moderada, dificuldade em permanecer sentada. Sem sinais de trauma ou lesões. Pupilas isocóricas e fotorreagentes. Sem déficits neurológicos focais. Mucosas úmidas, sem tremores.',
+      physicalSeg: 'EXAME DO ESTADO MENTAL: aparência cuidada em excesso, extravagante; psicomotricidade agitada, gesticulação exagerada; humor eufórico/expansivo, labilidade afetiva; fala taquifásica, logorreia, pressão de fala; pensamento com fuga de ideias, grandiosidade, sem delírios estruturados; percepção sem alucinações; orientada; memória preservada; insight ausente; juízo crítico gravemente prejudicado; risco: nega ideação suicida, comportamentos de risco presentes',
+      labs: [
+        { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+        { test: 'TSH / T4 livre', val: '1,8 μUI/mL / 1,2 ng/dL', ref: '0,4–4,0 / 0,8–1,8', alt: false },
+        { test: 'Glicemia', val: '94 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'Sódio / Cálcio', val: '141 mEq/L / 9,4 mg/dL', ref: '135–145 / 8,5–10,5', alt: false },
+        { test: 'Creatinina (TFG)', val: '0,8 mg/dL (> 90 mL/min)', ref: '0,6–1,1 mg/dL', alt: false },
+        { test: 'TGO / TGP', val: '22 / 19 U/L', ref: '< 40 U/L', alt: false },
+        { test: 'β-HCG', val: 'Negativo', ref: 'Negativo', alt: false },
+        { test: 'Toxicológico urinário', val: 'Negativo', ref: 'Negativo', alt: false },
+        { test: 'Litemia', val: '0,2 mEq/L', ref: '0,6–1,2 mEq/L (manutenção)', alt: true }
+      ],
+      note: 'A paciente fala sem parar e interrompe o candidato. O marido confirma os dados. ECG (se solicitado): taquicardia sinusal, QTc normal. Se o candidato propor alta sem tratamento, a paciente aceita imediatamente e o marido protesta.',
+      patientProfile: 'C.F.O., 34 anos, professora de ensino fundamental, casada há 8 anos, sem filhos. Episódio depressivo grave aos 28 anos e episódio maníaco há 3 anos com internação breve; desde então em uso de lítio, que suspendeu há 3 meses porque "estava bem" e porque quer engravidar. Mãe com transtorno bipolar. Nos últimos 12 dias, gastou cerca de R$ 30 mil no cartão, pediu demissão por mensagem, dorme 2–3 h por noite e iniciou planos de abrir três empresas.',
+      script: [
+        {
+          trigger: 'Abertura espontânea',
+          speech: 'Eu não sei por que meu marido me trouxe aqui. Estou me sentindo a melhor da minha vida. Nunca fui tão criativa e produtiva!'
+        },
+        {
+          trigger: 'Quando perguntado sobre o sono',
+          speech: 'Durmo umas 2 ou 3 horas e fico ótima! Não preciso mais de 8 horas como antes, isso é um desperdício de tempo.'
+        },
+        { trigger: 'Quando perguntado sobre os gastos', speech: 'Foram investimentos! Preciso de roupas bonitas para quando abrir minhas empresas.' },
+        {
+          trigger: 'Quando perguntado sobre episódios anteriores',
+          speech: 'Já tive uma fase parecida há 3 anos, mas depois fiquei muito triste por meses e fiquei na cama. Tomei um remedinho, o lítio, mas parei de tomar porque me sentia bem.'
+        },
+        { trigger: 'Quando perguntado sobre o lítio', speech: 'Parei há uns 3 meses. Não precisava mais, estava bem.' },
+        { trigger: 'Quando perguntado sobre suicídio', speech: 'Suicídio? Pelo contrário! Estou cheia de planos!' },
+        {
+          trigger: 'Marido — gastos e trabalho',
+          speech: 'Ela gastou uns 30 mil no cartão em doze dias. Mandou mensagem pra diretora da escola pedindo demissão. Não é ela, doutor(a).'
+        },
+        { trigger: 'Sobre o motivo de parar o lítio', speech: 'Parei porque eu quero engravidar, li que lítio faz mal pro bebê. E eu estava ótima!' },
+        { trigger: 'Sobre álcool e drogas', speech: 'Bebi umas taças de vinho nas festas da semana, mas nada demais. Droga nunca.' },
+        { trigger: 'Marido — família', speech: 'A mãe dela tem transtorno bipolar, já foi internada algumas vezes.' }
+      ],
+      hiddenInfo: 'Suspendeu o lítio por desejo de engravidar — só revela se perguntada sobre o motivo de parar a medicação | Gastos de R$ 30 mil e pedido de demissão — o marido só detalha se perguntado sobre consequências | Mãe com transtorno bipolar — só revelado se perguntado sobre família | Uso de álcool em festas na última semana — só revela se perguntada',
+      actorBehavior: 'Paciente eufórica, fala alto e rápido, ri muito, levanta-se várias vezes, faz comentários sobre a roupa do candidato e muda de assunto constantemente (fuga de ideias). Fica irritada se contrariada de forma rígida, mas se acalma com abordagem calma, firme e sem confronto. O marido está angustiado e pede ajuda.'
+    },
+    instC: {
+      diagnosis: 'Transtorno bipolar tipo I, episódio atual maníaco grave sem sintomas psicóticos (CID-10 F31.1; CID-11 6A60.1), precipitado pela suspensão do lítio (litemia 0,2 mEq/L), em mulher em idade fértil com desejo de gestação.',
+      differentials: [
+        'Hipomania (TB tipo II) — sai pela duração ≥ 7 dias, prejuízo funcional grave e necessidade de intervenção',
+        'Mania induzida por substâncias (estimulantes, corticoides, antidepressivos) — toxicológico negativo, sem uso de medicamentos',
+        'Hipertireoidismo — TSH e T4 livre normais',
+        'Transtorno esquizoafetivo — ausência de sintomas psicóticos fora dos episódios de humor',
+        'Transtorno de personalidade borderline — instabilidade crônica e reativa, sem episódios bem delimitados'
+      ],
+      context: 'Mulher de 34 anos com episódio maníaco clássico de 12 dias: euforia, grandiosidade, diminuição do sono, taquifasia, fuga de ideias, comportamentos de risco e insight ausente. Histórico de uso de lítio com nível subterapêutico e exames orgânicos normais, excluindo causas médicas.',
+      justify: 'Episódio maníaco (DSM-5-TR): humor elevado/expansivo com aumento de energia por ≥ 7 dias, com ≥ 3 sintomas (grandiosidade, redução da necessidade de sono, pressão de fala, fuga de ideias, distraibilidade, aumento de atividade dirigida, envolvimento em atividades de risco), com prejuízo funcional grave. História de episódios depressivo e maníaco prévios confirma TB tipo I. Exames afastam causas orgânicas e substâncias.',
+      expectedAnamnesis: 'Início e duração do episódio | Sono, energia, fala, pensamento | Grandiosidade e sintomas psicóticos | Comportamentos de risco: gastos, sexuais, direção perigosa, trabalho | Episódios prévios maníacos e depressivos | Tratamento prévio, adesão e motivo da suspensão | Desejo de gestação e contracepção | Uso de álcool, drogas, antidepressivos e corticoides | História familiar | Risco de suicídio (inclusive em estados mistos)',
+      expectedPhysical: 'Sinais vitais | Exame do estado mental (aparência, psicomotricidade, humor, afeto, fala, pensamento, sensopercepção, crítica) | Sinais de intoxicação | Tremor e sinais de toxicidade por lítio (se em uso)',
+      expectedExams: [
+        { exam: 'β-HCG', justify: 'Mulher em idade fértil — escolha do estabilizador', expected: 'Negativo' },
+        { exam: 'TSH, T4 livre, glicemia, eletrólitos, cálcio', justify: 'Causas orgânicas e linha de base', expected: 'Normais' },
+        { exam: 'Creatinina/TFG, ECG', justify: 'Antes de reiniciar o lítio', expected: 'Normais' },
+        { exam: 'Litemia', justify: 'Confirmar adesão', expected: 'Subterapêutica' },
+        { exam: 'Toxicológico urinário', justify: 'Excluir mania induzida por substância', expected: 'Negativo' }
+      ],
+      expectedConduct: 'Avaliar internação: risco financeiro, ocupacional e sexual, ausência de crítica — internação psiquiátrica (voluntária; involuntária se necessário, conforme Lei 10.216/2001) ou observação até estabilização | Tratamento do episódio: reiniciar lítio (300 mg 2–3x/dia, titulando para litemia 0,8–1,2 mEq/L, dosada 5–7 dias após o início) associado ou não a antipsicótico de segunda geração (quetiapina, olanzapina, risperidona ou aripiprazol) | Evitar valproato em mulher com desejo de gestação (alto risco teratogênico e de neurodesenvolvimento) | Suspender e não iniciar antidepressivos | Se agitação: abordagem verbal; antipsicótico ou benzodiazepínico se necessário | Planejamento da gestação com psiquiatra: discutir riscos e benefícios do lítio (risco cardíaco absoluto baixo; recaída sem tratamento é alta), contracepção eficaz até estabilização | Medidas para proteger finanças (cartões) com consentimento | Psicoeducação, higiene do sono e rotina | Seguimento com psiquiatra/CAPS',
+      expectedCommunication: 'Abordagem calma, firme e sem confronto | Validar o desejo de gestação e explicar que é possível planejá-la com segurança | Explicar ao marido a doença e o risco de recaídas com a suspensão do tratamento | Envolver a paciente nas decisões sempre que possível',
+      criticalErrors: [
+        'Prescrever antidepressivo em episódio maníaco',
+        'Não investigar episódios prévios e adesão ao tratamento',
+        'Não solicitar β-HCG antes de escolher o estabilizador de humor',
+        'Prescrever valproato a mulher em idade fértil com desejo de gestação sem discutir alternativas',
+        'Liberar a paciente sem tratamento e sem avaliação de risco'
+      ]
+    },
+    instD: {
+      title: 'Transtorno Bipolar — Episódio Maníaco — Material de Estudo',
+      sections: [
+        {
+          h: 'Definição',
+          items: [
+            {
+              item: 'TB I: ≥ 1 episódio maníaco (≥ 7 dias ou qualquer duração se internação); TB II: hipomania (≥ 4 dias) + depressão maior.',
+              score: 2,
+              ref: 'DSM-5-TR, 2022'
+            },
+            { item: 'Suspensão abrupta do lítio aumenta o risco de recaída maníaca e de suicídio.', score: 1, ref: 'Baldessarini RJ et al., Am J Psychiatry 1999' }
+          ]
+        },
+        {
+          h: 'Tratamento da Mania Aguda',
+          items: [
+            {
+              item: '1ª linha: lítio, quetiapina, aripiprazol, risperidona, asenapina, cariprazina, valproato, ou combinação lítio/valproato + antipsicótico atípico.',
+              score: 2,
+              ref: 'CANMAT/ISBD Guidelines, 2018'
+            },
+            { item: 'Antidepressivos devem ser suspensos na mania.', score: 1, ref: 'CANMAT/ISBD, 2018' },
+            {
+              item: 'Valproato deve ser evitado em mulheres em idade fértil (malformações e prejuízo do neurodesenvolvimento).',
+              score: 1,
+              ref: 'EMA/ANVISA — alertas sobre valproato, 2018–2024'
+            }
+          ]
+        },
+        {
+          h: 'Lítio',
+          items: [
+            {
+              item: 'Litemia 5–7 dias após início/ajuste (12 h após a última dose); alvo 0,8–1,2 mEq/L na fase aguda.',
+              score: 1,
+              ref: 'NICE CG185 — Bipolar disorder, 2023'
+            },
+            { item: 'Monitorar creatinina, TSH e cálcio a cada 6 meses; toxicidade: tremor grosseiro, ataxia, confusão, vômitos.', score: 1, ref: 'NICE CG185' },
+            {
+              item: 'Na gestação, o risco absoluto de anomalia de Ebstein é baixo; decisão compartilhada sobre manutenção.',
+              score: 1,
+              ref: 'Munk-Olsen T et al., Lancet Psychiatry 2018'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  // PSIQUIATRIA — Transtorno depressivo maior, episódio único grave sem sintomas psicóticos
+  {
+    id: 27,
+    title: 'Mulher de meia-idade com \'tristeza que não passa\'',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Psiquiatria',
+    topic: 'Transtorno Depressivo Maior — Episódio Grave',
+    level: 'moderado',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Consulta agendada em Unidade Básica de Saúde, com apoio de equipe multiprofissional (eMulti) e referência ao CAPS.',
+      patient: 'M.A.R., 47 anos, sexo feminino, divorciada, auxiliar administrativa, 2 filhos.',
+      complaint: 'Paciente relata \'tristeza que não passa\' há aproximadamente 5 meses, com choro frequente, perda de interesse por atividades, cansaço intenso, insônia e pensamentos de que seria \'melhor não estar aqui\'.',
+      tasks: [
+        'Realize a anamnese dirigida ao quadro depressivo.',
+        'Avalie e estratifique o risco de suicídio.',
+        'Solicite exames para excluir causas orgânicas.',
+        'Formule o diagnóstico e os diagnósticos diferenciais.',
+        'Proponha o plano terapêutico e o plano de segurança.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '124/80 mmHg', FC: '76 bpm', FR: '15 irpm', Tax: '36,4 °C', Peso: '74 kg (ganho de 4 kg em 5 meses)', Altura: '1,61 m', IMC: '28,6 kg/m²' },
+      physicalGeneral: 'Aparência descuidada em relação ao habitual. Fácies triste, contato visual reduzido, chora durante a consulta. Pele e mucosas sem alterações. Sem lesões de automutilação identificadas. Tireóide não palpável, sem nódulos. Exame físico geral sem outras alterações.',
+      physicalSeg: 'EXAME DO ESTADO MENTAL: aparência descuidada; psicomotricidade lentificada; humor deprimido, afeto congruente; fala lenta e em tom baixo; pensamento com conteúdo de desesperança, culpa e menos-valia, ideação de morte passiva, sem sintomas psicóticos; orientada; insight preservado | ESCALA: PHQ-9 = 20/27 (item 9 = 2) | PELE: sem lesões de automutilação | TIREOIDE: não palpável',
+      labs: [
+        { test: 'Hemograma', val: 'Hb 11,6 g/dL, VCM 78 fL', ref: 'Hb 12–16 g/dL; VCM 80–100 fL', alt: true },
+        { test: 'Ferritina', val: '14 ng/mL', ref: '> 30 ng/mL', alt: true },
+        { test: 'TSH / T4 livre', val: '2,3 μUI/mL / 1,1 ng/dL', ref: '0,4–4,0 / 0,8–1,8', alt: false },
+        { test: 'Glicemia', val: '98 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'Vitamina B12', val: '210 pg/mL', ref: '> 300 pg/mL', alt: true },
+        { test: '25-OH vitamina D', val: '18 ng/mL', ref: '> 20 ng/mL', alt: true },
+        { test: 'β-HCG', val: 'Negativo', ref: 'Negativo', alt: false }
+      ],
+      note: 'O PHQ-9 é entregue apenas se o candidato aplicar ou solicitar a escala. A informação sobre os medicamentos guardados só aparece se o candidato perguntar sobre acesso a meios. Se o candidato não perguntar sobre ideação suicida, a paciente não fala espontaneamente sobre o tema.',
+      patientProfile: 'M.A.R., 47 anos, auxiliar administrativa, divorciada há 6 meses após 20 anos de casamento, mora com os dois filhos adolescentes. Afastada do trabalho há 1 mês. Ciclos menstruais com fluxo aumentado. Sem episódios prévios de mania. Irmã com depressão. Começou a tomar duas taças de vinho todas as noites "para dormir". Tem em casa uma caixa de amitriptilina e clonazepam que sobraram de tratamento da mãe falecida.',
+      script: [
+        { trigger: 'Abertura', speech: 'Doutora, eu estou muito mal. Não consigo mais fazer nada. Fico chorando à toa.' },
+        {
+          trigger: 'Quando perguntado sobre a tristeza',
+          speech: 'Faz uns 5 meses. Eu sei quando começou porque foi depois do divórcio ser finalizado. Mas já se passou tempo e não melhora.'
+        },
+        {
+          trigger: 'Quando perguntado sobre prazer e atividades',
+          speech: 'Eu adorava dançar e ver série. Agora não consigo nem ligar a televisão. Não tenho vontade de nada.'
+        },
+        {
+          trigger: 'Quando perguntado sobre o sono',
+          speech: 'Fico horas tentando dormir. Fico pensando em muita coisa. E quando durmo, acordo cedo e não consigo voltar.'
+        },
+        {
+          trigger: 'Quando perguntado sobre pensamentos ruins',
+          speech: 'Às vezes eu penso que seria melhor não estar aqui. Que os meus filhos estariam melhor sem mim.'
+        },
+        { trigger: 'Quando perguntado sobre plano de suicídio', speech: 'Não, eu não tenho coragem. Mas o pensamento vem.' },
+        {
+          trigger: 'Sobre acesso a medicamentos ou outros meios',
+          speech: 'Tenho em casa uns remédios que sobraram da minha mãe, amitriptilina e clonazepam. Às vezes eu olho pra caixa...'
+        },
+        { trigger: 'Sobre álcool', speech: 'Tomo duas taças de vinho toda noite pra conseguir dormir. Antes eu quase não bebia.' },
+        { trigger: 'Sobre episódios de euforia', speech: 'Euforia? Não, nunca tive uma fase de ficar agitada, sem dormir. Sempre fui mais pra baixo.' },
+        { trigger: 'Sobre apoio e motivos para viver', speech: 'Meus filhos. Eles são o que me segura. E minha irmã, que me liga todo dia.' }
+      ],
+      hiddenInfo: 'Tem amitriptilina e clonazepam guardados em casa (meio letal disponível) — só revela se perguntada sobre acesso a meios | Consumo diário de vinho para dormir — só revela se perguntada sobre álcool | Já olhou para a caixa de remédios pensando em tomar — só revela se o candidato aprofundar a avaliação de ideação | Fluxo menstrual aumentado (anemia ferropriva) — só revela se perguntada',
+      actorBehavior: 'Paciente chorosa, fala devagar e em tom baixo, evita contato visual. Demonstra alívio quando o candidato pergunta abertamente sobre pensamentos de morte e não julga. Aceita retirar os remédios de casa e envolver a irmã se o candidato explicar o motivo com empatia. Tem receio de "ficar viciada" em antidepressivo.'
+    },
+    instC: {
+      diagnosis: 'Transtorno depressivo maior, episódio único grave sem sintomas psicóticos (CID-10 F32.2; CID-11 6A70.3), com ideação suicida passiva e acesso a meio letal (risco moderado), uso de álcool como automedicação e anemia ferropriva associada.',
+      differentials: [
+        'Transtorno bipolar (depressão bipolar) — sem história de mania/hipomania; rastrear sempre antes do antidepressivo',
+        'Transtorno de adaptação com humor deprimido — sai pela gravidade e número de sintomas, que preenchem critérios para episódio depressivo maior',
+        'Luto/separação — a perda é desencadeante, mas a intensidade, a duração e a ideação suicida caracterizam depressão maior',
+        'Hipotireoidismo, anemia, deficiência de B12 — TSH normal; anemia ferropriva e B12 baixa contribuem para a fadiga e devem ser tratadas',
+        'Transtorno depressivo induzido por álcool — consumo iniciou após o quadro; reavaliar após redução'
+      ],
+      context: 'Mulher de 47 anos com 5 meses de humor deprimido, anedonia, insônia terminal, fadiga, culpa, desesperança e ideação de morte após divórcio, com afastamento do trabalho. PHQ-9 = 20 (grave). Uso recente de álcool para dormir e disponibilidade de medicamentos potencialmente letais em casa (amitriptilina) elevam o risco de suicídio. Fatores de proteção: filhos e apoio da irmã.',
+      justify: 'Critérios DSM-5-TR: ≥ 5 de 9 sintomas por ≥ 2 semanas (humor deprimido, anedonia, insônia, fadiga, culpa/menos-valia, ideação de morte), com prejuízo funcional. Gravidade definida clinicamente e pelo PHQ-9 ≥ 20. Ausência de episódios de mania/hipomania e de causa orgânica suficiente.',
+      expectedAnamnesis: 'Início, duração e desencadeantes | Humor, anedonia, sono, apetite, energia, concentração, culpa, psicomotricidade | Ideação suicida: frequência, plano, intenção, acesso a meios, tentativas prévias | Fatores de risco e de proteção | Episódios prévios de depressão e de mania/hipomania | Uso de álcool e outras substâncias | Sintomas psicóticos | Comorbidades clínicas e medicamentos | Rede de apoio e impacto funcional | História familiar',
+      expectedPhysical: 'Sinais vitais | Exame do estado mental | Sinais de automutilação | Palpação da tireoide | Sinais de anemia',
+      expectedExams: [
+        { exam: 'PHQ-9 (e escala de risco de suicídio, como C-SSRS)', justify: 'Gravidade e monitorização', expected: 'PHQ-9 = 20' },
+        { exam: 'TSH e T4 livre', justify: 'Excluir hipotireoidismo', expected: 'Normais' },
+        { exam: 'Hemograma e ferritina', justify: 'Anemia como fator contribuinte', expected: 'Anemia ferropriva' },
+        { exam: 'Vitamina B12, glicemia', justify: 'Causas orgânicas contribuintes', expected: 'B12 baixa' },
+        { exam: 'β-HCG', justify: 'Mulher em idade fértil antes do antidepressivo', expected: 'Negativo' }
+      ],
+      expectedConduct: 'Plano de segurança por escrito: sinais de alerta, estratégias de enfrentamento, contatos de apoio (irmã), CVV 188, SAMU 192, UPA | Restrição de meios: entregar à irmã ou à UBS os medicamentos guardados (amitriptilina e clonazepam) | Antidepressivo ISRS: sertralina 50 mg/dia (aumentar para 100 mg em 2–4 semanas se necessário) ou escitalopram 10 mg/dia; prescrever quantidades limitadas | Evitar tricíclicos (letais em overdose) e benzodiazepínico isolado | Psicoterapia (TCC ou interpessoal) — combinação é superior na depressão grave | Orientar latência de 2–4 semanas, efeitos adversos iniciais e manter por 6–12 meses após remissão | Reduzir/suspender o álcool | Tratar anemia ferropriva (sulfato ferroso) e investigar sangramento uterino; repor B12 | Matriciamento/CAPS se risco alto ou falta de resposta | Retorno em 1–2 semanas; reavaliar PHQ-9 e risco a cada consulta',
+      expectedCommunication: 'Perguntar diretamente e sem julgamento sobre pensamentos de morte | Validar o sofrimento e transmitir esperança | Explicar que antidepressivos não causam dependência | Construir o plano de segurança junto com a paciente | Envolver a rede de apoio com consentimento',
+      criticalErrors: [
+        'Não perguntar sobre ideação suicida',
+        'Não investigar acesso a meios letais nem orientar a restrição',
+        'Prescrever benzodiazepínico como tratamento único ou antidepressivo tricíclico em paciente com ideação suicida',
+        'Não rastrear história de mania/hipomania antes do antidepressivo',
+        'Não agendar retorno precoce (1–2 semanas)'
+      ]
+    },
+    instD: {
+      title: 'Depressão Maior e Risco de Suicídio — Material de Estudo',
+      sections: [
+        {
+          h: 'Diagnóstico',
+          items: [
+            { item: '≥ 5 de 9 sintomas por ≥ 2 semanas, incluindo humor deprimido ou anedonia, com prejuízo funcional.', score: 2, ref: 'DSM-5-TR, 2022' },
+            {
+              item: 'PHQ-9: 5–9 leve; 10–14 moderada; 15–19 moderadamente grave; ≥ 20 grave; item 9 positivo exige avaliação de risco.',
+              score: 1,
+              ref: 'Kroenke K et al., J Gen Intern Med 2001'
+            }
+          ]
+        },
+        {
+          h: 'Avaliação de Risco de Suicídio',
+          items: [
+            {
+              item: 'Perguntar diretamente não aumenta o risco; avaliar ideação, plano, intenção, meios, tentativas prévias, fatores de risco e de proteção.',
+              score: 2,
+              ref: 'OMS — LIVE LIFE, 2021; ABP'
+            },
+            { item: 'Plano de segurança e restrição de acesso a meios letais reduzem comportamento suicida.', score: 1, ref: 'Stanley B et al., JAMA Psychiatry 2018' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            {
+              item: 'ISRS (sertralina, escitalopram, fluoxetina) são 1ª linha; combinação com psicoterapia é superior na depressão grave.',
+              score: 2,
+              ref: 'CANMAT Depression Guidelines, 2023'
+            },
+            { item: 'Resposta em 2–4 semanas; manter 6–12 meses após remissão no primeiro episódio.', score: 1, ref: 'CANMAT, 2023' },
+            {
+              item: 'Tricíclicos são potencialmente letais em overdose — evitar em pacientes com risco de suicídio.',
+              score: 1,
+              ref: 'NICE NG222 — Depression in adults, 2022'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  // PSIQUIATRIA — Transtorno de ansiedade generalizada
+  {
+    id: 28,
+    title: 'Jovem com \'preocupação constante\' e sintomas físicos',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Psiquiatria',
+    topic: 'Transtorno de Ansiedade Generalizada',
+    level: 'fácil',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Demanda espontânea em Unidade Básica de Saúde.',
+      patient: 'L.G.P., 28 anos, sexo masculino, solteiro, analista de sistemas, trabalha em home office.',
+      complaint: 'Paciente refere preocupação constante há cerca de 8 meses, dificuldade para relaxar, tensão muscular no pescoço e ombros, insônia por pensamentos acelerados à noite, irritabilidade e dificuldade de concentração no trabalho. Já buscou cardiologista e gastroenterologista sem alterações orgânicas.',
+      tasks: [
+        'Realize a anamnese dirigida às queixas físicas e psíquicas.',
+        'Rastreie outros transtornos de ansiedade, depressão comórbida, uso de substâncias e risco de suicídio.',
+        'Solicite os exames pertinentes para excluir causas orgânicas.',
+        'Formule o diagnóstico e os diagnósticos diferenciais.',
+        'Proponha o plano terapêutico e oriente o paciente.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '128/82 mmHg', FC: '92 bpm', FR: '18 irpm', Tax: '36,5 °C', SpO2: '99% em ar ambiente', Peso: '76 kg', Altura: '1,78 m', IMC: '24,0 kg/m²' },
+      physicalGeneral: 'Aparência ansiosa, inquieto durante a consulta. Tensão muscular visível em região cervical e trapézio. Tireóide sem alterações palpáveis. Cardiovascular sem alterações. Abdome sem alterações. Neurológico sem déficits focais.',
+      physicalSeg: 'GERAL: inquieto, tensão muscular palpável em trapézios; mãos frias e úmidas; sem tremor fino | TIREOIDE: sem alterações à palpação | CARDIOVASCULAR: RCR 2T, sem sopros | ESCALAS: GAD-7 = 16/21 (ansiedade grave); PHQ-9 = 8 (sintomas depressivos leves)',
+      labs: [
+        { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+        { test: 'TSH', val: '1,6 μUI/mL', ref: '0,4–4,0 μUI/mL', alt: false },
+        { test: 'Glicemia de jejum', val: '91 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'ECG', val: 'Ritmo sinusal, FC 90 bpm, sem alterações', ref: '—', alt: false }
+      ],
+      note: 'GAD-7 e PHQ-9 são entregues apenas se o candidato aplicar ou solicitar as escalas. Os exames prévios do cardiologista (ecocardiograma e Holter normais) e do gastroenterologista (endoscopia normal) estão com o paciente, se pedidos.',
+      patientProfile: 'L.G.P., 28 anos, analista de sistemas em home office, solteiro, mora sozinho. Sempre foi "ansioso", com piora há 8 meses após mudança para o trabalho remoto e pressão por metas. Toma 5–6 xícaras de café e 2 latas de energético por dia. Bebe 3–4 cervejas por noite para "desligar a cabeça". Às vezes toma clonazepam que a mãe lhe deu. Mãe diabética e ansiosa. Já procurou cardiologista e gastroenterologista, com exames normais.',
+      script: [
+        {
+          trigger: 'Abertura',
+          speech: 'Doutor, eu sei que parece bobagem, mas eu fico preocupado o tempo todo. Com tudo. Com o trabalho, com minha saúde, com a família. Não consigo desligar.'
+        },
+        {
+          trigger: 'Quando perguntado sobre quais preocupações',
+          speech: 'Com o trabalho — se vou entregar no prazo, se vou ser demitido. Com minha saúde — qualquer dorzinha acho que é coisa grave. Com minha mãe que é diabética. Com dinheiro. Com tudo, basicamente.'
+        },
+        {
+          trigger: 'Quando perguntado sobre sintomas físicos',
+          speech: 'Tenho muita tensão no pescoço e ombro. Palpitações às vezes. Dor de estômago. Já fui no cardiologista e no gastro, não acharam nada.'
+        },
+        { trigger: 'Quando perguntado sobre o sono', speech: 'Fico na cama pensando. Os pensamentos não param. Demoro pra dormir toda noite.' },
+        {
+          trigger: 'Quando perguntado sobre o início',
+          speech: 'Faz uns 8 meses, mais ou menos quando comecei a trabalhar em casa. Mas sempre fui ansioso, desde novo. Piorou muito esse ano.'
+        },
+        {
+          trigger: 'Quando perguntado sobre crises de pânico',
+          speech: 'Não tenho crise não. Não é aquela coisa de coração disparar de repente. É uma preocupação constante, o tempo todo.'
+        },
+        { trigger: 'Quando perguntado sobre suicídio', speech: 'Não, nada disso. Só estou muito cansado de me preocupar.' },
+        {
+          trigger: 'Sobre café, energéticos e álcool',
+          speech: 'Café uns cinco, seis por dia, e duas latinhas de energético pra render no trabalho. De noite tomo umas três, quatro cervejas pra desligar a cabeça.'
+        },
+        { trigger: 'Sobre uso de calmantes', speech: 'Minha mãe me deu uns comprimidos de clonazepam. Tomo quando não consigo dormir, umas três vezes por semana.' },
+        {
+          trigger: 'Sobre humor e prazer',
+          speech: 'Desanimado às vezes, mas ainda gosto de jogar videogame com os amigos online. Não é tristeza, é cansaço de me preocupar.'
+        }
+      ],
+      hiddenInfo: 'Consumo de 2 energéticos/dia além do café — só revela se perguntado sobre estimulantes | Usa 3–4 cervejas por noite para dormir — só revela se perguntado sobre álcool | Uso de clonazepam da mãe sem prescrição — só revela se perguntado sobre medicamentos/calmantes | Sempre foi ansioso desde a infância — só revela se perguntado sobre o início',
+      actorBehavior: 'Paciente inquieto, balança a perna, fala rápido e pede desculpas por "estar exagerando". Pede "um remédio forte para dormir". Mostra-se receptivo quando o candidato explica que a ansiedade é um transtorno tratável e que existe tratamento sem risco de dependência. Resiste um pouco a reduzir o café.'
+    },
+    instC: {
+      diagnosis: 'Transtorno de ansiedade generalizada (CID-10 F41.1; CID-11 6B00), de gravidade moderada a grave (GAD-7 = 16), agravado por consumo excessivo de cafeína e energéticos, com uso de álcool e de benzodiazepínico sem prescrição como automedicação.',
+      differentials: [
+        'Transtorno de pânico — sai pela ausência de ataques súbitos e recorrentes; a ansiedade é contínua',
+        'Transtorno depressivo maior — sintomas depressivos leves (PHQ-9 = 8), sem critérios para episódio; reavaliar no seguimento',
+        'Transtorno de ansiedade de doença (hipocondria) — preocupação com a saúde é apenas um dos múltiplos temas',
+        'Ansiedade induzida por substâncias (cafeína, energéticos, abstinência de álcool/benzodiazepínico) — contribui, mas a ansiedade antecede o consumo e é crônica',
+        'Hipertireoidismo, arritmias, feocromocitoma — TSH, ECG e avaliação cardiológica normais'
+      ],
+      context: 'Homem de 28 anos com preocupações excessivas e difíceis de controlar por ≥6 meses sobre múltiplas áreas da vida, acompanhadas de tensão muscular, insônia, irritabilidade e dificuldade de concentração. Exames orgânicos normais. Consumo elevado de cafeína como fator agravante.',
+      justify: 'Ansiedade e preocupação excessivas sobre múltiplos temas, na maioria dos dias por ≥ 6 meses, difíceis de controlar, com ≥ 3 sintomas (inquietação, fadiga, dificuldade de concentração, irritabilidade, tensão muscular, insônia) e prejuízo funcional (DSM-5-TR). Exames normais afastam causas orgânicas.',
+      expectedAnamnesis: 'Conteúdo e padrão das preocupações | Duração (≥ 6 meses) e dificuldade de controle | Sintomas físicos (tensão, insônia, palpitações, sintomas gastrointestinais) | Crises de pânico, fobias, obsessões/compulsões | Sintomas depressivos | Ideação suicida | Cafeína, energéticos, álcool, tabaco, drogas | Uso de benzodiazepínicos e outros medicamentos | Impacto funcional | História familiar',
+      expectedPhysical: 'Sinais vitais | Palpação da tireoide | Ausculta cardíaca | Sinais de hipertireoidismo (tremor, sudorese, exoftalmia) | Aplicação de GAD-7 e PHQ-9',
+      expectedExams: [
+        { exam: 'TSH', justify: 'Excluir hipertireoidismo', expected: 'Normal' },
+        { exam: 'ECG', justify: 'Palpitações', expected: 'Normal' },
+        { exam: 'Hemograma e glicemia', justify: 'Causas orgânicas contribuintes', expected: 'Normais' },
+        { exam: 'GAD-7 e PHQ-9', justify: 'Gravidade e comorbidade depressiva', expected: 'GAD-7 = 16; PHQ-9 = 8' }
+      ],
+      expectedConduct: 'Psicoeducação sobre ansiedade e o ciclo preocupação–sintomas físicos | Psicoterapia (TCC) como 1ª linha, individual ou em grupo, ou autoajuda guiada | Farmacoterapia pela gravidade: ISRS (sertralina 25–50 mg/dia, aumentando para 50–100 mg; ou escitalopram 5–10 mg/dia) ou IRSN (venlafaxina, duloxetina); iniciar em dose baixa pela ativação inicial; resposta em 4–6 semanas; manter ≥ 12 meses após resposta | Não prescrever benzodiazepínico como tratamento de manutenção; orientar a interrupção do clonazepam sem prescrição (redução gradual se uso frequente) | Reduzir cafeína (< 200–300 mg/dia) e suspender energéticos | Reduzir álcool (piora ansiedade e sono) | Atividade física regular, higiene do sono, pausas no trabalho remoto | Retorno em 2–4 semanas com GAD-7',
+      expectedCommunication: 'Validar as queixas físicas sem reforçar a busca de exames desnecessários | Explicar o diagnóstico em linguagem acessível | Esclarecer o risco de dependência dos benzodiazepínicos e as alternativas | Pactuar metas de redução de café e álcool',
+      criticalErrors: [
+        'Prescrever benzodiazepínico como primeira linha ou por longo prazo',
+        'Não excluir hipertireoidismo (TSH)',
+        'Não rastrear depressão comórbida e risco de suicídio',
+        'Não investigar uso de cafeína, energéticos, álcool e benzodiazepínicos sem prescrição',
+        'Solicitar novos exames cardiológicos e gastrointestinais desnecessários'
+      ]
+    },
+    instD: {
+      title: 'Transtorno de Ansiedade Generalizada — Material de Estudo',
+      sections: [
+        {
+          h: 'Diagnóstico',
+          items: [
+            {
+              item: 'Ansiedade e preocupação excessivas por ≥ 6 meses, difíceis de controlar, com ≥ 3 sintomas físicos/cognitivos e prejuízo funcional.',
+              score: 2,
+              ref: 'DSM-5-TR, 2022'
+            },
+            { item: 'GAD-7: 5 leve, 10 moderado, 15 grave; ≥ 10 sugere transtorno de ansiedade.', score: 1, ref: 'Spitzer RL et al., Arch Intern Med 2006' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            { item: 'Tratamento em degraus: psicoeducação → autoajuda guiada → TCC ou farmacoterapia (ISRS/IRSN).', score: 2, ref: 'NICE CG113 — GAD and panic disorder' },
+            {
+              item: 'ISRS (sertralina, escitalopram) e IRSN (venlafaxina, duloxetina) são 1ª linha; pregabalina como alternativa.',
+              score: 1,
+              ref: 'Canadian Anxiety Guidelines, 2014; NICE CG113'
+            },
+            {
+              item: 'Benzodiazepínicos: apenas por curto prazo em crises; risco de dependência, quedas e interação com álcool.',
+              score: 2,
+              ref: 'NICE CG113; AGS Beers 2023'
+            },
+            { item: 'Reduzir cafeína e álcool e praticar atividade física são medidas coadjuvantes eficazes.', score: 1, ref: 'NICE CG113' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // PSIQUIATRIA — Transtorno de estresse pós-traumático
+  {
+    id: 29,
+    title: 'Mulher com pesadelos e \'nunca mais foi a mesma\' após assalto',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Psiquiatria',
+    topic: 'Transtorno de Estresse Pós-Traumático',
+    level: 'moderado',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Consulta agendada em Unidade Básica de Saúde após encaminhamento da equipe multiprofissional (eMulti), com apoio matricial de psicologia e referência ao CAPS.',
+      patient: 'A.B.S., 38 anos, sexo feminino, casada, caixa de supermercado.',
+      complaint: 'Paciente refere pesadelos recorrentes, imagens intrusivas do assalto à mão armada sofrido há 4 meses, sobressaltos com barulhos súbitos, evitação de locais do ocorrido, entorpecimento emocional e afastamento do trabalho por licença médica.',
+      tasks: [
+        'Realize a anamnese explorando os grupos de sintomas do TEPT, sem revitimizar a paciente.',
+        'Rastreie comorbidades (depressão, álcool) e avalie o risco de suicídio.',
+        'Formule o diagnóstico e os diagnósticos diferenciais.',
+        'Proponha o plano terapêutico.',
+        'Oriente a paciente sobre os direitos trabalhistas relacionados ao evento.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '136/88 mmHg', FC: '94 bpm', FR: '16 irpm', Tax: '36,6 °C', Peso: '65 kg', Altura: '1,60 m', IMC: '25,4 kg/m²' },
+      physicalGeneral: 'Aparência de sofrimento psíquico, olhar vigilante, sobressalta-se com barulhos no corredor. Tensão muscular generalizada. Sem lesões físicas residuais.',
+      physicalSeg: 'EXAME DO ESTADO MENTAL: aparência cuidada; hipervigilância, sobressalto exagerado; humor disfórico, afeto restrito; fala baixa com pausas ao abordar o trauma; pensamento sem desorganização, com ruminação e cognições de culpa ("foi culpa minha"); revivências em resposta a estímulos; orientada; insight preservado; ideação passiva de morte, sem plano | ESCALAS: PCL-5 = 54 (sugestivo de TEPT); PHQ-9 = 15; AUDIT-C = 5 (uso de risco)',
+      labs: [
+        { test: 'Hemograma', val: 'Normal', ref: '—', alt: false },
+        { test: 'TSH', val: '2,0 μUI/mL', ref: '0,4–4,0 μUI/mL', alt: false },
+        { test: 'Glicemia', val: '96 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'β-HCG', val: 'Negativo', ref: 'Negativo', alt: false }
+      ],
+      note: 'As escalas são entregues apenas se aplicadas/solicitadas. A paciente não descreve o assalto em detalhes, a menos que o candidato insista — o avaliador deve registrar se houve pedido desnecessário de detalhes. A informação sobre a CAT só aparece se o candidato perguntar sobre a situação no trabalho.',
+      patientProfile: 'A.B.S., 38 anos, operadora de caixa de supermercado, casada, dois filhos (10 e 14 anos). Há 4 meses foi rendida com arma na cabeça durante assalto no caixa, enquanto estava sozinha no turno da noite. Afastada por atestados sucessivos. A empresa não emitiu Comunicação de Acidente de Trabalho (CAT). Passou a tomar 2–3 taças de vinho à noite para conseguir dormir. Sem transtornos psiquiátricos prévios.',
+      script: [
+        { trigger: 'Abertura', speech: 'Doutora, eu não sei bem como explicar. Desde aquele dia eu não sou mais a mesma pessoa.' },
+        {
+          trigger: 'Quando perguntado sobre o evento',
+          speech: 'Fui assaltada no meu trabalho. Um homem entrou com uma arma, ficou apontando pra mim. Achei que ia morrer.'
+        },
+        {
+          trigger: 'Quando perguntado sobre os pesadelos',
+          speech: 'Todo noite eu sonho com isso. Acordo no meio da noite gritando, suada. Meu marido está preocupado.'
+        },
+        { trigger: 'Quando perguntado sobre os flashbacks', speech: 'Qualquer barulho de moto eu trava. É como se eu tivesse lá de novo, vivendo aquele momento.' },
+        { trigger: 'Quando perguntado sobre evitação', speech: 'Não consigo mais ir trabalhar. Fico com medo de voltar lá. Evito até assistir notícia de crime.' },
+        { trigger: 'Quando perguntado sobre culpa', speech: 'Fico pensando que poderia ter feito diferente. Que foi culpa minha por estar lá sozinha.' },
+        { trigger: 'Quando perguntado sobre suicídio', speech: 'Às vezes penso que seria melhor não estar aqui. Mas não tenho coragem de fazer nada. Tenho filhos.' },
+        { trigger: 'Sobre álcool e sono', speech: 'Tenho tomado vinho à noite, duas, três taças, senão não durmo. Antes eu não bebia quase nada.' },
+        {
+          trigger: 'Sobre a situação no trabalho',
+          speech: 'Estou de atestado. O supermercado disse que não era acidente de trabalho, que foi "fatalidade". Tenho medo de ser mandada embora.'
+        },
+        {
+          trigger: 'Sobre relação com a família',
+          speech: 'Fico irritada com tudo, grito com meus filhos. Não consigo sentir carinho como antes, parece que estou anestesiada.'
+        }
+      ],
+      hiddenInfo: 'Uso de 2–3 taças de vinho à noite para dormir (uso de risco) — só revela se perguntada sobre álcool | Empresa não emitiu CAT (direitos trabalhistas/previdenciários) — só revela se perguntada sobre a situação no trabalho | Irritabilidade com os filhos e embotamento afetivo — só revela se perguntada sobre família | Ideação passiva de morte, com os filhos como fator de proteção — detalha apenas se perguntada diretamente',
+      actorBehavior: 'Paciente tensa, mexe as mãos, assusta-se com barulhos (porta batendo). Fala com pausas e voz embargada. Se o candidato pedir detalhes do assalto, fica visivelmente angustiada, chora e para de responder. Melhora quando o candidato valida o sofrimento, explica que as reações são esperadas após um trauma e que há tratamento eficaz.'
+    },
+    instC: {
+      diagnosis: 'Transtorno de estresse pós-traumático (CID-10 F43.1; CID-11 6B40) após assalto à mão armada no trabalho há 4 meses, com os quatro grupos de sintomas, depressão comórbida moderada, uso de risco de álcool e ideação passiva de morte — acidente de trabalho com repercussão em saúde mental.',
+      differentials: [
+        'Transtorno de estresse agudo — sintomas entre 3 dias e 1 mês após o trauma; aqui > 1 mês',
+        'Transtorno de adaptação — sai porque o estressor foi traumático (ameaça à vida) e há revivência, evitação e hiperexcitabilidade',
+        'Transtorno depressivo maior — comorbidade presente, mas não explica revivências e evitação',
+        'Transtorno de pânico — sai pela relação clara dos sintomas com lembranças do trauma',
+        'Transtorno por uso de álcool — uso de risco secundário (automedicação); monitorar'
+      ],
+      context: 'Mulher de 38 anos exposta a ameaça real à vida durante assalto no trabalho, que há 4 meses apresenta pesadelos, revivências, evitação do local e de notícias, culpa, embotamento afetivo, irritabilidade e hipervigilância, com afastamento do trabalho e uso de álcool para dormir. O evento caracteriza acidente de trabalho, e o reconhecimento formal (CAT) tem implicações previdenciárias e de proteção ao emprego.',
+      justify: 'Critérios DSM-5-TR: exposição a evento traumático + sintomas intrusivos (pesadelos, flashbacks) + evitação + alterações negativas em cognição e humor (culpa, embotamento) + alterações na excitação (hipervigilância, sobressalto, irritabilidade, insônia), por > 1 mês, com prejuízo funcional. PCL-5 = 54 reforça. Comorbidade depressiva e uso de álcool são frequentes no TEPT.',
+      expectedAnamnesis: 'Natureza geral do evento traumático (sem detalhes desnecessários) | Tempo desde o trauma | Sintomas intrusivos (pesadelos, flashbacks) | Evitação | Alterações de cognição e humor (culpa, embotamento) | Hiperexcitabilidade (sobressalto, insônia, irritabilidade) | Impacto funcional e familiar | Sintomas depressivos e ideação suicida | Uso de álcool e substâncias | Traumas prévios | Situação trabalhista e rede de apoio',
+      expectedPhysical: 'Sinais vitais | Exame do estado mental | Aplicação de escalas (PCL-5, PHQ-9, AUDIT-C)',
+      expectedExams: [
+        { exam: 'PCL-5', justify: 'Rastreio/gravidade do TEPT', expected: '54' },
+        { exam: 'PHQ-9 e avaliação de risco de suicídio', justify: 'Depressão comórbida', expected: 'PHQ-9 = 15' },
+        { exam: 'AUDIT-C', justify: 'Uso de álcool', expected: '5 — uso de risco' },
+        { exam: 'TSH, hemograma, glicemia', justify: 'Excluir causas orgânicas de sintomas', expected: 'Normais' }
+      ],
+      expectedConduct: 'Psicoterapia focada no trauma como 1ª linha: terapia de processamento cognitivo, exposição prolongada, TCC focada no trauma ou EMDR — encaminhar ao CAPS/psicologia (matriciamento) | Farmacoterapia pela depressão comórbida e gravidade: ISRS (sertralina 25–50 mg/dia, titulando até 100–200 mg) ou venlafaxina | Evitar benzodiazepínicos (pioram desfechos no TEPT e interagem com álcool) | Pesadelos: higiene do sono; prazosina pode ser considerada | Intervenção breve para o álcool (reduzir/suspender) | Plano de segurança e contatos de apoio (CVV 188) | Notificação do agravo relacionado ao trabalho (transtorno mental relacionado ao trabalho — SINAN/RENAST/CEREST) e orientação sobre a CAT (pode ser emitida pela própria paciente, sindicato ou médico) e benefício acidentário no INSS | Retorno em 2 semanas',
+      expectedCommunication: 'Acolher e validar o sofrimento, sem pedir detalhes desnecessários do trauma | Psicoeducação: as reações são compreensíveis e tratáveis; desfazer a culpa | Explicar as opções de tratamento | Orientar os direitos trabalhistas com clareza | Envolver a família com consentimento',
+      criticalErrors: [
+        'Pedir detalhes do trauma sem necessidade clínica (revitimização)',
+        'Não avaliar o risco de suicídio',
+        'Prescrever benzodiazepínico como tratamento do TEPT',
+        'Não indicar psicoterapia focada no trauma',
+        'Não reconhecer o caráter ocupacional do evento (CAT/notificação)'
+      ]
+    },
+    instD: {
+      title: 'Transtorno de Estresse Pós-Traumático — Material de Estudo',
+      sections: [
+        {
+          h: 'Diagnóstico',
+          items: [
+            {
+              item: 'Exposição a morte, lesão grave ou violência sexual (real ou ameaça) + sintomas intrusivos, evitação, alterações negativas de cognição/humor e de excitação por > 1 mês.',
+              score: 2,
+              ref: 'DSM-5-TR, 2022'
+            },
+            { item: 'Estresse agudo: sintomas entre 3 dias e 1 mês após o trauma.', score: 1, ref: 'DSM-5-TR, 2022' },
+            { item: 'PCL-5 é instrumento validado de rastreio e monitorização.', score: 1, ref: 'Weathers FW et al., National Center for PTSD, 2013' }
+          ]
+        },
+        {
+          h: 'Tratamento',
+          items: [
+            {
+              item: 'Psicoterapias focadas no trauma (processamento cognitivo, exposição prolongada, EMDR) são 1ª linha.',
+              score: 2,
+              ref: 'VA/DoD PTSD Guideline, 2023; NICE NG116'
+            },
+            {
+              item: 'Farmacoterapia: sertralina, paroxetina, fluoxetina ou venlafaxina quando psicoterapia indisponível ou recusada.',
+              score: 1,
+              ref: 'VA/DoD PTSD Guideline, 2023'
+            },
+            { item: 'Benzodiazepínicos não são recomendados no TEPT.', score: 2, ref: 'VA/DoD PTSD Guideline, 2023' }
+          ]
+        },
+        {
+          h: 'Saúde do Trabalhador',
+          items: [
+            {
+              item: 'Violência sofrida no trabalho é acidente de trabalho: emissão de CAT (empresa, trabalhador, sindicato ou médico) e notificação de transtorno mental relacionado ao trabalho.',
+              score: 1,
+              ref: 'Lei nº 8.213/1991; Portaria GM/MS — Lista de Doenças Relacionadas ao Trabalho, 2023'
+            }
+          ]
+        }
+      ]
+    }
+  },
+
+  {
   id: 1,
   title: "Idoso que parou de comer e diz que 'não tem mais sentido'",
   sub: "UBS — Consulta agendada por agente comunitário de saúde",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Episódio depressivo maior em idoso / luto patológico",
   level: "moderado",
   cardAccent: "#37474F",
@@ -181,11 +903,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 2,
   title: "Estudante com 'mil doenças' e medo constante de estar gravemente doente",
   sub: "UBS — Demanda espontânea",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno de ansiedade generalizada com somatização",
   level: "moderado",
   cardAccent: "#1565C0",
@@ -345,12 +1067,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 03
+  // CASO 03
 {
   id: 3,
   title: "Mulher falando sozinha na sala de espera da UBS",
   sub: "UBS — Demanda espontânea trazida por familiar",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Psicose — episódio agudo na atenção primária",
   level: "difícil",
   cardAccent: "#6A1B9A",
@@ -500,12 +1222,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 04
+  // CASO 04
 {
   id: 4,
   title: "Adolescente trazida pela coordenadora da escola após cortes nos braços",
   sub: "UBS — Encaminhamento urgente pela escola",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Automutilação e avaliação de risco de suicídio em adolescente",
   level: "difícil",
   cardAccent: "#880E4F",
@@ -643,12 +1365,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 05
+  // CASO 05
 {
   id: 5,
   title: "Idoso de 60 anos com euforia intensa e planos de 'mudar tudo' após aposentadoria",
   sub: "Ambulatório de Psiquiatria — Referenciado pela UBS",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno bipolar — primeiro episódio maníaco tardio",
   level: "difícil",
   cardAccent: "#E65100",
@@ -797,12 +1519,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 07
+  // CASO 07
 {
   id: 7,
   title: "Mulher grávida com sensação de sufocamento e medo de morrer na fila do banco",
   sub: "UBS — Demanda espontânea",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno do pânico com agorafobia em gestante",
   level: "moderado",
   cardAccent: "#AD1457",
@@ -945,12 +1667,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 08
+  // CASO 08
 {
   id: 8,
   title: "Paciente confuso, gritando e tentando sair da cama na enfermaria",
   sub: "Enfermaria de Clínica Médica — Hospital Geral",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Delirium (síndrome confusional aguda)",
   level: "difícil",
   cardAccent: "#4E342E",
@@ -1097,12 +1819,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 09
+  // CASO 09
 {
   id: 9,
   title: "Policial militar com 'nervos destruídos' após operação há seis meses",
   sub: "Ambulatório de Saúde Mental — Policlínica",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno de estresse pós-traumático em homem — apresentação atípica",
   level: "difícil",
   cardAccent: "#1A237E",
@@ -1251,12 +1973,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 10
+  // CASO 10
 {
   id: 10,
   title: "Mulher que não para de lavar as mãos e chegou atrasada por 'ter que conferir o gás'",
   sub: "Ambulatório de Psiquiatria — Policlínica",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno obsessivo-compulsivo (TOC)",
   level: "difícil",
   cardAccent: "#00695C",
@@ -1396,11 +2118,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 11,
   title: "Jovem trazido pelo SAMU após festa, sonolento e com hálito de álcool",
   sub: "UPA — Urgência e Emergência",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Intoxicação alcoólica aguda",
   level: "moderado",
   cardAccent: "#FF6F00",
@@ -1562,11 +2284,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 12,
   title: "Homem com tremores, suadeira e 'bicho subindo pela parede' após parar de beber",
   sub: "UPA — Urgência e Emergência",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Síndrome de abstinência alcoólica grave — delirium tremens",
   level: "difícil",
   cardAccent: "#B71C1C",
@@ -1736,11 +2458,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 13,
   title: "Homem que bebe todo dia mas diz que 'consegue parar quando quer'",
   sub: "CAPS AD — Centro de Atenção Psicossocial Álcool e Drogas",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Síndrome de dependência alcoólica — diagnóstico e plano terapêutico",
   level: "difícil",
   cardAccent: "#4E342E",
@@ -1910,11 +2632,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 14,
   title: "Fumante de 25 anos que quer parar antes do nascimento do filho",
   sub: "UBS — Consulta agendada",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno por uso de nicotina — cessação do tabagismo na atenção primária",
   level: "moderado",
   cardAccent: "#558B2F",
@@ -2076,11 +2798,11 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 15,
   title: "Paciente internada com DPOC que pede para fumar no banheiro do hospital",
   sub: "Enfermaria de Pneumologia — Hospital Geral",
-  tema: "Psiquiatria",
+  tema: 'Psiquiatria',
   topic: "Transtorno por uso de nicotina em paciente internado — cessação hospitalar",
   level: "difícil",
   cardAccent: "#2E7D32",
@@ -2239,7 +2961,7 @@ const psiq1stations = [
   }
 },
 
-// NOVOS CASOS DE PSIQUIATRIA:
+  // NOVOS CASOS DE PSIQUIATRIA:
 
 {
   id: 16,
@@ -2365,7 +3087,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 17,
   title: "Diabético que ficou 'nervoso e perturbado' depois de descobrir que vai amputar o pé",
   sub: 'Enfermaria de Endocrinologia — Hospital Geral',
@@ -2496,7 +3218,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 18,
   title: "Estudante que ficou 'perturbado e acelerado' depois de usar energético com suplemento termogênico",
   sub: 'UPA — Demanda espontânea',
@@ -2624,7 +3346,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 19,
   title: "Jovem de 26 anos 'diferente desde sempre' que busca diagnóstico depois de ver vídeo sobre autismo",
   sub: 'Ambulatório de Psiquiatria — Policlínica',
@@ -2745,7 +3467,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 20,
   title: "Professora que 'não consegue terminar nada' e perde tudo que precisa",
   sub: 'UBS — Demanda espontânea',
@@ -2873,7 +3595,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 21,
   title: 'Homem que confere a torneira 40 vezes antes de sair e chegou atrasado à consulta',
   sub: 'CAPS II',
@@ -2994,7 +3716,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 22,
   title: 'Criança que não consegue entrar no elevador depois de ficar presa por 10 minutos',
   sub: 'Ambulatório de Psiquiatria Infantil',
@@ -3109,7 +3831,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 23,
   title: "Músico que recusa shows por medo de 'dar branco' e ser ridicularizado",
   sub: 'Ambulatório de Saúde Mental',
@@ -3229,7 +3951,7 @@ const psiq1stations = [
   }
 },
 
-{
+  {
   id: 24,
   title: "Mulher que acredita que está tendo infarto sempre que o coração dispara no shopping",
   sub: 'UBS — Demanda espontânea',
@@ -3346,12 +4068,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 25
+  // CASO 25
 {
   id: 25,
   title: 'Mãe que perdeu o filho há 18 meses e não consegue aceitar que ele morreu',
   sub: 'UBS — Consulta agendada pelo ACS',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Transtorno do luto prolongado',
   level: 'moderado',
   cardAccent: '#37474F',
@@ -3461,12 +4183,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 26
+  // CASO 26
 {
   id: 26,
   title: 'Homem que se jogou da maca do PS e está gritando que vai morrer',
   sub: 'PS — Emergência Psiquiátrica',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: "Emergência psiquiátrica — agitação psicomotora por mania aguda",
   level: 'moderado',
   cardAccent: '#BF360C',
@@ -3581,12 +4303,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 27
+  // CASO 27
 {
   id: 27,
   title: 'Mulher que tomou todos os remédios da cômoda depois de briga com namorado',
   sub: 'UPA — Urgência e Emergência',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Emergência psiquiátrica — tentativa de suicídio por intoxicação medicamentosa',
   level: 'moderado',
   cardAccent: '#880E4F',
@@ -3704,12 +4426,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 28
+  // CASO 28
 {
   id: 28,
   title: "Paciente com esclerose múltipla que 'deixou de ser ela mesma' após o diagnóstico",
   sub: 'Ambulatório de Neurologia / Psiquiatria de Ligação',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Medicina psicossomática — transtorno depressivo em doença crônica (EM)',
   level: 'moderado',
   cardAccent: '#6A1B9A',
@@ -3824,12 +4546,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 29
+  // CASO 29
 {
   id: 29,
   title: "Adolescente de 16 anos pesando 39 kg que diz estar 'acima do peso ideal'",
   sub: 'UBS — Encaminhamento da escola',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Anorexia nervosa — tipo restritivo',
   level: 'moderado',
   cardAccent: '#AD1457',
@@ -3950,12 +4672,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 30
+  // CASO 30
 {
   id: 30,
   title: 'Jovem que come escondido à noite e se envergonha do próprio corpo',
   sub: 'UBS — Consulta agendada',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Bulimia nervosa',
   level: 'moderado',
   cardAccent: '#E65100',
@@ -4073,12 +4795,12 @@ const psiq1stations = [
     }
   },
 
-// CASO 31
+  // CASO 31
 {
   id: 31,
   title: 'Homem que perde o controle comendo até sentir dor e se isola com vergonha',
   sub: 'UBS — Demanda espontânea',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Transtorno de compulsão alimentar periódica (TCAP)',
   level: 'moderado',
   cardAccent: '#4E342E',
@@ -4193,12 +4915,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 32
+  // CASO 32
 {
   id: 32,
   title: 'Homem com episódios psicóticos que ocorrem apenas durante crises depressivas',
   sub: 'CAPS II',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Transtorno esquizoafetivo — tipo depressivo',
   level: 'moderado',
   cardAccent: '#311B92',
@@ -4305,12 +5027,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 33
+  // CASO 33
 {
   id: 33,
   title: "Jovem com 'surto' de 4 meses após morte do pai que agora está melhorando",
   sub: 'CAPS II — Reavaliação',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Transtorno esquizofreniforme',
   level: 'moderado',
   cardAccent: '#4527A0',
@@ -4414,12 +5136,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 34
+  // CASO 34
 {
   id: 34,
   title: 'Homem que começou a acreditar que a vizinha coloca veneno na comida dele há 3 semanas',
   sub: 'UBS — Trazido pelo filho',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Psicose breve (transtorno psicótico breve)',
   level: 'moderado',
   cardAccent: '#880E4F',
@@ -4537,12 +5259,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 35
+  // CASO 35
 {
   id: 35,
   title: 'Aposentado que há 3 anos acredita que sua esposa o trai com o vizinho',
   sub: 'CAPS II — Encaminhamento da UBS',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Transtorno delirante — tipo ciúme (síndrome de Otelo)',
   level: 'moderado',
   cardAccent: '#1B5E20',
@@ -4658,12 +5380,12 @@ const psiq1stations = [
   }
 },
 
-// CASO 36
+  // CASO 36
 {
   id: 36,
   title: 'Mulher encontrada na rua repetindo as mesmas frases e sem identificação',
   sub: 'PS — Emergência Psiquiátrica',
-  tema: 'psiquiatria',
+  tema: 'Psiquiatria',
   topic: 'Emergência psiquiátrica — catatonia',
   level: 'moderado',
   cardAccent: '#4E342E',
@@ -4777,8 +5499,102 @@ const psiq1stations = [
       }
     ]
   }
-}
+},
 
-]
+  // CASO 2 — EPISÓDIO DEPRESSIVO COM ALTO RISCO DE SUICÍDIO
+  {
+    id: 2,
+    title: 'Um remédio para dormir',
+    sub: 'UBS — Acolhimento',
+    tema: 'Psiquiatria',
+    topic: 'Episódio Depressivo com Alto Risco de Suicídio',
+    level: 'difícil',
+    cardAccent: '#AB47BC',
+    instA: {
+      scenario: 'Unidade Básica de Saúde, acolhimento à demanda espontânea. Na triagem, a técnica de enfermagem notou um curativo no punho esquerdo do paciente.',
+      patient: 'Rafael Souza, 23 anos, sexo masculino, estudante de engenharia, mora com os pais e a irmã de 12 anos.',
+      complaint: 'Pede "um remédio para dormir" porque não consegue dormir direito há 2 meses.',
+      tasks: [
+        'Acolha o paciente e investigue a queixa.',
+        'Avalie o risco de suicídio de forma estruturada.',
+        'Examine o que julgar necessário.',
+        'Formule a hipótese diagnóstica e estratifique o risco.',
+        'Defina e explique a conduta, incluindo o plano de segurança.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '118/74 mmHg', FC: '84 bpm', FR: '16 irpm', Tax: '36,5 °C', Peso: '64 kg (69 kg há 2 meses)', Altura: '1,78 m', IMC: '20,2 kg/m²' },
+      physicalGeneral: 'Vigil, orientado, hipomímico, pouco contato visual, curativo no punho esquerdo.',
+      physicalSeg: 'PUNHO ESQUERDO: três cortes lineares, paralelos, superficiais, de 3–4 cm na face volar, em cicatrização, sem secreção ou sinais flogísticos; sem cicatrizes antigas | AVALIAÇÃO NEUROVASCULAR DA MÃO: perfusão capilar < 2 s; sensibilidade e força preservadas nos territórios mediano, ulnar e radial; flexão dos dedos sem déficit | EXAME DO ESTADO MENTAL: humor deprimido, afeto congruente; discurso lentificado e em baixo volume; pensamento com ideias de culpa e desesperança, sem delírios; sem alterações de sensopercepção; crítica preservada',
+      labs: [
+        { test: 'TSH', val: '2,1 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+        { test: 'Hemograma', val: 'Sem alterações', ref: '—', alt: false }
+      ],
+      note: 'O paciente só fala do corte no punho se o candidato perguntar sobre o curativo, o braço ou autolesão. Se o candidato for julgador ou apressado, o paciente se fecha ("deixa pra lá, só quero o remédio"). Responde com honestidade quando perguntado diretamente sobre suicídio.',
+      patientProfile: 'Estudante de engenharia, reprovou em duas disciplinas. Namorada terminou há 3 meses. Conflitos com o pai por causa das notas. Bebe sozinho nos fins de semana (8 a 10 latas) e usa maconha ocasionalmente. Tio paterno se suicidou há 5 anos. Muito ligado à irmã Bia, de 12 anos, e ao amigo João. Nunca fez tratamento psiquiátrico.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Eu queria um remédio pra dormir. Não tô conseguindo dormir direito.' },
+        { trigger: 'Sobre o sono', speech: 'Demoro horas pra pegar no sono, fico pensando em tudo. E acordo umas quatro da manhã e não durmo mais. Faz uns dois meses.' },
+        { trigger: 'Sobre humor e prazer', speech: 'Ando meio vazio. Parei o futebol, nem videogame tenho vontade. Nada tem graça.' },
+        { trigger: 'Sobre apetite, energia e concentração', speech: 'Quase não sinto fome, perdi uns cinco quilos. Tô sempre cansado, reprovei em duas matérias. Me sinto um fracasso.' },
+        { trigger: 'Sobre o curativo no punho', speech: 'Isso foi há três dias. Depois de uma briga com meu pai, eu me cortei com um estilete. Não sei se queria morrer. Queria parar de sentir aquilo.' },
+        { trigger: 'Sobre pensamentos de morte', speech: 'Já pensei, sim. Às vezes acho que seria melhor não acordar mais. Esses dias isso vem quase todo dia.' },
+        { trigger: 'Sobre plano e acesso a meios', speech: 'Pensei em tomar os remédios da minha mãe. Ela tem uma caixa de amitriptilina no armário da cozinha. Qualquer um pega.' },
+        { trigger: 'Sobre rede de apoio', speech: 'Minha irmã, a Bia. Ela tem doze anos. Não queria fazer isso com ela. E o João, meu melhor amigo, sabe um pouco.' },
+        { trigger: 'Pergunta ativa — família', speech: 'Você vai ter que contar pros meus pais?' }
+      ],
+      hiddenInfo: 'Tio paterno se suicidou há 5 anos — só revela se perguntado sobre história familiar | Aumentou o consumo de álcool (8–10 latas, sozinho, nos fins de semana) e usa maconha — só revela se perguntado sobre álcool e drogas | Nunca teve episódios de euforia ou de muita energia — só responde se perguntado (rastreio de bipolaridade) | Hoje não queria estar ali e às vezes "tem medo de si mesmo" — só revela se perguntado sobre intenção atual',
+      actorBehavior: 'Retraído, fala baixo, evita contato visual, frases curtas. Abre-se aos poucos se acolhido e se o candidato garantir sigilo. Fecha-se diante de julgamento ou pressa. Fica visivelmente aliviado quando o candidato fala do suicídio sem tabu.'
+    },
+    instC: {
+      diagnosis: 'Episódio depressivo grave, sem sintomas psicóticos, com autolesão recente, ideação suicida frequente, plano e acesso a meio letal — alto risco de suicídio.',
+      differentials: [
+        'Transtorno afetivo bipolar, episódio depressivo — entra pelo quadro depressivo em jovem; sai pela ausência de episódios prévios de mania ou hipomania (precisa ser ativamente rastreado antes do antidepressivo).',
+        'Transtorno de ajustamento — entra pelos estressores recentes (término, reprovações); sai pela intensidade, duração e número de sintomas, que preenchem critérios de episódio depressivo.',
+        'Transtorno por uso de álcool — entra pelo aumento do consumo; é comorbidade que eleva o risco, mas não explica o quadro isoladamente.',
+        'Hipotireoidismo — entra como causa orgânica de humor deprimido e fadiga; sai pelo TSH normal.'
+      ],
+      context: 'O suicídio é uma das principais causas de morte entre jovens de 15 a 29 anos. Pacientes frequentemente procuram a atenção primária com queixas somáticas, como insônia, antes de uma tentativa. Este paciente tem múltiplos fatores de risco: sexo masculino, autolesão recente, plano com acesso a meio letal, uso de álcool, história familiar de suicídio e desesperança.',
+      justify: 'Humor deprimido e anedonia há mais de 2 semanas, com insônia terminal, perda de peso, fadiga, déficit de concentração, culpa e ideação suicida (CID-11 / DSM-5). Autolesão há 3 dias, ideação diária, plano definido e acesso aos meios configuram alto risco.',
+      expectedAnamnesis: 'Caracterização da insônia | Humor deprimido | Anedonia | Apetite, peso, energia e concentração | Estressores recentes | Circunstâncias da lesão no punho | Ideação suicida (pergunta direta) | Plano | Acesso a meios letais | Intenção atual | Tentativas prévias | Uso de álcool e drogas | História familiar de suicídio | Rastreio de mania | Sintomas psicóticos | Fatores de proteção e rede de apoio',
+      expectedPhysical: 'Inspeção da lesão do punho | Avaliação neurovascular e tendínea da mão | Exame do estado mental | Sinais vitais e peso',
+      expectedExams: [
+        { exam: 'TSH', justify: 'Excluir causa orgânica de sintomas depressivos', expected: 'Normal' },
+        { exam: 'Hemograma', justify: 'Avaliação clínica básica antes de iniciar tratamento', expected: 'Normal' }
+      ],
+      expectedConduct: 'Farmacológica: considerar ISRS (sertralina 50 mg/dia ou fluoxetina 20 mg/dia) após excluir bipolaridade; NÃO prescrever hipnótico ou benzodiazepínico isolado, nem tricíclico, em paciente com plano de intoxicação | Não farmacológica: encaminhamento no mesmo dia ao CAPS ou à emergência psiquiátrica; não liberar o paciente sozinho; restrição de acesso aos meios (retirar a amitriptilina e outros medicamentos de casa); envolver a família com consentimento; plano de segurança por escrito; cuidado da ferida e vacina antitetânica se indicada | Orientações ao paciente: canais de crise (CVV 188, SAMU 192), redução do álcool, retorno breve',
+      expectedCommunication: 'Apresentar-se e chamar o paciente pelo nome | Acolher sem julgamento | Garantir sigilo e explicar seus limites diante de risco à vida | Perguntar sobre suicídio de forma direta e sem tabu | Construir o plano em conjunto com o paciente',
+      criticalErrors: [
+        'Não perguntar diretamente sobre ideação suicida',
+        'Não investigar o curativo no punho',
+        'Prescrever benzodiazepínico ou hipnótico e liberar o paciente',
+        'Liberar o paciente sem encaminhamento e sem envolver a rede de apoio',
+        'Não orientar a restrição de acesso aos medicamentos da mãe',
+        'Adotar postura julgadora ("isso é bobagem", "é falta de Deus")'
+      ]
+    },
+    instD: {
+      title: 'Depressão e Avaliação de Risco de Suicídio — Material de Estudo',
+      sections: [
+        { h: 'Epidemiologia', items: [
+          { item: 'O suicídio está entre as principais causas de morte entre 15 e 29 anos; a maioria das pessoas que morre por suicídio procurou um serviço de saúde no ano anterior.', score: 1, ref: 'OMS — Live Life (2021)' }
+        ] },
+        { h: 'Diagnóstico de episódio depressivo', items: [
+          { item: 'Humor deprimido ou anedonia por ao menos 2 semanas, com sintomas somáticos e cognitivos associados.', score: 2, ref: 'DSM-5-TR / CID-11' },
+          { item: 'Rastrear mania/hipomania antes de antidepressivo: o ISRS pode induzir virada em bipolares.', score: 1, ref: 'CANMAT 2023' }
+        ] },
+        { h: 'Avaliação de risco', items: [
+          { item: 'Perguntar diretamente sobre suicídio NÃO aumenta o risco.', score: 2, ref: 'Dazzi et al., Psychol Med 2014' },
+          { item: 'Avaliar ideação, plano, intenção, acesso a meios, tentativas prévias, uso de substâncias, história familiar e fatores de proteção.', score: 2, ref: 'ABP — Suicídio: informando para prevenir' }
+        ] },
+        { h: 'Conduta', items: [
+          { item: 'Alto risco: não deixar o paciente sozinho, encaminhamento imediato (CAPS/emergência), envolver a família.', score: 2, ref: 'Ministério da Saúde — Linha de cuidado' },
+          { item: 'Restringir o acesso aos meios é uma das intervenções com maior evidência na prevenção do suicídio.', score: 2, ref: 'Zalsman et al., Lancet Psychiatry 2016' },
+          { item: 'Plano de segurança: sinais de alerta, estratégias de enfrentamento, pessoas de contato, profissionais e serviços (CVV 188).', score: 1, ref: 'Stanley & Brown, 2012' }
+        ] }
+      ]
+    }
+  },
+];
 
-export default psiq1stations;
+export default psiquiatria;

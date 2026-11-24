@@ -1,4 +1,437 @@
-const pneumologia2 = [
+// Casos de Pneumologia (15)
+const pneumologia = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 1 — ASMA
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 1,
+    title: 'Falta de ar e chiado no peito há 2 dias',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Pneumologia',
+    topic: 'Asma',
+    level: 'moderado',
+    cardAccent: '#5B9BD5',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',
+      patient: 'M.A.S., 28 anos, feminino, professora de ensino fundamental, asmática desde a infância.',
+      complaint: 'Chiado no peito e falta de ar há 2 dias, piorando hoje de manhã.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico pertinente.',
+        'Formule a hipótese diagnóstica e classifique a gravidade da crise.',
+        'Solicite os exames complementares adequados.',
+        'Proponha a conduta terapêutica imediata e o plano de manutenção.',
+        'Oriente a paciente sobre o uso correto dos dispositivos inalatórios e sinais de alarme.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '118/76 mmHg',
+        FC: '102 bpm',
+        FR: '24 irpm',
+        Tax: '36,8 °C',
+        Peso: '62 kg',
+        Altura: '1,65 m',
+        IMC: '22,8 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientada, ansiosa, em uso de musculatura acessória durante respiração, fala em frases curtas.',
+      physicalSeg: 'RESPIRATÓRIO: expansibilidade torácica reduzida bilateralmente; percussão com hipersonoridade difusa; ausculta com sibilos expiratórios difusos bilaterais, tempo expiratório prolongado, MV reduzido | CARDIOVASCULAR: bulhas rítmicas, normofonéticas, sem sopros; FC 102 bpm | ABDOME: sem alterações | MMII: sem edema',
+      labs: [
+        { test: 'SatO2 (oximetria de pulso)', val: '91%', ref: '≥ 95%', alt: true },
+        { test: 'Peak Flow (fluxo expiratório)', val: '185 L/min', ref: 'Previsto para sexo/idade/altura: ~420 L/min', alt: true }
+      ],
+      image: null,
+      note: 'Entregar sinais vitais e oximetria ao início. Entregar resultado do peak flow somente se o candidato solicitar ou realizar o teste. Não há exames laboratoriais pré-disponíveis — exames de sangue não estão indicados na crise leve-moderada e devem ser pontuados negativamente se solicitados de rotina.',
+      patientProfile: 'M.A.S., 28 anos, feminino, professora de ensino fundamental, casada.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutora, estou com um chiado muito forte no peito desde ontem e hoje de manhã piorou muito. Tô com bastante falta de ar.' },
+        { trigger: 'Sobre início e evolução', speech: 'Começou dois dias atrás, à noite. Acho que foi por causa da poeira — limpei o armário em casa. Ontem tava ruim, mas hoje acordei pior ainda.' },
+        { trigger: 'Sobre fatores desencadeantes', speech: 'Sempre que tem poeira, cheiro forte ou quando fico resfriada isso acontece comigo. Dessa vez foi a poeira mesmo.' },
+        { trigger: 'Sobre medicamentos e uso do bombinha', speech: 'Tenho a bombinha azul — salbutamol — mas usei três vezes ontem e hoje de manhã já usei de novo e não tá passando direito.' },
+        { trigger: 'Sobre medicamentos de manutenção', speech: 'Tenho um spray marrom que o médico me passou, mas fui ficando preguiçosa e parei de usar há uns dois meses.' },
+        { trigger: 'Sobre internações anteriores', speech: 'Já fui pro pronto-socorro umas três vezes por causa disso, mas nunca fiquei internada.' },
+        { trigger: 'Sobre tabagismo', speech: 'Nunca fumei, não.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O que eu tenho, doutora? É a asma mesmo ou tá tendo alguma coisa mais grave?' },
+        { trigger: 'Pergunta ativa — gravidade', speech: 'Isso tá grave? Preciso ir pro hospital?' }
+      ],
+      hiddenInfo: 'Alergia ao AAS e anti-inflamatórios não esteroidais (AINE) — só revela se o candidato perguntar especificamente sobre alergias a medicamentos | Gravidez: última menstruação há 5 semanas, candidata a gestação — só revela se perguntado diretamente.',
+      actorBehavior: 'Paciente ansiosa, com voz entrecortada pela dispneia. Fala em frases curtas. Colaborativa mas visivelmente desconfortável. Responde ao que for perguntado. Acalma-se levemente se o candidato demonstrar segurança e empatia.'
+    },
+    instC: {
+      diagnosis: 'Crise de asma de intensidade moderada em paciente com asma persistente moderada não controlada (abandono de corticoide inalatório).',
+      differentials: [
+        'DPOC exacerbada — afastada pela idade jovem, ausência de tabagismo e histórico de asma desde a infância',
+        'Bronquite aguda — afastada pelo padrão obstrutivo crônico recorrente com gatilhos clássicos e uso de broncodilatador de resgate',
+        'Insuficiência cardíaca com broncoespasmo — afastada pela ausência de edema, B3, história cardíaca e idade da paciente',
+        'Anafilaxia respiratória — menos provável pela ausência de urticária, angioedema ou exposição a alérgeno sistêmico'
+      ],
+      context: 'Mulher jovem, asmática conhecida, em crise moderada desencadeada por exposição a poeira domiciliar, com abandono de corticoide inalatório de manutenção há 2 meses. SatO2 de 91% e peak flow em 44% do previsto confirmam crise moderada. Histórico de 3 visitas ao PS por crise.',
+      justify: 'Critérios de crise moderada presentes: dispneia ao repouso com fala em frases curtas, FR 24 irpm, FC 102 bpm, SatO2 91%, uso de musculatura acessória, sibilos difusos e peak flow 44% do previsto (<60%). Asma persistente moderada confirmada pelo histórico de crises frequentes, uso diário de resgate e abandono do corticoide inalatório. Atualização de diretriz (GINA, versões vigentes): SABA (salbutamol) em monoterapia como medicação de resgate não é mais recomendado em nenhum degrau do tratamento — a estratégia atual preferencial (track 1) usa corticoide inalatório associado a formoterol (ex.: budesonida-formoterol) como resgate, isoladamente nos degraus 1-2 ou como manutenção-e-resgate (MART) nos degraus 3-4, reduzindo o risco de crise grave e óbito associado ao uso excessivo de SABA isolado — mudança de conduta relevante para o plano de manutenção desta paciente.',
+      expectedAnamnesis: 'Investigar início, duração e evolução da dispneia | Quantificar uso do broncodilatador de resgate nas últimas 24h | Identificar fator desencadeante (poeira, animal, infecção) | Investigar uso de medicamentos de manutenção e adesão | Perguntar sobre internações e intubações anteriores | Investigar alergias medicamentosas (especialmente AAS/AINE) | Questionar sobre tabagismo, gestação, comorbidades | Avaliar história familiar de atopia/asma',
+      expectedPhysical: 'Avaliar estado geral, uso de musculatura acessória, capacidade de falar em frases | Sinais vitais completos com ênfase em FR, FC e SatO2 | Ausculta pulmonar: presença/localização de sibilos, tempo expiratório, MV | Expansibilidade e percussão torácica | Ausculta cardíaca para afastar ICC | Pesquisar sinais de anafilaxia (urticária, angioedema) | Realizar peak flow se disponível',
+      expectedExams: [
+        { exam: 'Oximetria de pulso', justify: 'Avaliar gravidade da crise e necessidade de suplementação de O2', expected: 'SatO2 91% — indica crise moderada a grave' },
+        { exam: 'Peak Flow (fluxo expiratório máximo)', justify: 'Objetivar obstrução e classificar gravidade da crise', expected: '185 L/min — 44% do previsto — crise moderada (<60%)' },
+        { exam: 'Radiografia de tórax (se dúvida diagnóstica ou suspeita de pneumotórax)', justify: 'Afastar pneumotórax, pneumonia ou outra causa de dispneia aguda', expected: 'Hiperinsuflação; afastar complicações' }
+      ],
+      expectedConduct: 'Farmacológica: Broncodilatador de curta ação inalatório — Salbutamol spray 400 mcg (4 jatos de 100 mcg com espaçador) a cada 20 min na 1ª hora (ou budesonida-formoterol em altas doses repetidas, se disponível, conforme GINA); se resposta parcial ou má resposta, corticoide sistêmico — Prednisona 40-50 mg VO dose única (ou equivalente) por 5-7 dias, sem necessidade de desmame, ou Metilprednisolona IV se impossibilidade via oral; O2 suplementar se SatO2 <92% (máscara ou cateter nasal 2–4 L/min), com alvo de saturação 93-95%; Após estabilização — NÃO retomar apenas o corticoide inalatório isolado: a GINA (desde 2019, reforçada nas versões vigentes) não recomenda mais SABA isolado como resgate em nenhum degrau de tratamento pelo risco de crises graves e óbito por uso excessivo de SABA — a paciente deve ser transferida para budesonida-formoterol em dose baixa como manutenção E resgate (estratégia MART/track 1 preferencial), substituindo tanto o "spray marrom" isolado quanto o salbutamol de resgate isolado | Não farmacológica: Posição sentada; monitorar SatO2 seriada; reavaliação em 1h | Encaminhamento: SE/UPA se ausência de resposta em 1h, SatO2 persistentemente <92% ou piora clínica | Orientações ao paciente: Explicar a mudança da estratégia terapêutica (de "duas bombinhas separadas" para uma única — corticoide+formoterol — usada tanto todo dia quanto nas crises); técnica correta do dispositivo inalatório; plano de ação por escrito; evitar desencadeantes; não usar AAS/AINE (histórico de alergia); sinais de alarme para buscar emergência | Seguimento: retorno em 7 dias para reavaliação e ajuste de manutenção',
+      expectedCommunication: 'Apresentar-se pelo nome e função | Explicar o diagnóstico de crise asmática em linguagem acessível ("o tubo que leva o ar para o pulmão está fechando") | Esclarecer que o abandono do spray marrom (corticoide) favoreceu a crise | Demonstrar técnica correta do inalador com espaçador | Perguntar se tem dúvidas | Escuta ativa: validar preocupação da paciente sem gerar pânico',
+      criticalErrors: [
+        'Prescrever AAS ou AINE sem perguntar sobre alergias (risco de broncoespasmo grave por AAS)',
+        'Não reconhecer a crise como moderada e não iniciar broncodilatador na consulta',
+        'Alta sem orientação sobre retomada do corticoide inalatório de manutenção',
+        'Não avaliar SatO2 ou peak flow para classificar gravidade',
+        'Não encaminhar ao PS/UPA em caso de ausência de resposta ao broncodilatador'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — FALTA DE AR E CHIADO NO PEITO HÁ 2 DIAS (ASMA)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.232/2019; Comunicação Médica AMB' },
+            { item: 'Explicou o que iria fazer antes de iniciar o exame físico', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Utilizou linguagem acessível ao explicar diagnóstico e conduta', score: 0.5, ref: 'PCDT Asma MS, 2021' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou início, duração e evolução da dispneia', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Quantificou o uso do broncodilatador de resgate nas últimas 24h', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Identificou o fator desencadeante da crise (exposição a poeira)', score: 0.5, ref: 'PCDT Asma MS, 2021' },
+            { item: 'Investigou uso e adesão ao corticoide inalatório de manutenção', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Perguntou sobre internações e visitas ao PS anteriores por asma', score: 0, ref: 'GINA 2024' },
+            { item: 'Perguntou sobre alergias medicamentosas (especialmente AAS/AINE)', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou sinais vitais incluindo frequência respiratória e cardíaca', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Realizou oximetria de pulso e identificou SatO2 < 95%', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Realizou ausculta pulmonar e identificou sibilos expiratórios difusos', score: 0.5, ref: 'GINA 2024' },
+            { item: 'Avaliou uso de musculatura acessória e capacidade de falar em frases', score: 0.5, ref: 'GINA 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Classificou a crise como moderada (FR elevada, SatO2 91%, sibilos, fala em frases curtas)', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' },
+            { item: 'Solicitou ou realizou peak flow para objetivar a obstrução', score: 0.5, ref: 'GINA 2024; PCDT Asma MS, 2021' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Prescreveu salbutamol inalatório 400 mcg (4 jatos) imediatamente na consulta', score: 1.0, ref: 'PCDT Asma MS, 2021; GINA 2024' },
+            { item: 'Prescreveu corticoide sistêmico (prednisona VO ou equivalente) na crise moderada', score: 0.5, ref: 'PCDT Asma MS, 2021; GINA 2024' },
+            { item: 'Orientou transição para corticoide inalatório associado a formoterol como manutenção-e-resgate (MART), evitando recomendar SABA isolado como resgate', score: 0.5, ref: 'GINA 2024 (estratégia track 1 preferencial)' },
+            { item: 'Orientou sobre sinais de alarme e quando buscar emergência', score: 0.5, ref: 'PCDT Asma MS, 2021' },
+            { item: 'Perguntou se a paciente tinha dúvidas ao final da consulta', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 2 — TUBERCULOSE PULMONAR
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 2,
+    title: 'Tosse com sangue e perda de peso há 3 semanas',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Pneumologia',
+    topic: 'Tuberculose Pulmonar',
+    level: 'moderado',
+    cardAccent: '#C0392B',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno vespertino.',
+      patient: 'R.S.O., 34 anos, masculino, auxiliar de construção civil, mora em comunidade com alta densidade populacional.',
+      complaint: 'Tosse há mais de 3 semanas, com sangue às vezes, e está emagrecendo.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico pertinente.',
+        'Solicite os exames complementares adequados para investigação diagnóstica.',
+        'Formule a hipótese diagnóstica principal e os diferenciais.',
+        'Proponha a conduta terapêutica e as medidas de saúde pública pertinentes.',
+        'Oriente o paciente sobre o tratamento, a importância da adesão e o risco de contágio.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '110/70 mmHg',
+        FC: '88 bpm',
+        FR: '20 irpm',
+        Tax: '37,9 °C',
+        Peso: '58 kg',
+        Altura: '1,72 m',
+        IMC: '19,6 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, emagrecido, corado, hipocorado +/4+, hidratado, febril, sudoreico.',
+      physicalSeg: 'RESPIRATÓRIO: expansibilidade reduzida no ápice direito; percussão com macicez apical direita; ausculta com crepitações e sopro anfórico em ápice direito; egofonia presente à direita | CARDIOVASCULAR: bulhas rítmicas, normofonéticas, sem sopros | ABDOME: indolor, sem organomegalias | LINFONODOS: adenomegalia cervical direita, indolor, ~1,5 cm',
+      labs: [
+        { test: 'Hemograma — Hemoglobina', val: '10,8 g/dL', ref: '13,5–17,5 g/dL', alt: true },
+        { test: 'Hemograma — Leucócitos', val: '7.200/mm³', ref: '4.000–11.000/mm³', alt: false },
+        { test: 'VHS', val: '78 mm/h', ref: '< 15 mm/h', alt: true },
+        { test: 'PCR', val: '32 mg/L', ref: '< 5 mg/L', alt: true },
+        { test: 'Baciloscopia de escarro (BAAR) — 1ª amostra', val: '3+ (positivo)', ref: 'Negativo', alt: true },
+        { test: 'Baciloscopia de escarro (BAAR) — 2ª amostra', val: '2+ (positivo)', ref: 'Negativo', alt: true },
+        { test: 'Glicemia de jejum', val: '88 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'Anti-HIV (ELISA)', val: 'Não reagente', ref: 'Não reagente', alt: false },
+        { test: 'TGO', val: '28 U/L', ref: '< 40 U/L', alt: false },
+        { test: 'TGP', val: '32 U/L', ref: '< 41 U/L', alt: false }
+      ],
+      image: 'Radiografia de Tórax PA: Infiltrado heterogêneo com cavitação em lobo superior direito (segmento apicoposterior). Discreta opacidade hiliar direita. Sem derrame pleural. Silhueta cardíaca normal.',
+      note: 'Entregar sinais vitais ao início. Entregar radiografia de tórax somente se o candidato solicitar. Entregar resultado das baciloscopias e demais exames laboratoriais somente se solicitados. O candidato deve ser pontuado por solicitar 2 amostras de BAAR.',
+      patientProfile: 'R.S.O., 34 anos, masculino, auxiliar de construção civil, solteiro, mora em quarto de pensão com mais 3 pessoas.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, tô com essa tosse feia há mais de três semanas e às vezes sai um pouquinho de sangue. Tô perdendo peso também, tô com o calçado frouxo.' },
+        { trigger: 'Sobre a tosse', speech: 'É uma tosse seca às vezes, às vezes sai catarro amarelado. De vez em quando tem um fio de sangue misturado.' },
+        { trigger: 'Sobre os sintomas sistêmicos', speech: 'Tô suando muito à noite, molhando o lençol. Tenho cansaço o dia todo e perdi uns seis quilos nesses últimos dois meses.' },
+        { trigger: 'Sobre moradia e contato', speech: 'Moro numa pensão, quarto com mais três colegas de trabalho. Um deles tava com tosse parecida, mas saiu faz uns dois meses.' },
+        { trigger: 'Sobre HIV e comportamento sexual', speech: 'Não sei se tenho HIV não, nunca fiz o exame. Já tive relação sem camisinha algumas vezes.' },
+        { trigger: 'Sobre tabagismo', speech: 'Fumo desde os 16 anos, umas dez cigarrinhas por dia.' },
+        { trigger: 'Sobre tratamento anterior de TB', speech: 'Nunca tratei de tuberculose não, doutor.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'O senhor acha que é tuberculose, doutor? Minha vizinha falou que pode ser isso por causa do sangue.' },
+        { trigger: 'Pergunta ativa — tratamento', speech: 'Se for tuberculose, quanto tempo de remédio eu vou ter que tomar? É muito tempo?' }
+      ],
+      hiddenInfo: 'Uso de álcool: bebe cachaça todo final de semana, aproximadamente 300 mL — só revela se perguntado especificamente sobre etilismo | Contato prévio com caso de TB: o colega de quarto que saiu há 2 meses tinha diagnóstico de TB — só revela se o candidato perguntar especificamente sobre contato com pessoas com TB ou tosse crônica',
+      actorBehavior: 'Paciente colaborativo, levemente constrangido ao falar sobre HIV e comportamento sexual. Visivelmente magro e cansado. Pode demonstrar preocupação com o tempo de tratamento e com o emprego. Responde com franqueza se abordado com empatia e sem julgamento.'
+    },
+    instC: {
+      diagnosis: 'Tuberculose pulmonar primária com baciloscopia positiva (BAAR 3+/2+), forma cavitária em ápice direito. Paciente bacilífero.',
+      differentials: [
+        'Pneumonia bacteriana — menos provável pelo tempo de evolução (>3 semanas), perda de peso, sudorese noturna e achado radiológico cavitário apical, padrão típico de TB',
+        'Neoplasia pulmonar — diferencial importante em tabagista com cavitação; afastado pela idade jovem, baciloscopia positiva e padrão epidemiológico',
+        'Abscesso pulmonar — pode cursar com cavitação e hemoptise; sem odor fétido do escarro, sem foco periodontal ou broncoaspiração documentada; BAAR positivo afasta',
+        'Histoplasmose — diferencial em contexto epidemiológico específico (cavernas, excrementos de aves); BAAR positivo define TB'
+      ],
+      context: 'Homem jovem, trabalhador de construção civil, morando em condição de aglomeração, com síndrome consumptiva (perda de 6 kg), febre vespertina, sudorese noturna, tosse produtiva com hemoptise há 3 semanas e infiltrado cavitário apical direito à radiografia. Baciloscopia fortemente positiva confirma tuberculose pulmonar bacilífera.',
+      justify: 'Critérios de TB pulmonar presentes: sintomas clássicos da tríade (tosse >3 semanas, hemoptise, sudorese noturna e emagrecimento), achado radiológico com infiltrado e cavitação em lobo superior direito e baciloscopia de escarro 3+/2+ positiva. Paciente é bacilífero e convive com contatos próximos em ambiente de aglomeração. HIV não reagente afasta imunossupressão mais grave, mas não altera diagnóstico.',
+      expectedAnamnesis: 'Investigar início e características da tosse (duração >3 semanas é critério clínico de TB) | Pesquisar hemoptise: frequência e quantidade | Investigar síndrome constitucional: febre, sudorese noturna, perda de peso (quantificar) | Questionar contato com caso de TB (convivente, colega de trabalho) | Perguntar sobre tratamento anterior de TB | Investigar HIV e comportamento de risco | Questionar tabagismo, etilismo | Investigar condições de moradia (aglomeração, ventilação) | Histórico de doenças imunocomprometedoras (DM, uso de corticoide) | Avaliar ocupação e condições socioeconômicas',
+      expectedPhysical: 'Avaliar estado geral e nutricional | Sinais vitais com febre vespertina como achado esperado | Inspeção: emagrecimento, palidez | Palpação: linfonodos cervicais, axilares | Expansibilidade torácica (reduzida à direita) | Percussão: macicez apical direita | Ausculta: crepitações e sopro anfórico apical direito, egofonia',
+      expectedExams: [
+        { exam: 'Baciloscopia de escarro (BAAR) — 2 amostras', justify: 'Exame de primeira linha para diagnóstico de TB pulmonar — obrigatório em adulto com tosse >2 semanas na AB', expected: 'BAAR 3+ e 2+ — confirma TB pulmonar bacilífera' },
+        { exam: 'Radiografia de tórax PA', justify: 'Avaliar extensão do comprometimento pulmonar, cavitação e padrão radiológico', expected: 'Infiltrado com cavitação em lobo superior direito — padrão típico de TB' },
+        { exam: 'Anti-HIV', justify: 'Coinfecção TB-HIV altera conduta e prognóstico; triagem obrigatória em todos os casos de TB', expected: 'Não reagente neste caso' },
+        { exam: 'Hemograma, VHS, PCR', justify: 'Avaliar estado inflamatório e anemia da doença crônica', expected: 'Anemia normocítica, VHS e PCR elevados' },
+        { exam: 'TGO e TGP basais', justify: 'Avaliação hepática basal obrigatória antes de iniciar RIPE (rifampicina e isoniazida são hepatotóxicas)', expected: 'Normais neste caso' },
+        { exam: 'Glicemia de jejum', justify: 'DM é fator de risco para TB e altera resposta ao tratamento', expected: 'Normal neste caso' },
+        { exam: 'Cultura de escarro + Teste de sensibilidade (se disponível)', justify: 'Identificar resistência ao esquema RIPE; indicado especialmente em casos com tratamento anterior', expected: 'Aguardar resultado' }
+      ],
+      expectedConduct: 'Farmacológica: Esquema RIPE por 6 meses — Fase intensiva (2 meses): Rifampicina 600 mg + Isoniazida 300 mg + Pirazinamida 2 g + Etambutol 1,2 g VO em dose única em jejum; Fase de manutenção (4 meses): Rifampicina 600 mg + Isoniazida 300 mg VO; Doses conforme peso (≥ 50 kg) — conforme PCDT TB MS 2019/2023; Piridoxina (vitamina B6) 50 mg/dia para prevenir neuropatia por isoniazida | Não farmacológica: Notificação compulsória imediata à vigilância epidemiológica; Investigação de contatos (comunicantes domiciliares e de trabalho devem ser rastreados); Isolamento respiratório domiciliar por pelo menos 15 dias após início do tratamento ou até negativação da baciloscopia; Orientar sobre ventilação dos ambientes e higiene respiratória | Encaminhamento: TDO (Tratamento Diretamente Observado) — obrigatório na AB conforme PCDT MS | Orientações ao paciente: Explicar duração do tratamento (6 meses), importância de não interromper; orientar que após 15 dias de RIPE o risco de contágio reduz; alertar sobre efeitos adversos (coloração alaranjada da urina pela rifampicina, náuseas, hepatotoxicidade) e sinais de alarme (icterícia, urina escura, dor abdominal intensa) | Seguimento: Baciloscopia de controle ao 2º e 6º mês de tratamento; consultas mensais; monitorar função hepática em etilistas',
+      expectedCommunication: 'Apresentar-se pelo nome e função | Comunicar o diagnóstico com clareza, sem alarmar excessivamente, explicando que TB tem cura com tratamento correto | Esclarecer que os colegas de quarto precisam ser examinados (busca de contatos) | Explicar em linguagem acessível o risco de contágio e as medidas de proteção | Perguntar se tem dúvidas | Demonstrar escuta ativa e acolhimento, evitando julgamentos sobre comportamento sexual ou uso de álcool',
+      criticalErrors: [
+        'Não solicitar baciloscopia de escarro em paciente com tosse > 3 semanas, perda de peso e hemoptise (omissão diagnóstica grave)',
+        'Iniciar esquema RIPE sem solicitar TGO/TGP basais (risco de hepatotoxicidade grave não monitorada)',
+        'Não notificar o caso à vigilância epidemiológica (obrigação legal — TB é doença de notificação compulsória)',
+        'Não investigar HIV (coinfecção TB-HIV altera conduta e é triagem obrigatória)',
+        'Não investigar contatos (comunicantes domiciliares e de trabalho devem ser rastreados — risco de cadeia de transmissão)',
+        'Prescrever esquema RIPE sem orientar sobre TDO (Tratamento Diretamente Observado), obrigatório na Atenção Básica'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — TOSSE COM SANGUE E PERDA DE PESO HÁ 3 SEMANAS (TUBERCULOSE)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico de forma clara, sem julgamentos, usando linguagem acessível', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou duração da tosse (>3 semanas) e presença de hemoptise', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Pesquisou síndrome constitucional: febre vespertina, sudorese noturna, perda de peso', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Perguntou sobre contato com caso de TB (domiciliar ou trabalho)', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Investigou HIV e comportamento de risco', score: 0.3, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Questionou tratamento anterior de TB', score: 0.3, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Questionou condições de moradia (aglomeração) e etilismo', score: 0.3, ref: 'PCDT Tuberculose MS, 2023' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou sinais vitais incluindo temperatura', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Realizou ausculta pulmonar e identificou crepitações/sopro anfórico apical direito', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Pesquisou adenomegalia cervical à palpação', score: 0.3, ref: 'PCDT Tuberculose MS, 2023' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Solicitou baciloscopia de escarro (BAAR) em 2 amostras', score: 1.0, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Solicitou radiografia de tórax', score: 0.3, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Solicitou Anti-HIV', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Solicitou TGO e TGP basais antes de iniciar o tratamento', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Prescreveu esquema RIPE nas doses corretas (Rifampicina + Isoniazida + Pirazinamida + Etambutol)', score: 1.0, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Realizou notificação compulsória ou demonstrou conhecimento da obrigatoriedade', score: 1.0, ref: 'PCDT Tuberculose MS, 2023; Lei 6.259/75' },
+            { item: 'Orientou sobre busca de contatos (comunicantes domiciliares e de trabalho)', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' },
+            { item: 'Orientou sobre TDO e importância da adesão ao tratamento de 6 meses', score: 0.5, ref: 'PCDT Tuberculose MS, 2023' }
+          ]
+        }
+      ]
+    }
+  },
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 3 — TROMBOEMBOLISMO PULMONAR (TEP)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 3,
+    title: 'Dor no peito e falta de ar súbita após cirurgia',
+    sub: 'UPA — Urgência e Emergência',
+    tema: 'Pneumologia',
+    topic: 'Tromboembolismo Pulmonar',
+    level: 'difícil',
+    cardAccent: '#8E44AD',
+    instA: {
+      scenario: 'Urgência e Emergência — UPA. Sala de atendimento, turno noturno.',
+      patient: 'C.M.F., 52 anos, feminino, gerente administrativa, foi submetida a artroplastia total de joelho direito há 8 dias.',
+      complaint: 'Falta de ar súbita e dor no peito há cerca de 2 horas, começou em casa.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico pertinente.',
+        'Calcule o escore de Wells para TEP e interprete.',
+        'Solicite os exames complementares adequados à hipótese diagnóstica.',
+        'Proponha a conduta terapêutica inicial com base na estratificação de risco.',
+        'Oriente a paciente sobre o diagnóstico e o plano terapêutico.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '100/68 mmHg',
+        FC: '118 bpm',
+        FR: '26 irpm',
+        Tax: '37,2 °C',
+        Peso: '74 kg',
+        Altura: '1,60 m',
+        IMC: '28,9 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, ansiosa, diaforética, em leve angústia respiratória, fala em frases completas mas com esforço.',
+      physicalSeg: 'RESPIRATÓRIO: murmúrio vesicular reduzido em base direita; sem sibilos; percussão com submacicez em base direita; atrito pleural ausente | CARDIOVASCULAR: bulhas taquicárdicas, segunda bulha hiperfonética, sem sopros | MMII: edema 1+/4+ em membro inferior direito (operado); panturrilha direita empastada e dolorosa à palpação; sinal de Homans positivo à direita | ABDOME: sem alterações',
+      labs: [
+        { test: 'SatO2 (oximetria de pulso)', val: '89%', ref: '≥ 95%', alt: true },
+        { test: 'D-dímero', val: '4.820 ng/mL', ref: '< 500 ng/mL', alt: true },
+        { test: 'Troponina I', val: '0,18 ng/mL', ref: '< 0,04 ng/mL', alt: true },
+        { test: 'BNP', val: '312 pg/mL', ref: '< 100 pg/mL', alt: true },
+        { test: 'Hemograma — Hemoglobina', val: '11,6 g/dL', ref: '12,0–16,0 g/dL', alt: true },
+        { test: 'Hemograma — Leucócitos', val: '11.800/mm³', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Gasometria arterial — pH', val: '7,48', ref: '7,35–7,45', alt: true },
+        { test: 'Gasometria arterial — PaO2', val: '58 mmHg', ref: '80–100 mmHg', alt: true },
+        { test: 'Gasometria arterial — PaCO2', val: '28 mmHg', ref: '35–45 mmHg', alt: true },
+        { test: 'Gasometria arterial — HCO3', val: '21 mEq/L', ref: '22–26 mEq/L', alt: false },
+        { test: 'Creatinina', val: '0,9 mg/dL', ref: '0,6–1,1 mg/dL', alt: false },
+        { test: 'Coagulograma — TP/INR', val: '1,0', ref: '0,8–1,2', alt: false }
+      ],
+      image: 'ECG: Taquicardia sinusal (FC 118 bpm). Padrão S1Q3T3 (onda S em D1, onda Q em D3, inversão de T em D3). Bloqueio de ramo direito incompleto. Sem alterações isquêmicas primárias.\n\nAngiotomografia de tórax (AngioTC): Falha de enchimento em ramo da artéria pulmonar direita (lobar inferior), compatível com trombo endoluminal. Infarto pulmonar em base direita (sinal do cone). Leve derrame pleural direito. Câmaras cardíacas direitas discretamente aumentadas.',
+      note: 'Entregar sinais vitais ao início. Entregar resultado da oximetria de pulso ao início. ECG: entregar se o candidato solicitar. Entregar D-dímero, gasometria e demais labs se solicitados. AngioTC: entregar após o candidato solicitar tomografia de tórax com contraste ou AngioTC (não entregar se solicitar apenas "RX de tórax").',
+      patientProfile: 'C.M.F., 52 anos, feminino, gerente administrativa, casada, sem filhos. Submetida à artroplastia total de joelho direito há 8 dias. Histórico de hipertensão arterial leve.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutora, eu acordei com uma falta de ar muito forte e uma dor aqui no peito. Veio do nada, me assustou muito. Fiz uma cirurgia no joelho semana passada.' },
+        { trigger: 'Sobre a dor torácica', speech: 'A dor é do lado direito, piora quando respiro fundo. Não irradia pro braço nem pro pescoço.' },
+        { trigger: 'Sobre a dispneia', speech: 'Tô com bastante falta de ar, nunca senti assim. Não consigo respirar direito, sinto que o ar não entra.' },
+        { trigger: 'Sobre a cirurgia e o pós-operatório', speech: 'Fiz cirurgia no joelho há oito dias. Fiquei três dias no hospital, depois fui pra casa. Tenho ficado no repouso, quase não levantei.' },
+        { trigger: 'Sobre o membro inferior', speech: 'Tenho sentido o joelho inchado, mas achei que era normal pela cirurgia. A perna tá um pouco mais inchada do que ontem e dói quando aperto aqui na batata da perna.' },
+        { trigger: 'Sobre anticoagulação profilática', speech: 'O médico me receitou uma injeção pra afinar o sangue, mas eu parei de usar dois dias atrás porque achei que já tava bem.' },
+        { trigger: 'Sobre antecedentes', speech: 'Tenho pressão alta, tomo losartana. Nunca tive trombose antes.' },
+        { trigger: 'Pergunta ativa — gravidade', speech: 'Isso é grave, doutora? Preciso ficar internada? Tenho medo que seja coisa do coração.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'Pode ser por causa da cirurgia isso? O médico do joelho me avisou sobre alguma complicação mas eu não lembro direito.' }
+      ],
+      hiddenInfo: 'Abandono da anticoagulação profilática (heparina de baixo peso molecular) 2 dias antes — só revela se o candidato perguntar especificamente sobre medicamentos após a cirurgia ou anticoagulação pós-operatória | Uso de anticoncepcional oral combinado há 3 anos — só revela se o candidato perguntar sobre anticoncepcionais ou hormônios',
+      actorBehavior: 'Paciente ansiosa, diaforética, com visível desconforto respiratório. Fala de forma entrecortada mas compreende as perguntas. Preocupada com a gravidade e com o emprego. Responde com detalhes se abordada com empatia. Fica mais ansiosa se o candidato demonstrar incerteza ou demorar para agir.'
+    },
+    instC: {
+      diagnosis: 'Tromboembolismo pulmonar (TEP) agudo de risco intermediário-alto. TVP em membro inferior direito como fonte embólica. Escore de Wells ≥ 6 pontos (alta probabilidade). Comprometimento de VD (troponina e BNP elevados).',
+      differentials: [
+        'Síndrome coronariana aguda (SCA) — dor torácica e dispneia estão presentes; afastada pelo padrão da dor (pleurítica, sem irradiação), ausência de supradesnivelamento do ST no ECG, contexto pós-operatório e D-dímero muito elevado',
+        'Pneumonia — pode cursar com dispneia e dor pleurítica; afastada pela ausência de febre significativa, instalação súbita, contexto pós-operatório ortopédico e AngioTC confirmando TEP',
+        'Pneumotórax espontâneo — dispneia súbita com dor pleurítica; afastado pela AngioTC e pelo achado de infarto pulmonar em base direita',
+        'Dissecção aórtica — dor torácica intensa de início súbito; afastada pelo padrão clínico, contexto e AngioTC'
+      ],
+      context: 'Mulher de 52 anos, oito dias após artroplastia de joelho (cirurgia ortopédica de alto risco tromboembólico), com abandono da anticoagulação profilática e uso de ACO, apresentando dispneia súbita, taquicardia, hipoxemia grave (SatO2 89%, PaO2 58 mmHg), TVP em MMID e AngioTC confirmando TEP lobar com infarto pulmonar. Biomarcadores positivos indicam comprometimento do VD (risco intermediário-alto).',
+      justify: 'Escore de Wells: FC > 100 (1,5) + cirurgia nas últimas 4 semanas (1,5) + sinais clínicos de TVP (3,0) + diagnóstico alternativo menos provável que TEP (3,0) = 9,0 pontos — alta probabilidade (≥6). D-dímero > 4.000 ng/mL. AngioTC confirma trombo lobar direito. Troponina e BNP elevados indicam disfunção de VD. Gasometria com hipoxemia, hipocapnia e alcalose respiratória são achados clássicos de TEP. Importante distinguir Wells (probabilidade pré-teste/necessidade de investigação) de PESI/sPESI (estratificação de risco de mortalidade após confirmação): sPESI ≥1 (idade >80, câncer, doença cardiopulmonar crônica, FC ≥110, PAS <100, SatO2 <90%) já é suficiente para excluir a paciente de alta precoce ambulatorial — associado à disfunção de VD (troponina/BNP elevados) sem hipotensão franca, classifica o caso como TEP de risco intermediário-alto conforme as diretrizes ESC/ERS vigentes, com necessidade de internação monitorizada e vigilância para eventual reperfusão de resgate.',
+      expectedAnamnesis: 'Investigar início e características da dispneia (súbita) | Caracterizar a dor torácica (pleurítica, inspiratória, localização) | Perguntar sobre cirurgia recente (tipo, data) | Questionar mobilização/imobilização pós-operatória | Perguntar sobre anticoagulação profilática e adesão | Investigar TVP: dor, edema em MMII | Perguntar sobre uso de anticoncepcionais orais | Investigar antecedentes de TVP/TEP | Histórico de trombofilia ou doença neoplásica | Antecedentes cardiovasculares',
+      expectedPhysical: 'Avaliar estado geral e nível de consciência | Sinais vitais completos (taquicardia, hipotensão, taquipneia são sinais de alerta) | Oximetria de pulso | Ausculta pulmonar (redução de MV em base direita) | Ausculta cardíaca (B2 hiperfonética) | Exame de MMII: edema, empastamento, sinal de Homans, temperatura local | Pesquisar sinais de cor pulmonale agudo',
+      expectedExams: [
+        { exam: 'D-dímero', justify: 'Triagem para TEP de baixa/moderada probabilidade clínica; valor normal exclui TEP', expected: '4.820 ng/mL — muito elevado; não exclui TEP, reforça indicação de angioTC' },
+        { exam: 'AngioTC de tórax (Angiotomografia pulmonar)', justify: 'Exame de escolha para confirmar TEP — gold standard diagnóstico', expected: 'Falha de enchimento em ramo lobar inferior direito — confirma TEP' },
+        { exam: 'ECG de 12 derivações', justify: 'Afastar SCA, avaliar padrão S1Q3T3, bloqueio de ramo direito como sinais indiretos de sobrecarga de VD', expected: 'Padrão S1Q3T3, taquicardia sinusal, BRD incompleto' },
+        { exam: 'Troponina I e BNP', justify: 'Estratificação de risco — elevação indica disfunção ventricular direita (risco intermediário-alto)', expected: 'Troponina 0,18 ng/mL e BNP 312 pg/mL — ambos elevados' },
+        { exam: 'Gasometria arterial', justify: 'Avaliar hipoxemia e padrão respiratório', expected: 'Alcalose respiratória com hipoxemia (PaO2 58, PaCO2 28)' },
+        { exam: 'Hemograma e coagulograma', justify: 'Avaliação basal antes de anticoagulação plena', expected: 'Leucocitose leve, anemia leve; INR normal' },
+        { exam: 'Escore sPESI (ou PESI completo)', justify: 'Estratificar risco de mortalidade em 30 dias, distinto do Wells (que mede apenas probabilidade pré-teste) — orienta necessidade de internação e nível de monitorização', expected: 'sPESI ≥1 neste caso, reforçando risco intermediário-alto e indicação de internação monitorizada' }
+      ],
+      expectedConduct: 'Farmacológica: O2 suplementar para manter SatO2 ≥ 95% (máscara Venturi ou cateter nasal); Anticoagulação plena imediata — preferencialmente parenteral neste risco intermediário-alto (Heparina não fracionada IV em bolus 80 UI/kg + infusão contínua 18 UI/kg/h, ou Enoxaparina 1 mg/kg SC 12/12h ajustada à função renal), mantendo via parenteral por manter possibilidade de reperfusão de resgate; Analgesia para dor pleurítica; Monitorização contínua de PA, FC, SatO2 e nível de consciência; Risco intermediário-alto: NÃO trombolisar de rotina — reservar trombólise sistêmica (ou embolectomia/trombólise dirigida por cateter) para deterioração hemodinâmica evolutiva (evolução para risco alto/choque), com decisão em conjunto com especialista | Não farmacológica: Internação em leito monitorizado/UTI conforme estabilidade; repouso relativo no leito; cabeceira elevada; acesso venoso calibroso | Encaminhamento: Internação hospitalar imediata; avaliar necessidade de UTI (risco intermediário-alto); comunicar cirurgia ortopédica | Orientações ao paciente: Explicar diagnóstico de coágulo no pulmão e veia da perna em linguagem acessível; esclarecer relação com a cirurgia e a interrupção da anticoagulação; orientar sobre tratamento e monitorização | Seguimento: Após estabilização clínica (tipicamente após os primeiros dias de anticoagulação parenteral), transição para anticoagulante oral direto (DOAC — rivaroxabana ou apixabana), atualmente preferencial sobre varfarina para a maioria dos pacientes por não exigir monitorização de INR e ter menor risco de sangramento; duração mínima de 3–6 meses conforme fator de risco (provocado por cirurgia = risco transitório, permitindo considerar suspensão após esse período em reavaliação)',
+      expectedCommunication: 'Apresentar-se pelo nome | Comunicar a gravidade de forma clara sem gerar pânico — explicar que é tratável | Esclarecer a relação com a cirurgia ortopédica e a importância da anticoagulação não interrompida | Demonstrar empatia com a ansiedade da paciente | Perguntar se tem dúvidas',
+      criticalErrors: [
+        'Não calcular ou não considerar o escore de Wells para estratificação clínica de TEP',
+        'Não iniciar anticoagulação plena imediata após suspeita/confirmação de TEP (risco de morte por extensão do trombo)',
+        'Solicitar apenas D-dímero sem AngioTC em paciente com alta probabilidade clínica (Wells ≥ 6) — D-dímero positivo não confirma e não deve substituir a angioTC neste cenário',
+        'Não ofertar O2 em paciente com SatO2 89% — hipoxemia grave não tratada',
+        'Não investigar TVP em membros inferiores (panturrilha empastada dolorosa é sinal clínico presente)'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — DOR NO PEITO E FALTA DE AR SÚBITA APÓS CIRURGIA (TEP)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico e a gravidade de forma clara e empática, sem gerar pânico', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou início súbito da dispneia e características da dor torácica (pleurítica)', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Perguntou sobre cirurgia recente e imobilização pós-operatória', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Investigou uso e adesão à anticoagulação profilática', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Perguntou sobre sinais e sintomas de TVP (dor, edema em MMII)', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Investigou uso de anticoncepcionais orais', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou sinais vitais completos incluindo SatO2 (taquicardia, taquipneia, hipotensão identificadas)', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Realizou exame de membros inferiores (edema, empastamento, sinal de Homans)', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Realizou ausculta cardíaca e identificou segunda bulha hiperfonética', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Calculou o escore de Wells para TEP e classificou como alta probabilidade (≥ 6 pontos)', score: 1.0, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Solicitou AngioTC de tórax como exame confirmatório', score: 1.0, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Solicitou ECG e troponina para estratificação de risco', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Calculou ou considerou o escore PESI/sPESI para estratificação de risco de mortalidade (distinto do Wells)', score: 0.5, ref: 'ESC/ERS Guidelines on PE (vigente); Diretriz Brasileira de TEP SBC, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Ofertou O2 suplementar imediatamente para corrigir SatO2 < 95%', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Iniciou anticoagulação plena imediata (heparina ou enoxaparina em dose terapêutica) e orientou transição futura para DOAC (rivaroxabana/apixabana), preferencial sobre varfarina', score: 1.0, ref: 'ESC/ERS Guidelines on PE (vigente); Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Indicou internação hospitalar e monitorização contínua', score: 0.5, ref: 'Diretriz Brasileira de TEP SBC, 2022' },
+            { item: 'Perguntou se a paciente tinha dúvidas ao final do atendimento', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — DPOC (DIAGNÓSTICO E CLASSIFICAÇÃO GOLD)
   // ─────────────────────────────────────────────────────────────────────────
@@ -1525,7 +1958,7 @@ const pneumologia2 = [
         }
       ]
     }
-  }
+  },
 ];
 
-export default pneumologia2;
+export default pneumologia;

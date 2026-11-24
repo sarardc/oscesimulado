@@ -1,4 +1,142 @@
-const gastroenterologia2 = [
+// Casos de Gastroenterologia (10)
+const gastroenterologia = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 4 — DIARREIA AGUDA (GASTROENTERITE INFECCIOSA)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 4,
+    title: 'Diarreia e vômitos há 2 dias com fraqueza',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Gastroenterologia',
+    topic: 'Diarreia Aguda Infecciosa',
+    level: 'fácil',
+    cardAccent: '#27AE60',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno matutino.',
+      patient: 'J.P.L., 41 anos, masculino, motorista de caminhão, sem comorbidades conhecidas.',
+      complaint: 'Diarreia e vômitos há 2 dias, muita fraqueza.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso.',
+        'Realize o exame físico pertinente com avaliação do estado de hidratação.',
+        'Classifique o grau de desidratação do paciente.',
+        'Proponha a conduta terapêutica adequada.',
+        'Oriente o paciente sobre alimentação, hidratação oral e sinais de alarme.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '106/72 mmHg',
+        FC: '102 bpm',
+        FR: '18 irpm',
+        Tax: '37,6 °C',
+        Peso: '78 kg',
+        Altura: '1,78 m',
+        IMC: '24,6 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientado, mucosas hipocoradas e levemente ressecadas, olhos discretamente encovados, sem icterícia, turgor reduzido.',
+      physicalSeg: 'ABDOME: plano, RHA aumentados; dor difusa de leve intensidade à palpação; sem defesa, sem Blumberg; timpanismo difuso | CARDIOVASCULAR: taquicárdico (FC 102 bpm), bulhas rítmicas, normofonéticas | MMII: sem edema, sem sinais de trombose | GERAL: mucosas ressecadas, turgor cutâneo com retorno em 2 segundos',
+      labs: [
+        { test: 'Sódio', val: '138 mEq/L', ref: '136–145 mEq/L', alt: false },
+        { test: 'Potássio', val: '3,1 mEq/L', ref: '3,5–5,0 mEq/L', alt: true },
+        { test: 'Ureia', val: '48 mg/dL', ref: '15–40 mg/dL', alt: true },
+        { test: 'Creatinina', val: '1,3 mg/dL', ref: '0,7–1,2 mg/dL', alt: true },
+        { test: 'Hemograma — Leucócitos', val: '12.400/mm³', ref: '4.000–11.000/mm³', alt: true },
+        { test: 'Hemograma — Hemoglobina', val: '14,2 g/dL', ref: '13,5–17,5 g/dL', alt: false }
+      ],
+      image: null,
+      note: 'Entregar sinais vitais ao início. Exames laboratoriais somente se solicitados. Não há indicação obrigatória de exames em diarreia aguda não complicada sem sinais de alarme; o candidato deve ser pontuado por reconhecer quando solicitar (sinais de desidratação grave, sepse ou dúvida diagnóstica).',
+      patientProfile: 'J.P.L., 41 anos, masculino, motorista de caminhão, casado, 2 filhos. Nega comorbidades. Relata ter comido num restaurante de beira de estrada há 3 dias.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Doutor, tô com diarreia desde antes de ontem, muitos vômitos também. Tô com muita fraqueza, mal consigo ficar em pé.' },
+        { trigger: 'Sobre a diarreia', speech: 'São muitas idas ao banheiro, umas seis sete vezes hoje. É líquida, cor amarronzada, sem sangue. Tem um cheiro muito forte.' },
+        { trigger: 'Sobre os vômitos', speech: 'Vomitei bastante ontem, hoje de manhã melhorou um pouco. Tô sem conseguir comer nada, de pensar em comida dá ânsia.' },
+        { trigger: 'Sobre o histórico alimentar', speech: 'Parei pra comer num restaurante de beira de estrada há uns três dias atrás. Comi frango e salada. Meu colega que comeu a mesma coisa também tá com diarreia.' },
+        { trigger: 'Sobre ingestão de líquidos', speech: 'Tô bebendo água mas tô com dificuldade de segurar. Bebi um soro caseiro hoje de manhã que minha esposa fez, mas não sei se tá certo.' },
+        { trigger: 'Sobre febre', speech: 'Tive um pouco de febre ontem, tomei paracetamol. Hoje tá mais baixa.' },
+        { trigger: 'Sobre sangue nas fezes', speech: 'Não, sangue não vi não, doutor.' },
+        { trigger: 'Pergunta ativa — diagnóstico', speech: 'É intoxicação alimentar, doutor? Pode ser a comida do restaurante?' },
+        { trigger: 'Pergunta ativa — internação', speech: 'Preciso ficar internado? Tenho que trabalhar amanhã, tenho uma viagem marcada.' }
+      ],
+      hiddenInfo: 'Uso de omeprazol 20 mg/dia por iniciativa própria há 6 meses por "azia" — só revela se o candidato perguntar especificamente sobre medicamentos em uso | Filho de 8 anos em casa com diarreia desde ontem — só revela se o candidato perguntar sobre contatos domiciliares com sintomas semelhantes',
+      actorBehavior: 'Paciente cooperativo, visivelmente cansado e com desconforto abdominal. Preocupado com o trabalho. Demonstra resistência à internação. Responde com tranquilidade às perguntas clínicas. Fica mais receptivo quando o candidato demonstra segurança na conduta ambulatorial.'
+    },
+    instC: {
+      diagnosis: 'Gastroenterite aguda infecciosa (provável toxiinfecção alimentar) com desidratação moderada (grau 2). Hipocalemia e injúria renal aguda pré-renal leve associadas.',
+      differentials: [
+        'Diarreia invasiva bacteriana (Salmonella, Shigella, Campylobacter) — diarreia com sangue ausente, origem em surto alimentar e melhora progressiva tornam menos provável; solicitar coprocultura se febre alta ou sangue',
+        'Cólera — diarreia aquosa profusa ("água de arroz"), epidemiológica e geograficamente improvável no Brasil atual; afastada pelo contexto',
+        'Doença inflamatória intestinal aguda — possível diferencial em diarreia prolongada; afastado pela curta duração, contexto epidemiológico e ausência de sangue',
+        'Apendicite aguda — dor abdominal presente; afastado pela diarreia proeminente, vômitos, ausência de sinal de Blumberg e RHA aumentados'
+      ],
+      context: 'Adulto jovem, sem comorbidades, com quadro agudo (< 48h) de diarreia líquida não sanguinolenta, vômitos e febre baixa após ingestão de refeição suspeita (fonte comum com surto em contato próximo). Exame clínico com sinais de desidratação moderada (mucosas ressecadas, turgor reduzido, taquicardia, olhos encovados). Hipocalemia e elevação discreta de creatinina confirmam o comprometimento do estado de hidratação.',
+      justify: 'Diarreia aguda infecciosa com critérios de desidratação moderada (grau 2): taquicardia (FC 102), mucosas secas, turgor reduzido com retorno em 2s, olhos encovados, potássio 3,1 mEq/L por perdas digestivas e creatinina 1,3 mg/dL por hipoperfusão renal pré-renal. Ausência de sangue nas fezes e ausência de sinais de sepse afastam diarreia invasiva grave. Surto alimentar com mais de um caso (colega de trabalho) sugere toxiinfecção.',
+      expectedAnamnesis: 'Investigar início, frequência (nº de evacuações/dia) e características das fezes (consistência, presença de sangue ou muco) | Avaliar presença e frequência de vômitos | Quantificar ingestão hídrica e diurese | Perguntar sobre alimentação nas últimas 48–72h (refeições compartilhadas) | Perguntar sobre outros casos na mesma exposição alimentar | Pesquisar febre | Investigar uso de medicamentos (antibióticos recentes, inibidores de bomba) | Questionar viagens recentes | Perguntar sobre contatos domiciliares com sintomas similares | Investigar comorbidades (DM, IRC, imunocompromisso)',
+      expectedPhysical: 'Avaliar estado geral | Sinais vitais completos com ênfase na FC (taquicardia = desidratação) | Avaliação completa do estado de hidratação: mucosas, turgor cutâneo, olhos, consciência | Avaliação de PA ortostática (hipotensão ortostática) | Ausculta abdominal (RHA) | Palpação abdominal: dor, resistência, sinal de Blumberg | Avaliação de sinais de sepse (febre alta, calafrios, alteração do estado mental)',
+      expectedExams: [
+        { exam: 'Eletrólitos (sódio, potássio)', justify: 'Avaliar distúrbios hidroeletrolíticos por perdas digestivas; hipocalemia é comum', expected: 'Hipocalemia (K 3,1 mEq/L)' },
+        { exam: 'Ureia e creatinina', justify: 'Avaliar função renal e possível IRA pré-renal por desidratação', expected: 'Creatinina levemente elevada (1,3 mg/dL) — IRA pré-renal' },
+        { exam: 'Hemograma', justify: 'Avaliar leucocitose (bacteriana) vs leucopenia (viral) e anemia', expected: 'Leucocitose leve inespecífica' },
+        { exam: 'Coprocultura + EPF (se diarreia com sangue, febre alta ou > 7 dias)', justify: 'Identificar agente etiológico em casos com sinais de alarme', expected: 'Não obrigatório neste caso — mas correto se candidato justificar suspeita bacteriana invasiva' }
+      ],
+      expectedConduct: 'Farmacológica: Reidratação oral com soro de reidratação oral (SRO) — 50–100 mL/kg nas primeiras 4h em desidratação moderada (Plano B do MS); se impossibilidade de ingestão oral, soro fisiológico IV 500–1000 mL em bolus; Ondansetrona 4–8 mg VO ou IV para controle dos vômitos; Reposição de potássio oral (cloreto de potássio) se hipocalemia confirmada; Paracetamol se febre | NÃO prescrever antidiarreicos (loperamida) sem afastar diarreia bacteriana invasiva; NÃO prescrever antibióticos empiricamente em gastroenterite aguda sem indicação (sangue nas fezes, febre alta, imunocomprometido) | Não farmacológica: Dieta de proteção (BRAT: banana, arroz, torrada, maçã/suco de maçã) nas primeiras 24h; evitar laticínios e alimentos gordurosos; manter hidratação oral | Encaminhamento: Alta ambulatorial se melhora após hidratação oral; encaminhar ao PS se piora ou impossibilidade de hidratação oral | Orientações ao paciente: Explicar técnica do SRO; sinais de alarme (febre alta, sangue nas fezes, piora da fraqueza, não urinar em 8h, consciência alterada); restrições alimentares; higiene das mãos para proteger filhos | Seguimento: Retorno em 24–48h ou imediato se sinais de alarme; acompanhar função renal',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar o diagnóstico de "infecção intestinal por alimento contaminado" em linguagem acessível | Orientar sobre o SRO com demonstração/explicação prática | Esclarecer os sinais de alarme de forma objetiva | Perguntar se tem dúvidas | Demonstrar compreensão pela preocupação com o trabalho, mas explicar a necessidade de repouso e hidratação',
+      criticalErrors: [
+        'Prescrever antibiótico empiricamente sem indicação (diarreia não invasiva, sem sangue, sem febre alta, imunocompetente) — favorece resistência bacteriana e pode piorar diarreia por toxina',
+        'Prescrever loperamida sem afastar diarreia invasiva (sangue, febre) — contraindicado em diarreia bacteriana invasiva pela retenção da toxina',
+        'Não reconhecer sinais de desidratação moderada e dispensar o paciente sem hidratação adequada',
+        'Não orientar sobre sinais de alarme e retorno ao serviço de saúde',
+        'Não avaliar o estado de hidratação sistematicamente (turgor, mucosas, diurese)'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — DIARREIA E VÔMITOS HÁ 2 DIAS COM FRAQUEZA (DIARREIA AGUDA)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE',
+          items: [
+            { item: 'Apresentou-se pelo nome ao paciente', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Utilizou linguagem acessível ao explicar diagnóstico e orientações', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou frequência diária das evacuações e características das fezes (consistência, sangue, muco)', score: 1.0, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Perguntou sobre ingestão de alimentos suspeitos nas últimas 48–72h e outros casos no mesmo grupo', score: 1.0, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Avaliou ingestão hídrica e diurese (últ. vez que urinou)', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Perguntou sobre medicamentos em uso (antibióticos, laxantes, IBP)', score: 0.3, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Investigou contatos domiciliares com sintomas semelhantes', score: 0.1, ref: 'MS, Manejo da Diarreia Aguda, 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO',
+          items: [
+            { item: 'Avaliou sistematicamente o estado de hidratação: mucosas, turgor cutâneo, olhos, consciência', score: 1.0, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Avaliou sinais vitais incluindo FC (taquicardia como sinal de desidratação)', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Realizou palpação abdominal e identificou ausência de sinais de abdome agudo (Blumberg negativo)', score: 0.3, ref: 'MS, Manejo da Diarreia Aguda, 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — RACIOCÍNIO CLÍNICO E INVESTIGAÇÃO',
+          items: [
+            { item: 'Classificou corretamente a desidratação como moderada (grau 2 — Plano B)', score: 1.0, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Solicitou eletrólitos e função renal adequadamente para avaliação de desidratação com taquicardia', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO AO PACIENTE',
+          items: [
+            { item: 'Prescreveu SRO (soro de reidratação oral) com volume e técnica corretos (Plano B — 50–100 mL/kg/4h)', score: 1.0, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Não prescreveu antibiótico sem indicação (diarreia não invasiva, sem sangue, imunocompetente)', score: 0.3, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Orientou sobre dieta de proteção e alimentos a evitar', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Orientou sobre sinais de alarme que indicam retorno imediato', score: 0.5, ref: 'MS, Manejo da Diarreia Aguda, 2024' },
+            { item: 'Perguntou se o paciente tinha dúvidas ao final da consulta', score: 0.5, ref: 'CFM Res. 2.232/2019' }
+          ]
+        }
+      ]
+    }
+  },
+
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — HEMORRAGIA DIGESTIVA ALTA VARICOSA
   // ─────────────────────────────────────────────────────────────────────────
@@ -1140,4 +1278,4 @@ const gastroenterologia2 = [
   },
 ];
 
-export default gastroenterologia2;
+export default gastroenterologia;

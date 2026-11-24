@@ -1,3 +1,4 @@
+// Casos de Obstetricia (10)
 const obstetricia = [
   // CASO 1 — PRÉ-NATAL DE BAIXO RISCO (PRIMEIRA CONSULTA)
   {
@@ -1253,7 +1254,7 @@ const obstetricia = [
         }
       ]
     }
-  }
+  },
 ];
 
 export default obstetricia;

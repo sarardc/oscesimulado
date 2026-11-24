@@ -1,11 +1,11 @@
-const oftalmo = [
-
-// CASO 01
+// Casos de Oftalmologia (10)
+const oftalmologia = [
+  // CASO 01
 {
   id: 1,
   title: 'Olhos vermelhos e secreção há 3 dias',
   sub: 'UBS — Atenção Primária',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Conjuntivite',
   level: 'fácil',
   cardAccent: '#4CAF50',
@@ -106,12 +106,12 @@ const oftalmo = [
   }
 },
 
-// CASO 02
+  // CASO 02
 {
   id: 2,
   title: 'Dor intensa no olho com visão turva e náusea',
   sub: 'UPA — Urgência e Emergência',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Glaucoma Agudo',
   level: 'difícil',
   cardAccent: '#E53935',
@@ -214,12 +214,12 @@ const oftalmo = [
   }
 },
 
-// CASO 03
+  // CASO 03
 {
   id: 3,
   title: 'Diabético de longa data com visão embaçada progressiva',
   sub: 'UBS — Atenção Primária',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Retinopatia Diabética',
   level: 'moderado',
   cardAccent: '#FF9800',
@@ -329,16 +329,14 @@ const oftalmo = [
       ]}
     ]
   }
-}
+},
 
-,
-
-// CASO 04
+  // CASO 04
 {
   id: 4,
   title: 'Idoso com dificuldade progressiva para enxergar e dirigir à noite',
   sub: 'Ambulatório — Clínica Médica / APS',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Catarata',
   level: 'fácil',
   cardAccent: '#9C27B0',
@@ -440,12 +438,12 @@ const oftalmo = [
   }
 },
 
-// CASO 05
+  // CASO 05
 {
   id: 5,
   title: 'Dor no olho após trabalhar com rebolo sem proteção',
   sub: 'UPA — Urgência e Emergência',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Trauma Ocular / Corpo Estranho Corneano',
   level: 'moderado',
   cardAccent: '#F44336',
@@ -545,12 +543,12 @@ const oftalmo = [
   }
 },
 
-// CASO 06
+  // CASO 06
 {
   id: 6,
   title: 'Olho vermelho com dor e fotofobia em adulto jovem',
   sub: 'UBS / Ambulatório — Clínica Médica',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Olho Vermelho — Diagnóstico Diferencial / Uveíte Anterior',
   level: 'difícil',
   cardAccent: '#673AB7',
@@ -663,12 +661,12 @@ const oftalmo = [
   }
 },
 
-// CASO 07
+  // CASO 07
 {
   id: 7,
   title: "Criança com olho 'torto' e dificuldade escolar",
   sub: 'UBS — Atenção Primária / Puericultura',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Ambliopia e Estrabismo',
   level: 'moderado',
   cardAccent: '#00BCD4',
@@ -765,12 +763,12 @@ const oftalmo = [
   }
 },
 
-// CASO 08
+  // CASO 08
 {
   id: 8,
   title: 'Idosa com mancha escura no centro da visão e distorção das imagens',
   sub: 'UBS / Ambulatório de Geriatria — Atenção Primária',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Degeneração Macular Relacionada à Idade (DMRI)',
   level: 'moderado',
   cardAccent: '#795548',
@@ -875,12 +873,12 @@ const oftalmo = [
   }
 },
 
-// CASO 09
+  // CASO 09
 {
   id: 9,
   title: 'Hipertenso com dor de cabeça e \'manchas\' na visão',
   sub: 'UBS — Atenção Primária',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Retinopatia Hipertensiva / Fundoscopia',
   level: 'moderado',
   cardAccent: '#F57C00',
@@ -988,12 +986,12 @@ const oftalmo = [
   }
 },
 
-// CASO 10
+  // CASO 10
 {
   id: 10,
   title: 'Criança com pálpebra inchada, vermelha e quente após sinusite',
   sub: 'UPA — Urgência Pediátrica',
-  tema: 'oftalmologia',
+  tema: 'Oftalmologia',
   topic: 'Celulite Orbitária vs. Celulite Pré-septal',
   level: 'difícil',
   cardAccent: '#D32F2F',
@@ -1097,8 +1095,7 @@ const oftalmo = [
       ]}
     ]
   }
-}
+},
+];
 
-]
-
-export default oftalmo;
+export default oftalmologia;

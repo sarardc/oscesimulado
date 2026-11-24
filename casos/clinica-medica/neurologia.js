@@ -1,5 +1,6 @@
-const neuro = [
-    {
+// Casos de Neurologia (17)
+const neurologia = [
+  {
   id: 1,
   title: 'Dor de cabeça intensa e em crises há 2 semanas',
   sub: 'UBS — Atenção Primária',
@@ -136,7 +137,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 2,
   title: 'Dor de cabeça em aperto quase todo dia',
   sub: 'UBS — Atenção Primária',
@@ -271,7 +272,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 3,
   title: 'Dor de cabeça latejante com manchas visuais antes da dor',
   sub: 'UBS — Atenção Primária',
@@ -406,7 +407,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 4,
   title: 'A pior dor de cabeça da minha vida',
   sub: 'UPA — Urgência e Emergência',
@@ -545,7 +546,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 5,
   title: 'Fraqueza nas pernas que começou há uma semana e está subindo',
   sub: 'UPA — Urgência e Emergência',
@@ -684,9 +685,8 @@ const neuro = [
     ]
   }
 },
-  
 
-{
+  {
   id: 6,
   title: 'Fraqueza e fala estranha que começaram há 2 horas',
   sub: 'UPA — Urgência e Emergência',
@@ -817,7 +817,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 7,
   title: 'Braço esquerdo sem força por 20 minutos e voltou ao normal',
   sub: 'UPA — Urgência e Emergência',
@@ -948,7 +948,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 8,
   title: 'Paciente que teve convulsão no trabalho pela primeira vez',
   sub: 'UPA — Urgência e Emergência',
@@ -1081,7 +1081,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 9,
   title: 'Paciente com convulsões que não param',
   sub: 'UPA — Urgência e Emergência',
@@ -1207,7 +1207,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 10,
   title: 'Fraqueza progressiva nos braços e engasgos frequentes',
   sub: 'Ambulatório de Neurologia — Atenção Secundária',
@@ -1333,7 +1333,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 11,
   title: 'Esquecimentos e confusão mental em paciente com histórico de pressão alta',
   sub: 'Ambulatório de Geriatria / Neurologia — Atenção Secundária',
@@ -1460,7 +1460,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 12,
   title: 'Tremor na mão e lentidão para caminhar',
   sub: 'Ambulatório de Neurologia — Atenção Secundária',
@@ -1584,7 +1584,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 13,
   title: 'Filha preocupada com esquecimentos frequentes do pai idoso',
   sub: 'UBS — Atenção Primária',
@@ -1713,7 +1713,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 14,
   title: 'Acordando cansado e sonolento o dia todo',
   sub: 'UBS — Atenção Primária',
@@ -1844,7 +1844,7 @@ const neuro = [
   }
 },
 
-{
+  {
   id: 15,
   title: 'Dor de cabeça que piora quando abaixa a cabeça e visão turva',
   sub: 'UPA — Urgência e Emergência',
@@ -1972,7 +1972,7 @@ instD: {
 }
 },
 
-{
+  {
   id: 16,
   title: 'Cabeça crescendo e fontanela abaulada em lactente',
   sub: 'UPA Pediátrica — Urgência e Emergência',
@@ -2102,6 +2102,95 @@ instD: {
     ]
   }
 },
-]
 
-export default neuro;
+  // CASO 4 — ENXAQUECA COM AURA EM USO DE ANTICONCEPCIONAL COMBINADO
+  {
+    id: 4,
+    title: 'Dor de cabeça de novo',
+    sub: 'UBS — Atenção Primária',
+    tema: 'Neurologia',
+    topic: 'Enxaqueca com Aura em Uso de Anticoncepcional Combinado',
+    level: 'moderado',
+    cardAccent: '#EF5350',
+    instA: {
+      scenario: 'Unidade Básica de Saúde, consulta agendada.',
+      patient: 'Camila Nunes, 29 anos, sexo feminino, analista de marketing.',
+      complaint: 'Dores de cabeça cada vez mais frequentes nos últimos 6 meses.',
+      tasks: [
+        'Realize a anamnese da cefaleia, incluindo os sinais de alarme.',
+        'Faça o exame físico e neurológico pertinente.',
+        'Formule a hipótese diagnóstica.',
+        'Proponha a conduta e as orientações.'
+      ]
+    },
+    instB: {
+      vitals: { PA: '118/76 mmHg', FC: '72 bpm', FR: '14 irpm', Tax: '36,3 °C', Peso: '58 kg', Altura: '1,65 m', IMC: '21,3 kg/m²' },
+      physicalGeneral: 'Bom estado geral, lúcida, orientada, corada, hidratada.',
+      physicalSeg: 'NEUROLÓGICO: sem déficits focais; pares cranianos normais; força grau V global; reflexos simétricos 2+; coordenação e marcha normais | FUNDOSCOPIA: papilas de bordos nítidos, sem edema; pulso venoso espontâneo presente | SINAIS MENÍNGEOS: rigidez de nuca ausente; Kernig e Brudzinski negativos | PALPAÇÃO PERICRANIANA: leve dor em trapézios; ATM sem alterações',
+      labs: [
+        { test: 'Beta-hCG', val: 'Negativo', ref: 'Negativo', alt: false }
+      ],
+      note: 'A paciente só menciona o anticoncepcional se perguntada sobre medicamentos ou contracepção. Só descreve as luzes em zigue-zague se perguntada sobre alterações visuais ou sobre o que acontece antes da dor. Neuroimagem, se solicitada: informar que não há indicação no momento (ou entregar laudo normal).',
+      patientProfile: 'Analista de marketing, rotina de trabalho estressante, dorme cerca de 5 horas por noite e toma 6 cafés por dia. Fuma socialmente (3 a 4 cigarros nos fins de semana). Usa anticoncepcional combinado com etinilestradiol há 5 anos. Mãe tem enxaqueca.',
+      script: [
+        { trigger: 'Queixa principal', speech: 'Minhas dores de cabeça. Tão cada vez mais frequentes, não aguento mais.' },
+        { trigger: 'Sobre início e frequência', speech: 'Tenho desde a adolescência, mas pioraram nos últimos seis meses. Umas três crises fortes por mês, e dor quase dia sim, dia não.' },
+        { trigger: 'Sobre localização e tipo', speech: 'De um lado só, às vezes direito, às vezes esquerdo. Lateja muito, umas oito de dez, e dura o dia inteiro.' },
+        { trigger: 'Sobre sintomas associados', speech: 'Enjoo sim, e luz me incomoda demais. Preciso ficar no quarto escuro. Piora até pra subir escada.' },
+        { trigger: 'Sobre o que acontece antes da dor', speech: 'Algumas vezes, antes da dor, vejo umas luzes em zigue-zague, tipo um brilho, por uns vinte minutos. Depois vem a dor.' },
+        { trigger: 'Sobre analgésicos', speech: 'Dipirona e Neosaldina. Tomo uns quinze dias por mês, às vezes duas vezes no mesmo dia.' },
+        { trigger: 'Sobre contracepção', speech: 'Tomo pílula anticoncepcional há uns cinco anos. Aquela com estrogênio.' },
+        { trigger: 'Sobre sinais de alarme', speech: 'Não, nada disso. É sempre o mesmo padrão, só ficou mais frequente.' },
+        { trigger: 'Pergunta ativa — tratamento', speech: 'Não tem um remédio mais forte pra eu tomar quando dói?' }
+      ],
+      hiddenInfo: 'Usa anticoncepcional combinado com estrogênio — só revela se perguntada sobre medicamentos ou contracepção | Tem aura visual antes de algumas crises — só revela se perguntada sobre alterações visuais ou sintomas antes da dor | Fuma 3 a 4 cigarros nos fins de semana — só revela se perguntada sobre tabagismo | Dorme 5 horas e toma 6 cafés por dia — só revela se perguntada sobre sono e cafeína',
+      actorBehavior: 'Comunicativa e objetiva, um pouco irritada com a dor que atrapalha o trabalho. Quer "um remédio mais forte". Fica surpresa e preocupada ao saber que precisa trocar o anticoncepcional, mas aceita quando o risco é bem explicado.'
+    },
+    instC: {
+      diagnosis: 'Enxaqueca com aura (visual típica), de alta frequência, com uso excessivo de analgésicos (risco de cefaleia por uso excessivo de medicação), em uso de anticoncepcional hormonal combinado — contraindicado.',
+      differentials: [
+        'Cefaleia por uso excessivo de medicação — entra pelo uso de analgésicos em ≥ 15 dias/mês; é comorbidade a ser tratada junto com a enxaqueca.',
+        'Cefaleia tensional — entra pela frequência alta; sai pelo caráter pulsátil, unilateral, intenso, com náusea, fotofobia e piora ao esforço.',
+        'Cefaleia secundária (tumor, hipertensão intracraniana) — entra pela piora recente; sai pela ausência de sinais de alarme e pelo exame neurológico e fundoscopia normais.',
+        'Ataque isquêmico transitório — entra pelo sintoma visual; sai pela aura positiva (cintilações), de progressão gradual, com duração de 20 minutos e seguida de cefaleia.'
+      ],
+      context: 'A enxaqueca é muito prevalente em mulheres jovens. A enxaqueca com aura aumenta o risco de AVC isquêmico, e esse risco é potencializado pelo estrogênio e pelo tabagismo. Por isso, o anticoncepcional combinado é contraindicado (categoria 4 dos critérios de elegibilidade da OMS).',
+      justify: 'Crises unilaterais, pulsáteis, de intensidade forte, com náusea, fotofobia e piora ao esforço, com duração de horas (critérios ICHD-3), precedidas em algumas ocasiões por aura visual reversível de 20 minutos. Exame neurológico normal e sem sinais de alarme.',
+      expectedAnamnesis: 'Início e evolução da cefaleia | Frequência das crises | Localização e caráter da dor | Intensidade e duração | Náusea, fotofobia e fonofobia | Aura | Sinais de alarme | Uso de analgésicos (dias por mês) | Contracepção | Tabagismo | Gatilhos, sono e cafeína | História familiar',
+      expectedPhysical: 'Sinais vitais | Exame neurológico completo | Fundoscopia | Sinais meníngeos | Palpação pericraniana',
+      expectedExams: [
+        { exam: 'Nenhum exame de neuroimagem', justify: 'Sem sinais de alarme e com exame neurológico normal', expected: 'Diagnóstico clínico' }
+      ],
+      expectedConduct: 'Farmacológica: suspender o anticoncepcional combinado; profilaxia com propranolol, amitriptilina ou topiramato; crise com AINE (naproxeno, ibuprofeno) e/ou triptano (sumatriptano), limitando analgésicos a menos de 10 dias por mês | Não farmacológica: método contraceptivo sem estrogênio (DIU de cobre ou hormonal, implante, desogestrel) | Orientações à paciente: diário da cefaleia, cessar o tabagismo, higiene do sono, reduzir cafeína, identificar gatilhos, retorno para avaliar a profilaxia',
+      expectedCommunication: 'Apresentar-se e chamar a paciente pelo nome | Validar o impacto da dor na vida da paciente | Explicar por que o anticoncepcional precisa ser trocado | Verificar entendimento',
+      criticalErrors: [
+        'Não perguntar sobre aura',
+        'Não investigar o método contraceptivo',
+        'Manter o anticoncepcional combinado em paciente com enxaqueca com aura',
+        'Prescrever apenas um analgésico mais forte sem profilaxia nem orientação sobre o uso excessivo',
+        'Não pesquisar sinais de alarme'
+      ]
+    },
+    instD: {
+      title: 'Enxaqueca com Aura — Material de Estudo',
+      sections: [
+        { h: 'Critérios diagnósticos', items: [
+          { item: 'Enxaqueca: crises de 4–72 h com 2 de 4 características (unilateral, pulsátil, moderada/forte, piora com esforço) e náusea ou foto/fonofobia.', score: 2, ref: 'ICHD-3' },
+          { item: 'Aura típica: sintomas visuais, sensitivos ou de linguagem totalmente reversíveis, com 5–60 min de duração.', score: 1, ref: 'ICHD-3' }
+        ] },
+        { h: 'Sinais de alarme (SNOOP)', items: [
+          { item: 'Sintomas sistêmicos, déficits neurológicos, início súbito, início após 50 anos, mudança de padrão, piora com Valsalva, papiledema.', score: 2, ref: 'Do TP et al., Neurology 2019' }
+        ] },
+        { h: 'Contracepção', items: [
+          { item: 'Enxaqueca com aura = categoria 4 para contraceptivos hormonais combinados (risco de AVC isquêmico).', score: 2, ref: 'OMS — Critérios Médicos de Elegibilidade' }
+        ] },
+        { h: 'Tratamento', items: [
+          { item: 'Crise: AINE e/ou triptano; evitar opioides. Uso de analgésico simples ≥ 15 dias/mês ou triptano ≥ 10 dias/mês leva à cefaleia por uso excessivo.', score: 2, ref: 'Consenso da Sociedade Brasileira de Cefaleia' },
+          { item: 'Profilaxia se ≥ 4 crises/mês ou incapacidade: propranolol, amitriptilina, topiramato, flunarizina.', score: 2, ref: 'Consenso SBCe 2022' }
+        ] }
+      ]
+    }
+  },
+];
+
+export default neurologia;

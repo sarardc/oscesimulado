@@ -1,3 +1,4 @@
+// Casos de Ginecologia (10)
 const ginecologia = [
   // CASO 1 — MIOMATOSE UTERINA
   {
@@ -1193,7 +1194,7 @@ const ginecologia = [
         ]}
       ]
     }
-  }
+  },
 ];
 
 export default ginecologia;

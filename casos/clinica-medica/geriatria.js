@@ -1,4 +1,147 @@
-const geriatria2 = [
+// Casos de Geriatria (10)
+const geriatria = [
+  // ─────────────────────────────────────────────────────────────────────────
+  // CASO 7 — DEMÊNCIA (DOENÇA DE ALZHEIMER)
+  // ─────────────────────────────────────────────────────────────────────────
+  {
+    id: 7,
+    title: 'Idosa com esquecimentos progressivos e mudança de comportamento há 2 anos',
+    sub: 'UBS — Atenção Primária / Geriatria',
+    tema: 'Geriatria',
+    topic: 'Doença de Alzheimer',
+    level: 'moderado',
+    cardAccent: '#8D6E63',
+    instA: {
+      scenario: 'Atenção Primária — UBS. Consultório, turno matutino. Filha traz a mãe para consulta.',
+      patient: 'M.L.F., 78 anos, feminino, aposentada, viúva, com queixa de esquecimentos progressivos há cerca de 2 anos, referidos pela filha.',
+      complaint: 'Filha relata que a mãe está esquecendo coisas cada vez mais (repete perguntas, não lembra de consultas, deixou o fogão ligado), mudou o humor e está mais irritada.',
+      tasks: [
+        'Realize a anamnese dirigida ao caso (com a paciente e a filha como informantes).',
+        'Aplique o Mini Exame do Estado Mental (MEEM) e interprete o resultado.',
+        'Realize o exame físico neurológico e geral pertinente.',
+        'Solicite os exames complementares para afastar causas reversíveis de demência.',
+        'Formule a hipótese diagnóstica e os diferenciais.',
+        'Proponha a conduta terapêutica inicial e oriente a família sobre os cuidados.'
+      ]
+    },
+    instB: {
+      vitals: {
+        PA: '138/84 mmHg',
+        FC: '72 bpm',
+        FR: '16 irpm',
+        Tax: '36,5 °C',
+        Peso: '58 kg',
+        Altura: '1,56 m',
+        IMC: '23,8 kg/m²'
+      },
+      physicalGeneral: 'Regular estado geral, consciente, orientada no tempo parcialmente (diz que o ano é "por volta de 2020") e no espaço (sabe que está em um consultório médico). Bem cuidada, cooperativa, com certa lentidão de raciocínio.',
+      physicalSeg: 'NEUROLÓGICO: nível de consciência preservado; sem déficit motor focal; reflexos tendinosos profundos simétricos; sem sinal de Babinski; marcha com passos pequenos e base alargada, sem instabilidade grave; sem rigidez em roda dentada; MEEM aplicado — ver resultado abaixo | CARDIOVASCULAR: bulhas rítmicas normofonéticas, sem sopros | RESPIRATÓRIO: MV presente bilateralmente, sem ruídos adventícios | ABDOME: sem alterações relevantes | PELE/FÂNEROS: sem alterações sugestivas de hipotireoidismo',
+      labs: [
+        { test: 'MEEM (Mini Exame do Estado Mental) — RESULTADO', val: '17/30 pontos (ponto de corte para ≥ 4 anos de escolaridade: 24 pontos)', ref: '≥ 24 pontos (> 4 anos escolaridade)', alt: true },
+        { test: 'TSH', val: '2,4 mUI/L', ref: '0,4–4,0 mUI/L', alt: false },
+        { test: 'T4 livre', val: '1,1 ng/dL', ref: '0,8–1,8 ng/dL', alt: false },
+        { test: 'Vitamina B12', val: '310 pg/mL', ref: '200–900 pg/mL', alt: false },
+        { test: 'Ácido fólico', val: '8,2 ng/mL', ref: '3,1–20 ng/mL', alt: false },
+        { test: 'Hemograma', val: 'Normal', ref: 'Normal', alt: false },
+        { test: 'Glicemia de jejum', val: '102 mg/dL', ref: '70–99 mg/dL', alt: false },
+        { test: 'Sódio', val: '139 mEq/L', ref: '136–145 mEq/L', alt: false },
+        { test: 'VDRL', val: 'Não reagente', ref: 'Não reagente', alt: false },
+        { test: 'TC de crânio sem contraste (resultado)', val: 'Atrofia cortical difusa de predomínio têmporo-parietal bilateral, mais pronunciada que o esperado para a idade. Sem lesões expansivas, sem sinais de infarto ou sangramento. Hidrocefalia ex-vacuo discreta.', ref: 'Normal', alt: true }
+      ],
+      image: null,
+      note: 'Entregar sinais vitais ao início. Entregar o resultado do MEEM somente se o candidato aplicar o instrumento (OU perguntar ao avaliador sobre pontuação em instrumento de rastreio cognitivo). Entregar labs se solicitados. Entregar TC de crânio se solicitada. O candidato deve ser pontuado por aplicar o MEEM ou outro instrumento de rastreio cognitivo (CDT, IQCODE).',
+      patientProfile: 'M.L.F., 78 anos, feminino, aposentada (trabalhava como professora primária — escolaridade > 8 anos), viúva há 4 anos, mora com a filha. Nega HAS, diabetes. Não usa medicamentos regularmente. Nunca fez rastreio cognitivo.',
+      script: [
+        { trigger: 'Filha — queixa principal', speech: 'Doutor, minha mãe tá cada vez mais esquecida. Ela repete as mesmas perguntas várias vezes por dia. Na semana passada deixou o fogão ligado sem querer. Não lembra mais de compromissos nem das consultas. Isso piora faz uns dois anos.' },
+        { trigger: 'Paciente — queixa', speech: 'Eu esqueço algumas coisinhas, mas é da idade. Todo mundo da minha idade esquece.' },
+        { trigger: 'Filha — sobre comportamento', speech: 'Ela ficou mais irritada. Às vezes fica desconfiada, acha que a gente tirou coisas dela. Fica agitada à tarde e ao entardecer principalmente.' },
+        { trigger: 'Filha — sobre a progressão', speech: 'Começou devagar, uns dois anos atrás. No início eu achei que era estresse por causa do falecimento do meu pai. Mas foi piorando. Agora ela se perde no trajeto que faz há anos.' },
+        { trigger: 'Paciente — quando perguntada sobre o ano', speech: 'O ano? Deve ser... 2020, por aí né? Ou 2021?' },
+        { trigger: 'Filha — sobre independência', speech: 'Ela não consegue mais pagar as contas sozinha, esquece o troco. Cozinhar ela ainda tenta, mas já tivemos sustos com o fogão.' },
+        { trigger: 'Filha — pergunta ativa', speech: 'Isso é Alzheimer, doutor? Tem cura? Vai piorar?' },
+        { trigger: 'Filha — pergunta ativa', speech: 'Tem algum remédio que pode ajudar? E o que eu faço em casa pra cuidar dela?' }
+      ],
+      hiddenInfo: 'Viúva há 4 anos — luto pode ter precipitado a piora funcional — só revela se o candidato perguntar sobre eventos de vida recentes | Episódio de desorientação espacial há 6 meses (se perdeu perto de casa) — só revela se o candidato perguntar sobre episódios de confusão ou desorientação no espaço | Irmão com diagnóstico de Alzheimer — só revela se o candidato perguntar sobre história familiar de demência',
+      actorBehavior: 'Paciente tranquila, cooperativa, mas com tendência a minimizar os déficits ("é da idade"). Fica levemente irritada se pressionada sobre erros cognitivos durante o MEEM — o candidato deve conduzir com empatia. Filha é a principal informante — angustiada, com sobrecarga visível, deseja orientações práticas sobre cuidados.'
+    },
+    instC: {
+      diagnosis: 'Demência por Doença de Alzheimer (provável): início insidioso, progressão gradual há 2 anos, comprometimento de memória episódica + orientação + funções executivas (MEEM 17/30), sem causa reversível identificada nos exames (TSH, B12, VDRL normais), atrofia têmporo-parietal bilateral na TC. Comprometimento funcional confirmado (não consegue pagar contas, deixou fogão ligado).',
+      differentials: [
+        'Comprometimento cognitivo leve (MCI/CCL) — déficit cognitivo sem comprometimento funcional significativo; aqui há impacto funcional claro (fogão, contas, desorientação) — descartado',
+        'Demência vascular — início mais abrupto, escalonado; presença de fatores de risco vasculares, AVCs ou leucoaraiose na TC; afastado pelo início insidioso e TC sem lesões vasculares',
+        'Hipotireoidismo — causa reversível de declínio cognitivo; TSH normal afasta',
+        'Deficiência de vitamina B12 — causa reversível; B12 normal afasta',
+        'Depressão com pseudodemência — pode mimetizar demência; avaliação do humor necessária; história de luto recente; diferenciada pelo teste terapêutico com antidepressivo e avaliação psiquiátrica',
+        'Hidrocefalia de pressão normal (HPN) — tríade: demência + ataxia + incontinência; sem incontinência evidente; sem hidrocefalia comunicante típica na TC'
+      ],
+      context: 'Idosa de 78 anos, alta escolaridade (professora), com declínio cognitivo insidioso e progressivo há 2 anos, comprometendo memória episódica (repete perguntas, esquece compromissos), orientação temporal, funções executivas (fogão, contas) e comportamento (irritabilidade, agitação vespertina — sundowning). MEEM 17/30 muito abaixo do esperado para a escolaridade. Causas reversíveis afastadas pelos exames. TC com atrofia têmporo-parietal bilateral. Quadro clínico clássico de DA provável segundo critérios NIA-AA 2011.',
+      justify: 'Critérios diagnósticos de DA provável (NIA-AA 2011): demência com comprometimento funcional + início insidioso + progressão gradual documentada + predomínio de déficit amnéstico + afastadas outras causas (vascular, metabólica, tóxica). MEEM 17/30 com escolaridade > 4 anos indica comprometimento moderado. Atrofia têmporo-parietal na TC corrobora. O diagnóstico definitivo requer histopatologia; clinicamente, DA provável é o diagnóstico de trabalho. Agitação vespertina = "sundowning" — fenômeno comum na DA.',
+      expectedAnamnesis: 'Investigar início, progressão e características do declínio cognitivo (memória, linguagem, orientação, executiva) | Perguntar sobre impacto funcional nas AVDs (atividades de vida diária) | Investigar comportamento e alterações psiquiátricas (irritabilidade, alucinações, agitação) | Pesquisar história familiar de demência | Perguntar sobre eventos de vida precipitantes (luto, cirurgia, internação) | Investigar medicamentos em uso (anticolinérgicos, benzodiazepínicos causam déficit cognitivo) | Pesquisar fatores de risco vascular (HAS, DM, tabagismo, AVC) | Investigar uso de álcool',
+      expectedPhysical: 'Avaliar nível de consciência e orientação (tempo e espaço) | Aplicar MEEM ou CDT (Teste do Desenho do Relógio) | Realizar exame neurológico focado: déficits motores focais, sinais parkinsonianos (rigidez, tremor — DD: demência de Lewy), marcha, reflexos primitivos | Avaliar thyroide, pele e fâneros (hipotireoidismo) | Rastrear depressão (GDS-15)',
+      expectedExams: [
+        { exam: 'MEEM (Mini Exame do Estado Mental)', justify: 'Instrumento padronizado de rastreio cognitivo — obrigatório na avaliação de demência; interpretar conforme escolaridade', expected: '17/30 — comprometimento cognitivo moderado para escolaridade ≥ 4 anos (ponto de corte 24)' },
+        { exam: 'TSH + T4 livre', justify: 'Afastar hipotireoidismo — causa reversível e frequente de declínio cognitivo em idosos', expected: 'Normal — hipotireoidismo afastado' },
+        { exam: 'Vitamina B12 + Ácido fólico', justify: 'Deficiência de B12 causa demência reversível — frequente em idosos', expected: 'Normal — deficiência de B12 afastada' },
+        { exam: 'VDRL', justify: 'Neurossífilis é causa tratável de demência — triagem obrigatória', expected: 'Não reagente — neurossífilis afastada' },
+        { exam: 'TC de crânio (ou RM) sem contraste', justify: 'Afastar causas estruturais (hematoma subdural, hidrocefalia, tumor, lesões vasculares)', expected: 'Atrofia têmporo-parietal bilateral — sugestivo de DA' }
+      ],
+      expectedConduct: 'Farmacológica: Inibidores da colinesterase — Donepezila 5mg/dia VO (após 4 semanas, aumentar para 10mg/dia se tolerado) — primeira linha na DA leve a moderada; Rivastigmina e Galantamina são alternativas | Memantina pode ser associada na DA moderada a grave (MEEM ≤ 19) | Não farmacológica: Estimulação cognitiva (jogos, leitura, músicas, conversas); Manter rotina estruturada; Orientação da família sobre sundowning (não discutir com a paciente à noite — exacerba a agitação); Trancas de segurança no fogão; Adequar o ambiente doméstico | Encaminhamento: Neurologia ou Geriatria para confirmação diagnóstica e seguimento; Assistência Social para avaliação de benefícios; Grupo de suporte a cuidadores | Orientações à família: Doença é crônica e progressiva — não tem cura, mas tratamento retarda progressão; o cuidador também precisa de suporte; orientar sobre procuração/representação legal | Seguimento: retorno em 3 meses para reavaliação; HAS e outros fatores de risco vascular devem ser controlados',
+      expectedCommunication: 'Apresentar-se pelo nome | Explicar o diagnóstico com empatia: "É uma doença que afeta a memória e que vai progredindo com o tempo" | Não usar palavras desnecessariamente aterrorizantes | Explicar o que é o Alzheimer em linguagem acessível | Reconhecer a sobrecarga da filha e oferecer recursos | Orientar sobre segurança no lar (fogão, sair sozinha) | Perguntar se têm dúvidas',
+      criticalErrors: [
+        'Não aplicar instrumento de rastreio cognitivo (MEEM ou CDT) e basear o diagnóstico apenas em impressão clínica',
+        'Não solicitar exames para afastar causas reversíveis de demência (TSH, B12, VDRL) — causas tratáveis são críticas de detectar',
+        'Não avaliar o impacto funcional nas AVDs (o comprometimento funcional é critério diagnóstico de demência)',
+        'Prescrever benzodiazepínico para tratar a agitação da idosa — piora o déficit cognitivo e aumenta risco de quedas',
+        'Não orientar a família sobre cuidados, segurança no lar e sundowning — abandona o cuidador sem suporte'
+      ]
+    },
+    instD: {
+      title: 'CHECKLIST — IDOSA COM ESQUECIMENTOS PROGRESSIVOS (ALZHEIMER)',
+      sections: [
+        {
+          h: 'BLOCO 1 — COMUNICAÇÃO E RELAÇÃO MÉDICO-PACIENTE/FAMÍLIA',
+          items: [
+            { item: 'Apresentou-se à paciente e à filha', score: 0.5, ref: 'CFM Res. 2.232/2019' },
+            { item: 'Comunicou o diagnóstico de demência com empatia, em linguagem acessível', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 2 — ANAMNESE',
+          items: [
+            { item: 'Investigou início, progressão e características do declínio cognitivo', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Avaliou impacto funcional nas atividades de vida diária (AVDs)', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Pesquisou alterações de comportamento (irritabilidade, agitação vespertina)', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Investigou história familiar de demência e fatores de risco vascular', score: 0.3, ref: 'Diretriz ABN/SBGe — Demências, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 3 — EXAME FÍSICO E RASTREIO COGNITIVO',
+          items: [
+            { item: 'Aplicou MEEM ou CDT e interpretou o resultado conforme a escolaridade', score: 1.0, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Realizou exame neurológico para afastar déficits focais e sinais parkinsonianos', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 4 — INVESTIGAÇÃO COMPLEMENTAR',
+          items: [
+            { item: 'Solicitou TSH e T4 livre para afastar hipotireoidismo', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Solicitou vitamina B12 e ácido fólico', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Solicitou TC ou RM de crânio para afastar causas estruturais', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' }
+          ]
+        },
+        {
+          h: 'BLOCO 5 — CONDUTA E ORIENTAÇÃO',
+          items: [
+            { item: 'Prescreveu inibidor da colinesterase (Donepezila ou similar)', score: 1.0, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Orientou medidas de segurança no lar (fogão, sair sozinha)', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Orientou a família sobre sundowning e cuidados gerais', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' },
+            { item: 'Encaminhou a Neurologia/Geriatria e a grupos de suporte a cuidadores', score: 0.5, ref: 'Diretriz ABN/SBGe — Demências, 2022' }
+          ]
+        }
+      ]
+    }
+  },
+
   // ─────────────────────────────────────────────────────────────────────────
   // CASO 1 — DELIRIUM
   // ─────────────────────────────────────────────────────────────────────────
@@ -1084,4 +1227,4 @@ const geriatria2 = [
   },
 ];
 
-export default geriatria2;
+export default geriatria;
