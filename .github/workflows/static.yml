@@ -25,7 +25,7 @@ jobs:
           node-version: 20
 
       - name: Generate stations.json
-        run: node build.js
+        run: npm run build
 
       - name: Assemble site
         run: |

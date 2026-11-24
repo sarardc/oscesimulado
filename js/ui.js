@@ -2,7 +2,7 @@ let activeFilter = 'all';
 let searchTerm = '';
 
 // Remove acentos, troca hífens/pontuação por espaço e põe em minúsculas —
-// o topic vem do build.js como "doenca-do-refluxo-gastroesofagico".
+// o topic vem do scripts/build.js como "doenca-do-refluxo-gastroesofagico".
 function normalize(str) {
   return String(str ?? '')
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -108,38 +108,20 @@ function renderCards() {
 // em app.js) lê o atributo data-tab-idx de cada botão.
 function buildTabsNav(st) {
   const nav = document.querySelector('.tabs-nav');
-  if (st.id >= 30) {
-    nav.innerHTML = `
-      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
-      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" data-tab-idx="4"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
-  } else {
-    nav.innerHTML = `
-      <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
-      <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
-      <button class="tab-btn" data-tab-idx="2"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
-      <button class="tab-btn" data-tab-idx="3"><span class="tab-key">D</span><span class="tab-desc">Material de Estudo</span></button>`;
-  }
+  nav.innerHTML = `
+    <button class="tab-btn active" data-tab-idx="0"><span class="tab-key">A</span><span class="tab-desc">Instruções ao Candidato</span></button>
+    <button class="tab-btn" data-tab-idx="1"><span class="tab-key">B</span><span class="tab-desc">Impressos</span></button>
+    <button class="tab-btn" data-tab-idx="2"><span class="tab-key">B1</span><span class="tab-desc">Script do Paciente</span></button>
+    <button class="tab-btn" data-tab-idx="3"><span class="tab-key">C</span><span class="tab-desc">Gabarito do Avaliador</span></button>
+    <button class="tab-btn" data-tab-idx="4"><span class="tab-key">D</span><span class="tab-desc">Checklist</span></button>`;
 }
 
 function renderTabs(st) {
-  if (st.id >= 30) {
-    document.getElementById('tab0').innerHTML = renderTabA(st);
-    document.getElementById('tab1').innerHTML = renderTabBExamsOnly(st);
-    document.getElementById('tab2').innerHTML = renderTabB1Script(st);
-    document.getElementById('tab3').innerHTML = renderTabC(st);
-    document.getElementById('tab4').innerHTML = renderTabD(st);
-    document.getElementById('tab4').style.display = '';
-  } else {
-    document.getElementById('tab0').innerHTML = renderTabA(st);
-    document.getElementById('tab1').innerHTML = renderTabB(st);
-    document.getElementById('tab2').innerHTML = renderTabC(st);
-    document.getElementById('tab3').innerHTML = renderTabD(st);
-    document.getElementById('tab4').innerHTML = '';
-    document.getElementById('tab4').style.display = 'none';
-  }
+  document.getElementById('tab0').innerHTML = renderTabA(st);
+  document.getElementById('tab1').innerHTML = renderTabBExamsOnly(st);
+  document.getElementById('tab2').innerHTML = renderTabB1Script(st);
+  document.getElementById('tab3').innerHTML = renderTabC(st);
+  document.getElementById('tab4').innerHTML = renderTabD(st);
 }
 
 // ── TAB A — Instruções ao Candidato ─────────────────────────────────────────
@@ -254,43 +236,12 @@ function renderExamsBlock(b) {
   return html;
 }
 
-// Casos < 30: aba B com tudo (exames + script)
-function renderTabB(st) {
-  const b = st.instB;
-  let html = renderExamsBlock(b);
-
-  if (b.script && b.script.length) {
-    html += `<div class="section-block">
-      <h3>Script do Paciente Simulado</h3>
-      ${b.script.map(s => `<div class="script-line">
-        <div class="script-trigger">${esc(s.trigger)}</div>
-        <div class="script-speech">"${esc(s.speech)}"</div>
-      </div>`).join('')}
-    </div>`;
-  }
-
-  if (b.hiddenInfo && b.hiddenInfo.length) {
-    html += `<div class="section-block">
-      <h3>Informações Escondidas</h3>
-      <div class="hidden-info-list">
-        ${toList(b.hiddenInfo).map(h => `<div class="alert alert-warn m-0">🔒 ${esc(h)}</div>`).join('')}
-      </div>
-    </div>`;
-  }
-
-  if (b.actorBehavior) {
-    html += `<div class="alert alert-info mt-8">🎭 <strong>Comportamento do Ator:</strong> ${esc(b.actorBehavior)}</div>`;
-  }
-
-  return html;
-}
-
-// Casos >= 30: aba B somente com exames
+// Aba B: somente os impressos (sinais vitais, exame físico, exames)
 function renderTabBExamsOnly(st) {
   return renderExamsBlock(st.instB);
 }
 
-// Casos >= 30: aba B1 com script do paciente
+// Aba B1: script do paciente
 function renderTabB1Script(st) {
   const b = st.instB;
   let html = '';

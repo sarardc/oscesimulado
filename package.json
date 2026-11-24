@@ -1,5 +1,9 @@
 {
   "name": "oscesimulado",
   "version": "1.0.0",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:sala": "node scripts/build.js && node scripts/build-sala.mjs"
+  }
 }

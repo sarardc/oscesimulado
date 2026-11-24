@@ -1,0 +1,25 @@
+// Gera os dados da Sala de Simulação a partir de data/stations.json.
+// Uso (na raiz do repositório): npm run build:sala
+//   (equivale a: node scripts/build.js && node scripts/build-sala.mjs)
+// Saída: sala/casos-repo.json + cópia das fotos usadas em sala/img/estacoes/
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'fs';
+
+// Os caminhos abaixo são relativos à raiz do repositório.
+process.chdir(new URL('..', import.meta.url).pathname);
+
+// Especialidades do repositório que entram na sala (comparação sem acento/maiúsculas).
+// null = todas as especialidades do site
+const TEMAS = null;
+
+const norm = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const all = JSON.parse(readFileSync('data/stations.json', 'utf8'));
+const casos = TEMAS ? all.filter(st => TEMAS.includes(norm(st.tema))) : all;
+
+mkdirSync('sala/img/estacoes', { recursive: true });
+for (const st of casos) {
+  const src = st.instB?.photo?.src;
+  if (src && existsSync(src)) copyFileSync(src, 'sala/' + src);
+}
+
+writeFileSync('sala/casos-repo.json', JSON.stringify(casos));
+console.log(`Sala: ${casos.length} estações (${TEMAS ? TEMAS.join(', ') : 'todas as especialidades'}) -> sala/casos-repo.json`);
