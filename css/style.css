@@ -129,9 +129,10 @@
   }
   .header-title {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;          /* "OSCE" na mesma linha de "CASOS CLÍNICOS" */
     align-items: center;
     justify-content: center;
+    gap: 12px;
   }
   .header-sub {
     font-size: 20px;
@@ -147,12 +148,14 @@
     font-family: var(--mono);
     font-size: 30px;
     font-weight: 600;
-    padding: 10px 4px;
+    line-height: 1;
+    padding: 6px 10px;
     border-radius: 3px;
     letter-spacing: 2px;
     text-transform: uppercase;
   }
   .header h1 { font-size: 30px; font-weight: 500; color: var(--text); margin: 0; }
+  .header-title h1 { white-space: nowrap; }
   .header h3 { font-size: 20px; font-weight: 500; color: var(--text); }
   .header p { font-size: 15px; color: var(--text2); margin-top: 2px; }
 
@@ -930,8 +933,8 @@
     .header { padding: 14px 16px; gap: 10px; }
     .header-top { flex-direction: column; align-items: center; }
     .header-iframe-wrap { width: 100%; max-width: 420px; }
-    .header-title { align-items: center; text-align: center; }
-    .header-badge { align-self: center; }
+    .header-title { justify-content: center; text-align: center; }
+    .header-badge { font-size: 20px; padding: 5px 8px; }
     .header h1 { font-size: 20px; text-align: center; }
     .header-sub { font-size: 13px; }
     .header p  { font-size: 12px; }
@@ -1032,7 +1035,7 @@
     .header { padding: 10px 12px; }
     .header h1 { font-size: 16px; }
     .header-sub { font-size: 11px; }
-    .header-badge { font-size: 9px; padding: 8px 3px; }
+    .header-badge { font-size: 16px; padding: 4px 6px; }
     .header p { font-size: 12px; }
 
     .home-body { padding: 10px; }
