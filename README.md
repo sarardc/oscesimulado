@@ -26,13 +26,15 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 ├── cards/                  Cards de estudo (cards/cards.html)
 ├── agenda/                 Agenda de estudos (app instalável)
 ├── questoes/               Questões (pediatria)
-├── sala/                   Sala de Simulação interativa (ia-prompts.js: prompts da IA)
+├── sala/                   Sala de Simulação interativa (detalhes abaixo)
 ├── api/                    Servidor de IA da sala (Cloudflare Worker), ver api/README.md
 │
 ├── scripts/
 │   ├── build.js            Junta casos/ em data/stations.json
 │   ├── build-sala.mjs      Gera os dados da Sala de Simulação
 │   └── build-sala-ia.mjs   Gera as fichas dos casos para o servidor de IA (api/)
+│
+├── tests/                  Testes de ponta a ponta da sala (npm test)
 │
 └── .github/workflows/      Publicação automática no GitHub Pages
 ```
@@ -57,6 +59,50 @@ npm run build:sala
 
 Ao enviar para a branch `main`, o GitHub Actions roda `npm run build:sala` e publica o site,
 com a Sala de Simulação em `/sala/`.
+
+## Sala de Simulação: onde fica cada coisa
+
+```
+sala/
+├── index.html          Página curta: carrega o CSS e os scripts abaixo, nesta ordem
+├── sala.css            Estilos
+├── ia-prompts.js       Prompts da IA (paciente, enfermeira, avaliador), usados também pelo api/
+├── js/                 Motor da sala
+│   ├── base.js         ícones e utilitários
+│   ├── catalogo.js     exames, auxiliares do checklist, ordens da emergência
+│   ├── ecg.js          ECG desenhado a partir da descrição do caso
+│   ├── dinamica.js     motor dos casos dinâmicos (piora, melhora, parada, óbito)
+│   ├── estado.js       preferências e estado da estação
+│   ├── voz.js          voz e microfone do navegador
+│   ├── ia.js           IA: servidor próprio (IA_API_URL) e claude.ai
+│   ├── lobby.js        lobby e porta da estação
+│   ├── sala.js         cena, cronômetro, sons, legendas
+│   ├── conversa.js     conversa com paciente e enfermeira
+│   ├── emergencia.js   ordens, sinais vitais e monitor
+│   ├── gavetas.js      exame físico, exames, prontuário, conduta
+│   ├── correcao.js     encerramento e correção
+│   └── inicio.js       liga voz, microfone e IA e abre o lobby
+├── casos/              Casos próprios da sala
+│   ├── manuais.js      casos escritos à mão (Dona Lúcia, Seu Antônio...)
+│   ├── repositorio.js  converte as estações do site (casos-repo.json) para a sala
+│   ├── dinamicos.js    casos em que o paciente pode morrer
+│   └── primeiro-periodo.js  anamnese e semiologia do 1º período
+└── img/                Ilustrações das cenas
+```
+
+Os arquivos de `js/` e `casos/` são scripts comuns (não módulos): compartilham o mesmo
+escopo e precisam ser carregados na ordem do `index.html`. Para abrir a sala no computador,
+use um servidor local (por exemplo `npx serve` na raiz) e acesse `/sala/`.
+
+### Testes
+
+```bash
+npm test
+```
+
+Gera os dados e roda os testes de ponta a ponta no Chromium: lobby, conversa, voz e
+microfone, exame físico, exames, correção, emergência, caso dinâmico, celular e IA.
+Na primeira vez, instale o Playwright com `npm install` e `npx playwright install chromium`.
 
 ## Sala de Simulação fora do claude.ai
 
