@@ -237,6 +237,19 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
 .filters button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:13.5px}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .gab{display:grid;gap:10px;font-size:14px}
+.rt-wrap{display:grid;gap:20px}
+.group .sis{font-size:12.5px;font-weight:600;color:var(--accent);margin-top:6px}
+.rt-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.rt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px 24px}
+.rt-sec{display:grid;gap:2px;align-content:start}
+.rt-sec .eyebrow{margin-bottom:4px;color:var(--accent)}
+.rt-it{display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px;font-size:14px;padding:4px 0;border-bottom:1px solid var(--line);align-items:start}
+.rt-it small{grid-column:2;color:var(--muted);font-size:12px}
+.rt-it small.ev{display:block;grid-column:auto}
+.rt-mk{font-weight:700;text-align:center}
+.rt-it.y .rt-mk{color:var(--ok)}.rt-it.n .rt-mk{color:var(--crit)}.rt-it.na{color:var(--muted)}
+.rt-it.manual{cursor:pointer}.rt-it.manual input{margin:3px 0 0;accent-color:var(--accent)}
+.rt-dicas{margin:0;padding-left:18px;display:grid;gap:4px;font-size:14px}
 .gab ul{margin:0;padding-left:18px;display:grid;gap:4px}
 .obito{position:absolute;inset:0;z-index:8;display:grid;place-content:center;justify-items:center;gap:6px;background:rgba(0,0,0,.72);color:#fff;text-align:center;animation:tin .6s ease-out;padding:16px}
 .obito b{font-family:var(--f-display);font-size:clamp(40px,8vw,72px);letter-spacing:.08em}
@@ -504,15 +517,15 @@ const CASOS = [
     {id:"palp", g:"Interrogatório sintomatológico", q:"Sente palpitações?", kw:/(palpit|batedeira|coracao (acelerad|dispar|batendo))/, r:"Às vezes sinto o coração batendo rápido quando falta o ar."},
     {id:"meds", g:"Antecedentes", q:"Quais remédios a senhora usa?", kw:/(remedio|medica|toma (algum|alguma)|usa (algum|alguma)|comprimido|tratamento)/, r:"Tomo losartana de manhã e à noite, o carvedilol, o AAS e a sinvastatina. Tinha a furosemida também, mas essa eu parei."},
     {id:"furo", g:"Antecedentes", q:"Por que parou a furosemida?", kw:/(furosemida|lasix|parou|por que (parou|deixou)|deixou de tomar|esquec|suspend|tomando (direitinho|certo|corretamente)|adesao)/, r:"Parei faz um mês. Fui pra casa da minha filha em Minas e ela me fazia correr pro banheiro na estrada. Acabei não voltando a tomar."},
-    {id:"dieta", g:"Hábitos e estilo de vida", q:"Como é sua alimentação? Usa muito sal?", kw:/(sal\b|salgad|comida|aliment|dieta|liquido|agua)/, r:"Na casa da minha filha foi muita festa, linguiça, feijoada... Sal eu sempre usei bem, né. Água bebo uns dois litros."},
+    {id:"dieta", g:"Hábitos de vida", q:"Como é sua alimentação? Usa muito sal?", kw:/(sal\b|salgad|comida|aliment|dieta|liquido|agua)/, r:"Na casa da minha filha foi muita festa, linguiça, feijoada... Sal eu sempre usei bem, né. Água bebo uns dois litros."},
     {id:"has", g:"Antecedentes", q:"Tem pressão alta?", kw:/(pressao|hipertens)/, r:"Pressão alta tenho faz uns vinte anos."},
     {id:"iam", g:"Antecedentes", q:"Já teve algum problema no coração?", kw:/(infart|coracao|cardiac|cateter|stent|cirurgia|internad|internac|cardiolog)/, r:"Tive um infarto há seis anos. Colocaram um stent. Ia no cardiologista, mas faz um ano que não vou."},
     {id:"dm", g:"Antecedentes", q:"Tem diabetes?", kw:/(diabet|acucar|glicose)/, r:"Diabetes não. O colesterol é que é alto."},
     {id:"alergia", g:"Antecedentes", q:"Tem alergia a algum remédio?", kw:/(alergi)/, r:"Que eu saiba, não."},
-    {id:"fumo", g:"Hábitos e estilo de vida", q:"A senhora fuma ou já fumou?", kw:/(fum|cigarro|tabag)/, r:"Fumei trinta anos, um maço por dia. Parei depois do infarto."},
-    {id:"alcool", g:"Hábitos e estilo de vida", q:"Consome bebida alcoólica?", kw:/(bebida|alcool|cerveja|pinga|vinho|bebe\b)/, r:"Bebida não, só um vinhozinho no Natal."},
+    {id:"fumo", g:"Hábitos de vida", q:"A senhora fuma ou já fumou?", kw:/(fum|cigarro|tabag)/, r:"Fumei trinta anos, um maço por dia. Parei depois do infarto."},
+    {id:"alcool", g:"Hábitos de vida", q:"Consome bebida alcoólica?", kw:/(bebida|alcool|cerveja|pinga|vinho|bebe\b)/, r:"Bebida não, só um vinhozinho no Natal."},
     {id:"familia", g:"Antecedentes", q:"Alguém na família tem doença do coração?", kw:/(familia|mae\b|pai\b|irma|parente|heredit)/, r:"Minha mãe morreu do coração, com setenta e poucos anos."},
-    {id:"social", g:"Hábitos e estilo de vida", q:"Com quem a senhora mora?", kw:/(mora\b|morando|sozinha|vive com|aposentad|neta|filh)/, r:"Sou viúva. Moro com minha neta, ela trabalha o dia todo."},
+    {id:"social", g:"Hábitos de vida", q:"Com quem a senhora mora?", kw:/(mora\b|morando|sozinha|vive com|aposentad|neta|filh)/, r:"Sou viúva. Moro com minha neta, ela trabalha o dia todo."},
     {id:"medo", g:"Perspectiva da paciente", q:"O que a senhora acha que está acontecendo?", kw:/(preocup|medo|o que (a senhora )?acha|como (a senhora )?(esta|se sente) com isso|ansios)/, r:"Tô com medo de ser o coração de novo, doutor. Vou ter que ficar internada?"},
     {id:"nome", g:"Identificação", q:"Qual o seu nome?", kw:/(seu nome|como (a senhora|voce) se chama|nome completo)/, r:"Lúcia Ferreira."},
     {id:"idade", g:"Identificação", q:"Quantos anos a senhora tem?", kw:/(idade|quantos anos)/, r:"Setenta e quatro."},
@@ -1551,7 +1564,7 @@ CASOS.unshift(...DYN_CASOS);
    Casos para quem está aprendendo: o foco é a anamnese completa, na ordem certa,
    e as manobras do exame físico; o raciocínio pedido é o diagnóstico sindrômico.
    ========================================================================= */
-const AN_ORDEM = ["Identificação","Queixa principal","História da doença atual","Interrogatório sintomatológico","Antecedentes pessoais","Antecedentes familiares","Hábitos e estilo de vida","Condições socioeconômicas e culturais"];
+const AN_ORDEM = ["Identificação","Queixa principal","História da doença atual","Interrogatório sintomatológico","Antecedentes pessoais","Antecedentes familiares","Hábitos e estilo de vida","Condições socioeconômicas e culturais","Fechamento"];
 const AN = {
   nome:{g:"Identificação", q:"Qual é o seu nome completo?", kw:/(seu nome|como (o senhor |a senhora |voce )?se chama|nome completo)/},
   idade:{g:"Identificação", q:"Quantos anos o(a) senhor(a) tem?", kw:/(idade|quantos anos|data de nascimento)/},
@@ -1560,7 +1573,7 @@ const AN = {
   cor:{g:"Identificação", q:"Como o(a) senhor(a) se declara quanto à cor da pele?", kw:/(\bcor\b|\braca\b|etnia|se declara|branc[oa]|pard[oa]|negr[oa])/},
   religiao:{g:"Identificação", q:"Tem alguma religião?", kw:/(religi|igreja|culto|missa|\bcren(ca|te)|espirit)/},
   civil:{g:"Identificação", q:"Qual é o seu estado civil?", kw:/(casad|estado civil|solteir|viuv|divorc|mora com quem|com quem (o senhor |a senhora |voce )?mora)/},
-  qp:{g:"Queixa principal", q:"O que traz o(a) senhor(a) aqui hoje?", kw:/(o que (o |a )?(traz|trouxe)|motivo|queixa|como posso (te |lhe )?ajudar|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|o que (esta )?acontec)/},
+  qp:{g:"Queixa principal", q:"O que traz o(a) senhor(a) aqui hoje?", kw:/(o que (o |a |te |lhe |voce )?(traz|trouxe)|motivo|queixa|como posso (te |lhe )?ajudar|em que posso|o que (o senhor |a senhora |voce )?(sente|esta sentindo)|o que (esta )?acontec)/},
   nascimento:{g:"Antecedentes pessoais", q:"Sabe como foi o seu nascimento e o seu desenvolvimento na infância?", kw:/(como (foi o seu |voce )?nasc|nascimento|prematur|desenvolvimento|parto (normal|cesarea) quando)/},
   gineco:{g:"Antecedentes pessoais", q:"Com que idade menstruou pela primeira vez? Teve gestações, partos ou abortos? Já entrou na menopausa?", kw:/(menarca|primeira menstrua|gestac|gravid|engravid|parto|aborto|cesarea|menopausa|preventivo|papanicolau|ciclo menstrual)/},
   infancia:{g:"Antecedentes pessoais", q:"Teve doenças na infância, como sarampo, catapora ou caxumba?", kw:/(infancia|quando (era )?crianca|sarampo|catapora|caxumba|rubeola|coqueluche)/},
@@ -1586,407 +1599,64 @@ const AN = {
   animais:{g:"Condições socioeconômicas e culturais", q:"Tem animais em casa?", kw:/(anima(l|is)|cachorro|gato|bicho|passaro|galinha)/},
   moradia:{g:"Condições socioeconômicas e culturais", q:"Como é a sua casa? Tem água encanada e esgoto?", kw:/(sua casa|moradia|mora em|saneamento|agua encanada|esgoto|comodo|onde (o senhor |a senhora |voce )?vive)/},
 };
+// Perguntas do roteiro do Porto que todo caso precisa ter; o caso pode sobrescrever pelo id.
+// Nos sistemas fora do quadro, a resposta é neutra para não contradizer a história do caso.
+const NADA = "Fora o que eu já contei, não tenho isso não.";
+const AN_GERAL = [
+  {id:"hda_evol", g:"História da doença atual", q:"Como isso evoluiu? Já tinha acontecido antes?", kw:/(evolu|foi piorando|ja (tinha|aconteceu)|outras vezes|outro episodio)/, r:"Foi do jeito que eu contei, doutor(a). Antes disso eu estava bem."},
+  {id:"hda_trat", g:"História da doença atual", q:"Já procurou atendimento, fez algum exame ou tratamento por isso?", kw:/(ja (procurou|consultou|foi ao medico|fez (algum )?exame)|fez algum tratamento|exames? (antes|anterior))/, r:"Não procurei médico por isso ainda. Exame, não fiz nenhum."},
+  {id:"hda_vida", g:"História da doença atual", q:"Isso atrapalha o seu dia a dia?", kw:/(atrapalh|dia a dia|rotina|vida diaria|impede)/, r:"Atrapalha, sim. No trabalho e em casa eu não rendo como antes."},
+  {id:"isd_geral", g:"Interrogatório sintomatológico", q:"Teve febre, suor à noite ou mudança de apetite?", kw:/(febre|suor|sudorese|apetite)/, r:NADA},
+  {id:"isd_pele", g:"Interrogatório sintomatológico", q:"Notou algo na pele, unhas ou cabelo?", kw:/(pele|coceira|prurido|mancha|lesao|unha|cabelo)/, r:NADA},
+  {id:"isd_cabeca", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça, tontura, caroço no pescoço ou rouquidão?", kw:/(cabeca|tontura|caroco|rouquid)/, r:NADA},
+  {id:"isd_oong", g:"Interrogatório sintomatológico", q:"Como estão a visão, a audição, o nariz e a garganta?", kw:/(visao|vista|enxerg|ouvido|zumbido|audicao|escuta|nariz|garganta)/, r:NADA},
+  {id:"isd_resp", g:"Interrogatório sintomatológico", q:"Tem tosse, catarro ou chiado no peito?", kw:/(tosse|catarro|escarro|chiado)/, r:NADA},
+  {id:"isd_cv", g:"Interrogatório sintomatológico", q:"Sente dor no peito, palpitação ou desmaio?", kw:/(peito|palpit|desmai)/, r:NADA},
+  {id:"isd_dig", g:"Interrogatório sintomatológico", q:"Tem enjoo, vômito, dificuldade para engolir ou mudança no intestino?", kw:/(enjoo|nausea|vomit|engol|intestin|fezes|evacu)/, r:NADA},
+  {id:"isd_uri", g:"Interrogatório sintomatológico", q:"Tem ardência para urinar ou mudança na urina?", kw:/(urin|xixi|ardencia|jato)/, r:NADA},
+  {id:"isd_gen", g:"Interrogatório sintomatológico", q:"Tem alguma queixa na região genital (corrimento, dor, alteração da libido)?", kw:/(genital|corrimento|libido|ereca|menstrua)/, r:NADA},
+  {id:"isd_vasc", g:"Interrogatório sintomatológico", q:"Tem varizes ou dor nas pernas ao caminhar?", kw:/(variz|claudica|dor nas pernas ao (andar|caminhar))/, r:NADA},
+  {id:"isd_hemato", g:"Interrogatório sintomatológico", q:"Teve sangramentos, manchas roxas ou ínguas?", kw:/(sangra|roxo|equimose|ingua|gangli)/, r:NADA},
+  {id:"isd_endo", g:"Interrogatório sintomatológico", q:"Sente muita sede, muito frio ou muito calor?", kw:/(sede|\bfrio\b|calor)/, r:NADA},
+  {id:"isd_musc", g:"Interrogatório sintomatológico", q:"Tem dor nas articulações, rigidez ou fraqueza muscular?", kw:/(articula|junta|rigidez|musculo|fraqueza muscular)/, r:NADA},
+  {id:"isd_neuro", g:"Interrogatório sintomatológico", q:"Teve convulsão, formigamento, fraqueza ou problema de memória?", kw:/(convuls|formig|dormen|memoria|esquec)/, r:NADA},
+  {id:"isd_psi", g:"Interrogatório sintomatológico", q:"Como está o seu humor? Anda triste ou ansioso(a)?", kw:/(humor|triste|ansios|nervos)/, r:"Fico preocupado(a) com isso tudo, mas triste mesmo, não."},
+  {id:"af_infec", g:"Antecedentes familiares", q:"Alguém na família ou em casa teve tuberculose ou hepatite?", kw:/(tuberculose|hepatite|\btb\b)/, r:"Que eu saiba, não."},
+  {id:"viagem", g:"Hábitos e estilo de vida", q:"Viajou recentemente?", kw:/(viag|viajou)/, r:"Não viajei."},
+  {id:"expect", g:"Fechamento", q:"O que o(a) senhor(a) espera desta consulta? O que mais preocupa?", kw:/(o que (o senhor |a senhora |voce )?espera|o que (mais )?(te |lhe )?preocupa|tem medo de)/, r:"Quero saber o que eu tenho e se tem tratamento. Tenho medo de ser algo grave."},
+];
 function anamnese(base, outros){
   const out = [];
   for (const [id, r] of Object.entries(base)){ const d = AN[id]; if (d) out.push({id, g:d.g, q:d.q, kw:d.kw, r}); }
   outros.forEach(h => out.push(Object.assign({g:"História da doença atual"}, h)));
+  AN_GERAL.forEach(gn => { if (!out.some(t => t.id === gn.id)) out.push(Object.assign({gen:true}, gn)); });
   return out.sort((a, b) => AN_ORDEM.indexOf(a.g) - AN_ORDEM.indexOf(b.g));
 }
 const TN = (ids, n) => s => { const h = ids.filter(id => s.topics[id]); return h.length >= n ? {ok:true, ev:`${h.length} de ${ids.length} itens perguntados`} : {ok:false, ev: h.length ? `Só ${h.length} de ${ids.length} itens` : undefined}; };
-const TERMS = (re, n) => s => { const txt = norm(s.transcript.filter(m => m.who === "me").map(m => m.text).join(" ") + " " + s.notas + " " + s.conduta + " " + s.hip + " " + s.dif); const g = new RegExp(re.source, "g"); const hits = new Set(txt.match(g) || []); return hits.size >= n ? {ok:true, ev:`${hits.size} termos semiológicos usados`} : {ok:false, ev: hits.size ? `Só ${hits.size} termo(s)` : "Achados não descritos"}; };
-const ORDEM_AN = s => {
-  // usa a mediana dos horários de cada seção: uma pergunta solta que cai em outra seção não inverte a ordem
-  const first = g => { const ts = s.c.topicos.filter(tp => tp.g === g && s.topics[tp.id]).map(tp => s.topics[tp.id].t).sort((x, y) => x - y); return ts.length ? ts[Math.floor((ts.length - 1) / 2)] : null; };
-  const seq = ["Identificação","História da doença atual","Antecedentes pessoais","Hábitos e estilo de vida"].map(first).filter(x => x != null);
-  if (seq.length < 3) return {ok:false, ev:"Anamnese incompleta para avaliar a ordem"};
-  for (let i = 1; i < seq.length; i++) if (seq[i] < seq[i-1]) return {ok:false, ev:"Seções fora de ordem"};
-  return {ok:true, ev:"Identificação → HDA → antecedentes → hábitos"};
-};
-function ckP1(o){
-  const it = [
-    {d:"Comunicação", l:"Apresenta-se pelo nome e função", w:.5, test:C("apresentou")},
-    {d:"Comunicação", l:"Chama o paciente pelo nome", w:.5, test:C("nome")},
-    {d:"Comunicação", l:"Demonstra empatia e escuta ativa", w:.5, test:C("empatia")},
-    {d:"Comunicação", l:"Fecha a consulta perguntando se há dúvidas", w:.5, test:C("entendimento")},
-    {d:"Anamnese", l:"Identificação completa (nome, idade, cor, estado civil, profissão, naturalidade/procedência, religião)", w:1, test:TN(["nome","idade","cor","civil","prof","natural","religiao"], 5), dica:"A identificação vem primeiro e orienta o raciocínio: idade, cor, profissão e procedência mudam as hipóteses (Porto)."},
-    {d:"Anamnese", l:"Queixa principal nas palavras do paciente", w:.5, test:T("qp")},
-    ...o.hda.map(([l, ids, w]) => ({d:"História da doença atual", l, w: w || .5, test:T(...ids)})),
-    {d:"Anamnese", l:"Interrogatório sintomatológico (revisa outros sistemas)", w:1, test:TN(o.isda, 3)},
-    {d:"Anamnese", l:"Antecedentes pessoais: doenças e medicamentos em uso", w:1, test:TN(["dp","meds"], 2)},
-    {d:"Anamnese", l:"Antecedentes pessoais: alergias, cirurgias e internações", w:.5, test:TN(["alergia","cirurgia"], 2)},
-    {d:"Anamnese", l:"Antecedentes pessoais fisiológicos (nascimento e desenvolvimento; na mulher: menarca, ciclos, gestações/partos/abortos, menopausa)", w:.5, test:s => s.c.pac.sexo === "Feminino" ? T("gineco")(s) : TN(["nascimento","gineco"], 1)(s)},
-    {d:"Anamnese", l:"Antecedentes pessoais patológicos: doenças da infância, traumatismos e transfusões", w:.5, test:TN(["infancia","trauma","transfusao","transf"], 2)},
-    {d:"Anamnese", l:"Vacinação", w:.25, test:T("vacina")},
-    {d:"Anamnese", l:"Antecedentes familiares", w:.5, test:T("af")},
-    {d:"Anamnese", l:"Hábitos: tabagismo e etilismo (com quantidade e tempo)", w:1, test:TN(["fumo","alcool"], 2)},
-    {d:"Anamnese", l:"Hábitos: atividade física e alimentação", w:.5, test:TN(["ativ","alim"], 1)},
-    {d:"Anamnese", l:"Ocupação atual e anteriores / exposição ocupacional", w:.5, test:T("exposicao")},
-    {d:"Anamnese", l:"Vida sexual (parceria, uso de preservativo, queixas)", w:.5, test:T("vidasexual"), dica:"A vida sexual faz parte da anamnese de todo adulto. Pergunte com naturalidade, sem julgamento, e explique por que está perguntando."},
-    {d:"Anamnese", l:"Condições socioeconômicas e culturais (moradia e saneamento, escolaridade, renda, relações familiares e lazer, animais)", w:1, test:TN(["moradia","escolaridade","renda","lazer","animais"], 3)},
-    {d:"Anamnese", l:"Segue a ordem da anamnese (identificação → HDA → antecedentes → hábitos)", w:.5, test:ORDEM_AN},
-    {d:"Exame físico", l:"Ectoscopia (inspeção geral)", w:.5, test:M("ectoscopia")},
-    {d:"Exame físico", l:"Sinais vitais", w:.5, test:M("sv")},
-    ...o.exame.map(([l, ids, w]) => ({d:"Exame físico", l, w: w || .5, test:M(...ids)})),
-    {d:"Raciocínio", l:"Diagnóstico sindrômico: " + o.sindrome, w:2, ia:true, test:H(o.sindRe)},
-    {d:"Raciocínio", l:"Descreve os achados com terminologia semiológica (falado ou nas anotações)", w:1, ia:true, test:TERMS(o.terms, 3)},
+// Checklist simples para o 1º período: cada item vale 1 ponto.
+function ckSimples(o){
+  const n = (g, k) => s => { const q = s.c.topicos.filter(tp => tp.g === g && s.topics[tp.id]).length; return q >= k ? {ok:true, ev:`${q} pergunta(s)`} : {ok:false, ev: q ? `Só ${q} pergunta(s)` : undefined}; };
+  return [
+    {d:"Comunicação", l:"Apresenta-se ao paciente (nome e função)", w:1, test:C("apresentou")},
+    {d:"Comunicação", l:"Chama o paciente pelo nome ou demonstra empatia", w:1, test:ANY(C("nome"), C("empatia"))},
+    {d:"Comunicação", l:"Pergunta se o paciente tem dúvidas no final", w:1, test:C("entendimento")},
+    {d:"Anamnese", l:"Identificação (nome, idade, profissão, de onde é, estado civil…)", w:1, test:TN(["nome","idade","cor","civil","prof","natural","religiao"], 3)},
+    {d:"Anamnese", l:"Queixa principal", w:1, test:T("qp")},
+    {d:"Anamnese", l:"HDA: quando e como começou", w:1, test:TN(["inicio","quando"], 1)},
+    {d:"Anamnese", l:"HDA: pede para o paciente contar mais e pergunta o que piora, melhora ou vem junto", w:1, test:ANY(TN(["hda_conte","hda_fatores","hda_assoc"], 2), n("História da doença atual", 4)), dica:"Comece com \"me conte mais\" e depois pergunte \"o que piora ou melhora?\" e \"sente mais alguma coisa junto?\". O paciente vai contar o resto."},
+    {d:"Anamnese", l:"Interrogatório sintomatológico (pergunta sobre outros sistemas)", w:1, test:n("Interrogatório sintomatológico", 3)},
+    {d:"Anamnese", l:"Antecedentes pessoais (doenças, remédios, alergias)", w:1, test:TN(["dp","meds","alergia","cirurgia"], 2)},
+    {d:"Anamnese", l:"Antecedentes familiares", w:1, test:T("af")},
+    {d:"Anamnese", l:"Hábitos de vida (cigarro, álcool, alimentação, atividade física)", w:1, test:TN(["fumo","alcool","alim","ativ"], 2)},
+    {d:"Anamnese", l:"Condições de vida (moradia, renda, escolaridade)", w:1, test:TN(["moradia","renda","escolaridade","lazer"], 1)},
+    ...o.exame.map(([l, ids]) => ({d:"Exame físico", l, w:1, test:M(...ids)})),
+    {d:"Hipótese", l:"Hipótese diagnóstica: " + o.diag, w:1, ia:true, test:H(o.re)},
   ];
-  return it;
 }
-const P1_BASE = {persona:"Paciente colaborativo, linguagem simples. Responde só ao que for perguntado, sem adiantar informações. Se o aluno usar termos técnicos, pede para explicar. Se perguntarem algo que não está na ficha, responda de forma coerente e geralmente negativa.", area:"P1 duda", nivel:"Anamnese e semiologia", tempo:900, labelHip:"Diagnóstico sindrômico", labelCond:"Descrição dos achados e próximos passos"};
-const P1_TAREFAS = sistema => ["Faça a anamnese completa (roteiro do Porto): identificação, queixa principal, HDA, interrogatório sintomatológico, antecedentes pessoais fisiológicos e patológicos, antecedentes familiares, hábitos e estilo de vida e condições socioeconômicas e culturais.", `Examine o paciente com foco no ${sistema}, nomeando cada manobra (inspeção, palpação, percussão e ausculta).`, "Descreva os achados em voz alta ou nas anotações e diga o diagnóstico sindrômico."];
+const P1_BASE = {persona:"Paciente colaborativo, linguagem simples. Quando o aluno fizer perguntas abertas ('me conte mais', 'o que piora ou melhora?', 'sente mais alguma coisa junto?'), conte a história com detalhes, como um paciente real faria: o aluno é do 1º período e ainda não sabe fazer perguntas muito específicas. Fora isso, não adiante informações de outras seções da anamnese. Se o aluno usar termos técnicos, pede para explicar. Se perguntarem algo que não está na ficha, responda de forma coerente e geralmente negativa.", area:"P1 duda", nivel:"Anamnese e semiologia", tempo:900, labelHip:"Hipótese diagnóstica", labelCond:"Anotações sobre o exame físico"};
+const P1_TAREFAS = sistema => ["Faça a anamnese completa (roteiro do Porto): identificação, queixa principal, HDA, interrogatório sintomatológico, antecedentes pessoais fisiológicos e patológicos, antecedentes familiares, hábitos e estilo de vida e condições socioeconômicas e culturais.", `Examine o paciente com foco no ${sistema}, nomeando cada manobra (inspeção, palpação, percussão e ausculta).`, "Diga qual é a sua hipótese diagnóstica."];
 
-const P1_CASOS = [
-/* ------------------------------------------------ 1. RESPIRATÓRIO — CONDENSAÇÃO */
-Object.assign({}, P1_BASE, {
-  id:"p1-condensacao", ativo:true, img:"img/rafael.jpg", focus:"74% 40%", voz:"buttery",
-  local:"Ambulatório de semiologia", titulo:"Tosse com catarro e febre",
-  pac:{nome:"Carlos Eduardo Santos", primeiro:"carlos", trat:"Seu Carlos", idade:45, sexo:"Masculino", prof:"Pedreiro"},
-  enunciado:"Carlos, 45 anos, procura o ambulatório com tosse e febre. Você é o estudante responsável pela anamnese e pelo exame físico.",
-  tarefas:P1_TAREFAS("aparelho respiratório"),
-  topicos:anamnese({
-    nome:"Carlos Eduardo Santos.", idade:"Quarenta e cinco.", natural:"Nasci em Itabuna, na Bahia. Moro em São Paulo há vinte anos.", prof:"Sou pedreiro.", civil:"Casado, tenho dois filhos.",
-    qp:"Tô com uma tosse com catarro e febre faz quatro dias.",
-    dp:"Tenho pressão alta.", meds:"Losartana 50 mg de manhã.", alergia:"Nenhuma que eu saiba.", cirurgia:"Operei apendicite com vinte anos. Internado, só nessa vez.", vacina:"Tomei a da gripe ano passado… acho.",
-    af:"Meu pai é hipertenso e minha mãe tem diabetes.",
-    fumo:"Fumo um maço por dia desde os dezoito anos.", alcool:"Cerveja no fim de semana, umas quatro latas.", drogas:"Não.", ativ:"O serviço já é pesado; academia não.", alim:"Como de tudo, bastante fritura.", sono:"Durmo bem, menos esses dias com a tosse.", vidasexual:"Sou casado, só com a minha esposa. A gente não usa camisinha.", cor:"Sou pardo.", religiao:"Católico, vou à missa de vez em quando.", nascimento:"Nasci de parto normal, em casa, na roça. Minha mãe diz que andei e falei na época certa.", infancia:"Tive catapora e sarampo, acho.", transfusao:"Nunca recebi sangue.", trauma:"Caí de um andaime há uns cinco anos e quebrei o braço.", exposicao:"Trabalho com cimento e poeira o dia todo, sem máscara. Antes trabalhei na roça.", escolaridade:"Estudei até a quinta série.", renda:"Uns dois salários mínimos, depende da obra. Somos quatro em casa.", lazer:"Futebol com os amigos no domingo. Em casa é tranquilo.", animais:"Tenho um cachorro.",
-    moradia:"Casa de alvenaria, quatro cômodos, com água encanada e esgoto.",
-  }, [
-    {id:"inicio", q:"Quando começou?", kw:/(quando comecou|quanto tempo|desde quando|ha quantos dias|comecou como)/, r:"Começou há quatro dias, de repente, com febre e calafrio."},
-    {id:"tosse", q:"Como é a tosse? Tem catarro? De que cor?", kw:/(tosse|catarro|escarro|secrec|cor do)/, r:"Tosse com catarro amarelado, meio cor de ferrugem."},
-    {id:"febre", q:"Mediu a febre? Teve calafrios?", kw:/(febre|temperatura|calafrio|mediu)/, r:"Medi 39 graus ontem, com calafrio de bater o queixo."},
-    {id:"dor", q:"Tem dor? Onde? Piora com a respiração?", kw:/(\bdor\b|doi|pontada|respirar fundo)/, r:"Uma pontada do lado direito, embaixo, que piora quando respiro fundo ou tusso."},
-    {id:"dispneia", q:"Sente falta de ar?", kw:/(falta de ar|cansaco|dispneia|folego)/, r:"Um pouco, quando ando mais rápido."},
-    {id:"fatores", q:"O que melhora ou piora? Tomou algum remédio?", kw:/(melhora|piora|tomou|antitermico|dipirona)/, r:"Tomei dipirona: a febre baixa e volta."},
-    {id:"contato", q:"Tem alguém doente em casa?", kw:/(alguem (doente|com)|contato|gripad)/, r:"Meu filho ficou gripado semana passada."},
-    {id:"apetite", g:"Interrogatório sintomatológico", q:"Como está o apetite e o peso?", kw:/(apetite|peso|emagrec)/, r:"Sem fome esses dias. O peso está igual."},
-    {id:"hemopt", g:"Interrogatório sintomatológico", q:"Saiu sangue com a tosse?", kw:/(sangue)/, r:"Sangue não."},
-    {id:"cefaleia", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça?", kw:/(cabeca)/, r:"Uma dor de cabeça leve junto com a febre."},
-    {id:"urina", g:"Interrogatório sintomatológico", q:"Como está a urina?", kw:/(urin|xixi)/, r:"Normal."},
-    {id:"intestino", g:"Interrogatório sintomatológico", q:"E o intestino?", kw:/(intestin|fezes|evacu|diarreia)/, r:"Normal."},
-    {id:"edema", g:"Interrogatório sintomatológico", q:"Notou inchaço no corpo?", kw:/(inch|edema)/, r:"Não."},
-  ]),
-  exame:[
-    {g:"Geral", itens:[
-      {id:"ectoscopia", nome:"Ectoscopia (inspeção geral)", achado:"Regular estado geral, corado, hidratado, acianótico, anictérico, febril ao toque, levemente taquipneico."},
-      {id:"sv", nome:"Sinais vitais", achado:"PA 132 × 84 mmHg · FC 104 bpm · FR 24 irpm · Tax 38,6 °C · SpO₂ 93% em ar ambiente"},
-      {id:"linfo", nome:"Palpação de linfonodos cervicais", achado:"Não palpáveis."},
-    ]},
-    {g:"Tórax — inspeção", itens:[
-      {id:"insp_est", nome:"Inspeção estática (forma do tórax, abaulamentos, cicatrizes)", achado:"Tórax normolíneo, simétrico, sem abaulamentos ou retrações."},
-      {id:"insp_din", nome:"Inspeção dinâmica (tipo e ritmo respiratório, tiragem)", achado:"Respiração toracoabdominal, regular, taquipneica, sem tiragem."},
-    ]},
-    {g:"Tórax — palpação", itens:[
-      {id:"expans", nome:"Expansibilidade (ápices e bases)", achado:"Expansibilidade REDUZIDA na base direita."},
-      {id:"ftv", nome:"Frêmito toracovocal (pedir para dizer \"trinta e três\")", achado:"Frêmito toracovocal AUMENTADO na base direita (região infraescapular direita)."},
-    ]},
-    {g:"Tórax — percussão e ausculta", itens:[
-      {id:"percussao", nome:"Percussão comparativa do tórax", achado:"SUBMACICEZ na base direita; som claro pulmonar no restante."},
-      {id:"ausc_pulm", nome:"Ausculta pulmonar", achado:"Murmúrio vesicular presente, com ESTERTORES CREPITANTES e SOPRO TUBÁRIO na base direita."},
-      {id:"ausc_voz", nome:"Ausculta da voz (broncofonia, pectorilóquia)", achado:"Broncofonia AUMENTADA e pectorilóquia fônica na base direita."},
-    ]},
-    {g:"Outros sistemas", itens:[
-      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Ritmo regular, taquicárdico, bulhas normofonéticas, sem sopros."},
-      {id:"abdome", nome:"Exame do abdome", achado:"Plano, flácido, indolor, sem visceromegalias."},
-      {id:"mmii", nome:"Membros inferiores", achado:"Sem edema, panturrilhas livres."},
-    ]},
-  ],
-  exames:{}, hipRe:/(condensa|consolida)/,
-  checklist:ckP1({
-    hda:[["Início e evolução", ["inicio"], 1], ["Características da tosse e da expectoração", ["tosse"], 1], ["Febre (medida, calafrios)", ["febre"]], ["Dor torácica: localização e relação com a respiração (pleurítica)", ["dor"], 1], ["Dispneia", ["dispneia"]], ["Fatores de melhora/piora e tratamentos tentados", ["fatores"]], ["Contactantes doentes", ["contato"]]],
-    isda:["apetite","hemopt","cefaleia","urina","intestino","edema"],
-    exame:[["Inspeção estática e dinâmica do tórax", ["insp_est","insp_din"]], ["Expansibilidade", ["expans"]], ["Frêmito toracovocal", ["ftv"], 1], ["Percussão comparativa", ["percussao"], 1], ["Ausculta pulmonar", ["ausc_pulm"], 1], ["Ausculta da voz", ["ausc_voz"]]],
-    sindrome:"síndrome de condensação pulmonar na base direita", sindRe:/(condensa|consolida)/,
-    terms:/(fremito|submacic|macicez|crepita|sopro tubario|broncofonia|pectoriloquia|expansibilidade)/,
-  }),
-  criticos:[],
-  gabarito:{
-    diag:"Síndrome de condensação pulmonar na base direita (provável pneumonia adquirida na comunidade).",
-    achados:["Expansibilidade reduzida na base direita","Frêmito toracovocal AUMENTADO (o pulmão consolidado transmite melhor a vibração)","Submacicez à percussão","Estertores crepitantes e sopro tubário","Broncofonia aumentada e pectorilóquia","Diferencie do derrame pleural: no derrame o frêmito está ABOLIDO e o murmúrio, abolido"],
-    modelo:[["Identificação","Carlos Eduardo Santos, 45 anos, masculino, pardo, casado, católico, pedreiro, natural de Itabuna (BA), procedente de São Paulo (SP)."],["QP","\"Tosse com catarro e febre há 4 dias.\""],["HDA","Há 4 dias, início súbito de febre (39 °C) com calafrios, tosse produtiva com expectoração amarelada/ferruginosa e dor torácica em pontada na base direita, que piora à inspiração profunda e à tosse (pleurítica). Dispneia aos médios esforços. Uso de dipirona com melhora transitória da febre. Contato domiciliar com quadro gripal."],["ISDA","Hiporexia, cefaleia leve. Nega hemoptise, alterações urinárias ou intestinais, edema."],["Antecedentes pessoais","Fisiológicos: parto domiciliar normal, desenvolvimento adequado. Patológicos: catapora e sarampo na infância; fratura de braço (queda de andaime) há 5 anos; HAS em uso de losartana 50 mg/dia; apendicectomia aos 20 anos. Nega alergias e transfusões. Vacinação para influenza incerta."],["Antecedentes familiares","Pai hipertenso; mãe diabética."],["Hábitos e estilo de vida","Tabagista, 27 anos-maço. Etilismo social (4 latas de cerveja/semana). Sedentário fora do trabalho; dieta rica em frituras. Vida sexual ativa com parceira fixa, sem uso de preservativo. Ocupação: pedreiro, exposição a poeira de cimento sem proteção; trabalho rural prévio."],["Condições socioeconômicas e culturais","Casa de alvenaria, 4 cômodos, com saneamento básico. Estudou até a 5ª série. Renda de cerca de 2 salários mínimos para 4 pessoas. Lazer: futebol aos domingos. Um cão em casa."]],
-  },
-}),
-/* ------------------------------------------------ 2. CARDIOVASCULAR — ESTENOSE AÓRTICA */
-Object.assign({}, P1_BASE, {
-  id:"p1-estenose", ativo:true, img:"img/joaquim.jpg", focus:"72% 40%", voz:"buttery",
-  local:"Ambulatório de semiologia", titulo:"Desmaio ao subir a ladeira",
-  pac:{nome:"Osvaldo Pereira", primeiro:"osvaldo", trat:"Seu Osvaldo", idade:72, sexo:"Masculino", prof:"Motorista aposentado"},
-  enunciado:"Osvaldo, 72 anos, procura o ambulatório porque desmaiou há dois dias. Você é o estudante responsável pela anamnese e pelo exame físico.",
-  tarefas:P1_TAREFAS("aparelho cardiovascular"),
-  topicos:anamnese({
-    nome:"Osvaldo Pereira.", idade:"Setenta e dois.", natural:"Sou de Juiz de Fora, Minas. Moro aqui há quarenta anos.", prof:"Fui motorista de ônibus, hoje sou aposentado.", civil:"Sou viúvo. Moro com a minha filha.",
-    qp:"Eu desmaiei quando estava subindo a ladeira de casa.",
-    dp:"Pressão alta e colesterol.", meds:"Anlodipino e sinvastatina.", alergia:"Nenhuma.", cirurgia:"Operei catarata dos dois olhos. Nunca fiquei internado.", vacina:"Tomo as vacinas do posto todo ano.",
-    af:"Meu irmão morreu do coração, com setenta anos.",
-    fumo:"Fumei trinta anos, um maço por dia. Parei faz quinze.", alcool:"Não bebo.", drogas:"Nunca.", ativ:"Caminho na praça, mas agora canso.", alim:"Comida caseira, a minha filha cozinha.", sono:"Durmo bem.", vidasexual:"Sou viúvo. Faz tempo que não tenho vida sexual.", cor:"Branco.", religiao:"Sou espírita.", nascimento:"Nasci em casa; não sei dizer mais nada.", infancia:"Sarampo e caxumba.", transfusao:"Nunca.", trauma:"Nunca me machuquei sério.", exposicao:"Fui motorista a vida toda. Antes, trabalhei numa pedreira.", escolaridade:"Fiz até o ginásio.", renda:"Vivo da aposentadoria, um salário e meio, e a minha filha ajuda.", lazer:"Jogo dominó na praça. Me dou bem com a família.", animais:"Não tenho.",
-    moradia:"Moro na casa da minha filha, com água e esgoto.",
-  }, [
-    {id:"inicio", q:"Quando foi? O que estava fazendo?", kw:/(quando (foi|aconteceu)|que dia|o que (o senhor )?estava fazendo|quanto tempo)/, r:"Foi anteontem, subindo a ladeira de casa com as compras."},
-    {id:"sincope", q:"Como foi o desmaio? Perdeu a consciência? Por quanto tempo?", kw:/(desmai|apag|perdeu a consciencia|quanto tempo (ficou|durou)|caiu)/, r:"Escureceu tudo e eu caí. A vizinha disse que fiquei uns segundos desacordado e acordei logo, sem ficar confuso."},
-    {id:"convulsao", q:"Tremeu, mordeu a língua ou urinou?", kw:/(tremeu|mordeu|lingua|urinou|convuls|se debateu)/, r:"Ela disse que não tremi, não mordi a língua, nem fiz xixi."},
-    {id:"previos", q:"Já tinha acontecido antes?", kw:/(antes|outra vez|primeira vez|ja (tinha|aconteceu))/, r:"Desmaiar, nunca. Mas sinto tontura quando faço força."},
-    {id:"esforco", q:"Tem relação com esforço?", kw:/(esforco|subindo|forca|andando|parado|repouso)/, r:"Sempre que faço força. Parado, nada."},
-    {id:"dor", q:"Sente dor ou aperto no peito?", kw:/(peito|aperto|angina|\bdor\b)/, r:"Um aperto no peito quando ando rápido, que passa quando eu paro. Faz uns seis meses."},
-    {id:"dispneia", q:"Sente falta de ar?", kw:/(falta de ar|cansa|dispneia|folego)/, r:"Canso para subir escada. Piorou este ano."},
-    {id:"palpit", q:"Sente o coração disparar?", kw:/(palpit|dispar|batedeira|coracao acelerad)/, r:"Não."},
-    {id:"edema", g:"Interrogatório sintomatológico", q:"Notou inchaço nas pernas?", kw:/(inch|edema)/, r:"Os pés incham um pouco à noite."},
-    {id:"ortopneia", g:"Interrogatório sintomatológico", q:"Consegue dormir deitado?", kw:/(travesseiro|deitad|deitar)/, r:"Durmo com um travesseiro, normal."},
-    {id:"peso", g:"Interrogatório sintomatológico", q:"O peso mudou?", kw:/(peso|emagrec|engord)/, r:"Está igual."},
-    {id:"urina", g:"Interrogatório sintomatológico", q:"Como está a urina?", kw:/(urin|xixi)/, r:"Levanto uma vez à noite, de resto normal."},
-    {id:"cefaleia", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça?", kw:/(cabeca)/, r:"Não."},
-    {id:"visao", g:"Interrogatório sintomatológico", q:"E a visão?", kw:/(visao|enxerg|vista)/, r:"Depois da catarata, enxergo bem."},
-  ]),
-  exame:[
-    {g:"Geral", itens:[
-      {id:"ectoscopia", nome:"Ectoscopia (inspeção geral)", achado:"Bom estado geral, lúcido, corado, hidratado, acianótico, eupneico em repouso."},
-      {id:"sv", nome:"Sinais vitais", achado:"PA 118 × 88 mmHg (pressão de pulso reduzida: 30 mmHg) · FC 72 bpm, regular · FR 16 irpm · SpO₂ 96%"},
-    ]},
-    {g:"Pulsos e pescoço", itens:[
-      {id:"carotida", nome:"Palpação do pulso carotídeo", achado:"Pulso de ascensão LENTA e BAIXA amplitude (pulso parvus et tardus)."},
-      {id:"pulsos", nome:"Pulsos periféricos (radiais, pediosos)", achado:"Pulsos presentes e simétricos, de baixa amplitude."},
-      {id:"jugular", nome:"Pulso venoso jugular a 45°", achado:"Sem turgência jugular."},
-    ]},
-    {g:"Precórdio", itens:[
-      {id:"insp_prec", nome:"Inspeção do precórdio", achado:"Sem abaulamentos; ictus não visível."},
-      {id:"ictus", nome:"Palpação do ictus cordis", achado:"Ictus no 5º espaço intercostal, na linha hemiclavicular esquerda, PROPULSIVO e sustentado, 2 polpas digitais."},
-      {id:"fremito", nome:"Palpação de frêmitos nos focos", achado:"FRÊMITO SISTÓLICO palpável no foco aórtico."},
-      {id:"ausc_ao", nome:"Ausculta do foco aórtico (2º EIC à direita) e irradiação", achado:"SOPRO SISTÓLICO EJETIVO, em diamante (crescendo-decrescendo), rude, 4+/6+, mais intenso no foco aórtico, IRRADIANDO PARA AS CARÓTIDAS. B2 hipofonética."},
-      {id:"ausc_mitral", nome:"Ausculta do foco mitral e demais focos", achado:"B1 normofonética; o sopro é audível no foco mitral com timbre mais agudo (fenômeno de Gallavardin). Sem B3."},
-    ]},
-    {g:"Outros sistemas", itens:[
-      {id:"ausc_pulm", nome:"Ausculta pulmonar", achado:"Murmúrio vesicular presente, sem ruídos adventícios."},
-      {id:"mmii", nome:"Membros inferiores", achado:"Edema maleolar 1+/4+, simétrico."},
-      {id:"abdome", nome:"Exame do abdome", achado:"Flácido, indolor, sem visceromegalias."},
-    ]},
-  ],
-  exames:{}, hipRe:/(estenose aort|estenose da valva aort)/,
-  checklist:ckP1({
-    hda:[["Circunstância e início do desmaio", ["inicio"], 1], ["Características da síncope (perda de consciência, duração, recuperação)", ["sincope"], 1], ["Diferencia de crise convulsiva (liberação esfincteriana, mordedura, abalos)", ["convulsao"], 1], ["Relação com o esforço", ["esforco"], 1], ["Episódios prévios", ["previos"]], ["Dor torácica", ["dor"]], ["Dispneia", ["dispneia"]], ["Palpitações", ["palpit"]]],
-    isda:["edema","ortopneia","peso","urina","cefaleia","visao"],
-    exame:[["Pulso carotídeo", ["carotida"], 1], ["Pulsos periféricos", ["pulsos"]], ["Pulso venoso jugular", ["jugular"]], ["Palpação do ictus", ["ictus"], 1], ["Pesquisa de frêmitos", ["fremito"]], ["Ausculta de todos os focos", ["ausc_ao","ausc_mitral"], 1], ["Ausculta pulmonar", ["ausc_pulm"]]],
-    sindrome:"sopro sistólico ejetivo em foco aórtico — estenose aórtica (tríade: síncope, angina e dispneia aos esforços)", sindRe:/(estenose aort|estenose da valva aort|valvopatia aort)/,
-    terms:/(sopro|sistolic|ejetiv|foco aortico|carotid|parvus|tardus|fremito|propulsiv|diamante|crescendo)/,
-  }),
-  criticos:[],
-  gabarito:{
-    diag:"Estenose aórtica sintomática (síncope e angina aos esforços), provavelmente degenerativa.",
-    achados:["Pulso parvus et tardus (ascensão lenta, baixa amplitude)","Pressão de pulso reduzida","Ictus propulsivo e sustentado (hipertrofia do VE), sem desvio","Frêmito sistólico no foco aórtico","Sopro sistólico ejetivo em diamante, foco aórtico, irradiando para as carótidas","B2 hipofonética (válvula calcificada e pouco móvel)"],
-    modelo:[["Identificação","Osvaldo Pereira, 72 anos, masculino, branco, viúvo, espírita, motorista aposentado, natural de Juiz de Fora (MG)."],["QP","\"Desmaiei subindo a ladeira.\""],["HDA","Há 2 dias, síncope durante esforço (subindo ladeira com peso), com perda de consciência de segundos e recuperação rápida e completa, sem abalos, mordedura de língua ou liberação esfincteriana. Refere pré-síncope aos esforços, angina aos esforços há 6 meses, que alivia com o repouso, e dispneia progressiva aos médios esforços no último ano. Nega palpitações."],["ISDA","Edema maleolar vespertino. Nega ortopneia, alterações urinárias, cefaleia ou alterações visuais."],["Antecedentes pessoais","Fisiológicos: nascimento domiciliar, sem outras informações. Patológicos: sarampo e caxumba na infância; HAS e dislipidemia (anlodipino, sinvastatina); facectomia bilateral. Nega alergias, internações, traumas e transfusões. Vacinação anual em dia."],["Antecedentes familiares","Irmão faleceu por cardiopatia aos 70 anos."],["Hábitos e estilo de vida","Ex-tabagista (30 anos-maço, parou há 15 anos). Nega etilismo. Caminhadas, hoje limitadas pela dispneia. Sem vida sexual ativa desde a viuvez. Ocupações: motorista; trabalho prévio em pedreira."],["Condições socioeconômicas e culturais","Mora com a filha, casa com saneamento básico. Estudou até o ginásio. Renda: aposentadoria (1,5 salário) com ajuda da filha. Lazer: dominó na praça; bom relacionamento familiar. Sem animais."]],
-  },
-}),
-/* ------------------------------------------------ 3. ABDOME — ASCITE / HIPERTENSÃO PORTAL */
-Object.assign({}, P1_BASE, {
-  id:"p1-ascite", ativo:true, img:"img/joaquim.jpg", focus:"72% 40%", voz:"buttery",
-  local:"Ambulatório de semiologia", titulo:"Barriga crescendo e pernas inchadas",
-  pac:{nome:"Manoel Gomes da Silva", primeiro:"manoel", trat:"Seu Manoel", idade:58, sexo:"Masculino", prof:"Garçom aposentado"},
-  enunciado:"Manoel, 58 anos, procura o ambulatório porque a barriga está crescendo há 3 meses. Você é o estudante responsável pela anamnese e pelo exame físico.",
-  tarefas:P1_TAREFAS("abdome"),
-  topicos:anamnese({
-    nome:"Manoel Gomes da Silva.", idade:"Cinquenta e oito.", natural:"Sou de Recife. Vim pra cá com vinte anos.", prof:"Fui garçom a vida toda, hoje estou aposentado.", civil:"Sou divorciado. Moro sozinho.",
-    qp:"Minha barriga está crescendo e as pernas inchando.",
-    dp:"Disseram que eu tinha gordura no fígado… e diabetes.", meds:"Metformina, quando eu lembro.", alergia:"Nenhuma.", cirurgia:"Nunca operei, nunca fiquei internado.", vacina:"Hepatite? Não sei se tomei.",
-    af:"Meu pai bebia muito e morreu do fígado.",
-    fumo:"Fumo meio maço por dia, desde moleque.", alcool:"Bebi cachaça todo dia por uns trinta anos, meio litro por dia. Parei faz dois meses.", drogas:"Não.", ativ:"Não faço nada.", alim:"Como mal, sozinho, muita coisa pronta.", sono:"Às vezes troco o dia pela noite.", vidasexual:"Depois do divórcio tive algumas parceiras… nem sempre usei camisinha.", cor:"Sou negro.", religiao:"Não tenho religião.", nascimento:"Nasci em casa, em Recife. Não sei mais detalhes.", infancia:"Não lembro.", trauma:"Briga de bar há uns anos: levei pontos na cabeça.", exposicao:"Sempre trabalhei de garçom, à noite.", escolaridade:"Estudei até a quarta série.", renda:"A aposentadoria, um salário mínimo.", lazer:"Fico em casa vendo TV. Não falo muito com os filhos desde o divórcio.", animais:"Tenho um gato.",
-    moradia:"Moro num quarto e sala, tem água e esgoto.",
-  }, [
-    {id:"inicio", q:"Desde quando a barriga está crescendo?", kw:/(quando comecou|quanto tempo|desde quando|ha quantos)/, r:"Faz uns três meses. A calça não fecha mais."},
-    {id:"dor", q:"Sente dor na barriga?", kw:/(\bdor\b|doi|incomod)/, r:"Dor não, só um peso, um desconforto."},
-    {id:"ictericia", q:"Notou a pele ou os olhos amarelados?", kw:/(amarel|ictericia|olhos)/, r:"Minha irmã falou que meus olhos estão amarelos."},
-    {id:"urina", q:"Como está a cor da urina?", kw:/(urin|xixi)/, r:"Às vezes sai escura, cor de coca-cola."},
-    {id:"fezes", q:"E as fezes?", kw:/(fezes|evacu|intestin)/, r:"Normais… às vezes mais claras."},
-    {id:"sangra", q:"Teve sangramento? Vomitou sangue? Fezes pretas?", kw:/(sangr|sangue|vomit|fezes pretas|gengiva)/, r:"A gengiva sangra quando escovo. Nunca vomitei sangue."},
-    {id:"confusao", q:"Tem ficado confuso ou sonolento?", kw:/(confus|esquec|sonolen|memoria)/, r:"Às vezes fico esquecido e troco o dia pela noite."},
-    {id:"edema", q:"Como é o inchaço das pernas?", kw:/(inch|edema|pernas)/, r:"As pernas incham no fim do dia."},
-    {id:"peso", g:"Interrogatório sintomatológico", q:"E o peso?", kw:/(peso|emagrec|engord)/, r:"Emagreci dos braços, mas a barriga cresceu."},
-    {id:"febre", g:"Interrogatório sintomatológico", q:"Teve febre?", kw:/(febre)/, r:"Não."},
-    {id:"dispneia", g:"Interrogatório sintomatológico", q:"Sente falta de ar?", kw:/(falta de ar|cansa|folego)/, r:"Um pouco, quando a barriga está muito grande."},
-    {id:"prurido", g:"Interrogatório sintomatológico", q:"Sente coceira?", kw:/(coceira|prurido|coca)/, r:"Coceira no corpo, às vezes."},
-    {id:"transf", g:"Antecedentes pessoais", q:"Já recebeu sangue? Tem tatuagem?", kw:/(transfus|recebeu sangue|tatuag|seringa|hepatite)/, r:"Tenho uma tatuagem de trinta anos atrás. Nunca recebi sangue."},
-  ]),
-  exame:[
-    {g:"Geral", itens:[
-      {id:"ectoscopia", nome:"Ectoscopia (inspeção geral)", achado:"Emagrecido, ictérico +2/4+, hipocorado +/4+, hidratado, consciente e orientado."},
-      {id:"sv", nome:"Sinais vitais", achado:"PA 104 × 66 mmHg · FC 92 bpm · FR 18 irpm · Tax 36,4 °C"},
-      {id:"pele", nome:"Pele, mãos e tórax (estigmas)", achado:"Aranhas vasculares no tórax, eritema palmar, ginecomastia bilateral, rarefação de pelos."},
-      {id:"flapping", nome:"Pesquisa de flapping (asterixe)", achado:"Flapping discreto presente."},
-    ]},
-    {g:"Abdome — inspeção e ausculta", itens:[
-      {id:"insp_abd", nome:"Inspeção do abdome", achado:"Abdome globoso, cicatriz umbilical plana, CIRCULAÇÃO COLATERAL periumbilical (tipo porta)."},
-      {id:"ausc_abd", nome:"Ausculta abdominal (antes da palpação)", achado:"Ruídos hidroaéreos presentes e normais."},
-    ]},
-    {g:"Abdome — percussão", itens:[
-      {id:"perc_abd", nome:"Percussão do abdome", achado:"MACICEZ nos flancos com timpanismo central."},
-      {id:"macicez_movel", nome:"Macicez móvel de decúbito", achado:"POSITIVA: a área de macicez se desloca com a mudança de decúbito."},
-      {id:"piparote", nome:"Sinal do piparote", achado:"POSITIVO (ascite volumosa)."},
-      {id:"hepatimetria", nome:"Hepatimetria", achado:"7 cm na linha hemiclavicular direita (fígado reduzido)."},
-      {id:"traube", nome:"Percussão do espaço de Traube", achado:"Espaço de Traube OCUPADO (maciço)."},
-    ]},
-    {g:"Abdome — palpação", itens:[
-      {id:"palp_sup", nome:"Palpação superficial", achado:"Abdome tenso, indolor, sem massas."},
-      {id:"palp_baco", nome:"Palpação do baço", achado:"Baço palpável a 3 cm do rebordo costal esquerdo (ESPLENOMEGALIA)."},
-      {id:"palp_figado", nome:"Palpação do fígado", achado:"Fígado de difícil palpação por causa da ascite."},
-    ]},
-    {g:"Outros sistemas", itens:[
-      {id:"mmii", nome:"Membros inferiores", achado:"Edema 2+/4+ bilateral, depressível (cacifo positivo)."},
-      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Ritmo regular, sem sopros."},
-      {id:"ausc_pulm", nome:"Ausculta pulmonar", achado:"Murmúrio vesicular presente, levemente reduzido nas bases."},
-    ]},
-  ],
-  exames:{}, hipRe:/(ascite|hipertensao portal|cirros|insuficiencia hepatica)/,
-  checklist:ckP1({
-    hda:[["Início e evolução do aumento abdominal", ["inicio"], 1], ["Dor abdominal", ["dor"]], ["Icterícia", ["ictericia"], 1], ["Colúria e acolia", ["urina","fezes"]], ["Sangramentos (gengiva, hematêmese, melena)", ["sangra"], 1], ["Alterações de consciência (encefalopatia)", ["confusao"], 1], ["Edema de membros inferiores", ["edema"]]],
-    isda:["peso","febre","dispneia","prurido"],
-    exame:[["Estigmas de hepatopatia (pele, mãos, tórax)", ["pele"], 1], ["Pesquisa de flapping", ["flapping"]], ["Inspeção do abdome", ["insp_abd"], 1], ["Ausculta antes da palpação", ["ausc_abd"]], ["Percussão do abdome", ["perc_abd"]], ["Pesquisa de ascite: macicez móvel e/ou piparote", ["macicez_movel","piparote"], 1], ["Hepatimetria e espaço de Traube", ["hepatimetria","traube"]], ["Palpação do baço", ["palp_baco"], 1]],
-    sindrome:"ascite com hipertensão portal e sinais de insuficiência hepatocelular (provável cirrose alcoólica)", sindRe:/(ascite|hipertensao portal|insuficiencia hepat|cirros)/,
-    terms:/(macicez movel|piparote|circulacao colateral|aranhas? vascular|eritema palmar|ginecomastia|esplenomegal|flapping|asterix|ictericia|traube|hepatimetria)/,
-  }),
-  criticos:[],
-  gabarito:{
-    diag:"Síndrome de hipertensão portal com ascite e sinais de insuficiência hepatocelular (provável cirrose hepática alcoólica, com possível encefalopatia leve).",
-    achados:["Icterícia, aranhas vasculares, eritema palmar, ginecomastia (insuficiência hepatocelular)","Circulação colateral tipo porta e esplenomegalia (hipertensão portal)","Macicez nos flancos, macicez móvel e piparote positivos (ascite)","Hepatimetria reduzida (fígado cirrótico pequeno)","Flapping (encefalopatia hepática)","Na sequência do exame do abdome, a ausculta vem antes da palpação"],
-    modelo:[["Identificação","Manoel Gomes da Silva, 58 anos, masculino, negro, divorciado, sem religião, garçom aposentado, natural de Recife (PE)."],["QP","\"Barriga crescendo e pernas inchando.\""],["HDA","Há 3 meses, aumento progressivo do volume abdominal, com desconforto sem dor, associado a edema vespertino de membros inferiores, icterícia notada por familiar, colúria intermitente e episódios de hipocolia. Gengivorragia à escovação; nega hematêmese e melena. Refere esquecimento e inversão do ciclo sono-vigília."],["ISDA","Perda de massa muscular em membros, dispneia quando a distensão é maior, prurido. Nega febre."],["Antecedentes pessoais","Fisiológicos: nascimento domiciliar, sem outras informações. Patológicos: não recorda doenças da infância; trauma cranioencefálico leve com sutura (briga); esteatose hepática e diabetes (metformina irregular); tatuagem há 30 anos; nega transfusões, cirurgias e alergias. Vacinação para hepatite B desconhecida."],["Antecedentes familiares","Pai etilista, faleceu por hepatopatia."],["Hábitos e estilo de vida","Etilismo: cerca de 500 mL de cachaça/dia por 30 anos, abstêmio há 2 meses. Tabagista, meio maço/dia. Sedentário, alimentação inadequada. Múltiplas parcerias após o divórcio, uso irregular de preservativo (risco para hepatites virais e IST)."],["Condições socioeconômicas e culturais","Mora sozinho, quarto e sala com saneamento básico. Estudou até a 4ª série. Renda: aposentadoria de 1 salário mínimo. Pouco contato com os filhos desde o divórcio; lazer restrito à TV. Um gato em casa."]],
-  },
-}),
-/* ------------------------------------------------ 4. NEUROLÓGICO — SÍNDROME PIRAMIDAL */
-Object.assign({}, P1_BASE, {
-  id:"p1-piramidal", ativo:true, img:"img/lucia.jpg", focus:"72% 40%", voz:"rounded",
-  local:"Ambulatório de semiologia", titulo:"O lado direito ficou fraco depois do derrame",
-  pac:{nome:"Maria Aparecida Souza", primeiro:"maria", trat:"Dona Cida", idade:66, sexo:"Feminino", prof:"Costureira aposentada"},
-  enunciado:"Dona Cida, 66 anos, vem ao ambulatório três meses depois de um AVC. Você é o estudante responsável pela anamnese e pelo exame neurológico.",
-  tarefas:P1_TAREFAS("sistema nervoso"),
-  topicos:anamnese({
-    nome:"Maria Aparecida Souza. Pode me chamar de Cida.", idade:"Sessenta e seis.", natural:"Sou de Londrina, no Paraná. Moro aqui há trinta anos.", prof:"Fui costureira, hoje sou aposentada.", civil:"Casada. Moro com o meu marido.",
-    qp:"Fiquei com o lado direito fraco depois do derrame.",
-    dp:"Pressão alta e diabetes. E disseram que o meu coração bate desritmado.", meds:"Losartana, metformina, AAS… e um remédio para afinar o sangue que eu não comprei.", alergia:"Nenhuma.", cirurgia:"Fiz laqueadura. Fiquei internada uma semana por causa do derrame.", vacina:"Em dia, eu acho.",
-    af:"A minha mãe teve derrame com setenta anos.",
-    fumo:"Nunca fumei.", alcool:"Não bebo.", drogas:"Não.", ativ:"Faço fisioterapia duas vezes por semana.", alim:"Tento comer sem sal.", sono:"Durmo bem.", vidasexual:"Com o meu marido. Depois do derrame diminuiu bastante.", cor:"Branca.", religiao:"Católica.", nascimento:"Parto normal, em casa.", gineco:"Menstruei com treze anos. Tive três filhos, todos de parto normal, nenhum aborto. A menopausa veio com cinquenta.", infancia:"Sarampo.", transfusao:"Nunca recebi sangue.", trauma:"Só a queda no banheiro, mês passado.", exposicao:"Costurei quarenta anos, sentada.", escolaridade:"Fiz até a oitava série.", renda:"Eu e meu marido aposentados, uns três salários.", lazer:"Antes do derrame eu costurava e ia à igreja. Agora fico mais em casa.", animais:"Um cachorrinho.",
-    moradia:"Casa térrea. O banheiro é pequeno e não tem barra de apoio.",
-  }, [
-    {id:"inicio", q:"Como começou?", kw:/(como comecou|quando (comecou|foi|aconteceu)|quanto tempo)/, r:"Faz três meses. Acordei com o braço e a perna direitos sem força e a boca torta. Fiquei internada uma semana."},
-    {id:"evolucao", q:"Como evoluiu desde então?", kw:/(evolu|melhor|piorou|desde entao|fisioterap)/, r:"Melhorei um pouco com a fisioterapia, mas a perna ainda arrasta."},
-    {id:"fala", q:"Teve dificuldade para falar?", kw:/(fala|falar|palavra|entender)/, r:"No começo não conseguia falar direito. Hoje falo bem, às vezes troco palavras."},
-    {id:"sensib", q:"Sente dormência ou formigamento?", kw:/(dormen|formig|sensibilidade|sente (o|a) (braco|perna))/, r:"O lado direito fica dormente às vezes."},
-    {id:"rigidez", q:"O braço fica duro ou com câimbra?", kw:/(duro|rigid|caimbra|espasm|travad|mao fecha)/, r:"A mão fica dura, fechada, e às vezes dá câimbra."},
-    {id:"marcha", q:"Como está andando?", kw:/(anda|andar|marcha|bengala|caminh)/, r:"Ando com bengala. A perna direita faz um arco."},
-    {id:"quedas", q:"Teve quedas?", kw:/(queda|caiu|caí)/, r:"Caí uma vez no banheiro, mês passado."},
-    {id:"degluticao", q:"Tem dificuldade para engolir?", kw:/(engol|engasg|deglut)/, r:"Engasgo às vezes com água."},
-    {id:"urina", g:"Interrogatório sintomatológico", q:"Como está a urina?", kw:/(urin|xixi|segura)/, r:"Às vezes não seguro a urina."},
-    {id:"humor", g:"Interrogatório sintomatológico", q:"Como está o seu humor?", kw:/(humor|triste|desanim|chor|ansios)/, r:"Fico triste por depender dos outros."},
-    {id:"palpit", g:"Interrogatório sintomatológico", q:"Sente o coração disparar?", kw:/(palpit|dispar|coracao)/, r:"Às vezes o coração dispara, fica desritmado."},
-    {id:"cefaleia", g:"Interrogatório sintomatológico", q:"Tem dor de cabeça?", kw:/(cabeca)/, r:"Não."},
-    {id:"visao", g:"Interrogatório sintomatológico", q:"E a visão?", kw:/(visao|enxerg|vista)/, r:"Normal, com óculos."},
-  ]),
-  exame:[
-    {g:"Geral", itens:[
-      {id:"ectoscopia", nome:"Ectoscopia (inspeção geral)", achado:"Bom estado geral, lúcida, orientada no tempo e no espaço, discreta assimetria facial."},
-      {id:"sv", nome:"Sinais vitais", achado:"PA 148 × 90 mmHg · FC 88 bpm, IRREGULAR · FR 16 irpm · Tax 36,3 °C"},
-      {id:"pulso", nome:"Pulso radial", achado:"Irregular, com amplitude variável."},
-      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Ritmo IRREGULARMENTE IRREGULAR, sem sopros."},
-    ]},
-    {g:"Nervos cranianos", itens:[
-      {id:"face", nome:"Mímica facial (VII par)", achado:"Desvio da rima labial para a ESQUERDA ao sorrir, com apagamento do sulco nasolabial direito; fronte preservada (paralisia facial CENTRAL à direita)."},
-      {id:"pares", nome:"Demais pares cranianos", achado:"Pupilas isocóricas e fotorreagentes, movimentação ocular preservada, língua sem desvio."},
-    ]},
-    {g:"Motricidade", itens:[
-      {id:"forca_ms", nome:"Força muscular dos membros superiores (graus 0 a 5)", achado:"Grau 3/5 no membro superior direito; 5/5 à esquerda."},
-      {id:"forca_mi", nome:"Força muscular dos membros inferiores (graus 0 a 5)", achado:"Grau 4/5 no membro inferior direito; 5/5 à esquerda."},
-      {id:"mingazzini", nome:"Manobras deficitárias (braços estendidos, Mingazzini)", achado:"Queda lenta dos membros superior e inferior direitos."},
-      {id:"tonus", nome:"Tônus muscular (movimentação passiva)", achado:"Hipertonia ELÁSTICA (espástica) à direita, com sinal do canivete."},
-    ]},
-    {g:"Reflexos", itens:[
-      {id:"reflexos", nome:"Reflexos profundos (bicipital, tricipital, patelar, aquileu)", achado:"HIPERREFLEXIA à direita (3+), com clônus de tornozelo esgotável à direita; 2+ à esquerda."},
-      {id:"babinski", nome:"Reflexo cutâneo-plantar", achado:"Sinal de BABINSKI à direita (extensão do hálux); flexor à esquerda."},
-    ]},
-    {g:"Sensibilidade, coordenação e marcha", itens:[
-      {id:"sensib_ex", nome:"Sensibilidade tátil e dolorosa", achado:"Hipoestesia tátil e dolorosa no dimídio direito."},
-      {id:"coord", nome:"Coordenação (índex-nariz, calcanhar-joelho)", achado:"Sem dismetria à esquerda; prejudicada à direita pela fraqueza."},
-      {id:"marcha_ex", nome:"Marcha", achado:"Marcha CEIFANTE (helicópode) à direita, com apoio de bengala."},
-      {id:"romberg", nome:"Teste de Romberg", achado:"Não realizado com segurança (paciente não se mantém de pés juntos sem apoio)."},
-    ]},
-  ],
-  exames:{}, hipRe:/(piramid|neuronio motor superior|primeiro neuronio|hemipares|hemiplegi)/,
-  checklist:ckP1({
-    hda:[["Início e modo de instalação (súbito)", ["inicio"], 1], ["Evolução e reabilitação", ["evolucao"]], ["Alterações da fala", ["fala"]], ["Alterações de sensibilidade", ["sensib"]], ["Rigidez/espasticidade", ["rigidez"]], ["Marcha e quedas", ["marcha","quedas"], 1], ["Disfagia", ["degluticao"], 1]],
-    isda:["urina","humor","palpit","cefaleia","visao"],
-    exame:[["Mímica facial (VII par)", ["face"], 1], ["Força muscular graduada", ["forca_ms","forca_mi"], 1], ["Manobras deficitárias", ["mingazzini"]], ["Tônus", ["tonus"], 1], ["Reflexos profundos", ["reflexos"], 1], ["Reflexo cutâneo-plantar", ["babinski"], 1], ["Sensibilidade", ["sensib_ex"]], ["Marcha", ["marcha_ex"]], ["Pulso e ausculta cardíaca (fonte embólica)", ["pulso","ausc_card"]]],
-    sindrome:"síndrome piramidal (do neurônio motor superior) à direita — hemiparesia espástica desproporcionada, com paralisia facial central", sindRe:/(piramid|neuronio motor superior|primeiro neuronio|hemipares|hemiplegi)/,
-    terms:/(hiperreflex|babinski|espastic|canivete|ceifante|helicopod|paralisia facial central|hemipares|clonus|hipertonia)/,
-  }),
-  criticos:[],
-  gabarito:{
-    diag:"Síndrome piramidal (do neurônio motor superior) à direita: hemiparesia espástica com paralisia facial central, sequela de AVC isquêmico, provavelmente cardioembólico (ritmo irregular sugere fibrilação atrial).",
-    achados:["Paralisia facial CENTRAL (poupa a fronte) do mesmo lado da hemiparesia","Força 3/5 no braço e 4/5 na perna (hemiparesia desproporcionada)","Hipertonia elástica com sinal do canivete (espasticidade)","Hiperreflexia e clônus","Sinal de Babinski","Marcha ceifante","Pulso e ausculta irregulares: pensar em fibrilação atrial como causa do AVC"],
-    modelo:[["Identificação","Maria Aparecida Souza, 66 anos, feminino, branca, casada, católica, costureira aposentada, natural de Londrina (PR)."],["QP","\"Fiquei com o lado direito fraco depois do derrame.\""],["HDA","Há 3 meses, déficit motor em dimídio direito e desvio de rima de instalação súbita, percebidos ao acordar, com afasia inicial; internada por 7 dias. Melhora parcial com fisioterapia. Persistem fraqueza e rigidez à direita, parestesias, marcha com arrasto do membro inferior direito (uso de bengala), uma queda no último mês e disfagia para líquidos."],["ISDA","Urgência/incontinência urinária ocasional, humor deprimido, palpitações. Nega cefaleia e alterações visuais."],["Antecedentes pessoais","Fisiológicos: parto domiciliar normal; menarca aos 13 anos, G3P3A0 (partos normais), menopausa aos 50 anos. Patológicos: sarampo na infância; queda no banheiro há 1 mês; HAS, DM2 e arritmia (losartana, metformina, AAS; anticoagulante prescrito e não adquirido); laqueadura tubária. Nega alergias e transfusões."],["Antecedentes familiares","Mãe com AVC aos 70 anos."],["Hábitos e estilo de vida","Nega tabagismo e etilismo. Fisioterapia 2x/semana. Dieta hipossódica. Vida sexual com o marido, reduzida após o AVC. Ocupação: costureira por 40 anos."],["Condições socioeconômicas e culturais","Casa térrea; banheiro sem barras de apoio (risco de quedas). Estudou até a 8ª série. Renda do casal: cerca de 3 salários. Lazer (costura, igreja) reduzido após o AVC. Um cão em casa."]],
-  },
-}),
-/* ------------------------------------------------ 5. TIREOIDE — TIREOTOXICOSE */
-Object.assign({}, P1_BASE, {
-  id:"p1-tireoide", ativo:true, img:"img/camila.jpg", focus:"72% 40%", voz:"airy",
-  local:"Ambulatório de semiologia", titulo:"Agitada, emagrecendo e com o coração acelerado",
-  pac:{nome:"Bianca Ramos", primeiro:"bianca", trat:"Bianca", idade:32, sexo:"Feminino", prof:"Professora"},
-  enunciado:"Bianca, 32 anos, procura o ambulatório porque está emagrecendo e com palpitações. Você é o estudante responsável pela anamnese e pelo exame físico.",
-  tarefas:P1_TAREFAS("pescoço e tireoide (e sinais sistêmicos)"),
-  topicos:anamnese({
-    nome:"Bianca Ramos.", idade:"Trinta e dois.", natural:"Sou de Belo Horizonte e moro aqui mesmo.", prof:"Sou professora do ensino fundamental.", civil:"Sou solteira, moro sozinha.",
-    qp:"Ando muito agitada, emagrecendo e com o coração acelerado.",
-    dp:"Nenhuma.", meds:"Só o anticoncepcional.", alergia:"Nenhuma.", cirurgia:"Nunca operei nem fiquei internada.", vacina:"Está em dia.",
-    af:"A minha mãe tem problema de tireoide e toma remédio.",
-    fumo:"Fumo uns cinco cigarros por dia.", alcool:"Vinho, socialmente.", drogas:"Não.", ativ:"Parei a academia porque fico cansada.", alim:"Estou comendo bem mais do que antes.", sono:"Durmo mal, acordo agitada.", vidasexual:"Tenho um namorado. Uso anticoncepcional e às vezes camisinha. A vontade diminuiu.", cor:"Parda.", religiao:"Evangélica, mas não frequento muito.", nascimento:"Nasci de cesárea, no tempo certo. Desenvolvimento normal.", gineco:"Menstruei com doze anos, ciclos de 28 dias até começar isso. Nunca engravidei.", infancia:"Catapora.", transfusao:"Nunca.", trauma:"Nunca.", exposicao:"Sempre fui professora, em sala de aula.", escolaridade:"Superior completo, pedagogia.", renda:"Uns quatro salários mínimos. Moro sozinha.", lazer:"Saio com os amigos e leio. Ultimamente estou sem paciência.", animais:"Tenho uma gata.",
-    moradia:"Apartamento com tudo certinho.",
-  }, [
-    {id:"inicio", q:"Quando começou?", kw:/(quando comecou|quanto tempo|desde quando|ha quantos)/, r:"Há uns quatro meses."},
-    {id:"peso", q:"Quanto peso perdeu?", kw:/(peso|emagrec|quilo)/, r:"Perdi sete quilos, comendo mais do que antes."},
-    {id:"palpit", q:"Como são as palpitações?", kw:/(palpit|coracao|dispar|acelerad)/, r:"O coração dispara até quando estou parada."},
-    {id:"calor", q:"Sente muito calor? Sua muito?", kw:/(calor|suor|sua\b|frio|temperatura)/, r:"Sinto calor o tempo todo. Todo mundo de casaco e eu suando."},
-    {id:"tremor", q:"Tem tremores?", kw:/(trem|treme|letra)/, r:"As mãos tremem. A minha letra ficou feia."},
-    {id:"humor", q:"Como está o seu humor e o sono?", kw:/(humor|irrit|nervos|ansios|chor)/, r:"Fico irritada, choro fácil e durmo mal."},
-    {id:"olhos", q:"Notou algo nos olhos?", kw:/(olho|vista|visao|saltad)/, r:"Os meus olhos parecem mais saltados e ardem."},
-    {id:"pescoco", q:"Notou algo no pescoço?", kw:/(pescoco|garganta|caroco|papo)/, r:"Acho que o meu pescoço está mais grosso."},
-    {id:"intestino", q:"Como está o intestino?", kw:/(intestin|fezes|evacu|diarreia)/, r:"Evacuo umas três vezes por dia, fezes amolecidas."},
-    {id:"menstr", q:"Como está a menstruação?", kw:/(menstrua|ciclo|regra|\bdum\b)/, r:"Ficou mais curta e fraca."},
-    {id:"fraqueza", g:"Interrogatório sintomatológico", q:"Sente fraqueza?", kw:/(fraqueza|forca|escada)/, r:"Fraqueza para subir escada."},
-    {id:"dispneia", g:"Interrogatório sintomatológico", q:"Sente falta de ar?", kw:/(falta de ar|folego|cansa)/, r:"Um pouco, ao esforço."},
-    {id:"cabelo", g:"Interrogatório sintomatológico", q:"E o cabelo e a pele?", kw:/(cabelo|unha|pele)/, r:"O cabelo está caindo muito."},
-    {id:"urina", g:"Interrogatório sintomatológico", q:"Como está a urina?", kw:/(urin|xixi)/, r:"Normal."},
-  ]),
-  exame:[
-    {g:"Geral", itens:[
-      {id:"ectoscopia", nome:"Ectoscopia (inspeção geral)", achado:"Agitada, fala rápida, emagrecida, pele quente e úmida."},
-      {id:"sv", nome:"Sinais vitais e antropometria", achado:"PA 136 × 64 mmHg (pressão de pulso alargada) · FC 118 bpm, regular · FR 18 irpm · Tax 37,3 °C · Peso 54 kg (IMC 19,8 kg/m²)"},
-      {id:"maos", nome:"Mãos (tremor, pele)", achado:"Tremor FINO de extremidades (folha de papel sobre as mãos estendidas); palmas quentes e úmidas."},
-    ]},
-    {g:"Olhos", itens:[
-      {id:"olhos_ex", nome:"Inspeção ocular (exoftalmia, retração palpebral)", achado:"EXOFTALMIA bilateral, retração palpebral, olhar fixo."},
-      {id:"lidlag", nome:"Pesquisa do atraso palpebral (lid-lag)", achado:"Atraso palpebral POSITIVO ao olhar para baixo."},
-    ]},
-    {g:"Pescoço e tireoide", itens:[
-      {id:"insp_pesc", nome:"Inspeção do pescoço (pedir para deglutir)", achado:"Aumento DIFUSO e simétrico da região cervical anterior, que se move com a deglutição."},
-      {id:"palp_tir", nome:"Palpação da tireoide (abordagem posterior e anterior)", achado:"Tireoide aumentada cerca de 2 vezes, DIFUSA, lisa, de consistência elástica, indolor, SEM nódulos."},
-      {id:"ausc_tir", nome:"Ausculta da tireoide", achado:"SOPRO contínuo sobre a tireoide."},
-      {id:"linfo", nome:"Palpação de linfonodos cervicais", achado:"Não palpáveis."},
-    ]},
-    {g:"Outros sistemas", itens:[
-      {id:"ausc_card", nome:"Ausculta cardíaca", achado:"Taquicardia regular, B1 hiperfonética, sem sopros."},
-      {id:"reflexos", nome:"Reflexos profundos", achado:"Vivos, com fase de relaxamento rápida."},
-      {id:"pretibial", nome:"Região pré-tibial", achado:"Sem mixedema pré-tibial."},
-      {id:"abdome", nome:"Exame do abdome", achado:"Plano, flácido, indolor, ruídos hidroaéreos aumentados."},
-    ]},
-  ],
-  exames:{}, hipRe:/(tireotox|hipertireoid|graves|basedow)/,
-  checklist:ckP1({
-    hda:[["Início e tempo de evolução", ["inicio"]], ["Perda de peso com apetite preservado", ["peso"], 1], ["Palpitações", ["palpit"]], ["Intolerância ao calor e sudorese", ["calor"], 1], ["Tremor", ["tremor"]], ["Alterações de humor e sono", ["humor"]], ["Sintomas oculares", ["olhos"], 1], ["Aumento do pescoço", ["pescoco"]], ["Hábito intestinal", ["intestino"]], ["Ciclo menstrual", ["menstr"]]],
-    isda:["fraqueza","dispneia","cabelo","urina"],
-    exame:[["Tremor de extremidades", ["maos"]], ["Inspeção ocular", ["olhos_ex"], 1], ["Atraso palpebral", ["lidlag"]], ["Inspeção do pescoço com deglutição", ["insp_pesc"]], ["Palpação da tireoide", ["palp_tir"], 1], ["Ausculta da tireoide", ["ausc_tir"]], ["Linfonodos cervicais", ["linfo"]], ["Ausculta cardíaca", ["ausc_card"]]],
-    sindrome:"síndrome de tireotoxicose com bócio difuso e oftalmopatia (doença de Graves)", sindRe:/(tireotox|hipertireoid|graves|basedow)/,
-    terms:/(exoftalm|bocio|difus|sopro|tremor fino|taquicard|retracao palpebral|lid.?lag|atraso palpebral|pele quente)/,
-  }),
-  criticos:[],
-  gabarito:{
-    diag:"Síndrome de tireotoxicose (hipertireoidismo) com bócio difuso, sopro tireoidiano e oftalmopatia: doença de Graves.",
-    achados:["Taquicardia com pressão de pulso alargada","Pele quente e úmida, tremor fino","Exoftalmia, retração palpebral e lid-lag (oftalmopatia: específica de Graves)","Bócio difuso, liso, indolor, que sobe com a deglutição","Sopro tireoidiano (hiperfluxo)","Reflexos vivos"],
-    modelo:[["Identificação","Bianca Ramos, 32 anos, feminino, parda, solteira, evangélica, professora, natural e procedente de Belo Horizonte (MG)."],["QP","\"Agitada, emagrecendo e com o coração acelerado.\""],["HDA","Há 4 meses, perda ponderal de 7 kg com aumento do apetite, palpitações em repouso, intolerância ao calor com sudorese, tremor de mãos, irritabilidade, labilidade emocional e insônia. Refere protrusão e ardência ocular e aumento do volume cervical. Aumento da frequência evacuatória (3x/dia, fezes amolecidas) e oligomenorreia."],["ISDA","Fraqueza proximal, dispneia aos esforços, queda de cabelo. Sem queixas urinárias."],["Antecedentes pessoais","Fisiológicos: nascida de cesárea a termo, desenvolvimento normal; menarca aos 12 anos, ciclos regulares prévios, nuligesta. Patológicos: catapora na infância; nega comorbidades, cirurgias, internações, traumas, transfusões e alergias. Anticoncepcional oral. Vacinação em dia."],["Antecedentes familiares","Mãe com doença tireoidiana em tratamento."],["Hábitos e estilo de vida","Tabagista, 5 cigarros/dia. Etilismo social. Interrompeu a atividade física por fadiga. Vida sexual ativa com parceiro fixo, anticoncepcional oral e preservativo irregular; refere redução da libido. Ocupação: professora."],["Condições socioeconômicas e culturais","Mora sozinha, apartamento com saneamento básico. Ensino superior completo. Renda de cerca de 4 salários. Lazer: amigos e leitura. Uma gata em casa."]],
-  },
-}),
-];
+const P1_CASOS = [];
 
 /* ------------------------------------------------ 6. ANEMIA FERROPRIVA */
 P1_CASOS.push(Object.assign({}, P1_BASE, {
@@ -2040,16 +1710,13 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     ]},
   ],
   exames:{}, hipRe:/(anemi|ferropriv|deficiencia de ferro)/,
-  checklist:ckP1({
-    hda:[["Início e evolução do cansaço", ["inicio"]], ["Relação do cansaço com esforço", ["cansaco"]], ["Tontura / intolerância ortostática", ["tontura"]], ["Investiga perdas: padrão menstrual (duração, quantidade, coágulos)", ["menstr"], 1.5], ["Outros sangramentos", ["sangra"], 1], ["Perversão do apetite (pica / pagofagia)", ["pica"], 1], ["Alterações de unhas, cabelos e boca", ["unhas"]], ["Palpitações", ["palpit"]]],
-    isda:["peso","febre","intestino","urina","frio"],
-    exame:[["Inspeção de mucosas (conjuntivas e oral)", ["mucosas"], 1], ["Pregas palmares", ["palmas"]], ["Inspeção das unhas", ["unhas_ex"], 1], ["Inspeção da língua e lábios", ["lingua"], 1], ["Pesquisa de icterícia", ["ictericia"]], ["Ausculta cardíaca", ["ausc_card"], 1], ["Palpação do baço e linfonodos", ["baco","linfo"]]],
-    sindrome:"síndrome anêmica com sinais de carência de ferro (provável anemia ferropriva por perda menstrual e baixa ingestão)", sindRe:/(anemi|ferropriv|deficiencia de ferro|carencia de ferro)/,
-    terms:/(hipocorad|descorad|palidez|coiloniquia|glossite|queilite|sopro sistolico|funcional|taquicard)/,
+  checklist:ckSimples({
+    exame:[["Sinais vitais", ["sv"]], ["Olha as mucosas (conjuntivas e boca)", ["mucosas"]], ["Examina unhas, língua ou palmas", ["unhas_ex","lingua","palmas"]], ["Ausculta o coração", ["ausc_card"]]],
+    diag:"anemia", re:/(anemi)/,
   }),
   criticos:[],
   gabarito:{
-    diag:"Síndrome anêmica com sinais de deficiência de ferro: provável anemia ferropriva por perda menstrual aumentada (menorragia) e baixa ingestão de ferro.",
+    diag:"Anemia — provavelmente por falta de ferro, porque a menstruação é muito intensa e a alimentação tem pouco ferro.",
     achados:["Palidez cutâneo-mucosa +++/4+ (conjuntivas, mucosa oral, pregas palmares)","Taquicardia e sopro sistólico funcional (hiperfluxo)","Coiloníquia, glossite atrófica e queilite angular (sinais de carência de ferro)","Pica / pagofagia (vontade de comer gelo)","Ausência de icterícia e de esplenomegalia (afasta hemólise)"],
     modelo:[["Identificação","Juliana Prado, 28 anos, feminino, negra, solteira, católica, caixa de supermercado, natural e procedente desta cidade."],["QP","\"Cansaço, sem força para nada.\""],["HDA","Há 6 meses, astenia progressiva com dispneia e palpitações aos esforços, tontura ortostática e extremidades frias. Refere ciclos menstruais de 8 dias com fluxo intenso (troca de absorvente a cada 2 h, coágulos e escapes), pagofagia (um copo de gelo por dia), unhas quebradiças e fissuras nos cantos da boca. Nega outros sangramentos."],["ISDA","Sem alterações de peso, febre, alterações intestinais ou urinárias."],["Antecedentes pessoais","Fisiológicos: parto normal a termo; menarca aos 11 anos, ciclos de 28 dias com 8 dias de fluxo intenso; nuligesta. Patológicos: bronquite na infância; sem comorbidades atuais; dipirona eventual para cólica. Nega cirurgias, internações, traumas, transfusões e alergias."],["Antecedentes familiares","Mãe histerectomizada por mioma."],["Hábitos e estilo de vida","Vegetariana há 2 anos, dieta pobre em ferro (rica em carboidratos). Nega tabagismo; etilismo social. Sedentária por cansaço. Vida sexual ativa, preservativo irregular, sem método hormonal (considerar gravidez). Ocupação: sempre no comércio."],["Condições socioeconômicas e culturais","Mora com a mãe, casa com saneamento básico. Ensino médio completo. Renda de 1,5 salário, dividindo as despesas com a mãe. Lazer: dança, hoje reduzido pelo cansaço. Sem animais."]],
   },
@@ -2105,16 +1772,13 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     ]},
   ],
   exames:{}, hipRe:/(diabet|hiperglicem)/,
-  checklist:ckP1({
-    hda:[["Início e evolução", ["inicio"]], ["Polidipsia", ["sede"], 1], ["Poliúria e noctúria", ["diurese"], 1], ["Polifagia e perda de peso", ["fome_peso"], 1], ["Visão turva", ["visao"]], ["Sintomas de neuropatia nos pés", ["pes"], 1], ["Feridas de difícil cicatrização", ["feridas"]], ["Fadiga", ["cansaco"]]],
-    isda:["dor_peito","infec","sexual","intestino"],
-    exame:[["Peso, altura e IMC", ["imc"], 1], ["Circunferência abdominal", ["cintura"], 1], ["Pesquisa de acantose nigricans", ["acantose"]], ["Inspeção dos pés", ["pes_insp"], 1], ["Monofilamento", ["monofil"], 1], ["Diapasão (sensibilidade vibratória)", ["diapasao"]], ["Pulsos pediosos e tibiais posteriores", ["pediosos"], 1], ["Reflexo aquileu", ["aquileu"]]],
-    sindrome:"síndrome hiperglicêmica (4 Ps: poliúria, polidipsia, polifagia e perda de peso) — provável diabetes mellitus tipo 2 com neuropatia periférica", sindRe:/(diabet|hiperglicem)/,
-    terms:/(poliuria|polidipsia|polifagia|perda de peso|acantose|monofilamento|neuropatia|obesidade|circunferencia|imc)/,
+  checklist:ckSimples({
+    exame:[["Sinais vitais", ["sv"]], ["Peso, altura, IMC ou circunferência abdominal", ["imc","cintura"]], ["Examina os pés (inspeção, monofilamento, diapasão ou pulsos)", ["pes_insp","monofil","diapasao","pediosos"]]],
+    diag:"diabetes", re:/(diabet|acucar alto|glicose alta)/,
   }),
   criticos:[],
   gabarito:{
-    diag:"Síndrome hiperglicêmica (poliúria, polidipsia, polifagia e perda de peso): provável diabetes mellitus tipo 2, com sinais de neuropatia periférica e resistência insulínica.",
+    diag:"Diabetes mellitus (provavelmente tipo 2). Pistas: muita sede, muita urina, muita fome e perda de peso; formigamento nos pés.",
     achados:["Obesidade central (IMC 32,4; cintura 112 cm)","Acantose nigricans (resistência à insulina)","Pés: pele seca, calosidade e cicatriz, perda da sensibilidade protetora ao monofilamento, vibração reduzida, aquileus diminuídos (neuropatia periférica)","Pulsos pediosos presentes","Intertrigo inguinal (infecções de pele são mais comuns na hiperglicemia)"],
     modelo:[["Identificação","Sérgio Almeida, 56 anos, masculino, branco, casado, católico, taxista, natural de Campinas (SP)."],["QP","\"Muita sede e urinando demais.\""],["HDA","Há 3 meses, polidipsia (4 a 5 L/dia), poliúria com noctúria (4x/noite), polifagia com perda de 6 kg, visão turva intermitente, parestesias em queimação nos pés em padrão de \"meia\", piores à noite, e calosidade plantar com cicatrização lenta. Refere fadiga e sonolência pós-prandial."],["ISDA","Prurido inguinal persistente, disfunção erétil. Nega dor torácica e alterações intestinais."],["Antecedentes pessoais","Fisiológicos: parto normal. Patológicos: catapora na infância; acidente automobilístico há 10 anos, sem fraturas; HAS em uso de losartana; herniorrafia abdominal; nunca rastreou glicemia. Nega alergias e transfusões. Vacinação desconhecida."],["Antecedentes familiares","Mãe e irmão diabéticos; pai com infarto."],["Hábitos e estilo de vida","Ex-tabagista (20 anos, parou há 10). Etilismo social. Sedentário, dieta rica em ultraprocessados e refrigerante. Vida sexual com a esposa; queixa de disfunção erétil. Ocupações: taxista; metalúrgico previamente."],["Condições socioeconômicas e culturais","Casa própria com saneamento básico. Ensino médio. Renda de cerca de 3 salários para 4 pessoas. Família unida; lazer: futebol na TV. Dois cães em casa."]],
   },
@@ -2126,7 +1790,7 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
   local:"Ambulatório de semiologia", titulo:"Pressão alta medida na farmácia",
   pac:{nome:"Rosa Maria Lima", primeiro:"rosa", trat:"Dona Rosa", idade:57, sexo:"Feminino", prof:"Cozinheira"},
   enunciado:"Rosa, 57 anos, procura o ambulatório porque a pressão deu alta na farmácia. Você é o estudante responsável pela anamnese, pela aferição correta da pressão arterial e pelo exame físico.",
-  tarefas:["Faça a anamnese completa (roteiro do Porto): identificação, queixa principal, HDA, interrogatório sintomatológico, antecedentes pessoais fisiológicos e patológicos, antecedentes familiares, hábitos e estilo de vida e condições socioeconômicas e culturais.", "Afira a pressão arterial com a técnica correta, verbalizando cada etapa.", "Faça o exame físico cardiovascular e a antropometria. Descreva os achados e diga o diagnóstico sindrômico."],
+  tarefas:["Faça a anamnese completa (roteiro do Porto): identificação, queixa principal, HDA, interrogatório sintomatológico, antecedentes pessoais fisiológicos e patológicos, antecedentes familiares, hábitos e estilo de vida e condições socioeconômicas e culturais.", "Afira a pressão arterial com a técnica correta, verbalizando cada etapa.", "Faça o exame físico (peso, altura e coração) e diga qual é a sua hipótese diagnóstica."],
   topicos:anamnese({
     nome:"Rosa Maria Lima.", idade:"Cinquenta e sete.", natural:"Sou de Feira de Santana. Moro aqui há vinte e cinco anos.", prof:"Sou cozinheira num restaurante.", civil:"Casada, três filhos.",
     qp:"Minha pressão deu alta na farmácia, dezesseis por dez.",
@@ -2135,7 +1799,7 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     fumo:"Nunca fumei.", alcool:"Não bebo.", drogas:"Não.", ativ:"Nenhuma, só o trabalho.", alim:"Experimento muita comida salgada no trabalho; uso bastante sal e tempero pronto.", sono:"Ronco muito, meu marido reclama.", vidasexual:"Com o meu marido, normal.", cor:"Sou parda.", religiao:"Evangélica, vou ao culto todo domingo.", nascimento:"Nasci em casa, de parteira.", gineco:"Menstruei com treze anos. Três gestações, três cesáreas, nenhum aborto. Menopausa com cinquenta e dois.", infancia:"Não lembro de doença grave.", transfusao:"Recebi sangue numa das cesáreas.", trauma:"Nunca.", exposicao:"Sempre trabalhei em cozinha, com muito calor.", escolaridade:"Estudei até a sexta série.", renda:"Eu e meu marido somamos uns três salários.", lazer:"A igreja é o meu lazer. Em casa está tudo bem.", animais:"Um cachorro e galinhas no quintal.",
     moradia:"Casa com água e esgoto.",
   }, [
-    {id:"quando", q:"Quando mediu? Já tinha medido antes?", kw:/(quando (mediu|foi)|antes|outras vezes|ja (tinha|mediu))/, r:"Medi semana passada na farmácia. Em março, no posto, também deu alta, mas não liguei."},
+    {id:"quando", q:"Quando mediu? Já tinha medido antes?", kw:/(quando (mediu|foi|comecou)|desde quando|quanto tempo|ha quanto|antes|outras vezes|ja (tinha|mediu))/, r:"Medi semana passada na farmácia. Em março, no posto, também deu alta, mas não liguei."},
     {id:"sintomas", q:"Sente alguma coisa?", kw:/(sente|sintoma|incomod|como (a senhora )?se sente)/, r:"Na maior parte do tempo não sinto nada."},
     {id:"cefaleia", q:"Tem dor de cabeça? Onde?", kw:/(cabeca|nuca)/, r:"De vez em quando dói a nuca, de manhã."},
     {id:"tontura", q:"Tontura, visão turva?", kw:/(tontura|visao|vista|embac|zumbido)/, r:"Às vezes vejo uns pontinhos."},
@@ -2174,16 +1838,13 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     ]},
   ],
   exames:{}, hipRe:/(hipertens|\bhas\b|pressao alta)/,
-  checklist:ckP1({
-    hda:[["Medidas anteriores da pressão", ["quando"], 1], ["Presença ou ausência de sintomas", ["sintomas"]], ["Cefaleia", ["cefaleia"]], ["Sintomas visuais / tontura", ["tontura"]], ["Sintomas cardiovasculares (dor torácica, dispneia)", ["dor_peito"], 1], ["Edema", ["edema"]]],
-    isda:["urina","palpit","peso","menop","sede"],
-    exame:[["Técnica: repouso de 5 minutos antes da medida", ["pa_repouso"], 1], ["Técnica: manguito adequado à circunferência do braço", ["pa_braco"], 1], ["Técnica: braço na altura do coração", ["pa_posicao"], .5], ["Técnica: estimativa palpatória da sistólica", ["pa_palpat"], 1], ["Aferição auscultatória", ["pa_ausc"], 1], ["Medida nos dois braços", ["pa_bracos"], 1], ["Repete a medida e calcula a média", ["pa_repete"], 1], ["IMC e circunferência abdominal", ["imc","cintura"], 1], ["Palpação do ictus e ausculta cardíaca", ["ictus","ausc_card"], 1], ["Pulsos radiais e femorais (atraso radiofemoral)", ["pulsos"]]],
-    sindrome:"hipertensão arterial sistêmica estágio 2, com sinais de repercussão cardíaca (B4) e risco cardiovascular elevado (obesidade central, provável apneia do sono)", sindRe:/(hipertens|\bhas\b|pressao alta)/,
-    terms:/(manguito|palpatori|korotkoff|media|estagio|b4|quarta bulha|b2 hiperfon|circunferencia|imc|obesidade)/,
+  checklist:ckSimples({
+    exame:[["Deixa o paciente em repouso e escolhe o manguito certo", ["pa_repouso","pa_braco"]], ["Mede a pressão (auscultatória, nos dois braços ou repetindo)", ["pa_ausc","pa_bracos","pa_repete"]], ["Peso, altura, IMC ou circunferência abdominal", ["imc","cintura"]], ["Ausculta o coração", ["ausc_card","ictus"]]],
+    diag:"hipertensão arterial", re:/(hipertens|pressao alta|\bhas\b)/,
   }),
   criticos:[],
   gabarito:{
-    diag:"Hipertensão arterial sistêmica estágio 2 (média 161 × 101 mmHg, confirmada por medidas em ocasiões diferentes), com B4 (hipertrofia/disfunção diastólica do VE) e fatores de risco: obesidade central, sedentarismo, alto consumo de sal, história familiar e provável apneia do sono (ronco).",
+    diag:"Hipertensão arterial sistêmica. Pistas: pressão alta em mais de uma medida (média 161 × 101 mmHg), história familiar, excesso de sal, peso e sedentarismo.",
     achados:["Técnica: repouso 5 min, manguito pela circunferência do braço (34 cm = adulto grande), braço no nível do coração, estimativa palpatória, medida nos 2 braços, 2 medidas com média","PA média 161 × 101 mmHg: estágio 2","IMC 33,6 e cintura 104 cm (obesidade central)","Ictus levemente propulsivo e B4 (rigidez do VE hipertrofiado)","B2 hiperfonética no foco aórtico","Sem atraso radiofemoral nem sopros abdominais (rastreio de causas secundárias)"],
     modelo:[["Identificação","Rosa Maria Lima, 57 anos, feminino, parda, casada, evangélica, cozinheira, natural de Feira de Santana (BA)."],["QP","\"Pressão alta na farmácia, 160 por 100.\""],["HDA","Paciente assintomática na maior parte do tempo, com duas medidas elevadas em ocasiões diferentes (março, no posto; semana passada, na farmácia: 160 × 100 mmHg). Refere cefaleia occipital matinal ocasional, escotomas esporádicos, dispneia aos grandes esforços e edema maleolar vespertino. Nega dor torácica."],["ISDA","Ganho de 8 kg nos últimos anos. Menopausa aos 52 anos. Nega palpitações, alterações urinárias, polidipsia."],["Antecedentes pessoais","Fisiológicos: nascimento domiciliar (parteira); menarca aos 13 anos, G3P3(cesáreas)A0, menopausa aos 52 anos. Patológicos: sem doenças da infância lembradas; transfusão sanguínea em uma das cesáreas; sem diagnósticos prévios nem medicações. Nega alergias e traumas."],["Antecedentes familiares","Pai faleceu por AVC; mãe hipertensa."],["Hábitos e estilo de vida","Nunca fumou, nega etilismo. Sedentária. Alto consumo de sal e temperos industrializados. Roncos intensos (suspeita de apneia do sono). Vida sexual ativa com o marido, sem queixas. Ocupação: cozinheira (ambiente quente)."],["Condições socioeconômicas e culturais","Casa com saneamento básico. Estudou até a 6ª série. Renda do casal: cerca de 3 salários. Lazer: igreja; bom relacionamento familiar. Um cão e galinhas no quintal."]],
   },
@@ -2200,7 +1861,7 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
   persona:"Mulher de 47 anos, contadora, objetiva, mas visivelmente ansiosa: pressente que o resultado não é bom. Fala pouco no início. Reage como uma pessoa real: se o aluno der a notícia de forma brusca ou com jargão, fica confusa e pergunta 'o que isso quer dizer?'. Ao ouvir a palavra câncer, fica em silêncio, chora e depois pergunta 'eu vou morrer?' e 'vou perder a mama?'. Se o aluno acolher com empatia, ela se acalma aos poucos. Quer que o marido participe. Não faz perguntas sobre remédios.",
   topicos:[
     {id:"cumprimento", g:"Abertura", q:"Bom dia, Helena. Como a senhora está?", kw:/(bom dia|boa tarde|como (a senhora |voce )?(esta|vai))/, r:"Ansiosa, doutor(a). Não dormi direito esperando esse resultado."},
-    {id:"acompanhante", g:"S — Setting (ambiente)", q:"Gostaria que alguém estivesse com a senhora agora?", kw:/(acompanhante|alguem (com|junto|estivesse|esteja|aqui|presente)|marido|chamar alguem|quer que (alguem|chame)|acompanhad)/, r:"Meu marido está no estacionamento… sim, eu gostaria que ele viesse."},
+    {id:"acompanhante", g:"S — Setting (ambiente)", q:"Gostaria que alguém estivesse com a senhora agora?", kw:/(acompanhante|alguem (com|junto|estivesse|esteja|aqui|presente|para ficar|pra ficar)|marido|cham(ar|e|o) alguem|quer que (alguem|eu chame|chame)|acompanhad)/, r:"Meu marido está no estacionamento… sim, eu gostaria que ele viesse."},
     {id:"percepcao", g:"P — Percepção", q:"O que a senhora sabe sobre o motivo da biópsia?", kw:/(o que (a senhora |voce )?(sabe|entendeu|acha|imagina)|o que (te |lhe )?(disseram|falaram|explicaram)|por que (fez|foi feita) (a )?biopsia)/, r:"O médico do posto achou um caroço no meu peito e disse que precisava ver se era benigno ou não. Eu tenho medo de ser algo ruim."},
     {id:"convite", g:"I — Convite", q:"Como a senhora prefere que eu explique o resultado?", kw:/(quer (saber|que eu (explique|fale|conte))|como (a senhora |voce )?prefere|quanto (de )?detalhe|posso (explicar|falar|conversar)|esta pronta)/, r:"Pode falar tudo, doutor(a). Prefiro saber a verdade."},
     {id:"noticia", g:"K — Conhecimento", q:"(Comunicar o diagnóstico com aviso prévio e linguagem simples)", kw:/(cancer|maligno|tumor|carcinoma|resultado (mostrou|confirmou))/, r:"(Fica em silêncio, os olhos enchem de lágrimas.) …Câncer? Meu Deus…"},
@@ -2212,22 +1873,22 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
   ],
   exame:[], exames:{}, hipRe:/(cancer|carcinoma|maligno)/,
   checklist:[
-    {d:"S — Ambiente", l:"Apresenta-se pelo nome e função", w:.5, test:C("apresentou")},
+    {d:"S — Ambiente", l:"Apresenta-se pelo nome e função", w:1, test:C("apresentou")},
     {d:"S — Ambiente", l:"Prepara o ambiente: senta-se, garante privacidade, evita interrupções", w:1, ia:true, test:K(/(sent(e|ar|a)|privacidade|porta|sem interrup|celular|silencio|reservad|com calma|tempo para (a senhora|voce|conversar))/)},
     {d:"S — Ambiente", l:"Oferece a presença de um acompanhante", w:1, test:T("acompanhante")},
-    {d:"P — Percepção", l:"Pergunta o que a paciente já sabe ou imagina sobre o exame", w:1.5, test:T("percepcao"), dica:"Antes de falar, pergunte. A resposta mostra o que ela já sabe e o que teme."},
-    {d:"I — Convite", l:"Pergunta como e quanto a paciente quer saber", w:1.5, test:T("convite")},
+    {d:"P — Percepção", l:"Pergunta o que a paciente já sabe ou imagina sobre o exame", w:1, test:T("percepcao"), dica:"Antes de falar, pergunte. A resposta mostra o que ela já sabe e o que teme."},
+    {d:"I — Convite", l:"Pergunta como e quanto a paciente quer saber", w:1, test:T("convite")},
     {d:"K — Conhecimento", l:"Faz um aviso prévio (\"infelizmente, o resultado não foi o que esperávamos\")", w:1, ia:true, test:K(/(infelizmente|nao (foi|e) (o que|a noticia)|lamento|noticia (dificil|nao (e )?boa)|nao (sao|e) boas?)/)},
-    {d:"K — Conhecimento", l:"Comunica o diagnóstico de forma clara, usando a palavra \"câncer\"", w:1.5, ia:true, test:K(/(cancer|maligno)/)},
+    {d:"K — Conhecimento", l:"Comunica o diagnóstico de forma clara, usando a palavra \"câncer\"", w:1, ia:true, test:K(/(cancer|maligno)/)},
     {d:"K — Conhecimento", l:"Usa linguagem simples, sem jargão (ou explica os termos técnicos)", w:1, ia:true, test:s => /(carcinoma ductal|invasiv|neoplasia|histopatolog|estadiamento|imuno)/.test(norm(s.transcript.filter(m=>m.who==="me").map(m=>m.text).join(" "))) ? {ok:false, ev:"Usou termos técnicos"} : {ok:true, ev:"Sem jargão detectado"}},
     {d:"K — Conhecimento", l:"Dá a informação em partes e verifica o entendimento", w:1, test:ANY(T("entendeu"), C("entendimento"))},
-    {d:"E — Emoções", l:"Reconhece e nomeia a emoção da paciente (\"percebo que isso é muito difícil\")", w:1.5, ia:true, test:ANY(C("empatia"), K(/(percebo|imagino|vejo que|e normal (sentir|ficar|ter medo)|entendo (o seu|que)|deve ser (muito )?dificil|faz sentido)/))},
-    {d:"E — Emoções", l:"Permite o silêncio e o choro, sem interromper nem mudar de assunto", w:.5, ia:true, test:s => ({ok:true, ev:"Avaliado pelo avaliador IA quando disponível"})},
+    {d:"E — Emoções", l:"Reconhece e nomeia a emoção da paciente (\"percebo que isso é muito difícil\")", w:1, ia:true, test:ANY(C("empatia"), K(/(percebo|imagino|vejo que|e normal (sentir|ficar|ter medo)|entendo (o seu|que)|deve ser (muito )?dificil|faz sentido)/))},
+    {d:"E — Emoções", l:"Permite o silêncio e o choro, sem interromper nem mudar de assunto", w:1, ia:true, test:s => ({ok:true, ev:"Avaliado pelo avaliador IA quando disponível"})},
     {d:"E — Emoções", l:"Responde com honestidade às perguntas difíceis (morte, mama), sem falsas promessas", w:1, ia:true, test:T("morrer","mama")},
     {d:"S — Estratégia", l:"Explica os próximos passos (mais exames, equipe especializada) sem detalhar tratamento", w:1, ia:true, test:K(/(proximos passos|exames|equipe|oncolog|especialista|encaminh|acompanhad)/)},
     {d:"S — Estratégia", l:"Pergunta sobre a rede de apoio (família, filhos) e oferece apoio psicológico", w:1, ia:true, test:ANY(T("filhos"), K(/(psicolog|apoio|famil|marido|filhos)/))},
     {d:"S — Estratégia", l:"Resume, abre espaço para dúvidas e combina o retorno", w:1, ia:true, test:ANY(T("duvidas"), K(/(retorno|voltar|vamos nos ver|marcar|resum)/))},
-    {d:"S — Estratégia", l:"Garante que a paciente não ficará sozinha (\"vamos acompanhar a senhora\")", w:.5, ia:true, test:K(/(nao (vai|esta) sozinha|vamos (acompanhar|cuidar|estar)|estamos juntos|conte comigo)/)},
+    {d:"S — Estratégia", l:"Garante que a paciente não ficará sozinha (\"vamos acompanhar a senhora\")", w:1, ia:true, test:K(/(nao (vai|esta) sozinha|vamos (acompanhar|cuidar|estar)|estamos juntos|conte comigo)/)},
   ],
   criticos:[
     {l:"Deu a notícia sem perguntar antes o que a paciente sabia (pulou a etapa P)", test:s => { const n = s.topics.noticia, p = s.topics.percepcao; return !!n && (!p || p.t > n.t); }},
@@ -2239,7 +1900,201 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
   },
 }));
 
+// HDA para o 1º período: perguntas abertas, e o paciente conta a história (como um paciente real).
+// As perguntas específicas continuam respondidas, mas saem do roteiro de treino (extra).
+const KW_CONTE = /(me (conte|conta|fale|fala|explique|explica)|conte mais|fale mais|pode (me )?(contar|falar|explicar)|como (e|eh|foi) (esse|essa|isso|o seu|a sua)|descrev|o que (a senhora |o senhor |voce )?sente)/;
+const KW_FATORES = /(piora|melhora|alivia|agrava)/;
+const KW_ASSOC = /(sente (mais )?alguma (outra )?coisa|mais algum sintoma|algo mais junto|vem junto|junto com (isso|esse)|outros? sintomas?|sente mais (alguma|algo))/;
+const P1_HDA = {
+  "p1-anemia":{depois:"inicio", extra:["cansaco","tontura","menstr","pica","sangra","unhas","palpit"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre esse cansaço.", kw:KW_CONTE, cobre:["cansaco","palpit"], r:"É um cansaço que não passa, doutor(a). Faz uns seis meses que eu fui ficando sem força. Subir a escada do trabalho me deixa sem ar e com o coração disparado. E a minha mãe diz que eu ando muito pálida."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, cobre:["cansaco"], r:"Piora quando eu faço esforço. Descansando melhora um pouco, mas nunca passa de vez."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["tontura","unhas","pica","menstr"], r:"Fico tonta quando levanto rápido e as unhas estão quebrando. E uma coisa estranha: tenho uma vontade enorme de mastigar gelo. Ah, e a minha menstruação sempre foi muito forte, dura uns oito dias."},
+  ]},
+  "p1-diabetes":{depois:"inicio", extra:["sede","diurese","fome_peso","visao","pes","feridas","cansaco"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre isso.", kw:KW_CONTE, cobre:["sede","diurese","fome_peso"], r:"Faz uns três meses que eu vivo com sede, doutor(a). Bebo uns quatro, cinco litros de água por dia e fico correndo para o banheiro, até de noite. E o estranho é que eu como bastante, mas emagreci uns seis quilos."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, r:"Nada melhora. Se eu tomo refrigerante, parece que a sede fica até pior."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["visao","cansaco","pes","feridas"], r:"A vista fica embaçada às vezes, ando muito cansado, e os pés formigam e queimam à noite. Teve até um calo que machucou e demorou para fechar."},
+  ]},
+  "p1-has":{depois:"quando", extra:["sintomas","cefaleia","tontura","dor_peito","edema"], novos:[
+    {id:"hda_conte", q:"Me conte mais sobre isso.", kw:KW_CONTE, cobre:["quando","sintomas"], r:"Medi na farmácia semana passada e deu dezesseis por dez. Em março, no posto, já tinha dado alta, mas eu não liguei. Na maior parte do tempo eu não sinto nada."},
+    {id:"hda_fatores", q:"O que piora? O que melhora?", kw:KW_FATORES, cobre:["cefaleia"], r:"Quando fico nervosa no trabalho, a nuca dói mais. Descansando, melhora."},
+    {id:"hda_assoc", q:"Sente mais alguma coisa junto?", kw:KW_ASSOC, cobre:["cefaleia","tontura","edema"], r:"Às vezes dói a nuca de manhã, vejo uns pontinhos, e os tornozelos incham no fim do dia de trabalho."},
+  ]},
+};
+// Interrogatório sintomatológico em ordem crânio-caudal, por sistemas (Porto)
+const ISDA_ORDEM = ["Sintomas gerais","Pele e fâneros","Cabeça e pescoço","Olhos, ouvidos, nariz e garganta","Respiratório","Cardiovascular","Digestivo","Urinário","Genital","Hematológico e linfático","Endócrino","Musculoesquelético","Vascular periférico","Neurológico","Psíquico"];
+const ISDA_SIS = {
+  isd_geral:"Sintomas gerais", peso:"Sintomas gerais", febre:"Sintomas gerais", apetite:"Sintomas gerais", fraqueza:"Sintomas gerais",
+  isd_pele:"Pele e fâneros", infec:"Pele e fâneros", cabelo:"Pele e fâneros", prurido:"Pele e fâneros",
+  isd_cabeca:"Cabeça e pescoço", cefaleia:"Cabeça e pescoço",
+  isd_oong:"Olhos, ouvidos, nariz e garganta", visao:"Olhos, ouvidos, nariz e garganta",
+  isd_resp:"Respiratório", hemopt:"Respiratório", dispneia:"Respiratório",
+  isd_cv:"Cardiovascular", dor_peito:"Cardiovascular", palpit:"Cardiovascular", edema:"Cardiovascular", ortopneia:"Cardiovascular",
+  isd_dig:"Digestivo", intestino:"Digestivo",
+  isd_uri:"Urinário", urina:"Urinário",
+  isd_gen:"Genital", sexual:"Genital", menop:"Genital",
+  isd_hemato:"Hematológico e linfático",
+  isd_endo:"Endócrino", frio:"Endócrino", sede:"Endócrino",
+  isd_musc:"Musculoesquelético",
+  isd_vasc:"Vascular periférico",
+  isd_neuro:"Neurológico",
+  isd_psi:"Psíquico", humor:"Psíquico",
+};
+P1_CASOS.forEach(c => {
+  const isda = c.topicos.filter(tp => tp.g === "Interrogatório sintomatológico");
+  isda.forEach(tp => { tp.sis = ISDA_SIS[tp.id] || "Sintomas gerais"; });
+  // se o caso já tem uma pergunta própria para o sistema, a genérica sai do roteiro (continua respondida)
+  isda.forEach(tp => { if (tp.gen && isda.some(o => !o.gen && o.sis === tp.sis)) tp.extra = true; });
+});
+P1_CASOS.forEach(c => {
+  const cfg = P1_HDA[c.id]; if (!cfg) return;
+  c.topicos.forEach(tp => { if (cfg.extra.includes(tp.id)) tp.extra = true; });
+  const i = c.topicos.findIndex(tp => tp.id === cfg.depois);
+  c.topicos.splice(i + 1, 0, ...cfg.novos.map(n => Object.assign({g:"História da doença atual"}, n)));
+});
+
 CASOS.splice(DYN_CASOS.length, 0, ...P1_CASOS);
+
+
+/* ---------- Resumo final da P1 duda: roteiro da anamnese (Porto) e do exame físico ---------- */
+const SAY = re => s => { const m = s.transcript.find(x => x.who === "me" && re.test(norm(x.text))); return m ? {ok:true, ev:quote(m.t, m.text)} : {ok:false}; };
+const HDA_N = n => s => { const k = s.c.topicos.filter(tp => tp.g === "História da doença atual" && s.topics[tp.id]).length; return k >= n ? {ok:true, ev:`${k} perguntas sobre a HDA`} : {ok:false, ev: k ? `Só ${k} pergunta(s) sobre a HDA` : undefined}; };
+const MAN = re => s => { const its = s.c.exame.flatMap(g => g.itens).filter(it => re.test(norm(it.nome))); if (!its.length) return {na:true}; const d = its.filter(it => s.man[it.id] != null); return d.length ? {ok:true, ev:d.map(it => it.nome).join("; ")} : {ok:false, ev:"Disponível na estação e não realizado"}; };
+const MANUAL = null;
+const ROTEIRO_AN = [
+  {h:"1. Identificação", itens:[
+    ["Nome, idade, sexo/gênero", TN(["nome","idade"], 2)],
+    ["Cor/etnia (autodeclarada), estado civil", TN(["cor","civil"], 2)],
+    ["Profissão e ocupação atual", T("prof")],
+    ["Naturalidade e procedência (onde mora e onde viveu)", T("natural")],
+    ["Religião, escolaridade", TN(["religiao","escolaridade"], 2)],
+    ["Fonte da informação e confiabilidade (paciente, acompanhante, prontuário)", MANUAL],
+  ]},
+  {h:"2. Queixa principal (QP)", itens:[
+    ["Motivo da consulta, nas palavras do paciente", T("qp")],
+    ["Duração (\"há quanto tempo?\")", TN(["inicio","quando"], 1)],
+  ]},
+  {h:"3. História da doença atual (HDA)", itens:[
+    ["Início (quando, como, súbito ou insidioso) e cronologia", TN(["inicio","quando"], 1)],
+    ["Características do sintoma: localização, qualidade, intensidade, irradiação", HDA_N(3)],
+    ["Fatores de melhora e piora", SAY(/(melhora|piora|alivi|agrava)/)],
+    ["Sintomas associados", HDA_N(5)],
+    ["Evolução (progressão, periodicidade, episódios anteriores)", SAY(/(evolu|piorando|foi piorando|antes|outras vezes|outro episodio|ja (tinha|aconteceu))/)],
+    ["Tratamentos já feitos e consultas ou exames prévios", SAY(/(tomou|tomando|remedio para|tratamento|ja (consultou|foi ao medico)|exame)/)],
+    ["Repercussão na vida diária (trabalho, sono, apetite, humor)", SAY(/(atrapalh|dia a dia|rotina|vida diaria|no trabalho|impede)/)],
+    ["Negativas pertinentes", MANUAL],
+    ["Fechar o relato: \"Mais alguma coisa que queira me contar?\"", SAY(/(mais alguma coisa|algo mais|quer (me )?contar mais|esqueci de perguntar|gostaria de acrescentar)/)],
+  ]},
+  {h:"4. Interrogatório sistemático (ISDA)", itens:[
+    ["Geral: febre, astenia, peso, sudorese, apetite", SAY(/(febre|peso|emagrec|suor|sudorese|apetite|cansac|astenia)/)],
+    ["Pele e fâneros: prurido, lesões, unhas e cabelo", SAY(/(pele|coceira|prurido|mancha|lesao|unha|cabelo)/)],
+    ["Cabeça e pescoço: cefaleia, tontura, nódulos, rouquidão", SAY(/(cabeca|tontura|pescoco|caroco|rouquid)/)],
+    ["Olhos, ouvidos, nariz e garganta", SAY(/(visao|vista|enxerg|ouvido|zumbido|audicao|escuta|nariz|garganta)/)],
+    ["Respiratório: tosse, expectoração, hemoptise, dispneia, chiado", SAY(/(tosse|catarro|escarro|falta de ar|chiado|respir)/)],
+    ["Cardiovascular: dor torácica, palpitação, ortopneia, edema, síncope", SAY(/(peito|palpit|coracao|travesseiro|inch|desmai)/)],
+    ["Digestivo: náusea, vômito, disfagia, dor abdominal, hábito intestinal, icterícia", SAY(/(enjoo|nausea|vomit|engol|barriga|abdom|intestin|fezes|evacu|amarel)/)],
+    ["Urinário: disúria, polaciúria, hematúria, jato, nictúria, incontinência", SAY(/(urin|xixi|ardencia|jato|segura a urina)/)],
+    ["Genital: DUM, ciclo, corrimento, libido, disfunção sexual", SAY(/(menstrua|corrimento|libido|erec|sexual|\bdum\b|ciclo)/)],
+    ["Hematopoiético/linfático: sangramentos, equimoses, gânglios", SAY(/(sangra|sangue|roxo|equimose|ingua|gangli)/)],
+    ["Endócrino: polidipsia, poliúria, intolerância ao frio ou calor", SAY(/(sede|urina muito|\bfrio\b|calor)/)],
+    ["Musculoesquelético: dor articular, rigidez, fraqueza, limitação", SAY(/(articula|junta|rigidez|fraqueza|movimento|musculo)/)],
+    ["Vascular periférico: varizes, dor nas pernas ao caminhar", SAY(/(variz|claudica|dor nas pernas)/)],
+    ["Neurológico: convulsão, parestesia, déficit motor, marcha, memória", SAY(/(convuls|formig|dormen|andar|marcha|memoria|esquec|forca)/)],
+    ["Psíquico: humor, ansiedade, sono, ideação suicida", SAY(/(humor|triste|ansios|nervos|sono|dormir|suicid|vontade de morrer)/)],
+  ]},
+  {h:"5. Antecedentes pessoais", itens:[
+    ["Fisiológicos: gestação, parto, desenvolvimento, menarca, menopausa, G/P/A", s => s.c.pac.sexo === "Feminino" ? T("gineco")(s) : TN(["nascimento","gineco"], 1)(s)],
+    ["Patológicos: doenças prévias e da infância, internações, cirurgias, traumas, transfusões", TN(["dp","infancia","cirurgia","trauma","transfusao","transf"], 3)],
+    ["Vacinação", T("vacina")],
+    ["Medicamentos em uso (incluindo fitoterápicos e automedicação)", T("meds")],
+    ["Alergias (medicamentos, alimentos)", T("alergia")],
+  ]},
+  {h:"6. Antecedentes familiares", itens:[
+    ["Pais, irmãos, filhos: vivos ou mortos, causa e idade do óbito", T("af")],
+    ["Doenças hereditárias ou prevalentes: HAS, DM, câncer, DAC/AVC, psiquiátricas", T("af")],
+    ["Doenças infecciosas na família (TB, hepatites)", SAY(/(tuberculose|hepatite|\btb\b)/)],
+  ]},
+  {h:"7. Hábitos e condições de vida (perfil psicossocial)", itens:[
+    ["Alimentação, atividade física, sono", TN(["alim","ativ","sono"], 2)],
+    ["Tabagismo (maços-ano), etilismo (quantidade e frequência), drogas", TN(["fumo","alcool","drogas"], 2)],
+    ["Vida sexual e uso de preservativo", T("vidasexual")],
+    ["Moradia, saneamento, renda, rede de apoio", TN(["moradia","renda","lazer"], 2)],
+    ["Ocupação e exposições (poeira, químicos, estresse)", T("exposicao")],
+    ["Viagens recentes, contato com animais, contactantes doentes", ANY(TN(["animais","contato"], 1), SAY(/(viag|viajou)/))],
+  ]},
+  {h:"8. Fechamento", itens:[
+    ["Resumir o caso ao paciente e checar se algo ficou de fora", SAY(/(resum|deixa eu ver se entendi|se eu entendi|entao (o senhor|a senhora|voce) (esta|tem|veio))/)],
+    ["Perguntar o que ele espera da consulta e quais são suas preocupações", ANY(T("expect"), SAY(/(o que (o senhor|a senhora|voce) espera|preocupa|tem medo|o que (o senhor|a senhora|voce) acha que)/))],
+    ["Explicar os próximos passos (exame físico, exames, conduta)", ANY(C("explicou"), SAY(/(proximos passos|vou (te |lhe )?examinar|agora vou|vamos (pedir|fazer) (alguns )?exames)/))],
+  ]},
+];
+const ROTEIRO_EF = [
+  {h:"1. Preparação", itens:[
+    ["Higienizar as mãos (antes e depois)", SAY(/(higieniz|lavar as maos|alcool (gel|nas maos))/)],
+    ["Explicar o exame e pedir permissão", SAY(/(posso (te |lhe |o |a )?examinar|vou (te |lhe )?examinar|com (a sua )?licenca|permiss)/)],
+    ["Garantir privacidade e posicionar o paciente", MANUAL],
+  ]},
+  {h:"2. Exame geral (ectoscopia)", itens:[
+    ["Estado geral, consciência, fácies, atitude, hidratação, coloração de mucosas, icterícia, cianose", MAN(/(ectoscopia|inspecao geral)/)],
+    ["Pele, mucosas e fâneros", MAN(/(mucosa|pele|unha|lingua|estigma|pregas|maos)/)],
+    ["Linfonodos", MAN(/linfonod/)],
+  ]},
+  {h:"3. Sinais vitais e antropometria", itens:[
+    ["PA (técnica correta), FC, FR, temperatura, SpO₂", MAN(/(sinais vitais|pressao|korotkoff|palpatorio|frequencia)/)],
+    ["Peso, altura, IMC e circunferência abdominal", MAN(/(peso|altura|imc|circunferencia)/)],
+  ]},
+  {h:"4. Cabeça e pescoço", itens:[
+    ["Olhos, face e nervos cranianos", MAN(/(olho|ocular|palpebr|face|mimica|pares cranianos|nervos cranianos)/)],
+    ["Tireoide, jugulares e carótidas", MAN(/(tireoide|pescoco|jugular|carotid)/)],
+  ]},
+  {h:"5. Tórax e aparelho respiratório", itens:[
+    ["Inspeção estática e dinâmica", MAN(/inspecao (estatica|dinamica)/)],
+    ["Palpação: expansibilidade e frêmito toracovocal", MAN(/(expansibilidade|fremito toracovocal)/)],
+    ["Percussão comparativa", MAN(/percussao (comparativa|toracica)/)],
+    ["Ausculta pulmonar (e da voz)", MAN(/(ausculta pulmonar|ausculta da voz)/)],
+  ]},
+  {h:"6. Aparelho cardiovascular", itens:[
+    ["Inspeção e palpação do precórdio (ictus, frêmitos)", MAN(/(precordio|ictus|fremitos nos focos)/)],
+    ["Ausculta dos focos cardíacos", MAN(/(ausculta cardiaca|ausculta do foco)/)],
+    ["Pulsos arteriais", MAN(/(pulso|pedioso)/)],
+  ]},
+  {h:"7. Abdome", itens:[
+    ["Inspeção", MAN(/inspecao do abdome/)],
+    ["Ausculta (antes da palpação)", MAN(/ausculta abdominal/)],
+    ["Percussão (incluindo hepatimetria e Traube)", MAN(/(percussao do abdome|hepatimetria|traube|macicez movel|piparote)/)],
+    ["Palpação superficial e profunda; fígado e baço", MAN(/(palpacao (superficial|do baco|do figado|abdominal)|exame do abdome|palpacao do baco)/)],
+  ]},
+  {h:"8. Membros e sistema vascular periférico", itens:[
+    ["Edema, perfusão e pulsos periféricos", MAN(/(membros|edema|perfusao|pes \(|exame dos pes|inspecao dos pes|pre.?tibial)/)],
+  ]},
+  {h:"9. Exame neurológico", itens:[
+    ["Força, tônus, reflexos, sensibilidade, coordenação e marcha", MAN(/(forca|tonus|reflexo|sensibilidade|coordenacao|marcha|monofilamento|diapasao|flapping|tremor|romberg|manobras deficitarias)/)],
+  ]},
+  {h:"10. Finalização", itens:[
+    ["Agradecer, cobrir o paciente e higienizar as mãos", MANUAL],
+    ["Contar ao paciente o que encontrou no exame", MANUAL],
+  ]},
+];
+const DICAS_OSCE = ["Apresente-se, higienize as mãos e confirme a identidade do paciente.","Comece com perguntas abertas e só depois use as dirigidas.","Evite jargão e perguntas indutoras.","Demonstre empatia e organize a HDA em ordem cronológica."];
+function roteiroCard(titulo, roteiro, sub){
+  let feitos = 0, aval = 0;
+  const secs = roteiro.map(sec => `<div class="rt-sec"><div class="eyebrow">${esc(sec.h)}</div>${sec.itens.map(([txt, fn], k) => {
+    if (!fn) return `<label class="rt-it manual"><input type="checkbox"> <span>${esc(txt)}</span><small>autoavaliação</small></label>`;
+    const r = fn(S) || {ok:false};
+    if (r.na) return `<div class="rt-it na"><span class="rt-mk">–</span><span>${esc(txt)}</span><small>não se aplica nesta estação</small></div>`;
+    aval++; if (r.ok) feitos++;
+    return `<div class="rt-it ${r.ok ? "y" : "n"}"><span class="rt-mk">${r.ok ? "✓" : "✕"}</span><span>${esc(txt)}${r.ev ? `<small class="ev">${esc(r.ev)}</small>` : ""}</span></div>`;
+  }).join("")}</div>`).join("");
+  return `<div class="card rt"><div class="rt-head"><h2>${esc(titulo)}</h2><span class="chip ${feitos/Math.max(1,aval) >= .7 ? "ok" : "warn"}">${feitos} de ${aval} itens</span></div>${sub ? `<p class="note" style="margin:0">${sub}</p>` : ""}<div class="rt-grid">${secs}</div></div>`;
+}
+function roteiroP1HTML(){
+  return `<div class="rt-wrap">
+    ${roteiroCard("Resumo da anamnese — roteiro tipo Porto (Semiologia Médica)", ROTEIRO_AN, "✓ feito · ✕ faltou · caixinha: marque você mesmo o que a sala não consegue avaliar.")}
+    ${roteiroCard("Resumo do exame físico — roteiro para o 1º período", ROTEIRO_EF, "Sequência: inspeção → palpação → percussão → ausculta (no abdome, a ausculta vem antes da palpação).")}
+    <div class="card"><h2>Dicas para OSCE e prova prática</h2><ul class="rt-dicas">${DICAS_OSCE.map(d => `<li>${esc(d)}</li>`).join("")}</ul></div>
+  </div>`;
+}
 
 /* =========================================================================
    ESTADO E CAPACIDADES
@@ -2531,6 +2386,7 @@ async function say(text){
   const ids = new Set(reply.topicos || []);
   if (to==="paciente") for (const tp of c.topicos) if (tp.kw.test(norm(text))) ids.add(tp.id);
   for (const id of ids) if (!S.topics[id] && c.topicos.some(x=>x.id===id)) S.topics[id] = {t, q:text};
+  if (c.area === "P1 duda") for (const id of [...ids]) { const tp = c.topicos.find(x => x.id === id); (tp?.cobre || []).forEach(k => { if (!S.topics[k]) S.topics[k] = {t, q:text}; }); }
   if (reply.com) for (const k in reply.com) if (reply.com[k] && !S.com[k]) S.com[k] = {t, q:text};
   if (to==="enfermeira"){
     const ords = new Set(reply.ordens || []);
@@ -2560,6 +2416,8 @@ function detectCom(text, t, to){
   const mark = k => { if (!S.com[k]) S.com[k] = {t, q:text}; };
   if (to!=="enfermeira" || !c.emergencia){
     for (const k in COM_RE) if (COM_RE[k].test(n)) mark(k);
+    // só na P1 duda: aceita apresentações simples ("sou a Ana, estudante de medicina")
+    if (c.area === "P1 duda" && /(\bsou (o |a )?[a-z]+,? (o |a )?(estudante|academic|intern|residente|medic)|sou estudante|estudante de medicina)/.test(n)) mark("apresentou");
     const fn = norm(c.pac.trat), pn = c.pac.primeiro;
     if ((pn && n.includes(pn)) || (fn.length>4 && !/^(o senhor|a senhora|paciente)$/.test(fn) && n.includes(fn))) mark("nome");
   }
@@ -2620,6 +2478,14 @@ Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido]
 function localPatient(text){
   const n = norm(text), c = S.c;
   let hits = c.topicos.filter(tp => tp.kw.test(n));
+  // regras de compreensão próprias da P1 duda (perguntas abertas e tópicos gerais do roteiro do Porto)
+  if (c.area === "P1 duda" && hits.some(h => /^hda_(conte|fatores|assoc)$/.test(h.id))) hits = hits.filter(h => /^hda_(conte|fatores|assoc)$/.test(h.id));
+  if (c.area === "P1 duda" && hits.some(h => h.gen) && hits.some(h => !h.gen)){
+    // pergunta casou com tópico do caso e com tópico geral: vence a palavra-chave mais específica (mais longa)
+    const len = h => { const m = h.kw.exec(n); return m ? m[0].length : 0; };
+    const bg = Math.max(...hits.filter(h => h.gen).map(len)), bs = Math.max(...hits.filter(h => !h.gen).map(len));
+    hits = bg > bs ? hits.filter(h => h.gen) : hits.filter(h => !h.gen);
+  }
   if (!hits.length && c.repo){
     // reserva: aproxima pelo conteúdo das falas e por quem foi chamado (mãe, enfermagem, SAMU...)
     const mine = new Set(stems(text));
@@ -2776,9 +2642,20 @@ function renderDrawer(){
     let roteiro = "";
     if (S.mode==="treino"){
       const groups = {};
-      c.topicos.filter(tp => !tp.ativo).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
+      c.topicos.filter(tp => !tp.ativo && !(c.area === "P1 duda" && tp.extra)).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
       roteiro = `<div class="group"><div class="eyebrow">Roteiro sugerido (modo treino)</div><p class="note" style="margin:0">Clique para perguntar ou use como lembrete. No modo prova este roteiro não aparece.</p></div>` +
-        Object.entries(groups).map(([g, list]) => `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`).join("")}</div>`).join("");
+        Object.entries(groups).map(([g, list]) => {
+          const btn = tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`;
+          if (list.some(tp => tp.sis)){
+            // interrogatório sintomatológico: ordem crânio-caudal, por sistemas
+            const ord = x => { const i = ISDA_ORDEM.indexOf(x.sis); return i < 0 ? 99 : i; };
+            const sorted = list.slice().sort((a, b) => ord(a) - ord(b));
+            let last = null, html = "";
+            sorted.forEach(tp => { if (tp.sis !== last){ html += `<div class="sis">${esc(tp.sis || "Outros")}</div>`; last = tp.sis; } html += btn(tp); });
+            return `<div class="group"><div class="eyebrow">${esc(g)} — crânio-caudal, por sistemas</div>${html}</div>`;
+          }
+          return `<div class="group"><div class="eyebrow">${esc(g)}</div>${list.map(btn).join("")}</div>`;
+        }).join("");
     }
     html = drawerShell("Conversa", S.mode==="treino" ? "Transcrição e roteiro de anamnese" : "Transcrição da consulta", `<div class="group"><div class="eyebrow">Transcrição</div>${tr}</div>${roteiro}`);
   }
@@ -2953,6 +2830,7 @@ function renderFeedback(override, ai){
         <div class="card"><h2>Transcrição</h2><div class="transcript" style="max-height:420px;overflow:auto">${S.transcript.length ? S.transcript.map(m => `<div class="tl ${m.who==="me"?"me":""}"><span class="w">${m.who==="me"?"Você":esc(m.label || speakerName(m.who))} · ${fmt(m.t)}</span>${esc(m.text)}</div>`).join("") : "<span class='note'>Sem falas registradas.</span>"}</div></div>
       </div>
     </div>
+    ${c.area === "P1 duda" && c.id !== "p1-spikes" ? roteiroP1HTML() : ""}
   </div></section>`;
   window.scrollTo(0,0);
   $("#again").onclick = () => renderDoor(c.id);
