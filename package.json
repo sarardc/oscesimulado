@@ -5,6 +5,10 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build:sala": "node scripts/build.js && node scripts/build-sala.mjs",
-    "build:ia": "node scripts/build.js && node scripts/build-sala.mjs && node scripts/build-sala-ia.mjs"
+    "build:ia": "node scripts/build.js && node scripts/build-sala.mjs && node scripts/build-sala-ia.mjs",
+    "test": "npm run build:ia && node --test \"tests/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
   }
 }
