@@ -3,8 +3,8 @@
 //   (roda antes build.js e build-sala.mjs, porque precisa de sala/casos-repo.json)
 // Saída: api/src/casos-ia.json  →  { "<id do caso>": ficha, ... }
 //
-// Como funciona: roda o script da própria página (sala/index.html) dentro de um vm do Node,
-// com um "navegador falso" mínimo, carrega os casos do repositório como a página faz e chama
+// Como funciona: carrega os scripts da página (na ordem do sala/index.html) dentro de um vm do
+// Node, com um "navegador falso" mínimo, carrega os casos do repositório como a página faz e chama
 // fichaDoCaso() em cada caso. Assim o servidor e a página usam exatamente os mesmos dados.
 import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import vm from 'vm';
@@ -12,9 +12,9 @@ import vm from 'vm';
 process.chdir(new URL('..', import.meta.url).pathname);
 
 const html = readFileSync('sala/index.html', 'utf8');
-const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m => m[1]);
-const main = scripts.find(s => s.includes('function fichaDoCaso('));
-if (!main) throw new Error('Script principal da sala (com fichaDoCaso) não encontrado em sala/index.html');
+// todos os scripts comuns da sala, menos a inicialização (que abre o lobby e liga voz/IA)
+const arquivos = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m => m[1]).filter(f => f !== 'js/inicio.js');
+if (!arquivos.length) throw new Error('Nenhum <script src> encontrado em sala/index.html');
 
 // Elemento falso: aceita qualquer leitura, escrita ou chamada sem fazer nada.
 const fake = new Proxy(function () {}, {
@@ -38,7 +38,8 @@ const ctx = {
 };
 ctx.window = ctx; ctx.globalThis = ctx;
 vm.createContext(ctx);
-vm.runInContext(main + '\n;globalThis.__pronto = loadRepoCases().then(() => CASOS.map(fichaDoCaso));', ctx, { filename: 'sala/index.html' });
+for (const f of arquivos) vm.runInContext(readFileSync('sala/' + f, 'utf8'), ctx, { filename: 'sala/' + f });
+vm.runInContext('globalThis.__pronto = loadRepoCases().then(() => CASOS.map(fichaDoCaso));', ctx);
 const fichas = await ctx.__pronto;
 
 const out = {};
