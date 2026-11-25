@@ -371,7 +371,7 @@ const ECG_BY = sec => s => { const e = s.exams.ecg; if (!e) return {ok:false, ev
 const NOT_X = (...ids) => s => { const g = ids.filter(id => s.exams[id]); return g.length ? {ok:false, ev:`Solicitou ${g.map(id=>EXAME[id].nome).join(", ")} sem indicação`} : {ok:true, ev:"Sem exames de imagem desnecessários"}; };
 
 const COM_RE = {
-  apresentou:/(meu nome (e|eh)|me chamo|sou (o|a) (dr|doutor|doutora|medic|residente|estudante|academic|intern)|sou (dr|doutor|doutora)\b|\bsou (o |a )?[a-z]+,? (o |a )?(estudante|academic|intern|residente|medic)|sou estudante|estudante de medicina)/,
+  apresentou:/(meu nome (e|eh)|me chamo|sou (o|a) (dr|doutor|doutora|medic|residente|estudante|academic|intern)|sou (dr|doutor|doutora)\b)/,
   empatia:/(entendo|imagino|compreendo|sinto muito|lamento|deve ser (dificil|complicado|ruim|pesado|assustador)|estou aqui|vamos (cuidar|resolver|juntos|te ajudar)|fique tranquil|obrigad[oa] por (contar|confiar|compartilhar|falar)|faz sentido (voce|o senhor|a senhora) (estar|se sentir)|e normal (sentir|ficar))/,
   entendimento:/(alguma duvida|ficou (claro|alguma duvida)|entendeu|tem alguma pergunta|quer perguntar|faz sentido pra|consegui explicar|pode me (dizer|repetir) o que entendeu)/,
   explicou:/(o que (o senhor|a senhora|voce) tem|seu (coracao|exame|problema)|suspeit|diagnostico|vamos (precisar|fazer|tratar|levar|encaminh)|o tratamento|isso (acontece|e causado|explica))/,
@@ -517,15 +517,15 @@ const CASOS = [
     {id:"palp", g:"Interrogatório sintomatológico", q:"Sente palpitações?", kw:/(palpit|batedeira|coracao (acelerad|dispar|batendo))/, r:"Às vezes sinto o coração batendo rápido quando falta o ar."},
     {id:"meds", g:"Antecedentes", q:"Quais remédios a senhora usa?", kw:/(remedio|medica|toma (algum|alguma)|usa (algum|alguma)|comprimido|tratamento)/, r:"Tomo losartana de manhã e à noite, o carvedilol, o AAS e a sinvastatina. Tinha a furosemida também, mas essa eu parei."},
     {id:"furo", g:"Antecedentes", q:"Por que parou a furosemida?", kw:/(furosemida|lasix|parou|por que (parou|deixou)|deixou de tomar|esquec|suspend|tomando (direitinho|certo|corretamente)|adesao)/, r:"Parei faz um mês. Fui pra casa da minha filha em Minas e ela me fazia correr pro banheiro na estrada. Acabei não voltando a tomar."},
-    {id:"dieta", g:"Hábitos e estilo de vida", q:"Como é sua alimentação? Usa muito sal?", kw:/(sal\b|salgad|comida|aliment|dieta|liquido|agua)/, r:"Na casa da minha filha foi muita festa, linguiça, feijoada... Sal eu sempre usei bem, né. Água bebo uns dois litros."},
+    {id:"dieta", g:"Hábitos de vida", q:"Como é sua alimentação? Usa muito sal?", kw:/(sal\b|salgad|comida|aliment|dieta|liquido|agua)/, r:"Na casa da minha filha foi muita festa, linguiça, feijoada... Sal eu sempre usei bem, né. Água bebo uns dois litros."},
     {id:"has", g:"Antecedentes", q:"Tem pressão alta?", kw:/(pressao|hipertens)/, r:"Pressão alta tenho faz uns vinte anos."},
     {id:"iam", g:"Antecedentes", q:"Já teve algum problema no coração?", kw:/(infart|coracao|cardiac|cateter|stent|cirurgia|internad|internac|cardiolog)/, r:"Tive um infarto há seis anos. Colocaram um stent. Ia no cardiologista, mas faz um ano que não vou."},
     {id:"dm", g:"Antecedentes", q:"Tem diabetes?", kw:/(diabet|acucar|glicose)/, r:"Diabetes não. O colesterol é que é alto."},
     {id:"alergia", g:"Antecedentes", q:"Tem alergia a algum remédio?", kw:/(alergi)/, r:"Que eu saiba, não."},
-    {id:"fumo", g:"Hábitos e estilo de vida", q:"A senhora fuma ou já fumou?", kw:/(fum|cigarro|tabag)/, r:"Fumei trinta anos, um maço por dia. Parei depois do infarto."},
-    {id:"alcool", g:"Hábitos e estilo de vida", q:"Consome bebida alcoólica?", kw:/(bebida|alcool|cerveja|pinga|vinho|bebe\b)/, r:"Bebida não, só um vinhozinho no Natal."},
+    {id:"fumo", g:"Hábitos de vida", q:"A senhora fuma ou já fumou?", kw:/(fum|cigarro|tabag)/, r:"Fumei trinta anos, um maço por dia. Parei depois do infarto."},
+    {id:"alcool", g:"Hábitos de vida", q:"Consome bebida alcoólica?", kw:/(bebida|alcool|cerveja|pinga|vinho|bebe\b)/, r:"Bebida não, só um vinhozinho no Natal."},
     {id:"familia", g:"Antecedentes", q:"Alguém na família tem doença do coração?", kw:/(familia|mae\b|pai\b|irma|parente|heredit)/, r:"Minha mãe morreu do coração, com setenta e poucos anos."},
-    {id:"social", g:"Hábitos e estilo de vida", q:"Com quem a senhora mora?", kw:/(mora\b|morando|sozinha|vive com|aposentad|neta|filh)/, r:"Sou viúva. Moro com minha neta, ela trabalha o dia todo."},
+    {id:"social", g:"Hábitos de vida", q:"Com quem a senhora mora?", kw:/(mora\b|morando|sozinha|vive com|aposentad|neta|filh)/, r:"Sou viúva. Moro com minha neta, ela trabalha o dia todo."},
     {id:"medo", g:"Perspectiva da paciente", q:"O que a senhora acha que está acontecendo?", kw:/(preocup|medo|o que (a senhora )?acha|como (a senhora )?(esta|se sente) com isso|ansios)/, r:"Tô com medo de ser o coração de novo, doutor. Vou ter que ficar internada?"},
     {id:"nome", g:"Identificação", q:"Qual o seu nome?", kw:/(seu nome|como (a senhora|voce) se chama|nome completo)/, r:"Lúcia Ferreira."},
     {id:"idade", g:"Identificação", q:"Quantos anos a senhora tem?", kw:/(idade|quantos anos)/, r:"Setenta e quatro."},
@@ -1799,7 +1799,7 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
     fumo:"Nunca fumei.", alcool:"Não bebo.", drogas:"Não.", ativ:"Nenhuma, só o trabalho.", alim:"Experimento muita comida salgada no trabalho; uso bastante sal e tempero pronto.", sono:"Ronco muito, meu marido reclama.", vidasexual:"Com o meu marido, normal.", cor:"Sou parda.", religiao:"Evangélica, vou ao culto todo domingo.", nascimento:"Nasci em casa, de parteira.", gineco:"Menstruei com treze anos. Três gestações, três cesáreas, nenhum aborto. Menopausa com cinquenta e dois.", infancia:"Não lembro de doença grave.", transfusao:"Recebi sangue numa das cesáreas.", trauma:"Nunca.", exposicao:"Sempre trabalhei em cozinha, com muito calor.", escolaridade:"Estudei até a sexta série.", renda:"Eu e meu marido somamos uns três salários.", lazer:"A igreja é o meu lazer. Em casa está tudo bem.", animais:"Um cachorro e galinhas no quintal.",
     moradia:"Casa com água e esgoto.",
   }, [
-    {id:"quando", q:"Quando mediu? Já tinha medido antes?", kw:/(quando (mediu|foi)|antes|outras vezes|ja (tinha|mediu))/, r:"Medi semana passada na farmácia. Em março, no posto, também deu alta, mas não liguei."},
+    {id:"quando", q:"Quando mediu? Já tinha medido antes?", kw:/(quando (mediu|foi|comecou)|desde quando|quanto tempo|ha quanto|antes|outras vezes|ja (tinha|mediu))/, r:"Medi semana passada na farmácia. Em março, no posto, também deu alta, mas não liguei."},
     {id:"sintomas", q:"Sente alguma coisa?", kw:/(sente|sintoma|incomod|como (a senhora )?se sente)/, r:"Na maior parte do tempo não sinto nada."},
     {id:"cefaleia", q:"Tem dor de cabeça? Onde?", kw:/(cabeca|nuca)/, r:"De vez em quando dói a nuca, de manhã."},
     {id:"tontura", q:"Tontura, visão turva?", kw:/(tontura|visao|vista|embac|zumbido)/, r:"Às vezes vejo uns pontinhos."},
@@ -1861,7 +1861,7 @@ P1_CASOS.push(Object.assign({}, P1_BASE, {
   persona:"Mulher de 47 anos, contadora, objetiva, mas visivelmente ansiosa: pressente que o resultado não é bom. Fala pouco no início. Reage como uma pessoa real: se o aluno der a notícia de forma brusca ou com jargão, fica confusa e pergunta 'o que isso quer dizer?'. Ao ouvir a palavra câncer, fica em silêncio, chora e depois pergunta 'eu vou morrer?' e 'vou perder a mama?'. Se o aluno acolher com empatia, ela se acalma aos poucos. Quer que o marido participe. Não faz perguntas sobre remédios.",
   topicos:[
     {id:"cumprimento", g:"Abertura", q:"Bom dia, Helena. Como a senhora está?", kw:/(bom dia|boa tarde|como (a senhora |voce )?(esta|vai))/, r:"Ansiosa, doutor(a). Não dormi direito esperando esse resultado."},
-    {id:"acompanhante", g:"S — Setting (ambiente)", q:"Gostaria que alguém estivesse com a senhora agora?", kw:/(acompanhante|alguem (com|junto|estivesse|esteja|aqui|presente)|marido|chamar alguem|quer que (alguem|chame)|acompanhad)/, r:"Meu marido está no estacionamento… sim, eu gostaria que ele viesse."},
+    {id:"acompanhante", g:"S — Setting (ambiente)", q:"Gostaria que alguém estivesse com a senhora agora?", kw:/(acompanhante|alguem (com|junto|estivesse|esteja|aqui|presente|para ficar|pra ficar)|marido|cham(ar|e|o) alguem|quer que (alguem|eu chame|chame)|acompanhad)/, r:"Meu marido está no estacionamento… sim, eu gostaria que ele viesse."},
     {id:"percepcao", g:"P — Percepção", q:"O que a senhora sabe sobre o motivo da biópsia?", kw:/(o que (a senhora |voce )?(sabe|entendeu|acha|imagina)|o que (te |lhe )?(disseram|falaram|explicaram)|por que (fez|foi feita) (a )?biopsia)/, r:"O médico do posto achou um caroço no meu peito e disse que precisava ver se era benigno ou não. Eu tenho medo de ser algo ruim."},
     {id:"convite", g:"I — Convite", q:"Como a senhora prefere que eu explique o resultado?", kw:/(quer (saber|que eu (explique|fale|conte))|como (a senhora |voce )?prefere|quanto (de )?detalhe|posso (explicar|falar|conversar)|esta pronta)/, r:"Pode falar tudo, doutor(a). Prefiro saber a verdade."},
     {id:"noticia", g:"K — Conhecimento", q:"(Comunicar o diagnóstico com aviso prévio e linguagem simples)", kw:/(cancer|maligno|tumor|carcinoma|resultado (mostrou|confirmou))/, r:"(Fica em silêncio, os olhos enchem de lágrimas.) …Câncer? Meu Deus…"},
@@ -2386,7 +2386,7 @@ async function say(text){
   const ids = new Set(reply.topicos || []);
   if (to==="paciente") for (const tp of c.topicos) if (tp.kw.test(norm(text))) ids.add(tp.id);
   for (const id of ids) if (!S.topics[id] && c.topicos.some(x=>x.id===id)) S.topics[id] = {t, q:text};
-  for (const id of [...ids]) { const tp = c.topicos.find(x => x.id === id); (tp?.cobre || []).forEach(k => { if (!S.topics[k]) S.topics[k] = {t, q:text}; }); }
+  if (c.area === "P1 duda") for (const id of [...ids]) { const tp = c.topicos.find(x => x.id === id); (tp?.cobre || []).forEach(k => { if (!S.topics[k]) S.topics[k] = {t, q:text}; }); }
   if (reply.com) for (const k in reply.com) if (reply.com[k] && !S.com[k]) S.com[k] = {t, q:text};
   if (to==="enfermeira"){
     const ords = new Set(reply.ordens || []);
@@ -2416,6 +2416,8 @@ function detectCom(text, t, to){
   const mark = k => { if (!S.com[k]) S.com[k] = {t, q:text}; };
   if (to!=="enfermeira" || !c.emergencia){
     for (const k in COM_RE) if (COM_RE[k].test(n)) mark(k);
+    // só na P1 duda: aceita apresentações simples ("sou a Ana, estudante de medicina")
+    if (c.area === "P1 duda" && /(\bsou (o |a )?[a-z]+,? (o |a )?(estudante|academic|intern|residente|medic)|sou estudante|estudante de medicina)/.test(n)) mark("apresentou");
     const fn = norm(c.pac.trat), pn = c.pac.primeiro;
     if ((pn && n.includes(pn)) || (fn.length>4 && !/^(o senhor|a senhora|paciente)$/.test(fn) && n.includes(fn))) mark("nome");
   }
@@ -2476,8 +2478,9 @@ Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido]
 function localPatient(text){
   const n = norm(text), c = S.c;
   let hits = c.topicos.filter(tp => tp.kw.test(n));
-  if (hits.some(h => /^hda_(conte|fatores|assoc)$/.test(h.id))) hits = hits.filter(h => /^hda_(conte|fatores|assoc)$/.test(h.id));
-  if (hits.some(h => h.gen) && hits.some(h => !h.gen)){
+  // regras de compreensão próprias da P1 duda (perguntas abertas e tópicos gerais do roteiro do Porto)
+  if (c.area === "P1 duda" && hits.some(h => /^hda_(conte|fatores|assoc)$/.test(h.id))) hits = hits.filter(h => /^hda_(conte|fatores|assoc)$/.test(h.id));
+  if (c.area === "P1 duda" && hits.some(h => h.gen) && hits.some(h => !h.gen)){
     // pergunta casou com tópico do caso e com tópico geral: vence a palavra-chave mais específica (mais longa)
     const len = h => { const m = h.kw.exec(n); return m ? m[0].length : 0; };
     const bg = Math.max(...hits.filter(h => h.gen).map(len)), bs = Math.max(...hits.filter(h => !h.gen).map(len));
@@ -2639,7 +2642,7 @@ function renderDrawer(){
     let roteiro = "";
     if (S.mode==="treino"){
       const groups = {};
-      c.topicos.filter(tp => !tp.ativo && !tp.extra).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
+      c.topicos.filter(tp => !tp.ativo && !(c.area === "P1 duda" && tp.extra)).forEach(tp => (groups[tp.g] = groups[tp.g] || []).push(tp));
       roteiro = `<div class="group"><div class="eyebrow">Roteiro sugerido (modo treino)</div><p class="note" style="margin:0">Clique para perguntar ou use como lembrete. No modo prova este roteiro não aparece.</p></div>` +
         Object.entries(groups).map(([g, list]) => {
           const btn = tp => `<button class="item ${S.topics[tp.id]?"done":""}" data-ask="${tp.id}">${esc(tp.q)}${S.topics[tp.id]?`<span class="st">✓ ${fmt(S.topics[tp.id].t)}</span>`:""}</button>`;
