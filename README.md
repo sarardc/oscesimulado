@@ -53,4 +53,12 @@ Para atualizar também a Sala de Simulação:
 npm run build:sala
 ```
 
-Ao enviar para a branch `main`, o GitHub Actions roda o build e publica o site.
+Ao enviar para a branch `main`, o GitHub Actions roda `npm run build:sala` e publica o site,
+com a Sala de Simulação em `/sala/`.
+
+## Sala de Simulação fora do claude.ai
+
+No site, a sala funciona sem conta no Claude: o paciente responde pelo roteiro local
+(palavras-chave de cada caso), a voz usa a síntese de fala do navegador e o microfone usa o
+reconhecimento de fala do navegador (bom no Chrome, Edge e Safari; o Firefox não tem).
+Dentro do claude.ai, a mesma página usa a IA, a voz e o ditado do Claude.
