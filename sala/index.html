@@ -277,6 +277,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stro
   .fb-head{grid-template-columns:1fr}
 }
 </style>
+<script type="module">import * as P from "./ia-prompts.js"; window.SalaIA = P;</script>
 </head>
 <body>
 <div id="app"></div>
@@ -2333,12 +2334,50 @@ function wireDictation(dc){
   dc.onFinal(({text}) => { if (S && S.listening){ S.dictBase = (S.dictBase + text).replace(/^\s+/,""); const inp = $("#say"); if (inp) inp.value = S.dictBase; } });
   dc.onState(({state}) => { if (!S) return; S.listening = state==="listening" || state==="starting"; const b = $("#micBtn"); if (b) b.setAttribute("aria-pressed", S.listening); const st = $("#stopRecBtn"); if (st) st.hidden = !S.listening; });
 }
+/* ---------- IA fora do claude.ai: servidor próprio (pasta api/ do repositório) ----------
+   Cole em IA_API_URL o endereço do Worker publicado (ex.: https://osce-ia.SEU-USUARIO.workers.dev/ia).
+   Vazio = sem IA fora do claude.ai (roteiro local). O servidor monta os prompts a partir da
+   ficha do caso que ele mesmo guarda; a página só envia o id do caso e os dados da sessão. */
+const IA_API_URL = "";
+function webSample(url){
+  if (!url) return null;
+  return { web:true, async ask(tipo, casoId, sessao){
+    const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), tipo === "avaliador" ? 90000 : 30000);
+    try{
+      const r = await fetch(url, {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({tipo, casoId, sessao}), signal: ctl.signal});
+      if (r.status === 429) throw Object.assign(new Error("limite"), {code:"limit"});
+      if (!r.ok) throw Object.assign(new Error("HTTP " + r.status), {code:"unavailable"});
+      return await r.json();
+    } finally { clearTimeout(tm); }
+  }};
+}
+// Só o texto do caso que a IA precisa (sem expressões regulares nem funções). O servidor
+// guarda uma cópia gerada por scripts/build-sala-ia.mjs a partir desta mesma função.
+function fichaDoCaso(c){
+  return {
+    id: c.id, titulo: c.titulo || "", repo: !!c.repo, crianca: !!c.crianca, equipe: !!c.equipe, emergencia: !!c.emergencia, dyn: !!c.dyn,
+    pac: {nome: c.pac.nome || "", idade: c.pac.idade, idadeTxt: c.pac.idadeTxt || "", sexo: c.pac.sexo || "", prof: c.pac.prof || ""},
+    local: c.local || "", persona: c.persona || "", enunciado: c.enunciado || "", tarefas: c.tarefas || [], enfermeira: c.enfermeira || "",
+    topicos: (c.topicos || []).map(tp => ({id: tp.id, trig: tp.trig || "", ativo: !!tp.ativo, r: tp.r || ""})),
+    ordens: (c.dyn ? dynOrdList(c) : ORDENS).map(o => ({id: o.id, nome: o.nome})),
+    checklistIA: (c.checklist || []).map((it, i) => it.ia ? {i, l: it.l} : null).filter(Boolean),
+    criticosTexto: c.criticosTexto || [],
+  };
+}
+async function askIA(tipo, sessao, tier){
+  const P = window.SalaIA;
+  if (CAP.sample?.web) return CAP.sample.ask(tipo, S.c.id, sessao);
+  if (!P) throw Object.assign(new Error("módulo de prompts não carregou"), {code:"unavailable"});
+  return CAP.sample.json(P.PROMPTS[tipo](fichaDoCaso(S.c), sessao), {modelTier:tier, cache:false});
+}
+
 CAP.tts = browserTTS(); CAP.dict = browserDictation(); wireDictation(CAP.dict);
+CAP.sample = webSample(IA_API_URL);
 
 (async () => {
   if (!window.claude?.use) return;
   const [sm, tt, dc] = await Promise.all(["sample","tts","dictation"].map(n => window.claude.use(n).catch(()=>null)));
-  CAP.sample = sm;
+  if (sm) CAP.sample = sm;
   if (tt){ CAP.tts?.stop?.(); CAP.tts = tt; }
   if (dc){ CAP.dict = dc; wireDictation(dc); }
   refreshCapsUI();
@@ -2608,6 +2647,7 @@ async function say(text){
     if (CAP.sample && !CAP.aiOff) reply = to==="enfermeira" ? await aiNurse(text) : await aiPatient(text);
   }catch(e){
     if (e?.code === "not_granted"){ CAP.aiOff = true; refreshCapsUI(); toast("IA não autorizada: usando o roteiro local do paciente.", "warn"); }
+    if (e?.code === "limit"){ CAP.aiOff = true; refreshCapsUI(); toast("A IA atingiu o limite de uso por agora: o paciente segue pelo roteiro local por 1 minuto.", "warn"); setTimeout(() => { CAP.aiOff = false; refreshCapsUI(); }, 60000); }
     reply = null;
   }
   if (!reply) reply = to==="enfermeira" ? localNurse(text) : localPatient(text);
@@ -2653,50 +2693,16 @@ function history(max=18){
 }
 async function aiPatient(text){
   const c = S.c;
-  const fatos = c.topicos.map(tp => `- ${tp.id}${tp.trig ? " ["+tp.trig+"]" : ""}${tp.ativo ? " (pergunta que VOCÊ faz por iniciativa própria)" : ""}: ${tp.r}`).join("\n");
-  const equipeRegra = c.crianca ? `
-CONSULTA PEDIÁTRICA: o paciente é ${c.pac.idade < 2 ? "um bebê de" : "uma criança de"} ${idadeStr(c.pac)}${c.pac.idade < 3 ? " (o bebê NÃO fala: quem responde é sempre a mãe; use apenas [Mãe])" : ""}, trazida pela mãe (ou responsável). Quem responde à maioria das perguntas é a mãe; a criança só fala quando o aluno se dirigir diretamente a ela, com frases simples de criança. Comece a "fala" com o personagem entre colchetes: "[Mãe] ..." ou "[Criança] ...".` : c.equipe ? `
-CENA DE EQUIPE: você interpreta TODOS os personagens da cena — equipe de enfermagem, SAMU, familiares/acompanhantes e o próprio paciente (só quando o estado de consciência permitir). Comece a "fala" sempre com o personagem entre colchetes, por exemplo "[Enfermagem] ..." ou "[Família] ...". Quem responde é quem o aluno chamou ou quem faria sentido na cena. A equipe cumpre as ordens claras do aluno, confirma em voz alta e relata a resposta clínica conforme a ficha (ex.: o que acontece após uma medicação). Se uma ordem for perigosa, a equipe cumpre, mas relata as consequências previstas na ficha ou coerentes com o quadro. Sinais vitais atuais: FC ${Math.round(S.vit.fc)} bpm, PA ${Math.round(S.vit.pas)}x${Math.round(S.vit.pad)} mmHg, SpO2 ${S.vit.sat==null ? "não aferida" : Math.round(S.vit.sat)+"%"}, FR ${Math.round(S.vit.fr)} irpm.` : "";
-  const prompt = `Você é um ator interpretando um paciente simulado numa estação de OSCE para estudantes de medicina no Brasil.
-PERSONAGEM: ${c.pac.nome}, ${idadeStr(c.pac)}, ${c.pac.sexo.toLowerCase()}, ${c.pac.prof}. Cenário: ${c.local}.${c.repo ? " Se o nome do personagem estiver abreviado em iniciais, invente um nome brasileiro coerente com as iniciais e use-o se perguntarem." : ""}
-COMO AGIR: ${c.persona}
-FICHA (cada linha é um fato com seu id; diga o fato só quando o aluno perguntar sobre ele):
-${fatos}
-REGRAS:
-- Responda apenas ao que a ÚLTIMA fala do aluno perguntou. Não antecipe fatos não perguntados: o aluno precisa investigar.
-- Português do Brasil coloquial, linguagem leiga, 1 a 3 frases curtas. Nunca use termos técnicos nem cite diagnósticos.
-- Se perguntarem algo fora da ficha, invente algo banal e coerente (geralmente negativo/normal) e mantenha a consistência com o que já disse.
-- Se o aluno usar jargão que um leigo não entenderia, peça para explicar.
-- Se o aluno explicar uma conduta, reaja como o personagem (dúvida, alívio, preocupação) em 1 a 2 frases.
-- Se o aluno pedir para examinar, concorde brevemente.
-- Se o aluno só cumprimentar ou se apresentar, cumprimente de volta.${equipeRegra}${S.dyn ? `
-ESTADO CLÍNICO AGORA: ${dynEstadoTxt()}. Ajuste a fala a esse estado: sonolento = 1 a 3 palavras arrastadas; muito grave = gemidos e frases incompletas; melhorando = fala com mais alívio.` : ""}
-CONVERSA ATÉ AGORA:
-${history() || "(início da consulta)"}
-ÚLTIMA FALA DO ALUNO: "${text}"
-Responda SOMENTE com JSON válido:
-{"fala":"resposta do personagem","emocao":"neutro|preocupado|ansioso|com dor|aliviado|triste|irritado|retraído","topicos":["ids da FICHA que a última fala do aluno perguntou ou abordou"],"com":{"apresentou":bool,"nome":bool,"empatia":bool,"entendimento":bool,"explicou":bool,"sigilo":bool}}
-Em "com", marque true apenas para o que a ÚLTIMA fala do aluno fez: apresentou-se pelo nome/função; chamou o paciente pelo nome; demonstrou empatia/validação; checou entendimento ou abriu espaço para dúvidas; explicou diagnóstico ou plano; garantiu sigilo.`;
-  const r = await CAP.sample.json(prompt, {modelTier:"quick", cache:false});
+  const vitais = c.equipe ? `FC ${Math.round(S.vit.fc)} bpm, PA ${Math.round(S.vit.pas)}x${Math.round(S.vit.pad)} mmHg, SpO2 ${S.vit.sat==null ? "não aferida" : Math.round(S.vit.sat)+"%"}, FR ${Math.round(S.vit.fr)} irpm` : "";
+  const r = await askIA("paciente", {historico: history(), fala: text, estado: S.dyn ? dynEstadoTxt() : "", vitais}, "quick");
   if (!r || typeof r.fala !== "string") return null;
   return r;
 }
 async function aiNurse(text){
-  const c = S.c, v = S.vit;
-  const ords = ordList().map(o => `- ${o.id}: ${o.nome}`).join("\n");
-  const vit = S.dyn ? (S.mon ? "Estado do paciente: " + dynEstadoTxt() + "." : "Paciente AINDA NÃO monitorizado. Estado aparente: " + dynEstadoTxt() + ".") : S.mon ? `Monitor: FC ${Math.round(v.fc)} bpm, PA ${Math.round(v.pas)}x${Math.round(v.pad)} mmHg, SpO2 ${Math.round(v.sat)}%, FR ${Math.round(v.fr)} irpm.` : "Paciente AINDA NÃO monitorizado (sem sinais vitais disponíveis até o médico pedir monitorização).";
+  const v = S.vit;
+  const situacao = S.dyn ? (S.mon ? "Estado do paciente: " + dynEstadoTxt() + "." : "Paciente AINDA NÃO monitorizado. Estado aparente: " + dynEstadoTxt() + ".") : S.mon ? `Monitor: FC ${Math.round(v.fc)} bpm, PA ${Math.round(v.pas)}x${Math.round(v.pad)} mmHg, SpO2 ${Math.round(v.sat)}%, FR ${Math.round(v.fr)} irpm.` : "Paciente AINDA NÃO monitorizado (sem sinais vitais disponíveis até o médico pedir monitorização).";
   const feitas = Object.keys(S.orders).map(k => ordName(k)).join("; ") || "nenhuma";
-  const prompt = `Você é a enfermeira Carla numa estação de OSCE de emergência (Brasil). ${c.enfermeira || "Enfermeira experiente, objetiva e cordial. Cumpre ordens claras do médico e confirma em voz alta; informa os sinais vitais quando perguntada; não sugere condutas nem dá diagnósticos."}${S.dyn ? " Nesta cena, quando uma ordem corresponder a um id da lista, NÃO descreva o efeito clínico: apenas inclua o id em \"ordens\" e responda algo curto como \"Certo, doutor(a).\" — o sistema relata o efeito." : ""}
-Paciente: ${c.pac.nome}, ${idadeStr(c.pac)}. ${c.enunciado} ${vit}
-Ordens já executadas: ${feitas}.
-ORDENS POSSÍVEIS (id: descrição):
-${ords}
-REGRAS: responda em 1 a 2 frases, português do Brasil, tom profissional. Se o médico der uma ordem que corresponda a um id, confirme a execução e inclua o id em "ordens". Não sugira condutas por iniciativa própria nem dê diagnósticos. Se pedirem ECG, diga que vai fazer agora (inclua "ecg" em "exames"). Se pedirem sinais vitais, informe os do monitor.
-CONVERSA ATÉ AGORA:
-${history()}
-ÚLTIMA FALA DO MÉDICO: "${text}"
-Responda SOMENTE JSON: {"fala":"...","ordens":["ids"],"exames":["ecg" se pedido],"emocao":"neutro"}`;
-  const r = await CAP.sample.json(prompt, {modelTier:"quick", cache:false});
+  const r = await askIA("enfermeira", {historico: history(), fala: text, situacao, feitas}, "quick");
   if (!r || typeof r.fala !== "string") return null;
   if (Array.isArray(r.exames) && r.exames.includes("ecg")) setTimeout(() => requestExam("ecg"), 50);
   return r;
@@ -3066,27 +3072,20 @@ function gabaritoHTML(g){
 async function runAIEval(){
   const c = S.c, snap = S;
   renderFeedback(undefined, "loading");
-  const iaItems = c.checklist.map((it,i)=>({it,i})).filter(x=>x.it.ia);
-  const prompt = `Você é um avaliador de OSCE (exame clínico objetivo estruturado) de medicina no Brasil, rigoroso e justo.
-ESTAÇÃO: ${c.titulo}. Paciente: ${c.pac.nome}, ${idadeStr(c.pac)}. ${c.enunciado}
-TAREFAS: ${c.tarefas.join(" ")}
-HIPÓTESE ESCRITA PELO ALUNO: "${S.hip}"
-DIFERENCIAIS: "${S.dif}"
-CONDUTA ESCRITA: "${S.conduta}"
-${c.emergencia || c.dyn ? "ORDENS EXECUTADAS: " + (Object.keys(S.orders).map(k=>ordName(k)+" ("+fmt(S.orders[k])+")").join("; ")||"nenhuma") : ""}${S.dyn ? "\nDESFECHO: " + (S.dyn.obito ? "óbito" : S.dyn.estavel ? "estabilizado" : "instável") : ""}
-MANOBRAS DE EXAME FÍSICO REALIZADAS: ${c.exame.flatMap(g=>g.itens).filter(it=>S.man[it.id]!=null).map(it=>it.nome).join("; ") || "nenhuma"}
-EXAMES SOLICITADOS: ${Object.keys(S.exams).map(id=>examDef(id).nome).join("; ") || "nenhum"}
-ANOTAÇÕES DO ALUNO: "${S.notas}"
-FALAS DO ALUNO NA CONSULTA:
-${S.transcript.filter(m=>m.who==="me").map(m=>`[${fmt(m.t)}] ${m.text}`).join("\n") || "(nenhuma)"}
-Avalie SOMENTE estes itens do checklist (true = cumprido de forma clara e correta pelo que foi escrito ou dito; considere negações: "não vou dar X" não conta como dar X):
-${iaItems.map(x=>`${x.i}: ${x.it.l}`).join("\n")}
-${(c.criticosTexto||[]).length ? `ERROS CRÍTICOS POSSÍVEIS (marque em "criticos" os índices que o aluno COMETEU de fato; na dúvida, não marque):\n${c.criticosTexto.map((t,i)=>`${i}: ${t}`).join("\n")}\n` : ""}Responda SOMENTE JSON: {"itens":{"<número>":true|false,...},"criticos":[índices],"comentario":"2 a 4 frases, tom de preceptor, dirigidas ao aluno (você)","fortes":["até 3"],"melhorar":["até 3, específicos e acionáveis"]}`;
+  const sessao = {
+    hip: S.hip, dif: S.dif, conduta: S.conduta, notas: S.notas,
+    ordens: Object.keys(S.orders).map(k=>ordName(k)+" ("+fmt(S.orders[k])+")").join("; "),
+    desfecho: S.dyn ? (S.dyn.obito ? "óbito" : S.dyn.estavel ? "estabilizado" : "instável") : "",
+    manobras: c.exame.flatMap(g=>g.itens).filter(it=>S.man[it.id]!=null).map(it=>it.nome).join("; "),
+    exames: Object.keys(S.exams).map(id=>examDef(id).nome).join("; "),
+    falas: S.transcript.filter(m=>m.who==="me").map(m=>`[${fmt(m.t)}] ${m.text}`).join("\n"),
+  };
   try{
-    const r = await CAP.sample.json(prompt, {modelTier:"default", cache:false});
+    const r = await askIA("avaliador", sessao, "default");
     if (S !== snap) return;
     const ov = {};
-    if (r && r.itens) for (const k in r.itens) ov[+k] = !!r.itens[k];
+    if (Array.isArray(r?.itens)) r.itens.forEach(x => { if (Number.isInteger(+x?.i)) ov[+x.i] = !!x.ok; });
+    else if (r && r.itens) for (const k in r.itens) ov[+k] = !!r.itens[k];
     if (r && Array.isArray(r.criticos)) S.critIA = r.criticos.map(Number).filter(n => Number.isInteger(n));
     renderFeedback(ov, r || {});
   }catch(e){

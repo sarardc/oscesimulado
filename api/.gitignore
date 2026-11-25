@@ -1,0 +1,5 @@
+node_modules/
+.wrangler/
+.dev.vars
+# gerado por `npm run build:ia` na raiz do repositório
+src/casos-ia.json

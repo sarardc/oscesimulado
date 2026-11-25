@@ -26,11 +26,13 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 ├── cards/                  Cards de estudo (cards/cards.html)
 ├── agenda/                 Agenda de estudos (app instalável)
 ├── questoes/               Questões (pediatria)
-├── sala/                   Sala de Simulação interativa
+├── sala/                   Sala de Simulação interativa (ia-prompts.js: prompts da IA)
+├── api/                    Servidor de IA da sala (Cloudflare Worker), ver api/README.md
 │
 ├── scripts/
 │   ├── build.js            Junta casos/ em data/stations.json
-│   └── build-sala.mjs      Gera os dados da Sala de Simulação
+│   ├── build-sala.mjs      Gera os dados da Sala de Simulação
+│   └── build-sala-ia.mjs   Gera as fichas dos casos para o servidor de IA (api/)
 │
 └── .github/workflows/      Publicação automática no GitHub Pages
 ```
@@ -62,3 +64,8 @@ No site, a sala funciona sem conta no Claude: o paciente responde pelo roteiro l
 (palavras-chave de cada caso), a voz usa a síntese de fala do navegador e o microfone usa o
 reconhecimento de fala do navegador (bom no Chrome, Edge e Safari; o Firefox não tem).
 Dentro do claude.ai, a mesma página usa a IA, a voz e o ditado do Claude.
+
+Para ter o paciente com IA também no site, publique o servidor da pasta `api/` (um Cloudflare
+Worker que guarda a chave da Claude API) e cole o endereço dele em `IA_API_URL`, no
+`sala/index.html`. Passo a passo em [`api/README.md`](api/README.md). Os prompts ficam em
+`sala/ia-prompts.js`, compartilhados entre a página e o servidor.

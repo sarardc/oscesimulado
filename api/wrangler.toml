@@ -1,0 +1,26 @@
+# Servidor de IA da Sala de Simulação. Passo a passo de publicação: api/README.md
+name = "osce-ia"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Endereços que podem chamar a IA (separados por vírgula). O do GitHub Pages do projeto:
+ORIGENS_PERMITIDAS = "https://sarardc.github.io"
+# Paciente e enfermeira: rápido e barato. Avaliação final: mais capaz.
+IA_MODELO_CONVERSA = "claude-haiku-5-5"
+IA_MODELO_AVALIACAO = "claude-opus-5-5"
+
+# Limite por IP: falas por minuto e avaliações por minuto.
+[[ratelimits]]
+name = "LIMITE_CONVERSA"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 20
+  period = 60
+
+[[ratelimits]]
+name = "LIMITE_AVALIACAO"
+namespace_id = "1002"
+  [ratelimits.simple]
+  limit = 2
+  period = 60

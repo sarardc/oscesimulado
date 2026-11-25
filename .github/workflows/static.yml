@@ -40,7 +40,7 @@ jobs:
           cp -r agenda _site/agenda
           [ -d questoes ] && cp -r questoes _site/questoes || true
           mkdir -p _site/sala
-          cp sala/index.html sala/casos-repo.json _site/sala/
+          cp sala/index.html sala/ia-prompts.js sala/casos-repo.json _site/sala/
           cp -r sala/img _site/sala/img
 
       - name: Upload Pages artifact
