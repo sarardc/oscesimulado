@@ -24,9 +24,10 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 │                           otorrinolaringologia, psiquiatria
 │
 ├── cards/                  Cards de estudo (cards/cards.html)
-├── agenda/                 Agenda de estudos (app instalável)
-├── questoes/               Questões (pediatria)
-├── sala/                   Sala de Simulação interativa
+├── agenda/                 Agenda de estudos (app instalável, em /agenda/)
+├── questoes/               Questões de pediatria (em /questoes/questoes-ped.html)
+├── sala/                   Sala de Simulação interativa (uso local, não é publicada)
+│   └── imagens-gemini.md   Pedidos de imagens dos pacientes para o Gemini
 │
 ├── scripts/
 │   ├── build.js            Junta casos/ em data/stations.json
@@ -47,7 +48,7 @@ Plataforma de simulação de estações OSCE para estudantes de medicina, public
 npm run build
 ```
 
-Para atualizar também a Sala de Simulação:
+Para atualizar também a Sala de Simulação (gera `sala/casos-repo.json`, que não vai para o git):
 
 ```bash
 npm run build:sala
